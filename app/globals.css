@@ -4742,13 +4742,14 @@ button:focus-visible {
     position: relative;
     z-index: 1;
   }
-  /* jemné statické ambientné svetlo (zhora) + vinetácia — žiadny pohyb */
+  /* ambientné svetlo zhora + vinetácia (statické) */
   .hero__fx-glow {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: radial-gradient(
-        58% 42% at 50% 20%,
-        rgba(71, 199, 232, 0.13),
+        58% 42% at 50% 18%,
+        rgba(71, 199, 232, 0.1),
         transparent 66%
       ),
       radial-gradient(
@@ -4756,5 +4757,63 @@ button:focus-visible {
         transparent 52%,
         rgba(0, 0, 0, 0.55) 100%
       );
+  }
+  /* driftujúce mäkké svetelné plochy (caustics feel) */
+  .hero__fx-blob {
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(58px);
+    will-change: transform;
+  }
+  .hero__fx-blob--1 {
+    width: 78%;
+    left: -6%;
+    top: 4%;
+    background: radial-gradient(circle, rgba(71, 199, 232, 0.26), transparent 62%);
+    animation: blobDrift1 22s ease-in-out infinite alternate;
+  }
+  .hero__fx-blob--2 {
+    width: 70%;
+    right: -10%;
+    top: 30%;
+    background: radial-gradient(circle, rgba(34, 116, 148, 0.28), transparent 62%);
+    animation: blobDrift2 30s ease-in-out infinite alternate;
+  }
+  .hero__fx-blob--3 {
+    width: 60%;
+    left: 8%;
+    bottom: 2%;
+    background: radial-gradient(circle, rgba(54, 150, 178, 0.2), transparent 64%);
+    animation: blobDrift3 26s ease-in-out infinite alternate;
+  }
+}
+@keyframes blobDrift1 {
+  0% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+  100% {
+    transform: translate(14%, 12%) scale(1.28);
+  }
+}
+@keyframes blobDrift2 {
+  0% {
+    transform: translate(8%, 8%) scale(1.15);
+  }
+  100% {
+    transform: translate(-12%, -10%) scale(0.85);
+  }
+}
+@keyframes blobDrift3 {
+  0% {
+    transform: translate(0, 6%) scale(0.9);
+  }
+  100% {
+    transform: translate(-10%, -8%) scale(1.2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__fx-blob {
+    animation: none;
   }
 }

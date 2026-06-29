@@ -93,9 +93,12 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
-        {/* mobil bez fotky — len jemné statické ambientné svetlo (≤600px) */}
+        {/* mobil bez fotky — driftujúce mäkké svetlo (premium, ≤600px) */}
         <div className="hero__fx" aria-hidden="true">
           <span className="hero__fx-glow" />
+          <span className="hero__fx-blob hero__fx-blob--1" />
+          <span className="hero__fx-blob hero__fx-blob--2" />
+          <span className="hero__fx-blob hero__fx-blob--3" />
         </div>
         <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">
