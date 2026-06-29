@@ -30,10 +30,12 @@ export function AquaMark({ className }: { className?: string }) {
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={`logo${className ? " " + className : ""}`}>
-      <AquaMark className="logo__mark" />
+      <span className="logo__box" aria-hidden="true">
+        A
+      </span>
       <span className="logo__type">
         <span className="logo__word">AQUAPRIME</span>
-        <span className="logo__tag">ELEVATE NATURE</span>
+        <span className="logo__tag">LUXURY AQUARIUM CABINETS</span>
       </span>
     </span>
   );

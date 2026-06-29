@@ -180,20 +180,28 @@ button {
   gap: 11px;
   color: rgba(244, 244, 242, 0.92);
 }
-.logo__mark {
-  width: 25px;
-  height: auto;
+.logo__box {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
   flex: none;
-  transition: transform 0.5s var(--ease), color 0.3s var(--ease);
+  border: 1.5px solid rgba(244, 241, 235, 0.82);
+  font-family: var(--display);
+  font-size: 1.55rem;
+  line-height: 1;
+  padding-bottom: 2px;
+  color: rgba(244, 241, 235, 0.96);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
-.nav__brand:hover .logo__mark {
-  transform: translateY(-2px) scale(1.04);
+.nav__brand:hover .logo__box {
+  border-color: var(--cyan);
   color: var(--cyan);
 }
 .logo__type {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   line-height: 1;
 }
 .logo__word {
@@ -205,9 +213,9 @@ button {
 .logo__tag {
   font-weight: 600;
   font-size: 0.4375rem;
-  letter-spacing: 0.42em;
-  padding-left: 0.42em;
-  color: var(--gold-soft);
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  color: rgba(210, 213, 215, 0.5);
 }
 .logo--footer {
   color: rgba(216, 216, 216, 0.6);
@@ -3964,6 +3972,7 @@ button:focus-visible {
   z-index: 1;
   max-width: 560px;
   padding: 0;
+  margin-left: clamp(0px, 4vw, 64px);
 }
 .hero__eyebrow {
   display: inline-flex;
@@ -4201,12 +4210,12 @@ button:focus-visible {
 /* scroll vľavo: slovo + čiara + šípka */
 .hero__scroll-v {
   position: absolute;
-  left: clamp(10px, 2vw, 34px);
-  top: 36%;
+  left: clamp(14px, 2.4vw, 44px);
+  top: 38%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 28px;
   writing-mode: horizontal-tb;
   transform: none;
   z-index: 3;
@@ -4221,7 +4230,7 @@ button:focus-visible {
 }
 .hero__scroll-line {
   width: 1px;
-  height: 54px;
+  height: 86px;
   background: linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0));
 }
 .hero__scroll-arr {
