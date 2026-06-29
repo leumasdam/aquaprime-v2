@@ -4703,8 +4703,9 @@ button:focus-visible {
   scroll-margin-top: var(--nav-h);
 }
 
-/* fx vrstva default skrytá (len mobil) */
-.hero__fx {
+/* fx vrstva + voda default skryté (len mobil) */
+.hero__fx,
+.hero__water {
   display: none;
 }
 
@@ -4764,16 +4765,19 @@ button:focus-visible {
   }
   .wbub {
     position: absolute;
-    bottom: 50%;
+    bottom: 46%;
     width: var(--bs);
     height: var(--bs);
     border-radius: 50%;
     background: radial-gradient(
-      circle at 35% 30%,
-      rgba(255, 255, 255, 0.7),
-      rgba(190, 235, 250, 0.18) 70%,
+      circle at 34% 28%,
+      rgba(255, 255, 255, 0.95),
+      rgba(205, 240, 252, 0.45) 55%,
+      rgba(150, 215, 240, 0.12) 80%,
       transparent
     );
+    box-shadow: 0 0 6px rgba(190, 235, 250, 0.5),
+      inset 0 0 2px rgba(255, 255, 255, 0.8);
     opacity: 0;
     animation: wbubRise var(--bd) ease-in var(--bdelay) infinite;
   }
@@ -4888,10 +4892,6 @@ button:focus-visible {
   }
 }
 
-/* hero voda — default skrytá (len mobil split) */
-.hero__water {
-  display: none;
-}
 @keyframes heroShimmer {
   0% {
     left: -55%;
@@ -4903,17 +4903,17 @@ button:focus-visible {
 }
 @keyframes wbubRise {
   0% {
-    transform: translateY(6svh);
+    transform: translateY(8svh);
     opacity: 0;
   }
-  16% {
-    opacity: 0.55;
+  14% {
+    opacity: 0.85;
   }
-  80% {
-    opacity: 0.4;
+  82% {
+    opacity: 0.6;
   }
   100% {
-    transform: translateY(-22svh);
+    transform: translateY(-24svh);
     opacity: 0;
   }
 }

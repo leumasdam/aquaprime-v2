@@ -17,8 +17,8 @@ export default function HeroParallax() {
       raf = 0;
       const h = hero.offsetHeight || 1;
       const p = Math.min(Math.max(window.scrollY / h, 0), 1);
-      bg.style.backgroundSize = `auto ${114 + p * 48}%`;
-      bg.style.backgroundPositionY = `${36 + p * 26}%`;
+      bg.style.backgroundSize = `auto ${116 + p * 90}%`;
+      bg.style.backgroundPositionY = `${34 + p * 38}%`;
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
