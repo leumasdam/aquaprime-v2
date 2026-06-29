@@ -4078,19 +4078,19 @@ button:focus-visible {
   background: linear-gradient(
     180deg,
     rgba(8, 9, 11, 0.3) 0%,
-    rgba(8, 9, 11, 0.32) 62%,
+    rgba(8, 9, 11, 0.32) 70%,
     rgba(0, 0, 0, 0.96) 100%
   );
   backdrop-filter: blur(16px) saturate(1.18);
   -webkit-backdrop-filter: blur(16px) saturate(1.18);
-  padding-bottom: clamp(10px, 1.1vw, 18px);
+  padding-bottom: clamp(2px, 0.4vw, 7px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .hero__bar-inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: clamp(12px, 1.6vw, 30px);
-  padding-block: clamp(14px, 1.6vw, 22px);
+  padding-block: clamp(12px, 1.3vw, 16px);
 }
 .hfeat {
   display: flex;
