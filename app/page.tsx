@@ -87,49 +87,15 @@ const COLLECTIONS = [
   { name: "Premium", sub: "Výnimočný dizajn", img: "/img/col-premium.webp" },
 ];
 
-// bublinky pre mobilný „podvodný" hero (left %, veľkosť px, trvanie s, delay s)
-const BUBBLES = [
-  { l: 10, s: 5, d: 9, delay: 0 },
-  { l: 22, s: 8, d: 11, delay: 2.5 },
-  { l: 34, s: 4, d: 8, delay: 1.2 },
-  { l: 48, s: 6, d: 12, delay: 3.8 },
-  { l: 60, s: 9, d: 10, delay: 0.6 },
-  { l: 72, s: 4, d: 9.5, delay: 2 },
-  { l: 84, s: 7, d: 11.5, delay: 4.4 },
-  { l: 92, s: 5, d: 8.5, delay: 1.7 },
-];
-
 export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
-        {/* mobilná „podvodná" animácia (bez fotky) — len ≤600px */}
+        {/* mobil bez fotky — len jemné statické ambientné svetlo (≤600px) */}
         <div className="hero__fx" aria-hidden="true">
           <span className="hero__fx-glow" />
-          {BUBBLES.map((b, i) => (
-            <span
-              key={i}
-              className="bub"
-              style={
-                {
-                  left: `${b.l}%`,
-                  "--bs": `${b.s}px`,
-                  "--bd": `${b.d}s`,
-                  "--bdelay": `${b.delay}s`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-          <svg className="hero__fish hero__fish--1" viewBox="0 0 64 28" aria-hidden="true">
-            <path d="M2 14c10-11 30-11 42 0-12 11-32 11-42 0zM44 14l18-9v18z" />
-            <circle cx="14" cy="12" r="1.4" />
-          </svg>
-          <svg className="hero__fish hero__fish--2" viewBox="0 0 64 28" aria-hidden="true">
-            <path d="M2 14c10-11 30-11 42 0-12 11-32 11-42 0zM44 14l18-9v18z" />
-            <circle cx="14" cy="12" r="1.4" />
-          </svg>
         </div>
         <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">

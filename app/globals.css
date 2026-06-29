@@ -4742,100 +4742,19 @@ button:focus-visible {
     position: relative;
     z-index: 1;
   }
+  /* jemné statické ambientné svetlo (zhora) + vinetácia — žiadny pohyb */
   .hero__fx-glow {
     position: absolute;
-    inset: -12%;
+    inset: 0;
     background: radial-gradient(
-      42% 30% at 50% 38%,
-      rgba(71, 199, 232, 0.16),
-      transparent 70%
-    );
-    animation: glowDrift 16s ease-in-out infinite alternate;
-  }
-  .bub {
-    position: absolute;
-    bottom: -24px;
-    width: var(--bs);
-    height: var(--bs);
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 35% 30%,
-      rgba(255, 255, 255, 0.5),
-      rgba(120, 210, 235, 0.12) 70%,
-      transparent
-    );
-    opacity: 0;
-    animation: bubRise var(--bd) linear var(--bdelay) infinite;
-  }
-  .hero__fish {
-    position: absolute;
-    height: auto;
-    fill: rgba(150, 195, 208, 0.16);
-  }
-  .hero__fish--1 {
-    top: 30%;
-    width: 56px;
-    animation: fishSwim1 28s linear infinite;
-  }
-  .hero__fish--2 {
-    top: 62%;
-    width: 38px;
-    fill: rgba(150, 195, 208, 0.1);
-    animation: fishSwim2 36s linear 7s infinite;
-  }
-}
-@keyframes glowDrift {
-  0% {
-    transform: translate(-6%, -3%) scale(1);
-  }
-  100% {
-    transform: translate(8%, 5%) scale(1.18);
-  }
-}
-@keyframes bubRise {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  12% {
-    opacity: 0.5;
-  }
-  88% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: translateY(-95svh) translateX(12px);
-    opacity: 0;
-  }
-}
-@keyframes fishSwim1 {
-  0% {
-    transform: translate(-22vw, 0) scaleX(1);
-  }
-  50% {
-    transform: translate(50vw, -14px) scaleX(1);
-  }
-  100% {
-    transform: translate(122vw, 0) scaleX(1);
-  }
-}
-@keyframes fishSwim2 {
-  0% {
-    transform: translate(122vw, 0) scaleX(-1);
-  }
-  50% {
-    transform: translate(45vw, 12px) scaleX(-1);
-  }
-  100% {
-    transform: translate(-22vw, 0) scaleX(-1);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero__fx-glow {
-    animation: none;
-  }
-  .bub,
-  .hero__fish {
-    display: none;
+        58% 42% at 50% 20%,
+        rgba(71, 199, 232, 0.13),
+        transparent 66%
+      ),
+      radial-gradient(
+        125% 95% at 50% 48%,
+        transparent 52%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
   }
 }
