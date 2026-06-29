@@ -4721,16 +4721,26 @@ button:focus-visible {
       #050709 100%
     );
   }
-  .hero__bg2 {
+  .hero__fx {
     display: none;
   }
-  .hero__fx {
+  /* SPLIT: fotka hore ako blok, text dole na tmavej */
+  .hero__bg2 {
     display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 44svh;
+    background-size: cover;
+    background-position: center 40%;
+  }
+  .hero__bg2::after {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 7, 9, 0) 48%,
+      rgba(5, 7, 9, 0.5) 76%,
+      #070d0f 100%
+    );
   }
   .hero__inner {
     display: flex;
