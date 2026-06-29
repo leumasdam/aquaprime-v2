@@ -4331,14 +4331,51 @@ button:focus-visible {
   display: grid;
   place-items: center;
   color: rgba(228, 232, 234, 0.82);
+  /* cyan pulz putuje postupne cez všetky ikony */
+  animation: ringCycle 11s ease-in-out infinite;
 }
 .hfeat__ring svg {
   width: 25px;
   height: 25px;
 }
-.hfeat:first-child .hfeat__ring {
-  border-color: var(--cyan);
-  color: var(--cyan);
+.hfeat:nth-child(1) .hfeat__ring {
+  animation-delay: 0s;
+}
+.hfeat:nth-child(2) .hfeat__ring {
+  animation-delay: 2.2s;
+}
+.hfeat:nth-child(3) .hfeat__ring {
+  animation-delay: 4.4s;
+}
+.hfeat:nth-child(4) .hfeat__ring {
+  animation-delay: 6.6s;
+}
+.hfeat:nth-child(5) .hfeat__ring {
+  animation-delay: 8.8s;
+}
+@keyframes ringCycle {
+  0%,
+  13%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.24);
+    color: rgba(228, 232, 234, 0.82);
+    box-shadow: 0 0 0 rgba(71, 199, 232, 0);
+  }
+  4%,
+  9% {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 16px rgba(71, 199, 232, 0.45);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hfeat__ring {
+    animation: none;
+  }
+  .hfeat:first-child .hfeat__ring {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
 }
 
 /* mobil: krúžky + deliče prispôsobiť swipe lište */
