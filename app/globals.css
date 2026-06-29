@@ -4719,4 +4719,13 @@ button:focus-visible {
     justify-content: flex-start;
     padding-left: 2px;
   }
+  /* feature lišta: vždy len 1 ikona viditeľná, swipe na ďalšiu (snap) */
+  .hero__bar-inner {
+    scroll-snap-type: x mandatory;
+    padding-right: 0;
+  }
+  .hfeat {
+    flex: 0 0 100%;
+    padding-right: var(--pad);
+  }
 }
