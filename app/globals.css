@@ -4073,10 +4073,18 @@ button:focus-visible {
 .hero__bar {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(2, 2, 2, 0.47);
-  backdrop-filter: blur(12px) saturate(1.1);
-  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  /* glassy hore (presvitá blur) → čierny gradient pás dole = ukotvenie */
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 11, 0.3) 0%,
+    rgba(3, 3, 4, 0.58) 50%,
+    rgba(0, 0, 0, 0.96) 100%
+  );
+  backdrop-filter: blur(16px) saturate(1.18);
+  -webkit-backdrop-filter: blur(16px) saturate(1.18);
+  padding-bottom: clamp(22px, 2.8vw, 46px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .hero__bar-inner {
   display: grid;
