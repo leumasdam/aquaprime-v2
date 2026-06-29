@@ -4512,10 +4512,10 @@ button:focus-visible {
 /* 901–1500px: nižší hero → cover ukáže viac šírky = akvárium oddialené (bez medzier) */
 @media (min-width: 901px) and (max-width: 1500px) {
   .hero {
-    min-height: clamp(452px, 52vh, 560px);
+    min-height: clamp(430px, 49vh, 530px);
   }
   .hero__bg2 {
-    background-position: center 42%;
+    background-position: center 44%;
   }
 }
 
@@ -4695,5 +4695,147 @@ button:focus-visible {
   .hfeat {
     flex: 0 0 100%;
     padding-right: var(--pad);
+  }
+}
+
+/* anchor cieľ pod sticky navbar */
+#kolekcie {
+  scroll-margin-top: var(--nav-h);
+}
+
+/* fx vrstva default skrytá (len mobil) */
+.hero__fx {
+  display: none;
+}
+
+/* ===========================================================
+   MOBIL ≤600 — full-screen hero bez fotky + jemná podvodná animácia
+   =========================================================== */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100svh;
+    background: radial-gradient(
+      125% 82% at 50% 26%,
+      #0b161a 0%,
+      #070d0f 55%,
+      #050709 100%
+    );
+  }
+  .hero__bg2 {
+    display: none;
+  }
+  .hero__fx {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__fx-glow {
+    position: absolute;
+    inset: -12%;
+    background: radial-gradient(
+      42% 30% at 50% 38%,
+      rgba(71, 199, 232, 0.16),
+      transparent 70%
+    );
+    animation: glowDrift 16s ease-in-out infinite alternate;
+  }
+  .bub {
+    position: absolute;
+    bottom: -24px;
+    width: var(--bs);
+    height: var(--bs);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.5),
+      rgba(120, 210, 235, 0.12) 70%,
+      transparent
+    );
+    opacity: 0;
+    animation: bubRise var(--bd) linear var(--bdelay) infinite;
+  }
+  .hero__fish {
+    position: absolute;
+    height: auto;
+    fill: rgba(150, 195, 208, 0.16);
+  }
+  .hero__fish--1 {
+    top: 30%;
+    width: 56px;
+    animation: fishSwim1 28s linear infinite;
+  }
+  .hero__fish--2 {
+    top: 62%;
+    width: 38px;
+    fill: rgba(150, 195, 208, 0.1);
+    animation: fishSwim2 36s linear 7s infinite;
+  }
+}
+@keyframes glowDrift {
+  0% {
+    transform: translate(-6%, -3%) scale(1);
+  }
+  100% {
+    transform: translate(8%, 5%) scale(1.18);
+  }
+}
+@keyframes bubRise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  88% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-95svh) translateX(12px);
+    opacity: 0;
+  }
+}
+@keyframes fishSwim1 {
+  0% {
+    transform: translate(-22vw, 0) scaleX(1);
+  }
+  50% {
+    transform: translate(50vw, -14px) scaleX(1);
+  }
+  100% {
+    transform: translate(122vw, 0) scaleX(1);
+  }
+}
+@keyframes fishSwim2 {
+  0% {
+    transform: translate(122vw, 0) scaleX(-1);
+  }
+  50% {
+    transform: translate(45vw, 12px) scaleX(-1);
+  }
+  100% {
+    transform: translate(-22vw, 0) scaleX(-1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__fx-glow {
+    animation: none;
+  }
+  .bub,
+  .hero__fish {
+    display: none;
   }
 }
