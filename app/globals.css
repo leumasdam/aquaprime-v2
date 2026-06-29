@@ -4703,9 +4703,8 @@ button:focus-visible {
   scroll-margin-top: var(--nav-h);
 }
 
-/* fx vrstva + voda default skryté (len mobil) */
-.hero__fx,
-.hero__water {
+/* fx vrstva default skrytá (nepoužitá) */
+.hero__fx {
   display: none;
 }
 
@@ -4735,51 +4734,6 @@ button:focus-visible {
     overflow: hidden;
     background-size: auto 114%;
     background-position: 50% 38%;
-  }
-  /* voda nad fotkou: shimmer + bublinky v ploche vody */
-  .hero__water {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 44svh;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .hero__shimmer {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -55%;
-    width: 45%;
-    background: linear-gradient(
-      105deg,
-      transparent,
-      rgba(170, 225, 245, 0.13) 50%,
-      transparent
-    );
-    transform: skewX(-14deg);
-    animation: heroShimmer 8s ease-in-out 1.5s infinite;
-  }
-  .wbub {
-    position: absolute;
-    bottom: 46%;
-    width: var(--bs);
-    height: var(--bs);
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 34% 28%,
-      rgba(255, 255, 255, 0.95),
-      rgba(205, 240, 252, 0.45) 55%,
-      rgba(150, 215, 240, 0.12) 80%,
-      transparent
-    );
-    box-shadow: 0 0 6px rgba(190, 235, 250, 0.5),
-      inset 0 0 2px rgba(255, 255, 255, 0.8);
-    opacity: 0;
-    animation: wbubRise var(--bd) ease-in var(--bdelay) infinite;
   }
   .hero__bg2::after {
     background: linear-gradient(
@@ -4892,37 +4846,3 @@ button:focus-visible {
   }
 }
 
-@keyframes heroShimmer {
-  0% {
-    left: -55%;
-  }
-  55%,
-  100% {
-    left: 130%;
-  }
-}
-@keyframes wbubRise {
-  0% {
-    transform: translateY(8svh);
-    opacity: 0;
-  }
-  14% {
-    opacity: 0.85;
-  }
-  82% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-24svh);
-    opacity: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero__shimmer {
-    animation: none;
-    display: none;
-  }
-  .wbub {
-    display: none;
-  }
-}

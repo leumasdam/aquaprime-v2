@@ -95,33 +95,6 @@ export default function Home() {
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
         <HeroParallax />
-        {/* mobil split — voda nad fotkou: shimmer + bublinky v ploche vody (≤600px) */}
-        <div className="hero__water" aria-hidden="true">
-          <span className="hero__shimmer" />
-          {[
-            { l: 42, s: 8, d: 6, delay: 0 },
-            { l: 50, s: 11, d: 7.5, delay: 1.4 },
-            { l: 57, s: 7, d: 6.5, delay: 0.6 },
-            { l: 64, s: 10, d: 8, delay: 2.2 },
-            { l: 71, s: 8, d: 7, delay: 0.3 },
-            { l: 79, s: 10, d: 7.8, delay: 1.8 },
-            { l: 47, s: 6, d: 6.2, delay: 3 },
-            { l: 85, s: 8, d: 7.6, delay: 3.8 },
-          ].map((b, i) => (
-            <span
-              key={i}
-              className="wbub"
-              style={
-                {
-                  left: `${b.l}%`,
-                  "--bs": `${b.s}px`,
-                  "--bd": `${b.d}s`,
-                  "--bdelay": `${b.delay}s`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-        </div>
         <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">SCROLL</span>
