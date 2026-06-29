@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
+import HeroParallax from "./HeroParallax";
 
 
 const REVIEWS = [
@@ -93,12 +94,31 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
-        {/* mobil bez fotky — driftujúce mäkké svetlo (premium, ≤600px) */}
-        <div className="hero__fx" aria-hidden="true">
-          <span className="hero__fx-glow" />
-          <span className="hero__fx-blob hero__fx-blob--1" />
-          <span className="hero__fx-blob hero__fx-blob--2" />
-          <span className="hero__fx-blob hero__fx-blob--3" />
+        <HeroParallax />
+        {/* mobil split — voda nad fotkou: shimmer + bublinky v ploche vody (≤600px) */}
+        <div className="hero__water" aria-hidden="true">
+          <span className="hero__shimmer" />
+          {[
+            { l: 16, s: 4, d: 7, delay: 0 },
+            { l: 30, s: 6, d: 9, delay: 2.2 },
+            { l: 45, s: 3.5, d: 8, delay: 1 },
+            { l: 58, s: 5, d: 10, delay: 3.4 },
+            { l: 70, s: 4, d: 8.5, delay: 0.6 },
+            { l: 82, s: 6, d: 9.5, delay: 2.8 },
+          ].map((b, i) => (
+            <span
+              key={i}
+              className="wbub"
+              style={
+                {
+                  left: `${b.l}%`,
+                  "--bs": `${b.s}px`,
+                  "--bd": `${b.d}s`,
+                  "--bdelay": `${b.delay}s`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
         </div>
         <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">

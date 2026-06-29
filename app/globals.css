@@ -4724,16 +4724,58 @@ button:focus-visible {
   .hero__fx {
     display: none;
   }
-  /* SPLIT: fotka hore ako blok, text dole na tmavej + jemný Ken Burns */
+  /* SPLIT: fotka hore ako blok, text dole na tmavej (zoom rieši scroll cez JS) */
   .hero__bg2 {
     display: block;
     position: relative;
     inset: auto;
     width: 100%;
     height: 44svh;
+    overflow: hidden;
     background-size: auto 114%;
     background-position: 50% 38%;
-    animation: heroKenBurns 22s ease-in-out infinite alternate;
+  }
+  /* voda nad fotkou: shimmer + bublinky v ploche vody */
+  .hero__water {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44svh;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero__shimmer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -55%;
+    width: 45%;
+    background: linear-gradient(
+      105deg,
+      transparent,
+      rgba(170, 225, 245, 0.13) 50%,
+      transparent
+    );
+    transform: skewX(-14deg);
+    animation: heroShimmer 8s ease-in-out 1.5s infinite;
+  }
+  .wbub {
+    position: absolute;
+    bottom: 50%;
+    width: var(--bs);
+    height: var(--bs);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.7),
+      rgba(190, 235, 250, 0.18) 70%,
+      transparent
+    );
+    opacity: 0;
+    animation: wbubRise var(--bd) ease-in var(--bdelay) infinite;
   }
   .hero__bg2::after {
     background: linear-gradient(
@@ -4843,5 +4885,44 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .hero__bg2 {
     animation: none !important;
+  }
+}
+
+/* hero voda — default skrytá (len mobil split) */
+.hero__water {
+  display: none;
+}
+@keyframes heroShimmer {
+  0% {
+    left: -55%;
+  }
+  55%,
+  100% {
+    left: 130%;
+  }
+}
+@keyframes wbubRise {
+  0% {
+    transform: translateY(6svh);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-22svh);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__shimmer {
+    animation: none;
+    display: none;
+  }
+  .wbub {
+    display: none;
   }
 }
