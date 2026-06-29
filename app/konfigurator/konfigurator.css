@@ -1,0 +1,328 @@
+/* /konfigurator — čistý layout v štýle webu (skrinka v strede, floating glass karty) */
+.kfpage {
+  padding-block: clamp(40px, 5vw, 80px);
+}
+
+/* header */
+.kfx__head {
+  max-width: 660px;
+  margin: 0 auto clamp(36px, 4vw, 56px);
+  text-align: center;
+}
+.kfx__head .eyebrow {
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.kfx__title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
+  line-height: 1.1;
+  color: var(--ink-90);
+  margin-bottom: 14px;
+}
+.kfx__title em {
+  font-style: normal;
+  color: var(--cyan);
+}
+.kfx__lead {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 56ch;
+  margin: 0 auto;
+}
+
+/* layout: ľavá karta | skrinka | pravá karta */
+.kfx {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr) minmax(0, 300px);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+}
+
+/* floating glass karty */
+.kfx__card {
+  background: rgba(11, 13, 15, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: clamp(20px, 1.8vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 28px);
+  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.85);
+}
+.kfx__group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kfx__legend {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink-90);
+}
+.kfx__n {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  color: var(--cyan);
+}
+
+/* slidery */
+.kfx__slider {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.kfx__slider-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--body);
+}
+.kfx__slider-v {
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.kfx__slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 100px;
+  background: linear-gradient(to right, var(--cyan) var(--p), var(--line-2) var(--p));
+  outline: none;
+  cursor: pointer;
+}
+.kfx__slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 3px solid #0b0d0f;
+  box-shadow: 0 0 10px rgba(71, 199, 232, 0.55);
+}
+.kfx__slider input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 3px solid #0b0d0f;
+}
+
+/* nožičky / možnosti */
+.kfx__opts {
+  display: flex;
+  gap: 8px;
+}
+.kfx__opt {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 7px;
+  font-size: 0.75rem;
+  color: var(--body);
+  transition: 0.2s;
+}
+.kfx__opt:hover {
+  border-color: rgba(71, 199, 232, 0.5);
+  color: var(--ink);
+}
+.kfx__opt.is-on {
+  border-color: var(--cyan);
+  background: rgba(71, 199, 232, 0.08);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* povrch swatche */
+.kfx__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.kfx__sw {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+.kfx__sw:hover {
+  transform: translateY(-2px);
+}
+.kfx__sw.is-on {
+  box-shadow: 0 0 0 2px #0b0d0f, 0 0 0 4px var(--cyan);
+}
+.kfx__pick {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* cena + CTA */
+.kfx__price {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: clamp(16px, 2vw, 22px);
+  border-top: 1px solid var(--line);
+}
+.kfx__price-l {
+  font-weight: 600;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.kfx__price-v {
+  font-weight: 700;
+  font-size: clamp(1.7rem, 1.3rem + 1vw, 2.2rem);
+  color: var(--cyan);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.kfx__price-n {
+  font-size: 0.625rem;
+  color: var(--faint);
+}
+.kfx__send {
+  justify-content: center;
+}
+
+/* stred — skrinka vo voľnom priestore */
+.kfx__stage {
+  position: relative;
+  min-height: clamp(360px, 40vw, 540px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.kfx__glow {
+  position: absolute;
+  inset: 8% 6%;
+  background: radial-gradient(
+    60% 58% at 50% 50%,
+    rgba(71, 199, 232, 0.16),
+    rgba(71, 199, 232, 0.05) 48%,
+    transparent 74%
+  );
+  filter: blur(36px);
+  pointer-events: none;
+  animation: aquaGlow 6s ease-in-out infinite;
+}
+.kfx__model {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.kfx__photo {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 36px 50px rgba(0, 0, 0, 0.8));
+}
+.kfx__model .turntable {
+  max-width: 540px;
+}
+.kfx__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: inline-flex;
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  overflow: hidden;
+  background: rgba(11, 13, 15, 0.5);
+  backdrop-filter: blur(10px);
+}
+.kfx__toggle button {
+  padding: 7px 16px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--faint);
+}
+.kfx__toggle button.is-on {
+  background: var(--cyan);
+  color: #04222b;
+}
+.kfx__dimtag {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* spodné trust body */
+.kf__trust {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 32px);
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--line);
+}
+.kf__trustitem {
+  display: flex;
+  gap: 12px;
+}
+.kf__trust-mark {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid var(--line-2);
+  background: rgba(71, 199, 232, 0.05);
+}
+.kf__trustitem strong {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--ink-90);
+  margin-bottom: 3px;
+}
+.kf__trustitem span {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--faint);
+}
+
+/* responzíva */
+@media (max-width: 980px) {
+  .kfx {
+    grid-template-columns: 1fr;
+  }
+  .kfx__stage {
+    order: -1;
+  }
+  .kfx__card {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .kfx__group {
+    flex: 1 1 240px;
+  }
+}
+@media (max-width: 640px) {
+  .kf__trust {
+    grid-template-columns: 1fr 1fr;
+  }
+  .kfx__card {
+    flex-direction: column;
+  }
+}

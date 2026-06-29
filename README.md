@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AQUAPRIME — web
 
-## Getting Started
+Prémiový landing + web pre AQUAPRIME (akvarijné skrinky na mieru). Postavené z Figma dizajnu a doplnené podľa IA blueprintov.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router), TypeScript, čisté CSS (žiadny Tailwind), `next/font` (Tinos + Inter).
+
+## Spustenie
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # vývoj na http://localhost:3000 (alebo 3003 ak je 3000 obsadený)
+npm run build    # produkčný build (všetko statické)
+npm start        # spustenie produkčného buildu
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Štruktúra stránok (podľa IA)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | Obsah |
+|---|---|
+| `/` | Landing: hero → konštrukcia (360° model) → dôkaz kvality → vetvy → dôvera → dopyt |
+| `/skrinky` | Katalóg: filtre + kolekcie-predvoľby + produkty + „prečo rám" + CTA |
+| `/skrinky/[slug]` | Detail produktu (6 ks, SSG) — foto, specs, cena, súvisiace |
+| `/akvaria-teraria` | Vetva nádrží na mieru (zelený akcent) |
+| `/doplnky-technika` | Technika a príslušenstvo (modrý akcent) |
+| `/materialy` | Povrchy a remeslo (zlatý akcent) |
+| `/realizacie` | Portfólio realizácií (cyan) |
+| `/o-nas` | Značka a výroba |
+| `/dopyt` | Interaktívny dopytový formulár |
+| `/kontakt` | Kontaktné info + CTA |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
++ `sitemap.xml`, `robots.txt`, custom `404`, favicon z brand marku.
 
-## Learn More
+## Kľúčové komponenty (`app/`)
 
-To learn more about Next.js, take a look at the following resources:
+- `SiteNav.tsx` — navbar + mobilné menu (client), `SiteFooter.tsx` — pätička
+- `Turntable.tsx` — interaktívny 360° model rámu (crossfade cez rAF, drag + auto-spin; hover šípky s argumentmi sú v `page.tsx`)
+- `brand.tsx` — logo (A + vlna) a hero ikony POKOJ / REMESLO / ESTETIKA
+- `Subpage.tsx` — zdieľaná šablóna podstránok (header + hlavný blok + karty + CTA)
+- `DopytForm.tsx` — dopytový formulár so success stavom
+- `ScrollFx.tsx` — scroll-reveal (`[data-reveal]`), `ScrollProgress.tsx` — progress bar, `CountUp.tsx` — počítadlo čísel
+- `products.ts` — zdroj produktových dát, `nav.ts` — navigácia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Mikroanimácie
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+scroll-reveal (stagger), count-up čísel, hero load-in + Ken Burns zoom, route-fade pri navigácii, scroll-progress bar, hover lift/zoom na kartách, nav underline, hover anotácie na 3D modeli, mobilné menu. Všetko rešpektuje `prefers-reduced-motion`.
 
-## Deploy on Vercel
+## Assety
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`public/img/` — `hero.webp`, `col-*.webp` (kolekcie), `mod-*.webp` (moduly), `turntable/f0–f24.webp` (snímky 360° modelu). Pôvodné PNG (~9 MB) prevedené na WebP (~1,2 MB).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## TODO / ďalšie kroky
+
+- Napojiť dopytový formulár na backend (napr. Web3Forms / e-mail)
+- Doplniť reálne produktové fotky a dáta do `products.ts`
+- Naplniť subpages reálnym obsahom a fotkami
+- Voliteľne: konfigurátor skriniek (IA ho parkuje na neskôr ako nástroj)
