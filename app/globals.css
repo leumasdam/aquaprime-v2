@@ -4509,11 +4509,13 @@ button:focus-visible {
 }
 
 /* HERO — pod 1200px oddialiť pozadie (cover príliš zoomuje široký obrázok) */
-@media (min-width: 901px) and (max-width: 1200px) {
+/* 901–1500px: nižší hero → cover ukáže viac šírky = akvárium oddialené (bez medzier) */
+@media (min-width: 901px) and (max-width: 1500px) {
+  .hero {
+    min-height: clamp(452px, 52vh, 560px);
+  }
   .hero__bg2 {
-    background-size: 130% auto;
-    background-position: center 34%;
-    background-color: #060708;
+    background-position: center 42%;
   }
 }
 
