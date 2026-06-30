@@ -4904,7 +4904,7 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   /* transparentný PNG kameňa: menší, posunutý dole + jemne doprava (za štaty → blur má textúru) */
-  background: url(/img/safety-rock.webp) no-repeat 60% bottom / auto 88%;
+  background: url(/img/safety-rock.webp) no-repeat 54% bottom / auto 88%;
   opacity: 0.92;
 }
 .safety__grid {
