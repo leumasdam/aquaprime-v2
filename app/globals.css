@@ -4954,31 +4954,7 @@ button:focus-visible {
   line-height: 1.65;
   color: var(--body);
   max-width: 46ch;
-  margin-bottom: 28px;
-}
-.safety__ctas {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.safety__btn2 {
-  display: inline-flex;
-  align-items: center;
-  height: 50px;
-  padding: 0 24px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  font-weight: 700;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  color: rgba(244, 241, 235, 0.9);
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease),
-    background 0.2s var(--ease);
-}
-.safety__btn2:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  background: rgba(71, 199, 232, 0.06);
+  margin-bottom: 0;
 }
 .safety__stats {
   display: flex;
