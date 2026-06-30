@@ -242,6 +242,12 @@ button {
 .nav__link.is-active {
   color: rgba(244, 244, 242, 0.95);
 }
+/* <1700px: linky jemnučko viac doprava (menšia medzera pred SK) */
+@media (max-width: 1700px) {
+  .nav__links {
+    margin-right: clamp(20px, 4vw, 72px);
+  }
+}
 .nav__cta {
   display: inline-flex;
   align-items: center;
