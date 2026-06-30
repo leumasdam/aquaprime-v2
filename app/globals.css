@@ -4903,8 +4903,8 @@ button:focus-visible {
 .safety__bg {
   position: absolute;
   inset: 0;
-  /* veľkosť viazaná na výšku → neškáluje (nenaťahuje sa) so šírkou; vycentrované */
-  background: url(/img/safety-rock.webp) no-repeat center / auto 100%;
+  /* výrez skaly, menší → dá sa posunúť do stredu (mimo štatov vpravo); neškáluje so šírkou */
+  background: url(/img/safety-rock-m.webp) no-repeat 42% center / auto 96%;
 }
 .safety__bg::after {
   content: "";

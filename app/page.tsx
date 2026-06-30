@@ -171,7 +171,7 @@ export default function Home() {
             {[
               { v: "770 kg", l: "NA JEDNU NOŽIČKU" },
               { v: "oceľ", l: "VNÚTORNÝ RÁM" },
-              { v: "mieru", l: "ROZMERY" },
+              { v: "na mieru", l: "ROZMERY" },
             ].map((s) => (
               <div className="sstat" key={s.l}>
                 <span className="sstat__line" />
