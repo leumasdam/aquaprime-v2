@@ -590,7 +590,7 @@ button {
 .modules {
   border-top: 1px solid var(--line-2);
   border-bottom: 1px solid var(--line-2);
-  padding-block: clamp(20px, 2.4vw, 40px);
+  padding-block: clamp(12px, 1vw, 18px);
 }
 .modules__grid {
   display: grid;
@@ -637,8 +637,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 11px;
-  padding: clamp(22px, 2.2vw, 34px);
+  gap: 9px;
+  padding: clamp(18px, 1.6vw, 26px);
 }
 .module__label {
   font-weight: 700;
@@ -688,6 +688,64 @@ button {
   }
   .module {
     aspect-ratio: 3 / 4;
+  }
+}
+@media (min-width: 1200px) {
+  .modules {
+    padding-block: 0;
+  }
+  .modules__grid {
+    gap: 0;
+  }
+  .module {
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: stretch;
+    min-height: clamp(180px, 12vw, 230px);
+    border: none;
+    border-radius: 0;
+  }
+  .module + .module {
+    border-left: 1px solid var(--line-2);
+  }
+  .module__bg {
+    position: relative;
+    inset: auto;
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .module__shade {
+    display: none;
+  }
+  .module__content {
+    position: relative;
+    inset: auto;
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+    gap: 8px;
+    padding: clamp(20px, 1.4vw, 32px);
+  }
+  .module__label {
+    font-size: 0.5625rem;
+  }
+  .module__title {
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: clamp(1rem, 0.7rem + 0.35vw, 1.3rem);
+    line-height: 1.2;
+  }
+  .module__text {
+    font-size: 0.75rem;
+    line-height: 1.55;
+    max-width: 40ch;
+  }
+  .module__cta {
+    font-size: 0.5625rem;
   }
 }
 
@@ -839,7 +897,7 @@ button {
 }
 .reviews__grid {
   display: grid;
-  grid-template-columns: minmax(260px, 360px) 1fr;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
   gap: clamp(32px, 4vw, 72px);
   align-items: center;
 }
@@ -860,9 +918,43 @@ button {
   max-width: 40ch;
 }
 .review-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+.review-cards__track {
+  display: flex;
   gap: 24px;
+  width: max-content;
+  animation: rev-marquee 55s linear infinite;
+}
+.review-cards:hover .review-cards__track {
+  animation-play-state: paused;
+}
+.review-cards .review-card {
+  flex: 0 0 clamp(280px, 26vw, 360px);
+}
+@keyframes rev-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-cards__track {
+    animation: none;
+  }
 }
 .review-card {
   background: var(--card-glass);
@@ -1616,6 +1708,10 @@ button {
   grid-template-columns: 1fr 1fr minmax(360px, 1.1fr);
   gap: 18px;
   align-items: stretch;
+}
+.final__grid--cta-only {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
 }
 .final-review {
   background: var(--card-2);
@@ -4096,10 +4192,42 @@ button:focus-visible {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .hero__bar-inner {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(12px, 1.6vw, 30px);
+  overflow: hidden;
   padding-block: clamp(12px, 1.3vw, 16px);
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+.hero__bar-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 3vw, 56px);
+  width: max-content;
+  animation: hf-marquee 45s linear infinite;
+}
+.hero__bar-inner:hover .hero__bar-track {
+  animation-play-state: paused;
+}
+@keyframes hf-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__bar-track {
+    animation: none;
+  }
 }
 .hfeat {
   display: flex;
@@ -4136,15 +4264,8 @@ button:focus-visible {
   .hero__scroll-v {
     display: none;
   }
-  .hero__bar-inner {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-  }
 }
 @media (max-width: 620px) {
-  .hero__bar-inner {
-    grid-template-columns: 1fr 1fr;
-  }
   .hfeat__s {
     display: none;
   }
@@ -4174,34 +4295,59 @@ button:focus-visible {
   }
 }
 
-/* HERO — pod 1500px: feature lišta sliduje (nezalamuje sa, nerastie na výšku) */
-@media (max-width: 1500px) {
-  .hero__bar-inner {
-    display: flex;
-    grid-template-columns: none;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    gap: 0;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    padding-left: clamp(26px, 5vw, 52px);
-    scroll-padding-left: clamp(26px, 5vw, 52px);
-  }
-  .hero__bar-inner::-webkit-scrollbar {
-    display: none;
-  }
+/* HERO — feature lišta beží v marquee (CSS animácia) */
+.hfeat {
+  flex: 0 0 clamp(300px, 26vw, 420px);
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
   .hfeat {
-    flex: 0 0 clamp(300px, 56vw, 440px);
-    box-sizing: border-box;
-    scroll-snap-align: start;
-    padding-left: 0;
-    padding-right: clamp(22px, 3vw, 44px);
-    border-left: none;
-  }
-  .hfeat__s {
-    display: block;
+    flex: 0 0 clamp(220px, 44vw, 280px);
   }
 }
+@media (max-width: 620px) {
+  .hfeat {
+    flex: 0 0 200px;
+    gap: 10px;
+  }
+}
+
+/* ====================================================================
+   IKONY — centrovaná verzia (zakomentované, na neskôr)
+   --------------------------------------------------------------------
+.hero__bar-track .hfeat {
+  flex: 0 0 340px !important;
+  width: 340px !important;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .hero__bar-track .hfeat {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+  }
+}
+@media (max-width: 620px) {
+  .hero__bar-track .hfeat {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+    gap: 10px;
+  }
+}
+.hfeat {
+  justify-content: center;
+  padding-left: 44px;
+  padding-right: 16px;
+}
+.hfeat__txt {
+  display: block;
+  flex: 0 0 200px;
+  width: 200px;
+  min-width: 0;
+}
+.hfeat__t {
+  white-space: nowrap;
+}
+   ==================================================================== */
 
 
 /* ===========================================================
@@ -4318,10 +4464,7 @@ button:focus-visible {
   padding-left: clamp(14px, 1.5vw, 28px);
   border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
-.hfeat:first-child {
-  padding-left: 0;
-  border-left: none;
-}
+/* marquee: každý item má rovnaký border/padding, žiadny first-child reset */
 .hfeat__ring {
   flex: none;
   width: 46px;
@@ -4345,7 +4488,7 @@ button:focus-visible {
   box-shadow: 0 0 16px rgba(71, 199, 232, 0.45);
 }
 
-/* mobil: krúžky + deliče prispôsobiť swipe lište */
+/* mobil: krúžky + deliče prispôsobiť marquee lište */
 @media (max-width: 900px) {
   .hero__kg {
     display: none;
@@ -4625,6 +4768,80 @@ button:focus-visible {
 }
 
 /* ===========================================================
+   FEATURED PRODUCTS — vybrané kusy z katalógu (homepage)
+   =========================================================== */
+.featured {
+  padding-block: clamp(40px, 5vw, 80px);
+}
+.featured__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 48px);
+  margin-bottom: clamp(24px, 2.6vw, 40px);
+  flex-wrap: wrap;
+}
+.featured__head .eyebrow {
+  margin-bottom: 14px;
+}
+.featured__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1rem + 1.2vw, 2.1rem);
+  line-height: 1.12;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink-90);
+  margin-bottom: 10px;
+}
+.featured__lead {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--body);
+  max-width: 46ch;
+}
+.featured__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 12px 18px;
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  transition: color 0.3s, border-color 0.3s, gap 0.3s var(--ease);
+}
+.featured__all:hover {
+  color: var(--cyan);
+  border-color: rgba(71, 199, 232, 0.45);
+  gap: 12px;
+}
+/* karty cez plnú šírku wrap, jemne kompaktnejšia typografia */
+.featured__grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.6vw, 26px);
+}
+.featured__grid .product__media {
+  aspect-ratio: 16 / 11;
+}
+@media (max-width: 860px) {
+  .featured__head {
+    align-items: flex-start;
+  }
+  .featured__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .featured__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================================
    HERO — mobil ≤600px: čistejší, vzdušnejší (bez SCROLL, plná šírka)
    =========================================================== */
 @media (max-width: 600px) {
@@ -4694,22 +4911,15 @@ button:focus-visible {
     justify-content: flex-start;
     padding-left: 2px;
   }
-  /* feature lišta: vždy len 1 ikona viditeľná, swipe na ďalšiu (snap) */
+  /* feature lišta: marquee items kompaktné na mobile */
   .hero__bar-inner {
-    scroll-snap-type: x mandatory;
-    padding-right: 0;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
+    padding-inline: 0;
   }
   .hfeat {
-    flex: 0 0 100%;
-    padding-right: var(--pad);
-  }
-  /* na mobile žiadne cyan zvýraznenie — len swipe, ikony neutrálne */
-  .hfeat.is-active .hfeat__ring {
-    border-color: rgba(255, 255, 255, 0.24);
-    color: rgba(228, 232, 234, 0.82);
-    box-shadow: none;
+    flex: 0 0 150px;
+    gap: 10px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -4955,12 +5165,13 @@ button:focus-visible {
   margin-left: auto;
   padding: clamp(18px, 1.6vw, 26px) clamp(8px, 1vw, 16px);
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(9, 12, 14, 0.34);
-  backdrop-filter: blur(30px) saturate(135%);
-  -webkit-backdrop-filter: blur(30px) saturate(135%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 18px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: transparent;
+  backdrop-filter: blur(4px) saturate(140%) brightness(1.4);
+  -webkit-backdrop-filter: blur(4px) saturate(140%) brightness(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 40px rgba(0, 0, 0, 0.2);
 }
 .sstat {
   display: flex;
@@ -4994,6 +5205,7 @@ button:focus-visible {
    (mäkký, vzdialený prechod do transparent → bez viditeľného švu) + kameň o čosi menší */
 @media (min-width: 861px) and (max-width: 1400px) {
   .safety__bg {
+    background-position: 70% bottom;
     background-size: auto 80%;
   }
   .safety__bg::after {
@@ -5006,6 +5218,27 @@ button:focus-visible {
       rgba(10, 12, 13, 0.82) 32%,
       rgba(10, 12, 13, 0.35) 58%,
       transparent 80%
+    );
+  }
+}
+/* >1400px: kameň je výrazný v strede → mäkký závoj naprieč,
+   ľavá strana o čosi tmavšia kvôli čitateľnosti textu */
+@media (min-width: 1401px) {
+  .safety__bg {
+    background-position: 74% bottom;
+    opacity: 0.78;
+  }
+  .safety__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--bg) 0%,
+      rgba(10, 12, 13, 0.58) 24%,
+      rgba(10, 12, 13, 0.22) 52%,
+      rgba(10, 12, 13, 0.12) 78%,
+      transparent 100%
     );
   }
 }
@@ -5024,11 +5257,14 @@ button:focus-visible {
     padding: 0 clamp(10px, 3vw, 22px);
   }
   /* mobil: skala ako zoomout pás dole (za štatmi), text hore na čistom tmavom */
+  .safety {
+    padding-bottom: clamp(96px, 22vw, 140px);
+  }
   .safety__bg {
     background-image: url(/img/safety-rock-m.webp);
-    background-position: center bottom;
-    background-size: auto clamp(190px, 56vw, 260px);
-    opacity: 1;
+    background-position: left -25% bottom -10px;
+    background-size: auto clamp(260px, 70vw, 360px);
+    opacity: 0.85;
   }
   .safety__bg::after {
     display: none;

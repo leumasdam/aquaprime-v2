@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
+import { PRODUCTS } from "./products";
+
+const FEATURED_SLUGS = ["linea-120", "prestige-120", "signature-150"];
+const FEATURED = FEATURED_SLUGS
+  .map((s) => PRODUCTS.find((p) => p.slug === s))
+  .filter((p): p is (typeof PRODUCTS)[number] => Boolean(p));
 
 
 const REVIEWS = [
@@ -213,29 +219,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== KOMPAKTNÉ DLAŽDICE (pod hero) ===== */}
-      <section className="ctiles section">
-        <div className="wrap">
-          {CTILES.map((t, i) => (
+      {/* ===== DÔKAZ KVALITY — obrázkové karty (prekliky na subpages) ===== */}
+      <section className="modules section">
+        <div className="wrap modules__grid">
+          {MODULES.map((m, i) => (
             <Link
-              href={t.href}
-              className="ctile"
-              key={t.label}
+              href={m.href}
+              className="module"
+              key={m.label}
               data-reveal
-              style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}
+              style={{ "--rd": `${i * 110}ms` } as React.CSSProperties}
             >
-              <div className="ctile__text">
-                <span className="ctile__label">{t.label}</span>
-                <h3 className="ctile__title">{t.title}</h3>
-                <p className="ctile__desc">{t.desc}</p>
-                <span className="ctile__cta">
-                  {t.cta} <span aria-hidden>→</span>
+              <span
+                className="module__bg"
+                style={{
+                  backgroundImage: `url(${m.img})`,
+                  backgroundPosition: m.pos,
+                }}
+              />
+              <span className="module__shade" />
+              <span className="module__content">
+                <span className="module__label">{m.label}</span>
+                <span className="module__title">{m.title}</span>
+                <span className="module__text">{m.body}</span>
+                <span className="module__cta">
+                  {m.cta} <span aria-hidden>→</span>
                 </span>
-              </div>
-              <div className="ctile__media">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={t.img} alt={t.title} />
-              </div>
+              </span>
             </Link>
           ))}
         </div>
@@ -281,37 +291,87 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== DÔKAZ KVALITY — obrázkové karty (prekliky na subpages) ===== */}
-      <section className="modules section">
-        <div className="wrap modules__grid">
-          {MODULES.map((m, i) => (
+      {/* ===== FEATURED PRODUCTS — vybrané kusy z katalógu ===== */}
+      <section className="featured section">
+        <div className="wrap">
+          <div className="featured__head" data-reveal>
+            <div>
+              <span className="eyebrow eyebrow--rule">VYBRANÉ KUSY</span>
+              <h2 className="featured__title">Najobľúbenejšie skrinky</h2>
+              <p className="featured__lead">
+                Tri reprezentatívne konfigurácie naprieč kolekciami — od
+                minimalistickej Linea po vlajkovú Signature.
+              </p>
+            </div>
+            <Link href="/skrinky" className="featured__all">
+              CELÝ KATALÓG <span aria-hidden>→</span>
+            </Link>
+          </div>
+
+          <div className="product-grid featured__grid">
+            {FEATURED.map((p, i) => (
+              <Link
+                href={`/skrinky/${p.slug}`}
+                className="product product--in"
+                key={p.slug}
+                data-reveal
+                style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}
+              >
+                <div className={`product__media product__media--${p.mod}`}>
+                  <span className="product__badge">{p.collection}</span>
+                </div>
+                <div className="product__body">
+                  <h3 className="product__name">{p.name}</h3>
+                  <div className="product__specs">
+                    <span>
+                      <i>Rozmer</i>
+                      {p.dim}
+                    </span>
+                    <span>
+                      <i>Nosnosť</i>
+                      {p.load}
+                    </span>
+                  </div>
+                  <div className="product__foot">
+                    <span className="product__price">{p.price}</span>
+                    <span className="product__cta">
+                      Detail <span aria-hidden>→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== KOMPAKTNÉ DLAŽDICE (zakomentované, neskôr) =====
+      <section className="ctiles section">
+        <div className="wrap">
+          {CTILES.map((t, i) => (
             <Link
-              href={m.href}
-              className="module"
-              key={m.label}
+              href={t.href}
+              className="ctile"
+              key={t.label}
               data-reveal
-              style={{ "--rd": `${i * 110}ms` } as React.CSSProperties}
+              style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}
             >
-              <span
-                className="module__bg"
-                style={{
-                  backgroundImage: `url(${m.img})`,
-                  backgroundPosition: m.pos,
-                }}
-              />
-              <span className="module__shade" />
-              <span className="module__content">
-                <span className="module__label">{m.label}</span>
-                <span className="module__title">{m.title}</span>
-                <span className="module__text">{m.body}</span>
-                <span className="module__cta">
-                  {m.cta} <span aria-hidden>→</span>
+              <div className="ctile__text">
+                <span className="ctile__label">{t.label}</span>
+                <h3 className="ctile__title">{t.title}</h3>
+                <p className="ctile__desc">{t.desc}</p>
+                <span className="ctile__cta">
+                  {t.cta} <span aria-hidden>→</span>
                 </span>
-              </span>
+              </div>
+              <div className="ctile__media">
+                <img src={t.img} alt={t.title} />
+              </div>
             </Link>
           ))}
         </div>
       </section>
+      */}
 
       {/* ===== ĎALŠIE VETVY — akváriá & teráriá + doplnky & technika ===== */}
       <section className="pathways section">
@@ -394,24 +454,25 @@ export default function Home() {
             </p>
           </div>
           <div className="review-cards">
-            {REVIEWS.map((r, i) => (
-              <div
-                className="review-card"
-                key={r.name}
-                data-reveal
-                style={{ "--rd": `${i * 110}ms` } as React.CSSProperties}
-              >
-                <div className="review-card__stars">★★★★★</div>
-                <p className="review-card__quote">{r.quote}</p>
-                <div className="review-card__name">{r.name}</div>
-                <div className="review-card__meta">{r.meta}</div>
-              </div>
-            ))}
+            <div className="review-cards__track">
+              {[...REVIEWS, ...REVIEWS].map((r, i) => (
+                <div
+                  className="review-card"
+                  key={`${r.name}-${i}`}
+                  aria-hidden={i >= REVIEWS.length ? "true" : undefined}
+                >
+                  <div className="review-card__stars">★★★★★</div>
+                  <p className="review-card__quote">{r.quote}</p>
+                  <div className="review-card__name">{r.name}</div>
+                  <div className="review-card__meta">{r.meta}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===== DOPYT — finálny konverzný blok ===== */}
+      {/* ===== DOPYT — finálny konverzný blok (zakomentované, neskôr) =====
       <section className="final section">
         <div className="wrap">
           <div className="final__eyebrow" data-reveal="fade">
@@ -420,21 +481,7 @@ export default function Home() {
           <h2 className="final__title" data-reveal>
             Pred odoslaním dopytu musí klient cítiť pokoj.
           </h2>
-          <div className="final__grid" data-reveal style={{ "--rd": "100ms" } as React.CSSProperties}>
-            <div className="final-review">
-              <div className="final-review__stars">★★★★★</div>
-              <p className="final-review__quote">
-                Konečne riešenie, pri ktorom sa nebojím váhy akvária.
-              </p>
-              <div className="final-review__who">Majiteľ 450 l akvária</div>
-            </div>
-            <div className="final-review">
-              <div className="final-review__stars">★★★★★</div>
-              <p className="final-review__quote">
-                Materiál aj konštrukcia zapadli do interiéru.
-              </p>
-              <div className="final-review__who">Realizácia Bratislava</div>
-            </div>
+          <div className="final__grid final__grid--cta-only" data-reveal style={{ "--rd": "100ms" } as React.CSSProperties}>
             <div className="final-cta">
               <h3 className="final-cta__title">Pošlite rozmery akvária</h3>
               <p className="final-cta__body">
@@ -448,6 +495,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
     </>
   );
 }

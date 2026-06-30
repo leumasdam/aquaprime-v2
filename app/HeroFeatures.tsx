@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
 const HF: Record<string, React.ReactNode> = {
   mira: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round">
@@ -47,76 +43,24 @@ const FEATURES = [
 ];
 
 export default function HeroFeatures() {
-  const [active, setActive] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const pausedUntil = useRef(0);
-
-  // auto-advance (desktop aj mobil; cyan zvýraznenie je na mobile vypnuté cez CSS)
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => {
-      if (Date.now() < pausedUntil.current) return;
-      setActive((a) => (a + 1) % FEATURES.length);
-    }, 3200);
-    return () => clearInterval(id);
-  }, []);
-
-  // posuň aktívnu položku do pohľadu (auto-swipe)
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const item = track.children[active] as HTMLElement | undefined;
-    if (!item) return;
-    const padL = parseFloat(getComputedStyle(track).scrollPaddingLeft || "0") || 0;
-    const delta =
-      item.getBoundingClientRect().left - track.getBoundingClientRect().left;
-    track.scrollTo({
-      left: Math.max(0, track.scrollLeft + delta - padL),
-      behavior: "smooth",
-    });
-  }, [active]);
-
-  const pause = () => {
-    pausedUntil.current = Date.now() + 6000;
-  };
-
-  // manuálny swipe → sync na najbližšiu položku (po pauze)
-  const onScroll = () => {
-    if (Date.now() >= pausedUntil.current) return; // ignoruj programový scroll
-    const track = trackRef.current;
-    if (!track) return;
-    const padL = parseFloat(getComputedStyle(track).scrollPaddingLeft || "0") || 0;
-    const trackLeft = track.getBoundingClientRect().left;
-    let nearest = 0;
-    let best = Infinity;
-    for (let i = 0; i < track.children.length; i++) {
-      const el = track.children[i] as HTMLElement;
-      const d = Math.abs(el.getBoundingClientRect().left - trackLeft - padL);
-      if (d < best) {
-        best = d;
-        nearest = i;
-      }
-    }
-    setActive(nearest);
-  };
-
+  const loop = [...FEATURES, ...FEATURES];
   return (
-    <div
-      className="wrap hero__bar-inner"
-      ref={trackRef}
-      onPointerDown={pause}
-      onWheel={pause}
-      onScroll={onScroll}
-    >
-      {FEATURES.map((f, i) => (
-        <div className={`hfeat${i === active ? " is-active" : ""}`} key={f.k}>
-          <span className="hfeat__ring">{HF[f.k]}</span>
-          <span className="hfeat__txt">
-            <span className="hfeat__t">{f.t}</span>
-            <span className="hfeat__s">{f.s}</span>
-          </span>
-        </div>
-      ))}
+    <div className="hero__bar-inner">
+      <div className="hero__bar-track">
+        {loop.map((f, i) => (
+          <div
+            className="hfeat"
+            key={`${f.k}-${i}`}
+            aria-hidden={i >= FEATURES.length ? "true" : undefined}
+          >
+            <span className="hfeat__ring">{HF[f.k]}</span>
+            <span className="hfeat__txt">
+              <span className="hfeat__t">{f.t}</span>
+              <span className="hfeat__s">{f.s}</span>
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
