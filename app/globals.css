@@ -5354,6 +5354,8 @@ button:focus-visible {
   .safety__stats {
     margin-left: 0;
     width: 100%;
+    /* len posun panela vyššie — výška sekcie ani kameň sa nemenia */
+    transform: translateY(-50px);
   }
   .sstat {
     flex: 1;
