@@ -4036,8 +4036,8 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* [experiment] tmavé okolie pre zoomout (contain) video */
-  background: radial-gradient(130% 100% at 50% 38%, #0c171b, #070d0f 58%, #050709);
+  /* [experiment] fotka za videom, posunutá doľava */
+  background: url(/img/hero-room.webp) 20% 38% / cover no-repeat;
 }
 /* HERO video — zoomout: celý záber viditeľný (contain), vycentrované */
 .hero__video {
