@@ -51,8 +51,14 @@ export default function HeroFeatures() {
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedUntil = useRef(0);
 
-  // auto-advance
+  // na mobile (≤600) žiadny auto-advance ani cyan — len manuálny swipe
+  const isMobile = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 600px)").matches;
+
+  // auto-advance (len desktop)
   useEffect(() => {
+    if (isMobile()) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => {
       if (Date.now() < pausedUntil.current) return;
@@ -61,8 +67,9 @@ export default function HeroFeatures() {
     return () => clearInterval(id);
   }, []);
 
-  // posuň aktívnu položku do pohľadu (iba v rámci lišty)
+  // posuň aktívnu položku do pohľadu (len desktop; na mobile rieši natívny swipe)
   useEffect(() => {
+    if (isMobile()) return;
     const track = trackRef.current;
     if (!track) return;
     const item = track.children[active] as HTMLElement | undefined;
@@ -78,8 +85,9 @@ export default function HeroFeatures() {
     pausedUntil.current = Date.now() + 6000;
   };
 
-  // manuálny swipe → cyan sleduje najbližšiu položku
+  // manuálny swipe → cyan sleduje najbližšiu položku (len desktop)
   const onScroll = () => {
+    if (isMobile()) return;
     if (Date.now() >= pausedUntil.current) return; // ignoruj programový scroll
     const track = trackRef.current;
     if (!track) return;

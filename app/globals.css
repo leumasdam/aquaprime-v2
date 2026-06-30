@@ -4696,6 +4696,12 @@ button:focus-visible {
     flex: 0 0 100%;
     padding-right: var(--pad);
   }
+  /* na mobile žiadne cyan zvýraznenie — len swipe, ikony neutrálne */
+  .hfeat.is-active .hfeat__ring {
+    border-color: rgba(255, 255, 255, 0.24);
+    color: rgba(228, 232, 234, 0.82);
+    box-shadow: none;
+  }
 }
 
 /* anchor cieľ pod sticky navbar */
