@@ -4,13 +4,13 @@
    =========================================================== */
 
 :root {
-  /* plochy */
+  /* plochy — jednotné pozadie sekcií = --bg */
   --bg: #0a0c0d;
-  --bg-soft: #070706;
-  --bg-mod: #070808;
-  --bg-config: #060707;
-  --bg-path: #0b0b0b;
-  --footer: #070707;
+  --bg-soft: #0a0c0d;
+  --bg-mod: #0a0c0d;
+  --bg-config: #0a0c0d;
+  --bg-path: #0a0c0d;
+  --footer: #0a0c0d;
 
   /* karty */
   --card: #08090a;
