@@ -4990,6 +4990,25 @@ button:focus-visible {
   text-transform: uppercase;
   color: var(--faint);
 }
+/* 861–1400px: kameň sa dostáva za text → jemný left gradient pre čitateľnosť
+   (mäkký, vzdialený prechod do transparent → bez viditeľného švu) + kameň o čosi menší */
+@media (min-width: 861px) and (max-width: 1400px) {
+  .safety__bg {
+    background-size: auto 80%;
+  }
+  .safety__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--bg) 0%,
+      rgba(10, 12, 13, 0.82) 32%,
+      rgba(10, 12, 13, 0.35) 58%,
+      transparent 80%
+    );
+  }
+}
 @media (max-width: 860px) {
   .safety__grid {
     grid-template-columns: 1fr;
