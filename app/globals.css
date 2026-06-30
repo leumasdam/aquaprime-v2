@@ -4738,8 +4738,9 @@ button:focus-visible {
   .hero__bg2::after {
     background: linear-gradient(
       180deg,
-      rgba(5, 7, 9, 0) 48%,
-      rgba(5, 7, 9, 0.5) 76%,
+      rgba(5, 7, 9, 0) 38%,
+      rgba(5, 7, 9, 0.55) 68%,
+      rgba(7, 13, 15, 0.92) 88%,
       #070d0f 100%
     );
   }
@@ -4748,7 +4749,10 @@ button:focus-visible {
     flex-direction: column;
     justify-content: flex-start;
     flex: 1 1 auto;
-    padding-block: 18px 28px;
+    position: relative;
+    z-index: 2;
+    margin-top: -7svh;
+    padding-block: 0 28px;
   }
   .hero__content {
     position: relative;
