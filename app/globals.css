@@ -4036,49 +4036,25 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* [experiment] čierne pozadie — strany videa sa doň plynule strácajú */
-  background: #05080b;
-}
-/* HERO video — zoomnuté (contain), vycentrované; strany faded do čierna cez ::after */
-.hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  z-index: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero__video {
-    display: none;
-  }
-  .hero__bg2 {
-    background: url(/img/hero-room.webp) center 38% / cover no-repeat;
-  }
+  background: url(/img/hero-room.webp) center 38% / cover no-repeat;
 }
 .hero__bg2::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
   background: linear-gradient(
       90deg,
-      #05080b 0%,
-      #05080b 20%,
-      rgba(5, 8, 11, 0.92) 34%,
-      transparent 47%,
-      transparent 53%,
-      rgba(5, 8, 11, 0.92) 66%,
-      #05080b 80%,
-      #05080b 100%
+      rgba(5, 6, 7, 0.82) 0%,
+      rgba(5, 6, 7, 0.48) 34%,
+      rgba(5, 6, 7, 0.04) 58%,
+      rgba(5, 6, 7, 0.28) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(5, 8, 11, 0.5) 0%,
-      transparent 24%,
-      transparent 60%,
-      rgba(5, 8, 11, 0.82) 100%
+      rgba(5, 6, 7, 0.42) 0%,
+      transparent 26%,
+      transparent 56%,
+      rgba(5, 6, 7, 0.72) 100%
     );
 }
 .hero__scroll-v {
@@ -5308,5 +5284,27 @@ button:focus-visible {
   }
   .safety__bg::after {
     display: none;
+  }
+}
+
+/* HERO video — len na mobile (≤600); desktop ostáva fotka */
+.hero__video {
+  display: none;
+}
+@media (max-width: 600px) {
+  .hero__video {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none !important;
   }
 }
