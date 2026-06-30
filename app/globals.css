@@ -5012,8 +5012,14 @@ button:focus-visible {
     flex: 1;
     padding: 0 clamp(10px, 3vw, 22px);
   }
+  /* mobil: skala ako zoomout pás dole (za štatmi), text hore na čistom tmavom */
   .safety__bg {
-    background-position: 78% center;
-    opacity: 0.5;
+    background-image: url(/img/safety-rock-m.webp);
+    background-position: center bottom;
+    background-size: auto clamp(190px, 56vw, 260px);
+    opacity: 1;
+  }
+  .safety__bg::after {
+    display: none;
   }
 }
