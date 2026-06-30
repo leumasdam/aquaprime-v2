@@ -40,8 +40,12 @@ app/
   skrinky/ materialy/ realizacie/ kontakt/ dopyt/ o-nas/ akvaria-teraria/ doplnky-technika/  (podstránky)
   Subpage.tsx           Šablóna podstránok
   nav.ts products.ts    Dáta
-public/img/             Obrázky (hero-room.webp, col-*, tile-*, cabinet.webp, tt/ atď.)
+public/img/             Obrázky (hero-room.webp, col-*, tile-*, cabinet.webp, safety-rock*.webp, tt/ atď.)
 ```
+
+**Poradie sekcií homepage:** hero → **Bezpečnosť a nosnosť** (`.safety` — text vľavo, transparentný kameň `safety-rock.webp` v strede, glass štaty 770 kg/oceľ/na mieru vpravo) → kolekcie → kompaktné dlaždice → mini-konfigurátor → moduly → construct → recenzie → dopyt.
+
+Pozn. k `.safety`: kameň je **transparentné PNG** položené na `--bg` (žiadny box). Pozícia/veľkosť `background: 54% bottom / auto 88%`. Pri 861–1400px sa zapína left gradient (čitateľnosť) + kameň `auto 80%`; ≤860px je kameň pás dole a text hore na čistom. Glass štaty = `backdrop-filter: blur(30px)`.
 
 23 statických routes, produkčný build zelený.
 
