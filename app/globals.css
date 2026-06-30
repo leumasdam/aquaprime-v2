@@ -5349,7 +5349,7 @@ button:focus-visible {
   .safety__grid {
     grid-template-columns: 1fr;
     align-items: start;
-    gap: clamp(20px, 36vw, 90px);
+    gap: clamp(20px, 36vw, 40px);
   }
   .safety__stats {
     margin-left: 0;
