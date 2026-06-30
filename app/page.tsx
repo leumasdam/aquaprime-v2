@@ -208,6 +208,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== BEZPEČNOSŤ A NOSNOSŤ ===== */}
+      <section className="safety section">
+        <div className="safety__bg" aria-hidden="true" />
+        <div className="wrap safety__grid">
+          <div className="safety__text" data-reveal="left">
+            <span className="safety__eyebrow">
+              <span className="safety__eyebrow-rule" />
+              BEZPEČNOSŤ A NOSNOSŤ
+            </span>
+            <h2 className="safety__title">
+              Navrhnuté pre akváriá, ktoré bežná skrinka neuniesla.
+            </h2>
+            <p className="safety__body">
+              Oceľový rám, certifikované nožičky a rozmery na mieru pre zostavy,
+              pri ktorých už nábytková skrinka nestačí.
+            </p>
+            <div className="safety__ctas">
+              <Link href="/skrinky" className="hero__btn">
+                <span className="hero__btn-label">POZRIEŤ SKRINKY</span>
+                <span className="hero__btn-arr" aria-hidden>
+                  →
+                </span>
+              </Link>
+              <Link href="/dopyt" className="safety__btn2">
+                OVERIŤ NOSNOSŤ
+              </Link>
+            </div>
+          </div>
+          <div className="safety__stats" data-reveal>
+            {[
+              { v: "770 kg", l: "NA JEDNU NOŽIČKU" },
+              { v: "oceľ", l: "VNÚTORNÝ RÁM" },
+              { v: "mieru", l: "ROZMERY" },
+            ].map((s) => (
+              <div className="sstat" key={s.l}>
+                <span className="sstat__line" />
+                <span className="sstat__val">{s.v}</span>
+                <span className="sstat__label">{s.l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== MINI-KONFIGURÁTOR ===== */}
       <section className="cfg section">
         <div className="wrap">
