@@ -5342,23 +5342,17 @@ button:focus-visible {
   }
 }
 @media (max-width: 860px) {
-  /* štaty k spodnému okraju sekcie */
+  /* štaty ~150px pod subhdl; spodok (kameň) prirodzený */
   .safety {
-    display: flex;
-    flex-direction: column;
-    min-height: clamp(580px, 90svh, 780px);
-    padding-bottom: clamp(26px, 7vw, 44px);
+    padding-bottom: clamp(96px, 22vw, 140px);
   }
   .safety__grid {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 26px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: clamp(120px, 36vw, 160px);
   }
   .safety__stats {
     margin-left: 0;
-    margin-top: auto;
     width: 100%;
   }
   .sstat {
