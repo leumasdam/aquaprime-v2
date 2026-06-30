@@ -4036,36 +4036,18 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url(/img/hero-room.webp) center 38% / cover no-repeat;
+  /* [experiment] tmavé okolie pre zoomout (contain) video */
+  background: radial-gradient(130% 100% at 50% 38%, #0c171b, #070d0f 58%, #050709);
 }
-/* HERO video — správa sa presne ako fotka (object-fit/position = background-size/position) */
+/* HERO video — zoomout: celý záber viditeľný (contain), vycentrované */
 .hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 38%;
+  object-fit: contain;
+  object-position: center;
   z-index: 0;
-}
-@media (max-width: 1300px) {
-  .hero__video {
-    object-position: 22% 42%;
-  }
-}
-@media (min-width: 2100px) {
-  .hero__video {
-    width: 2100px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    object-position: center 38%;
-  }
-}
-@media (max-width: 600px) {
-  .hero__video {
-    object-position: 50% 38%;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__video {
