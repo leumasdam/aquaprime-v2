@@ -98,29 +98,7 @@ export default function Home() {
     <>
       {/* ===== HERO ===== */}
       <section className="hero">
-        <div className="hero__bg2" aria-hidden="true">
-          <video
-            className="hero__vblur"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/video/hero.webm" type="video/webm" />
-            <source src="/video/hero.mp4" type="video/mp4" />
-          </video>
-          <video
-            className="hero__video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/img/hero-room.webp"
-          >
-            <source src="/video/hero.webm" type="video/webm" />
-            <source src="/video/hero.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <div className="hero__bg2" aria-hidden="true" />
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">SCROLL</span>
           <span className="hero__scroll-line" />
