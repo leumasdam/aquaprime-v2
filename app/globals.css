@@ -5292,6 +5292,11 @@ button:focus-visible {
   display: none;
 }
 @media (max-width: 600px) {
+  /* za maskou videa nech je tma (nie druhá fotka) */
+  .hero__bg2 {
+    background-image: none;
+    background-color: #070d0f;
+  }
   .hero__video {
     display: block;
     position: absolute;
@@ -5301,7 +5306,7 @@ button:focus-visible {
     height: 110%;
     object-fit: cover;
     object-position: 90% 38%;
-    transform: translateY(-24%);
+    transform: translateY(-10%);
     -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
     mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
     z-index: 0;

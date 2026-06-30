@@ -107,8 +107,8 @@ export default function Home() {
             playsInline
             poster="/img/hero-poster.webp"
           >
-            <source src="/video/hero.webm" type="video/webm" />
-            <source src="/video/hero.mp4" type="video/mp4" />
+            <source src="/video/hero2.webm" type="video/webm" />
+            <source src="/video/hero2.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="hero__scroll-v" aria-hidden="true">
