@@ -4151,8 +4151,8 @@ button:focus-visible {
 }
 
 
-/* HERO — mobil (≤900): pozadie doľava (akvárium trčí z pravého kraja) */
-@media (max-width: 900px) {
+/* HERO — ≤1300: pozadie doľava (akvárium trčí z pravého kraja, text na tmavej) */
+@media (max-width: 1300px) {
   .hero__bg2 {
     background-position: 22% 42%;
   }
@@ -4509,13 +4509,10 @@ button:focus-visible {
 }
 
 /* HERO — pod 1200px oddialiť pozadie (cover príliš zoomuje široký obrázok) */
-/* 901–1500px: nižší hero → cover ukáže viac šírky = akvárium oddialené (bez medzier) */
+/* 901–1500px: nižší hero (zoom-out). Pozíciu pozadia rieši ≤1300 shift / default. */
 @media (min-width: 901px) and (max-width: 1500px) {
   .hero {
     min-height: clamp(430px, 49vh, 530px);
-  }
-  .hero__bg2 {
-    background-position: center 44%;
   }
 }
 
