@@ -5363,7 +5363,7 @@ button:focus-visible {
   }
   .safety__bg {
     background-image: url(/img/safety-rock-m.webp);
-    background-position: left -25% bottom -34px;
+    background-position: left -10% bottom -34px;
     background-size: auto clamp(260px, 70vw, 360px);
     opacity: 0.85;
   }
