@@ -5209,6 +5209,9 @@ button:focus-visible {
   gap: 0;
   width: fit-content;
   margin-left: auto;
+  /* panel sám sa needhaľuje (cez generický data-reveal) — animujú sa len sstaty */
+  opacity: 1;
+  transform: none;
   padding: clamp(18px, 1.6vw, 26px) clamp(8px, 1vw, 16px);
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -5224,6 +5227,9 @@ button:focus-visible {
   flex-direction: column;
   gap: 10px;
   padding: 0 clamp(16px, 1.8vw, 30px);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 .sstat:not(:first-child) {
   border-left: 1px solid rgba(255, 255, 255, 0.08);
@@ -5232,6 +5238,53 @@ button:focus-visible {
   width: 60px;
   height: 1px;
   background: rgba(71, 199, 232, 0.7);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+/* postupný reveal štatov (1→2→3) pri scrolle + linka sa nakreslí a zažiari */
+.safety__stats.is-in .sstat {
+  opacity: 1;
+  transform: translateY(0);
+}
+.safety__stats.is-in .sstat:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.safety__stats.is-in .sstat:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.safety__stats.is-in .sstat:nth-child(3) {
+  transition-delay: 0.5s;
+}
+.safety__stats.is-in .sstat:nth-child(1) .sstat__line {
+  animation: sstatLine 0.7s var(--ease) 0.24s forwards;
+}
+.safety__stats.is-in .sstat:nth-child(2) .sstat__line {
+  animation: sstatLine 0.7s var(--ease) 0.44s forwards;
+}
+.safety__stats.is-in .sstat:nth-child(3) .sstat__line {
+  animation: sstatLine 0.7s var(--ease) 0.64s forwards;
+}
+@keyframes sstatLine {
+  0% {
+    transform: scaleX(0);
+    box-shadow: 0 0 0 0 rgba(71, 199, 232, 0);
+  }
+  60% {
+    box-shadow: 0 0 13px 1px rgba(71, 199, 232, 0.85);
+  }
+  100% {
+    transform: scaleX(1);
+    box-shadow: 0 0 7px 0 rgba(71, 199, 232, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sstat {
+    opacity: 1;
+    transform: none;
+  }
+  .sstat__line {
+    transform: scaleX(1);
+  }
 }
 .sstat__val {
   font-family: var(--display);
@@ -5289,22 +5342,28 @@ button:focus-visible {
   }
 }
 @media (max-width: 860px) {
+  /* štaty k spodnému okraju sekcie */
+  .safety {
+    display: flex;
+    flex-direction: column;
+    min-height: clamp(580px, 90svh, 780px);
+    padding-bottom: clamp(26px, 7vw, 44px);
+  }
   .safety__grid {
-    grid-template-columns: 1fr;
-    align-items: start;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 26px;
   }
   .safety__stats {
     margin-left: 0;
+    margin-top: auto;
     width: 100%;
   }
   .sstat {
     flex: 1;
     padding: 0 clamp(10px, 3vw, 22px);
-  }
-  /* mobil: skala ako zoomout pás dole (za štatmi), text hore na čistom tmavom */
-  .safety {
-    padding-bottom: clamp(96px, 22vw, 140px);
   }
   .safety__bg {
     background-image: url(/img/safety-rock-m.webp);
