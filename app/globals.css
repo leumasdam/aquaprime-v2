@@ -5300,7 +5300,7 @@ button:focus-visible {
     height: 100%;
     object-fit: cover;
     object-position: 100% 38%;
-    transform: translateY(-5%);
+    transform: translateY(-9%);
     z-index: 0;
   }
 }
