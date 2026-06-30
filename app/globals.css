@@ -939,6 +939,8 @@ button {
 }
 .review-cards__track {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 24px;
   width: max-content;
   animation: rev-marquee 55s linear infinite;
@@ -947,7 +949,10 @@ button {
   animation-play-state: paused;
 }
 .review-cards .review-card {
-  flex: 0 0 clamp(280px, 26vw, 360px);
+  flex: 0 0 340px !important;
+  width: 340px !important;
+  max-width: 340px !important;
+  box-sizing: border-box;
 }
 @keyframes rev-marquee {
   from { transform: translate3d(0, 0, 0); }
