@@ -4065,10 +4065,12 @@ button:focus-visible {
   background: linear-gradient(
       90deg,
       #05080b 0%,
-      rgba(5, 8, 11, 0.85) 9%,
-      transparent 27%,
-      transparent 73%,
-      rgba(5, 8, 11, 0.85) 91%,
+      #05080b 20%,
+      rgba(5, 8, 11, 0.92) 34%,
+      transparent 47%,
+      transparent 53%,
+      rgba(5, 8, 11, 0.92) 66%,
+      #05080b 80%,
       #05080b 100%
     ),
     linear-gradient(
