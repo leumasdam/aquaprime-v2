@@ -51,14 +51,8 @@ export default function HeroFeatures() {
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedUntil = useRef(0);
 
-  // na mobile (≤600) žiadny auto-advance ani cyan — len manuálny swipe
-  const isMobile = () =>
-    typeof window !== "undefined" &&
-    window.matchMedia("(max-width: 600px)").matches;
-
-  // auto-advance (len desktop)
+  // auto-advance (desktop aj mobil; cyan zvýraznenie je na mobile vypnuté cez CSS)
   useEffect(() => {
-    if (isMobile()) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => {
       if (Date.now() < pausedUntil.current) return;
@@ -67,16 +61,17 @@ export default function HeroFeatures() {
     return () => clearInterval(id);
   }, []);
 
-  // posuň aktívnu položku do pohľadu (len desktop; na mobile rieši natívny swipe)
+  // posuň aktívnu položku do pohľadu (auto-swipe)
   useEffect(() => {
-    if (isMobile()) return;
     const track = trackRef.current;
     if (!track) return;
     const item = track.children[active] as HTMLElement | undefined;
     if (!item) return;
     const padL = parseFloat(getComputedStyle(track).scrollPaddingLeft || "0") || 0;
+    const delta =
+      item.getBoundingClientRect().left - track.getBoundingClientRect().left;
     track.scrollTo({
-      left: Math.max(0, item.offsetLeft - track.offsetLeft - padL),
+      left: Math.max(0, track.scrollLeft + delta - padL),
       behavior: "smooth",
     });
   }, [active]);
@@ -85,18 +80,18 @@ export default function HeroFeatures() {
     pausedUntil.current = Date.now() + 6000;
   };
 
-  // manuálny swipe → cyan sleduje najbližšiu položku (len desktop)
+  // manuálny swipe → sync na najbližšiu položku (po pauze)
   const onScroll = () => {
-    if (isMobile()) return;
     if (Date.now() >= pausedUntil.current) return; // ignoruj programový scroll
     const track = trackRef.current;
     if (!track) return;
     const padL = parseFloat(getComputedStyle(track).scrollPaddingLeft || "0") || 0;
+    const trackLeft = track.getBoundingClientRect().left;
     let nearest = 0;
     let best = Infinity;
     for (let i = 0; i < track.children.length; i++) {
       const el = track.children[i] as HTMLElement;
-      const d = Math.abs(el.offsetLeft - track.offsetLeft - padL - track.scrollLeft);
+      const d = Math.abs(el.getBoundingClientRect().left - trackLeft - padL);
       if (d < best) {
         best = d;
         nearest = i;
