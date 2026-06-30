@@ -4376,7 +4376,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 1fr 47%;
   align-items: center;
-  min-height: 230px;
+  min-height: 150px;
   background: transparent;
   border-left: 1px solid var(--line);
   overflow: hidden;
@@ -4391,7 +4391,7 @@ button:focus-visible {
 .ctile__text {
   position: relative;
   z-index: 2;
-  padding: clamp(26px, 2.6vw, 42px) clamp(20px, 1.8vw, 30px);
+  padding: clamp(16px, 1.5vw, 24px) clamp(20px, 1.8vw, 30px);
 }
 .ctile__label {
   display: block;
@@ -4432,7 +4432,7 @@ button:focus-visible {
 .ctile__media {
   position: relative;
   align-self: stretch;
-  min-height: 156px;
+  min-height: 130px;
 }
 .ctile__media img {
   position: absolute;
@@ -4903,7 +4903,8 @@ button:focus-visible {
 .safety__bg {
   position: absolute;
   inset: 0;
-  background: url(/img/safety-rock.webp) no-repeat right center / cover;
+  /* veľkosť viazaná na výšku → neškáluje (nenaťahuje sa) so šírkou; vycentrované */
+  background: url(/img/safety-rock.webp) no-repeat center / auto 100%;
 }
 .safety__bg::after {
   content: "";
