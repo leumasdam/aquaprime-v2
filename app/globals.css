@@ -5344,7 +5344,7 @@ button:focus-visible {
 @media (max-width: 860px) {
   /* štaty ~150px pod subhdl; spodok (kameň) prirodzený */
   .safety {
-    padding-bottom: clamp(96px, 22vw, 140px);
+    padding-bottom: clamp(130px, 30vw, 190px);
   }
   .safety__grid {
     grid-template-columns: 1fr;
@@ -5363,7 +5363,7 @@ button:focus-visible {
   }
   .safety__bg {
     background-image: url(/img/safety-rock-m.webp);
-    background-position: left -25% bottom -10px;
+    background-position: left -25% bottom -34px;
     background-size: auto clamp(260px, 70vw, 360px);
     opacity: 0.85;
   }
