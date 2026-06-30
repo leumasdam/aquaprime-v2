@@ -4613,6 +4613,11 @@ button:focus-visible {
   }
   .collections__cards {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  /* stacked karty nižšie (landscape), nech nie sú obrovské */
+  .ccard {
+    aspect-ratio: 5 / 2;
   }
   .collections__title {
     margin-top: 12px;
