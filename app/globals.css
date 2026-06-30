@@ -4865,11 +4865,18 @@ button:focus-visible {
 }
 
 
-/* ≥2100px: fotka zafixovaná na veľkosť tesne pred kolapsom (~2100px), vycentrovaná; NEovplyvňuje <2100 */
+/* ≥2100px: fotka zafixovaná na veľkosť tesne pred kolapsom (~2100px), vycentrovaná,
+   bočné hrany jemne do stratena (gradient na okrajoch fotky cez calc); NEovplyvňuje <2100 */
 @media (min-width: 2100px) {
   .hero__bg2 {
-    background-size: 2100px auto;
-    background-position: center 38%;
-    background-color: #060708;
+    background: linear-gradient(
+        90deg,
+        #060708 calc(50% - 1085px),
+        rgba(6, 7, 8, 0) calc(50% - 940px),
+        rgba(6, 7, 8, 0) calc(50% + 940px),
+        #060708 calc(50% + 1085px)
+      ),
+      url(/img/hero-room.webp) center 38% / 2100px auto no-repeat,
+      #060708;
   }
 }
