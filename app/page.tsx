@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
-import HeroParallax from "./HeroParallax";
 
 
 const REVIEWS = [
@@ -94,7 +93,6 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
-        <HeroParallax />
         <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">SCROLL</span>

@@ -4746,12 +4746,20 @@ button:focus-visible {
   .hero__inner {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1 1 auto;
+    padding-block: 18px 28px;
   }
   .hero__content {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  /* nadpis vyššie, tlačidlá nižšie */
+  .hero__ctas {
+    margin-top: auto;
   }
   /* ambientné svetlo zhora + vinetácia (statické) */
   .hero__fx-glow {
