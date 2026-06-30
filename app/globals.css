@@ -4605,19 +4605,17 @@ button:focus-visible {
   color: rgba(255, 255, 255, 0.55);
   margin-top: 7px;
 }
-@media (max-width: 900px) {
+@media (max-width: 981px) {
   .collections__grid {
     grid-template-columns: 1fr;
     gap: 22px;
     align-items: start;
   }
-  .collections__title {
-    margin-top: 12px;
-  }
-}
-@media (max-width: 600px) {
   .collections__cards {
     grid-template-columns: 1fr;
+  }
+  .collections__title {
+    margin-top: 12px;
   }
 }
 
