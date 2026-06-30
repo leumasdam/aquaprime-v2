@@ -110,6 +110,17 @@ export default function Home() {
             <source src="/video/hero2.webm" type="video/webm" />
             <source src="/video/hero2.mp4" type="video/mp4" />
           </video>
+          <video
+            className="hero__video-d"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/img/hero-desktop-poster.webp"
+          >
+            <source src="/video/hero-desktop.webm" type="video/webm" />
+            <source src="/video/hero-desktop.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">SCROLL</span>
