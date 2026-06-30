@@ -4864,3 +4864,12 @@ button:focus-visible {
   }
 }
 
+
+/* ≥2100px: hero fotka sa už nezväčšuje (height-tied) + posun doprava; NEovplyvňuje <2100 */
+@media (min-width: 2100px) {
+  .hero__bg2 {
+    background-size: auto 100%;
+    background-position: right center;
+    background-color: #060708;
+  }
+}
