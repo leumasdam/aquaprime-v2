@@ -4903,8 +4903,8 @@ button:focus-visible {
 .safety__bg {
   position: absolute;
   inset: 0;
-  /* výrez skaly, menší → dá sa posunúť do stredu (mimo štatov vpravo); neškáluje so šírkou */
-  background: url(/img/safety-rock-m.webp) no-repeat 42% center / auto 96%;
+  /* transparentný PNG kameňa na pozadí sekcie → žiadny box; vycentrovaný, neškáluje so šírkou */
+  background: url(/img/safety-rock.webp) no-repeat 47% center / auto 100%;
 }
 .safety__bg::after {
   content: "";
@@ -4913,8 +4913,8 @@ button:focus-visible {
   background: linear-gradient(
     90deg,
     var(--bg) 0%,
-    rgba(10, 12, 13, 0.65) 34%,
-    transparent 62%
+    rgba(10, 12, 13, 0.5) 26%,
+    transparent 46%
   );
 }
 .safety__grid {
