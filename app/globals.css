@@ -5298,10 +5298,10 @@ button:focus-visible {
     top: 0;
     left: 0;
     width: 100%;
-    height: 120%;
+    height: 124%;
     object-fit: cover;
     object-position: 50% 38%;
-    transform: translateY(-13%);
+    transform: translateY(-18%);
     z-index: 0;
   }
 }
