@@ -99,7 +99,6 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true" />
-        <span className="hero__kg" aria-hidden="true">350+ kg</span>
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">SCROLL</span>
           <span className="hero__scroll-line" />
