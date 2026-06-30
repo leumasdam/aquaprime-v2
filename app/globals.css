@@ -4906,17 +4906,6 @@ button:focus-visible {
   /* transparentný PNG kameňa na pozadí sekcie → žiadny box; vycentrovaný, neškáluje so šírkou */
   background: url(/img/safety-rock.webp) no-repeat 47% center / auto 100%;
 }
-.safety__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    var(--bg) 0%,
-    rgba(10, 12, 13, 0.5) 26%,
-    transparent 46%
-  );
-}
 .safety__grid {
   position: relative;
   z-index: 1;
