@@ -4036,17 +4036,17 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* [experiment] fotka za videom, posunutá doľava */
-  background: url(/img/hero-room.webp) 20% 38% / cover no-repeat;
+  /* [experiment] fotka len ako poster/fallback (video ju celú prekryje) */
+  background: url(/img/hero-room.webp) 50% 38% / cover no-repeat;
 }
-/* HERO video — zoomout: celý záber viditeľný (contain), vycentrované */
+/* HERO video — jediná vrstva (cover, full-bleed) = bez spoja, konzistentné pri každej šírke */
 .hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: 50% 38%;
   z-index: 0;
 }
 @media (prefers-reduced-motion: reduce) {
