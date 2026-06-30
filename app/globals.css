@@ -225,19 +225,21 @@ button {
 }
 .nav__links {
   display: flex;
-  gap: clamp(22px, 2.4vw, 44px);
-  margin-left: auto;
+  gap: clamp(20px, 2vw, 38px);
+  /* centrované medzi logom a pravou skupinou (SK + konfigurátor) */
+  margin: 0 auto;
 }
 .nav__link {
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(228, 231, 233, 0.82);
+  color: rgba(226, 229, 231, 0.66);
   transition: color 0.2s var(--ease);
 }
-.nav__link:hover {
-  color: var(--ink);
+.nav__link:hover,
+.nav__link.is-active {
+  color: rgba(244, 244, 242, 0.95);
 }
 .nav__cta {
   display: inline-flex;
