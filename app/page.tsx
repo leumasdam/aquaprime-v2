@@ -100,6 +100,16 @@ export default function Home() {
       <section className="hero">
         <div className="hero__bg2" aria-hidden="true">
           <video
+            className="hero__vblur"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/video/hero.webm" type="video/webm" />
+            <source src="/video/hero.mp4" type="video/mp4" />
+          </video>
+          <video
             className="hero__video"
             autoPlay
             muted
