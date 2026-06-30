@@ -5,7 +5,7 @@
 
 :root {
   /* plochy */
-  --bg: #050606;
+  --bg: #0a0c0d;
   --bg-soft: #070706;
   --bg-mod: #070808;
   --bg-config: #060707;
@@ -4362,27 +4362,14 @@ button:focus-visible {
    =========================================================== */
 .ctiles {
   padding: 0;
-}
-.ctiles .wrap {
-  position: relative;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  /* sivé deliace linky full width */
   border-top: 1px solid var(--line-2);
   border-bottom: 1px solid var(--line-2);
 }
-.ctiles .wrap::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--cyan);
-  z-index: 3;
+.ctiles .wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
 }
 .ctile {
   position: relative;
@@ -4390,7 +4377,7 @@ button:focus-visible {
   grid-template-columns: 1fr 47%;
   align-items: center;
   min-height: 230px;
-  background: linear-gradient(100deg, #0a0c0d, #070809);
+  background: transparent;
   border-left: 1px solid var(--line);
   overflow: hidden;
   transition: background 0.3s var(--ease);
@@ -4405,9 +4392,6 @@ button:focus-visible {
   position: relative;
   z-index: 2;
   padding: clamp(26px, 2.6vw, 42px) clamp(20px, 1.8vw, 30px);
-}
-.ctile:first-child .ctile__text {
-  padding-left: var(--pad);
 }
 .ctile__label {
   display: block;
@@ -4484,10 +4468,6 @@ button:focus-visible {
   }
   .ctile:first-child {
     border-top: none;
-  }
-  .ctile__text,
-  .ctile:first-child .ctile__text {
-    padding-left: var(--pad);
   }
 }
 @media (max-width: 560px) {
