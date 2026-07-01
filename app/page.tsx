@@ -105,10 +105,10 @@ export default function Home() {
             muted
             loop
             playsInline
-            poster="/img/hero-poster.webp"
+            poster="/img/hero-water-poster.webp"
           >
-            <source src="/video/hero2.webm" type="video/webm" />
-            <source src="/video/hero2.mp4" type="video/mp4" />
+            <source src="/video/hero-water.webm" type="video/webm" />
+            <source src="/video/hero-water.mp4" type="video/mp4" />
           </video>
           <video
             className="hero__video-d"
@@ -116,10 +116,10 @@ export default function Home() {
             muted
             loop
             playsInline
-            poster="/img/hero-desktop-poster.webp"
+            poster="/img/hero-water-poster.webp"
           >
-            <source src="/video/hero-desktop.webm" type="video/webm" />
-            <source src="/video/hero-desktop.mp4" type="video/mp4" />
+            <source src="/video/hero-water.webm" type="video/webm" />
+            <source src="/video/hero-water.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="hero__scroll-v" aria-hidden="true">
