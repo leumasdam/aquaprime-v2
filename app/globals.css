@@ -5360,6 +5360,12 @@ button:focus-visible {
     );
   }
 }
+/* >2000px: kameň o kúsok viac do stredu (viac vľavo) */
+@media (min-width: 2000px) {
+  .safety__bg {
+    background-position: 63% bottom;
+  }
+}
 @media (max-width: 860px) {
   /* štaty ~150px pod subhdl; spodok (kameň) prirodzený */
   .safety {
