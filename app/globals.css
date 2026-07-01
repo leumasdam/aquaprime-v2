@@ -5178,13 +5178,13 @@ button:focus-visible {
 .safety__bg {
   position: absolute;
   inset: 0;
+  z-index: 1;
   /* transparentný PNG kameňa: menší, posunutý dole + jemne doprava (za štaty → blur má textúru) */
   background: url(/img/safety-rock.webp) no-repeat 54% bottom / auto 88%;
-  opacity: 0.92;
 }
 .safety__grid {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(24px, 3vw, 56px);
