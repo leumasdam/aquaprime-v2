@@ -64,17 +64,35 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+        ]
+      },
+      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
           "/img/products/premium-100x40x90-black-matt-06.webp"
         ]
       },
@@ -96,34 +114,16 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
+          "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-04.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
           "/img/products/premium-100x40x90-cool-white-05.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
-          "/img/products/premium-100x40x90-cool-white-07.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/premium-100x40x90-cool-white-10.webp"
-        ]
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+          "/img/products/premium-100x40x90-cool-white-04.webp"
         ]
       },
       {
@@ -133,16 +133,16 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
       }
     ],
-    "cover": "/img/products/premium-100x40x90-black-matt-01.webp"
+    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp"
   },
   {
     "slug": "standard-80x40x90",
@@ -168,21 +168,42 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "artisan-antracit",
+        "name": "Artisan / Antracit",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-08.webp"
+        ]
+      },
+      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-02.webp",
-          "/img/products/premium-100x40x90-black-matt-02.webp",
-          "/img/products/standard-80x40x90-black-matt-03.webp",
           "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/standard-80x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
           "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/standard-100x40x90-black-matt-01.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-80x40x90-black-matt-02.webp",
+          "/img/products/standard-80x40x90-black-matt-03.webp",
           "/img/products/standard-200x60x60-antracit-06.webp",
-          "/img/products/standard-80x40x90-black-matt-04.webp"
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ]
       },
       {
@@ -193,17 +214,17 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
           "/img/products/standard-80x40x90-black-matt-orech-02.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
           "/img/products/standard-80x40x90-black-matt-orech-04.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
           "/img/products/standard-80x40x90-black-matt-orech-06.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
           "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
           "/img/products/standard-80x40x90-black-matt-orech-09.webp"
         ]
       },
@@ -214,34 +235,15 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-80x40x90-antracit-01.webp",
-          "/img/products/standard-80x40x90-antracit-02.webp",
           "/img/products/standard-80x40x90-antracit-03.webp",
-          "/img/products/standard-80x40x90-antracit-04.webp",
-          "/img/products/standard-80x40x90-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp",
           "/img/products/standard-80x40x90-antracit-06.webp",
           "/img/products/standard-80x40x90-antracit-07.webp",
-          "/img/products/standard-80x40x90-antracit-08.webp"
-        ]
-      },
-      {
-        "id": "artisan-antracit",
-        "name": "Artisan / Antracit",
-        "swatch": [
-          "/img/products/swatch-artisan.webp",
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-09.webp"
+          "/img/products/standard-80x40x90-antracit-02.webp",
+          "/img/products/standard-80x40x90-antracit-05.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-04.webp",
+          "/img/products/standard-80x40x90-antracit-08.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
         ]
       },
       {
@@ -251,16 +253,16 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
-          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/standard-200x60x60-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-04.webp",
           "/img/products/premium-100x40x90-cool-white-07.webp",
-          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/premium-100x40x90-cool-white-10.webp"
+          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
         ]
       },
       {
@@ -271,13 +273,13 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
         ]
       },
@@ -288,18 +290,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/standard-80x40x90-dub-sonoma-01.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/standard-80x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
       }
     ],
-    "cover": "/img/products/standard-80x40x90-black-matt-03.webp"
+    "cover": "/img/products/standard-80x40x90-artisan-antracit-05.webp"
   },
   {
     "slug": "standard-100x40x90",
@@ -325,14 +327,42 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ]
+      },
+      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/standard-80x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
           "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-100x40x90-black-matt-02.webp"
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-80x40x90-black-matt-02.webp",
+          "/img/products/standard-80x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ]
       },
       {
@@ -343,7 +373,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
+          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
         ]
       },
       {
@@ -353,15 +394,15 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-80x40x90-antracit-01.webp",
-          "/img/products/standard-80x40x90-antracit-02.webp",
           "/img/products/standard-80x40x90-antracit-03.webp",
-          "/img/products/standard-80x40x90-antracit-04.webp",
-          "/img/products/standard-80x40x90-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp",
           "/img/products/standard-80x40x90-antracit-06.webp",
           "/img/products/standard-80x40x90-antracit-07.webp",
-          "/img/products/standard-80x40x90-antracit-08.webp"
+          "/img/products/standard-80x40x90-antracit-02.webp",
+          "/img/products/standard-80x40x90-antracit-05.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-04.webp",
+          "/img/products/standard-80x40x90-antracit-08.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
         ],
         "inherited": true
       },
@@ -373,32 +414,17 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
           "/img/products/standard-80x40x90-artisan-antracit-03.webp",
           "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
           "/img/products/standard-80x40x90-artisan-antracit-06.webp",
           "/img/products/standard-80x40x90-artisan-antracit-07.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-09.webp"
+          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-08.webp"
         ],
         "inherited": true
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-07.webp",
-          "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp"
-        ]
       },
       {
         "id": "dub-hunton-black-matt",
@@ -408,13 +434,13 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
         ],
         "inherited": true
@@ -426,19 +452,19 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/standard-80x40x90-dub-sonoma-01.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/standard-80x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true
       }
     ],
-    "cover": "/img/products/premium-100x40x90-black-matt-04.webp"
+    "cover": "/img/products/premium-100x40x90-cool-white-07.webp"
   },
   {
     "slug": "standard-150x50x80",
@@ -470,8 +496,14 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-150x50x80-black-matt-02.webp"
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ]
       },
       {
@@ -482,7 +514,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
+          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
         ],
         "inherited": true
       },
@@ -493,11 +536,11 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-02.webp",
+          "/img/products/standard-200x60x60-antracit-05.webp",
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
         ],
         "inherited": true
@@ -509,12 +552,16 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
-          "/img/products/standard-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp"
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
         ],
         "inherited": true
       },
@@ -525,11 +572,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true
       }
@@ -560,14 +608,36 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true
+      },
+      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-150x50x80-black-matt-02.webp"
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ]
       },
       {
@@ -578,7 +648,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
+          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
         ],
         "inherited": true
       },
@@ -589,11 +670,11 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-02.webp",
+          "/img/products/standard-200x60x60-antracit-05.webp",
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
         ],
         "inherited": true
@@ -605,32 +686,21 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
-          "/img/products/standard-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp"
-        ],
-        "inherited": true
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
         ],
         "inherited": true
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp"
+    "cover": "/img/products/standard-200x60x60-dub-sonoma-01.webp"
   },
   {
     "slug": "standard-200x60x60",
@@ -656,18 +726,35 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-antracit-03.webp",
+          "/img/products/standard-200x60x60-antracit-02.webp",
+          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-04.webp",
+          "/img/products/standard-200x60x60-antracit-01.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
+        ]
+      },
+      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-04.webp"
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ]
       },
       {
@@ -678,24 +765,20 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
+          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
           "/img/products/standard-200x60x60-black-matt-orech-01.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-02.webp"
-        ]
-      },
-      {
-        "id": "antracit",
-        "name": "Antracit",
-        "swatch": [
-          "#40454a"
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
         ],
-        "images": [
-          "/img/products/standard-200x60x60-antracit-01.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
-          "/img/products/standard-200x60x60-antracit-03.webp",
-          "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp"
-        ]
+        "inherited": true
       },
       {
         "id": "cool-white",
@@ -704,9 +787,18 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/standard-100x40x90-cool-white-02.webp",
           "/img/products/standard-200x60x60-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp"
-        ]
+        ],
+        "inherited": true
       },
       {
         "id": "dub-sonoma",
@@ -715,15 +807,16 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
       }
     ],
-    "cover": "/img/products/standard-200x60x60-black-matt-04.webp"
+    "cover": "/img/products/standard-200x60x60-antracit-03.webp"
   },
   {
     "slug": "basic-80x40x90",
@@ -754,17 +847,17 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
+          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-02.webp",
           "/img/products/basic-100x40x90-03.webp",
           "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-06.webp",
+          "/img/products/basic-100x40x90-02.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-100x40x90-01.webp"
+    "cover": "/img/products/basic-100x40x90-05.webp"
   },
   {
     "slug": "basic-100x40x90",
@@ -796,11 +889,11 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-02.webp",
           "/img/products/basic-100x40x90-03.webp",
           "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-06.webp",
+          "/img/products/basic-100x40x90-02.webp",
+          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
       }
@@ -836,17 +929,17 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-02.webp",
-          "/img/products/basic-100x40x90-03.webp",
           "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-05.webp",
+          "/img/products/basic-100x40x90-01.webp",
+          "/img/products/basic-100x40x90-03.webp",
           "/img/products/basic-100x40x90-06.webp",
+          "/img/products/basic-100x40x90-02.webp",
+          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-100x40x90-01.webp"
+    "cover": "/img/products/basic-100x40x90-04.webp"
   },
   {
     "slug": "basic-120x60x80",
@@ -877,17 +970,17 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-02.webp",
+          "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-03.webp",
           "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-06.webp",
+          "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-100x40x90-01.webp"
+    "cover": "/img/products/basic-100x40x90-02.webp"
   },
   {
     "slug": "basic-150x50x80",
@@ -918,16 +1011,16 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-01.webp",
+          "/img/products/basic-150x50x80-05.webp",
           "/img/products/basic-150x50x80-02.webp",
           "/img/products/basic-150x50x80-03.webp",
           "/img/products/basic-150x50x80-04.webp",
-          "/img/products/basic-150x50x80-05.webp",
+          "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-06.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-150x50x80-01.webp"
+    "cover": "/img/products/basic-150x50x80-05.webp"
   },
   {
     "slug": "basic-160x40x80",
@@ -958,16 +1051,16 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-01.webp",
-          "/img/products/basic-150x50x80-02.webp",
           "/img/products/basic-150x50x80-03.webp",
+          "/img/products/basic-150x50x80-02.webp",
           "/img/products/basic-150x50x80-04.webp",
           "/img/products/basic-150x50x80-05.webp",
+          "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-06.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-150x50x80-01.webp"
+    "cover": "/img/products/basic-150x50x80-03.webp"
   },
   {
     "slug": "basic-200x60x60",
@@ -998,16 +1091,16 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-01.webp",
+          "/img/products/basic-150x50x80-06.webp",
           "/img/products/basic-150x50x80-02.webp",
           "/img/products/basic-150x50x80-03.webp",
           "/img/products/basic-150x50x80-04.webp",
           "/img/products/basic-150x50x80-05.webp",
-          "/img/products/basic-150x50x80-06.webp"
+          "/img/products/basic-150x50x80-01.webp"
         ]
       }
     ],
-    "cover": "/img/products/basic-150x50x80-01.webp"
+    "cover": "/img/products/basic-150x50x80-06.webp"
   }
 ];
 
