@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Product } from "./products";
+import Swatch from "./Swatch";
 
 /** Galéria detailu produktu — hlavná fotka, thumbnaily a prepínač dekorov. */
 export default function ProductGallery({ p }: { p: Product }) {
@@ -44,20 +45,29 @@ export default function ProductGallery({ p }: { p: Product }) {
       )}
 
       {p.decors.length > 1 && (
-        <div className="pgal__decors" role="group" aria-label="Dekor">
-          {p.decors.map((d, i) => (
-            <button
-              key={d.id}
-              type="button"
-              className={`chipbtn${i === decorIdx ? " is-on" : ""}`}
-              onClick={() => {
-                setDecorIdx(i);
-                setImgIdx(0);
-              }}
-            >
-              {d.name}
-            </button>
-          ))}
+        <div className="pgal__decorbar">
+          <div className="pgal__decor-head">
+            <span className="pgal__decor-label">Dekor</span>
+            <span className="pgal__decor-name">{decor.name}</span>
+          </div>
+          <div className="pgal__decors" role="group" aria-label="Dekor">
+            {p.decors.map((d, i) => (
+              <button
+                key={d.id}
+                type="button"
+                title={d.name}
+                aria-label={d.name}
+                aria-pressed={i === decorIdx}
+                className={`pgal__decorbtn${i === decorIdx ? " is-on" : ""}`}
+                onClick={() => {
+                  setDecorIdx(i);
+                  setImgIdx(0);
+                }}
+              >
+                <Swatch swatch={d.swatch} />
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

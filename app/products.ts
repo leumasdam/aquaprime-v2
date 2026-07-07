@@ -5,6 +5,8 @@
 export type Decor = {
   id: string;
   name: string;
+  /** vizuál dekoru: "#hex" = lak, "/cesta" = textúra z fotky; 2 položky = kombinácia (delený swatch) */
+  swatch: string[];
   images: string[];
   /** fotky prevzaté z iného rozmeru toho istého radu (ilustračné) */
   inherited?: boolean;
@@ -64,6 +66,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/premium-100x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
@@ -76,6 +81,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/premium-100x40x90-black-matt-orech-01.webp"
         ]
@@ -83,6 +92,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/premium-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
@@ -99,6 +111,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
@@ -113,6 +129,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
@@ -151,6 +170,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/standard-80x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-01.webp",
@@ -166,6 +188,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/standard-200x60x60-black-matt-orech-01.webp",
           "/img/products/standard-80x40x90-black-matt-orech-01.webp",
@@ -184,6 +210,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "antracit",
         "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-02.webp",
@@ -199,6 +228,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "artisan-antracit",
         "name": "Artisan / Antracit",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-80x40x90-artisan-antracit-01.webp",
           "/img/products/standard-80x40x90-artisan-antracit-02.webp",
@@ -214,6 +247,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-01.webp",
@@ -230,6 +266,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
@@ -244,6 +284,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
@@ -284,6 +327,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/standard-100x40x90-black-matt-01.webp",
           "/img/products/standard-100x40x90-black-matt-02.webp"
@@ -292,6 +338,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/standard-100x40x90-black-matt-orech-01.webp"
         ]
@@ -299,6 +349,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "antracit",
         "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-02.webp",
@@ -315,6 +368,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "artisan-antracit",
         "name": "Artisan / Antracit",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-80x40x90-artisan-antracit-01.webp",
           "/img/products/standard-80x40x90-artisan-antracit-02.webp",
@@ -331,6 +388,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
@@ -343,6 +403,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
@@ -358,6 +422,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
@@ -399,6 +466,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -407,6 +477,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/standard-100x40x90-black-matt-orech-01.webp"
         ],
@@ -415,6 +489,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "antracit",
         "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-02.webp",
@@ -428,6 +505,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
@@ -441,6 +521,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
@@ -479,6 +562,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -487,6 +573,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/standard-100x40x90-black-matt-orech-01.webp"
         ],
@@ -495,6 +585,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "antracit",
         "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-02.webp",
@@ -508,6 +601,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/standard-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
@@ -521,6 +617,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
@@ -559,6 +658,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt",
         "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/standard-200x60x60-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-02.webp",
@@ -571,6 +673,10 @@ export const PRODUCTS: Product[] = [
       {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
         "images": [
           "/img/products/standard-200x60x60-black-matt-orech-01.webp",
           "/img/products/standard-200x60x60-black-matt-orech-02.webp"
@@ -579,6 +685,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "antracit",
         "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
         "images": [
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-02.webp",
@@ -591,6 +700,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "cool-white",
         "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
         "images": [
           "/img/products/standard-200x60x60-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp"
@@ -599,6 +711,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
@@ -635,6 +750,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-02.webp",
@@ -673,6 +791,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-02.webp",
@@ -711,6 +832,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-02.webp",
@@ -749,6 +873,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-100x40x90-01.webp",
           "/img/products/basic-100x40x90-02.webp",
@@ -787,6 +914,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-02.webp",
@@ -824,6 +954,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-02.webp",
@@ -861,6 +994,9 @@ export const PRODUCTS: Product[] = [
       {
         "id": "ram",
         "name": "Čierny rám + doska v dekore",
+        "swatch": [
+          "#17181a"
+        ],
         "images": [
           "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-02.webp",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import type { Product } from "./products";
+import Swatch from "./Swatch";
 
 /** Zdieľaná produktová karta — katalóg, home featured aj súvisiace na detaile. */
 export default function ProductCard({
@@ -37,6 +38,16 @@ export default function ProductCard({
       </div>
       <div className="product__body">
         <h3 className="product__name">{p.name}</h3>
+        {p.decors.length > 1 && (
+          <div
+            className="product__decors"
+            title={`${p.decors.length} dekorov na výber`}
+          >
+            {p.decors.map((d) => (
+              <Swatch key={d.id} swatch={d.swatch} className="swatch--dot" />
+            ))}
+          </div>
+        )}
         <div className="product__specs">
           <span>
             <i>Rozmer</i>

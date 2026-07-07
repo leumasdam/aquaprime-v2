@@ -3202,6 +3202,17 @@ button:focus-visible {
   font-size: 1.3rem;
   color: var(--ink-90);
 }
+.product__decors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: -6px;
+}
+.product__decors .swatch--dot {
+  width: 13px;
+  height: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
 .product__specs {
   display: flex;
   gap: 26px;
@@ -3343,15 +3354,68 @@ button:focus-visible {
   opacity: 1;
   border-color: var(--cyan);
 }
+/* swatch dekoru — farba/textúra, kombinácie delené diagonálne */
+.swatch {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.swatch__lay {
+  position: absolute;
+  inset: 0;
+}
+.swatch__lay--a {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.swatch__lay--b {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.pgal__decorbar {
+  margin-top: 18px;
+}
+.pgal__decor-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.pgal__decor-label {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.pgal__decor-name {
+  font-size: 0.8125rem;
+  color: var(--ink-90);
+}
 .pgal__decors {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
 }
-.pgal__decors .chipbtn {
-  padding: 8px 14px;
-  font-size: 0.75rem;
+.pgal__decorbtn {
+  width: 38px;
+  height: 38px;
+  padding: 3px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s;
+}
+.pgal__decorbtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(71, 199, 232, 0.55);
+}
+.pgal__decorbtn.is-on {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 1px var(--cyan);
 }
 .pgal__note {
   margin-top: 10px;
