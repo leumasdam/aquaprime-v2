@@ -1,40 +1,12 @@
 import Link from "next/link";
 import CatalogGrid from "../CatalogGrid";
+import TierCards from "../TierCards";
 
 export const metadata = {
   title: "Skrinky pod akváriá — katalóg | AQUAPRIME",
   description:
-    "Akvarijné skrinky AQUAPRIME s oceľovým rámom. Filtrujte podľa rozmeru, nosnosti, povrchu a kolekcie. Linea, Prestige, Signature.",
+    "Akvarijné skrinky AQUAPRIME s oceľovým rámom 30 × 30 × 2 mm. Tri rady — Basic, Štandard a Premium — rozmery od 80 do 200 cm, dekory na výber.",
 };
-
-const FILTERS = [
-  { label: "Rozmer", opts: "60 · 80 · 100 · 120 · 150 cm" },
-  { label: "Nosnosť", opts: "do 350 kg · do 770 kg" },
-  { label: "Povrch", opts: "čierna štruktúra · drevo · kov" },
-  { label: "Kolekcia", opts: "Linea · Prestige · Signature" },
-];
-
-const COLLECTIONS = [
-  {
-    mod: "linea",
-    name: "LINEA",
-    sub: "MINIMALISTICKÁ ELEGANCIA",
-    note: "Čisté línie, decentný povrch.",
-  },
-  {
-    mod: "prestige",
-    name: "PRESTIGE",
-    sub: "PRÉMIOVÁ KOLEKCIA",
-    note: "Bohatšie dekory a detaily.",
-  },
-  {
-    mod: "signature",
-    name: "SIGNATURE",
-    sub: "VÝNIMOČNÝ DIZAJN",
-    note: "LED akcent a top vyhotovenie.",
-  },
-];
-
 
 export default function SkrinkyPage() {
   return (
@@ -53,59 +25,24 @@ export default function SkrinkyPage() {
             data-reveal
             style={{ "--rd": "90ms" } as React.CSSProperties}
           >
-            Rám, nosnosť, rozmery, kolekcie a bezpečnosť — hlavný obsah, ktorý
-            rozhoduje o ďalšom kroku. Vyfiltrujte si presne to, čo unesie vaše
-            akvárium.
+            Tri rady konštrukcie — od priznaného oceľového rámu po kompletne
+            opláštenú skrinku. Rozmery od 80 do 200 cm, dekory na výber,
+            všetko na jednom ráme z ocele 30 × 30 mm.
           </p>
         </div>
       </section>
 
-      {/* FILTRE — hlavný obsah (IA: rozmer, nosnosť, povrch, kolekcia) */}
-      <section className="section">
-        <div className="wrap">
-          <div className="filterbar" data-reveal>
-            {FILTERS.map((f) => (
-              <button className="filter" key={f.label} type="button">
-                <span className="filter__label">{f.label}</span>
-                <span className="filter__opts">{f.opts}</span>
-                <span className="filter__chev" aria-hidden>
-                  ⌄
-                </span>
-              </button>
-            ))}
-            <button className="filter filter--reset" type="button">
-              Vyčistiť
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* rýchla voľba podľa kolekcie (predvoľby, nie samostatné ciele) */}
+      {/* rýchla voľba podľa radu (predvolí filter v katalógu) */}
       <section className="section catalog__collections">
         <div className="wrap">
           <div className="catalog__subhead">
-            <h2 className="catalog__h2">Rýchla voľba podľa kolekcie</h2>
+            <h2 className="catalog__h2">Rýchla voľba podľa radu</h2>
             <p className="catalog__sublead">
-              Kolekcie sú len predvoľba filtra — všetky vedú do toho istého
-              katalógu, líšia sa štýlom a vyhotovením.
+              Rady sa líšia mierou opláštenia — konštrukcia pod nimi je vždy
+              rovnaká: zváraný oceľový rám.
             </p>
           </div>
-          <div className="collection-cards">
-            {COLLECTIONS.map((c, i) => (
-              <a
-                key={c.name}
-                href="#katalog"
-                className={`collection-card collection-card--${c.mod}`}
-                data-reveal
-                style={{ "--rd": `${i * 100}ms` } as React.CSSProperties}
-              >
-                <div className="collection-card__text">
-                  <div className="collection-card__name">{c.name}</div>
-                  <div className="collection-card__sub">{c.sub}</div>
-                </div>
-              </a>
-            ))}
-          </div>
+          <TierCards />
         </div>
       </section>
 
@@ -115,8 +52,8 @@ export default function SkrinkyPage() {
           <div className="catalog__subhead">
             <h2 className="catalog__h2">Katalóg skriniek</h2>
             <p className="catalog__sublead">
-              Vzorové konfigurácie naprieč kolekciami. Konečné rozmery, povrch aj
-              nosnosť doladíme podľa vášho akvária.
+              Vyfiltrujte rad a šírku. Konečný rozmer, dekor aj detaily
+              doladíme podľa vášho akvária — vyrábame na mieru.
             </p>
           </div>
           <CatalogGrid />
@@ -141,8 +78,8 @@ export default function SkrinkyPage() {
             style={{ "--rd": "100ms" } as React.CSSProperties}
           >
             <li>
-              <strong>Rozložená záťaž</strong>
-              Nosnosť až 770 kg na jednu nožičku.
+              <strong>Masívny profil</strong>
+              Uzavreté oceľové profily 30 × 30 × 2 mm.
             </li>
             <li>
               <strong>Presná rovina</strong>
@@ -150,7 +87,7 @@ export default function SkrinkyPage() {
             </li>
             <li>
               <strong>Pokoj pri váhe</strong>
-              Certifikované nožičky a kontrola statiky.
+              Výškovo nastaviteľné nožičky a kontrola roviny.
             </li>
           </ul>
         </div>

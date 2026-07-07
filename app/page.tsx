@@ -1,9 +1,14 @@
 import Link from "next/link";
 import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
+import ProductCard from "./ProductCard";
 import { PRODUCTS } from "./products";
 
-const FEATURED_SLUGS = ["linea-120", "prestige-120", "signature-150"];
+const FEATURED_SLUGS = [
+  "premium-100x40x90",
+  "standard-80x40x90",
+  "basic-150x50x80",
+];
 const FEATURED = FEATURED_SLUGS
   .map((s) => PRODUCTS.find((p) => p.slug === s))
   .filter((p): p is (typeof PRODUCTS)[number] => Boolean(p));
@@ -321,8 +326,8 @@ export default function Home() {
               <span className="eyebrow eyebrow--rule">VYBRANÉ KUSY</span>
               <h2 className="featured__title">Najobľúbenejšie skrinky</h2>
               <p className="featured__lead">
-                Tri reprezentatívne konfigurácie naprieč kolekciami — od
-                minimalistickej Linea po vlajkovú Signature.
+                Tri rady konštrukcie — od priznaného oceľového rámu BASIC po
+                kompletne opláštenú PREMIUM.
               </p>
             </div>
             <Link href="/skrinky" className="featured__all">
@@ -332,36 +337,7 @@ export default function Home() {
 
           <div className="product-grid featured__grid">
             {FEATURED.map((p, i) => (
-              <Link
-                href={`/skrinky/${p.slug}`}
-                className="product product--in"
-                key={p.slug}
-                data-reveal
-                style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}
-              >
-                <div className={`product__media product__media--${p.mod}`}>
-                  <span className="product__badge">{p.collection}</span>
-                </div>
-                <div className="product__body">
-                  <h3 className="product__name">{p.name}</h3>
-                  <div className="product__specs">
-                    <span>
-                      <i>Rozmer</i>
-                      {p.dim}
-                    </span>
-                    <span>
-                      <i>Nosnosť</i>
-                      {p.load}
-                    </span>
-                  </div>
-                  <div className="product__foot">
-                    <span className="product__price">{p.price}</span>
-                    <span className="product__cta">
-                      Detail <span aria-hidden>→</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <ProductCard key={p.slug} p={p} reveal delay={i * 90} />
             ))}
           </div>
         </div>

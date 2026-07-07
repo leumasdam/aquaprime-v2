@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
-import { PRODUCTS, getProduct } from "../../products";
+import { PRODUCTS, getProduct, type Tier } from "../../products";
+import ProductGallery from "../../ProductGallery";
+import ProductCard from "../../ProductCard";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -16,15 +18,15 @@ export async function generateMetadata({
   const p = getProduct(slug);
   if (!p) return { title: "Skrinka sa nenašla" };
   return {
-    title: `${p.name} — ${p.collection}`,
-    description: `${p.name}: ${p.dim}, nosnosť ${p.load}, objem ${p.vol}. ${p.desc}`,
+    title: `${p.name} — skrinka pod akvárium | AQUAPRIME`,
+    description: `${p.name} (${p.tierNote.toLowerCase()}): ${p.dim}, pre akvárium ${p.vol}. ${p.desc}`,
   };
 }
 
-const ACCENT: Record<string, string> = {
-  linea: "var(--cyan)",
-  prestige: "var(--cyan)",
-  signature: "var(--cyan)",
+const ACCENT: Record<Tier, string> = {
+  premium: "var(--gold)",
+  standard: "var(--cyan)",
+  basic: "#8ea9b4",
 };
 
 export default async function Page({
@@ -35,13 +37,16 @@ export default async function Page({
   const { slug } = await params;
   const p = getProduct(slug);
   if (!p) notFound();
-  const related = PRODUCTS.filter((x) => x.slug !== p.slug).slice(0, 3);
-  const priceNum = p.price.replace(/[^\d]/g, "");
+  // súvisiace: najprv zvyšok radu, potom ostatné
+  const related = [
+    ...PRODUCTS.filter((x) => x.tier === p.tier && x.slug !== p.slug),
+    ...PRODUCTS.filter((x) => x.tier !== p.tier),
+  ].slice(0, 3);
 
   return (
     <main
       className="sub pdetail"
-      style={{ "--accent": ACCENT[p.mod] } as CSSProperties}
+      style={{ "--accent": ACCENT[p.tier] } as CSSProperties}
     >
       <script
         type="application/ld+json"
@@ -53,16 +58,9 @@ export default async function Page({
             description: p.desc,
             category: "Akvarijné skrinky",
             brand: { "@type": "Brand", name: "AQUAPRIME" },
-            ...(priceNum
-              ? {
-                  offers: {
-                    "@type": "Offer",
-                    priceCurrency: "EUR",
-                    price: priceNum,
-                    availability: "https://schema.org/InStock",
-                  },
-                }
-              : {}),
+            image: p.decors[0].images.map(
+              (src) => `https://aquaprime.sk${src}`
+            ),
           }),
         }}
       />
@@ -75,42 +73,44 @@ export default async function Page({
             <em>{p.name}</em>
           </nav>
           <div className="pdetail__grid">
-            <div
-              className={`pdetail__media product__media product__media--${p.mod}`}
-              data-reveal="scale"
-            >
-              <span className="product__badge">{p.collection}</span>
-            </div>
+            <ProductGallery p={p} />
             <div
               className="pdetail__info"
               data-reveal="left"
               style={{ "--rd": "80ms" } as CSSProperties}
             >
-              <span className="pdetail__coll">{p.collection}</span>
+              <span className="pdetail__coll">
+                {p.tierLabel} — {p.tierNote}
+              </span>
               <h1 className="pdetail__name">{p.name}</h1>
-              <div className="pdetail__price">{p.price}</div>
+              <div className="pdetail__price">Cena {p.price}</div>
               <p className="pdetail__desc">{p.desc}</p>
               <dl className="pdetail__specs">
                 <div>
-                  <dt>Rozmer</dt>
+                  <dt>Rozmer (Š × H × V)</dt>
                   <dd>{p.dim}</dd>
                 </div>
                 <div>
-                  <dt>Nosnosť</dt>
-                  <dd>{p.load}</dd>
+                  <dt>Vhodné akvárium</dt>
+                  <dd>{p.aquarium}</dd>
                 </div>
                 <div>
-                  <dt>Objem akvária</dt>
+                  <dt>Orientačný objem</dt>
                   <dd>{p.vol}</dd>
                 </div>
                 <div>
-                  <dt>Kolekcia</dt>
-                  <dd>{p.collection}</dd>
+                  <dt>Rám</dt>
+                  <dd>oceľ 30 × 30 × 2 mm</dd>
                 </div>
               </dl>
+              <ul className="pdetail__features">
+                {p.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
               <div className="pdetail__actions">
                 <Link href="/dopyt" className="btn-cyan">
-                  DOPYT NA MIERU <span aria-hidden>→</span>
+                  NEZÁVÄZNÝ DOPYT <span aria-hidden>→</span>
                 </Link>
                 <Link href="/skrinky" className="btn-outline">
                   <span aria-hidden>←</span> Späť na katalóg
@@ -128,36 +128,7 @@ export default async function Page({
           </h2>
           <div className="product-grid">
             {related.map((r, i) => (
-              <Link
-                href={`/skrinky/${r.slug}`}
-                className="product"
-                key={r.slug}
-                data-reveal
-                style={{ "--rd": `${i * 80}ms` } as CSSProperties}
-              >
-                <div className={`product__media product__media--${r.mod}`}>
-                  <span className="product__badge">{r.collection}</span>
-                </div>
-                <div className="product__body">
-                  <h3 className="product__name">{r.name}</h3>
-                  <div className="product__specs">
-                    <span>
-                      <i>Rozmer</i>
-                      {r.dim}
-                    </span>
-                    <span>
-                      <i>Nosnosť</i>
-                      {r.load}
-                    </span>
-                  </div>
-                  <div className="product__foot">
-                    <span className="product__price">{r.price}</span>
-                    <span className="product__cta">
-                      Detail <span aria-hidden>→</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <ProductCard key={r.slug} p={r} reveal delay={i * 80} />
             ))}
           </div>
         </div>
