@@ -93,9 +93,9 @@ const CTILES = [
 ];
 
 const COLLECTIONS = [
-  { name: "Basic", sub: "Minimalistická elegancia", img: "/img/col-basic.webp" },
-  { name: "Standard", sub: "Prémiová kolekcia", img: "/img/col-standard.webp" },
-  { name: "Premium", sub: "Výnimočný dizajn", img: "/img/col-premium.webp" },
+  { id: "basic", name: "Basic", sub: "Minimalistická elegancia", img: "/img/col-basic.webp" },
+  { id: "standard", name: "Standard", sub: "Prémiová kolekcia", img: "/img/col-standard.webp" },
+  { id: "premium", name: "Premium", sub: "Výnimočný dizajn", img: "/img/col-premium.webp" },
 ];
 
 export default function Home() {
@@ -228,7 +228,7 @@ export default function Home() {
           <div className="collections__cards">
             {COLLECTIONS.map((c, i) => (
               <Link
-                href="/skrinky"
+                href={`/skrinky?rad=${c.id}`}
                 className="ccard"
                 key={c.name}
                 data-reveal

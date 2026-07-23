@@ -10,12 +10,20 @@ export default function CatalogGrid() {
   const [tier, setTier] = useState<Tier | "all">("all");
   const [width, setWidth] = useState<number>(0);
 
-  // predvoľba radu z TierCards (rýchla voľba nad katalógom)
+  // predvoľba radu z TierCards, chips aj z URL (?rad= — preklik z landingu)
   useEffect(() => {
-    const onTier = (e: Event) => setTier((e as CustomEvent<Tier>).detail);
+    const rad = new URLSearchParams(window.location.search).get("rad");
+    if (rad && TIERS.some((t) => t.id === rad)) setTier(rad as Tier);
+    const onTier = (e: Event) => setTier((e as CustomEvent<Tier | "all">).detail);
     window.addEventListener("aq:tier", onTier);
     return () => window.removeEventListener("aq:tier", onTier);
   }, []);
+
+  /* zmena filtra chipsami — ohlásiť aj TierCards, nech svieti správny rad */
+  const pickTier = (t: Tier | "all") => {
+    setTier(t);
+    window.dispatchEvent(new CustomEvent("aq:tier", { detail: t }));
+  };
 
   const items = PRODUCTS.filter(
     (p) => (tier === "all" || p.tier === tier) && (!width || p.w === width)
@@ -27,7 +35,7 @@ export default function CatalogGrid() {
         <button
           type="button"
           className={`chipbtn${tier === "all" ? " is-on" : ""}`}
-          onClick={() => setTier("all")}
+          onClick={() => pickTier("all")}
         >
           Všetky rady
         </button>
@@ -36,7 +44,7 @@ export default function CatalogGrid() {
             key={t.id}
             type="button"
             className={`chipbtn${tier === t.id ? " is-on" : ""}`}
-            onClick={() => setTier(t.id)}
+            onClick={() => pickTier(t.id)}
             title={t.note}
           >
             {t.label}
