@@ -8,6 +8,7 @@ const ROUTES = [
   "/akvaria-teraria",
   "/doplnky-technika",
   "/materialy",
+  "/technologia",
   "/realizacie",
   "/o-nas",
   "/dopyt",
