@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Tinos, Inter } from "next/font/google";
 import "./globals.css";
 import ScrollFx from "./ScrollFx";
+import DevViewport from "./DevViewport";
 import ScrollProgress from "./ScrollProgress";
 import BackToTop from "./BackToTop";
 import SiteNav from "./SiteNav";
@@ -78,6 +79,7 @@ export default function RootLayout({
         <SiteFooter />
         <BackToTop />
         <ScrollFx />
+        {process.env.NODE_ENV === "development" && <DevViewport />}
       </body>
     </html>
   );
