@@ -3422,6 +3422,22 @@ button:focus-visible {
   font-size: 0.75rem;
   color: var(--faint);
 }
+/* výrazný badge na fotke, keď je z iného rozmeru (zdedený dekor) */
+.pgal__illu {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(5, 6, 6, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 241, 242, 0.85);
+}
 .pdetail__coll {
   display: inline-block;
   font-weight: 700;
@@ -4906,7 +4922,8 @@ button:focus-visible {
 }
 .collections__cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 4 karty: Basic / Standard / Premium / Premium LED */
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
 .ccard {

@@ -19,8 +19,8 @@ const STEPS = [
   },
   {
     img: "/materialy/detail-kov.webp",
-    title: "Rektifikácia",
-    body: "Nožičky s milimetrovým vyrovnaním — základňa drží dokonalú rovinu aj na nerovnej podlahe.",
+    title: "Rovina a kolieska",
+    body: "Zváraný rám drží dokonalú rovinu základne; odolné kolieska uľahčia osadenie skrinky na miesto.",
   },
   {
     img: "/materialy/detail-struktura.webp",
@@ -30,7 +30,7 @@ const STEPS = [
   {
     img: "/materialy/detail-sklo.webp",
     title: "Osadenie akvária",
-    body: "Sklo sadá na rovnú, rektifikovanú základňu s nosnosťou dimenzovanou s rezervou.",
+    body: "Sklo sadá na rovnú základňu zváraného rámu s nosnosťou dimenzovanou s rezervou.",
   },
 ];
 
@@ -48,7 +48,7 @@ const VERSUS = [
   {
     t: "Rovina pod sklom",
     a: "kopíruje podlahu",
-    b: "rektifikačné nožičky, milimetrové vyrovnanie",
+    b: "presná rovina zváraného rámu + odolné kolieska",
   },
   {
     t: "Rozmer",

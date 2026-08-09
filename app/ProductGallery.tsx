@@ -26,6 +26,11 @@ export default function ProductGallery({ p }: { p: Product }) {
         <span className={`product__badge product__badge--${p.tier}`}>
           {p.tierLabel}
         </span>
+        {decor.inherited && (
+          <span className="pgal__illu" title="Rovnaký dekor na skrinke iného rozmeru">
+            Ilustračné foto — iný rozmer
+          </span>
+        )}
       </div>
 
       {decor.images.length > 1 && (

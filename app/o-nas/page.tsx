@@ -21,7 +21,7 @@ export default function Page() {
           { t: "Prečo rám a nosnosť", b: "Bezpečnosť je prvé rozhodnutie, nie posledné." },
           { t: "Výroba na Slovensku", b: "Kontrola kvality a krátka cesta k vám." },
           { t: "Proces a hodnoty", b: "Poradenstvo, presnosť a čistý dizajn." },
-          { t: "Pokoj pri váhe", b: "Certifikované nožičky a statická rezerva." },
+          { t: "Pokoj pri váhe", b: "Odolné kolieska a statická rezerva." },
         ],
         ctaLabel: "OZVITE SA NÁM",
         caHref: "/kontakt",

@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 const TRUST = [
-  { t: "Oceľový rám", b: "Nosnosť až 770 kg na nožičku." },
+  { t: "Oceľový rám", b: "Nosnosť až 770 kg so statickou rezervou." },
   { t: "Výroba na Slovensku", b: "Kontrola kvality a krátka cesta." },
   { t: "Dopyt bez záväzku", b: "Najprv návrh, rozhodnutie je na vás." },
 ];

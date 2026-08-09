@@ -43,25 +43,25 @@ export const TIERS: { id: Tier; label: string; note: string }[] = [
 
 export const PRODUCTS: Product[] = [
   {
-    "slug": "premium-100x40x90",
-    "name": "PREMIUM 100 × 40 × 90",
+    "slug": "premium-100x40x80",
+    "name": "PREMIUM 100 × 40 × 80",
     "tier": "premium",
     "tierLabel": "PREMIUM",
     "tierNote": "Kompletne opláštená",
-    "dim": "100 × 40 × 90 cm",
+    "dim": "100 × 40 × 80 cm",
     "w": 100,
     "d": 40,
-    "h": 90,
+    "h": 80,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "od 335 €",
+    "price": "335 €",
     "desc": "Vlajkový model — kompletne opláštená skrinka, v ktorej oceľový rám mizne v plášti z LDTD 18 mm. Bezrúčkové dvierka so symetrickou špárou a matný povrch z nej robia nábytkový kus, nie podstavec.",
     "features": [
       "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
       "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
       "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -216,129 +216,31 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-    "priceLed": "od 385 €"
+    "priceLed": "385 €"
   },
   {
-    "slug": "standard-80x40x90",
-    "name": "ŠTANDARD 80 × 40 × 90",
-    "tier": "standard",
-    "tierLabel": "ŠTANDARD",
-    "tierNote": "Bočnice a dvierka",
-    "dim": "80 × 40 × 90 cm",
-    "w": 80,
+    "slug": "premium-120x40x80",
+    "name": "PREMIUM 120 × 40 × 80",
+    "tier": "premium",
+    "tierLabel": "PREMIUM",
+    "tierNote": "Kompletne opláštená",
+    "dim": "120 × 40 × 80 cm",
+    "w": 120,
     "d": 40,
-    "h": 90,
-    "aquarium": "80 × 40 cm (pôdorys)",
-    "vol": "~160 l",
-    "price": "na dopyt",
-    "desc": "Kompaktná skrinka s akváriom vo výške očí. Oceľový rám nesie váhu, bočnice a dvierka v dekore schovajú techniku aj príslušenstvo.",
+    "h": 80,
+    "aquarium": "120 × 40 cm (pôdorys)",
+    "vol": "~240 l",
+    "price": "350 €",
+    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 240 litrov.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
+      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
+      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Matný povrch odolný voči vlhkosti a poškodeniu",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
-      {
-        "id": "artisan-antracit",
-        "name": "Artisan / Antracit",
-        "swatch": [
-          "/img/products/swatch-artisan.webp",
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-08.webp"
-        ]
-      },
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-black-matt-04.webp",
-          "/img/products/standard-80x40x90-black-matt-04.webp",
-          "/img/products/premium-100x40x90-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-02.webp",
-          "/img/products/premium-100x40x90-black-matt-05.webp",
-          "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-02.webp",
-          "/img/products/standard-80x40x90-black-matt-03.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp"
-        ]
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
-          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
-        ]
-      },
-      {
-        "id": "antracit",
-        "name": "Antracit",
-        "swatch": [
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-antracit-03.webp",
-          "/img/products/standard-80x40x90-antracit-02.webp",
-          "/img/products/standard-80x40x90-antracit-05.webp",
-          "/img/products/standard-80x40x90-antracit-06.webp",
-          "/img/products/standard-80x40x90-antracit-07.webp",
-          "/img/products/standard-80x40x90-antracit-01.webp",
-          "/img/products/standard-80x40x90-antracit-04.webp",
-          "/img/products/standard-80x40x90-antracit-08.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp"
-        ]
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-07.webp",
-          "/img/products/premium-100x40x90-cool-white-10.webp",
-          "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/standard-100x40x90-cool-white-01.webp",
-          "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/standard-200x60x60-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-04.webp"
-        ]
-      },
       {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
@@ -355,7 +257,56 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
-        ]
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/premium-100x40x90-black-matt-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/premium-100x40x90-cool-white-05.webp",
+          "/img/products/premium-100x40x90-cool-white-06.webp",
+          "/img/products/premium-100x40x90-cool-white-08.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ],
+        "inherited": true
       },
       {
         "id": "dub-sonoma",
@@ -368,11 +319,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
           "/img/products/premium-100x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-01.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-02.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ]
+        ],
+        "inherited": true
       },
       {
         "id": "choco-vintage-oak",
@@ -446,28 +396,572 @@ export const PRODUCTS: Product[] = [
         "inherited": true
       }
     ],
-    "cover": "/img/products/standard-80x40x90-artisan-antracit-05.webp"
+    "cover": "/img/products/premium-100x40x90-cool-white-03.webp",
+    "priceLed": "400 €"
   },
   {
-    "slug": "standard-100x40x90",
-    "name": "ŠTANDARD 100 × 40 × 90",
+    "slug": "premium-150x50x80",
+    "name": "PREMIUM 150 × 50 × 80",
+    "tier": "premium",
+    "tierLabel": "PREMIUM",
+    "tierNote": "Kompletne opláštená",
+    "dim": "150 × 50 × 80 cm",
+    "w": 150,
+    "d": 50,
+    "h": 80,
+    "aquarium": "150 × 50 cm (pôdorys)",
+    "vol": "~375 l",
+    "price": "360 €",
+    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 375 litrov.",
+    "features": [
+      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
+      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
+      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
+      "Matný povrch odolný voči vlhkosti a poškodeniu",
+      "Odolné kolieska pre jednoduchú manipuláciu",
+      "Zákazková výroba s ručnou kontrolou"
+    ],
+    "decors": [
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/premium-100x40x90-black-matt-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/premium-100x40x90-cool-white-05.webp",
+          "/img/products/premium-100x40x90-cool-white-06.webp",
+          "/img/products/premium-100x40x90-cool-white-08.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
+      }
+    ],
+    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+    "priceLed": "410 €"
+  },
+  {
+    "slug": "premium-160x60x80",
+    "name": "PREMIUM 160 × 60 × 80",
+    "tier": "premium",
+    "tierLabel": "PREMIUM",
+    "tierNote": "Kompletne opláštená",
+    "dim": "160 × 60 × 80 cm",
+    "w": 160,
+    "d": 60,
+    "h": 80,
+    "aquarium": "160 × 60 cm (pôdorys)",
+    "vol": "~480 l",
+    "price": "370 €",
+    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 480 litrov.",
+    "features": [
+      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
+      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
+      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
+      "Matný povrch odolný voči vlhkosti a poškodeniu",
+      "Odolné kolieska pre jednoduchú manipuláciu",
+      "Zákazková výroba s ručnou kontrolou"
+    ],
+    "decors": [
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/premium-100x40x90-black-matt-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/premium-100x40x90-cool-white-05.webp",
+          "/img/products/premium-100x40x90-cool-white-06.webp",
+          "/img/products/premium-100x40x90-cool-white-08.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
+      }
+    ],
+    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+    "priceLed": "420 €"
+  },
+  {
+    "slug": "premium-200x50x70",
+    "name": "PREMIUM 200 × 50 × 70",
+    "tier": "premium",
+    "tierLabel": "PREMIUM",
+    "tierNote": "Kompletne opláštená",
+    "dim": "200 × 50 × 70 cm",
+    "w": 200,
+    "d": 50,
+    "h": 70,
+    "aquarium": "200 × 50 cm (pôdorys)",
+    "vol": "~500 l",
+    "price": "410 €",
+    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 500 litrov.",
+    "features": [
+      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
+      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
+      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
+      "Matný povrch odolný voči vlhkosti a poškodeniu",
+      "Odolné kolieska pre jednoduchú manipuláciu",
+      "Zákazková výroba s ručnou kontrolou"
+    ],
+    "decors": [
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/premium-100x40x90-black-matt-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/premium-100x40x90-cool-white-05.webp",
+          "/img/products/premium-100x40x90-cool-white-06.webp",
+          "/img/products/premium-100x40x90-cool-white-08.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
+      }
+    ],
+    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+    "priceLed": "460 €"
+  },
+  {
+    "slug": "standard-100x40x80",
+    "name": "ŠTANDARD 100 × 40 × 80",
     "tier": "standard",
     "tierLabel": "ŠTANDARD",
     "tierNote": "Bočnice a dvierka",
-    "dim": "100 × 40 × 90 cm",
+    "dim": "100 × 40 × 80 cm",
     "w": 100,
     "d": 40,
-    "h": 90,
+    "h": 80,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "od 305 €",
+    "price": "305 €",
     "desc": "Najuniverzálnejší rozmer do obývačky — metrové akvárium vo výške očí, technika schovaná za dvierkami v dekore.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
       "Precízne lícovanie dvierok",
       "Matný povrch odolný voči vlhkosti",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -681,7 +1175,245 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "cover": "/img/products/premium-100x40x90-cool-white-03.webp",
-    "priceLed": "od 365 €"
+    "priceLed": "365 €"
+  },
+  {
+    "slug": "standard-120x40x80",
+    "name": "ŠTANDARD 120 × 40 × 80",
+    "tier": "standard",
+    "tierLabel": "ŠTANDARD",
+    "tierNote": "Bočnice a dvierka",
+    "dim": "120 × 40 × 80 cm",
+    "w": 120,
+    "d": 40,
+    "h": 80,
+    "aquarium": "120 × 40 cm (pôdorys)",
+    "vol": "~240 l",
+    "price": "330 €",
+    "desc": "Bočnice a dvierka v dekore skryjú techniku, váhu nesie oceľový rám. Univerzálna voľba pre nádrže okolo 240 litrov.",
+    "features": [
+      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
+      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
+      "Precízne lícovanie dvierok",
+      "Matný povrch odolný voči vlhkosti",
+      "Odolné kolieska pre jednoduchú manipuláciu",
+      "Zákazková výroba s ručnou kontrolou"
+    ],
+    "decors": [
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-cool-white-03.webp",
+          "/img/products/premium-100x40x90-cool-white-07.webp",
+          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-02.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/premium-100x40x90-cool-white-04.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-black-matt-04.webp",
+          "/img/products/standard-80x40x90-black-matt-04.webp",
+          "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/standard-100x40x90-black-matt-01.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-80x40x90-black-matt-02.webp",
+          "/img/products/standard-80x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-black-matt-orech-04.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-03.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-06.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-05.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-07.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-09.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-antracit-03.webp",
+          "/img/products/standard-80x40x90-antracit-02.webp",
+          "/img/products/standard-80x40x90-antracit-05.webp",
+          "/img/products/standard-80x40x90-antracit-06.webp",
+          "/img/products/standard-80x40x90-antracit-07.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-04.webp",
+          "/img/products/standard-80x40x90-antracit-08.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "artisan-antracit",
+        "name": "Artisan / Antracit",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-01.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-08.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-01.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
+      }
+    ],
+    "cover": "/img/products/premium-100x40x90-cool-white-03.webp",
+    "priceLed": "390 €"
   },
   {
     "slug": "standard-150x50x80",
@@ -695,14 +1427,14 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
-    "price": "od 340 €",
+    "price": "340 €",
     "desc": "Rozmerná skrinka pre nádrže okolo 375 litrov. Oceľový rám drží presnú rovinu, dvierka sprístupnia celý úložný priestor.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
       "Precízne lícovanie dvierok",
       "Matný povrch odolný voči vlhkosti",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -871,28 +1603,28 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "cover": "/img/products/standard-200x60x60-black-matt-02.webp",
-    "priceLed": "od 400 €"
+    "priceLed": "400 €"
   },
   {
-    "slug": "standard-160x40x80",
-    "name": "ŠTANDARD 160 × 40 × 80",
+    "slug": "standard-160x60x80",
+    "name": "ŠTANDARD 160 × 60 × 80",
     "tier": "standard",
     "tierLabel": "ŠTANDARD",
     "tierNote": "Bočnice a dvierka",
-    "dim": "160 × 40 × 80 cm",
+    "dim": "160 × 60 × 80 cm",
     "w": 160,
-    "d": 40,
+    "d": 60,
     "h": 80,
-    "aquarium": "160 × 40 cm (pôdorys)",
-    "vol": "~320 l",
-    "price": "od 350 €",
+    "aquarium": "160 × 60 cm (pôdorys)",
+    "vol": "~480 l",
+    "price": "350 €",
     "desc": "Dlhý, nízky formát pre úzke nádrže. Pôsobí ľahko, no rám z ocele 30 × 30 mm unesie aj plne osadené akvárium.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
       "Precízne lícovanie dvierok",
       "Matný povrch odolný voči vlhkosti",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1061,28 +1793,28 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "cover": "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-    "priceLed": "od 410 €"
+    "priceLed": "410 €"
   },
   {
-    "slug": "standard-200x60x60",
-    "name": "ŠTANDARD 200 × 60 × 60",
+    "slug": "standard-200x50x70",
+    "name": "ŠTANDARD 200 × 50 × 70",
     "tier": "standard",
     "tierLabel": "ŠTANDARD",
     "tierNote": "Bočnice a dvierka",
-    "dim": "200 × 60 × 60 cm",
+    "dim": "200 × 50 × 70 cm",
     "w": 200,
-    "d": 60,
-    "h": 60,
-    "aquarium": "200 × 60 cm (pôdorys)",
-    "vol": "~600 l",
-    "price": "od 420 €",
+    "d": 50,
+    "h": 70,
+    "aquarium": "200 × 50 cm (pôdorys)",
+    "vol": "~500 l",
+    "price": "420 €",
     "desc": "Dvojmetrový formát pre veľkoobjemové nádrže okolo 600 litrov. Nízka výška stabilizuje ťažisko a uľahčuje prístup zhora.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
       "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
       "Precízne lícovanie dvierok",
       "Matný povrch odolný voči vlhkosti",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1249,139 +1981,27 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "cover": "/img/products/standard-200x60x60-antracit-02.webp",
-    "priceLed": "od 480 €"
+    "priceLed": "480 €"
   },
   {
-    "slug": "basic-80x40x90",
-    "name": "BASIC 80 × 40 × 90",
+    "slug": "basic-100x40x80",
+    "name": "BASIC 100 × 40 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
     "tierNote": "Kovový rám + vrchná doska",
-    "dim": "80 × 40 × 90 cm",
-    "w": 80,
-    "d": 40,
-    "h": 90,
-    "aquarium": "80 × 40 cm (pôdorys)",
-    "vol": "~160 l",
-    "price": "na dopyt",
-    "desc": "Najkompaktnejší rám v ponuke — akvárium vo výške očí a voľný priestor na techniku pod ním.",
-    "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
-      "Zákazková výroba s ručnou kontrolou"
-    ],
-    "decors": [
-      {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/basic-100x40x90-06.webp",
-          "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-03.webp",
-          "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-02.webp",
-          "/img/products/basic-100x40x90-05.webp",
-          "/img/products/basic-100x40x90-07.webp"
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-04.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-08.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-15.webp",
-          "/img/products/choco-vintage-oak-16.webp"
-        ],
-        "inherited": true
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-01.webp",
-          "/img/products/dub-spanielsky-black-matt-02.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp",
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-07.webp",
-          "/img/products/dub-spanielsky-black-matt-08.webp",
-          "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-10.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
-          "/img/products/dub-spanielsky-black-matt-12.webp",
-          "/img/products/dub-spanielsky-black-matt-13.webp"
-        ],
-        "inherited": true
-      }
-    ],
-    "cover": "/img/products/basic-100x40x90-06.webp"
-  },
-  {
-    "slug": "basic-100x40x90",
-    "name": "BASIC 100 × 40 × 90",
-    "tier": "basic",
-    "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
-    "dim": "100 × 40 × 90 cm",
+    "dim": "100 × 40 × 80 cm",
     "w": 100,
     "d": 40,
-    "h": 90,
+    "h": 80,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "od 235 €",
+    "price": "235 €",
     "desc": "Metrový rám s vrchnou doskou v dekore. Čistý industriálny základ, ktorý nechá vyniknúť akvárium.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
       "Vrchná doska LDTD 18 mm v dekore podľa výberu",
       "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1476,24 +2096,24 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-100x40x90-01.webp"
   },
   {
-    "slug": "basic-120x50x90",
-    "name": "BASIC 120 × 50 × 90",
+    "slug": "basic-120x40x80",
+    "name": "BASIC 120 × 40 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
     "tierNote": "Kovový rám + vrchná doska",
-    "dim": "120 × 50 × 90 cm",
+    "dim": "120 × 40 × 80 cm",
     "w": 120,
-    "d": 50,
-    "h": 90,
-    "aquarium": "120 × 50 cm (pôdorys)",
-    "vol": "~300 l",
-    "price": "od 260 €",
+    "d": 40,
+    "h": 80,
+    "aquarium": "120 × 40 cm (pôdorys)",
+    "vol": "~240 l",
+    "price": "260 €",
     "desc": "Vysoký rám pre 120 cm nádrže — pohodlné sledovanie postojačky a veľkorysý priestor pod akváriom.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
       "Vrchná doska LDTD 18 mm v dekore podľa výberu",
       "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1588,118 +2208,6 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-100x40x90-04.webp"
   },
   {
-    "slug": "basic-120x60x80",
-    "name": "BASIC 120 × 60 × 80",
-    "tier": "basic",
-    "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
-    "dim": "120 × 60 × 80 cm",
-    "w": 120,
-    "d": 60,
-    "h": 80,
-    "aquarium": "120 × 60 cm (pôdorys)",
-    "vol": "~360 l",
-    "price": "od 260 €",
-    "desc": "Hlbší formát pre 60 cm široké nádrže — stabilný základ pre akvascaping s väčšou hĺbkou.",
-    "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
-      "Zákazková výroba s ručnou kontrolou"
-    ],
-    "decors": [
-      {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/basic-100x40x90-03.webp",
-          "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-06.webp",
-          "/img/products/basic-100x40x90-02.webp",
-          "/img/products/basic-100x40x90-05.webp",
-          "/img/products/basic-100x40x90-07.webp"
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-04.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-08.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-15.webp",
-          "/img/products/choco-vintage-oak-16.webp"
-        ],
-        "inherited": true
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-01.webp",
-          "/img/products/dub-spanielsky-black-matt-02.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp",
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-07.webp",
-          "/img/products/dub-spanielsky-black-matt-08.webp",
-          "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-10.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
-          "/img/products/dub-spanielsky-black-matt-12.webp",
-          "/img/products/dub-spanielsky-black-matt-13.webp"
-        ],
-        "inherited": true
-      }
-    ],
-    "cover": "/img/products/basic-100x40x90-03.webp"
-  },
-  {
     "slug": "basic-150x50x80",
     "name": "BASIC 150 × 50 × 80",
     "tier": "basic",
@@ -1711,13 +2219,13 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
-    "price": "od 270 €",
+    "price": "270 €",
     "desc": "Poldruhametrový rám pre ťažké nádrže. Otvorená konštrukcia rozloží váhu a sprístupní techniku zo všetkých strán.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
       "Vrchná doska LDTD 18 mm v dekore podľa výberu",
       "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1811,24 +2319,24 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-150x50x80-05.webp"
   },
   {
-    "slug": "basic-160x40x80",
-    "name": "BASIC 160 × 40 × 80",
+    "slug": "basic-160x60x80",
+    "name": "BASIC 160 × 60 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
     "tierNote": "Kovový rám + vrchná doska",
-    "dim": "160 × 40 × 80 cm",
+    "dim": "160 × 60 × 80 cm",
     "w": 160,
-    "d": 40,
+    "d": 60,
     "h": 80,
-    "aquarium": "160 × 40 cm (pôdorys)",
-    "vol": "~320 l",
-    "price": "od 280 €",
+    "aquarium": "160 × 60 cm (pôdorys)",
+    "vol": "~480 l",
+    "price": "280 €",
     "desc": "Dlhý úzky rám pre 160 cm nádrže. Minimalistický základ, maximálna stabilita.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
       "Vrchná doska LDTD 18 mm v dekore podľa výberu",
       "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
@@ -1922,24 +2430,24 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-150x50x80-03.webp"
   },
   {
-    "slug": "basic-200x60x60",
-    "name": "BASIC 200 × 60 × 60",
+    "slug": "basic-200x50x70",
+    "name": "BASIC 200 × 50 × 70",
     "tier": "basic",
     "tierLabel": "BASIC",
     "tierNote": "Kovový rám + vrchná doska",
-    "dim": "200 × 60 × 60 cm",
+    "dim": "200 × 50 × 70 cm",
     "w": 200,
-    "d": 60,
-    "h": 60,
-    "aquarium": "200 × 60 cm (pôdorys)",
-    "vol": "~600 l",
-    "price": "od 320 €",
+    "d": 50,
+    "h": 70,
+    "aquarium": "200 × 50 cm (pôdorys)",
+    "vol": "~500 l",
+    "price": "320 €",
     "desc": "Dvojmetrový rám pre najväčšie objemy — nízke ťažisko a masívna konštrukcia pre stovky kilogramov.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
       "Vrchná doska LDTD 18 mm v dekore podľa výberu",
       "Otvorená konštrukcia — plný prístup k technike",
-      "Výškovo nastaviteľné nožičky pre dokonalé vyrovnanie",
+      "Odolné kolieska pre jednoduchú manipuláciu",
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [

@@ -11,7 +11,7 @@ const TURNS = 2;
 const CALLOUTS = [
   { text: "Zarovnanie povrchu", dot: [55, 22], lbl: [80, 7], align: "left" },
   { text: "Oceľová konštrukcia", dot: [30, 45], lbl: [6, 24], align: "left" },
-  { text: "Certifikované nožičky", dot: [60, 57], lbl: [74, 90], align: "left" },
+  { text: "Odolné kolieska", dot: [60, 57], lbl: [74, 90], align: "left" },
 ];
 
 /** Turntable, ktorý sa otáča skrolovaním (scroll-scrub); ťahanie a slider ostávajú. */

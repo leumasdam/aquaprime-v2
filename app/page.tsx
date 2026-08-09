@@ -4,10 +4,11 @@ import HeroFeatures from "./HeroFeatures";
 import ProductCard from "./ProductCard";
 import { PRODUCTS } from "./products";
 
+// najpredávanejší rozmer podľa klienta: 120 × 40 × 80 (covery v bielej)
 const FEATURED_SLUGS = [
-  "premium-100x40x90",
-  "standard-80x40x90",
-  "basic-150x50x80",
+  "premium-120x40x80",
+  "standard-120x40x80",
+  "basic-120x40x80",
 ];
 const FEATURED = FEATURED_SLUGS
   .map((s) => PRODUCTS.find((p) => p.slug === s))
@@ -92,10 +93,12 @@ const CTILES = [
   },
 ];
 
+// reálne fotky skriniek (požiadavka klienta) + PREMIUM LED s jeho fotkou
 const COLLECTIONS = [
-  { id: "basic", name: "Basic", sub: "Minimalistická elegancia", img: "/img/col-basic.webp" },
-  { id: "standard", name: "Standard", sub: "Prémiová kolekcia", img: "/img/col-standard.webp" },
-  { id: "premium", name: "Premium", sub: "Výnimočný dizajn", img: "/img/col-premium.webp" },
+  { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/basic-100x40x90-01.webp" },
+  { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/standard-200x60x60-antracit-02.webp" },
+  { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp" },
+  { id: "premium", name: "Premium LED", sub: "Opláštenie + podsvietenie", img: "/img/col-premium-led.webp" },
 ];
 
 export default function Home() {
@@ -196,7 +199,7 @@ export default function Home() {
               Navrhnuté pre akváriá, ktoré bežná skrinka neuniesla.
             </h2>
             <p className="safety__body">
-              Oceľový rám, certifikované nožičky a rozmery na mieru pre zostavy,
+              Oceľový rám, odolné kolieska a rozmery na mieru pre zostavy,
               pri ktorých už nábytková skrinka nestačí.
             </p>
           </div>

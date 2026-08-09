@@ -160,7 +160,7 @@ export default function SkrinkyPage() {
             </li>
             <li>
               <strong>Pokoj pri váhe</strong>
-              Výškovo nastaviteľné nožičky a kontrola roviny.
+              Odolné kolieska a kontrola roviny pri montáži.
             </li>
           </ul>
         </div>
