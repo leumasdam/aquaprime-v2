@@ -83,7 +83,14 @@ export default async function Page({
                 {p.tierLabel} — {p.tierNote}
               </span>
               <h1 className="pdetail__name">{p.name}</h1>
-              <div className="pdetail__price">Cena {p.price}</div>
+              <div className="pdetail__price">
+                Cena {p.price}
+                {p.priceLed && (
+                  <span className="pdetail__price-led">
+                    s LED podsvietením {p.priceLed}
+                  </span>
+                )}
+              </div>
               <p className="pdetail__desc">{p.desc}</p>
               <dl className="pdetail__specs">
                 <div>

@@ -3444,6 +3444,13 @@ button:focus-visible {
   color: var(--accent);
   margin-bottom: 20px;
 }
+.pdetail__price-led {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--body-dim);
+}
 .pdetail__desc {
   font-size: 0.95rem;
   line-height: 1.75;

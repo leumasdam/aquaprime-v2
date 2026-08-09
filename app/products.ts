@@ -27,6 +27,8 @@ export type Product = {
   aquarium: string;
   vol: string;
   price: string;
+  /** plná cena LED verzie (podsvietenie), ak existuje v cenníku */
+  priceLed?: string;
   desc: string;
   features: string[];
   decors: Decor[];
@@ -52,7 +54,7 @@ export const PRODUCTS: Product[] = [
     "h": 90,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "na dopyt",
+    "price": "od 335 €",
     "desc": "Vlajkový model — kompletne opláštená skrinka, v ktorej oceľový rám mizne v plášti z LDTD 18 mm. Bezrúčkové dvierka so symetrickou špárou a matný povrch z nej robia nábytkový kus, nie podstavec.",
     "features": [
       "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
@@ -140,9 +142,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
-    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp"
+    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+    "priceLed": "od 385 €"
   },
   {
     "slug": "standard-80x40x90",
@@ -299,6 +373,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-80x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/standard-80x40x90-artisan-antracit-05.webp"
@@ -315,7 +460,7 @@ export const PRODUCTS: Product[] = [
     "h": 90,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "na dopyt",
+    "price": "od 305 €",
     "desc": "Najuniverzálnejší rozmer do obývačky — metrové akvárium vo výške očí, technika schovaná za dvierkami v dekore.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
@@ -462,9 +607,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
-    "cover": "/img/products/premium-100x40x90-cool-white-03.webp"
+    "cover": "/img/products/premium-100x40x90-cool-white-03.webp",
+    "priceLed": "od 365 €"
   },
   {
     "slug": "standard-150x50x80",
@@ -478,7 +695,7 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
-    "price": "na dopyt",
+    "price": "od 340 €",
     "desc": "Rozmerná skrinka pre nádrže okolo 375 litrov. Oceľový rám drží presnú rovinu, dvierka sprístupnia celý úložný priestor.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
@@ -580,9 +797,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
-    "cover": "/img/products/standard-200x60x60-black-matt-02.webp"
+    "cover": "/img/products/standard-200x60x60-black-matt-02.webp",
+    "priceLed": "od 400 €"
   },
   {
     "slug": "standard-160x40x80",
@@ -596,7 +885,7 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "160 × 40 cm (pôdorys)",
     "vol": "~320 l",
-    "price": "na dopyt",
+    "price": "od 350 €",
     "desc": "Dlhý, nízky formát pre úzke nádrže. Pôsobí ľahko, no rám z ocele 30 × 30 mm unesie aj plne osadené akvárium.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
@@ -698,9 +987,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-04.webp"
         ],
         "inherited": true
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
-    "cover": "/img/products/standard-200x60x60-dub-sonoma-04.webp"
+    "cover": "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+    "priceLed": "od 410 €"
   },
   {
     "slug": "standard-200x60x60",
@@ -714,7 +1075,7 @@ export const PRODUCTS: Product[] = [
     "h": 60,
     "aquarium": "200 × 60 cm (pôdorys)",
     "vol": "~600 l",
-    "price": "na dopyt",
+    "price": "od 420 €",
     "desc": "Dvojmetrový formát pre veľkoobjemové nádrže okolo 600 litrov. Nízka výška stabilizuje ťažisko a uľahčuje prístup zhora.",
     "features": [
       "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
@@ -814,9 +1175,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
-    "cover": "/img/products/standard-200x60x60-antracit-02.webp"
+    "cover": "/img/products/standard-200x60x60-antracit-02.webp",
+    "priceLed": "od 480 €"
   },
   {
     "slug": "basic-80x40x90",
@@ -855,6 +1288,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-100x40x90-06.webp"
@@ -871,7 +1375,7 @@ export const PRODUCTS: Product[] = [
     "h": 90,
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
-    "price": "na dopyt",
+    "price": "od 235 €",
     "desc": "Metrový rám s vrchnou doskou v dekore. Čistý industriálny základ, ktorý nechá vyniknúť akvárium.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -896,6 +1400,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-100x40x90-01.webp"
@@ -912,7 +1487,7 @@ export const PRODUCTS: Product[] = [
     "h": 90,
     "aquarium": "120 × 50 cm (pôdorys)",
     "vol": "~300 l",
-    "price": "na dopyt",
+    "price": "od 260 €",
     "desc": "Vysoký rám pre 120 cm nádrže — pohodlné sledovanie postojačky a veľkorysý priestor pod akváriom.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -937,6 +1512,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-100x40x90-04.webp"
@@ -953,7 +1599,7 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "120 × 60 cm (pôdorys)",
     "vol": "~360 l",
-    "price": "na dopyt",
+    "price": "od 260 €",
     "desc": "Hlbší formát pre 60 cm široké nádrže — stabilný základ pre akvascaping s väčšou hĺbkou.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -978,6 +1624,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-100x40x90-05.webp",
           "/img/products/basic-100x40x90-07.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-100x40x90-03.webp"
@@ -994,7 +1711,7 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
-    "price": "na dopyt",
+    "price": "od 270 €",
     "desc": "Poldruhametrový rám pre ťažké nádrže. Otvorená konštrukcia rozloží váhu a sprístupní techniku zo všetkých strán.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -1018,6 +1735,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-06.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-150x50x80-05.webp"
@@ -1034,7 +1822,7 @@ export const PRODUCTS: Product[] = [
     "h": 80,
     "aquarium": "160 × 40 cm (pôdorys)",
     "vol": "~320 l",
-    "price": "na dopyt",
+    "price": "od 280 €",
     "desc": "Dlhý úzky rám pre 160 cm nádrže. Minimalistický základ, maximálna stabilita.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -1058,6 +1846,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-150x50x80-01.webp",
           "/img/products/basic-150x50x80-06.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-150x50x80-03.webp"
@@ -1074,7 +1933,7 @@ export const PRODUCTS: Product[] = [
     "h": 60,
     "aquarium": "200 × 60 cm (pôdorys)",
     "vol": "~600 l",
-    "price": "na dopyt",
+    "price": "od 320 €",
     "desc": "Dvojmetrový rám pre najväčšie objemy — nízke ťažisko a masívna konštrukcia pre stovky kilogramov.",
     "features": [
       "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
@@ -1098,6 +1957,77 @@ export const PRODUCTS: Product[] = [
           "/img/products/basic-150x50x80-05.webp",
           "/img/products/basic-150x50x80-01.webp"
         ]
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-15.webp",
+          "/img/products/choco-vintage-oak-16.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "inherited": true
+      },
+      {
+        "id": "dub-spanielsky-black-matt",
+        "name": "Dub španielsky / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp",
+          "#121316"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-black-matt-01.webp",
+          "/img/products/dub-spanielsky-black-matt-02.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-04.webp",
+          "/img/products/dub-spanielsky-black-matt-05.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
+          "/img/products/dub-spanielsky-black-matt-12.webp",
+          "/img/products/dub-spanielsky-black-matt-13.webp"
+        ],
+        "inherited": true
       }
     ],
     "cover": "/img/products/basic-150x50x80-06.webp"
