@@ -7,52 +7,86 @@ type Item = { id: string; name: string; sub: string; img: string };
 
 /**
  * Krokový nekonečný carousel — posun o jednu kartu (smooth, pauza, znova).
- * Tri kópie kariet + stredný offset umožňujú plynulý loop v oboch smeroch
- * (auto-posun aj manuálne šípky).
+ * Tri kópie kariet + stredný offset (--i = i + N) umožňujú plynulý loop
+ * v oboch smeroch. Loop je odolný voči preskočeniu indexu:
+ *  - animRef zabráni auto-inkrementu počas reset fázy,
+ *  - pauza pri skrytej karte prehliadača (setInterval by inak bežal ďalej),
+ *  - záchranná normalizácia, ak by index predsa unikol z bezpečného rozsahu.
  */
 export default function CollectionsCarousel({ items }: { items: Item[] }) {
   const N = items.length;
-  const slides = [...items, ...items, ...items]; // ľavé klony | reálne | pravé klony
+  const slides = [...items, ...items, ...items];
   const [i, setI] = useState(0);
   const [anim, setAnim] = useState(true);
   const paused = useRef(false);
+  const animRef = useRef(true);
 
-  const go = (dir: number) => setI((x) => x + dir);
-
-  // auto-posun každých 3,4 s (pauza pri hover / interakcii)
+  // auto-posun každých 2,4 s; pauza pri hover a keď je záložka v pozadí
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
+    const onVis = () => {
+      paused.current = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVis);
     const t = setInterval(() => {
-      if (!paused.current) setI((x) => x + 1);
+      if (!paused.current && animRef.current) setI((x) => x + 1);
     }, 2400);
-    return () => clearInterval(t);
+    return () => {
+      clearInterval(t);
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, []);
 
   // po dojazde na klon ticho preskoč späť do stredného setu (bez animácie)
   const onEnd = (e: React.TransitionEvent) => {
     if (e.target !== e.currentTarget || e.propertyName !== "transform") return;
-    if (i >= N) {
-      setAnim(false);
-      setI((x) => x - N);
-    } else if (i < 0) {
-      setAnim(false);
-      setI((x) => x + N);
-    }
+    setI((prev) => {
+      if (prev >= N) {
+        animRef.current = false;
+        setAnim(false);
+        return prev - N;
+      }
+      if (prev < 0) {
+        animRef.current = false;
+        setAnim(false);
+        return prev + N;
+      }
+      return prev;
+    });
   };
+
+  // záchranná sieť: ak index unikne z bezpečného rozsahu (napr. onEnd nezbehol),
+  // normalizuj ho bez animácie — track sa nikdy nedostane do prázdna
+  useEffect(() => {
+    if (i > N || i < -1) {
+      animRef.current = false;
+      setAnim(false);
+      setI(((i % N) + N) % N);
+    }
+  }, [i, N]);
+
+  // po resete (anim=false) znovu zapni prechody
   useEffect(() => {
     if (anim) return;
     const r = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setAnim(true))
+      requestAnimationFrame(() => {
+        setAnim(true);
+        animRef.current = true;
+      })
     );
     return () => cancelAnimationFrame(r);
   }, [anim]);
+
+  const go = (dir: number) => setI((x) => x + dir);
 
   return (
     <div
       className="collections__viewport"
       onMouseEnter={() => (paused.current = true)}
-      onMouseLeave={() => (paused.current = false)}
+      onMouseLeave={() => {
+        if (!document.hidden) paused.current = false;
+      }}
     >
       <button
         type="button"
