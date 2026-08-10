@@ -274,6 +274,8 @@ button {
   font-size: 0.625rem;
   letter-spacing: 0.1em;
   color: rgba(217, 217, 217, 0.65);
+  /* pri 5 položkách je navbar tesný — šípka nesmie spadnúť pod „SK" */
+  white-space: nowrap;
 }
 .nav__burger {
   display: none;
