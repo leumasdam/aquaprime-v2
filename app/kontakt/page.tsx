@@ -49,6 +49,21 @@ const KANALY = [
   },
 ];
 
+const KROKY = [
+  {
+    t: "Ozveme sa vám",
+    b: "Do 24 hodín v pracovný deň, na e-mail alebo telefón — podľa toho, čo vyplníte.",
+  },
+  {
+    t: "Doladíme zadanie",
+    b: "Rozmer, dekor, technika a termín. Keď treba, poradíme aj to, čo si objednať nemusíte.",
+  },
+  {
+    t: "Pošleme ponuku",
+    b: "S presnou cenou a termínom výroby. Nezáväzne — nič neplatíte vopred.",
+  },
+];
+
 const FAQ = [
   {
     q: "Ako dlho trvá výroba?",
@@ -56,7 +71,7 @@ const FAQ = [
   },
   {
     q: "Viete vyrobiť rozmer, ktorý v cenníku nie je?",
-    a: "Áno, na mieru vyrábame prakticky akýkoľvek rozmer. Cenník je prehľad overených veľkostí, nie zoznam limitov. Napíšte rozmer do formulára — hore sa vám hneď dopočíta objem aj zaťaženie.",
+    a: "Áno, na mieru vyrábame prakticky akýkoľvek rozmer. Cenník je prehľad overených veľkostí, nie zoznam limitov. Napíšte rozmer do formulára — hneď sa vám dopočíta objem aj zaťaženie.",
   },
   {
     q: "Musím kúpiť nádrž aj skrinku spolu?",
@@ -71,102 +86,77 @@ const FAQ = [
 export default function Page() {
   return (
     <main className="sub kontakt" style={{ ["--accent" as string]: "var(--cyan)" }}>
-      <section className="sub__head section">
+      <section className="kontakt__head">
         <div className="sub__head-glow" />
         <div className="wrap">
-          <span className="eyebrow eyebrow--rule sub__eyebrow" data-reveal="fade">
+          <span className="eyebrow eyebrow--rule" data-reveal="fade">
             KONTAKT
           </span>
-          <h1 className="sub__title" data-reveal>
+          <h1 className="kontakt__title" data-reveal>
             Ozvite sa. Radi poradíme.
           </h1>
-          <p className="sub__lead" data-reveal style={{ ["--rd" as string]: "90ms" }}>
+          <p className="kontakt__lead" data-reveal style={{ ["--rd" as string]: "90ms" }}>
             Či riešite prvé akvárium do obývačky alebo náročný projekt na mieru —
             napíšte nám rozmer a zvyšok si formulár dopočíta sám.
           </p>
         </div>
       </section>
 
-      <section className="section kontakt__channels">
-        <div className="wrap">
-          <div className="kontakt__grid">
-            {KANALY.map((c, i) => (
-              <a
-                href={c.href}
-                key={c.tag}
-                className="kontakt__card"
-                data-reveal
-                style={{ ["--rd" as string]: `${i * 90}ms` }}
-              >
-                <span className="kontakt__icon" aria-hidden>
-                  {c.icon}
-                </span>
-                <span className="kontakt__tag">{c.tag}</span>
-                <h2 className="kontakt__card-title">{c.title}</h2>
-                <p className="kontakt__card-body">{c.body}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Všetko ďalej stojí na jednom 12-stĺpcovom gride s jednou medzerou,
+          takže karty, formulár aj otázky sedia na tie isté zvislé osi. */}
+      <div className="wrap kontakt__grid" id="formular">
+        {KANALY.map((c) => (
+          <a href={c.href} key={c.tag} className="kcard kontakt__ch" data-reveal>
+            <span className="kontakt__ch-icon" aria-hidden>
+              {c.icon}
+            </span>
+            <span className="kontakt__ch-tag">{c.tag}</span>
+            <span className="kontakt__ch-title">{c.title}</span>
+            <span className="kontakt__ch-body">{c.body}</span>
+          </a>
+        ))}
 
-      <section className="section kontakt__main" id="formular">
-        <div className="wrap kontakt__layout">
-          <aside className="kontakt__aside" data-reveal="left">
-            <h2 className="kontakt__aside-title">Čo sa stane po odoslaní</h2>
+        <div className="kcard kontakt__formcard" data-reveal>
+          <KontaktForm />
+        </div>
+
+        <aside className="kontakt__rail">
+          <div className="kcard">
+            <h2 className="kontakt__rail-title">Čo sa stane po odoslaní</h2>
             <ol className="kontakt__steps">
-              <li>
-                <strong>Ozveme sa vám</strong>
-                Do 24 hodín v pracovný deň, na e-mail alebo telefón — podľa toho,
-                čo vyplníte.
-              </li>
-              <li>
-                <strong>Doladíme zadanie</strong>
-                Rozmer, dekor, technika a termín. Keď treba, poradíme aj to, čo si
-                objednať nemusíte.
-              </li>
-              <li>
-                <strong>Pošleme ponuku</strong>
-                S presnou cenou a termínom výroby. Nezáväzne — nič neplatíte
-                vopred.
-              </li>
+              {KROKY.map((k) => (
+                <li key={k.t}>
+                  <strong>{k.t}</strong>
+                  {k.b}
+                </li>
+              ))}
             </ol>
-            <div className="kontakt__meta">
-              <div>
-                <span>Fakturačné údaje</span>
-                AQUAPRIME s. r. o. · IČO 00 000 000
-              </div>
-              <div>
-                <span>Kde nás nájdete</span>
-                Bratislava · návšteva po dohode
-              </div>
+          </div>
+
+          <div className="kcard kontakt__meta">
+            <div>
+              <span>Fakturačné údaje</span>
+              AQUAPRIME s. r. o. · IČO 00 000 000
             </div>
-            <p className="kontakt__aside-note">
-              Máte hotový návrh?{" "}
+            <div>
+              <span>Kde nás nájdete</span>
+              Bratislava · návšteva po dohode
+            </div>
+            <div>
+              <span>Máte hotový návrh?</span>
               <Link href="/konfigurator">Zostavte si ho v konfigurátore</Link> a
               pošlite rovno odtiaľ.
-            </p>
-          </aside>
-
-          <div className="kontakt__panel" data-reveal>
-            <KontaktForm />
+            </div>
           </div>
-        </div>
-      </section>
+        </aside>
 
-      <section className="section kontakt__faq">
-        <div className="wrap">
+        <section className="kontakt__faq">
           <h2 className="kontakt__faq-title" data-reveal>
             Časté otázky
           </h2>
-          <div className="kontakt__faq-list">
-            {FAQ.map((f, i) => (
-              <details
-                key={f.q}
-                className="kontakt__faq-item"
-                data-reveal
-                style={{ ["--rd" as string]: `${i * 60}ms` }}
-              >
+          <div className="kontakt__faq-grid">
+            {FAQ.map((f) => (
+              <details key={f.q} className="kcard kontakt__faq-item" data-reveal>
                 <summary>
                   {f.q}
                   <span aria-hidden />
@@ -175,8 +165,8 @@ export default function Page() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }
