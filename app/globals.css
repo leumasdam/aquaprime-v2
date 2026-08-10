@@ -4951,6 +4951,32 @@ button:focus-visible {
 .coll-arrow--next {
   right: -6px;
 }
+/* veľmi široké monitory: šípky až po krajoch obrazovky (mimo carouselu) */
+@media (min-width: 2301px) {
+  .collections {
+    position: relative;
+  }
+  .collections__viewport {
+    position: static;
+  }
+  .coll-arrow {
+    position: absolute;
+    top: 50%;
+    width: 48px;
+    height: 60px;
+    color: rgba(244, 241, 235, 0.55);
+  }
+  .coll-arrow svg {
+    width: 34px;
+    height: 34px;
+  }
+  .coll-arrow--prev {
+    left: 2vw;
+  }
+  .coll-arrow--next {
+    right: 2vw;
+  }
+}
 .collections__cards {
   --card-w: clamp(280px, 24vw, 460px);
   --card-gap: 14px;

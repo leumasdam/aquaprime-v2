@@ -25,7 +25,7 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
     if (reduce) return;
     const t = setInterval(() => {
       if (!paused.current) setI((x) => x + 1);
-    }, 3400);
+    }, 2400);
     return () => clearInterval(t);
   }, []);
 
