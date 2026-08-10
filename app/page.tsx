@@ -278,8 +278,8 @@ export default function Home() {
               Navrhnite si skrinku <em>za pár sekúnd</em>.
             </h2>
             <p className="cfg__lead">
-              Vyberte rozmery, povrch a nožičky — uvidíte náhľad aj odhad ceny.
-              Finálny dizajn a technické detaily doladíme spolu po dopyte.
+              Vyberte rad, rozmer a dekor — uvidíte reálnu fotku aj cenu z
+              cenníka. Podnož, LED a nádrž doladíte v plnom konfigurátore.
             </p>
           </div>
 

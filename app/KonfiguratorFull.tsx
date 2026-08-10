@@ -1,19 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import Turntable from "./Turntable";
 import CabinetPreview, { type PreviewTank } from "./CabinetPreview";
 import Swatch from "./Swatch";
-import { AQUARIUMS, aquariumPriceValue } from "./aquariums";
+import { AQUARIUMS } from "./aquariums";
 import {
-  CFG_DECORS,
+  CFG_SIZES,
   CFG_TIERS,
   FRAME_LOAD_KG,
-  cabinetPrice,
   deeperOption,
-  ledSurcharge,
+  ledOf,
+  priceOf,
+  productFor,
   suggestTank,
   tankLoadKg,
+  toCfgDecor,
 } from "./configurator-logic";
 import type { Tier } from "./products";
 
@@ -26,44 +30,46 @@ const OWNER_EMAIL = "ahoj@aquaprime.sk";
 
 export default function KonfiguratorFull() {
   const [tier, setTier] = useState<Tier>("premium");
-  const [w, setW] = useState(120);
-  const [h, setH] = useState(80);
-  const [d, setD] = useState(50);
-  const [decor, setDecor] = useState(CFG_DECORS[0]);
+  const [sizeKey, setSizeKey] = useState(CFG_SIZES[0].key);
+  const [decorId, setDecorId] = useState<string | null>(null);
   const [feet, setFeet] = useState<(typeof FEET)[number]>(FEET[0]);
   const [led, setLed] = useState(false);
   const [withTank, setWithTank] = useState(false);
   const [tankSlug, setTankSlug] = useState<string | null>(null);
-  const [view, setView] = useState<"2d" | "3d">("2d");
+  const [view, setView] = useState<"foto" | "skica" | "3d">("foto");
 
-  const ledPrem = ledSurcharge(tier);
+  const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
+  const product = productFor(tier, size)!;
+  const { w, d, h } = size;
+
+  // dekor sa drží naprieč zmenou radu, len ak ho daný produkt naozaj má;
+  // bez voľby ukáž ten, ku ktorému existuje reálna fotka tohto rozmeru
+  const decor =
+    product.decors.find((x) => x.id === decorId) ??
+    product.decors.find((x) => !x.inherited) ??
+    product.decors[0];
+  const cfgDecor = toCfgDecor(decor);
+
+  const ledPrem = ledOf(product);
   const ledOn = led && ledPrem !== null;
-  const price = cabinetPrice(tier, w, d, h, ledOn);
-  const total = price.value + feet.prem;
+  const total = priceOf(product, ledOn) + feet.prem;
 
-  // ---- akvárium: odporúčanie sa počíta zo zvoleného pôdorysu skrinky ----
+  /* ---- akvárium podľa pôdorysu skrinky ---- */
   const match = suggestTank(w, d);
   const picked = tankSlug ? AQUARIUMS.find((a) => a.slug === tankSlug) : null;
   const pickedFits = !!picked && picked.w <= w && picked.d <= d;
   const chosen = pickedFits ? picked : match.best;
   const droppedPick = !!picked && !pickedFits;
-  // keď žiadna štandardná nádrž nesadne, ponúkne sa nádrž na mieru podľa pôdorysu
-  const customTank = { w: Math.max(40, w - 4), d: Math.max(25, d - 4), h: 45 };
-  const tankOnStage: PreviewTank = !withTank
-    ? null
-    : chosen
+  const tankOnStage: PreviewTank =
+    withTank && chosen
       ? { w: chosen.w, d: chosen.d, h: chosen.h, liters: chosen.liters }
-      : {
-          ...customTank,
-          liters: Math.round((customTank.w * customTank.d * customTank.h) / 1000),
-        };
-  const liters = chosen ? chosen.liters : tankOnStage?.liters ?? 0;
+      : null;
+  const liters = chosen?.liters ?? 0;
   const loadKg = tankLoadKg(liters);
   const loadPct = Math.min(100, Math.round((loadKg / FRAME_LOAD_KG) * 100));
   const deeper = deeperOption(w, d);
-  const tankPrice = chosen ? aquariumPriceValue(chosen) : null;
+  const tankPrice = chosen?.priceValue ?? null;
 
-  // veta o pôdoryse — spomenie len rozmer, ktorý sa naozaj líši
   const diffs = chosen
     ? [
         w - chosen.w > 0 ? `o ${w - chosen.w} cm širšia` : null,
@@ -76,37 +82,42 @@ export default function KonfiguratorFull() {
       ? "Pôdorys sedí presne — nádrž dosadne po celej ploche rámu."
       : `Skrinka je ${diffs.join(" a ")} než nádrž — akvárium nikdy nesmie pretŕčať cez rám.`;
 
+  const foto = useMemo(() => decor.images[0], [decor]);
+
+  const zapnutNadrz = (on: boolean) => {
+    setWithTank(on);
+    // fotka zostavu s nádržou ukázať nevie — skica áno
+    if (on && view === "foto") setView("skica");
+  };
+
   const dopyt = () => {
     const lines = [
       "Konfigurácia z konfigurátora AQUAPRIME",
       "",
-      `Rad: ${CFG_TIERS.find((t) => t.id === tier)!.label}`,
-      `Rozmery skrinky: ${w} × ${h} × ${d} cm (š × v × h)`,
+      `Produkt: ${product.name}`,
+      `Rad: ${product.tierLabel} — ${product.tierNote}`,
+      `Rozmer: ${product.dim}`,
       `Dekor: ${decor.name}`,
       `Podnož: ${feet.name}`,
       `LED podsvietenie: ${ledOn ? "áno" : "nie"}`,
-      `Orientačná cena skrinky: ${total} €${price.exact ? "" : " (odhad)"}`,
+      `Cena skrinky: ${total} €`,
     ];
-    if (withTank) {
+    if (withTank && chosen) {
       lines.push(
         "",
-        chosen
-          ? `Akvárium: ${chosen.name} cm (${chosen.vol})`
-          : `Akvárium na mieru: ${customTank.w} × ${customTank.d} × ${customTank.h} cm`,
+        `Akvárium: ${chosen.name} cm (${chosen.vol}) — ${chosen.priceLabel}`,
         `Zaťaženie skrinky: ~${loadKg} kg z ${FRAME_LOAD_KG} kg`,
-        chosen
-          ? `Cena akvária: ${chosen.priceLabel}\nSpolu: ${total + (tankPrice ?? 0)} €`
-          : "Cena akvária: na dopyt (nádrž na mieru)"
+        `Spolu: ${total + (tankPrice ?? 0)} €`
       );
     }
     window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
-      "Konfigurácia — AQUAPRIME"
+      `Konfigurácia ${product.name} — AQUAPRIME`
     )}&body=${encodeURIComponent(lines.join("\n"))}`;
   };
 
   return (
     <div className="kfx">
-      {/* ĽAVÁ karta — rad, rozmery, podnož */}
+      {/* ĽAVÁ karta — rad, rozmer, podnož */}
       <div className="kfx__card kfx__card--left" data-reveal="left">
         <div className="kfx__group">
           <span className="kfx__legend">
@@ -129,11 +140,25 @@ export default function KonfiguratorFull() {
 
         <div className="kfx__group">
           <span className="kfx__legend">
-            <span className="kfx__n">02</span> Rozmery
+            <span className="kfx__n">02</span> Rozmer
           </span>
-          <Slider label="Šírka" value={w} min={60} max={200} set={setW} />
-          <Slider label="Výška" value={h} min={40} max={110} set={setH} />
-          <Slider label="Hĺbka" value={d} min={30} max={70} set={setD} />
+          <div className="kfx__sizes">
+            {CFG_SIZES.map((s) => (
+              <button
+                key={s.key}
+                type="button"
+                className={`kfx__size${sizeKey === s.key ? " is-on" : ""}`}
+                onClick={() => setSizeKey(s.key)}
+              >
+                {s.label}
+                <em>cm</em>
+              </button>
+            ))}
+          </div>
+          <p className="kfx__note">
+            Toto sú rozmery, ktoré vyrábame sériovo.{" "}
+            <Link href="/kontakt">Potrebujete iný?</Link> Vyrobíme ho na mieru.
+          </p>
         </div>
 
         <div className="kfx__group">
@@ -156,42 +181,47 @@ export default function KonfiguratorFull() {
         </div>
       </div>
 
-      {/* STRED — živý náhľad */}
+      {/* STRED — fotka z katalógu, skica alebo 3D */}
       <div className="kfx__stage" data-reveal="scale">
         <div className="kfx__glow" />
         <div className="kfx__toggle">
-          <button
-            className={view === "2d" ? "is-on" : ""}
-            onClick={() => setView("2d")}
-            type="button"
-          >
-            2D
-          </button>
-          <button
-            className={view === "3d" ? "is-on" : ""}
-            onClick={() => setView("3d")}
-            type="button"
-          >
-            3D
-          </button>
+          {(["foto", "skica", "3d"] as const).map((v) => (
+            <button
+              key={v}
+              className={view === v ? "is-on" : ""}
+              onClick={() => setView(v)}
+              type="button"
+            >
+              {v === "foto" ? "FOTO" : v === "skica" ? "SKICA" : "3D"}
+            </button>
+          ))}
         </div>
         <span className="kfx__dimtag">
-          {w} × {h} × {d} cm
-          {withTank && tankOnStage && (
-            <em>
-              {" "}
-              + akvárium {tankOnStage.w} × {tankOnStage.d} × {tankOnStage.h}
-            </em>
-          )}
+          {product.dim}
+          {withTank && chosen && <em> + akvárium {chosen.dim}</em>}
         </span>
         <div className="kfx__model">
-          {view === "2d" ? (
+          {view === "foto" ? (
+            <div className="kfx__shot">
+              <Image
+                key={foto}
+                src={foto}
+                alt={`${product.name} — dekor ${decor.name}`}
+                fill
+                sizes="(max-width: 980px) 92vw, 46vw"
+                priority
+              />
+              {decor.inherited && (
+                <span className="pgal__illu">Ilustračné foto — iný rozmer</span>
+              )}
+            </div>
+          ) : view === "skica" ? (
             <CabinetPreview
               w={w}
               h={h}
               d={d}
               tier={tier}
-              decor={decor}
+              decor={cfgDecor}
               feet={feet.id}
               led={ledOn}
               tank={tankOnStage}
@@ -201,9 +231,15 @@ export default function KonfiguratorFull() {
           )}
         </div>
         <p className="kfx__stagenote">
-          {view === "2d"
-            ? "Technická skica — mení sa podľa rozmerov, radu aj dekoru."
-            : "3D je zatiaľ ukážkový model jednej skrinky — na konfiguráciu nereaguje."}
+          {view === "foto"
+            ? decor.inherited
+              ? "Fotka rovnakého dekoru na inom rozmere — tvar a konštrukcia sú zhodné."
+              : "Reálna fotka produktu z katalógu."
+            : view === "skica"
+              ? withTank
+                ? "Skica zostavy — fotka skrinku s nádržou ukázať nevie."
+                : "Technická skica — mení sa podľa rozmeru, radu aj dekoru."
+              : "3D je zatiaľ ukážkový model jednej skrinky — na konfiguráciu nereaguje."}
         </p>
       </div>
 
@@ -212,15 +248,16 @@ export default function KonfiguratorFull() {
         <div className="kfx__group">
           <span className="kfx__legend">
             <span className="kfx__n">04</span> Dekor
+            <em>{product.decors.length} k tomuto rozmeru</em>
           </span>
           <div className="kfx__swatches">
-            {CFG_DECORS.map((c) => (
+            {product.decors.map((c) => (
               <button
                 key={c.id}
                 className={`kfx__sw${decor.id === c.id ? " is-on" : ""}`}
                 aria-label={c.name}
                 title={c.name}
-                onClick={() => setDecor(c)}
+                onClick={() => setDecorId(c.id)}
                 type="button"
               >
                 <Swatch swatch={c.swatch} />
@@ -267,86 +304,68 @@ export default function KonfiguratorFull() {
             <button
               type="button"
               className={`kfx__opt${!withTank ? " is-on" : ""}`}
-              onClick={() => setWithTank(false)}
+              onClick={() => zapnutNadrz(false)}
             >
               Len skrinka
             </button>
             <button
               type="button"
               className={`kfx__opt${withTank ? " is-on" : ""}`}
-              onClick={() => setWithTank(true)}
+              onClick={() => zapnutNadrz(true)}
             >
               So skrinkou aj nádržou
             </button>
           </div>
 
-          {withTank && (
+          {withTank && chosen && (
             <div className="kfx__tank">
-              {chosen ? (
-                <>
-                  <div className="kfx__tank-head">
-                    <span className="kfx__tank-tag">
-                      {tankSlug && pickedFits ? "Vybrané" : "Odporúčame"}
-                    </span>
-                    <strong>{chosen.name} cm</strong>
-                    <span className="kfx__tank-vol">{chosen.vol}</span>
-                  </div>
+              <div className="kfx__tank-head">
+                <span className="kfx__tank-tag">
+                  {tankSlug && pickedFits ? "Vybrané" : "Odporúčame"}
+                </span>
+                <strong>{chosen.name} cm</strong>
+                <span className="kfx__tank-vol">{chosen.vol}</span>
+              </div>
 
-                  <label className="kfx__selectwrap">
-                    <span>Iná nádrž, ktorá sa zmestí</span>
-                    <select
-                      className="kfx__select"
-                      value={chosen.slug}
-                      onChange={(e) => setTankSlug(e.target.value)}
-                    >
-                      {match.fits.map((a) => (
-                        <option key={a.slug} value={a.slug}>
-                          {a.name} cm — {a.vol}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+              <label className="kfx__selectwrap">
+                <span>Iná nádrž, ktorá sa zmestí</span>
+                <select
+                  className="kfx__select"
+                  value={chosen.slug}
+                  onChange={(e) => setTankSlug(e.target.value)}
+                >
+                  {match.fits.map((a) => (
+                    <option key={a.slug} value={a.slug}>
+                      {a.name} cm — {a.vol} — {a.priceLabel}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-                  <div className="kfx__load">
-                    <div className="kfx__load-top">
-                      <span>Zaťaženie skrinky</span>
-                      <b>
-                        ~{loadKg} kg / {FRAME_LOAD_KG} kg
-                      </b>
-                    </div>
-                    <div className="kfx__load-bar">
-                      <i style={{ width: `${loadPct}%` }} />
-                    </div>
-                  </div>
+              <div className="kfx__load">
+                <div className="kfx__load-top">
+                  <span>Zaťaženie skrinky</span>
+                  <b>
+                    ~{loadKg} kg / {FRAME_LOAD_KG} kg
+                  </b>
+                </div>
+                <div className="kfx__load-bar">
+                  <i style={{ width: `${loadPct}%` }} />
+                </div>
+              </div>
 
-                  <p className="kfx__note">
-                    {fitNote}
-                    {droppedPick &&
-                      " Pôvodne vybraná nádrž sa už na tento pôdorys nezmestí, tak ukazujem odporúčanú."}
-                    {deeper && (
-                      <>
-                        {" "}
-                        Pri hĺbke {deeper.d} cm by sa zmestilo akvárium{" "}
-                        {deeper.dim} ({deeper.vol}).
-                      </>
-                    )}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <div className="kfx__tank-head">
-                    <span className="kfx__tank-tag">Na mieru</span>
-                    <strong>
-                      {customTank.w} × {customTank.d} × {customTank.h} cm
-                    </strong>
-                    <span className="kfx__tank-vol">~{liters} l</span>
-                  </div>
-                  <p className="kfx__note">
-                    Na tento pôdorys nemáme štandardnú nádrž — akvárium vyrobíme na
-                    mieru presne pod rozmer skrinky.
-                  </p>
-                </>
-              )}
+              <p className="kfx__note">
+                {fitNote}
+                {droppedPick &&
+                  " Pôvodne vybraná nádrž sa už na tento pôdorys nezmestí, tak ukazujem odporúčanú."}
+                {deeper && (
+                  <>
+                    {" "}
+                    Pri hĺbke {deeper.d} cm by sa zmestilo akvárium {deeper.dim} (
+                    {deeper.vol}).
+                  </>
+                )}
+              </p>
             </div>
           )}
         </div>
@@ -356,29 +375,24 @@ export default function KonfiguratorFull() {
             <span>Skrinka</span>
             <b>{total.toLocaleString("sk-SK")} €</b>
           </div>
-          {withTank && (
-            <div className="kfx__sumrow">
-              <span>Akvárium</span>
-              {chosen ? (
+          {withTank && chosen && (
+            <>
+              <div className="kfx__sumrow">
+                <span>Akvárium</span>
                 <b>{chosen.priceLabel}</b>
-              ) : (
-                <b className="kfx__sumrow--ask">na dopyt</b>
-              )}
-            </div>
-          )}
-          {withTank && tankPrice !== null && (
-            <div className="kfx__sumrow kfx__sumrow--total">
-              <span>Spolu</span>
-              <b>
-                {chosen && chosen.glass.length > 1 ? "od " : ""}
-                {(total + tankPrice).toLocaleString("sk-SK")} €
-              </b>
-            </div>
+              </div>
+              <div className="kfx__sumrow kfx__sumrow--total">
+                <span>Spolu</span>
+                <b>
+                  {chosen.glass.length > 1 ? "od " : ""}
+                  {(total + (tankPrice ?? 0)).toLocaleString("sk-SK")} €
+                </b>
+              </div>
+            </>
           )}
           <span className="kfx__price-n">
-            {price.exact
-              ? "Cenníková cena vrátane DPH."
-              : `Orientačne, počítané z cenníkového rozmeru ${price.basedOn}. Presnú cenu potvrdíme po dopyte.`}
+            Cenníková cena vrátane DPH.{" "}
+            <Link href={`/skrinky/${product.slug}`}>Detail skrinky</Link>
           </span>
         </div>
         <button type="button" className="btn-cyan kfx__send" onClick={dopyt}>
@@ -386,38 +400,5 @@ export default function KonfiguratorFull() {
         </button>
       </div>
     </div>
-  );
-}
-
-function Slider({
-  label,
-  value,
-  min,
-  max,
-  set,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  set: (v: number) => void;
-}) {
-  return (
-    <label className="kfx__slider">
-      <span className="kfx__slider-top">
-        <span>{label}</span>
-        <span className="kfx__slider-v">{value} cm</span>
-      </span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={value}
-        onChange={(e) => set(Number(e.target.value))}
-        style={
-          { "--p": `${((value - min) / (max - min)) * 100}%` } as React.CSSProperties
-        }
-      />
-    </label>
   );
 }

@@ -179,6 +179,60 @@
   color: var(--ink);
 }
 
+/* rozmery — len tie, ktoré sa naozaj vyrábajú */
+.kfx__sizes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.kfx__size {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 7px;
+  font-size: 0.75rem;
+  color: var(--body);
+  font-variant-numeric: tabular-nums;
+  transition: 0.2s;
+}
+.kfx__size em {
+  font-style: normal;
+  font-size: 0.625rem;
+  color: var(--faint);
+}
+.kfx__size:hover {
+  border-color: rgba(71, 199, 232, 0.5);
+  color: var(--ink);
+}
+.kfx__size.is-on {
+  border-color: var(--cyan);
+  background: rgba(71, 199, 232, 0.08);
+  color: var(--ink);
+  font-weight: 600;
+}
+.kfx__note a {
+  color: var(--cyan);
+}
+
+/* reálna fotka produktu — packshot na bielom, ako v katalógu */
+.kfx__shot {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.kfx__shot img {
+  object-fit: contain;
+  padding: 4%;
+}
+
 /* príplatok v tlačidle možnosti */
 .kfx__opt em {
   font-style: normal;

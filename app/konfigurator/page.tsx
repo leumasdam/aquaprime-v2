@@ -24,8 +24,9 @@ export default function Page() {
             Navrhnite si skrinku <em>na mieru</em>.
           </h1>
           <p className="kfx__lead">
-            Vyberte rozmery, povrch a nožičky — skrinku vidíte naživo v strede,
-            ovládanie máte po stranách. Finálny dizajn doladíme po dopyte.
+            Vyberte rad, rozmer a dekor — v strede vidíte reálnu fotku z
+            katalógu, prepínačom aj technickú skicu so zvolenou nádržou. Cena je
+            cenníková, nie odhad.
           </p>
         </div>
 

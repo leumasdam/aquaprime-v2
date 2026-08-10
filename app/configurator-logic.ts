@@ -2,10 +2,60 @@
 // Cieľ: konfigurátor musí hovoriť to isté čo katalóg. Preto sa ceny počítajú
 // z reálnych cenníkových kotiev v products.ts, nie z vymysleného vzorca.
 
-import { PRODUCTS, type Tier } from "./products";
+import { PRODUCTS, type Decor, type Product, type Tier } from "./products";
 import { AQUARIUMS, type Aquarium } from "./aquariums";
 
 export type CfgTier = { id: Tier; label: string; note: string };
+
+/** Rozmery, ktoré sa naozaj vyrábajú — konfigurátor nesmie ponúknuť iné. */
+export type CfgSize = {
+  key: string;
+  w: number;
+  d: number;
+  h: number;
+  label: string;
+};
+
+export const CFG_SIZES: CfgSize[] = (() => {
+  const seen = new Map<string, CfgSize>();
+  for (const p of PRODUCTS) {
+    const key = `${p.w}x${p.d}x${p.h}`;
+    if (!seen.has(key)) {
+      seen.set(key, { key, w: p.w, d: p.d, h: p.h, label: `${p.w} × ${p.d} × ${p.h}` });
+    }
+  }
+  return [...seen.values()].sort((a, b) => a.w - b.w || a.h - b.h);
+})();
+
+/** Konkrétny produkt z katalógu pre kombináciu rad × rozmer. */
+export function productFor(tier: Tier, size: CfgSize): Product | undefined {
+  return PRODUCTS.find(
+    (p) => p.tier === tier && p.w === size.w && p.d === size.d && p.h === size.h
+  );
+}
+
+const toNum = (s: string) => Number(s.replace(/[^\d]/g, ""));
+
+/** Cena priamo z cenníka — žiadny odhad, konfigurátor ponúka len katalógové rozmery. */
+export function priceOf(p: Product, led: boolean): number {
+  return toNum(led && p.priceLed ? p.priceLed : p.price);
+}
+
+/** Príplatok za LED pri konkrétnom produkte (Basic ho nemá). */
+export function ledOf(p: Product): number | null {
+  return p.priceLed ? toNum(p.priceLed) - toNum(p.price) : null;
+}
+
+/** Dekor z katalógu do tvaru, ktorému rozumie náhľad. */
+export function toCfgDecor(d: Decor): CfgDecor {
+  return {
+    id: d.id,
+    name: d.name,
+    doors: d.swatch[0],
+    body: d.swatch[1] ?? d.swatch[0],
+    swatch: d.swatch,
+  };
+}
 
 export const CFG_TIERS: CfgTier[] = [
   { id: "basic", label: "BASIC", note: "Kovový rám + vrchná doska" },
@@ -23,28 +73,6 @@ export type CfgDecor = {
   /** pôvodný swatch z katalógu — pre zdieľaný komponent <Swatch> */
   swatch: string[];
 };
-
-/**
- * Dekory z katalógu. V `swatch` je poradie [dvierka, korpus] — overené na
- * fotkách (Dub Hunton / Black Matt = drevené dvierka + čierny korpus).
- * „ram" sa vynecháva, to je popis konštrukcie radu Basic, nie dekor.
- */
-export const CFG_DECORS: CfgDecor[] = (() => {
-  const seen = new Map<string, CfgDecor>();
-  for (const p of PRODUCTS) {
-    for (const d of p.decors) {
-      if (d.id === "ram" || seen.has(d.id)) continue;
-      seen.set(d.id, {
-        id: d.id,
-        name: d.name,
-        doors: d.swatch[0],
-        body: d.swatch[1] ?? d.swatch[0],
-        swatch: d.swatch,
-      });
-    }
-  }
-  return [...seen.values()];
-})();
 
 const num = (s: string) => Number(s.replace(/[^\d]/g, ""));
 
