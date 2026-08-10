@@ -249,23 +249,17 @@ button {
   gap: 11px;
   color: rgba(244, 244, 242, 0.92);
 }
-.logo__box {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
+/* oficiálna značka — „A" s rybou; nepotrebuje rámik, tvar si nesie sama */
+.logo__mark {
+  width: 40px;
+  height: 40px;
   flex: none;
-  border: 1.5px solid rgba(244, 241, 235, 0.82);
-  font-family: var(--display);
-  font-size: 1.55rem;
-  line-height: 1;
-  padding-bottom: 2px;
   color: rgba(244, 241, 235, 0.96);
-  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+  transition: color 0.3s var(--ease), transform 0.4s var(--ease);
 }
-.nav__brand:hover .logo__box {
-  border-color: var(--cyan);
+.nav__brand:hover .logo__mark {
   color: var(--cyan);
+  transform: translateY(-1px);
 }
 .logo__type {
   display: flex;
@@ -821,6 +815,23 @@ button {
   }
   .module__cta {
     font-size: 0.5625rem;
+  }
+}
+/* Pod 1500 px je textový stĺpec úzky a popis ho len upcháva — zostane
+   eyebrow, väčší nadpis na stred a preklik. (Až za blokom 1200 px+,
+   inak by jeho menšie písmo prebilo toto zväčšenie.) */
+@media (max-width: 1499px) {
+  .module__text {
+    display: none;
+  }
+  .module__content {
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .module__title {
+    font-size: clamp(1.15rem, 0.75rem + 1vw, 1.7rem);
+    line-height: 1.15;
   }
 }
 
@@ -3138,10 +3149,44 @@ button:focus-visible {
    404
    =========================================================== */
 .notfound__sec {
+  position: relative;
   min-height: 70vh;
   display: flex;
   align-items: center;
   border-bottom: none;
+  overflow: hidden;
+}
+/* „Táto stránka odplávala" — značka tu odpláva doslova */
+.notfound__fish {
+  position: absolute;
+  right: clamp(-60px, -2vw, 0px);
+  top: 50%;
+  width: clamp(200px, 30vw, 420px);
+  height: auto;
+  color: var(--cyan);
+  opacity: 0.07;
+  pointer-events: none;
+  transform: translateY(-50%);
+  animation: fishDrift 9s var(--ease) infinite alternate;
+}
+@keyframes fishDrift {
+  from {
+    transform: translateY(-52%) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-46%) rotate(3deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .notfound__fish {
+    animation: none;
+  }
+}
+@media (max-width: 700px) {
+  .notfound__fish {
+    opacity: 0.05;
+    right: -40px;
+  }
 }
 .notfound__code {
   margin-bottom: 22px;

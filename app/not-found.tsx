@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AquaFishMark } from "./brand";
 
 export const metadata = {
   title: "Stránka sa nenašla",
@@ -9,6 +10,7 @@ export default function NotFound() {
     <main className="sub notfound" style={{ ["--accent" as string]: "var(--cyan)" }}>
       <section className="sub__head section notfound__sec">
         <div className="sub__head-glow" />
+        <AquaFishMark className="notfound__fish" />
         <div className="wrap notfound__inner">
           <span className="eyebrow eyebrow--rule notfound__code">404</span>
           <h1 className="sub__title">Táto stránka odplávala.</h1>
