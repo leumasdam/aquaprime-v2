@@ -17,11 +17,15 @@ const LEGACY_SLUGS: Record<string, string> = {
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return Object.entries(LEGACY_SLUGS).map(([from, to]) => ({
-      source: `/skrinky/${from}`,
-      destination: `/skrinky/${to}`,
-      permanent: true,
-    }));
+    return [
+      ...Object.entries(LEGACY_SLUGS).map(([from, to]) => ({
+        source: `/skrinky/${from}`,
+        destination: `/skrinky/${to}`,
+        permanent: true,
+      })),
+      // vetva „akváriá & teráriá" dostala vlastný katalóg na /akvaria
+      { source: "/akvaria-teraria", destination: "/akvaria", permanent: true },
+    ];
   },
 };
 

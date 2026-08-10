@@ -383,7 +383,7 @@ export default function Home() {
 
           <div className="pathways__cards">
             <Link
-              href="/akvaria-teraria"
+              href="/akvaria"
               className="pathway pathway--aqua"
               data-reveal
             >
@@ -393,12 +393,12 @@ export default function Home() {
                 <div className="pathway__tag">NA MIERU</div>
                 <h3 className="pathway__name">Akváriá & teráriá</h3>
                 <p className="pathway__desc">
-                  Nádrže na mieru pre akvaristiku aj teraristiku. Spoločná
-                  subpage, jasné parametre a cesta ku konfigurácii.
+                  Nádrže z čírého float skla — sedem rozmerov od 112 do 720
+                  litrov, plus teráriá a akýkoľvek rozmer na mieru.
                 </p>
                 <div className="pathway__foot">
                   <span className="pathway__btn">OTVORIŤ VETVU</span>
-                  <span className="pathway__url">/akvaria-teraria</span>
+                  <span className="pathway__url">/akvaria</span>
                 </div>
               </div>
             </Link>

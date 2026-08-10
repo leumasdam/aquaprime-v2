@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS } from "./products";
+import { AQUARIUMS } from "./aquariums";
 
 const BASE = "https://aquaprime.sk";
 const ROUTES = [
   "",
   "/skrinky",
-  "/akvaria-teraria",
+  "/akvaria",
   "/doplnky-technika",
   "/materialy",
   "/technologia",
@@ -20,10 +21,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ROUTES.map((r) => ({
       url: BASE + r,
       changeFrequency: "monthly" as const,
-      priority: r === "" ? 1 : r === "/skrinky" || r === "/dopyt" ? 0.9 : 0.7,
+      priority:
+        r === ""
+          ? 1
+          : r === "/skrinky" || r === "/akvaria" || r === "/dopyt"
+            ? 0.9
+            : 0.7,
     })),
     ...PRODUCTS.map((p) => ({
       url: `${BASE}/skrinky/${p.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...AQUARIUMS.map((a) => ({
+      url: `${BASE}/akvaria/${a.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
