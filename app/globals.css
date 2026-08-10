@@ -172,6 +172,75 @@ button {
   align-items: center;
   white-space: nowrap;
 }
+/* bublina pri logu — úvod nemá položku v navigácii, tak ju treba priznať */
+.nav__brandwrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+/* visí pod logom — vedľa loga sú vycentrované linky, tam by kolidovala */
+.nav__tip {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  white-space: nowrap;
+  border-radius: 100px;
+  border: 1px solid rgba(71, 199, 232, 0.35);
+  background: rgba(10, 13, 15, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.9);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px) scale(0.96);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+/* šípka smerom k logu */
+.nav__tip::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: 100%;
+  border: 4px solid transparent;
+  border-bottom-color: rgba(71, 199, 232, 0.35);
+}
+.nav__tip-ico {
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+}
+.nav__tip-ico svg {
+  width: 13px;
+  height: 13px;
+}
+.nav__brandwrap:hover .nav__tip,
+.nav__brandwrap:focus-within .nav__tip,
+.nav__brandwrap.is-peek .nav__tip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* jemné pritiahnutie pozornosti pri prvom zobrazení */
+.nav__brandwrap.is-peek .nav__tip {
+  animation: navTipNudge 2.6s var(--ease) 0.4s 2;
+}
+@keyframes navTipNudge {
+  0%, 100% { transform: translateY(0) scale(1); }
+  12% { transform: translateY(2px) scale(1); }
+  24% { transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav__brandwrap.is-peek .nav__tip {
+    animation: none;
+  }
+}
 
 /* ===== LOGO (mark + wordmark + tagline) ===== */
 .logo {
