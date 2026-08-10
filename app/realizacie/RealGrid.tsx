@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type Cat = "obyvacie" | "komercne" | "hotely" | "kancelarie";
 
@@ -40,12 +40,31 @@ const PROJECTS: Project[] = [
 
 export default function RealGrid() {
   const [cat, setCat] = useState<Cat | "all">("all");
+  const [open, setOpen] = useState(false);
+  const ddRef = useRef<HTMLDivElement>(null);
   const items = PROJECTS.filter((p) => cat === "all" || p.cat === cat);
   const showFeatured = cat === "all" || cat === "obyvacie";
+  const activeLabel = CATS.find((c) => c.id === cat)?.label ?? "Všetky projekty";
+
+  // dropdown (mobil): zavrieť pri kliku mimo alebo Escape
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ddRef.current && !ddRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
     <>
       <div className="real-filter">
+        {/* desktop: tab-bar */}
         <div className="wrap real-filter__row" role="group" aria-label="Filter projektov">
           {CATS.map((c) => (
             <button
@@ -58,6 +77,45 @@ export default function RealGrid() {
               {c.label}
             </button>
           ))}
+        </div>
+
+        {/* mobil: dropdown */}
+        <div className="wrap real-filter__mobile">
+          <div className="real-dd" ref={ddRef}>
+            <button
+              type="button"
+              className={`real-dd__toggle${open ? " is-open" : ""}`}
+              aria-expanded={open}
+              aria-haspopup="listbox"
+              onClick={() => setOpen((o) => !o)}
+            >
+              <span className="real-dd__cur">
+                <small>Kategória</small>
+                {activeLabel}
+              </span>
+              <span className="real-dd__chev" aria-hidden>
+                ⌄
+              </span>
+            </button>
+            {open && (
+              <ul className="real-dd__menu" role="listbox" aria-label="Filter projektov">
+                {CATS.map((c) => (
+                  <li key={c.id} role="option" aria-selected={cat === c.id}>
+                    <button
+                      type="button"
+                      className={`real-dd__opt${cat === c.id ? " is-on" : ""}`}
+                      onClick={() => {
+                        setCat(c.id);
+                        setOpen(false);
+                      }}
+                    >
+                      {c.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
 
