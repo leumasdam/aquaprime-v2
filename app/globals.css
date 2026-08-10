@@ -4997,8 +4997,8 @@ button:focus-visible {
   /* šírka ≈ pôvodná (3 karty vo viewporte), výška sekcie tak ostáva rovnaká */
   flex: 0 0 var(--card-w);
   margin-right: var(--card-gap);
-  /* 3:2 — celá skrinka sa zmestí bez orezu (fotky sú orezané presne na 3:2) */
-  aspect-ratio: 3 / 2;
+  /* 4:3 — celá zostava akvárium + skrinka sa zmestí (fotky sú 4:3) */
+  aspect-ratio: 4 / 3;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--line-2);

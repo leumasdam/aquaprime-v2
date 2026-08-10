@@ -95,12 +95,12 @@ const CTILES = [
 ];
 
 // reálne fotky skriniek (požiadavka klienta) + PREMIUM LED s jeho fotkou
-// reálne interiérové fotky skriniek (3:2, celá skrinka, tmavá atmosféra)
+// reálne interiérové fotky skriniek s akváriom (4:3, tmavá atmosféra)
 const COLLECTIONS = [
-  { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/kat-basic-v2.webp" },
-  { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/kat-standard-v2.webp" },
-  { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/kat-premium-v2.webp" },
-  { id: "premium", name: "Premium LED", sub: "Opláštenie + podsvietenie", img: "/img/products/kat-premium-led-v2.webp" },
+  { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/kat-basic-v3.webp" },
+  { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/kat-standard-v3.webp" },
+  { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/kat-premium-v3.webp" },
+  { id: "premium", name: "Premium LED", sub: "Opláštenie + podsvietenie", img: "/img/products/kat-premium-led-v3.webp" },
 ];
 
 export default function Home() {
