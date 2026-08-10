@@ -3934,6 +3934,28 @@ button:focus-visible {
   flex-direction: column;
   padding: clamp(6px, 1vw, 14px) 0;
 }
+/* parametrická skica skrinky (konfigurátory) */
+.cabsvg {
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 30px 44px rgba(0, 0, 0, 0.7));
+}
+.cfg__stage .cabsvg {
+  align-self: center;
+}
+.cabsvg__dim line {
+  stroke: rgba(226, 229, 231, 0.34);
+  stroke-width: 1;
+}
+.cabsvg__dim text {
+  fill: rgba(226, 229, 231, 0.62);
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
 .cfg__photo {
   display: block;
   width: 100%;
@@ -4160,8 +4182,17 @@ button:focus-visible {
   height: 36px;
   border-radius: 7px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+.cfg__swatch .swatch {
+  border-radius: 0;
+}
+/* voľba akvária — celá šírka, nie polovica ako pri dvojici možností */
+.cfg__opt--wide {
+  flex: 1 1 100%;
+  text-align: left;
 }
 .cfg__swatch:hover {
   transform: translateY(-2px);

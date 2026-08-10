@@ -142,6 +142,52 @@
   font-weight: 600;
 }
 
+/* rad konštrukcie */
+.kfx__tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.kfx__tier {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--line-2);
+  border-radius: 7px;
+  transition: 0.2s;
+}
+.kfx__tier strong {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--body);
+}
+.kfx__tier span {
+  font-size: 0.6875rem;
+  color: var(--faint);
+}
+.kfx__tier:hover {
+  border-color: rgba(71, 199, 232, 0.5);
+}
+.kfx__tier.is-on {
+  border-color: var(--cyan);
+  background: rgba(71, 199, 232, 0.08);
+}
+.kfx__tier.is-on strong {
+  color: var(--ink);
+}
+
+/* príplatok v tlačidle možnosti */
+.kfx__opt em {
+  font-style: normal;
+  color: var(--faint);
+}
+.kfx__opt.is-on em {
+  color: var(--cyan);
+}
+
 /* povrch swatche */
 .kfx__swatches {
   display: flex;
@@ -153,8 +199,12 @@
   height: 36px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+.kfx__sw .swatch {
+  border-radius: 0;
 }
 .kfx__sw:hover {
   transform: translateY(-2px);
@@ -167,7 +217,133 @@
   color: var(--ink-soft);
 }
 
+/* akvárium na skrinku */
+.kfx__note {
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: var(--faint);
+}
+.kfx__tank {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid var(--line-2);
+  border-radius: 9px;
+  background: rgba(71, 199, 232, 0.04);
+}
+.kfx__tank-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+.kfx__tank-tag {
+  flex: 0 0 100%;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.kfx__tank-head strong {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  color: var(--ink-90);
+}
+.kfx__tank-vol {
+  font-size: 0.75rem;
+  color: var(--body-dim);
+}
+.kfx__selectwrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.kfx__selectwrap > span {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.kfx__select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  font-family: inherit;
+  color: var(--ink-soft);
+  background: rgba(6, 8, 9, 0.85);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.kfx__select:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 1px;
+}
+.kfx__load {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kfx__load-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--faint);
+}
+.kfx__load-top b {
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.kfx__load-bar {
+  height: 4px;
+  border-radius: 100px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.kfx__load-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), #7ad9f2);
+  transition: width 0.35s var(--ease);
+}
+
 /* cena + CTA */
+.kfx__sum {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: clamp(16px, 2vw, 22px);
+  border-top: 1px solid var(--line);
+}
+.kfx__sumrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.kfx__sumrow span {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.kfx__sumrow b {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 1.1rem + 0.8vw, 1.8rem);
+  color: var(--cyan);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.kfx__sumrow--ask {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--body-dim) !important;
+}
 .kfx__price {
   display: flex;
   flex-direction: column;
@@ -268,6 +444,21 @@
   color: var(--ink-soft);
   font-variant-numeric: tabular-nums;
 }
+.kfx__dimtag em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--cyan);
+}
+.kfx__stagenote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 0.6875rem;
+  color: var(--faint);
+}
 
 /* spodné trust body */
 .kf__trust {
@@ -324,5 +515,12 @@
   }
   .kfx__card {
     flex-direction: column;
+  }
+  /* rozmerový štítok by na úzkom mobile podliezol pod prepínač 2D/3D */
+  .kfx__dimtag {
+    max-width: 56%;
+  }
+  .kfx__dimtag em {
+    display: none;
   }
 }
