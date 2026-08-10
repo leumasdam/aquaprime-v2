@@ -95,10 +95,11 @@ const CTILES = [
 ];
 
 // reálne fotky skriniek (požiadavka klienta) + PREMIUM LED s jeho fotkou
+// reálne interiérové fotky skriniek (3:2, celá skrinka, tmavá atmosféra)
 const COLLECTIONS = [
-  { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/basic-100x40x90-01.webp" },
-  { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/standard-200x60x60-antracit-02.webp" },
-  { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp" },
+  { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/kat-basic-v2.webp" },
+  { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/kat-standard-v2.webp" },
+  { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/kat-premium-v2.webp" },
   { id: "premium", name: "Premium LED", sub: "Opláštenie + podsvietenie", img: "/img/col-premium-led.webp" },
 ];
 

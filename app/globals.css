@@ -4921,6 +4921,36 @@ button:focus-visible {
   margin-top: 14px;
 }
 /* krokový carousel — posun o jednu kartu, smooth, pauza, znova */
+.collections__viewport {
+  position: relative;
+  min-width: 0; /* rešpektovať šírku grid stĺpca (inak blowout od širokého tracku) */
+}
+/* jemné chevron šípky po stranách (mimo maskovanej oblasti) */
+.coll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 44px;
+  color: rgba(244, 241, 235, 0.45);
+  transition: color 0.25s var(--ease);
+}
+.coll-arrow:hover {
+  color: var(--cyan);
+}
+.coll-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+.coll-arrow--prev {
+  left: -6px;
+}
+.coll-arrow--next {
+  right: -6px;
+}
 .collections__cards {
   --card-w: clamp(280px, 24vw, 460px);
   --card-gap: 14px;
@@ -4941,7 +4971,8 @@ button:focus-visible {
   /* šírka ≈ pôvodná (3 karty vo viewporte), výška sekcie tak ostáva rovnaká */
   flex: 0 0 var(--card-w);
   margin-right: var(--card-gap);
-  aspect-ratio: 16 / 9;
+  /* 3:2 — celá skrinka sa zmestí bez orezu (fotky sú orezané presne na 3:2) */
+  aspect-ratio: 3 / 2;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--line-2);
@@ -5001,9 +5032,6 @@ button:focus-visible {
   /* carousel beží aj na mobile — karta ~80 % šírky, vidno prichádzajúcu ďalšiu */
   .collections__cards {
     --card-w: 80vw;
-  }
-  .ccard {
-    aspect-ratio: 16 / 10;
   }
   .collections__title {
     margin-top: 12px;
