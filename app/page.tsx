@@ -229,22 +229,28 @@ export default function Home() {
             </h2>
           </div>
           <div className="collections__cards">
-            {COLLECTIONS.map((c, i) => (
-              <Link
-                href={`/skrinky?rad=${c.id}`}
-                className="ccard"
-                key={c.name}
-                data-reveal
-                style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.img} alt={c.name} className="ccard__img" />
-                <span className="ccard__overlay">
-                  <span className="ccard__name">{c.name}</span>
-                  <span className="ccard__sub">{c.sub}</span>
-                </span>
-              </Link>
-            ))}
+            {/* nekonečný carousel — karty cirkulujú sprava doľava (set 2× pre plynulý loop) */}
+            <div className="collections__track">
+              {[...COLLECTIONS, ...COLLECTIONS].map((c, i) => {
+                const clone = i >= COLLECTIONS.length;
+                return (
+                  <Link
+                    href={`/skrinky?rad=${c.id}`}
+                    className="ccard"
+                    key={`${c.name}-${i}`}
+                    aria-hidden={clone || undefined}
+                    tabIndex={clone ? -1 : undefined}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.img} alt={c.name} className="ccard__img" />
+                    <span className="ccard__overlay">
+                      <span className="ccard__name">{c.name}</span>
+                      <span className="ccard__sub">{c.sub}</span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
