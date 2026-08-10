@@ -44,8 +44,10 @@ export default function AquariumCard({
           </span>
         </div>
         <div className="product__foot">
-          <span className="product__price product__price--ask">
-            Cena na dopyt
+          <span
+            className={`product__price${a.price ? "" : " product__price--ask"}`}
+          >
+            {a.price ?? "Cena na dopyt"}
           </span>
           <span className="product__cta">
             Detail <span aria-hidden>→</span>

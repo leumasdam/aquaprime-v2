@@ -98,9 +98,11 @@ export default async function Page({
               <span className="pdetail__coll">AKVÁRIUM — výroba na mieru</span>
               <h1 className="pdetail__name">{a.name} cm</h1>
               <div className="pdetail__price">
-                Cena na dopyt
+                {a.price ?? "Cena na dopyt"}
                 <span className="pdetail__price-led">
-                  cenu pripravíme podľa rozmeru a hrúbky skla
+                  {a.price
+                    ? "vrátane DPH · nádrž vyrábame na zákazku"
+                    : "cenu pripravíme podľa rozmeru a hrúbky skla"}
                 </span>
               </div>
               <p className="pdetail__desc">{a.lead}</p>
@@ -115,7 +117,7 @@ export default async function Page({
                 </div>
                 <div>
                   <dt>Materiál</dt>
-                  <dd>číre float sklo</dd>
+                  <dd>číre float sklo{a.glass ? ` ${a.glass} mm` : ""}</dd>
                 </div>
                 <div>
                   <dt>Farba silikónu</dt>

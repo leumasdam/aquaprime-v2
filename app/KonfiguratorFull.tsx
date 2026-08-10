@@ -4,7 +4,7 @@ import { useState } from "react";
 import Turntable from "./Turntable";
 import CabinetPreview, { type PreviewTank } from "./CabinetPreview";
 import Swatch from "./Swatch";
-import { AQUARIUMS } from "./aquariums";
+import { AQUARIUMS, aquariumPriceValue } from "./aquariums";
 import {
   CFG_DECORS,
   CFG_TIERS,
@@ -61,6 +61,7 @@ export default function KonfiguratorFull() {
   const loadKg = tankLoadKg(liters);
   const loadPct = Math.min(100, Math.round((loadKg / FRAME_LOAD_KG) * 100));
   const deeper = deeperOption(w, d);
+  const tankPrice = chosen ? aquariumPriceValue(chosen) : null;
 
   // veta o pôdoryse — spomenie len rozmer, ktorý sa naozaj líši
   const diffs = chosen
@@ -93,7 +94,9 @@ export default function KonfiguratorFull() {
           ? `Akvárium: ${chosen.name} cm (${chosen.vol})`
           : `Akvárium na mieru: ${customTank.w} × ${customTank.d} × ${customTank.h} cm`,
         `Zaťaženie skrinky: ~${loadKg} kg z ${FRAME_LOAD_KG} kg`,
-        "Cena akvária: na dopyt"
+        tankPrice !== null
+          ? `Cena akvária: ${tankPrice} €\nSpolu: ${total + tankPrice} €`
+          : "Cena akvária: na dopyt"
       );
     }
     window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
@@ -356,7 +359,17 @@ export default function KonfiguratorFull() {
           {withTank && (
             <div className="kfx__sumrow">
               <span>Akvárium</span>
-              <b className="kfx__sumrow--ask">na dopyt</b>
+              {tankPrice !== null ? (
+                <b>{tankPrice.toLocaleString("sk-SK")} €</b>
+              ) : (
+                <b className="kfx__sumrow--ask">na dopyt</b>
+              )}
+            </div>
+          )}
+          {withTank && tankPrice !== null && (
+            <div className="kfx__sumrow kfx__sumrow--total">
+              <span>Spolu</span>
+              <b>{(total + tankPrice).toLocaleString("sk-SK")} €</b>
             </div>
           )}
           <span className="kfx__price-n">

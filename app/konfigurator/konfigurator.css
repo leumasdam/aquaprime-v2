@@ -344,6 +344,13 @@
   font-weight: 600 !important;
   color: var(--body-dim) !important;
 }
+.kfx__sumrow--total {
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.kfx__sumrow--total span {
+  color: var(--ink-soft);
+}
 .kfx__price {
   display: flex;
   flex-direction: column;

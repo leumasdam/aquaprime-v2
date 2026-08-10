@@ -21,6 +21,10 @@ export type Aquarium = {
   /** ďalšie odseky popisu */
   body: string[];
   features: string[];
+  /** hrúbka skla v mm — z cenníka klienta */
+  glass?: number;
+  /** cena vrátane DPH, napr. „199 €". Kým chýba, všade sa píše „Cena na dopyt". */
+  price?: string;
   /** sklenené výstuhy — nie každý rozmer ich má */
   braces?: string;
   /** sladkovodné / aj morské */
@@ -225,6 +229,13 @@ export const AQUARIUMS: Aquarium[] = [
 
 export function getAquarium(slug: string): Aquarium | undefined {
   return AQUARIUMS.find((a) => a.slug === slug);
+}
+
+/** Cena nádrže ako číslo, alebo null keď ju cenník zatiaľ nemá. */
+export function aquariumPriceValue(a: Aquarium): number | null {
+  if (!a.price) return null;
+  const n = Number(a.price.replace(/[^\d]/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : null;
 }
 
 /**
