@@ -226,9 +226,10 @@ button {
 .nav__links {
   display: flex;
   gap: clamp(20px, 2vw, 38px);
-  /* doprava, ale s medzerou pred SK (nie úplne na stred, nie nalepené na SK) */
+  /* na stred: rovnaký auto margin z oboch strán — logo vľavo, SK + CTA vpravo.
+     Ostáva v toku (žiadne absolútne pozicovanie), takže sa nič neprekryje. */
   margin-left: auto;
-  margin-right: clamp(40px, 6vw, 120px);
+  margin-right: auto;
 }
 .nav__link {
   font-weight: 400;
@@ -241,12 +242,6 @@ button {
 .nav__link:hover,
 .nav__link.is-active {
   color: rgba(244, 244, 242, 0.95);
-}
-/* <1700px: linky jemnučko viac doprava (menšia medzera pred SK) */
-@media (max-width: 1700px) {
-  .nav__links {
-    margin-right: clamp(20px, 4vw, 72px);
-  }
 }
 .nav__cta {
   display: inline-flex;
