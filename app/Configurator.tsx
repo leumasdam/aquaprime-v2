@@ -51,7 +51,7 @@ export default function Configurator() {
       `Podnož: ${feet.name}`,
       `Orientačná cena skrinky: ${price} €`,
       withTank && match.best
-        ? `Akvárium: ${match.best.name} cm (${match.best.vol}) — cena na dopyt`
+        ? `Akvárium: ${match.best.name} cm (${match.best.vol}) — ${match.best.priceLabel}`
         : "",
     ]
       .filter(Boolean)
@@ -192,10 +192,10 @@ export default function Configurator() {
               onClick={() => setWithTank((v) => !v)}
             >
               {withTank ? "✓ " : "+ "}
-              {match.best.name} cm · {match.best.vol}
+              {match.best.name} cm · {match.best.vol} · {match.best.priceLabel}
             </button>
             <span className="cfg__pick">
-              Odporúčaná nádrž na tento pôdorys — cena na dopyt.
+              Odporúčaná nádrž na tento pôdorys.
             </span>
           </div>
         )}
@@ -207,8 +207,8 @@ export default function Configurator() {
               {price.toLocaleString("sk-SK")} €
             </span>
             <span className="cfg__price-note">
-              {withTank
-                ? "vrátane DPH · akvárium na dopyt"
+              {withTank && match.best
+                ? `vrátane DPH · akvárium ${match.best.priceLabel} navyše`
                 : "vrátane DPH · presná po dopyte"}
             </span>
           </div>

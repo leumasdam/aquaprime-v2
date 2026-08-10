@@ -5,8 +5,8 @@ import { AQUARIUMS } from "../aquariums";
 
 const HERO_FEATURES = [
   {
-    label: "Číre float sklo",
-    sub: "Bez optických deformácií",
+    label: "Sklo 4 – 12 mm",
+    sub: "Hrúbka podľa objemu",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
         <rect x="3.5" y="6.5" width="17" height="11" rx="0.8" />
@@ -15,8 +15,8 @@ const HERO_FEATURES = [
     ),
   },
   {
-    label: "Objemy 112 – 720 l",
-    sub: "7 štandardných rozmerov",
+    label: "Objemy 37 – 1 120 l",
+    sub: "47 rozmerov v cenníku",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
         <path d="M12 3.5c3.4 4 5.6 6.8 5.6 9.3A5.6 5.6 0 0 1 12 20.5a5.6 5.6 0 0 1-5.6-7.7c0-2.5 2.2-5.3 5.6-9.3Z" strokeLinejoin="round" />
@@ -39,7 +39,7 @@ const HERO_FEATURES = [
 export const metadata = {
   title: "Akváriá na mieru — katalóg | AQUAPRIME",
   description:
-    "Akváriá AQUAPRIME z čírého float skla, lepené profesionálnym akvaristickým silikónom. Sedem rozmerov od 80 × 35 × 40 cm (112 l) po 200 × 60 × 60 cm (720 l), výroba na mieru.",
+    "Akváriá AQUAPRIME z čírého float skla, lepené profesionálnym akvaristickým silikónom. 47 rozmerov od 37 do 1 120 litrov s cenami od 38 €, sklo 4 – 12 mm, výroba na mieru.",
 };
 
 export default function AkvariaPage() {
@@ -68,8 +68,8 @@ export default function AkvariaPage() {
             style={{ "--rd": "90ms" } as React.CSSProperties}
           >
             Nádrže z čírého float skla, lepené profesionálnym akvaristickým
-            silikónom a vyrábané kus po kuse. Sedem rozmerov od 112 do 720
-            litrov — a keď žiadny nesadne, vyrobíme presne ten váš.
+            silikónom a vyrábané kus po kuse. Štyridsaťsedem rozmerov od 37 do
+            1 120 litrov — a keď žiadny nesadne, vyrobíme presne ten váš.
           </p>
           <div
             className="cat-hero__features"

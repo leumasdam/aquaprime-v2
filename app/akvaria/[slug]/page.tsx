@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import {
   AQUARIUMS,
+  GENERIC_FEATURES,
+  GENERIC_LEAD,
   getAquarium,
   matchingCabinets,
 } from "../../aquariums";
@@ -24,7 +26,9 @@ export async function generateMetadata({
   if (!a) return { title: "Akvárium sa nenašlo" };
   return {
     title: `${a.name} cm (${a.vol}) — akvárium na mieru | AQUAPRIME`,
-    description: `${a.name} cm s objemom ${a.vol} z čírého float skla. ${a.lead.slice(0, 110)}…`,
+    description: `${a.name} cm s objemom ${a.vol} z čírého float skla ${a.glass
+      .map((g) => `${g.mm} mm`)
+      .join(" alebo ")}, cena ${a.priceLabel}. Vyrábame na zákazku.`,
   };
 }
 
@@ -55,7 +59,13 @@ export default async function Page({
             "@context": "https://schema.org",
             "@type": "Product",
             name: `${a.name} cm`,
-            description: a.lead,
+            description: a.lead ?? GENERIC_LEAD,
+            offers: {
+              "@type": "Offer",
+              price: a.priceValue,
+              priceCurrency: "EUR",
+              availability: "https://schema.org/MadeToOrder",
+            },
             category: "Akváriá na mieru",
             brand: { "@type": "Brand", name: "AQUAPRIME" },
             material: "Číre float sklo",
@@ -84,9 +94,16 @@ export default async function Page({
                 <span className="product__badge product__badge--aqua">
                   {a.vol}
                 </span>
+                {a.coverIllustrative && (
+                  <span className="pgal__illu" title="Fotka je z iného rozmeru">
+                    Ilustračné foto — iný rozmer
+                  </span>
+                )}
               </div>
               <p className="pgal__note">
-                Vizualizácia nádrže — osadenie a aquascape sú ilustračné.
+                {a.coverIllustrative
+                  ? "Ilustračná fotka iného rozmeru — nádrž vyrábame presne v uvedených rozmeroch."
+                  : "Vizualizácia nádrže — osadenie a aquascape sú ilustračné."}
               </p>
             </div>
 
@@ -98,14 +115,16 @@ export default async function Page({
               <span className="pdetail__coll">AKVÁRIUM — výroba na mieru</span>
               <h1 className="pdetail__name">{a.name} cm</h1>
               <div className="pdetail__price">
-                {a.price ?? "Cena na dopyt"}
+                {a.priceLabel}
                 <span className="pdetail__price-led">
-                  {a.price
-                    ? "vrátane DPH · nádrž vyrábame na zákazku"
-                    : "cenu pripravíme podľa rozmeru a hrúbky skla"}
+                  {a.glass.length > 1
+                    ? `vrátane DPH · ${a.glass
+                        .map((g) => `${g.mm} mm ${g.price}`)
+                        .join(" · ")}`
+                    : "vrátane DPH · nádrž vyrábame na zákazku"}
                 </span>
               </div>
-              <p className="pdetail__desc">{a.lead}</p>
+              <p className="pdetail__desc">{a.lead ?? GENERIC_LEAD}</p>
               <dl className="pdetail__specs">
                 <div>
                   <dt>Rozmer (D × Š × V)</dt>
@@ -116,8 +135,12 @@ export default async function Page({
                   <dd>{a.vol}</dd>
                 </div>
                 <div>
+                  <dt>Hrúbka skla</dt>
+                  <dd>{a.glass.map((g) => `${g.mm} mm`).join(" alebo ")}</dd>
+                </div>
+                <div>
                   <dt>Materiál</dt>
-                  <dd>číre float sklo{a.glass ? ` ${a.glass} mm` : ""}</dd>
+                  <dd>číre float sklo</dd>
                 </div>
                 <div>
                   <dt>Farba silikónu</dt>
@@ -129,13 +152,15 @@ export default async function Page({
                     <dd>{a.braces}</dd>
                   </div>
                 )}
-                <div>
-                  <dt>Použitie</dt>
-                  <dd>{a.use}</dd>
-                </div>
+                {a.use && (
+                  <div>
+                    <dt>Použitie</dt>
+                    <dd>{a.use}</dd>
+                  </div>
+                )}
               </dl>
               <ul className="pdetail__features">
-                {a.features.map((f) => (
+                {(a.features ?? GENERIC_FEATURES).map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
@@ -152,16 +177,18 @@ export default async function Page({
         </div>
       </section>
 
-      {/* zvyšok popisu od klienta — pod hlavnou zostavou, nech neruší specs */}
-      <section className="section pdetail__story">
-        <div className="wrap">
-          <div className="pdetail__story-inner" data-reveal>
-            {a.body.map((p) => (
-              <p key={p.slice(0, 40)}>{p}</p>
-            ))}
+      {/* zvyšok popisu od klienta — len pri rozmeroch, ku ktorým text dodal */}
+      {a.body && a.body.length > 0 && (
+        <section className="section pdetail__story">
+          <div className="wrap">
+            <div className="pdetail__story-inner" data-reveal>
+              {a.body.map((p) => (
+                <p key={p.slice(0, 40)}>{p}</p>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {cabinets.length === 0 && (
         <section className="section catalog__cta">

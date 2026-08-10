@@ -94,9 +94,9 @@ export default function KonfiguratorFull() {
           ? `Akvárium: ${chosen.name} cm (${chosen.vol})`
           : `Akvárium na mieru: ${customTank.w} × ${customTank.d} × ${customTank.h} cm`,
         `Zaťaženie skrinky: ~${loadKg} kg z ${FRAME_LOAD_KG} kg`,
-        tankPrice !== null
-          ? `Cena akvária: ${tankPrice} €\nSpolu: ${total + tankPrice} €`
-          : "Cena akvária: na dopyt"
+        chosen
+          ? `Cena akvária: ${chosen.priceLabel}\nSpolu: ${total + (tankPrice ?? 0)} €`
+          : "Cena akvária: na dopyt (nádrž na mieru)"
       );
     }
     window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
@@ -359,8 +359,8 @@ export default function KonfiguratorFull() {
           {withTank && (
             <div className="kfx__sumrow">
               <span>Akvárium</span>
-              {tankPrice !== null ? (
-                <b>{tankPrice.toLocaleString("sk-SK")} €</b>
+              {chosen ? (
+                <b>{chosen.priceLabel}</b>
               ) : (
                 <b className="kfx__sumrow--ask">na dopyt</b>
               )}
@@ -369,7 +369,10 @@ export default function KonfiguratorFull() {
           {withTank && tankPrice !== null && (
             <div className="kfx__sumrow kfx__sumrow--total">
               <span>Spolu</span>
-              <b>{(total + tankPrice).toLocaleString("sk-SK")} €</b>
+              <b>
+                {chosen && chosen.glass.length > 1 ? "od " : ""}
+                {(total + tankPrice).toLocaleString("sk-SK")} €
+              </b>
             </div>
           )}
           <span className="kfx__price-n">

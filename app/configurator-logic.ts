@@ -149,7 +149,15 @@ export function suggestTank(w: number, d: number): TankMatch {
   const fits = AQUARIUMS.filter((a) => a.w <= w && a.d <= d).sort(
     (x, y) => x.liters - y.liters
   );
-  const best = fits.length ? fits[fits.length - 1] : null;
+  // najväčší objem NIE je vždy najlepšia rada: na 200 cm skrinku patrí 200 cm
+  // nádrž, aj keby mala menej litrov než kratšia vyššia. Preto najprv zhoda
+  // pôdorysu, až potom objem.
+  const pick = (list: Aquarium[]) =>
+    list.length ? list[list.length - 1] : null;
+  const best =
+    pick(fits.filter((a) => a.w === w && a.d === d)) ??
+    pick(fits.filter((a) => a.w === w)) ??
+    pick(fits);
   return {
     best,
     fits,

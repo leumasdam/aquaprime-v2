@@ -1,47 +1,46 @@
 // Katalóg akvárií AQUAPRIME — nádrže na mieru z čírého float skla.
-// Texty, rozmery aj fotky sú podklady od klienta (zip „Akváriá", 2026-08-10).
-// Ceny zatiaľ nie sú v cenníku → všade „Cena na dopyt".
+//
+// Rozmery, hrúbky skla a ceny sú generované z klientovho cenníka do
+// `aquarium-sizes.ts` (na web idú len rozmery, ktoré v cenníku majú predajnú
+// cenu). Tu k nim pribúdajú popisné texty — tie sú od klienta a existujú
+// zatiaľ len k siedmim rozmerom, ku ktorým dodal aj fotky. Zvyšné rozmery
+// majú fakty (rozmer, objem, sklo, cena) a spoločný popis výroby, žiadnu
+// vymyslenú marketingovú kopiju.
 
 import { PRODUCTS, type Product } from "./products";
+import { AQUARIUM_SIZES, type AquariumSize, type GlassOption } from "./aquarium-sizes";
 
-export type Aquarium = {
-  slug: string;
+export type { GlassOption };
+
+export type Aquarium = AquariumSize & {
   /** krátky názov do karty a nadpisu */
   name: string;
   dim: string;
-  w: number;
-  d: number;
-  h: number;
-  /** objem v litroch — číslo pre filter aj badge */
-  liters: number;
-  /** objem ako text (niektoré sú „približne") */
+  /** objem ako text */
   vol: string;
-  /** úvodný odsek — pod nadpisom na detaile, skrátený v karte */
-  lead: string;
-  /** ďalšie odseky popisu */
-  body: string[];
-  features: string[];
-  /** hrúbka skla v mm — z cenníka klienta */
-  glass?: number;
-  /** cena vrátane DPH, napr. „199 €". Kým chýba, všade sa píše „Cena na dopyt". */
-  price?: string;
-  /** sklenené výstuhy — nie každý rozmer ich má */
+  /** má vlastnú fotku aj plný popis od klienta */
+  featured: boolean;
+  /** úvodný odsek — len pri rozmeroch s textom od klienta */
+  lead?: string;
+  body?: string[];
+  features?: string[];
+  /** sklenené výstuhy — uvedené len tam, kde to klient potvrdil */
   braces?: string;
   /** sladkovodné / aj morské */
-  use: string;
-  cover: string;
+  use?: string;
 };
 
-export const AQUARIUMS: Aquarium[] = [
-  {
-    slug: "akvarium-80x35x40",
-    name: "Akvárium 80 × 35 × 40",
-    dim: "80 × 35 × 40 cm",
-    w: 80,
-    d: 35,
-    h: 40,
-    liters: 112,
-    vol: "112 l",
+type ClientText = {
+  lead: string;
+  body: string[];
+  features: string[];
+  braces?: string;
+  use?: string;
+};
+
+/** Popisy od klienta (zip „Akváriá") — doslovné, neupravované. */
+const CLIENT_TEXTS: Record<string, ClientText> = {
+  "akvarium-80x35x40": {
     lead: "Akvárium Aqua Prime 80 × 35 × 40 cm je navrhnuté pre akvaristov, ktorí hľadajú spojenie kvalitného spracovania, moderného dizajnu a dlhej životnosti. Každý kus je vyrábaný na mieru s dôrazom na precíznosť detailov a vysokú kvalitu použitých materiálov.",
     body: [
       "Na výrobu používame kvalitné číre float sklo, ktoré poskytuje prirodzený pohľad na podvodný svet bez rušivých optických deformácií. Jednotlivé sklenené diely sú starostlivo zlepené odolným akvaristickým silikónom, čím vzniká pevná a spoľahlivá konštrukcia vhodná na dlhodobú prevádzku.",
@@ -57,17 +56,8 @@ export const AQUARIUMS: Aquarium[] = [
       "Stabilná a pevná konštrukcia",
     ],
     use: "sladkovodné aj morské akvárium",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
   },
-  {
-    slug: "akvarium-100x40x50",
-    name: "Akvárium 100 × 40 × 50",
-    dim: "100 × 40 × 50 cm",
-    w: 100,
-    d: 40,
-    h: 50,
-    liters: 200,
-    vol: "~200 l",
+  "akvarium-100x40x50": {
     lead: "Akvárium Aqua Prime 100 × 40 × 50 cm predstavuje ideálnu voľbu pre náročnejších akvaristov, ktorí požadujú dostatok priestoru pre ryby, rastliny aj kreatívny aquascaping. Vďaka objemu približne 200 litrov poskytuje stabilné prostredie a široké možnosti pri tvorbe jedinečného podvodného sveta.",
     body: [
       "Každé akvárium je vyrábané na mieru s dôrazom na precízne spracovanie, pevnosť a dlhú životnosť. Používame kvalitné číre float sklo, ktoré zabezpečuje maximálnu priehľadnosť a prirodzené podanie farieb. Starostlivé lepenie odolným akvaristickým silikónom vytvára pevnú a bezpečnú konštrukciu vhodnú na dlhodobú prevádzku.",
@@ -84,17 +74,8 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne výstuhy",
     use: "sladkovodné akvárium",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
   },
-  {
-    slug: "akvarium-120x50x50",
-    name: "Akvárium 120 × 50 × 50",
-    dim: "120 × 50 × 50 cm",
-    w: 120,
-    d: 50,
-    h: 50,
-    liters: 300,
-    vol: "~300 l",
+  "akvarium-120x50x50": {
     lead: "Akvárium Aqua Prime 120 × 50 × 50 cm je navrhnuté pre akvaristov, ktorí chcú vytvoriť skutočne pôsobivý podvodný svet. S objemom približne 300 litrov poskytuje dostatok priestoru pre rozsiahle aquascapy, väčšie spoločenstvá rýb aj náročnejšie biotopové projekty.",
     body: [
       "Každé akvárium vyrábame na mieru s dôrazom na kvalitu, presnosť a dlhodobú spoľahlivosť. Použité číre float sklo zabezpečuje výbornú priehľadnosť a verné podanie farieb, vďaka čomu naplno vynikne krása rastlín, dekorácií aj samotných rýb. Precízne lepenie kvalitným akvaristickým silikónom zaručuje pevnosť a bezpečnosť celej konštrukcie.",
@@ -111,17 +92,8 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne výstuhy",
     use: "sladkovodné akvárium",
-    cover: "/img/akvaria/akvarium-120x50x50.webp",
   },
-  {
-    slug: "akvarium-150x50x50",
-    name: "Akvárium 150 × 50 × 50",
-    dim: "150 × 50 × 50 cm",
-    w: 150,
-    d: 50,
-    h: 50,
-    liters: 375,
-    vol: "~375 l",
+  "akvarium-150x50x50": {
     lead: "Akvárium Aqua Prime 150 × 50 × 50 cm je určené pre akvaristov, ktorí chcú vytvoriť dominantný prvok interiéru a zároveň poskytnúť svojim rybám a rastlinám veľkorysý životný priestor. S objemom približne 375 litrov ponúka ideálne podmienky pre rozsiahle aquascapingové projekty, väčšie druhy rýb aj náročnejšie biotopové nádrže.",
     body: [
       "Každé akvárium je vyrábané na mieru s dôrazom na precízne spracovanie a maximálnu spoľahlivosť. Používame kvalitné číre float sklo, ktoré zabezpečuje výbornú priehľadnosť a umožňuje ničím nerušený pohľad na podvodný svet. Všetky spoje sú starostlivo lepené profesionálnym akvaristickým silikónom, čím vzniká pevná a odolná konštrukcia pripravená na dlhoročné používanie.",
@@ -138,17 +110,8 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne výstuhy",
     use: "sladkovodné akvárium",
-    cover: "/img/akvaria/akvarium-150x50x50.webp",
   },
-  {
-    slug: "akvarium-150x50x60",
-    name: "Akvárium 150 × 50 × 60",
-    dim: "150 × 50 × 60 cm",
-    w: 150,
-    d: 50,
-    h: 60,
-    liters: 450,
-    vol: "~450 l",
+  "akvarium-150x50x60": {
     lead: "Akvárium Aqua Prime 150 × 50 × 60 cm predstavuje ideálnu voľbu pre akvaristov, ktorí hľadajú veľkorysý priestor, prémiové spracovanie a pôsobivý vizuálny efekt. Vďaka objemu približne 450 litrov poskytuje dostatok miesta na vytvorenie rozsiahlych aquascapingových kompozícií, biotopových nádrží aj chov väčších druhov rýb.",
     body: [
       "Každé akvárium Aqua Prime je vyrábané na mieru s dôrazom na precízne spracovanie a dlhodobú spoľahlivosť. Na výrobu používame kvalitné číre float sklo, ktoré zabezpečuje vysokú priehľadnosť a verné podanie farieb. Profesionálne lepenie odolným akvaristickým silikónom vytvára pevnú a bezpečnú konštrukciu pripravenú na každodenné používanie po mnoho rokov.",
@@ -165,17 +128,8 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne výstuhy",
     use: "sladkovodné aj morské akvárium",
-    cover: "/img/akvaria/akvarium-150x50x60.webp",
   },
-  {
-    slug: "akvarium-160x60x60",
-    name: "Akvárium 160 × 60 × 60",
-    dim: "160 × 60 × 60 cm",
-    w: 160,
-    d: 60,
-    h: 60,
-    liters: 576,
-    vol: "~576 l",
+  "akvarium-160x60x60": {
     lead: "Akvárium Aqua Prime 160 × 60 × 60 cm patrí do kategórie veľkoobjemových nádrží určených pre skutočne náročných akvaristov. S objemom takmer 600 litrov poskytuje neobmedzený priestor na realizáciu veľkolepých aquascapingových projektov, biotopových nádrží aj chov väčších a náročnejších druhov rýb.",
     body: [
       "Každé akvárium vyrábame na mieru s dôrazom na maximálnu kvalitu, precízne spracovanie a dlhodobú spoľahlivosť. Používame kvalitné číre float sklo, ktoré zabezpečuje výbornú priehľadnosť a dokonale v ňom vyniknú všetky detaily podvodného sveta. Všetky spoje sú precízne lepené profesionálnym akvaristickým silikónom, ktorý zaručuje pevnosť a bezpečnosť celej konštrukcie aj pri takto veľkom objeme vody.",
@@ -194,17 +148,8 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne a priečne výstuhy",
     use: "sladkovodné akvárium",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
   },
-  {
-    slug: "akvarium-200x60x60",
-    name: "Akvárium 200 × 60 × 60",
-    dim: "200 × 60 × 60 cm",
-    w: 200,
-    d: 60,
-    h: 60,
-    liters: 720,
-    vol: "720 l",
+  "akvarium-200x60x60": {
     lead: "Akvárium Aqua Prime 200 × 60 × 60 cm predstavuje vrchol ponuky pre najnáročnejších akvaristov. S objemom 720 litrov ponúka výnimočný priestor na vytvorenie rozsiahlych prírodných scenérií, profesionálnych aquascapingových projektov a chov väčších druhov rýb. Ide o nádrž, ktorá sa stáva dominantným prvkom interiéru a poskytuje neobmedzené možnosti pri tvorbe vlastného podvodného sveta.",
     body: [
       "Každé akvárium Aqua Prime je vyrábané na mieru s dôrazom na maximálnu kvalitu spracovania, pevnosť a dlhodobú spoľahlivosť. Používame kvalitné číre float sklo, ktoré zabezpečuje krištáľovo čistý pohľad na každý detail pod hladinou. Všetky spoje sú precízne lepené profesionálnym akvaristickým silikónom, čo zaručuje vysokú pevnosť a bezpečnosť aj pri takto veľkom objeme vody.",
@@ -223,19 +168,39 @@ export const AQUARIUMS: Aquarium[] = [
     ],
     braces: "sklenené pozdĺžne a priečne výstuhy",
     use: "sladkovodné akvárium",
-    cover: "/img/akvaria/akvarium-200x60x60.webp",
-  },
+  },};
+
+/** Spoločný popis výroby pre rozmery, ku ktorým klient nedodal vlastný text. */
+export const GENERIC_LEAD =
+  "Akvárium vyrábame na zákazku z kvalitného čírého float skla, ktoré zabezpečuje vysokú priehľadnosť a verné podanie farieb. Všetky spoje sú lepené profesionálnym akvaristickým silikónom, čím vzniká pevná konštrukcia pripravená na dlhoročnú prevádzku.";
+
+export const GENERIC_FEATURES = [
+  "Výroba na mieru s dôrazom na kvalitu",
+  "Kvalitné číre float sklo s vysokou priehľadnosťou",
+  "Precízne ručné spracovanie každého kusu",
+  "Profesionálne lepenie odolným akvaristickým silikónom",
+  "Hrúbka skla dimenzovaná na objem nádrže",
 ];
+
+export const AQUARIUMS: Aquarium[] = AQUARIUM_SIZES.map((s) => {
+  const text = CLIENT_TEXTS[s.slug];
+  return {
+    ...s,
+    name: `Akvárium ${s.w} × ${s.d} × ${s.h}`,
+    dim: `${s.w} × ${s.d} × ${s.h} cm`,
+    vol: `${s.liters} l`,
+    featured: !!text,
+    ...(text ?? {}),
+  };
+});
 
 export function getAquarium(slug: string): Aquarium | undefined {
   return AQUARIUMS.find((a) => a.slug === slug);
 }
 
-/** Cena nádrže ako číslo, alebo null keď ju cenník zatiaľ nemá. */
-export function aquariumPriceValue(a: Aquarium): number | null {
-  if (!a.price) return null;
-  const n = Number(a.price.replace(/[^\d]/g, ""));
-  return Number.isFinite(n) && n > 0 ? n : null;
+/** Najnižšia cena nádrže ako číslo — na súčty v konfigurátore. */
+export function aquariumPriceValue(a: Aquarium): number {
+  return a.priceValue;
 }
 
 /**

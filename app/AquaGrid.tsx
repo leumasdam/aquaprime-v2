@@ -8,9 +8,10 @@ const LENGTHS = [...new Set(AQUARIUMS.map((a) => a.w))].sort((x, y) => x - y);
 
 /** Objemové pásma — pre zákazníka zrozumiteľnejšie než holé litre. */
 const BANDS = [
-  { id: "s", label: "do 200 l", min: 0, max: 200 },
-  { id: "m", label: "200 – 400 l", min: 201, max: 400 },
-  { id: "l", label: "nad 400 l", min: 401, max: Infinity },
+  { id: "xs", label: "do 150 l", min: 0, max: 150 },
+  { id: "s", label: "150 – 300 l", min: 151, max: 300 },
+  { id: "m", label: "300 – 500 l", min: 301, max: 500 },
+  { id: "l", label: "nad 500 l", min: 501, max: Infinity },
 ] as const;
 
 type Band = (typeof BANDS)[number]["id"] | "all";
@@ -25,6 +26,11 @@ export default function AquaGrid() {
     const b = BANDS.find((x) => x.id === band)!;
     return a.liters >= b.min && a.liters <= b.max;
   });
+
+  // rozmery s vlastnou fotkou a popisom od klienta idú v mriežke prvé
+  const sorted = [...items].sort(
+    (x, y) => Number(y.featured) - Number(x.featured) || x.liters - y.liters
+  );
 
   return (
     <>
@@ -69,8 +75,13 @@ export default function AquaGrid() {
           </button>
         ))}
       </div>
+      <p className="catalog__count">
+        {items.length === AQUARIUMS.length
+          ? `${AQUARIUMS.length} rozmerov v cenníku`
+          : `${items.length} z ${AQUARIUMS.length} rozmerov`}
+      </p>
       <div className="product-grid" key={`${band}-${len}`}>
-        {items.map((a, i) => (
+        {sorted.map((a, i) => (
           <AquariumCard key={a.slug} a={a} entered delay={(i % 3) * 70} />
         ))}
       </div>

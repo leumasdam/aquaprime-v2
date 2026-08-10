@@ -3934,6 +3934,15 @@ button:focus-visible {
   flex-direction: column;
   padding: clamp(6px, 1vw, 14px) 0;
 }
+/* počet výsledkov nad mriežkou */
+.catalog__count {
+  margin-bottom: 14px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
 /* parametrická skica skrinky (konfigurátory) */
 .cabsvg {
   display: block;

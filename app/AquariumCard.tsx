@@ -40,15 +40,11 @@ export default function AquariumCard({
           </span>
           <span>
             <i>Sklo</i>
-            číre float
+            {a.glass.map((g) => `${g.mm} mm`).join(" / ")}
           </span>
         </div>
         <div className="product__foot">
-          <span
-            className={`product__price${a.price ? "" : " product__price--ask"}`}
-          >
-            {a.price ?? "Cena na dopyt"}
-          </span>
+          <span className="product__price">{a.priceLabel}</span>
           <span className="product__cta">
             Detail <span aria-hidden>→</span>
           </span>
