@@ -13,6 +13,7 @@ import AquariumCard from "../../AquariumCard";
 import ProductCard from "../../ProductCard";
 import DoKosika from "../../DoKosika";
 import Drobcek from "../../Drobcek";
+import { VT } from "../../vt";
 
 export function generateStaticParams() {
   return AQUARIUMS.map((a) => ({ slug: a.slug }));
@@ -85,6 +86,8 @@ export default async function Page({
           </div>
           <div className="pdetail__grid">
             <div className="pgal pgal--scene" data-reveal="scale">
+              {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
+              <VT name={`a-${a.slug}`} share="vt-morph">
               <div className="pgal__main">
                 <Image
                   src={a.cover}
@@ -102,6 +105,7 @@ export default async function Page({
                   </span>
                 )}
               </div>
+              </VT>
               <p className="pgal__note">
                 {a.coverIllustrative
                   ? "Ilustračná fotka iného rozmeru — nádrž vyrábame presne v uvedených rozmeroch."

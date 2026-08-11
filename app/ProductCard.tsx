@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import type { Product } from "./products";
 import Swatch from "./Swatch";
+import { VT } from "./vt";
 
 /** Zdieľaná produktová karta — katalóg, home featured aj súvisiace na detaile. */
 export default function ProductCard({
@@ -25,17 +26,20 @@ export default function ProductCard({
       {...(reveal ? { "data-reveal": "" } : {})}
       style={{ "--rd": `${delay}ms` } as CSSProperties}
     >
-      <div className="product__media product__media--photo">
-        <Image
-          src={p.cover}
-          alt={`${p.name} — skrinka pod akvárium`}
-          fill
-          sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"
-        />
-        <span className={`product__badge product__badge--${p.tier}`}>
-          {p.tierLabel}
-        </span>
-      </div>
+      {/* rovnaké meno má galéria na detaile — karta sa doň premorfuje */}
+      <VT name={`p-${p.slug}`} share="vt-morph">
+        <div className="product__media product__media--photo">
+          <Image
+            src={p.cover}
+            alt={`${p.name} — skrinka pod akvárium`}
+            fill
+            sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"
+          />
+          <span className={`product__badge product__badge--${p.tier}`}>
+            {p.tierLabel}
+          </span>
+        </div>
+      </VT>
       <div className="product__body">
         <h3 className="product__name">{p.name}</h3>
         {p.decors.length > 1 && (

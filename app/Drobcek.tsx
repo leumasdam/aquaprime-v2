@@ -12,7 +12,7 @@ export default function Drobcek({
 }) {
   return (
     <nav className="drobcek" aria-label="Drobčeková navigácia">
-      <Link href="/" className="drobcek__domov">
+      <Link href="/" className="drobcek__domov" transitionTypes={["nav-dozadu"]}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
           <path d="M4 11 12 4.5 20 11" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -22,7 +22,13 @@ export default function Drobcek({
       {cesta.map((k) => (
         <span key={k.nazov} className="drobcek__krok">
           <span aria-hidden>/</span>
-          {k.href ? <Link href={k.href}>{k.nazov}</Link> : <em>{k.nazov}</em>}
+          {k.href ? (
+            <Link href={k.href} transitionTypes={["nav-dozadu"]}>
+              {k.nazov}
+            </Link>
+          ) : (
+            <em>{k.nazov}</em>
+          )}
         </span>
       ))}
     </nav>

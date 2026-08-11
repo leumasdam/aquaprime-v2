@@ -10,6 +10,7 @@ export default function KosikTlacidlo() {
   return (
     <Link
       href="/kosik"
+      transitionTypes={["nav-dopredu"]}
       className={`nav__kosik${pocet > 0 ? " has-items" : ""}`}
       aria-label={pocet > 0 ? `Košík — ${pocet} položiek` : "Košík"}
     >

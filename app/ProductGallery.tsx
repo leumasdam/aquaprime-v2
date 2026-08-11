@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Product } from "./products";
 import Swatch from "./Swatch";
+import { VT } from "./vt";
 
 /** Galéria detailu produktu — hlavná fotka, thumbnaily a prepínač dekorov. */
 export default function ProductGallery({ p }: { p: Product }) {
@@ -23,6 +24,8 @@ export default function ProductGallery({ p }: { p: Product }) {
 
   return (
     <div className="pgal" data-reveal="scale">
+      {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
+      <VT name={`p-${p.slug}`} share="vt-morph">
       <div className="pgal__main">
         <Image
           key={img}
@@ -51,6 +54,7 @@ export default function ProductGallery({ p }: { p: Product }) {
             </span>
           ))}
       </div>
+      </VT>
 
       {decor.images.length > 1 && (
         <div className="pgal__thumbs">

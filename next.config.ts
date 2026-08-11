@@ -16,6 +16,11 @@ const LEGACY_SLUGS: Record<string, string> = {
 };
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // React <ViewTransition> — prechody medzi stránkami cez natívne
+    // View Transitions API (bez podpory prehliadača sa len neanimuje)
+    viewTransition: true,
+  },
   async redirects() {
     return [
       ...Object.entries(LEGACY_SLUGS).map(([from, to]) => ({

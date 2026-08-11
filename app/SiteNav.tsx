@@ -7,12 +7,40 @@ import { Logo } from "./brand";
 import { NAV } from "./nav";
 import KosikTlacidlo from "./KosikTlacidlo";
 
+/* Poradie stránok zľava doprava — z neho sa počíta smer prechodu.
+   Cieľ napravo od aktuálnej = obsah odletí doľava a nový priletí sprava. */
+const PORADIE: Record<string, number> = {
+  "/": 0,
+  "/skrinky": 1,
+  "/akvaria": 2,
+  "/technologia": 3,
+  "/realizacie": 4,
+  "/kontakt": 5,
+  "/konfigurator": 6,
+  "/kosik": 7,
+};
+
+function indexStranky(pathname: string): number {
+  if (pathname === "/") return 0;
+  const zhoda = Object.keys(PORADIE)
+    .filter((p) => p !== "/" && pathname.startsWith(p))
+    .sort((a, b) => b.length - a.length)[0];
+  return zhoda ? PORADIE[zhoda] : 0;
+}
+
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const tu = indexStranky(pathname);
+  const smer = (href: string): string[] | undefined => {
+    const ciel = PORADIE[href] ?? 0;
+    if (ciel === tu) return undefined;
+    return [ciel > tu ? "nav-dopredu" : "nav-dozadu"];
+  };
 
   /* Cestu domov drží drobček „Domov" na podstránkach — je stále na mieste a
      nič nevyskakuje. Bublina pri logu preto ostáva len ako popiska na hover;
@@ -33,12 +61,13 @@ export default function SiteNav() {
   }, [open]);
 
   return (
-    <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
+    <header className={`nav${scrolled ? " is-scrolled" : ""}`} style={{ viewTransitionName: "site-header" }}>
       <div className="wrap nav__inner">
         <div className="nav__brandwrap">
           <Link
             href="/"
             className="nav__brand"
+            transitionTypes={pathname === "/" ? undefined : ["nav-dozadu"]}
             aria-label="AQUAPRIME — späť na úvodnú stránku"
             aria-describedby="nav-tip"
             onClick={() => {
@@ -62,6 +91,7 @@ export default function SiteNav() {
             <Link
               key={item.label}
               href={item.href}
+              transitionTypes={smer(item.href)}
               className={`nav__link${isActive(item.href) ? " is-active" : ""}`}
             >
               {item.label}
@@ -69,7 +99,11 @@ export default function SiteNav() {
           ))}
         </nav>
         <span className="nav__lang">SK ⌄</span>
-        <Link href="/konfigurator" className="nav__cta">
+        <Link
+          href="/konfigurator"
+          transitionTypes={smer("/konfigurator")}
+          className="nav__cta"
+        >
           KONFIGURÁTOR
         </Link>
         <KosikTlacidlo />
@@ -91,6 +125,7 @@ export default function SiteNav() {
             <Link
               key={item.label}
               href={item.href}
+              transitionTypes={smer(item.href)}
               className="nav__mobile-link"
               style={{ "--i": i } as React.CSSProperties}
               onClick={() => setOpen(false)}
@@ -101,6 +136,7 @@ export default function SiteNav() {
         </nav>
         <Link
           href="/konfigurator"
+          transitionTypes={smer("/konfigurator")}
           className="btn-cyan nav__mobile-cta"
           onClick={() => setOpen(false)}
         >

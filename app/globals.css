@@ -3210,22 +3210,101 @@ button {
 /* ===========================================================
    ROUTE TRANSITION (per-navigácia fade-up)
    =========================================================== */
-@keyframes routeIn {
+/* ===========================================================
+   PRECHODY MEDZI STRÁNKAMI — View Transitions API
+   (smer nesú transitionTypes na linkoch; bez podpory prehliadača
+    sa stránky len prepnú bez animácie)
+   =========================================================== */
+
+/* header stojí — hýbe sa obsah, nie celý viewport */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* smerový slide: dopredu = starý obsah doľava, nový priletí sprava */
+::view-transition-old(.vt-dopredu) {
+  --posun: -64px;
+  animation:
+    0.16s ease-in both vtFade reverse,
+    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide reverse;
+}
+::view-transition-new(.vt-dopredu) {
+  --posun: 64px;
+  animation:
+    0.24s ease-out 0.14s both vtFade,
+    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide;
+}
+/* dozadu — zrkadlovo */
+::view-transition-old(.vt-dozadu) {
+  --posun: 64px;
+  animation:
+    0.16s ease-in both vtFade reverse,
+    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide reverse;
+}
+::view-transition-new(.vt-dozadu) {
+  --posun: -64px;
+  animation:
+    0.24s ease-out 0.14s both vtFade,
+    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide;
+}
+
+/* bez smeru (karty, pätička, priame prekliky) — jemný cross-fade */
+::view-transition-old(.vt-fade) {
+  animation: 0.18s ease-in both vtFade reverse;
+}
+::view-transition-new(.vt-fade) {
+  animation: 0.26s ease-out 0.08s both vtFade;
+}
+
+/* shared-element morph: karta produktu → galéria detailu */
+::view-transition-group(.vt-morph) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0.2, 1);
+  z-index: 50;
+}
+::view-transition-image-pair(.vt-morph) {
+  animation-name: vtMorphBlur;
+  animation-duration: 0.45s;
+}
+
+@keyframes vtFade {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    filter: blur(3px);
   }
   to {
     opacity: 1;
-    transform: none;
+    filter: blur(0);
   }
 }
-.route-fade {
-  animation: routeIn 0.5s var(--ease) both;
+@keyframes vtSlide {
+  from {
+    translate: var(--posun) 0;
+  }
+  to {
+    translate: 0 0;
+  }
 }
+/* jemný blur v strede morfu skryje interpolačné artefakty */
+@keyframes vtMorphBlur {
+  30% {
+    filter: blur(2px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .route-fade {
-    animation: none;
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
 
