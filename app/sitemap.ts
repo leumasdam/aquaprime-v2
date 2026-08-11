@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS } from "./products";
 import { AQUARIUMS } from "./aquariums";
+import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 
 const BASE = "https://aquaprime.sk";
 const ROUTES = [
@@ -17,6 +18,8 @@ const ROUTES = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // skrytý web neponúka mapu stránok — inak by ju robot našiel aj bez odkazu
+  if (SKRYTY_PRED_VYHLADAVACMI) return [];
   return [
     ...ROUTES.map((r) => ({
       url: BASE + r,

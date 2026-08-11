@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Tinos, Inter } from "next/font/google";
+import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 import "./globals.css";
 import ScrollFx from "./ScrollFx";
 import DevViewport from "./DevViewport";
@@ -44,6 +45,15 @@ export const metadata: Metadata = {
     locale: "sk_SK",
     siteName: "AQUAPRIME",
   },
+  // kým sa web dolaďuje, nesmie skončiť vo vyhľadávaní ani v náhľadoch
+  ...(SKRYTY_PRED_VYHLADAVACMI && {
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: { index: false, follow: false, noimageindex: true },
+    },
+  }),
 };
 
 export default function RootLayout({
