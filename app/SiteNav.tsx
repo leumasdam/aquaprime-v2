@@ -16,28 +16,29 @@ export default function SiteNav() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   /* Úvod nemá vlastnú položku v navigácii — cesta domov je logo. Na podstránke
-     to raz za návštevu jemne pripomenieme, potom už len na prejdenie myšou. */
+     to sem-tam pripomenieme: krátko sa ukáže, zmizne a o chvíľu znova.
+     Keď je záložka v pozadí, nepripomíname — nikto to tam nevidí. */
   useEffect(() => {
     if (pathname === "/") return;
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem("aq:navtip") === "1";
-    } catch {
-      seen = true;
-    }
-    if (seen) return;
-    const show = setTimeout(() => {
+
+    const TRVANIE = 4500;
+    const PAUZA = 60000;
+    let skryt: ReturnType<typeof setTimeout>;
+
+    const ukaz = () => {
+      if (document.hidden) return;
       setPeek(true);
-      try {
-        sessionStorage.setItem("aq:navtip", "1");
-      } catch {
-        /* ignore */
-      }
-    }, 1400);
-    const hide = setTimeout(() => setPeek(false), 6200);
+      skryt = setTimeout(() => setPeek(false), TRVANIE);
+    };
+
+    const prvy = setTimeout(ukaz, 2000);
+    const opakovanie = setInterval(ukaz, PAUZA);
+
     return () => {
-      clearTimeout(show);
-      clearTimeout(hide);
+      clearTimeout(prvy);
+      clearTimeout(skryt);
+      clearInterval(opakovanie);
+      setPeek(false);
     };
   }, [pathname]);
 
@@ -78,7 +79,7 @@ export default function SiteNav() {
                 <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            Logo je cesta domov
+            Klik sem a odplávaš naspäť na domovskú stránku
           </span>
         </div>
         <nav className="nav__links">
