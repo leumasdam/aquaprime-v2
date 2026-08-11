@@ -76,6 +76,11 @@ function formatTel(raw: string): string {
 export default function KontaktForm() {
   const [d, setD] = useState<Draft>(EMPTY);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  /** true = odišlo priamo z webu, false = otvorili sme mailový klient */
+  const [delivered, setDelivered] = useState(false);
+  /** pasca na roboty — pole je skryté, človek doň nenapíše */
+  const [hp, setHp] = useState("");
   const [copied, setCopied] = useState(false);
   const [restored, setRestored] = useState(false);
   const [openList, setOpenList] = useState(false);
@@ -223,17 +228,51 @@ export default function KontaktForm() {
       .join("\n");
   }, [d, odvodene]);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSend) return;
-    window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
-      `Správa z webu — ${TEMY.find((x) => x.id === d.tema)?.label ?? "kontakt"}`
-    )}&body=${encodeURIComponent(sprava)}`;
+    if (!canSend || sending) return;
+    setSending(true);
+
+    // Primárne odoslanie priamo z webu. Keď endpoint nie je nastavený alebo
+    // zlyhá, spadneme na mailto — zákazník tak neostane bez cesty.
+    let odoslane = false;
+    try {
+      const res = await fetch("/api/dopyt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tema: TEMY.find((x) => x.id === d.tema)?.label ?? "",
+          rozmer: d.rozmer,
+          meno: d.meno,
+          email: d.email,
+          tel: d.tel,
+          sprava: d.sprava,
+          odvodene: odvodene
+            ? `~${odvodene.liters} l · sklo ${odvodene.glass.join(
+                "/"
+              )} mm · zaťaženie ~${odvodene.load} kg · skrinka ${odvodene.cab.name}`
+            : "",
+          web: hp,
+        }),
+      });
+      odoslane = res.ok;
+    } catch {
+      odoslane = false;
+    }
+
+    if (!odoslane) {
+      window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
+        `Správa z webu — ${TEMY.find((x) => x.id === d.tema)?.label ?? "kontakt"}`
+      )}&body=${encodeURIComponent(sprava)}`;
+    }
+
     try {
       localStorage.removeItem(DRAFT_KEY);
     } catch {
       /* ignore */
     }
+    setDelivered(odoslane);
+    setSending(false);
     setSent(true);
   };
 
@@ -253,11 +292,22 @@ export default function KontaktForm() {
         <div className="kf2__done-ico" aria-hidden>
           ✓
         </div>
-        <h2 className="kf2__done-title">Správa je pripravená na odoslanie.</h2>
+        <h2 className="kf2__done-title">
+          {delivered ? "Správa odoslaná." : "Správa je pripravená na odoslanie."}
+        </h2>
         <p className="kf2__done-body">
-          Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí stlačiť
-          odoslať. Ak sa neotvoril, skopírujte si správu a pošlite ju na{" "}
-          <a href={`mailto:${OWNER_EMAIL}`}>{OWNER_EMAIL}</a>.
+          {delivered ? (
+            <>
+              Máme ju u seba a potvrdenie sme poslali aj na váš e-mail. Ozveme sa
+              spravidla do 24 hodín v pracovný deň.
+            </>
+          ) : (
+            <>
+              Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí
+              stlačiť odoslať. Ak sa neotvoril, skopírujte si správu a pošlite ju
+              na <a href={`mailto:${OWNER_EMAIL}`}>{OWNER_EMAIL}</a>.
+            </>
+          )}
         </p>
         <div className="kf2__done-actions">
           <button type="button" className="btn-outline" onClick={copy}>
@@ -539,9 +589,31 @@ export default function KontaktForm() {
         />
       </fieldset>
 
+      {/* pasca na roboty — pre človeka neviditeľná a mimo tab poradia */}
+      <input
+        type="text"
+        name="web"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={hp}
+        onChange={(e) => setHp(e.target.value)}
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
+
       <div className="kf2__send">
-        <button type="submit" className="btn-cyan kf2__submit" disabled={!canSend}>
-          ODOSLAŤ SPRÁVU <span aria-hidden>→</span>
+        <button
+          type="submit"
+          className="btn-cyan kf2__submit"
+          disabled={!canSend || sending}
+        >
+          {sending ? "ODOSIELAM…" : "ODOSLAŤ SPRÁVU"} <span aria-hidden>→</span>
         </button>
         <button type="button" className="btn-outline" onClick={copy}>
           {copied ? "Skopírované ✓" : "Skopírovať"}
