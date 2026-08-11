@@ -3581,6 +3581,16 @@ button:focus-visible {
   text-transform: uppercase;
   color: rgba(236, 241, 242, 0.85);
 }
+/* Tá istá skrinka a dekor, len iná dĺžka — vecná poznámka, nie výstraha.
+   Výrazný štítok si necháme na prípad, keď fotka je z iného radu. */
+.pgal__illu--size {
+  background: rgba(5, 6, 6, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: rgba(236, 241, 242, 0.6);
+}
 .pdetail__coll {
   display: inline-block;
   font-weight: 700;

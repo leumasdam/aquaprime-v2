@@ -26,11 +26,19 @@ export default function ProductGallery({ p }: { p: Product }) {
         <span className={`product__badge product__badge--${p.tier}`}>
           {p.tierLabel}
         </span>
-        {decor.inherited && (
-          <span className="pgal__illu" title="Rovnaký dekor na skrinke iného rozmeru">
-            Ilustračné foto — iný rozmer
-          </span>
-        )}
+        {decor.inherited &&
+          (decor.illuFrom === "rad" ? (
+            <span className="pgal__illu" title="Tento dekor máme nafotený len na inom rade">
+              Ilustračné foto — iný rad
+            </span>
+          ) : (
+            <span
+              className="pgal__illu pgal__illu--size"
+              title="Tá istá skrinka a dekor, len kratšie vyhotovenie"
+            >
+              Foto rozmeru {decor.illuSize ?? "iného"}
+            </span>
+          ))}
       </div>
 
       {decor.images.length > 1 && (
@@ -78,7 +86,11 @@ export default function ProductGallery({ p }: { p: Product }) {
 
       {decor.inherited && (
         <p className="pgal__note">
-          Ilustračné fotografie — rovnaký dekor na skrinke iného rozmeru.
+          {decor.illuFrom === "rad"
+            ? "Ilustračné fotografie — tento dekor máme zatiaľ nafotený len na inom rade konštrukcie."
+            : `Fotografie zachytávajú rovnakú skrinku v tomto dekore, len v dĺžke ${
+                decor.illuSize ?? "iného rozmeru"
+              }. Konštrukcia aj povrch sú zhodné.`}
         </p>
       )}
     </div>

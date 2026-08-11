@@ -43,10 +43,12 @@ export default function KonfiguratorFull() {
   const { w, d, h } = size;
 
   // dekor sa drží naprieč zmenou radu, len ak ho daný produkt naozaj má;
-  // bez voľby ukáž ten, ku ktorému existuje reálna fotka tohto rozmeru
+  // bez voľby ukáž najlepšie zdokumentovaný — vlastná fotka pred fotkou inej
+  // dĺžky, tá pred fotkou iného radu
   const decor =
     product.decors.find((x) => x.id === decorId) ??
     product.decors.find((x) => !x.inherited) ??
+    product.decors.find((x) => x.illuFrom === "rozmer") ??
     product.decors[0];
   const cfgDecor = toCfgDecor(decor);
 
@@ -211,9 +213,14 @@ export default function KonfiguratorFull() {
                 sizes="(max-width: 980px) 92vw, 46vw"
                 priority
               />
-              {decor.inherited && (
-                <span className="pgal__illu">Ilustračné foto — iný rozmer</span>
-              )}
+              {decor.inherited &&
+                (decor.illuFrom === "rad" ? (
+                  <span className="pgal__illu">Ilustračné foto — iný rad</span>
+                ) : (
+                  <span className="pgal__illu pgal__illu--size">
+                    Foto rozmeru {decor.illuSize ?? "iného"}
+                  </span>
+                ))}
             </div>
           ) : view === "skica" ? (
             <CabinetPreview
@@ -232,9 +239,11 @@ export default function KonfiguratorFull() {
         </div>
         <p className="kfx__stagenote">
           {view === "foto"
-            ? decor.inherited
-              ? "Fotka rovnakého dekoru na inom rozmere — tvar a konštrukcia sú zhodné."
-              : "Reálna fotka produktu z katalógu."
+            ? !decor.inherited
+              ? "Reálna fotka tohto produktu z katalógu."
+              : decor.illuFrom === "rad"
+                ? "Tento dekor máme nafotený zatiaľ len na inom rade — tvar zodpovedá zvolenému radu v skici."
+                : `Tá istá skrinka a dekor, nafotená v dĺžke ${decor.illuSize ?? "iného rozmeru"}.`
             : view === "skica"
               ? withTank
                 ? "Skica zostavy — fotka skrinku s nádržou ukázať nevie."

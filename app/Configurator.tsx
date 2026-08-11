@@ -25,10 +25,11 @@ export default function Configurator() {
 
   const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
   const product = productFor(tier, size)!;
-  // bez vlastnej voľby ukáž dekor, ku ktorému máme reálnu fotku tohto rozmeru
+  // bez vlastnej voľby ukáž najlepšie zdokumentovaný dekor
   const decor =
     product.decors.find((x) => x.id === decorId) ??
     product.decors.find((x) => !x.inherited) ??
+    product.decors.find((x) => x.illuFrom === "rozmer") ??
     product.decors[0];
   const price = priceOf(product, false);
   const ledPrem = ledOf(product);
@@ -45,9 +46,14 @@ export default function Configurator() {
             fill
             sizes="(max-width: 900px) 92vw, 46vw"
           />
-          {decor.inherited && (
-            <span className="pgal__illu">Ilustračné foto — iný rozmer</span>
-          )}
+          {decor.inherited &&
+            (decor.illuFrom === "rad" ? (
+              <span className="pgal__illu">Ilustračné foto — iný rad</span>
+            ) : (
+              <span className="pgal__illu pgal__illu--size">
+                Foto rozmeru {decor.illuSize ?? "iného"}
+              </span>
+            ))}
         </div>
         <p className="cfg__hint">
           {product.tierLabel} · {product.dim} · {decor.name}
