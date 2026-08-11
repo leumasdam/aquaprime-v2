@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { PRODUCTS, getProduct, type Tier } from "../../products";
 import ProductGallery from "../../ProductGallery";
 import ProductCard from "../../ProductCard";
+import SkrinkaDoKosika from "../../SkrinkaDoKosika";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -116,11 +117,9 @@ export default async function Page({
                 ))}
               </ul>
               <div className="pdetail__actions">
-                <Link href="/dopyt" className="btn-cyan">
-                  NEZÁVÄZNÝ DOPYT <span aria-hidden>→</span>
-                </Link>
-                <Link href="/skrinky" className="btn-outline">
-                  <span aria-hidden>←</span> Späť na katalóg
+                <SkrinkaDoKosika p={p} />
+                <Link href="/dopyt" className="btn-outline">
+                  Nezáväzný dopyt <span aria-hidden>→</span>
                 </Link>
               </div>
             </div>

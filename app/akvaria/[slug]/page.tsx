@@ -11,6 +11,7 @@ import {
 } from "../../aquariums";
 import AquariumCard from "../../AquariumCard";
 import ProductCard from "../../ProductCard";
+import DoKosika from "../../DoKosika";
 
 export function generateStaticParams() {
   return AQUARIUMS.map((a) => ({ slug: a.slug }));
@@ -165,13 +166,28 @@ export default async function Page({
                 ))}
               </ul>
               <div className="pdetail__actions">
-                <Link href="/dopyt" className="btn-cyan">
-                  NEZÁVÄZNÝ DOPYT <span aria-hidden>→</span>
-                </Link>
-                <Link href="/akvaria" className="btn-outline">
-                  <span aria-hidden>←</span> Späť na katalóg
+                <DoKosika
+                  polozka={{
+                    id: `akvarium-${a.slug}-${a.glass[0].mm}`,
+                    druh: "akvarium",
+                    slug: a.slug,
+                    nazov: `${a.name} cm`,
+                    variant: `${a.vol} · sklo ${a.glass[0].mm} mm`,
+                    cena: a.priceValue,
+                    obrazok: a.cover,
+                  }}
+                />
+                <Link href="/dopyt" className="btn-outline">
+                  Nezáväzný dopyt <span aria-hidden>→</span>
                 </Link>
               </div>
+              {a.glass.length > 1 && (
+                <p className="pdetail__note">
+                  Do košíka ide verzia so sklom {a.glass[0].mm} mm za{" "}
+                  {a.glass[0].price}. Hrubšie sklo ({a.glass[1].mm} mm,{" "}
+                  {a.glass[1].price}) doladíme pri potvrdení objednávky.
+                </p>
+              )}
             </div>
           </div>
         </div>

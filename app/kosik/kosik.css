@@ -1,0 +1,314 @@
+/* /kosik — rovnaký gridový a kartový systém ako kontakt */
+
+.kos {
+  --k-gap: clamp(14px, 1.1vw, 20px);
+  --k-pad: clamp(18px, 1.5vw, 28px);
+  --k-radius: 12px;
+  padding-bottom: clamp(56px, 6vw, 104px);
+}
+.kos__head {
+  position: relative;
+  padding-block: clamp(40px, 5vw, 76px) clamp(20px, 2.4vw, 34px);
+}
+.kos__head .eyebrow {
+  margin-bottom: 16px;
+}
+.kos__title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 1.3rem + 2.2vw, 3.2rem);
+  line-height: 1.05;
+  color: var(--ink-90);
+}
+
+.kos__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: var(--k-gap);
+  align-items: start;
+}
+.kos__polozky {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-gap);
+}
+
+/* položka */
+.kos__item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto auto;
+  gap: clamp(12px, 1.4vw, 20px);
+  align-items: center;
+  padding: var(--k-pad);
+}
+.kos__item-foto {
+  position: relative;
+  width: 96px;
+  aspect-ratio: 5 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.kos__item-foto img {
+  object-fit: contain;
+  padding: 5%;
+}
+.kos__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.kos__item-nazov {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  color: var(--ink-90);
+}
+.kos__item-nazov:hover {
+  color: var(--cyan);
+}
+.kos__item-variant {
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+.kos__zmaz {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 0.6875rem;
+  color: var(--faint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.kos__zmaz:hover {
+  color: #e8a047;
+}
+.kos__item-pocet {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.kos__item-pocet button {
+  width: 32px;
+  height: 34px;
+  font-size: 1rem;
+  color: var(--body);
+  transition: background 0.2s, color 0.2s;
+}
+.kos__item-pocet button:hover {
+  background: rgba(71, 199, 232, 0.1);
+  color: var(--ink);
+}
+.kos__item-pocet span {
+  min-width: 30px;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.kos__item-cena {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--cyan);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.kos__vyprazdni {
+  align-self: flex-start;
+  font-size: 0.6875rem;
+  color: var(--faint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.kos__vyprazdni:hover {
+  color: #e8a047;
+}
+
+/* pravý stĺpec */
+.kos__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-gap);
+  position: sticky;
+  top: calc(var(--nav-h) + var(--k-gap));
+}
+.kos__sum {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.kos__sumrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.8125rem;
+  color: var(--body);
+}
+.kos__sumrow b {
+  color: var(--ink-90);
+  font-variant-numeric: tabular-nums;
+}
+.kos__sumrow--total {
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+}
+.kos__sumrow--total span {
+  font-weight: 600;
+  color: var(--ink-90);
+}
+.kos__sumrow--total b {
+  font-size: 1.35rem;
+  color: var(--cyan);
+}
+.kos__h2 {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--ink-90);
+  margin-bottom: 14px;
+}
+.kos__udaje {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.kos__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+.kos__udaje label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kos__udaje label > span {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.kos__udaje input,
+.kos__udaje textarea {
+  width: 100%;
+  padding: 11px 13px;
+  background: rgba(6, 8, 9, 0.7);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  transition: border-color 0.2s;
+}
+.kos__udaje input:focus,
+.kos__udaje textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+.kos__udaje textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+.kos__note {
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--faint);
+}
+.kos__note b {
+  color: var(--ink-soft);
+}
+.kos__chyba {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #e8a047;
+  padding: 12px 14px;
+  border: 1px solid rgba(232, 160, 71, 0.4);
+  border-radius: 9px;
+}
+.kos__odoslat {
+  justify-content: center;
+}
+.kos__odoslat:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* prázdny košík a poďakovanie */
+.kos__prazdny,
+.kos__done {
+  text-align: center;
+  padding: clamp(32px, 5vw, 64px) var(--k-pad);
+}
+.kos__prazdny h2,
+.kos__done-title {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--ink-90);
+  margin-bottom: 10px;
+}
+.kos__prazdny p,
+.kos__done-body {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--body);
+  max-width: 52ch;
+  margin: 0 auto 22px;
+}
+.kos__done-body b {
+  color: var(--cyan);
+}
+.kos__prazdny-akcie {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.kos__done-ico {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(71, 199, 232, 0.5);
+  color: var(--cyan);
+  font-size: 1.3rem;
+}
+
+@media (max-width: 1080px) {
+  .kos__grid {
+    grid-template-columns: 1fr;
+  }
+  .kos__form {
+    position: static;
+  }
+}
+@media (max-width: 620px) {
+  .kos__item {
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas:
+      "foto info"
+      "pocet cena";
+    row-gap: 14px;
+  }
+  .kos__item-foto {
+    grid-area: foto;
+    width: 72px;
+  }
+  .kos__item-info {
+    grid-area: info;
+  }
+  .kos__item-pocet {
+    grid-area: pocet;
+  }
+  .kos__item-cena {
+    grid-area: cena;
+    text-align: right;
+    align-self: center;
+  }
+  .kos__row {
+    grid-template-columns: 1fr;
+  }
+}

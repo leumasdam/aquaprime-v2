@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Tinos, Inter } from "next/font/google";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
+import { KosikProvider } from "./kosik-store";
 import "./globals.css";
 import ScrollFx from "./ScrollFx";
 import DevViewport from "./DevViewport";
@@ -83,10 +84,12 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Preskočiť na obsah
         </a>
-        <ScrollProgress />
-        <SiteNav />
-        {children}
-        <SiteFooter />
+        <KosikProvider>
+          <ScrollProgress />
+          <SiteNav />
+          {children}
+          <SiteFooter />
+        </KosikProvider>
         <BackToTop />
         <ScrollFx />
         {process.env.NODE_ENV === "development" && <DevViewport />}

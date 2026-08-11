@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./brand";
 import { NAV } from "./nav";
+import KosikTlacidlo from "./KosikTlacidlo";
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -92,6 +93,7 @@ export default function SiteNav() {
           ))}
         </nav>
         <span className="nav__lang">SK ⌄</span>
+        <KosikTlacidlo />
         <Link href="/konfigurator" className="nav__cta">
           KONFIGURÁTOR
         </Link>

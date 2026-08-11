@@ -172,6 +172,53 @@ button {
   align-items: center;
   white-space: nowrap;
 }
+/* košík v navigácii */
+.nav__kosik {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 9px;
+  border: 1px solid var(--line-2);
+  color: var(--body);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.nav__kosik svg {
+  width: 19px;
+  height: 19px;
+}
+.nav__kosik:hover {
+  color: var(--ink);
+  border-color: rgba(71, 199, 232, 0.5);
+  background: rgba(71, 199, 232, 0.06);
+}
+.nav__kosik.has-items {
+  color: var(--cyan);
+  border-color: rgba(71, 199, 232, 0.45);
+}
+.nav__kosik-pocet {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 100px;
+  background: var(--cyan);
+  color: #04222b;
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+/* tlačidlo do košíka na detailoch */
+.dokosika {
+  min-width: 190px;
+  justify-content: center;
+}
 /* bublina pri logu — úvod nemá položku v navigácii, tak ju treba priznať */
 .nav__brandwrap {
   position: relative;

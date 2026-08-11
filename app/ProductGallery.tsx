@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Product } from "./products";
 import Swatch from "./Swatch";
 
@@ -11,6 +11,15 @@ export default function ProductGallery({ p }: { p: Product }) {
   const [imgIdx, setImgIdx] = useState(0);
   const decor = p.decors[decorIdx];
   const img = decor.images[Math.min(imgIdx, decor.images.length - 1)];
+
+  // zvolený dekor potrebuje aj tlačidlo do košíka vedľa galérie
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("aq:decor", {
+        detail: { id: decor.id, name: decor.name, image: decor.images[0] },
+      })
+    );
+  }, [decor]);
 
   return (
     <div className="pgal" data-reveal="scale">
