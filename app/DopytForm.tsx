@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { posliDopyt } from "./send-dopyt";
 
 const TYPY = ["Akvárium", "Terárium", "Skrinka", "Kompletná zostava"];
 const STYLY = ["Čierna štruktúra", "Drevo", "Kov", "Minimal"];
@@ -14,12 +15,16 @@ export default function DopytForm() {
   const [email, setEmail] = useState("");
   const [poznamka, setPoznamka] = useState("");
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [delivered, setDelivered] = useState(false);
 
   const toggleStyl = (s: string) =>
     setStyl((arr) => (arr.includes(s) ? arr.filter((x) => x !== s) : [...arr, s]));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
+    setSending(true);
     const body = [
       `Typ projektu: ${typ || "—"}`,
       `Rozmery a objem: ${rozmer || "—"}`,
@@ -30,10 +35,21 @@ export default function DopytForm() {
       `Poznámka:`,
       poznamka || "—",
     ].join("\n");
-    const href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
-      "Dopyt na mieru — AQUAPRIME"
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+
+    const ok = await posliDopyt(
+      {
+        tema: typ || "Dopyt na mieru",
+        meno,
+        email,
+        rozmer,
+        sprava: [poznamka, styl.length ? `Štýl: ${styl.join(", ")}` : ""]
+          .filter(Boolean)
+          .join("\n\n"),
+      },
+      { komu: OWNER_EMAIL, predmet: "Dopyt na mieru — AQUAPRIME", telo: body }
+    );
+    setDelivered(ok);
+    setSending(false);
     setSent(true);
   };
 
@@ -43,10 +59,13 @@ export default function DopytForm() {
         <div className="dopyt__done-ico" aria-hidden>
           ✓
         </div>
-        <h2 className="dopyt__done-title">Dopyt je pripravený.</h2>
+        <h2 className="dopyt__done-title">
+          {delivered ? "Dopyt odoslaný." : "Dopyt je pripravený."}
+        </h2>
         <p className="dopyt__done-body">
-          Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí odoslať.
-          Ak sa neotvoril, napíšte nám priamo na {OWNER_EMAIL}.
+          {delivered
+            ? "Máme ho u seba a potvrdenie sme poslali aj na váš e-mail. Ozveme sa spravidla do 24 hodín v pracovný deň."
+            : `Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí odoslať. Ak sa neotvoril, napíšte nám priamo na ${OWNER_EMAIL}.`}
         </p>
       </div>
     );
@@ -134,8 +153,8 @@ export default function DopytForm() {
         />
       </fieldset>
 
-      <button type="submit" className="btn-cyan dopyt__submit">
-        ODOSLAŤ DOPYT <span aria-hidden>→</span>
+      <button type="submit" className="btn-cyan dopyt__submit" disabled={sending}>
+        {sending ? "ODOSIELAM…" : "ODOSLAŤ DOPYT"} <span aria-hidden>→</span>
       </button>
       <p className="dopyt__note">
         Odoslaním súhlasíte so spracovaním údajov za účelom prípravy ponuky.

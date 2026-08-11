@@ -133,7 +133,10 @@ export default function Configurator() {
             </span>
           </div>
           <div className="cfg__actions">
-            <Link href="/konfigurator" className="btn-cyan cfg__submit">
+            <Link
+              href={`/konfigurator?rad=${tier}&rozmer=${size.key}&dekor=${decor.id}`}
+              className="btn-cyan cfg__submit"
+            >
               DOLADIŤ V KONFIGURÁTORE <span aria-hidden>→</span>
             </Link>
             <Link href={`/skrinky/${product.slug}`} className="cfg__detail">

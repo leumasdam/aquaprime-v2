@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Turntable from "./Turntable";
 import CabinetPreview, { type PreviewTank } from "./CabinetPreview";
 import Swatch from "./Swatch";
@@ -19,6 +19,7 @@ import {
   tankLoadKg,
   toCfgDecor,
 } from "./configurator-logic";
+import { posliDopyt } from "./send-dopyt";
 import type { Tier } from "./products";
 
 const FEET = [
@@ -29,14 +30,32 @@ const FEET = [
 const OWNER_EMAIL = "ahoj@aquaprime.sk";
 
 export default function KonfiguratorFull() {
+  // predvoľba z mini-konfigurátora na homepage (?rad=&rozmer=&dekor=)
   const [tier, setTier] = useState<Tier>("premium");
   const [sizeKey, setSizeKey] = useState(CFG_SIZES[0].key);
   const [decorId, setDecorId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const rad = q.get("rad");
+    const rozmer = q.get("rozmer");
+    const dekor = q.get("dekor");
+    if (rad && ["basic", "standard", "premium"].includes(rad)) setTier(rad as Tier);
+    if (rozmer && CFG_SIZES.some((s) => s.key === rozmer)) setSizeKey(rozmer);
+    if (dekor) setDecorId(dekor);
+  }, []);
   const [feet, setFeet] = useState<(typeof FEET)[number]>(FEET[0]);
   const [led, setLed] = useState(false);
   const [withTank, setWithTank] = useState(false);
   const [tankSlug, setTankSlug] = useState<string | null>(null);
   const [view, setView] = useState<"foto" | "skica" | "3d">("foto");
+  const [showKontakt, setShowKontakt] = useState(false);
+  const [kontakt, setKontakt] = useState({ meno: "", email: "", tel: "" });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [delivered, setDelivered] = useState(false);
+  const kontaktOk =
+    kontakt.meno.trim().length > 1 && /.+@.+\..+/.test(kontakt.email);
 
   const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
   const product = productFor(tier, size)!;
@@ -92,7 +111,9 @@ export default function KonfiguratorFull() {
     if (on && view === "foto") setView("skica");
   };
 
-  const dopyt = () => {
+  const dopyt = async () => {
+    if (sending) return;
+    setSending(true);
     const lines = [
       "Konfigurácia z konfigurátora AQUAPRIME",
       "",
@@ -112,9 +133,25 @@ export default function KonfiguratorFull() {
         `Spolu: ${total + (tankPrice ?? 0)} €`
       );
     }
-    window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
-      `Konfigurácia ${product.name} — AQUAPRIME`
-    )}&body=${encodeURIComponent(lines.join("\n"))}`;
+    // konfigurácia je hotová objednávka — ide priamo do schránky, nie cez mailto
+    const ok = await posliDopyt(
+      {
+        tema: `Konfigurácia ${product.tierLabel}`,
+        meno: kontakt.meno,
+        email: kontakt.email,
+        tel: kontakt.tel,
+        rozmer: product.dim,
+        sprava: lines.slice(2).join("\n"),
+      },
+      {
+        komu: OWNER_EMAIL,
+        predmet: `Konfigurácia ${product.name} — AQUAPRIME`,
+        telo: lines.join("\n"),
+      }
+    );
+    setDelivered(ok);
+    setSending(false);
+    setSent(true);
   };
 
   return (
@@ -404,9 +441,65 @@ export default function KonfiguratorFull() {
             <Link href={`/skrinky/${product.slug}`}>Detail skrinky</Link>
           </span>
         </div>
-        <button type="button" className="btn-cyan kfx__send" onClick={dopyt}>
-          ODOSLAŤ DOPYT <span aria-hidden>→</span>
-        </button>
+        {sent ? (
+          <p className="kfx__done" role="status">
+            <b>{delivered ? "Dopyt odoslaný." : "Dopyt je pripravený."}</b>
+            {delivered
+              ? " Máme ho aj s celou konfiguráciou a ozveme sa do 24 hodín v pracovný deň."
+              : " Otvorili sme váš e-mailový klient — stačí stlačiť odoslať."}
+          </p>
+        ) : !showKontakt ? (
+          <button
+            type="button"
+            className="btn-cyan kfx__send"
+            onClick={() => setShowKontakt(true)}
+          >
+            ODOSLAŤ DOPYT <span aria-hidden>→</span>
+          </button>
+        ) : (
+          <div className="kfx__kontakt">
+            <span className="kfx__legend">
+              <span className="kfx__n">07</span> Kam vám odpovedať
+            </span>
+            <input
+              className="kfx__input"
+              type="text"
+              autoComplete="name"
+              placeholder="Meno"
+              value={kontakt.meno}
+              onChange={(e) => setKontakt({ ...kontakt, meno: e.target.value })}
+              autoFocus
+            />
+            <input
+              className="kfx__input"
+              type="email"
+              autoComplete="email"
+              placeholder="E-mail"
+              value={kontakt.email}
+              onChange={(e) => setKontakt({ ...kontakt, email: e.target.value })}
+            />
+            <input
+              className="kfx__input"
+              type="tel"
+              autoComplete="tel"
+              placeholder="Telefón — nepovinné"
+              value={kontakt.tel}
+              onChange={(e) => setKontakt({ ...kontakt, tel: e.target.value })}
+            />
+            <button
+              type="button"
+              className="btn-cyan kfx__send"
+              onClick={dopyt}
+              disabled={!kontaktOk || sending}
+            >
+              {sending ? "ODOSIELAM…" : "ODOSLAŤ KONFIGURÁCIU"}{" "}
+              <span aria-hidden>→</span>
+            </button>
+            <p className="kfx__note">
+              Pošleme vám ju aj na e-mail, aby ste ju mali čiernu na bielom.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
