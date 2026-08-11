@@ -1,5 +1,6 @@
 import Link from "next/link";
 import KontaktForm from "../KontaktForm";
+import Drobcek from "../Drobcek";
 import "./kontakt.css";
 
 export const metadata = {
@@ -89,6 +90,9 @@ export default function Page() {
       <section className="kontakt__head">
         <div className="sub__head-glow" />
         <div className="wrap">
+          <div className="kontakt__crumb" data-reveal="fade">
+            <Drobcek cesta={[{ nazov: "Kontakt" }]} />
+          </div>
           <span className="eyebrow eyebrow--rule" data-reveal="fade">
             KONTAKT
           </span>

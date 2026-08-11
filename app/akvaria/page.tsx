@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AquaGrid from "../AquaGrid";
+import Drobcek from "../Drobcek";
 import { AQUARIUMS } from "../aquariums";
 
 const HERO_FEATURES = [
@@ -56,6 +57,9 @@ export default function AkvariaPage() {
           />
         </div>
         <div className="wrap cat-hero__content">
+          <div className="cat-hero__crumb" data-reveal="fade">
+            <Drobcek cesta={[{ nazov: "Akváriá" }]} />
+          </div>
           <span className="cat-hero__eyebrow" data-reveal="fade">
             AKVÁRIÁ
           </span>

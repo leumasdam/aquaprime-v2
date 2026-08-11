@@ -5,6 +5,7 @@ import { PRODUCTS, getProduct, type Tier } from "../../products";
 import ProductGallery from "../../ProductGallery";
 import ProductCard from "../../ProductCard";
 import SkrinkaDoKosika from "../../SkrinkaDoKosika";
+import Drobcek from "../../Drobcek";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -68,11 +69,11 @@ export default async function Page({
       <section className="section pdetail__top">
         <div className="sub__head-glow" />
         <div className="wrap">
-          <nav className="pdetail__crumb" data-reveal="fade">
-            <Link href="/skrinky">Skrinky</Link>
-            <span aria-hidden>/</span>
-            <em>{p.name}</em>
-          </nav>
+          <div data-reveal="fade">
+            <Drobcek
+              cesta={[{ nazov: "Skrinky", href: "/skrinky" }, { nazov: p.name }]}
+            />
+          </div>
           <div className="pdetail__grid">
             <ProductGallery p={p} />
             <div

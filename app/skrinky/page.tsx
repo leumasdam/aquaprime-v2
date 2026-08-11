@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CatalogGrid from "../CatalogGrid";
 import TierCards from "../TierCards";
+import Drobcek from "../Drobcek";
 
 const HERO_FEATURES = [
   {
@@ -57,6 +58,9 @@ export default function SkrinkyPage() {
           />
         </div>
         <div className="wrap cat-hero__content">
+          <div className="cat-hero__crumb" data-reveal="fade">
+            <Drobcek cesta={[{ nazov: "Skrinky" }]} />
+          </div>
           <span className="cat-hero__eyebrow" data-reveal="fade">
             SKRINKY
           </span>

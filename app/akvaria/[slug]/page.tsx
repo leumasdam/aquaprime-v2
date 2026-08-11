@@ -12,6 +12,7 @@ import {
 import AquariumCard from "../../AquariumCard";
 import ProductCard from "../../ProductCard";
 import DoKosika from "../../DoKosika";
+import Drobcek from "../../Drobcek";
 
 export function generateStaticParams() {
   return AQUARIUMS.map((a) => ({ slug: a.slug }));
@@ -77,11 +78,11 @@ export default async function Page({
       <section className="section pdetail__top">
         <div className="sub__head-glow" />
         <div className="wrap">
-          <nav className="pdetail__crumb" data-reveal="fade">
-            <Link href="/akvaria">Akváriá</Link>
-            <span aria-hidden>/</span>
-            <em>{a.name}</em>
-          </nav>
+          <div data-reveal="fade">
+            <Drobcek
+              cesta={[{ nazov: "Akváriá", href: "/akvaria" }, { nazov: a.name }]}
+            />
+          </div>
           <div className="pdetail__grid">
             <div className="pgal pgal--scene" data-reveal="scale">
               <div className="pgal__main">

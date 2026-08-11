@@ -81,13 +81,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ]
         },
@@ -98,10 +98,10 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-04.webp",
             "/img/products/premium-100x40x90-black-matt-05.webp",
             "/img/products/premium-100x40x90-black-matt-01.webp",
+            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/premium-100x40x90-black-matt-06.webp"
           ]
@@ -127,16 +127,16 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/premium-100x40x90-cool-white-08.webp",
-            "/img/products/premium-100x40x90-cool-white-02.webp",
-            "/img/products/premium-100x40x90-cool-white-03.webp",
-            "/img/products/premium-100x40x90-cool-white-09.webp",
             "/img/products/premium-100x40x90-cool-white-07.webp",
             "/img/products/premium-100x40x90-cool-white-01.webp",
+            "/img/products/premium-100x40x90-cool-white-03.webp",
+            "/img/products/premium-100x40x90-cool-white-09.webp",
+            "/img/products/premium-100x40x90-cool-white-02.webp",
+            "/img/products/premium-100x40x90-cool-white-10.webp",
             "/img/products/premium-100x40x90-cool-white-04.webp",
-            "/img/products/premium-100x40x90-cool-white-05.webp",
             "/img/products/premium-100x40x90-cool-white-06.webp",
-            "/img/products/premium-100x40x90-cool-white-10.webp"
+            "/img/products/premium-100x40x90-cool-white-05.webp",
+            "/img/products/premium-100x40x90-cool-white-08.webp"
           ]
         },
         {
@@ -148,10 +148,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/premium-100x40x90-dub-sonoma-02.webp",
             "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
             "/img/products/premium-100x40x90-dub-sonoma-01.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-06.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-04.webp"
           ]
         },
         {
@@ -162,21 +162,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -188,17 +188,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -211,25 +211,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
       "priceLed": "385 €"
     },
     {
@@ -263,13 +263,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -283,10 +283,10 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-04.webp",
             "/img/products/premium-100x40x90-black-matt-05.webp",
             "/img/products/premium-100x40x90-black-matt-01.webp",
+            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/premium-100x40x90-black-matt-06.webp"
           ],
@@ -315,16 +315,16 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/premium-100x40x90-cool-white-08.webp",
-            "/img/products/premium-100x40x90-cool-white-02.webp",
-            "/img/products/premium-100x40x90-cool-white-03.webp",
-            "/img/products/premium-100x40x90-cool-white-09.webp",
             "/img/products/premium-100x40x90-cool-white-07.webp",
             "/img/products/premium-100x40x90-cool-white-01.webp",
+            "/img/products/premium-100x40x90-cool-white-03.webp",
+            "/img/products/premium-100x40x90-cool-white-09.webp",
+            "/img/products/premium-100x40x90-cool-white-02.webp",
+            "/img/products/premium-100x40x90-cool-white-10.webp",
             "/img/products/premium-100x40x90-cool-white-04.webp",
-            "/img/products/premium-100x40x90-cool-white-05.webp",
             "/img/products/premium-100x40x90-cool-white-06.webp",
-            "/img/products/premium-100x40x90-cool-white-10.webp"
+            "/img/products/premium-100x40x90-cool-white-05.webp",
+            "/img/products/premium-100x40x90-cool-white-08.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -339,10 +339,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/premium-100x40x90-dub-sonoma-02.webp",
             "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
             "/img/products/premium-100x40x90-dub-sonoma-01.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-06.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-04.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -356,21 +356,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -382,17 +382,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -405,25 +405,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
       "priceLed": "400 €"
     },
     {
@@ -457,13 +457,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -477,10 +477,10 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-04.webp",
             "/img/products/premium-100x40x90-black-matt-05.webp",
             "/img/products/premium-100x40x90-black-matt-01.webp",
+            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/premium-100x40x90-black-matt-06.webp"
           ],
@@ -509,16 +509,16 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/premium-100x40x90-cool-white-08.webp",
-            "/img/products/premium-100x40x90-cool-white-02.webp",
-            "/img/products/premium-100x40x90-cool-white-03.webp",
-            "/img/products/premium-100x40x90-cool-white-09.webp",
             "/img/products/premium-100x40x90-cool-white-07.webp",
             "/img/products/premium-100x40x90-cool-white-01.webp",
+            "/img/products/premium-100x40x90-cool-white-03.webp",
+            "/img/products/premium-100x40x90-cool-white-09.webp",
+            "/img/products/premium-100x40x90-cool-white-02.webp",
+            "/img/products/premium-100x40x90-cool-white-10.webp",
             "/img/products/premium-100x40x90-cool-white-04.webp",
-            "/img/products/premium-100x40x90-cool-white-05.webp",
             "/img/products/premium-100x40x90-cool-white-06.webp",
-            "/img/products/premium-100x40x90-cool-white-10.webp"
+            "/img/products/premium-100x40x90-cool-white-05.webp",
+            "/img/products/premium-100x40x90-cool-white-08.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -533,10 +533,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/premium-100x40x90-dub-sonoma-02.webp",
             "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
             "/img/products/premium-100x40x90-dub-sonoma-01.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-06.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-04.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -550,21 +550,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -576,17 +576,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -599,25 +599,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
       "priceLed": "410 €"
     },
     {
@@ -651,13 +651,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -671,10 +671,10 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-04.webp",
             "/img/products/premium-100x40x90-black-matt-05.webp",
             "/img/products/premium-100x40x90-black-matt-01.webp",
+            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/premium-100x40x90-black-matt-06.webp"
           ],
@@ -703,16 +703,16 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/premium-100x40x90-cool-white-08.webp",
-            "/img/products/premium-100x40x90-cool-white-02.webp",
-            "/img/products/premium-100x40x90-cool-white-03.webp",
-            "/img/products/premium-100x40x90-cool-white-09.webp",
             "/img/products/premium-100x40x90-cool-white-07.webp",
             "/img/products/premium-100x40x90-cool-white-01.webp",
+            "/img/products/premium-100x40x90-cool-white-03.webp",
+            "/img/products/premium-100x40x90-cool-white-09.webp",
+            "/img/products/premium-100x40x90-cool-white-02.webp",
+            "/img/products/premium-100x40x90-cool-white-10.webp",
             "/img/products/premium-100x40x90-cool-white-04.webp",
-            "/img/products/premium-100x40x90-cool-white-05.webp",
             "/img/products/premium-100x40x90-cool-white-06.webp",
-            "/img/products/premium-100x40x90-cool-white-10.webp"
+            "/img/products/premium-100x40x90-cool-white-05.webp",
+            "/img/products/premium-100x40x90-cool-white-08.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -727,10 +727,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/premium-100x40x90-dub-sonoma-02.webp",
             "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
             "/img/products/premium-100x40x90-dub-sonoma-01.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-06.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-04.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -744,21 +744,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -770,17 +770,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -793,25 +793,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
       "priceLed": "420 €"
     },
     {
@@ -845,13 +845,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -865,10 +865,10 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-04.webp",
             "/img/products/premium-100x40x90-black-matt-05.webp",
             "/img/products/premium-100x40x90-black-matt-01.webp",
+            "/img/products/premium-100x40x90-black-matt-02.webp",
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/premium-100x40x90-black-matt-06.webp"
           ],
@@ -897,16 +897,16 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/premium-100x40x90-cool-white-08.webp",
-            "/img/products/premium-100x40x90-cool-white-02.webp",
-            "/img/products/premium-100x40x90-cool-white-03.webp",
-            "/img/products/premium-100x40x90-cool-white-09.webp",
             "/img/products/premium-100x40x90-cool-white-07.webp",
             "/img/products/premium-100x40x90-cool-white-01.webp",
+            "/img/products/premium-100x40x90-cool-white-03.webp",
+            "/img/products/premium-100x40x90-cool-white-09.webp",
+            "/img/products/premium-100x40x90-cool-white-02.webp",
+            "/img/products/premium-100x40x90-cool-white-10.webp",
             "/img/products/premium-100x40x90-cool-white-04.webp",
-            "/img/products/premium-100x40x90-cool-white-05.webp",
             "/img/products/premium-100x40x90-cool-white-06.webp",
-            "/img/products/premium-100x40x90-cool-white-10.webp"
+            "/img/products/premium-100x40x90-cool-white-05.webp",
+            "/img/products/premium-100x40x90-cool-white-08.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -921,10 +921,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/premium-100x40x90-dub-sonoma-02.webp",
             "/img/products/premium-100x40x90-dub-sonoma-03.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
             "/img/products/premium-100x40x90-dub-sonoma-01.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-            "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+            "/img/products/premium-100x40x90-dub-sonoma-05.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-06.webp",
+            "/img/products/premium-100x40x90-dub-sonoma-04.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -938,21 +938,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -964,17 +964,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -987,25 +987,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+      "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
       "priceLed": "460 €"
     },
     {
@@ -1038,8 +1038,8 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/standard-100x40x90-cool-white-01.webp",
-            "/img/products/standard-100x40x90-cool-white-02.webp"
+            "/img/products/standard-100x40x90-cool-white-02.webp",
+            "/img/products/standard-100x40x90-cool-white-01.webp"
           ]
         },
         {
@@ -1074,12 +1074,12 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-80x40x90-antracit-08.webp",
-            "/img/products/standard-80x40x90-antracit-02.webp",
             "/img/products/standard-80x40x90-antracit-03.webp",
-            "/img/products/standard-80x40x90-antracit-05.webp",
             "/img/products/standard-80x40x90-antracit-06.webp",
             "/img/products/standard-80x40x90-antracit-07.webp",
+            "/img/products/standard-80x40x90-antracit-02.webp",
+            "/img/products/standard-80x40x90-antracit-08.webp",
+            "/img/products/standard-80x40x90-antracit-05.webp",
             "/img/products/standard-80x40x90-antracit-01.webp",
             "/img/products/standard-80x40x90-antracit-04.webp"
           ],
@@ -1095,12 +1095,12 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-09.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-04.webp",
             "/img/products/standard-80x40x90-artisan-antracit-08.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-09.webp",
             "/img/products/standard-80x40x90-artisan-antracit-01.webp",
             "/img/products/standard-80x40x90-artisan-antracit-06.webp",
             "/img/products/standard-80x40x90-artisan-antracit-07.webp"
@@ -1117,13 +1117,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -1137,8 +1137,8 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/standard-80x40x90-dub-sonoma-03.webp",
-            "/img/products/standard-80x40x90-dub-sonoma-01.webp",
-            "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+            "/img/products/standard-80x40x90-dub-sonoma-02.webp",
+            "/img/products/standard-80x40x90-dub-sonoma-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1152,21 +1152,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1178,17 +1178,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1201,25 +1201,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/standard-100x40x90-cool-white-01.webp",
+      "cover": "/img/products/standard-100x40x90-cool-white-02.webp",
       "priceLed": "365 €"
     },
     {
@@ -1252,8 +1252,8 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/standard-100x40x90-cool-white-01.webp",
-            "/img/products/standard-100x40x90-cool-white-02.webp"
+            "/img/products/standard-100x40x90-cool-white-02.webp",
+            "/img/products/standard-100x40x90-cool-white-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1294,12 +1294,12 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-80x40x90-antracit-08.webp",
-            "/img/products/standard-80x40x90-antracit-02.webp",
             "/img/products/standard-80x40x90-antracit-03.webp",
-            "/img/products/standard-80x40x90-antracit-05.webp",
             "/img/products/standard-80x40x90-antracit-06.webp",
             "/img/products/standard-80x40x90-antracit-07.webp",
+            "/img/products/standard-80x40x90-antracit-02.webp",
+            "/img/products/standard-80x40x90-antracit-08.webp",
+            "/img/products/standard-80x40x90-antracit-05.webp",
             "/img/products/standard-80x40x90-antracit-01.webp",
             "/img/products/standard-80x40x90-antracit-04.webp"
           ],
@@ -1315,12 +1315,12 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-09.webp",
-            "/img/products/standard-80x40x90-artisan-antracit-04.webp",
             "/img/products/standard-80x40x90-artisan-antracit-08.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+            "/img/products/standard-80x40x90-artisan-antracit-09.webp",
             "/img/products/standard-80x40x90-artisan-antracit-01.webp",
             "/img/products/standard-80x40x90-artisan-antracit-06.webp",
             "/img/products/standard-80x40x90-artisan-antracit-07.webp"
@@ -1337,13 +1337,13 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+            "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
             "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
           ],
           "inherited": true,
@@ -1357,8 +1357,8 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/standard-80x40x90-dub-sonoma-03.webp",
-            "/img/products/standard-80x40x90-dub-sonoma-01.webp",
-            "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+            "/img/products/standard-80x40x90-dub-sonoma-02.webp",
+            "/img/products/standard-80x40x90-dub-sonoma-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1372,21 +1372,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1398,17 +1398,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1421,25 +1421,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/standard-100x40x90-cool-white-01.webp",
+      "cover": "/img/products/standard-100x40x90-cool-white-02.webp",
       "priceLed": "390 €"
     },
     {
@@ -1472,8 +1472,8 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/standard-150x50x80-black-matt-01.webp",
-            "/img/products/standard-150x50x80-black-matt-02.webp"
+            "/img/products/standard-150x50x80-black-matt-02.webp",
+            "/img/products/standard-150x50x80-black-matt-01.webp"
           ]
         },
         {
@@ -1497,11 +1497,11 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-02.webp",
+            "/img/products/standard-200x60x60-antracit-05.webp",
             "/img/products/standard-200x60x60-antracit-03.webp",
             "/img/products/standard-200x60x60-antracit-04.webp",
-            "/img/products/standard-200x60x60-antracit-05.webp",
+            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
@@ -1515,8 +1515,8 @@ export const PRODUCTS: Product[] = [
             "#eef0f0"
           ],
           "images": [
-            "/img/products/standard-100x40x90-cool-white-01.webp",
-            "/img/products/standard-100x40x90-cool-white-02.webp"
+            "/img/products/standard-100x40x90-cool-white-02.webp",
+            "/img/products/standard-100x40x90-cool-white-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1529,11 +1529,11 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-sonoma.webp"
           ],
           "images": [
-            "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
             "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1547,21 +1547,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1573,17 +1573,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1596,25 +1596,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/standard-150x50x80-black-matt-01.webp",
+      "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
       "priceLed": "400 €"
     },
     {
@@ -1647,11 +1647,11 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-sonoma.webp"
           ],
           "images": [
-            "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
             "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1664,8 +1664,8 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/standard-150x50x80-black-matt-01.webp",
-            "/img/products/standard-150x50x80-black-matt-02.webp"
+            "/img/products/standard-150x50x80-black-matt-02.webp",
+            "/img/products/standard-150x50x80-black-matt-01.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -1693,11 +1693,11 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-02.webp",
+            "/img/products/standard-200x60x60-antracit-05.webp",
             "/img/products/standard-200x60x60-antracit-03.webp",
             "/img/products/standard-200x60x60-antracit-04.webp",
-            "/img/products/standard-200x60x60-antracit-05.webp",
+            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
@@ -1725,21 +1725,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1751,17 +1751,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1774,25 +1774,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+      "cover": "/img/products/standard-200x60x60-dub-sonoma-04.webp",
       "priceLed": "410 €"
     },
     {
@@ -1825,11 +1825,11 @@ export const PRODUCTS: Product[] = [
             "#40454a"
           ],
           "images": [
-            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-02.webp",
+            "/img/products/standard-200x60x60-antracit-05.webp",
             "/img/products/standard-200x60x60-antracit-03.webp",
             "/img/products/standard-200x60x60-antracit-04.webp",
-            "/img/products/standard-200x60x60-antracit-05.webp",
+            "/img/products/standard-200x60x60-antracit-01.webp",
             "/img/products/standard-200x60x60-antracit-06.webp"
           ]
         },
@@ -1878,11 +1878,11 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-sonoma.webp"
           ],
           "images": [
-            "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
             "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-            "/img/products/standard-200x60x60-dub-sonoma-05.webp"
+            "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+            "/img/products/standard-200x60x60-dub-sonoma-01.webp"
           ]
         },
         {
@@ -1893,21 +1893,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1919,17 +1919,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -1942,25 +1942,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/standard-200x60x60-antracit-01.webp",
+      "cover": "/img/products/standard-200x60x60-antracit-02.webp",
       "priceLed": "480 €"
     },
     {
@@ -1994,10 +1994,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/basic-100x40x90-01.webp",
             "/img/products/basic-100x40x90-02.webp",
-            "/img/products/basic-100x40x90-03.webp",
-            "/img/products/basic-100x40x90-04.webp",
             "/img/products/basic-100x40x90-05.webp",
+            "/img/products/basic-100x40x90-04.webp",
             "/img/products/basic-100x40x90-06.webp",
+            "/img/products/basic-100x40x90-03.webp",
             "/img/products/basic-100x40x90-07.webp"
           ]
         },
@@ -2009,21 +2009,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2035,17 +2035,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2058,19 +2058,19 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2109,10 +2109,10 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/basic-100x40x90-01.webp",
             "/img/products/basic-100x40x90-02.webp",
-            "/img/products/basic-100x40x90-03.webp",
-            "/img/products/basic-100x40x90-04.webp",
             "/img/products/basic-100x40x90-05.webp",
+            "/img/products/basic-100x40x90-04.webp",
             "/img/products/basic-100x40x90-06.webp",
+            "/img/products/basic-100x40x90-03.webp",
             "/img/products/basic-100x40x90-07.webp"
           ],
           "inherited": true,
@@ -2127,21 +2127,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2153,17 +2153,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2176,19 +2176,19 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2225,12 +2225,12 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/basic-150x50x80-01.webp",
             "/img/products/basic-150x50x80-02.webp",
+            "/img/products/basic-150x50x80-01.webp",
+            "/img/products/basic-150x50x80-06.webp",
             "/img/products/basic-150x50x80-03.webp",
             "/img/products/basic-150x50x80-04.webp",
-            "/img/products/basic-150x50x80-05.webp",
-            "/img/products/basic-150x50x80-06.webp"
+            "/img/products/basic-150x50x80-05.webp"
           ]
         },
         {
@@ -2241,21 +2241,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2267,17 +2267,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2290,25 +2290,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/basic-150x50x80-01.webp"
+      "cover": "/img/products/basic-150x50x80-02.webp"
     },
     {
       "slug": "basic-160x60x80",
@@ -2339,12 +2339,12 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/basic-150x50x80-01.webp",
             "/img/products/basic-150x50x80-02.webp",
+            "/img/products/basic-150x50x80-01.webp",
+            "/img/products/basic-150x50x80-06.webp",
             "/img/products/basic-150x50x80-03.webp",
             "/img/products/basic-150x50x80-04.webp",
-            "/img/products/basic-150x50x80-05.webp",
-            "/img/products/basic-150x50x80-06.webp"
+            "/img/products/basic-150x50x80-05.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -2358,21 +2358,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2384,17 +2384,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2407,25 +2407,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/basic-150x50x80-01.webp"
+      "cover": "/img/products/basic-150x50x80-02.webp"
     },
     {
       "slug": "basic-200x50x70",
@@ -2456,12 +2456,12 @@ export const PRODUCTS: Product[] = [
             "#17181a"
           ],
           "images": [
-            "/img/products/basic-150x50x80-01.webp",
             "/img/products/basic-150x50x80-02.webp",
+            "/img/products/basic-150x50x80-01.webp",
+            "/img/products/basic-150x50x80-06.webp",
             "/img/products/basic-150x50x80-03.webp",
             "/img/products/basic-150x50x80-04.webp",
-            "/img/products/basic-150x50x80-05.webp",
-            "/img/products/basic-150x50x80-06.webp"
+            "/img/products/basic-150x50x80-05.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer",
@@ -2475,21 +2475,21 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/choco-vintage-oak-03.webp",
-            "/img/products/choco-vintage-oak-07.webp",
-            "/img/products/choco-vintage-oak-09.webp",
-            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-12.webp",
             "/img/products/choco-vintage-oak-02.webp",
+            "/img/products/choco-vintage-oak-15.webp",
+            "/img/products/choco-vintage-oak-14.webp",
+            "/img/products/choco-vintage-oak-07.webp",
+            "/img/products/choco-vintage-oak-06.webp",
+            "/img/products/choco-vintage-oak-13.webp",
+            "/img/products/choco-vintage-oak-09.webp",
             "/img/products/choco-vintage-oak-04.webp",
             "/img/products/choco-vintage-oak-08.webp",
-            "/img/products/choco-vintage-oak-12.webp",
-            "/img/products/choco-vintage-oak-14.webp",
-            "/img/products/choco-vintage-oak-15.webp",
-            "/img/products/choco-vintage-oak-06.webp",
-            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-16.webp",
             "/img/products/choco-vintage-oak-05.webp",
             "/img/products/choco-vintage-oak-10.webp",
-            "/img/products/choco-vintage-oak-11.webp",
-            "/img/products/choco-vintage-oak-16.webp"
+            "/img/products/choco-vintage-oak-01.webp",
+            "/img/products/choco-vintage-oak-11.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2501,17 +2501,17 @@ export const PRODUCTS: Product[] = [
             "/img/products/swatch-dub-spanielsky.webp"
           ],
           "images": [
-            "/img/products/dub-spanielsky-02.webp",
-            "/img/products/dub-spanielsky-03.webp",
-            "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-04.webp",
             "/img/products/dub-spanielsky-05.webp",
+            "/img/products/dub-spanielsky-02.webp",
+            "/img/products/dub-spanielsky-06.webp",
+            "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-08.webp",
             "/img/products/dub-spanielsky-09.webp",
+            "/img/products/dub-spanielsky-11.webp",
             "/img/products/dub-spanielsky-01.webp",
-            "/img/products/dub-spanielsky-07.webp",
-            "/img/products/dub-spanielsky-11.webp"
+            "/img/products/dub-spanielsky-07.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
@@ -2524,25 +2524,25 @@ export const PRODUCTS: Product[] = [
             "#121316"
           ],
           "images": [
+            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-11.webp",
+            "/img/products/dub-spanielsky-black-matt-09.webp",
+            "/img/products/dub-spanielsky-black-matt-05.webp",
+            "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-06.webp",
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-04.webp",
-            "/img/products/dub-spanielsky-black-matt-05.webp",
-            "/img/products/dub-spanielsky-black-matt-08.webp",
-            "/img/products/dub-spanielsky-black-matt-09.webp",
-            "/img/products/dub-spanielsky-black-matt-11.webp",
-            "/img/products/dub-spanielsky-black-matt-01.webp",
+            "/img/products/dub-spanielsky-black-matt-12.webp",
+            "/img/products/dub-spanielsky-black-matt-13.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp",
             "/img/products/dub-spanielsky-black-matt-03.webp",
-            "/img/products/dub-spanielsky-black-matt-10.webp",
-            "/img/products/dub-spanielsky-black-matt-12.webp",
-            "/img/products/dub-spanielsky-black-matt-13.webp"
+            "/img/products/dub-spanielsky-black-matt-10.webp"
           ],
           "inherited": true,
           "illuFrom": "rozmer"
         }
       ],
-      "cover": "/img/products/basic-150x50x80-01.webp"
+      "cover": "/img/products/basic-150x50x80-02.webp"
     }
   ];
 

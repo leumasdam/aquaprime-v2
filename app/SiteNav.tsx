@@ -10,37 +10,13 @@ import KosikTlacidlo from "./KosikTlacidlo";
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [peek, setPeek] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  /* Úvod nemá vlastnú položku v navigácii — cesta domov je logo. Na podstránke
-     to sem-tam pripomenieme: krátko sa ukáže, zmizne a o chvíľu znova.
-     Keď je záložka v pozadí, nepripomíname — nikto to tam nevidí. */
-  useEffect(() => {
-    if (pathname === "/") return;
-
-    const TRVANIE = 4500;
-    const PAUZA = 60000;
-    let skryt: ReturnType<typeof setTimeout>;
-
-    const ukaz = () => {
-      if (document.hidden) return;
-      setPeek(true);
-      skryt = setTimeout(() => setPeek(false), TRVANIE);
-    };
-
-    const prvy = setTimeout(ukaz, 2000);
-    const opakovanie = setInterval(ukaz, PAUZA);
-
-    return () => {
-      clearTimeout(prvy);
-      clearTimeout(skryt);
-      clearInterval(opakovanie);
-      setPeek(false);
-    };
-  }, [pathname]);
+  /* Cestu domov drží drobček „Domov" na podstránkach — je stále na mieste a
+     nič nevyskakuje. Bublina pri logu preto ostáva len ako popiska na hover;
+     samovoľné pripomínanie by teraz iba prekrývalo drobčeka. */
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -59,7 +35,7 @@ export default function SiteNav() {
   return (
     <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
       <div className="wrap nav__inner">
-        <div className={`nav__brandwrap${peek ? " is-peek" : ""}`}>
+        <div className="nav__brandwrap">
           <Link
             href="/"
             className="nav__brand"
@@ -67,7 +43,6 @@ export default function SiteNav() {
             aria-describedby="nav-tip"
             onClick={() => {
               setOpen(false);
-              setPeek(false);
             }}
           >
             <Logo />
@@ -79,7 +54,7 @@ export default function SiteNav() {
                 <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            Klik sem a odplávaš naspäť na domovskú stránku
+            Odplávaj naspäť domov
           </span>
         </div>
         <nav className="nav__links">
