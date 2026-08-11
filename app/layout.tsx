@@ -63,7 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sk" className={`${tinos.variable} ${inter.variable}`}>
+    <html
+      lang="sk"
+      className={`${tinos.variable} ${inter.variable}`}
+      /* pri prechode medzi stránkami skočiť na vrch okamžite — plynulý scroll
+         by sa bil so swipe animáciou (hlási to aj Next warningom) */
+      data-scroll-behavior="smooth"
+    >
       <body>
         <script
           type="application/ld+json"

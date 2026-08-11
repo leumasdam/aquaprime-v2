@@ -69,22 +69,28 @@ export default function SiteNav() {
             className="nav__brand"
             transitionTypes={pathname === "/" ? undefined : ["nav-dozadu"]}
             aria-label="AQUAPRIME — späť na úvodnú stránku"
-            aria-describedby="nav-tip"
-            onClick={() => {
+            aria-describedby={pathname === "/" ? undefined : "nav-tip"}
+            onClick={(e) => {
               setOpen(false);
+              // po kliku pustiť fokus, inak :focus-within drží bublinu
+              // zobrazenú aj po dopravení na domovskú stránku
+              e.currentTarget.blur();
             }}
           >
             <Logo />
           </Link>
-          <span className="nav__tip" id="nav-tip" role="tooltip">
-            <span className="nav__tip-ico" aria-hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <path d="M4 11 12 4.5 20 11" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+          {/* doma bublina nemá čo hovoriť — „naspäť domov" už si */}
+          {pathname !== "/" && (
+            <span className="nav__tip" id="nav-tip" role="tooltip">
+              <span className="nav__tip-ico" aria-hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="M4 11 12 4.5 20 11" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              Odplávaj naspäť domov
             </span>
-            Odplávaj naspäť domov
-          </span>
+          )}
         </div>
         <nav className="nav__links">
           {NAV.map((item) => (
