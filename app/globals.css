@@ -3228,31 +3228,49 @@ button {
   animation: none;
 }
 
-/* smerový slide: dopredu = starý obsah doľava, nový priletí sprava */
+/* smerový slide ako na zenko.sk — celá podstránka plynulo swipne
+   (stará odíde celá von, nová vojde celá z opačnej strany, ako storka) */
 ::view-transition-old(.vt-dopredu) {
-  --posun: -64px;
-  animation:
-    0.16s ease-in both vtFade reverse,
-    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide reverse;
+  animation: vtVonDolava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
 }
 ::view-transition-new(.vt-dopredu) {
-  --posun: 64px;
-  animation:
-    0.24s ease-out 0.14s both vtFade,
-    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide;
+  animation: vtDnuSprava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
 }
-/* dozadu — zrkadlovo */
 ::view-transition-old(.vt-dozadu) {
-  --posun: 64px;
-  animation:
-    0.16s ease-in both vtFade reverse,
-    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide reverse;
+  animation: vtVonDoprava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
 }
 ::view-transition-new(.vt-dozadu) {
-  --posun: -64px;
-  animation:
-    0.24s ease-out 0.14s both vtFade,
-    0.44s cubic-bezier(0.32, 0.72, 0.2, 1) both vtSlide;
+  animation: vtDnuZlava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
+}
+/* obe snímky sa hýbu naraz v jednej ploche — starú neprekrývať novou */
+::view-transition-image-pair(.vt-dopredu),
+::view-transition-image-pair(.vt-dozadu) {
+  isolation: auto;
+}
+
+@keyframes vtVonDolava {
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes vtDnuSprava {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes vtVonDoprava {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes vtDnuZlava {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
 /* bez smeru (karty, pätička, priame prekliky) — jemný cross-fade */
@@ -3282,14 +3300,6 @@ button {
   to {
     opacity: 1;
     filter: blur(0);
-  }
-}
-@keyframes vtSlide {
-  from {
-    translate: var(--posun) 0;
-  }
-  to {
-    translate: 0 0;
   }
 }
 /* jemný blur v strede morfu skryje interpolačné artefakty */
