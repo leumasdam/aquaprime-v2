@@ -218,7 +218,7 @@ export default function KonfiguratorFull() {
                   <span className="pgal__illu">Ilustračné foto — iný rad</span>
                 ) : (
                   <span className="pgal__illu pgal__illu--size">
-                    Foto rozmeru {decor.illuSize ?? "iného"}
+                    {decor.illuSize ? `Foto rozmeru ${decor.illuSize}` : "Foto iného rozmeru"}
                   </span>
                 ))}
             </div>

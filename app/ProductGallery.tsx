@@ -36,7 +36,9 @@ export default function ProductGallery({ p }: { p: Product }) {
               className="pgal__illu pgal__illu--size"
               title="Tá istá skrinka a dekor, len kratšie vyhotovenie"
             >
-              Foto rozmeru {decor.illuSize ?? "iného"}
+              {decor.illuSize
+                ? `Foto rozmeru ${decor.illuSize}`
+                : "Foto iného rozmeru"}
             </span>
           ))}
       </div>
@@ -88,9 +90,9 @@ export default function ProductGallery({ p }: { p: Product }) {
         <p className="pgal__note">
           {decor.illuFrom === "rad"
             ? "Ilustračné fotografie — tento dekor máme zatiaľ nafotený len na inom rade konštrukcie."
-            : `Fotografie zachytávajú rovnakú skrinku v tomto dekore, len v dĺžke ${
-                decor.illuSize ?? "iného rozmeru"
-              }. Konštrukcia aj povrch sú zhodné.`}
+            : decor.illuSize
+              ? `Fotografie zachytávajú rovnakú skrinku v tomto dekore, len v dĺžke ${decor.illuSize}. Konštrukcia aj povrch sú zhodné.`
+              : "Fotografie zachytávajú tento dekor na skrinkách iných rozmerov. Konštrukcia aj povrch sú zhodné."}
         </p>
       )}
     </div>
