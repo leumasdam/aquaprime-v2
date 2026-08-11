@@ -93,10 +93,10 @@ export default function SiteNav() {
           ))}
         </nav>
         <span className="nav__lang">SK ⌄</span>
-        <KosikTlacidlo />
         <Link href="/konfigurator" className="nav__cta">
           KONFIGURÁTOR
         </Link>
+        <KosikTlacidlo />
         <button
           className={`nav__burger${open ? " is-open" : ""}`}
           aria-label={open ? "Zavrieť menu" : "Otvoriť menu"}
