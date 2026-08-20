@@ -46,3 +46,6 @@ next-env.d.ts
 _*.png
 
 .env*
+
+# stray build artefakt z omylom spusteneho buildu v podpriecinku
+app/.next/
