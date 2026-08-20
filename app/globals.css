@@ -38,10 +38,22 @@
   --gold: #c6a96b;
   --gold-soft: rgba(198, 169, 107, 0.55);
 
-  /* linky */
+  /* linky — jedna hodnota; --line-2 ostáva ako alias pre staré použitia */
   --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.09);
+  --line-2: var(--line);
   --rule: #2b2b26;
+
+  /* zaoblenie — jedna škála, ostrý luxusný charakter
+     xs mikro prvky · sm ovládanie + brandové karty · md appkové panely */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-pill: 999px;
+
+  /* časovanie prechodov */
+  --t-fast: 0.15s;
+  --t-base: 0.25s;
+  --t-slow: 0.4s;
 
   /* materiálové vzorky */
   --sw-0: #1d1d1c;
@@ -60,6 +72,8 @@
   --nav-h: 66px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* prechody stránok a panelov — krivka prebratá zo zenko.sk, nemeniť */
+  --ease-swipe: var(--ease-swipe);
   color-scheme: dark;
 }
 
@@ -177,23 +191,23 @@ button {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.75rem;
+  gap: 7px;
+  font-size: 0.6875rem;
   color: var(--faint);
 }
 .drobcek__domov {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 11px 5px 9px;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   color: var(--body);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  transition: color var(--t-base), border-color var(--t-base), background var(--t-base);
 }
 .drobcek__domov svg {
-  width: 14px;
-  height: 14px;
+  width: 12.5px;
+  height: 12.5px;
   color: var(--cyan);
 }
 .drobcek__domov:hover {
@@ -225,10 +239,10 @@ button {
   width: 38px;
   height: 38px;
   flex: none;
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   border: 1px solid var(--line-2);
   color: var(--body);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  transition: color var(--t-base), border-color var(--t-base), background var(--t-base);
 }
 .nav__kosik svg {
   width: 19px;
@@ -252,7 +266,7 @@ button {
   padding: 0 5px;
   display: grid;
   place-items: center;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: var(--cyan);
   color: #04222b;
   font-size: 0.625rem;
@@ -285,7 +299,7 @@ button {
   width: max-content;
   max-width: 260px;
   padding: 9px 14px;
-  border-radius: 11px;
+  border-radius: var(--r-sm);
   border: 1px solid rgba(71, 199, 232, 0.35);
   background: rgba(10, 13, 15, 0.95);
   backdrop-filter: blur(10px);
@@ -299,7 +313,7 @@ button {
   opacity: 0;
   pointer-events: none;
   transform: translateX(-6px) scale(0.96);
-  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+  transition: opacity var(--t-base) var(--ease), transform var(--t-base) var(--ease);
 }
 /* šípka smerom k logu */
 .nav__tip::before {
@@ -371,7 +385,7 @@ button {
   height: 40px;
   flex: none;
   color: rgba(244, 241, 235, 0.96);
-  transition: color 0.3s var(--ease), transform 0.4s var(--ease);
+  transition: color var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
 .nav__brand:hover .logo__mark {
   color: var(--cyan);
@@ -416,7 +430,7 @@ button {
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: rgba(226, 229, 231, 0.66);
-  transition: color 0.2s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 .nav__link:hover,
 .nav__link.is-active {
@@ -429,14 +443,14 @@ button {
   height: 38px;
   padding: 0 22px;
   border: 1px solid var(--cyan);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   font-weight: 700;
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cyan);
   background: rgba(71, 199, 232, 0.08);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: background var(--t-base), color var(--t-base), box-shadow var(--t-base);
 }
 .nav__cta:hover {
   background: var(--cyan);
@@ -575,13 +589,13 @@ button {
   height: 48px;
   padding: 0 26px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 2px;
+  border-radius: var(--r-sm);
   font-weight: 700;
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.86);
-  transition: border-color 0.25s, background 0.25s, color 0.25s;
+  transition: border-color var(--t-base), background var(--t-base), color var(--t-base);
 }
 .btn-outline:hover {
   border-color: var(--cyan);
@@ -636,7 +650,7 @@ button {
   width: 100%;
   height: 100%;
   filter: drop-shadow(0 0 10px rgba(198, 169, 107, 0.25));
-  transition: filter 0.4s var(--ease);
+  transition: filter var(--t-slow) var(--ease);
 }
 .value:hover .value__ico {
   transform: translateY(-3px) rotate(-2deg);
@@ -688,13 +702,13 @@ button {
 .collection-card {
   position: relative;
   aspect-ratio: 4 / 5;
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: var(--card);
   display: flex;
   align-items: flex-end;
   border: 1px solid var(--line);
-  transition: border-color 0.3s var(--ease), transform 0.4s var(--ease);
+  transition: border-color var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
 .collection-card::before {
   content: "";
@@ -749,7 +763,7 @@ button {
   margin-top: 8px;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
 .collection-card:hover .collection-card__text::after {
   opacity: 1;
@@ -786,7 +800,7 @@ button {
   position: relative;
   display: block;
   aspect-ratio: 4 / 5;
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   border: 1px solid var(--line);
   isolation: isolate;
@@ -854,7 +868,7 @@ button {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cyan);
-  transition: gap 0.25s var(--ease);
+  transition: gap var(--t-base) var(--ease);
 }
 .module:hover .module__cta {
   gap: 16px;
@@ -863,18 +877,58 @@ button {
   .modules__grid {
     grid-template-columns: 1fr;
   }
+  /* pod sebou = vodorovné karty: fotka vľavo, text vedľa nej. Celoplošná
+     fotka s textom cez ňu tu pôsobila predimenzovane a text sa v nej strácal. */
   .module {
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    align-items: stretch;
+    min-height: clamp(132px, 26vw, 178px);
+  }
+  .module__bg {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    z-index: 0;
+    height: 100%;
+  }
+  .module__shade {
+    display: none;
+  }
+  .module__content {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 2;
+    justify-content: center;
+    gap: 7px;
+    padding: clamp(16px, 3.4vw, 26px);
+  }
+  .module__title {
+    font-size: clamp(1.15rem, 0.9rem + 1.1vw, 1.55rem);
+  }
+  .module__text {
+    font-size: 0.78125rem;
+    line-height: 1.55;
+  }
+}
+/* najužšie mobily — text pod fotkou, na dva stĺpce už nie je miesto */
+@media (max-width: 460px) {
+  .module {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .module__bg {
+    grid-area: 1 / 1;
     aspect-ratio: 16 / 9;
   }
-}
-@media (min-width: 561px) and (max-width: 860px) {
-  .modules__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .module {
-    aspect-ratio: 3 / 4;
+  .module__content {
+    grid-area: 2 / 1;
   }
 }
+/* pozn.: 2 stĺpce sa pri troch dlaždiciach nikdy nepoužívajú — nechávali
+   tretiu sirotu pod sebou. Buď všetky tri vedľa seba (>860), alebo pod
+   sebou na plnú šírku (≤860). */
 @media (min-width: 1200px) {
   .modules {
     padding-block: 0;
@@ -992,13 +1046,13 @@ button {
   height: 44px;
   padding: 0 24px;
   background: var(--cyan-btn);
-  border-radius: 2px;
+  border-radius: var(--r-sm);
   font-weight: 700;
   font-size: 0.625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #fff;
-  transition: filter 0.25s, transform 0.25s var(--ease);
+  transition: filter var(--t-base), transform var(--t-base) var(--ease);
 }
 .btn-cyan:hover {
   filter: brightness(1.12);
@@ -1012,10 +1066,10 @@ button {
 .config-option {
   position: relative;
   border: 1px solid var(--line-2);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 18px 20px 18px 56px;
   background: rgba(255, 255, 255, 0.012);
-  transition: border-color 0.25s, background 0.25s;
+  transition: border-color var(--t-base), background var(--t-base);
 }
 .config-option:hover {
   border-color: rgba(71, 199, 232, 0.4);
@@ -1041,7 +1095,7 @@ button {
 }
 .config-preview {
   border: 1px solid var(--line-2);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   background: linear-gradient(160deg, #0a0c0d, #060708);
   padding: 22px;
   min-height: 237px;
@@ -1069,7 +1123,7 @@ button {
   bottom: 92px;
   width: 78%;
   height: 16px;
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   background: linear-gradient(180deg, #16201f, #0c1413);
   box-shadow: 0 0 30px rgba(71, 199, 232, 0.16);
 }
@@ -1085,7 +1139,7 @@ button {
 .config-preview__cabinet {
   width: 70%;
   height: 92px;
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   background: linear-gradient(180deg, #15161a, #0c0d10);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -1168,7 +1222,7 @@ button {
 .review-card {
   background: var(--card-glass);
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 24px 26px;
   display: flex;
   flex-direction: column;
@@ -1246,7 +1300,7 @@ button {
 .stat-card {
   position: relative;
   background: var(--card-2);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 20px 22px;
   overflow: hidden;
 }
@@ -1360,7 +1414,7 @@ button {
   gap: 12px;
   padding-left: 18px;
   border-left: 1px solid var(--line-2);
-  transition: border-color 0.35s var(--ease), transform 0.35s var(--ease);
+  transition: border-color var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
 .cstep:hover {
   border-color: var(--cyan);
@@ -1463,7 +1517,7 @@ button {
   color: var(--ink-soft);
   font-size: 1.3rem;
   line-height: 1;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), color var(--t-base), background var(--t-base);
 }
 .turntable__arrow:hover {
   border-color: var(--cyan);
@@ -1475,7 +1529,7 @@ button {
   -webkit-appearance: none;
   appearance: none;
   height: 3px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: var(--line-2);
   outline: none;
   cursor: pointer;
@@ -1544,7 +1598,7 @@ button {
   background: var(--cyan);
   box-shadow: 0 0 0 4px rgba(71, 199, 232, 0.14), 0 0 12px rgba(71, 199, 232, 0.9);
   transform: scale(0);
-  transition: transform 0.35s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
   transition-delay: calc(var(--i) * 0.1s);
 }
 .cdot::after {
@@ -1575,7 +1629,7 @@ button {
   white-space: nowrap;
   opacity: 0;
   transform: translate(0, calc(-50% + 8px));
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
   transition-delay: calc(0.2s + var(--i) * 0.1s);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
@@ -1607,7 +1661,7 @@ button {
   align-items: center;
   gap: 9px;
   padding: 8px 14px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: rgba(16, 18, 20, 0.92);
   backdrop-filter: blur(6px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
@@ -1647,7 +1701,7 @@ button {
   right: 0;
   bottom: -10px;
   width: clamp(148px, 13vw, 206px);
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   box-shadow: 0 24px 50px -16px rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1701,7 +1755,7 @@ button {
 .proof__media {
   position: relative;
   aspect-ratio: 941 / 312;
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   overflow: hidden;
 }
 .proof__media::before {
@@ -1758,7 +1812,7 @@ button {
 .navbar-echo {
   background: #050505;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 18px 20px;
   width: 280px;
 }
@@ -1793,7 +1847,7 @@ button {
   position: relative;
   background: #10100f;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   overflow: hidden;
 }
 .pathway__media {
@@ -1867,13 +1921,13 @@ button {
   padding: 0 18px;
   background: #050505;
   border: 1px solid var(--line-2);
-  border-radius: 2px;
+  border-radius: var(--r-sm);
   font-weight: 600;
   font-size: 0.5625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color var(--t-base), color var(--t-base);
 }
 .pathway__btn:hover {
   border-color: var(--ink-soft);
@@ -1924,7 +1978,7 @@ button {
 }
 .final-review {
   background: var(--card-2);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 24px 26px;
   display: flex;
   flex-direction: column;
@@ -1951,7 +2005,7 @@ button {
 .final-cta {
   background: var(--card-cta);
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   padding: 30px 32px;
   display: flex;
   flex-direction: column;
@@ -2033,7 +2087,7 @@ button {
   align-items: center;
   height: 36px;
   border: 1px solid var(--line-2);
-  border-radius: 2px;
+  border-radius: var(--r-sm);
   overflow: hidden;
 }
 .newsletter input {
@@ -2073,7 +2127,7 @@ button {
   width: 27px;
   height: 18px;
   border: 1px solid rgba(231, 231, 231, 0.4);
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   position: relative;
 }
 .footer__logo-mark::after {
@@ -2101,7 +2155,7 @@ button {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(216, 216, 216, 0.36);
-  transition: color 0.2s;
+  transition: color var(--t-base);
 }
 .footer__nav a:hover {
   color: rgba(216, 216, 216, 0.7);
@@ -2150,6 +2204,12 @@ button {
   }
   .nav__burger {
     display: block;
+    /* auto margin preberá košík — burger je hneď vedľa neho */
+    margin-left: 18px;
+  }
+  /* košík na mobile patrí doprava k burgeru, nie k logu */
+  .nav__kosik {
+    margin-left: auto;
   }
   .modules {
     grid-template-columns: 1fr;
@@ -2237,9 +2297,9 @@ button {
   position: relative;
   background: var(--card-2);
   border: 1px solid var(--line-2);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   text-align: left;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), background var(--t-base);
 }
 .filter:hover {
   border-color: rgba(71, 199, 232, 0.45);
@@ -2282,13 +2342,13 @@ button {
 }
 .product-skeleton {
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--r-xs);
   padding: 14px;
   background: var(--card);
 }
 .product-skeleton__media {
   aspect-ratio: 4 / 3;
-  border-radius: 3px;
+  border-radius: var(--r-xs);
   background: linear-gradient(110deg, #0c0d0f 30%, #14161a 50%, #0c0d0f 70%);
   background-size: 200% 100%;
   animation: shimmer 1.8s var(--ease) infinite;
@@ -2296,7 +2356,7 @@ button {
 }
 .product-skeleton__line {
   height: 10px;
-  border-radius: 3px;
+  border-radius: var(--r-xs);
   background: rgba(255, 255, 255, 0.05);
 }
 .product-skeleton__line--w {
@@ -2548,7 +2608,7 @@ button {
   bottom: -7px;
   height: 1px;
   background: var(--cyan);
-  transition: right 0.3s var(--ease);
+  transition: right var(--t-slow) var(--ease);
 }
 .nav__link:hover::after {
   right: 0;
@@ -2559,7 +2619,7 @@ button {
 .btn-outline span,
 .module__cta span {
   display: inline-block;
-  transition: transform 0.3s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .btn-cyan:hover span,
 .btn-outline:hover span,
@@ -2569,13 +2629,13 @@ button {
 
 /* card hover polish */
 .module {
-  transition: background 0.35s var(--ease);
+  transition: background var(--t-slow) var(--ease);
 }
 .module:hover {
   background: #0a0c0c;
 }
 .review-card {
-  transition: transform 0.4s var(--ease), border-color 0.3s, box-shadow 0.4s;
+  transition: transform var(--t-slow) var(--ease), border-color var(--t-slow), box-shadow var(--t-slow);
 }
 .review-card:hover {
   transform: translateY(-5px);
@@ -2583,7 +2643,7 @@ button {
   box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.8);
 }
 .pathway {
-  transition: transform 0.4s var(--ease), border-color 0.3s;
+  transition: transform var(--t-slow) var(--ease), border-color var(--t-slow);
 }
 .pathway:hover {
   transform: translateY(-5px);
@@ -2596,13 +2656,13 @@ button {
   transform: scale(1.05);
 }
 .stat-card {
-  transition: transform 0.35s var(--ease), box-shadow 0.35s;
+  transition: transform var(--t-slow) var(--ease), box-shadow var(--t-slow);
 }
 .stat-card:hover {
   transform: translateY(-3px);
 }
 .final-review {
-  transition: transform 0.4s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .final-review:hover {
   transform: translateY(-4px);
@@ -2610,7 +2670,7 @@ button {
 
 /* footer benefit hover */
 .footer-benefit__mark {
-  transition: width 0.4s var(--ease), background 0.3s;
+  transition: width var(--t-slow) var(--ease), background var(--t-slow);
 }
 .footer-benefit:hover .footer-benefit__mark {
   width: 28px;
@@ -2618,7 +2678,7 @@ button {
 }
 .footer__nav a,
 .footer-benefit__title {
-  transition: color 0.25s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 
 /* reduce motion */
@@ -2640,7 +2700,7 @@ button {
    MOBILNÉ MENU + nav scroll stav
    =========================================================== */
 .nav {
-  transition: background 0.3s var(--ease), height 0.3s var(--ease);
+  transition: background var(--t-slow) var(--ease), height var(--t-slow) var(--ease);
 }
 .nav.is-scrolled {
   background: rgba(8, 9, 10, 0.92);
@@ -2649,7 +2709,7 @@ button {
   z-index: 60;
 }
 .nav__burger span {
-  transition: transform 0.3s var(--ease), opacity 0.25s;
+  transition: transform var(--t-slow) var(--ease), opacity var(--t-base);
 }
 .nav__burger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -2672,7 +2732,7 @@ button {
   transform: translateY(-10px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
   z-index: 49;
   overflow-y: auto;
 }
@@ -2691,7 +2751,7 @@ button {
   color: var(--ink-90);
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
-  transition: color 0.2s, padding-left 0.3s var(--ease);
+  transition: color var(--t-base), padding-left var(--t-slow) var(--ease);
 }
 .nav__mobile.is-open .nav__mobile-link {
   animation: heroIn 0.5s var(--ease) both;
@@ -2807,7 +2867,7 @@ button {
   font-size: 0.875rem;
   line-height: 1.6;
   color: var(--body);
-  transition: padding-left 0.3s var(--ease), border-color 0.3s;
+  transition: padding-left var(--t-slow) var(--ease), border-color var(--t-slow);
 }
 .sub__point:last-child {
   border-bottom: 1px solid var(--line);
@@ -2852,10 +2912,10 @@ button {
   position: relative;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--r-sm);
   padding: clamp(22px, 2.4vw, 32px);
   overflow: hidden;
-  transition: transform 0.4s var(--ease), border-color 0.3s, background 0.3s;
+  transition: transform var(--t-slow) var(--ease), border-color var(--t-slow), background var(--t-slow);
 }
 .sub__card::before {
   content: "";
@@ -2867,7 +2927,7 @@ button {
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .sub__card:hover {
   transform: translateY(-5px);
@@ -2904,7 +2964,7 @@ button {
   font-size: 1rem;
   opacity: 0;
   transform: translateX(-6px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
 .sub__card:hover .sub__card-arrow {
   opacity: 1;
@@ -2922,7 +2982,7 @@ button {
   flex-wrap: wrap;
   padding: clamp(28px, 3.5vw, 52px);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   background: radial-gradient(
       120% 140% at 100% 0%,
       color-mix(in srgb, var(--accent) 10%, transparent),
@@ -3004,7 +3064,7 @@ button {
 }
 .dopyt__panel {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   background: linear-gradient(160deg, #0b0d0e, #070809);
   padding: clamp(24px, 3vw, 40px);
   box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.8);
@@ -3040,11 +3100,11 @@ button {
 .chipbtn {
   padding: 11px 18px;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: rgba(255, 255, 255, 0.015);
   font-size: 0.8125rem;
   color: var(--body);
-  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s var(--ease);
+  transition: border-color var(--t-base), color var(--t-base), background var(--t-base), transform var(--t-base) var(--ease);
 }
 .chipbtn:hover {
   border-color: rgba(71, 199, 232, 0.5);
@@ -3064,10 +3124,10 @@ button {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--line-2);
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   padding: 13px 16px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: border-color var(--t-base), box-shadow var(--t-base), background var(--t-base);
 }
 .dopyt__input::placeholder {
   color: var(--faint);
@@ -3231,16 +3291,16 @@ button {
 /* smerový slide ako na zenko.sk — celá podstránka plynulo swipne
    (stará odíde celá von, nová vojde celá z opačnej strany, ako storka) */
 ::view-transition-old(.vt-dopredu) {
-  animation: vtVonDolava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
+  animation: vtVonDolava 0.55s var(--ease-swipe) both;
 }
 ::view-transition-new(.vt-dopredu) {
-  animation: vtDnuSprava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
+  animation: vtDnuSprava 0.55s var(--ease-swipe) both;
 }
 ::view-transition-old(.vt-dozadu) {
-  animation: vtVonDoprava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
+  animation: vtVonDoprava 0.55s var(--ease-swipe) both;
 }
 ::view-transition-new(.vt-dozadu) {
-  animation: vtDnuZlava 0.55s cubic-bezier(0.32, 0.72, 0.2, 1) both;
+  animation: vtDnuZlava 0.55s var(--ease-swipe) both;
 }
 /* obe snímky sa hýbu naraz v jednej ploche — starú neprekrývať novou */
 ::view-transition-image-pair(.vt-dopredu),
@@ -3284,7 +3344,7 @@ button {
 /* shared-element morph: karta produktu → galéria detailu */
 ::view-transition-group(.vt-morph) {
   animation-duration: 0.45s;
-  animation-timing-function: cubic-bezier(0.32, 0.72, 0.2, 1);
+  animation-timing-function: var(--ease-swipe);
   z-index: 50;
 }
 ::view-transition-image-pair(.vt-morph) {
@@ -3324,7 +3384,7 @@ button {
 :focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: var(--r-xs);
 }
 a:focus-visible,
 button:focus-visible {
@@ -3343,7 +3403,7 @@ button:focus-visible {
 }
 ::-webkit-scrollbar-thumb {
   background: #1c2125;
-  border-radius: 10px;
+  border-radius: var(--r-pill);
   border: 2px solid #060708;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -3431,9 +3491,9 @@ button:focus-visible {
   flex-direction: column;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   overflow: hidden;
-  transition: transform 0.4s var(--ease), border-color 0.3s, box-shadow 0.4s;
+  transition: transform var(--t-slow) var(--ease), border-color var(--t-slow), box-shadow var(--t-slow);
 }
 .product:hover {
   transform: translateY(-6px);
@@ -3504,7 +3564,7 @@ button:focus-visible {
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
   padding: 5px 11px;
-  border-radius: 100px;
+  border-radius: var(--r-xs);
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 .product__badge--premium {
@@ -3593,7 +3653,7 @@ button:focus-visible {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  transition: gap 0.3s var(--ease), color 0.3s;
+  transition: gap var(--t-slow) var(--ease), color var(--t-slow);
 }
 .product:hover .product__cta {
   gap: 10px;
@@ -3619,7 +3679,7 @@ button:focus-visible {
 }
 .pdetail__crumb a {
   color: var(--ink-soft);
-  transition: color 0.2s;
+  transition: color var(--t-base);
 }
 .pdetail__crumb a:hover {
   color: var(--accent);
@@ -3637,7 +3697,7 @@ button:focus-visible {
 .pdetail__media {
   position: relative;
   aspect-ratio: 4 / 3;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   border: 1px solid var(--line);
 }
@@ -3646,7 +3706,7 @@ button:focus-visible {
 .pgal__main {
   position: relative;
   aspect-ratio: 4 / 3;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   border: 1px solid var(--line);
   background: #fff;
@@ -3684,12 +3744,12 @@ button:focus-visible {
   position: relative;
   flex: 0 0 64px;
   height: 52px;
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: #fff;
   border: 1px solid var(--line-2);
   opacity: 0.65;
-  transition: opacity 0.2s, border-color 0.2s;
+  transition: opacity var(--t-base), border-color var(--t-base);
 }
 .pgal__thumb img {
   object-fit: contain;
@@ -3755,7 +3815,7 @@ button:focus-visible {
   border: 1px solid var(--line-2);
   background: none;
   cursor: pointer;
-  transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s;
+  transition: transform var(--t-base) var(--ease), border-color var(--t-base), box-shadow var(--t-base);
 }
 .pgal__decorbtn:hover {
   transform: translateY(-1px);
@@ -3777,7 +3837,7 @@ button:focus-visible {
   bottom: 10px;
   z-index: 1;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: var(--r-xs);
   background: rgba(5, 6, 6, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 0.625rem;
@@ -3795,6 +3855,60 @@ button:focus-visible {
   letter-spacing: 0.06em;
   text-transform: none;
   color: rgba(236, 241, 242, 0.6);
+}
+.pgal__illu--led {
+  border-color: rgba(255, 214, 160, 0.4);
+  color: rgba(255, 226, 186, 0.92);
+}
+
+/* prepínač podsvietenia — LED je priplácaná voľba, tak nech si ju
+   zákazník vie priamo v galérii pozrieť v oboch farbách */
+.pgal__led {
+  margin-top: 16px;
+}
+.pgal__led-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.pgal__led-vyber {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+}
+.pgal__ledbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background var(--t-base), color var(--t-base);
+}
+.pgal__ledbtn:hover {
+  color: var(--ink);
+}
+.pgal__ledbtn.is-on {
+  background: var(--ink);
+  color: var(--bg);
+}
+.pgal__ledbod {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 7px currentColor;
 }
 .pdetail__coll {
   display: inline-block;
@@ -3838,7 +3952,7 @@ button:focus-visible {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   margin-bottom: 30px;
 }
@@ -3930,8 +4044,8 @@ button:focus-visible {
   opacity: 0;
   transform: translateY(14px) scale(0.9);
   pointer-events: none;
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease),
-    border-color 0.25s, color 0.25s, background 0.25s;
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease),
+    border-color var(--t-base), color var(--t-base), background var(--t-base);
 }
 .totop.is-show {
   opacity: 1;
@@ -4031,9 +4145,9 @@ button:focus-visible {
   color: #04222b;
   font-weight: 700;
   font-size: 0.8125rem;
-  border-radius: 4px;
+  border-radius: var(--r-xs);
   transform: translateY(-150%);
-  transition: transform 0.2s var(--ease);
+  transition: transform var(--t-base) var(--ease);
 }
 .skip-link:focus {
   transform: none;
@@ -4058,7 +4172,7 @@ button:focus-visible {
   position: relative;
   font-size: 0.8125rem;
   color: var(--body);
-  transition: color 0.25s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 .construct__link::after {
   content: "";
@@ -4070,7 +4184,7 @@ button:focus-visible {
   background: var(--cyan);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .construct__link:hover {
   color: var(--ink);
@@ -4139,7 +4253,7 @@ button:focus-visible {
   left: 5%;
   right: 5%;
   height: 3px;
-  border-radius: 4px;
+  border-radius: var(--r-xs);
   background: linear-gradient(
     90deg,
     transparent,
@@ -4269,7 +4383,7 @@ button:focus-visible {
   width: 100%;
   aspect-ratio: 5 / 4;
   max-height: 340px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: #fff;
   border: 1px solid var(--line);
@@ -4353,7 +4467,7 @@ button:focus-visible {
 .cfg__toggle {
   display: inline-flex;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   overflow: hidden;
 }
 .cfg__toggle button {
@@ -4362,7 +4476,7 @@ button:focus-visible {
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   color: var(--faint);
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--t-base), color var(--t-base);
 }
 .cfg__toggle button.is-on {
   background: var(--cyan);
@@ -4405,13 +4519,13 @@ button:focus-visible {
   justify-content: flex-end;
   height: 100%;
   padding-bottom: 34px;
-  transition: all 0.3s var(--ease);
+  transition: all var(--t-slow) var(--ease);
 }
 .cab {
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: width 0.35s var(--ease), height 0.35s var(--ease);
+  transition: width var(--t-slow) var(--ease), height var(--t-slow) var(--ease);
 }
 .cab__top {
   height: 11px;
@@ -4419,7 +4533,7 @@ button:focus-visible {
   border-radius: 3px 3px 0 0;
   background: linear-gradient(180deg, #41454a, #292c30);
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.12) inset;
-  transition: width 0.35s var(--ease);
+  transition: width var(--t-slow) var(--ease);
 }
 .cab__body {
   position: relative;
@@ -4429,7 +4543,7 @@ button:focus-visible {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07),
     inset 0 30px 60px -30px rgba(255, 255, 255, 0.15),
     0 26px 50px -24px rgba(0, 0, 0, 0.9);
-  transition: background 0.35s var(--ease);
+  transition: background var(--t-slow) var(--ease);
 }
 .cab__divider {
   position: absolute;
@@ -4479,7 +4593,7 @@ button:focus-visible {
 /* ovládací panel */
 .cfg__panel {
   border: 1px solid var(--line-2);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   background: var(--card);
   padding: clamp(18px, 1.6vw, 24px);
   display: flex;
@@ -4525,7 +4639,7 @@ button:focus-visible {
   appearance: none;
   width: 100%;
   height: 4px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: linear-gradient(
     to right,
     var(--cyan) var(--p),
@@ -4559,11 +4673,11 @@ button:focus-visible {
 .cfg__swatch {
   width: 36px;
   height: 36px;
-  border-radius: 7px;
+  border-radius: var(--r-xs);
   border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+  transition: transform var(--t-base) var(--ease), box-shadow var(--t-base);
 }
 .cfg__swatch .swatch {
   border-radius: 0;
@@ -4591,10 +4705,10 @@ button:focus-visible {
   flex: 1;
   padding: 11px 14px;
   border: 1px solid var(--line-2);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   font-size: 0.8125rem;
   color: var(--body);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), color var(--t-base), background var(--t-base);
 }
 .cfg__opt:hover {
   border-color: rgba(71, 199, 232, 0.5);
@@ -4810,7 +4924,7 @@ button:focus-visible {
   font-weight: 700;
   letter-spacing: 0.08em;
   color: rgba(231, 234, 236, 0.82);
-  transition: color 0.2s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 .hero__ghost:hover {
   color: var(--cyan);
@@ -5094,8 +5208,8 @@ button:focus-visible {
   font-weight: 700;
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease),
-    background 0.2s var(--ease);
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
 }
 .hero__btn-label {
   display: flex;
@@ -5108,7 +5222,7 @@ button:focus-visible {
   padding: 0 16px;
   border-left: 1px solid rgba(255, 255, 255, 0.32);
   font-size: 0.95rem;
-  transition: border-color 0.2s var(--ease);
+  transition: border-color var(--t-base) var(--ease);
 }
 .hero__btn:hover {
   border-color: var(--cyan);
@@ -5128,7 +5242,7 @@ button:focus-visible {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: rgba(231, 234, 236, 0.85);
-  transition: color 0.2s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 .hero__ghost:hover {
   color: var(--cyan);
@@ -5210,7 +5324,7 @@ button:focus-visible {
   background: transparent;
   border-left: 1px solid var(--line);
   overflow: hidden;
-  transition: background 0.3s var(--ease);
+  transition: background var(--t-slow) var(--ease);
 }
 .ctile:first-child {
   border-left: none;
@@ -5254,7 +5368,7 @@ button:focus-visible {
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   color: var(--cyan);
-  transition: gap 0.25s var(--ease);
+  transition: gap var(--t-base) var(--ease);
 }
 .ctile:hover .ctile__cta {
   gap: 13px;
@@ -5393,7 +5507,7 @@ button:focus-visible {
   width: 34px;
   height: 44px;
   color: rgba(244, 241, 235, 0.45);
-  transition: color 0.25s var(--ease);
+  transition: color var(--t-base) var(--ease);
 }
 .coll-arrow:hover {
   color: var(--cyan);
@@ -5456,11 +5570,11 @@ button:focus-visible {
   margin-right: var(--card-gap);
   /* 4:3 — celá zostava akvárium + skrinka sa zmestí (fotky sú 4:3) */
   aspect-ratio: 4 / 3;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   border: 1px solid var(--line-2);
-  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
+  transition: border-color var(--t-slow) var(--ease), transform var(--t-slow) var(--ease),
+    box-shadow var(--t-slow) var(--ease);
 }
 .ccard:hover {
   border-color: rgba(71, 199, 232, 0.45);
@@ -5565,8 +5679,8 @@ button:focus-visible {
   color: var(--ink-soft);
   padding: 12px 18px;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
-  transition: color 0.3s, border-color 0.3s, gap 0.3s var(--ease);
+  border-radius: var(--r-sm);
+  transition: color var(--t-slow), border-color var(--t-slow), gap var(--t-slow) var(--ease);
 }
 .featured__all:hover {
   color: var(--cyan);
@@ -5642,7 +5756,7 @@ button:focus-visible {
     display: none;
   }
   .hero__title {
-    font-size: clamp(1.85rem, 8.4vw, 2.5rem);
+    font-size: clamp(1.55rem, 7.1vw, 2.2rem);
     margin-bottom: 16px;
   }
   .hero__body {
@@ -5709,7 +5823,7 @@ button:focus-visible {
     position: relative;
     inset: auto;
     width: 100%;
-    height: 44svh;
+    height: 38svh;
     overflow: hidden;
     background-size: auto 114%;
     background-position: 50% 38%;
@@ -5970,7 +6084,7 @@ button:focus-visible {
   opacity: 1;
   transform: none;
   padding: clamp(18px, 1.6vw, 26px) clamp(8px, 1vw, 16px);
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   border: 1px solid rgba(255, 255, 255, 0.28);
   background: rgba(8, 10, 12, 0.5);
   backdrop-filter: blur(12px) saturate(125%) brightness(0.95);
@@ -6117,8 +6231,10 @@ button:focus-visible {
   .safety__stats {
     margin-left: 0;
     width: 100%;
-    /* len posun panela vyššie — výška sekcie ani kameň sa nemenia */
-    transform: translateY(-82px);
+    /* panel nižšie BEZ naťahovania sekcie — relatívny posun (nie margin, ten
+       predlžuje sekciu; nie transform, ten prebíja [data-reveal].is-in) */
+    position: relative;
+    top: 58px;
   }
   .sstat {
     flex: 1;
@@ -6153,7 +6269,8 @@ button:focus-visible {
     width: 100%;
     height: 124%;
     object-fit: cover;
-    object-position: 92% 40%;
+    /* výrez posunutý doprava — celé akvárium v zábere, bez kvetu pri pravom kraji */
+    object-position: 70% 40%;
     transform: translateY(-10%);
     -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
     mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
@@ -6563,7 +6680,7 @@ button:focus-visible {
   transform: translateX(4px);
 }
 .mat-interiors__link span {
-  transition: transform 0.4s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .mat-interiors__strip {
   display: grid;
@@ -6612,7 +6729,7 @@ button:focus-visible {
     min-height: 260px;
   }
   .mat-hero__bg img {
-    object-position: 50% 100%;
+    object-position: 63% 100%;
   }
   .mat-hero__bg::after {
     background: linear-gradient(180deg, transparent 62%, var(--bg) 100%);
@@ -6765,7 +6882,7 @@ button:focus-visible {
 .tech-chip {
   padding: 7px 14px;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -6825,7 +6942,7 @@ button:focus-visible {
   background: linear-gradient(0deg, transparent 3px, var(--line-2) 3px, var(--line-2) 4px, transparent 4px);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.9s var(--ease) 0.35s;
+  transition: transform 0.9s var(--ease) var(--t-slow);
 }
 .tech-stat.is-in::after {
   transform: scaleX(1);
@@ -6867,7 +6984,7 @@ button:focus-visible {
   box-shadow: 0 0 12px rgba(71, 199, 232, 0.45);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 1.5s var(--ease) 0.15s;
+  transition: transform 1.5s var(--ease) var(--t-fast);
 }
 .tech-tl__track.is-in .tech-tl__line {
   transform: scaleX(1);
@@ -6880,7 +6997,7 @@ button:focus-visible {
   height: var(--tl-thumb, 150px);
   overflow: hidden;
   border: 1px solid var(--line);
-  transition: border-color 0.3s var(--ease);
+  transition: border-color var(--t-slow) var(--ease);
 }
 .tech-tl__thumb img {
   object-fit: cover;
@@ -6987,13 +7104,13 @@ button:focus-visible {
 .lcalc__preset {
   padding: 7px 13px;
   border: 1px solid var(--line-2);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
   font-variant-numeric: tabular-nums;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), color var(--t-base), background var(--t-base);
 }
 .lcalc__preset:hover {
   border-color: var(--cyan);
@@ -7029,7 +7146,7 @@ button:focus-visible {
   appearance: none;
   width: 100%;
   height: 3px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: var(--line-2);
   outline: none;
   cursor: pointer;
@@ -7073,7 +7190,7 @@ button:focus-visible {
   margin-bottom: 4px;
 }
 .lcalc__tank rect {
-  transition: x 0.4s var(--ease), y 0.4s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);
+  transition: x var(--t-slow) var(--ease), y var(--t-slow) var(--ease), width var(--t-slow) var(--ease), height var(--t-slow) var(--ease);
 }
 .lcalc__tank-glass {
   fill: none;
@@ -7138,7 +7255,7 @@ button:focus-visible {
 }
 .lcalc__bar {
   height: 6px;
-  border-radius: 100px;
+  border-radius: var(--r-xs);
   background: var(--line);
   overflow: hidden;
   margin-top: 6px;
@@ -7146,10 +7263,10 @@ button:focus-visible {
 .lcalc__bar i {
   display: block;
   height: 100%;
-  border-radius: 100px;
+  border-radius: var(--r-xs);
   background: var(--cyan);
   box-shadow: 0 0 14px rgba(71, 199, 232, 0.5);
-  transition: width 0.35s var(--ease), background 0.35s;
+  transition: width var(--t-slow) var(--ease), background var(--t-slow);
 }
 .lcalc__bar i[data-over] {
   background: #c9a45c;
@@ -7299,6 +7416,58 @@ button:focus-visible {
   height: clamp(350px, 23vw, min(520px, 62vh));
   border-bottom: 1px solid var(--line);
 }
+/* interiérový render na /skrinky — veľký cover záber cez šírku, len jemne
+   zmenšený (93 %) a s okrajmi do stratena; ken-burns dobieha do plnej mierky */
+/* box má presný pomer strán renderu (2400×1054) — obrázok sa doň vloží
+   CELÝ bez akéhokoľvek orezu, veľký na plnú výšku sekcie, usadený vpravo;
+   maska fadeuje priamo jeho hrany do čiernej */
+.cat-hero--interier .cat-hero__bg {
+  left: auto;
+  right: 15%;
+  /* o 15 % väčší, ukotvený za pravý dolný roh — rastie smerom hore-doľava */
+  top: auto;
+  bottom: 0;
+  height: 115%;
+  aspect-ratio: 3757 / 1086;
+  /* maska na boxe — ten sa pri ken-burns nehýbe, fade hrán drží stále */
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent),
+    linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent),
+    linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
+}
+.cat-hero--interier .cat-hero__bg img {
+  object-position: center;
+  transform-origin: center 60%;
+  animation: hero-interier-zoom 18s var(--ease) 0.3s forwards;
+}
+@keyframes hero-interier-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+@media (max-width: 900px) {
+  .cat-hero--interier .cat-hero__bg {
+    left: 0;
+    right: 0;
+    aspect-ratio: auto;
+  }
+  .cat-hero--interier .cat-hero__bg img {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+.cat-hero--interier::after {
+  background: linear-gradient(
+    90deg,
+    rgba(5, 6, 6, 0.86),
+    rgba(5, 6, 6, 0.55) 30%,
+    rgba(5, 6, 6, 0.24) 54%,
+    transparent 78%
+  );
+}
 .cat-hero__bg {
   /* obrázok siaha od pravého okraja ďaleko doľava — väčší záber */
   position: absolute;
@@ -7316,9 +7485,10 @@ button:focus-visible {
 }
 .cat-hero__bg img {
   object-fit: cover;
-  object-position: center 58%;
+  /* interiérový render 4:3 — pásmo akvária s LED + vrch skrinky */
+  object-position: 65% 42%;
   /* pomalý ken-burns zoom smerom na skrinku po načítaní */
-  transform-origin: 62% 58%;
+  transform-origin: 65% 42%;
   animation: cat-hero-zoom 18s var(--ease) 0.3s forwards;
   will-change: transform;
 }
@@ -7383,7 +7553,8 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(18px, 2.4vw, 40px);
-  margin-top: clamp(20px, 2vw, 30px);
+  /* po zrušení CTA riadku dýcha hero viac — fakty sadajú nižšie pod lead */
+  margin-top: clamp(36px, 3.6vw, 56px);
 }
 .cat-hero__feature {
   display: flex;
@@ -7437,7 +7608,7 @@ button:focus-visible {
   font-size: 1.5rem;
   line-height: 1;
   color: var(--dim);
-  transition: color 0.25s;
+  transition: color var(--t-base);
   animation: cat-cue-bob 2.4s var(--ease) infinite;
 }
 .cat-hero__cue:hover {
@@ -7466,13 +7637,24 @@ button:focus-visible {
     animation: none;
   }
 }
-/* akvarijná fotka je svetlejšia než skrinky — pod textom potrebuje hustejší scrim */
+/* široký tmavý render (2400×1021) — cez celú šírku; ľavá časť fotky je
+   takmer čierna, textu stačí jemný scrim */
+.cat-hero--aqua .cat-hero__bg {
+  left: 0;
+  right: 0;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.cat-hero--aqua .cat-hero__bg img {
+  object-position: center 58%;
+  transform-origin: 65% 58%;
+}
 .cat-hero--aqua::after {
   background: linear-gradient(
     90deg,
-    rgba(5, 6, 6, 0.97),
-    rgba(5, 6, 6, 0.82) 28%,
-    rgba(5, 6, 6, 0.46) 52%,
+    rgba(5, 6, 6, 0.82),
+    rgba(5, 6, 6, 0.5) 30%,
+    rgba(5, 6, 6, 0.2) 54%,
     transparent 78%
   );
 }
@@ -7480,7 +7662,8 @@ button:focus-visible {
   .cat-hero {
     height: auto;
     min-height: 0;
-    padding-block: 48px 200px;
+    /* text nižšie od navu, nech nesedí nalepený hore */
+    padding-block: 84px 200px;
   }
   /* mobil: obrázok späť cez celú šírku s orezom */
   .cat-hero__bg {
@@ -7499,6 +7682,8 @@ button:focus-visible {
   }
   .cat-hero__features {
     gap: 18px 28px;
+    /* fakty bližšie k textu — veľký desktopový odstup tu robil dieru */
+    margin-top: 22px;
   }
   /* akvarijná fotka je svetlejšia než skrinky — pod textom potrebuje hustejší scrim */
   .cat-hero--aqua::after {
@@ -7525,7 +7710,7 @@ button:focus-visible {
   padding: 12px 16px;
   border: 1px solid var(--line);
   background: var(--card);
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.25s var(--ease);
+  transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease), transform var(--t-base) var(--ease);
 }
 .tier-mini__btn:hover {
   border-color: var(--line-2);
@@ -7538,7 +7723,7 @@ button:focus-visible {
   border-radius: 50%;
   border: 1px solid var(--line-2);
   background: transparent;
-  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+  transition: background var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
 }
 .tier-mini__text {
   display: flex;
@@ -7554,13 +7739,13 @@ button:focus-visible {
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--ink-soft);
-  transition: color 0.25s;
+  transition: color var(--t-base);
 }
 .tier-mini__arrow {
   margin-left: auto;
   color: var(--faint);
   font-size: 0.85rem;
-  transition: color 0.25s, transform 0.25s var(--ease);
+  transition: color var(--t-base), transform var(--t-base) var(--ease);
 }
 .tier-mini__btn:hover .tier-mini__arrow {
   color: var(--cyan);
@@ -7695,7 +7880,7 @@ button:focus-visible {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dim);
-  transition: color 0.25s, border-color 0.25s;
+  transition: color var(--t-base), border-color var(--t-base);
 }
 .real-filter__btn:hover {
   color: var(--ink-soft);
@@ -7723,7 +7908,7 @@ button:focus-visible {
   border: 1px solid var(--line-2);
   background: var(--card);
   text-align: left;
-  transition: border-color 0.25s var(--ease);
+  transition: border-color var(--t-base) var(--ease);
 }
 .real-dd__toggle.is-open {
   border-color: var(--acc);
@@ -7747,7 +7932,7 @@ button:focus-visible {
 .real-dd__chev {
   font-size: 1.1rem;
   color: var(--dim);
-  transition: transform 0.3s var(--ease);
+  transition: transform var(--t-slow) var(--ease);
 }
 .real-dd__toggle.is-open .real-dd__chev {
   transform: rotate(180deg);
@@ -7781,7 +7966,7 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--body);
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--t-base), color var(--t-base);
 }
 .real-dd__opt:hover {
   background: rgba(255, 255, 255, 0.04);
@@ -7869,7 +8054,7 @@ button:focus-visible {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--acc);
-  transition: letter-spacing 0.3s var(--ease);
+  transition: letter-spacing var(--t-slow) var(--ease);
 }
 .real-feat__cta:hover {
   letter-spacing: 0.24em;
@@ -7885,7 +8070,7 @@ button:focus-visible {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  transition: border-color 0.3s var(--ease);
+  transition: border-color var(--t-slow) var(--ease);
 }
 .real-card img {
   object-fit: cover;
@@ -8033,4 +8218,944 @@ button:focus-visible {
 .kontakt__crumb,
 .kos__crumb {
   margin-bottom: 18px;
+}
+
+/* ---------- právne odkazy vo footri ---------- */
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  padding-top: 26px;
+  margin-bottom: -8px;
+  justify-content: center;
+}
+.footer__legal a {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 229, 231, 0.4);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+.footer__legal a:hover {
+  color: var(--cyan, #47c7e8);
+}
+
+/* ============================================================
+   Filter systém katalógov — sticky sklenená lišta, segmented
+   prepínač s posuvným indikátorom, dropdown panely, aktívne chipy
+   ============================================================ */
+
+.fbar {
+  position: sticky;
+  top: 86px;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  /* rovnaký odstup ako medzi subheadom a lištou — konzistentný rytmus */
+  margin-bottom: clamp(24px, 3vw, 36px);
+  border-radius: var(--r-md);
+  background: rgba(8, 10, 10, 0.78);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+}
+
+/* --- segmented prepínač --- */
+.fseg {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--r-sm);
+  padding: 4px;
+  min-width: 0;
+}
+.fseg__ind {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / var(--n));
+  transform: translateX(calc(var(--i) * 100%));
+  transition: transform var(--t-slow) var(--ease-swipe);
+  background: var(--cyan, #47c7e8);
+  border-radius: var(--r-xs);
+  box-shadow: 0 0 18px rgba(71, 199, 232, 0.35);
+}
+.fseg__opt {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(226, 229, 231, 0.55);
+  padding: 9px 14px;
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--t-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+.fseg__opt:hover {
+  color: rgba(226, 229, 231, 0.9);
+}
+.fseg__opt.is-on {
+  color: #04222b;
+}
+.fseg__count {
+  font-size: 0.59rem;
+  font-weight: 700;
+  opacity: 0.65;
+}
+
+/* --- dropdown filter --- */
+.fdd {
+  position: relative;
+}
+.fdd__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--r-sm);
+  padding: 9px 13px;
+  font: inherit;
+  color: rgba(226, 229, 231, 0.85);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.fdd__btn:hover {
+  border-color: rgba(71, 199, 232, 0.35);
+}
+.fdd__btn.is-active {
+  border-color: rgba(71, 199, 232, 0.55);
+  background: rgba(71, 199, 232, 0.09);
+}
+.fdd__label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(226, 229, 231, 0.45);
+}
+.fdd__value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text, #e2e5e7);
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fdd__btn.is-active .fdd__value {
+  color: var(--cyan, #47c7e8);
+}
+.fdd__chev {
+  width: 11px;
+  height: 11px;
+  color: rgba(226, 229, 231, 0.5);
+  transition: transform var(--t-base);
+}
+.fdd.is-open .fdd__chev {
+  transform: rotate(180deg);
+}
+.fdd__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  min-width: 218px;
+  max-height: 330px;
+  overflow-y: auto;
+  background: rgba(10, 13, 13, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-md);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  padding: 6px;
+  display: grid;
+  gap: 2px;
+  animation: fddIn 0.18s var(--ease-swipe);
+}
+@keyframes fddIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.fopt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: rgba(226, 229, 231, 0.8);
+  padding: 9px 11px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--t-fast);
+}
+.fopt:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.fopt.is-on {
+  color: #fff;
+}
+.fopt__box {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  border-radius: var(--r-xs);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  color: #04222b;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+.fopt__box--radio {
+  border-radius: 50%;
+}
+.fopt.is-on .fopt__box {
+  background: var(--cyan, #47c7e8);
+  border-color: var(--cyan, #47c7e8);
+  box-shadow: 0 0 10px rgba(71, 199, 232, 0.4);
+}
+.fopt__box svg {
+  width: 11px;
+  height: 11px;
+}
+.fopt__count {
+  margin-left: auto;
+  font-size: 0.6875rem;
+  color: rgba(226, 229, 231, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- počítadlo --- */
+.fbar__count {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: rgba(226, 229, 231, 0.5);
+  white-space: nowrap;
+  padding-right: 4px;
+  animation: fcountIn 0.3s ease;
+  font-variant-numeric: tabular-nums;
+}
+.fbar__count b {
+  color: var(--cyan, #47c7e8);
+  font-weight: 700;
+}
+@keyframes fcountIn {
+  from { opacity: 0.2; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* --- aktívne chipy --- */
+.fchips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  /* chipy vracajú lište jej spodný odstup a sami držia rovnaký k mriežke */
+  margin: calc(-1 * clamp(24px, 3vw, 36px) + 12px) 2px clamp(24px, 3vw, 36px);
+}
+.fchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(71, 199, 232, 0.4);
+  background: rgba(71, 199, 232, 0.08);
+  color: var(--cyan, #47c7e8);
+  border-radius: var(--r-pill);
+  font: inherit;
+  font-size: 0.71875rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background var(--t-fast), border-color var(--t-fast);
+  animation: fddIn 0.18s var(--ease-swipe);
+}
+.fchip span {
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+.fchip:hover {
+  background: rgba(71, 199, 232, 0.16);
+}
+.fchip--clear {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: none;
+  color: rgba(226, 229, 231, 0.6);
+}
+.fchip--clear:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+/* --- mobil --- */
+@media (max-width: 760px) {
+  .fbar {
+    top: 66px;
+    padding: 8px;
+    gap: 8px;
+  }
+  .fseg {
+    width: 100%;
+    order: -1;
+    overflow-x: auto;
+    grid-template-columns: repeat(var(--n), minmax(max-content, 1fr));
+  }
+  .fseg__opt {
+    padding: 8px 10px;
+    font-size: 0.625rem;
+  }
+  .fbar__count {
+    width: 100%;
+    margin-left: 2px;
+    padding: 2px 2px 0;
+  }
+  /* dropdown panel ako bottom-sheet */
+  .fdd__panel {
+    position: fixed;
+    top: auto;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-height: 60vh;
+    animation: fsheetIn 0.24s var(--ease-swipe);
+  }
+  @keyframes fsheetIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* drobček nad nadpisom podstránky */
+.pg-drobcek {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   LED zapaľovanie krokov pod konfigurátorom — po hornej linke
+   prebehne cyan impulz a postupne „zapína" jednotlivé body
+   ============================================================ */
+
+.construct__steps {
+  position: relative;
+}
+/* bežiaci impulz po hornej linke */
+.construct__steps::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan) 10%, var(--cyan) 90%, transparent);
+  box-shadow: 0 0 14px rgba(71, 199, 232, 0.55);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+}
+.construct__steps.is-in::before {
+  animation: cstepSweep 1.25s var(--ease-swipe) 0.05s forwards;
+}
+@keyframes cstepSweep {
+  0% { transform: scaleX(0); opacity: 1; }
+  78% { opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* body čakajú v tme… */
+.construct__steps[data-reveal] .cstep {
+  opacity: 0;
+}
+.construct__steps[data-reveal] .cstep .cstep__label {
+  opacity: 0;
+}
+/* …a zapínajú sa, ako popri nich prebehne impulz */
+.construct__steps.is-in .cstep {
+  animation: cstepFadeIn 0.4s var(--ease) var(--cd) forwards;
+}
+/* ľavá linka bodu sa nakreslí zhora nadol */
+.construct__steps.is-in .cstep::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(71, 199, 232, 0.6);
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: cstepBorder 0.9s var(--ease) var(--cd) forwards;
+}
+/* číslo blikne ako zárivka a ustáli sa s jemným glow */
+.construct__steps.is-in .cstep__n {
+  animation: cstepFlicker 0.75s linear calc(var(--cd) + 60ms) both;
+}
+/* label vypláva o chlp neskôr */
+.construct__steps.is-in .cstep__label {
+  animation: cstepLabel 0.55s var(--ease) calc(var(--cd) + 180ms) forwards;
+}
+
+.construct__steps.is-in .cstep {
+  position: relative;
+}
+
+@keyframes cstepFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes cstepBorder {
+  0% { transform: scaleY(0); opacity: 1; }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+@keyframes cstepFlicker {
+  0% { opacity: 0; text-shadow: none; }
+  10% { opacity: 1; text-shadow: 0 0 22px rgba(71, 199, 232, 0.9); }
+  20% { opacity: 0.25; text-shadow: none; }
+  34% { opacity: 1; text-shadow: 0 0 20px rgba(71, 199, 232, 0.85); }
+  48% { opacity: 0.55; }
+  100% { opacity: 1; text-shadow: 0 0 9px rgba(71, 199, 232, 0.3); }
+}
+@keyframes cstepLabel {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construct__steps::before {
+    display: none;
+  }
+  .construct__steps[data-reveal] .cstep,
+  .construct__steps[data-reveal] .cstep .cstep__label {
+    opacity: 1;
+    animation: none;
+  }
+  .construct__steps.is-in .cstep::before,
+  .construct__steps.is-in .cstep__n {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   REALIZÁCIE — dve samostatné sekcie so zvislým videom (9:16)
+   ============================================================ */
+
+.rvid__grid {
+  display: grid;
+  /* dvojica drží pri sebe a stojí v strede — inak zíva medzi nimi diera */
+  grid-template-columns: minmax(0, 360px) minmax(0, 560px);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  justify-content: center;
+}
+/* druhá sekcia zrkadlovo — video vpravo */
+.rvid--flip .rvid__grid {
+  grid-template-columns: minmax(0, 560px) minmax(0, 360px);
+}
+.rvid--flip .rvid__media {
+  order: 2;
+}
+
+.rvid__ramik {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #05070a;
+  isolation: isolate;
+}
+.rvid__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+.rvid__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(6, 10, 12, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--ink);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding-left: 3px;
+  transition: opacity var(--t-base) var(--ease), transform var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+.rvid__play:hover {
+  background: rgba(71, 199, 232, 0.85);
+  color: #04222b;
+  transform: scale(1.06);
+}
+.rvid__ramik.is-playing .rvid__play {
+  opacity: 0;
+}
+.rvid__ramik.is-playing:hover .rvid__play {
+  opacity: 1;
+}
+.rvid__zvuk {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 235, 0.75);
+  background: rgba(6, 10, 12, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--r-pill);
+  padding: 5px 10px;
+  pointer-events: none;
+}
+
+.rvid__copy {
+  max-width: 46ch;
+}
+.rvid__title {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 1rem + 1.4vw, 2.2rem);
+  line-height: 1.15;
+  color: var(--ink-90);
+  margin-bottom: 14px;
+}
+.rvid__lead {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+@media (max-width: 860px) {
+  .rvid__grid,
+  .rvid--flip .rvid__grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    justify-items: start;
+  }
+  .rvid__media {
+    width: min(300px, 72vw);
+  }
+  .rvid--flip .rvid__media {
+    order: 0;
+  }
+}
+
+/* ============================================================
+   /skrinky hero — odkaz pod textom + mobilná verzia 1:1 podľa
+   klientovej referencie (zvislý render, sekcia presne na výšku okna)
+   ============================================================ */
+
+.cat-hero__bg--m {
+  display: none;
+}
+.cat-hero__odkaz {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(20px, 2.2vw, 30px);
+  padding-bottom: 7px;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  transition: gap var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.cat-hero__odkaz:hover {
+  gap: 18px;
+  border-bottom-color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  /* sekcia presne na výšku telefónu — žiadne umelé naťahovanie */
+  .cat-hero--interier {
+    display: block;
+    height: 92svh;
+    min-height: 500px;
+    padding-block: 0;
+    overflow: hidden;
+  }
+  /* široký desktopový záber sa na mobile nepoužíva */
+  .cat-hero--interier > .cat-hero__bg:not(.cat-hero__bg--m) {
+    display: none;
+  }
+  .cat-hero--interier .cat-hero__bg--m {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .cat-hero--interier .cat-hero__bg--m img {
+    /* contain = celý render bez orezu (menší záber, celá nádrž v ňom)
+       ukotvený dole; výška sekcie sa nemení, hore len dosadne tma renderu */
+    object-fit: contain;
+    /* +30px = render sadá ešte kúsok nižšie (dole sa oreže časť koberca),
+       sekcia si drží presnú výšku okna */
+    object-position: 50% calc(100% + 30px);
+    transform: none;
+    animation: none;
+  }
+  /* text v tmavej hornej časti renderu */
+  .cat-hero--interier .cat-hero__content {
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 2;
+    padding-top: clamp(30px, 8vw, 52px);
+  }
+  .cat-hero--interier::after {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 6, 7, 0.7) 0%,
+      rgba(5, 6, 7, 0.3) 32%,
+      transparent 50%
+    );
+  }
+  .cat-hero--interier .cat-hero__crumb {
+    margin-bottom: 12px;
+  }
+  .cat-hero--interier .cat-hero__title {
+    font-size: clamp(2.15rem, 9.6vw, 2.7rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .cat-hero--interier .cat-hero__lead {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 24ch;
+    color: rgba(226, 229, 231, 0.72);
+  }
+  .cat-hero--interier .cat-hero__odkaz {
+    margin-top: 26px;
+    font-size: 1rem;
+  }
+  /* fakty aj šípku nesie zvyšok stránky — hero ostáva čistý ako v referencii */
+  .cat-hero--interier .cat-hero__features,
+  .cat-hero--interier .cat-hero__cue {
+    display: none;
+  }
+}
+
+/* ============================================================
+   /skrinky — pás technických faktov pod hero
+   desktop: tri stĺpce · mobil: swipe slider po jednom s bodkami
+   ============================================================ */
+
+.fakty {
+  border-bottom: 1px solid var(--line);
+  padding-block: clamp(30px, 3.4vw, 52px);
+}
+.fakty__pas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.fakt {
+  display: grid;
+  gap: 9px;
+  padding: 0 clamp(18px, 2.6vw, 46px);
+  border-left: 1px solid var(--line);
+}
+.fakt:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.fakt__ikona {
+  width: 26px;
+  height: 26px;
+  color: var(--cyan);
+}
+.fakt__ikona svg {
+  width: 100%;
+  height: 100%;
+}
+.fakt__label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.fakt__hodnota {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 1.1rem + 1.5vw, 2.6rem);
+  line-height: 1;
+  color: var(--ink);
+}
+.fakt__hodnota em {
+  font-family: var(--ui);
+  font-style: normal;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+}
+.fakt__pozn {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--body-dim);
+  max-width: 34ch;
+}
+.fakty__bodky {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .fakty {
+    padding-block: 26px 22px;
+  }
+  /* jedna karta na obrazovku, prstom sa listuje */
+  .fakty__pas {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .fakty__pas::-webkit-scrollbar {
+    display: none;
+  }
+  .fakt {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    padding: 0;
+    border-left: 0;
+    gap: 10px;
+  }
+  .fakt__pozn {
+    max-width: 100%;
+  }
+  .fakty__bodky {
+    display: flex;
+    gap: 7px;
+    margin-top: 22px;
+  }
+  .fakty__bodky button {
+    width: 26px;
+    height: 3px;
+    border: 0;
+    padding: 0;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.16);
+    cursor: pointer;
+    transition: background var(--t-base) var(--ease), width var(--t-base) var(--ease);
+  }
+  .fakty__bodky button.is-on {
+    width: 38px;
+    background: var(--cyan);
+  }
+}
+
+/* ============================================================
+   LANDING HERO v2 — podľa klientovej referencie
+   zlaté akcenty, tri piliere, pill CTA s kruhovou šípkou
+   ============================================================ */
+
+/* eyebrow zlatý, bez linky (linka ostáva len na širokých obrazovkách) */
+.hero__eyebrow {
+  color: var(--gold);
+}
+
+/* --- tri piliere --- */
+.hero__trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(26px, 3vw, 38px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.hero__trio-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 14px;
+  border-left: 1px solid var(--line);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  color: rgba(231, 234, 236, 0.82);
+}
+.hero__trio-item:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.hero__trio-ico {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.hero__trio-ico svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- CTA: pill s kruhovou zlatou šípkou --- */
+.hero__ctas {
+  align-items: center;
+}
+.hero__btn {
+  height: auto;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 28px 7px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  letter-spacing: 0.11em;
+}
+.hero__btn:hover {
+  border-color: var(--gold);
+  background: rgba(198, 169, 107, 0.06);
+}
+.hero__btn-arr {
+  flex: none;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #14100a;
+  border: 0;
+  transition: transform var(--t-base) var(--ease);
+}
+.hero__btn-arr svg {
+  width: 20px;
+  height: 20px;
+}
+.hero__btn:hover .hero__btn-arr {
+  transform: translateX(3px);
+}
+.hero__btn-label {
+  padding: 0;
+}
+
+/* --- sekundárny odkaz: text so zlatým podčiarknutím --- */
+.hero__ghost {
+  gap: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold-soft);
+  color: rgba(231, 234, 236, 0.86);
+  transition: color var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.hero__ghost:hover {
+  color: var(--ink);
+  border-bottom-color: var(--gold);
+}
+.hero__ghost-ico {
+  display: none;
+}
+
+/* --- nápoveda na scroll --- */
+.hero__hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+  font-size: 0.625rem;
+  letter-spacing: 0.19em;
+  color: rgba(231, 234, 236, 0.42);
+}
+.hero__hint svg {
+  width: 17px;
+  height: 17px;
+}
+
+@media (max-width: 900px) {
+  /* na mobile nahrádza nápoveda zvislý „SCROLL" pri okraji */
+  .hero__hint {
+    display: flex;
+    margin-top: 18px;
+  }
+  /* tri stĺpce ako v referencii — menšie písmo, ikona nad textom nie je */
+  .hero__trio {
+    margin-top: 16px;
+  }
+  .hero__trio-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 11px 10px;
+    font-size: 0.5rem;
+    letter-spacing: 0.09em;
+  }
+  .hero__trio-item:last-child {
+    padding-right: 0;
+  }
+  .hero__trio-ico {
+    width: 18px;
+    height: 18px;
+  }
+  /* CTA vedľa seba v jednom riadku ako v referencii */
+  .hero__ctas {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .hero__btn {
+    width: auto;
+    height: auto;
+    padding: 5px 18px 5px 5px;
+    gap: 12px;
+    font-size: 0.625rem;
+    letter-spacing: 0.09em;
+  }
+  .hero__btn-arr {
+    width: 40px;
+    height: 40px;
+  }
+  .hero__btn-arr svg {
+    width: 16px;
+    height: 16px;
+  }
+  .hero__ghost {
+    font-size: 0.625rem;
+    letter-spacing: 0.09em;
+    padding-bottom: 6px;
+  }
 }

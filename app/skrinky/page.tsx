@@ -1,41 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import CatalogGrid from "../CatalogGrid";
-import TierCards from "../TierCards";
 import Drobcek from "../Drobcek";
-
-const HERO_FEATURES = [
-  {
-    label: "Oceľová konštrukcia",
-    sub: "30 × 30 mm",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
-        <rect x="5" y="5" width="14" height="14" rx="1" />
-        <rect x="8.2" y="8.2" width="7.6" height="7.6" rx="0.5" />
-      </svg>
-    ),
-  },
-  {
-    label: "Prémiové povrchy",
-    sub: "7 dekorov na výber",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
-        <path d="M4.5 9.5 12 5l7.5 4.5L12 14 4.5 9.5Z" strokeLinejoin="round" />
-        <path d="m4.5 14 7.5 4.5L19.5 14" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    label: "Testovaná nosnosť",
-    sub: "Až 770 kg",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
-        <path d="M12 3 5 5.8v5.4c0 4.3 3 8.1 7 9.3 4-1.2 7-5 7-9.3V5.8L12 3Z" strokeLinejoin="round" />
-        <path d="m9 11.6 2.1 2.1L15 9.8" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-];
+import Fakty from "./Fakty";
 
 export const metadata = {
   title: "Skrinky pod akváriá — katalóg | AQUAPRIME",
@@ -47,10 +14,21 @@ export default function SkrinkyPage() {
   return (
     <main className="catalog">
       {/* hero s fotkou — text centrovaný nad skrinkou */}
-      <section className="cat-hero">
+      <section className="cat-hero cat-hero--interier">
+        {/* široký interiér pre desktop */}
         <div className="cat-hero__bg" aria-hidden>
           <Image
-            src="/skrinky/skrinky-hero-4.webp"
+            src="/skrinky/skrinky-hero-7.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+        {/* zvislý tmavý render pre mobil — text sadá do tmy nad skrinkou */}
+        <div className="cat-hero__bg cat-hero__bg--m" aria-hidden>
+          <Image
+            src="/skrinky/skrinky-hero-mobil.webp"
             alt=""
             fill
             priority
@@ -61,67 +39,33 @@ export default function SkrinkyPage() {
           <div className="cat-hero__crumb" data-reveal="fade">
             <Drobcek cesta={[{ nazov: "Skrinky" }]} />
           </div>
-          <span className="cat-hero__eyebrow" data-reveal="fade">
-            SKRINKY
-          </span>
           <h1 className="cat-hero__title display" data-reveal>
-            Skrinky pod akváriá
+            Pevnosť ocele.
+            <br />
+            Krásny dizajn.
           </h1>
           <p
             className="cat-hero__lead"
             data-reveal
             style={{ "--rd": "90ms" } as React.CSSProperties}
           >
-            Tri rady konštrukcie — od priznaného oceľového rámu po kompletne
-            opláštenú skrinku. Rozmery od 80 do 200 cm, dekory na výber,
-            všetko na jednom ráme z ocele 30 × 30 mm.
+            Oceľové rámy, ktoré unesú aj tie najväčšie akváriá.
           </p>
-          <div
-            className="cat-hero__features"
+          <a
+            href="#katalog"
+            className="cat-hero__odkaz"
             data-reveal
-            style={{ "--rd": "160ms" } as React.CSSProperties}
+            style={{ "--rd": "140ms" } as React.CSSProperties}
           >
-            {HERO_FEATURES.map((f) => (
-              <div key={f.label} className="cat-hero__feature">
-                <span className="cat-hero__ficon">{f.icon}</span>
-                <span>
-                  <b>{f.label}</b>
-                  {f.sub}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div
-            className="cat-hero__actions"
-            data-reveal
-            style={{ "--rd": "220ms" } as React.CSSProperties}
-          >
-            <a href="#katalog" className="btn-cyan">
-              PREZRIEŤ KATALÓG <span aria-hidden>↓</span>
-            </a>
-            <Link href="/konfigurator" className="construct__link">
-              alebo si zostavte vlastnú
-            </Link>
-          </div>
+            Prezrieť kolekcie <span aria-hidden>↓</span>
+          </a>
         </div>
         <a href="#katalog" className="cat-hero__cue" aria-label="Prejsť na katalóg">
           <span aria-hidden>⌄</span>
         </a>
       </section>
 
-      {/* rýchla voľba podľa radu (predvolí filter v katalógu) */}
-      <section className="section catalog__collections">
-        <div className="wrap">
-          <div className="catalog__subhead">
-            <h2 className="catalog__h2">Rýchla voľba podľa radu</h2>
-            <p className="catalog__sublead">
-              Rady sa líšia mierou opláštenia — konštrukcia pod nimi je vždy
-              rovnaká: zváraný oceľový rám.
-            </p>
-          </div>
-          <TierCards />
-        </div>
-      </section>
+      <Fakty />
 
       {/* produktová mriežka s interaktívnym filtrom */}
       <section className="section" id="katalog">
@@ -129,8 +73,9 @@ export default function SkrinkyPage() {
           <div className="catalog__subhead">
             <h2 className="catalog__h2">Katalóg skriniek</h2>
             <p className="catalog__sublead">
-              Vyfiltrujte rad a šírku. Konečný rozmer, dekor aj detaily
-              doladíme podľa vášho akvária — vyrábame na mieru.
+              Rady sa líšia mierou opláštenia — konštrukcia pod nimi je vždy
+              rovnaká: zváraný oceľový rám. Konečný rozmer, dekor aj detaily
+              doladíme podľa vášho akvária.
             </p>
           </div>
           <CatalogGrid />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import KontaktForm from "../KontaktForm";
 import Drobcek from "../Drobcek";
+import { AquaFishMark } from "../brand";
 import "./kontakt.css";
 
 export const metadata = {
@@ -87,6 +88,22 @@ const FAQ = [
 export default function Page() {
   return (
     <main className="sub kontakt" style={{ ["--accent" as string]: "var(--cyan)" }}>
+      {/* živá voda — ambientná vrstva pod obsahom: plávajúce rybky (brand
+          mark), svetlo cez vodu a stúpajúce bublinky. Čisté CSS, žiadny JS. */}
+      <div className="kvoda" aria-hidden>
+        <span className="kvoda__svetlo kvoda__svetlo--a" />
+        <span className="kvoda__svetlo kvoda__svetlo--b" />
+        <span className="kvoda__ryba kvoda__ryba--daleka">
+          <AquaFishMark />
+        </span>
+        <span className="kvoda__ryba kvoda__ryba--blizka">
+          <AquaFishMark />
+        </span>
+        {[...Array(6)].map((_, i) => (
+          <span key={i} className="kvoda__bublina" style={{ ["--b" as string]: i }} />
+        ))}
+      </div>
+
       <section className="kontakt__head">
         <div className="sub__head-glow" />
         <div className="wrap">

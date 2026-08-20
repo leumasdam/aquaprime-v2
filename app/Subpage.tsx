@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
+import Drobcek from "./Drobcek";
 
 export type SubCard = { tag?: string; title: string; body: string };
 
 export type SubpageProps = {
-  eyebrow: string;
+  /** krátky názov stránky do drobčeka (Domov / …) */
+  crumb: string;
   title: string;
   lead: string;
   accent?: string;
@@ -31,9 +33,9 @@ export default function Subpage(p: SubpageProps) {
       <section className="sub__head section">
         <div className="sub__head-glow" />
         <div className="wrap">
-          <span className="eyebrow eyebrow--rule sub__eyebrow" data-reveal="fade">
-            {p.eyebrow}
-          </span>
+          <div className="pg-drobcek" data-reveal="fade">
+            <Drobcek cesta={[{ nazov: p.crumb }]} />
+          </div>
           <h1 className="sub__title" data-reveal>
             {p.title}
           </h1>

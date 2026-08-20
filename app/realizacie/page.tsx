@@ -1,7 +1,9 @@
+import Drobcek from "../Drobcek";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import RealGrid from "./RealGrid";
+import RealVidea from "./RealVidea";
 
 export const metadata = {
   title: "Realizácie — priestory, kde dizajn žije | AQUAPRIME",
@@ -71,6 +73,9 @@ export default function Page() {
         </div>
         <div className="wrap real-hero__grid">
           <div className="real-hero__copy">
+            <div className="pg-drobcek" data-reveal="fade">
+              <Drobcek cesta={[{ nazov: "Realizácie" }]} />
+            </div>
             <h1 className="real-hero__title display" data-reveal>
               Priestory,
               <br />
@@ -93,6 +98,9 @@ export default function Page() {
       <section className="real-projects">
         <RealGrid />
       </section>
+
+      {/* ---- VIDEÁ z prevádzky ---- */}
+      <RealVidea />
 
       {/* ---- HODNOTY ---- */}
       <section className="real-values">

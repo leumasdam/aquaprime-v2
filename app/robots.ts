@@ -7,7 +7,8 @@ export default function robots(): MetadataRoute.Robots {
     return { rules: { userAgent: "*", disallow: "/" } };
   }
   return {
-    rules: { userAgent: "*", allow: "/" },
+    // administrácia a API nemajú vo vyhľadávačoch čo robiť ani po odomknutí
+    rules: { userAgent: "*", allow: "/", disallow: ["/admin", "/api/"] },
     sitemap: "https://aquaprime.sk/sitemap.xml",
   };
 }

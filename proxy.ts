@@ -2,29 +2,111 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Zámok celého webu, kým sa obsah dokončí.
+ * Brány webu — zámok pre verejnosť (SITE_PASSWORD) a administrácia
+ * (ADMIN_PASSWORD). Session je podpísaná HMAC-SHA256 cookie s expiráciou
+ * (kľúč sa odvádza z hesla — zmena hesla zneplatní všetky sessions).
+ * Neúspešné pokusy o heslo sa rátajú per-IP (best-effort v pamäti inštancie).
  *
- * Bez správnej cookie sa nedostane dnu nikto, ani kto pozná adresu. Heslo sa
- * berie z premennej SITE_PASSWORD; keď nie je nastavená, zámok je vypnutý a
- * web beží normálne (aby sa nedal omylom zamknúť sám pred sebou).
- *
- * Vpustenie: /?heslo=… alebo formulár nižšie. Cookie platí 30 dní.
+ * Vpustenie: POST formulár na prihlasovacej stránke, alebo ?heslo=…
+ * v odkaze (na zdieľanie klientovi). Cookie: web 30 dní, admin 14 dní.
  */
 
 const COOKIE = "aq_vstup";
+const ADMIN_COOKIE = "aq_admin";
 
-function hashuj(s: string): string {
-  // stačí na odlíšenie cookie od hesla — nie je to ochrana tajomstva,
-  // heslo pozná aj tak každý, komu ho pošleme
-  let h = 0;
-  for (let i = 0; i < s.length; i++) {
-    h = (h << 5) - h + s.charCodeAt(i);
-    h |= 0;
-  }
-  return `v1.${Math.abs(h).toString(36)}`;
+/* ---------------- podpísané sessions (Web Crypto, edge-safe) ---------------- */
+
+const enc = new TextEncoder();
+
+function b64url(buf: ArrayBuffer): string {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 }
 
-function prihlasovaciaStranka(chyba: boolean) {
+async function hmacKluc(tajomstvo: string): Promise<CryptoKey> {
+  const surovina = await crypto.subtle.digest("SHA-256", enc.encode(tajomstvo));
+  return crypto.subtle.importKey("raw", surovina, { name: "HMAC", hash: "SHA-256" }, false, [
+    "sign",
+    "verify",
+  ]);
+}
+
+async function vytvorSession(tajomstvo: string, dni: number): Promise<string> {
+  const payload = b64url(enc.encode(JSON.stringify({ exp: Date.now() + dni * 86_400_000 })).buffer as ArrayBuffer);
+  const kluc = await hmacKluc(tajomstvo);
+  const podpis = await crypto.subtle.sign("HMAC", kluc, enc.encode(payload));
+  return `${payload}.${b64url(podpis)}`;
+}
+
+async function overSession(tajomstvo: string, cookie: string | undefined): Promise<boolean> {
+  if (!cookie) return false;
+  const [payload, podpis] = cookie.split(".");
+  if (!payload || !podpis) return false;
+  try {
+    const kluc = await hmacKluc(tajomstvo);
+    const raw = Uint8Array.from(
+      atob(podpis.replace(/-/g, "+").replace(/_/g, "/")),
+      (c) => c.charCodeAt(0),
+    );
+    const plati = await crypto.subtle.verify("HMAC", kluc, raw, enc.encode(payload));
+    if (!plati) return false;
+    const data = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/"))) as { exp?: number };
+    return typeof data.exp === "number" && data.exp > Date.now();
+  } catch {
+    return false;
+  }
+}
+
+/** porovnanie hesiel cez digesty — bez skratovania po prvom rozdielnom znaku */
+async function rovnakeHeslo(zadane: string, spravne: string): Promise<boolean> {
+  const [a, b] = await Promise.all([
+    crypto.subtle.digest("SHA-256", enc.encode(zadane)),
+    crypto.subtle.digest("SHA-256", enc.encode(spravne)),
+  ]);
+  const ua = new Uint8Array(a);
+  const ub = new Uint8Array(b);
+  let rozdiel = 0;
+  for (let i = 0; i < ua.length; i++) rozdiel |= ua[i] ^ ub[i];
+  return rozdiel === 0;
+}
+
+/* ---------------- limit pokusov (best-effort, pamäť inštancie) ---------------- */
+
+const pokusy = new Map<string, { pocet: number; od: number }>();
+const LIMIT_POKUSOV = 8;
+const LIMIT_OKNO = 10 * 60 * 1000;
+
+function ip(request: NextRequest): string {
+  return (
+    request.headers.get("x-real-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "?"
+  );
+}
+
+function prekroceny(kluc: string): boolean {
+  const teraz = Date.now();
+  const z = pokusy.get(kluc);
+  if (!z || teraz - z.od > LIMIT_OKNO) return false;
+  return z.pocet >= LIMIT_POKUSOV;
+}
+
+function zapisPokus(kluc: string): void {
+  const teraz = Date.now();
+  const z = pokusy.get(kluc);
+  if (!z || teraz - z.od > LIMIT_OKNO) pokusy.set(kluc, { pocet: 1, od: teraz });
+  else z.pocet++;
+  // nech mapa nerastie donekonečna
+  if (pokusy.size > 2000) {
+    for (const [k, v] of pokusy) if (teraz - v.od > LIMIT_OKNO) pokusy.delete(k);
+  }
+}
+
+/* ---------------- prihlasovacie stránky ---------------- */
+
+function prihlasovaciaStranka(chyba: boolean, limitovany = false) {
   return `<!doctype html>
 <html lang="sk"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -54,55 +136,158 @@ function prihlasovaciaStranka(chyba: boolean) {
   </svg>
   <h1>Web sa pripravuje</h1>
   <p>Stránka zatiaľ nie je verejná. Ak máte prístupové heslo, zadajte ho.</p>
-  <form method="GET">
-    <input type="password" name="heslo" placeholder="Heslo" autofocus aria-label="Heslo">
-    <button type="submit">VSTÚPIŤ</button>
+  <form method="POST">
+    <input type="password" name="heslo" placeholder="Heslo" autofocus aria-label="Heslo" ${limitovany ? "disabled" : ""}>
+    <button type="submit" ${limitovany ? "disabled" : ""}>VSTÚPIŤ</button>
   </form>
-  ${chyba ? '<p class="err">Nesprávne heslo, skúste to znova.</p>' : ""}
+  ${limitovany ? '<p class="err">Priveľa pokusov — skúste to o pár minút.</p>' : chyba ? '<p class="err">Nesprávne heslo, skúste to znova.</p>' : ""}
 </div></body></html>`;
 }
 
-export function proxy(request: NextRequest) {
-  const heslo = process.env.SITE_PASSWORD;
-  if (!heslo) return NextResponse.next();
+function adminStranka(chyba: boolean, limitovany = false) {
+  return prihlasovaciaStranka(chyba, limitovany)
+    .replace("Web sa pripravuje", "Administrácia")
+    .replace(
+      "Stránka zatiaľ nie je verejná. Ak máte prístupové heslo, zadajte ho.",
+      "Prístup len pre majiteľa. Zadajte administrátorské heslo.",
+    );
+}
 
-  const ocakavane = hashuj(heslo);
-  const { searchParams, pathname } = request.nextUrl;
+/* ---------------- spoločná logika brány ---------------- */
 
-  // už vpustený
-  if (request.cookies.get(COOKIE)?.value === ocakavane) {
-    return NextResponse.next();
+async function zadaneHeslo(request: NextRequest): Promise<string | null> {
+  // POST formulár má prednosť; GET ?heslo= ostáva pre zdieľané odkazy
+  if (request.method === "POST") {
+    try {
+      const forma = await request.formData();
+      const h = forma.get("heslo");
+      if (typeof h === "string") return h;
+    } catch {
+      /* nie je formulár */
+    }
   }
+  return request.nextUrl.searchParams.get("heslo");
+}
 
-  // pokus o zadanie hesla
-  const zadane = searchParams.get("heslo");
+function presmerujBezHesla(request: NextRequest): NextResponse {
+  const cielova = request.nextUrl.clone();
+  cielova.searchParams.delete("heslo");
+  // 303 → po POSTe sa cieľ načíta GETom
+  return NextResponse.redirect(cielova, 303);
+}
+
+type Brana = {
+  heslo: string;
+  cookie: string;
+  tajomstvo: string;
+  dni: number;
+  stranka: (chyba: boolean, limitovany?: boolean) => string;
+  jeApi: boolean;
+};
+
+async function brana(request: NextRequest, b: Brana): Promise<NextResponse | null> {
+  if (await overSession(b.tajomstvo, request.cookies.get(b.cookie)?.value)) return null;
+
+  const adresa = ip(request);
+  const limitKluc = `${b.cookie}:${adresa}`;
+
+  const zadane = await zadaneHeslo(request);
   if (zadane !== null) {
-    if (zadane === heslo) {
-      const cielova = request.nextUrl.clone();
-      cielova.searchParams.delete("heslo");
-      const res = NextResponse.redirect(cielova);
-      res.cookies.set(COOKIE, ocakavane, {
+    if (prekroceny(limitKluc)) {
+      return new NextResponse(b.stranka(false, true), {
+        status: 429,
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "x-robots-tag": "noindex",
+          "retry-after": "600",
+        },
+      });
+    }
+    if (await rovnakeHeslo(zadane, b.heslo)) {
+      const res = presmerujBezHesla(request);
+      res.cookies.set(b.cookie, await vytvorSession(b.tajomstvo, b.dni), {
         httpOnly: true,
         sameSite: "lax",
         secure: true,
         path: "/",
-        maxAge: 60 * 60 * 24 * 30,
+        maxAge: 60 * 60 * 24 * b.dni,
       });
       return res;
     }
-    return new NextResponse(prihlasovaciaStranka(true), {
+    zapisPokus(limitKluc);
+    return new NextResponse(b.stranka(true, prekroceny(limitKluc)), {
       status: 401,
       headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "noindex" },
     });
   }
 
-  // robots.txt necháme prejsť, nech aj tak zakazuje indexovanie
-  if (pathname === "/robots.txt") return NextResponse.next();
-
-  return new NextResponse(prihlasovaciaStranka(false), {
+  if (b.jeApi) return NextResponse.json({ chyba: "Neprihlásený" }, { status: 401 });
+  return new NextResponse(b.stranka(false), {
     status: 401,
     headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "noindex" },
   });
+}
+
+/* ---------------- vstupný bod ---------------- */
+
+export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // administrácia — vlastná, prísnejšia brána; bez ADMIN_PASSWORD sa nedá vojsť
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
+    const jeApi = pathname.startsWith("/api/admin");
+
+    // denný cron od Vercelu sa hlási hlavičkou, nie cookie
+    const cron = process.env.CRON_SECRET;
+    if (cron && request.headers.get("authorization") === `Bearer ${cron}`) {
+      return NextResponse.next();
+    }
+
+    const heslo = process.env.ADMIN_PASSWORD;
+    if (!heslo) {
+      return jeApi
+        ? NextResponse.json({ chyba: "ADMIN_PASSWORD nie je nastavené" }, { status: 503 })
+        : new NextResponse(
+            "<h1 style='font-family:system-ui;padding:40px'>Administrácia nie je nakonfigurovaná (ADMIN_PASSWORD chýba).</h1>",
+            { status: 503, headers: { "content-type": "text/html; charset=utf-8" } },
+          );
+    }
+
+    const stop = await brana(request, {
+      heslo,
+      cookie: ADMIN_COOKIE,
+      tajomstvo: `admin|${heslo}`,
+      dni: 14,
+      stranka: adminStranka,
+      jeApi,
+    });
+    return stop ?? NextResponse.next();
+  }
+
+  const heslo = process.env.SITE_PASSWORD;
+  if (!heslo) return NextResponse.next();
+
+  // platná admin session púšťa aj cez zámok webu — majiteľ sa loguje len raz
+  const adminHeslo = process.env.ADMIN_PASSWORD;
+  if (
+    adminHeslo &&
+    (await overSession(`admin|${adminHeslo}`, request.cookies.get(ADMIN_COOKIE)?.value))
+  ) {
+    return NextResponse.next();
+  }
+
+  // robots.txt necháme prejsť, nech aj tak zakazuje indexovanie
+  if (pathname === "/robots.txt") return NextResponse.next();
+
+  const stop = await brana(request, {
+    heslo,
+    cookie: COOKIE,
+    tajomstvo: `vstup|${heslo}`,
+    dni: 30,
+    stranka: prihlasovaciaStranka,
+    jeApi: pathname.startsWith("/api/"),
+  });
+  return stop ?? NextResponse.next();
 }
 
 export const config = {

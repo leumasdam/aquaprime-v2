@@ -39,7 +39,7 @@
 .kos__blok {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: var(--k-radius);
+  border-radius: var(--r-md);
   padding: var(--k-pad);
 }
 .kos__blok-head {
@@ -96,7 +96,7 @@
   position: relative;
   width: 104px;
   aspect-ratio: 5 / 4;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: #fff;
   border: 1px solid var(--line);
@@ -124,7 +124,7 @@
 .kos__chip {
   display: inline-block;
   padding: 4px 9px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid var(--line-2);
   font-size: 0.6875rem;
@@ -141,7 +141,7 @@
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--line-2);
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: rgba(6, 8, 9, 0.5);
 }
@@ -150,7 +150,7 @@
   height: 38px;
   font-size: 1.05rem;
   color: var(--body);
-  transition: background 0.18s, color 0.18s;
+  transition: background var(--t-fast), color var(--t-fast);
 }
 .kos__stepper button:hover {
   background: rgba(71, 199, 232, 0.12);
@@ -179,7 +179,7 @@
 .kos__zmaz {
   font-size: 0.6875rem;
   color: var(--faint);
-  transition: color 0.2s;
+  transition: color var(--t-base);
 }
 .kos__zmaz:hover {
   color: #e8a047;
@@ -207,14 +207,14 @@
   align-items: center;
   padding: 12px;
   border: 1px solid var(--line-2);
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: rgba(6, 8, 9, 0.4);
 }
 .kos__navrh-foto {
   position: relative;
   width: 76px;
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background: #fff;
 }
@@ -253,12 +253,12 @@
   margin-left: auto;
   padding: 7px 13px;
   border: 1px solid rgba(71, 199, 232, 0.45);
-  border-radius: 7px;
+  border-radius: var(--r-sm);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--cyan);
-  transition: background 0.2s;
+  transition: background var(--t-base);
 }
 .kos__pridaj:hover {
   background: rgba(71, 199, 232, 0.12);
@@ -276,9 +276,9 @@
   gap: 14px;
   padding: 15px 17px;
   border: 1px solid var(--line-2);
-  border-radius: 11px;
+  border-radius: var(--r-md);
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), background var(--t-base);
 }
 .kos__volba:hover {
   border-color: rgba(71, 199, 232, 0.45);
@@ -293,7 +293,7 @@
   height: 18px;
   border: 1.5px solid var(--line-2);
   border-radius: 50%;
-  transition: border-color 0.2s;
+  transition: border-color var(--t-base);
 }
 .kos__volba.is-on input {
   border-color: var(--cyan);
@@ -322,7 +322,7 @@
 .kos__termin {
   margin-top: 14px;
   padding: 12px 15px;
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   background: rgba(255, 255, 255, 0.03);
   font-size: 0.75rem;
   line-height: 1.6;
@@ -361,11 +361,11 @@
   padding: 13px 15px;
   background: rgba(6, 8, 9, 0.6);
   border: 1px solid var(--line-2);
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   color: var(--ink);
   font-family: inherit;
   font-size: 0.9375rem;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color var(--t-base), background var(--t-base);
 }
 .kos__pole input::placeholder,
 .kos__pole textarea::placeholder {
@@ -395,7 +395,7 @@
   padding: var(--k-pad);
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: var(--k-radius);
+  border-radius: var(--r-md);
 }
 .kos__sum-title {
   font-family: var(--display);
@@ -407,7 +407,7 @@
   flex-direction: column;
   gap: 7px;
   padding: 12px 14px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: rgba(71, 199, 232, 0.06);
   border: 1px solid rgba(71, 199, 232, 0.2);
   font-size: 0.75rem;
@@ -418,7 +418,7 @@
 }
 .kos__zdarma-bar {
   height: 4px;
-  border-radius: 100px;
+  border-radius: var(--r-xs);
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
@@ -427,7 +427,7 @@
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--cyan), #7ad9f2);
-  transition: width 0.4s var(--ease);
+  transition: width var(--t-slow) var(--ease);
 }
 .kos__sumrow {
   display: flex;
@@ -483,7 +483,7 @@
   color: #e8a047;
   padding: 11px 13px;
   border: 1px solid rgba(232, 160, 71, 0.4);
-  border-radius: 9px;
+  border-radius: var(--r-sm);
 }
 .kos__istoty {
   list-style: none;
@@ -526,7 +526,7 @@
   padding: clamp(40px, 6vw, 90px) var(--k-pad);
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: var(--k-radius);
+  border-radius: var(--r-md);
 }
 .kos__prazdny-ico {
   display: grid;
@@ -585,7 +585,7 @@
 }
 .kos__skeleton {
   height: 420px;
-  border-radius: var(--k-radius);
+  border-radius: var(--r-md);
   background: linear-gradient(
     90deg,
     var(--card) 0%,
@@ -641,4 +641,235 @@
   .kos__volba-cena {
     grid-column: 2;
   }
+}
+
+/* súhlas s OP pred odoslaním */
+.kos__suhlas {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: rgba(226, 229, 231, 0.65);
+  margin: 14px 0 12px;
+  cursor: pointer;
+}
+.kos__suhlas input {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  accent-color: #47c7e8;
+  flex: none;
+  cursor: pointer;
+}
+.kos__suhlas a {
+  color: #47c7e8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* platobný model 30/70 v kroku 03 */
+.kos__platba-model {
+  display: grid;
+  gap: 10px;
+}
+.kos__platba-faza {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+.kos__platba-podiel {
+  flex: none;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: rgba(71, 199, 232, 0.1);
+  border: 1px solid rgba(71, 199, 232, 0.3);
+  color: #47c7e8;
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
+.kos__platba-telo {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.kos__platba-telo strong {
+  font-size: 0.875rem;
+}
+.kos__platba-telo span {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: rgba(226, 229, 231, 0.55);
+}
+.kos__platba-suma {
+  margin-left: auto;
+  white-space: nowrap;
+  color: #e2e5e7;
+}
+
+/* rozpis zálohy v súhrne */
+.kos__sumrow--zaloha {
+  color: #47c7e8;
+}
+.kos__sumrow--zaloha b {
+  color: #47c7e8;
+}
+.kos__sumrow--doplatok span,
+.kos__sumrow--doplatok b {
+  color: rgba(226, 229, 231, 0.55);
+}
+
+/* panel zálohy po odoslaní objednávky */
+.kos__zaloha {
+  margin: 26px auto 4px;
+  max-width: 560px;
+  text-align: left;
+  border: 1px solid rgba(71, 199, 232, 0.35);
+  border-radius: var(--r-md);
+  background: rgba(71, 199, 232, 0.05);
+  overflow: hidden;
+}
+.kos__zaloha-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(71, 199, 232, 0.2);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(226, 229, 231, 0.65);
+}
+.kos__zaloha-head b {
+  font-size: 1.15rem;
+  letter-spacing: 0;
+  color: #47c7e8;
+}
+.kos__zaloha-telo {
+  display: flex;
+  gap: 20px;
+  padding: 18px 20px;
+  align-items: flex-start;
+}
+.kos__zaloha-qr {
+  flex: none;
+  width: 148px;
+  height: 148px;
+  border-radius: var(--r-sm);
+  background: #fff;
+}
+.kos__zaloha-udaje {
+  min-width: 0;
+}
+.kos__zaloha-tip {
+  margin: 0 0 12px;
+  font-size: 0.78125rem;
+  line-height: 1.6;
+  color: rgba(226, 229, 231, 0.65);
+  padding: 0 0 0 0;
+}
+.kos__zaloha > .kos__zaloha-tip {
+  padding: 16px 20px 0;
+}
+.kos__zaloha dl {
+  margin: 0;
+  display: grid;
+  gap: 7px;
+}
+.kos__zaloha dl div {
+  display: flex;
+  gap: 10px;
+  font-size: 0.8125rem;
+}
+.kos__zaloha dt {
+  flex: none;
+  width: 128px;
+  color: rgba(226, 229, 231, 0.45);
+}
+.kos__zaloha dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.kos__zaloha-doplatok {
+  margin: 0;
+  padding: 13px 20px 16px;
+  font-size: 0.78125rem;
+  color: rgba(226, 229, 231, 0.6);
+}
+.kos__zaloha-doplatok b {
+  color: #e2e5e7;
+}
+@media (max-width: 560px) {
+  .kos__zaloha-telo {
+    flex-direction: column;
+    align-items: center;
+  }
+  .kos__zaloha-udaje {
+    width: 100%;
+  }
+}
+
+/* prepínač SK/CZ banky + kopírovanie údajov */
+.kos__zaloha-banky {
+  display: flex;
+  gap: 6px;
+  padding: 12px 20px 0;
+}
+.kos__zaloha-banky button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(226, 229, 231, 0.6);
+  font: inherit;
+  font-size: 0.75rem;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.kos__zaloha-banky button.is-on {
+  border-color: rgba(71, 199, 232, 0.55);
+  background: rgba(71, 199, 232, 0.1);
+  color: #47c7e8;
+}
+.kos__kopir {
+  margin-left: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: none;
+  color: rgba(226, 229, 231, 0.55);
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  vertical-align: 1px;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.kos__kopir:hover {
+  color: #47c7e8;
+  border-color: rgba(71, 199, 232, 0.5);
+}
+.kos__kopir.is-ok {
+  color: #6fd39a;
+  border-color: rgba(111, 211, 154, 0.5);
+}
+.kos__zaloha-sepa {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgba(232, 160, 71, 0.07);
+  border: 1px solid rgba(232, 160, 71, 0.25);
+  font-size: 0.71875rem;
+  line-height: 1.6;
+  color: rgba(226, 229, 231, 0.7);
+}
+.kos__zaloha-sepa b {
+  color: #e8a047;
 }

@@ -29,8 +29,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 4, price: "38 €" }],
     priceValue: 38,
     priceLabel: "38 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-50x25x30.webp",
   },
   {
     slug: "akvarium-75x30x40",
@@ -38,7 +37,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "66,60 €" }],
     priceValue: 66.6,
     priceLabel: "66,60 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-80x35x45.webp",
     coverIllustrative: true,
   },
   {
@@ -47,8 +46,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "64,50 €" }],
     priceValue: 64.5,
     priceLabel: "64,50 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-80x30x40.webp",
   },
   {
     slug: "akvarium-70x35x40",
@@ -56,8 +54,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "66,64 €" }],
     priceValue: 66.64,
     priceLabel: "66,64 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-70x35x40.webp",
   },
   {
     slug: "akvarium-80x35x35",
@@ -65,8 +62,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "62,80 €" }],
     priceValue: 62.8,
     priceLabel: "62,80 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-80x35x35.webp",
   },
   {
     slug: "akvarium-100x25x40",
@@ -74,8 +70,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "85,90 €" }],
     priceValue: 85.9,
     priceLabel: "85,90 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x25x40.webp",
   },
   {
     slug: "akvarium-100x30x35",
@@ -83,7 +78,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "69,90 €" }],
     priceValue: 69.9,
     priceLabel: "69,90 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-100x25x40.webp",
     coverIllustrative: true,
   },
   {
@@ -92,8 +87,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "80,50 €" }],
     priceValue: 80.5,
     priceLabel: "80,50 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-90x30x40.webp",
   },
   {
     slug: "akvarium-80x35x40",
@@ -109,8 +103,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "79,90 €" }],
     priceValue: 79.9,
     priceLabel: "79,90 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x30x40.webp",
   },
   {
     slug: "akvarium-100x35x35",
@@ -118,7 +111,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "70 €" }],
     priceValue: 70,
     priceLabel: "70 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-100x25x40.webp",
     coverIllustrative: true,
   },
   {
@@ -127,8 +120,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "75,80 €" }],
     priceValue: 75.8,
     priceLabel: "75,80 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-80x35x45.webp",
   },
   {
     slug: "akvarium-90x35x40",
@@ -136,7 +128,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "76,80 €" }],
     priceValue: 76.8,
     priceLabel: "76,80 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-90x30x40.webp",
     coverIllustrative: true,
   },
   {
@@ -145,8 +137,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "86,80 €" }],
     priceValue: 86.8,
     priceLabel: "86,80 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-80x40x40.webp",
   },
   {
     slug: "akvarium-100x35x40",
@@ -154,8 +145,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "88,40 €" }],
     priceValue: 88.4,
     priceLabel: "88,40 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x35x40.webp",
   },
   {
     slug: "akvarium-90x40x40",
@@ -163,7 +153,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "90,40 €" }],
     priceValue: 90.4,
     priceLabel: "90,40 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-90x30x40.webp",
     coverIllustrative: true,
   },
   {
@@ -172,7 +162,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "91,70 €" }],
     priceValue: 91.7,
     priceLabel: "91,70 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -181,8 +171,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "135,10 €" }],
     priceValue: 135.1,
     priceLabel: "135,10 €",
-    cover: "/img/akvaria/akvarium-80x35x40.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x30x50.webp",
   },
   {
     slug: "akvarium-80x40x50",
@@ -190,8 +179,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "137,70 €" }],
     priceValue: 137.7,
     priceLabel: "137,70 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-80x40x50.webp",
   },
   {
     slug: "akvarium-100x40x40",
@@ -199,8 +187,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 6, price: "94,50 €" }],
     priceValue: 94.5,
     priceLabel: "94,50 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x40x40.webp",
   },
   {
     slug: "akvarium-120x30x50",
@@ -208,8 +195,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "149,40 €" }],
     priceValue: 149.4,
     priceLabel: "149,40 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-120x30x50.webp",
   },
   {
     slug: "akvarium-120x40x40",
@@ -217,7 +203,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "152,20 €" }],
     priceValue: 152.2,
     priceLabel: "152,20 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -234,8 +220,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "144,20 €" }],
     priceValue: 144.2,
     priceLabel: "144,20 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-120x35x50.webp",
   },
   {
     slug: "akvarium-100x40x60",
@@ -243,7 +228,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "161,80 €" }],
     priceValue: 161.8,
     priceLabel: "161,80 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
+    cover: "/img/akvaria/akvarium-100x50x50.webp",
     coverIllustrative: true,
   },
   {
@@ -252,8 +237,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "156,90 €" }],
     priceValue: 156.9,
     priceLabel: "156,90 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-120x40x50.webp",
   },
   {
     slug: "akvarium-100x50x50",
@@ -261,8 +245,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "162,90 €" }],
     priceValue: 162.9,
     priceLabel: "162,90 €",
-    cover: "/img/akvaria/akvarium-100x40x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-100x50x50.webp",
   },
   {
     slug: "akvarium-120x40x60",
@@ -270,8 +253,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "198,80 €" }],
     priceValue: 198.8,
     priceLabel: "198,80 €",
-    cover: "/img/akvaria/akvarium-120x50x50.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-120x40x60.webp",
   },
   {
     slug: "akvarium-100x50x60",
@@ -279,7 +261,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "196,60 €" }],
     priceValue: 196.6,
     priceLabel: "196,60 €",
-    cover: "/img/akvaria/akvarium-120x50x50.webp",
+    cover: "/img/akvaria/akvarium-100x50x50.webp",
     coverIllustrative: true,
   },
   {
@@ -288,7 +270,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "194,60 €" }],
     priceValue: 194.6,
     priceLabel: "194,60 €",
-    cover: "/img/akvaria/akvarium-120x50x50.webp",
+    cover: "/img/akvaria/akvarium-120x50x50-v2.webp",
   },
   {
     slug: "akvarium-130x50x50",
@@ -296,7 +278,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "216,90 €" }],
     priceValue: 216.9,
     priceLabel: "216,90 €",
-    cover: "/img/akvaria/akvarium-120x50x50.webp",
+    cover: "/img/akvaria/akvarium-150x50x60-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -305,7 +287,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "230,20 €" }],
     priceValue: 230.2,
     priceLabel: "230,20 €",
-    cover: "/img/akvaria/akvarium-150x50x50.webp",
+    cover: "/img/akvaria/akvarium-160x60x60-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -314,7 +296,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 8, price: "235,50 €" }, { mm: 10, price: "303,80 €" }],
     priceValue: 235.5,
     priceLabel: "od 235,50 €",
-    cover: "/img/akvaria/akvarium-150x50x50.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
   },
   {
     slug: "akvarium-160x50x50",
@@ -322,7 +304,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "295,50 €" }],
     priceValue: 295.5,
     priceLabel: "295,50 €",
-    cover: "/img/akvaria/akvarium-150x50x50.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -331,7 +313,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "299,80 €" }],
     priceValue: 299.8,
     priceLabel: "299,80 €",
-    cover: "/img/akvaria/akvarium-150x50x60.webp",
+    cover: "/img/akvaria/akvarium-150x50x60-v2.webp",
   },
   {
     slug: "akvarium-180x50x50",
@@ -339,7 +321,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "315 €" }],
     priceValue: 315,
     priceLabel: "315 €",
-    cover: "/img/akvaria/akvarium-150x50x60.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -348,7 +330,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "314,20 €" }],
     priceValue: 314.2,
     priceLabel: "314,20 €",
-    cover: "/img/akvaria/akvarium-150x50x60.webp",
+    cover: "/img/akvaria/akvarium-160x60x60-v2.webp",
     coverIllustrative: true,
   },
   {
@@ -357,7 +339,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "332 €" }],
     priceValue: 332,
     priceLabel: "332 €",
-    cover: "/img/akvaria/akvarium-150x50x60.webp",
+    cover: "/img/akvaria/akvarium-200x60x60.webp",
     coverIllustrative: true,
   },
   {
@@ -366,8 +348,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "350 €" }],
     priceValue: 350,
     priceLabel: "350 €",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-150x60x60.webp",
   },
   {
     slug: "akvarium-160x60x60",
@@ -375,7 +356,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "345,90 €" }],
     priceValue: 345.9,
     priceLabel: "345,90 €",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
+    cover: "/img/akvaria/akvarium-160x60x60-v2.webp",
   },
   {
     slug: "akvarium-200x50x60",
@@ -383,7 +364,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 10, price: "383,20 €" }, { mm: 12, price: "794 €" }],
     priceValue: 383.2,
     priceLabel: "od 383,20 €",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
+    cover: "/img/akvaria/akvarium-200x60x60.webp",
     coverIllustrative: true,
   },
   {
@@ -392,8 +373,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 12, price: "805 €" }],
     priceValue: 805,
     priceLabel: "805 €",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
-    coverIllustrative: true,
+    cover: "/img/akvaria/akvarium-180x50x70.webp",
   },
   {
     slug: "akvarium-180x60x60",
@@ -401,7 +381,7 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     glass: [{ mm: 12, price: "860,80 €" }],
     priceValue: 860.8,
     priceLabel: "860,80 €",
-    cover: "/img/akvaria/akvarium-160x60x60.webp",
+    cover: "/img/akvaria/akvarium-150x50x50-v2.webp",
     coverIllustrative: true,
   },
   {

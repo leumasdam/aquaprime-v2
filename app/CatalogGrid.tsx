@@ -1,16 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { PRODUCTS, TIERS, type Tier } from "./products";
+import { useEffect, useMemo, useState } from "react";
+import { PRODUCTS, TIERS, type Tier, type Product } from "./products";
 import ProductCard from "./ProductCard";
+import {
+  FilterLista,
+  Segmented,
+  Filter,
+  FilterVolba,
+  FilterChipy,
+  PocetVysledkov,
+} from "./Filtre";
 
 const WIDTHS = [...new Set(PRODUCTS.map((p) => p.w))].sort((a, b) => a - b);
 
+const RADENIA = [
+  { id: "odporucane", label: "Odporúčané" },
+  { id: "cena-hore", label: "Od najlacnejšej" },
+  { id: "cena-dole", label: "Od najdrahšej" },
+  { id: "sirka", label: "Podľa šírky" },
+] as const;
+type Radenie = (typeof RADENIA)[number]["id"];
+
+function cena(p: Product): number {
+  const n = parseFloat(p.price.replace(/[^\d,\.]/g, "").replace(",", "."));
+  return Number.isFinite(n) && n > 0 ? n : Infinity; // „na dopyt" radíme na koniec
+}
+
 export default function CatalogGrid() {
   const [tier, setTier] = useState<Tier | "all">("all");
-  const [width, setWidth] = useState<number>(0);
+  const [widths, setWidths] = useState<Set<number>>(new Set());
+  const [radenie, setRadenie] = useState<Radenie>("odporucane");
 
-  // predvoľba radu z TierCards, chips aj z URL (?rad= — preklik z landingu)
+  // predvoľba radu z URL (?rad= — preklik z landingu) + starší aq:tier event
   useEffect(() => {
     const rad = new URLSearchParams(window.location.search).get("rad");
     if (rad && TIERS.some((t) => t.id === rad)) setTier(rad as Tier);
@@ -19,61 +41,112 @@ export default function CatalogGrid() {
     return () => window.removeEventListener("aq:tier", onTier);
   }, []);
 
-  /* zmena filtra chipsami — ohlásiť aj TierCards, nech svieti správny rad */
-  const pickTier = (t: Tier | "all") => {
-    setTier(t);
-    window.dispatchEvent(new CustomEvent("aq:tier", { detail: t }));
-  };
+  const prepniSirku = (w: number) =>
+    setWidths((s) => {
+      const n = new Set(s);
+      if (n.has(w)) n.delete(w);
+      else n.add(w);
+      return n;
+    });
 
-  const items = PRODUCTS.filter(
-    (p) => (tier === "all" || p.tier === tier) && (!width || p.w === width)
-  );
+  const items = useMemo(() => {
+    const f = PRODUCTS.filter(
+      (p) => (tier === "all" || p.tier === tier) && (widths.size === 0 || widths.has(p.w)),
+    );
+    switch (radenie) {
+      case "cena-hore":
+        return [...f].sort((a, b) => cena(a) - cena(b));
+      case "cena-dole":
+        return [...f].sort((a, b) => cena(b) - cena(a));
+      case "sirka":
+        return [...f].sort((a, b) => a.w - b.w || cena(a) - cena(b));
+      default:
+        return f;
+    }
+  }, [tier, widths, radenie]);
+
+  const chipy = [
+    ...(tier !== "all"
+      ? [{
+          id: `rad-${tier}`,
+          label: TIERS.find((t) => t.id === tier)?.label ?? tier,
+          onRemove: () => setTier("all"),
+        }]
+      : []),
+    ...[...widths].sort((a, b) => a - b).map((w) => ({
+      id: `w-${w}`,
+      label: `${w} cm`,
+      onRemove: () => prepniSirku(w),
+    })),
+    ...(radenie !== "odporucane"
+      ? [{
+          id: "sort",
+          label: RADENIA.find((r) => r.id === radenie)!.label,
+          onRemove: () => setRadenie("odporucane"),
+        }]
+      : []),
+  ];
+
+  const sirkaHodnota =
+    widths.size === 0
+      ? "Všetky"
+      : [...widths].sort((a, b) => a - b).map((w) => `${w}`).join(", ") + " cm";
 
   return (
     <>
-      <div className="catalog__filter-chips">
-        <button
-          type="button"
-          className={`chipbtn${tier === "all" ? " is-on" : ""}`}
-          onClick={() => pickTier("all")}
+      <FilterLista>
+        <Segmented
+          ariaLabel="Rad skriniek"
+          value={tier}
+          onChange={setTier}
+          volby={[
+            { id: "all" as const, label: "Všetky" },
+            ...TIERS.map((t) => ({
+              id: t.id,
+              label: t.label,
+              count: PRODUCTS.filter((p) => p.tier === t.id).length,
+            })),
+          ]}
+        />
+        <Filter label="Šírka" hodnota={sirkaHodnota} aktivny={widths.size > 0}>
+          {WIDTHS.map((w) => (
+            <FilterVolba
+              key={w}
+              label={`${w} cm`}
+              count={PRODUCTS.filter((p) => p.w === w).length}
+              checked={widths.has(w)}
+              onSelect={() => prepniSirku(w)}
+            />
+          ))}
+        </Filter>
+        <Filter
+          label="Zoradiť"
+          hodnota={RADENIA.find((r) => r.id === radenie)!.label}
+          aktivny={radenie !== "odporucane"}
         >
-          Všetky rady
-        </button>
-        {TIERS.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            className={`chipbtn${tier === t.id ? " is-on" : ""}`}
-            onClick={() => pickTier(t.id)}
-            title={t.note}
-          >
-            {t.label}
-            <span className="chipbtn__count">
-              {PRODUCTS.filter((p) => p.tier === t.id).length}
-            </span>
-          </button>
-        ))}
-      </div>
-      <div className="catalog__filter-chips catalog__filter-chips--sizes">
-        <button
-          type="button"
-          className={`chipbtn chipbtn--size${!width ? " is-on" : ""}`}
-          onClick={() => setWidth(0)}
-        >
-          Všetky šírky
-        </button>
-        {WIDTHS.map((w) => (
-          <button
-            key={w}
-            type="button"
-            className={`chipbtn chipbtn--size${width === w ? " is-on" : ""}`}
-            onClick={() => setWidth(w)}
-          >
-            {w} cm
-          </button>
-        ))}
-      </div>
-      <div className="product-grid" key={`${tier}-${width}`}>
+          {RADENIA.map((r) => (
+            <FilterVolba
+              key={r.id}
+              typ="radio"
+              label={r.label}
+              checked={radenie === r.id}
+              onSelect={() => setRadenie(r.id)}
+            />
+          ))}
+        </Filter>
+        <PocetVysledkov pocet={items.length} spolu={PRODUCTS.length} slovo="modelov" />
+      </FilterLista>
+
+      <FilterChipy
+        chipy={chipy}
+        onZrusVsetko={() => {
+          setTier("all");
+          setWidths(new Set());
+          setRadenie("odporucane");
+        }}
+      />
+
+      <div className="product-grid" key={`${tier}-${[...widths].join("_")}-${radenie}`}>
         {items.map((p, i) => (
           <ProductCard key={p.slug} p={p} entered delay={(i % 3) * 70} />
         ))}
@@ -81,8 +154,7 @@ export default function CatalogGrid() {
       {items.length === 0 && (
         <p className="catalog__empty">
           Tejto kombinácii rad × šírka nezodpovedá žiadna skrinka — skúste iný
-          rad, alebo nám pošlite rozmer na mieru cez{" "}
-          <a href="/dopyt">dopyt</a>.
+          rad, alebo nám pošlite rozmer na mieru cez <a href="/dopyt">dopyt</a>.
         </p>
       )}
     </>

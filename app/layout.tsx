@@ -9,6 +9,7 @@ import ScrollProgress from "./ScrollProgress";
 import BackToTop from "./BackToTop";
 import SiteNav from "./SiteNav";
 import SiteFooter from "./SiteFooter";
+import Analytika from "./Analytika";
 
 const tinos = Tinos({
   variable: "--f-display",
@@ -87,6 +88,15 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          // burger musí fungovať hneď — na mobile prichádza klik často skôr,
+          // než sa stihne hydratovať React. Tento mini-handler ho obslúži
+          // do nábehu (SiteNav ho potom vypne a stav si preberie).
+          dangerouslySetInnerHTML={{
+            __html: `try{var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){history.scrollRestoration="manual";window.scrollTo(0,0)}}catch(x){}
+document.addEventListener("click",function(e){if(window.__aqNavZije)return;var b=e.target.closest&&e.target.closest(".nav__burger");if(!b)return;e.preventDefault();e.stopPropagation();var m=document.querySelector(".nav__mobile");if(m){var o=!m.classList.contains("is-open");m.classList.toggle("is-open",o);b.classList.toggle("is-open",o);m.style.opacity=o?"1":"0";m.style.transform=o?"none":"translateY(-10px)";m.style.pointerEvents=o?"auto":"none";document.body.style.overflow=o?"hidden":""}},true);`,
+          }}
+        />
         <a href="#main" className="skip-link">
           Preskočiť na obsah
         </a>
@@ -98,6 +108,7 @@ export default function RootLayout({
         </KosikProvider>
         <BackToTop />
         <ScrollFx />
+        <Analytika />
         {process.env.NODE_ENV === "development" && <DevViewport />}
       </body>
     </html>

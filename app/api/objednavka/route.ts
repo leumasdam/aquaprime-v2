@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
+import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
 /**
  * Príjem objednávky. Objednávka sa musí prijať aj vtedy, keď e-mail zlyhá —
@@ -24,6 +26,13 @@ const eur = (n: number) =>
   " €";
 
 export async function POST(req: Request) {
+  if (prekrocenyLimit(`objednavka:${ipZ(req)}`)) {
+    return NextResponse.json(
+      { ok: false, error: "rate_limited" },
+      { status: 429, headers: { "retry-after": "600" } }
+    );
+  }
+
   let b: Record<string, unknown>;
   try {
     b = await req.json();
@@ -46,6 +55,67 @@ export async function POST(req: Request) {
   ).padStart(2, "0")}-${String(d.getHours()).padStart(2, "0")}${String(
     d.getMinutes()
   ).padStart(2, "0")}`;
+
+  // záloha 30 % vopred, zvyšok pri prevzatí; VS = numerická podoba času (10 číslic)
+  const spolu = Number(b.spolu) || 0;
+  const zaloha = Math.round(spolu * 0.3 * 100) / 100;
+  const doplatok = Math.round((spolu - zaloha) * 100) / 100;
+  const vs = `${String(d.getDate()).padStart(2, "0")}${String(d.getMonth() + 1).padStart(2, "0")}${String(
+    d.getFullYear()
+  ).slice(-2)}${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}`;
+
+  // QR platby — len keď je nastavený firemný IBAN. Dva formáty:
+  //  pbs = Pay by Square (slovenské banky)
+  //  spd = QR Platba / Short Payment Descriptor (české banky — má pole X-VS,
+  //        takže variabilný symbol prejde aj pri SEPA platbe z ČR)
+  const iban = process.env.FIRMA_IBAN?.replace(/\s+/g, "").toUpperCase() || null;
+  const firma = process.env.FIRMA_NAZOV || "AQUAPRIME";
+  let pbs: string | null = null;
+  let spd: string | null = null;
+  if (iban && zaloha > 0) {
+    try {
+      pbs = encode({
+        payments: [
+          {
+            type: PaymentOptions.PaymentOrder,
+            amount: zaloha,
+            currencyCode: CurrencyCode.EUR,
+            variableSymbol: vs,
+            bankAccounts: [{ iban }],
+            paymentNote: `Zaloha ${cislo}`,
+            beneficiary: { name: firma },
+          },
+        ],
+      });
+    } catch (e) {
+      console.warn("PayBySquare sa nepodarilo vygenerovať:", e);
+    }
+    spd = [
+      "SPD*1.0",
+      `ACC:${iban}`,
+      `AM:${zaloha.toFixed(2)}`,
+      "CC:EUR",
+      `X-VS:${vs}`,
+      `MSG:ZALOHA ${cislo}`,
+      `RN:${firma.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().slice(0, 35)}`,
+    ].join("*");
+  }
+
+  const platbaBlok = `
+    <div style="margin:16px 0;padding:14px 16px;border:1px solid #cfe9f2;background:#f2fafd;border-radius:8px">
+      <p style="margin:0 0 6px"><b>Záloha 30 % — ${eur(zaloha)}</b></p>
+      ${
+        iban
+          ? `<p style="margin:0;color:#333">IBAN: <b>${esc(iban.replace(/(.{4})/g, "$1 ").trim())}</b><br/>
+             Variabilný symbol: <b>${vs}</b><br/>
+             Poznámka: Zaloha ${cislo}</p>
+             <p style="margin:8px 0 0;color:#666;font-size:13px">Platíte z Česka alebo zo zahraničia (SEPA)?
+             Variabilný symbol sa tam zadať nedá — do správy pre príjemcu napíšte
+             <b>/VS${vs}/</b> alebo číslo objednávky <b>${cislo}</b>. Platbu spárujeme.</p>`
+          : `<p style="margin:0;color:#333">Platobné údaje k zálohe pošleme v samostatnom e-maile.</p>`
+      }
+      <p style="margin:8px 0 0;color:#666">Zvyšok ${eur(doplatok)} zaplatíte pri prevzatí.</p>
+    </div>`;
 
   const riadky = polozky
     .map(
@@ -107,7 +177,7 @@ export async function POST(req: Request) {
       polozky,
       spolu: b.spolu,
     });
-    return NextResponse.json({ ok: true, cislo, mailom: false });
+    return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: false });
   }
 
   try {
@@ -117,7 +187,7 @@ export async function POST(req: Request) {
       to: [to],
       replyTo: email,
       subject: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
-      html: suhrn,
+      html: platbaBlok + suhrn,
     });
     await resend.emails
       .send({
@@ -127,16 +197,17 @@ export async function POST(req: Request) {
         html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
             <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
             <p>ďakujeme za objednávku. Máme ju u seba a ozveme sa do 24 hodín
-            v pracovný deň s potvrdením termínu a platobnými údajmi.
-            <b>Nič neplatíte vopred.</b></p>
+            v pracovný deň s potvrdením termínu. Výroba sa spúšťa po uhradení
+            zálohy 30 % — zvyšok zaplatíte až pri prevzatí.</p>
+            ${platbaBlok}
             ${suhrn}
             <p style="color:#666;font-size:13px">AQUAPRIME · aquaprime.sk</p>
           </div>`,
       })
       .catch(() => null);
-    return NextResponse.json({ ok: true, cislo, mailom: true });
+    return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: true });
   } catch (e) {
     console.error(`OBJEDNÁVKA ${cislo} — odoslanie zlyhalo`, e);
-    return NextResponse.json({ ok: true, cislo, mailom: false });
+    return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: false });
   }
 }

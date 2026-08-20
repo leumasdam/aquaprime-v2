@@ -1,3 +1,4 @@
+import Drobcek from "../Drobcek";
 import KonfiguratorFull from "../KonfiguratorFull";
 import "./konfigurator.css";
 
@@ -19,7 +20,9 @@ export default function Page() {
     <main className="kfpage">
       <div className="wrap">
         <div className="kfx__head">
-          <span className="eyebrow eyebrow--rule">KONFIGURÁTOR · NÁVRH NA MIERU</span>
+          <div className="pg-drobcek">
+            <Drobcek cesta={[{ nazov: "Konfigurátor" }]} />
+          </div>
           <h1 className="kfx__title">
             Navrhnite si skrinku <em>na mieru</em>.
           </h1>

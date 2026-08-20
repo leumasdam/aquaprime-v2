@@ -47,6 +47,15 @@ export default function SiteNav() {
      samovoľné pripomínanie by teraz iba prekrývalo drobčeka. */
 
   useEffect(() => {
+    // prevziať menu od pred-hydratačného mini-handlera z layoutu:
+    // ak ho používateľ stihol otvoriť, zosynchronizovať React stav
+    (window as unknown as { __aqNavZije?: boolean }).__aqNavZije = true;
+    if (document.querySelector(".nav__mobile")?.classList.contains("is-open")) {
+      setOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -61,6 +70,7 @@ export default function SiteNav() {
   }, [open]);
 
   return (
+    <>
     <header className={`nav${scrolled ? " is-scrolled" : ""}`} style={{ viewTransitionName: "site-header" }}>
       <div className="wrap nav__inner">
         <div className="nav__brandwrap">
@@ -124,8 +134,23 @@ export default function SiteNav() {
           <span />
         </button>
       </div>
+    </header>
 
-      <div className={`nav__mobile${open ? " is-open" : ""}`}>
+      {/* menu je zámerne MIMO headera — view-transition-name na headeri
+          vynucuje paint containment a fixed menu vnútri by sa na časti
+          prehliadačov (Safari) orezalo na výšku lišty */}
+      <div
+        className={`nav__mobile${open ? " is-open" : ""}`}
+        // inline štýly namiesto spoliehania sa na class-match: pri prvom
+        // otvorení po načítaní stránky prehliadač pravidlo .is-open aplikoval
+        // až s ~1s oneskorením (menu pôsobilo mŕtvo). Inline platí okamžite,
+        // CSS transition na base triede animuje aj zmeny inline hodnôt.
+        style={{
+          opacity: open ? 1 : 0,
+          transform: open ? "none" : "translateY(-10px)",
+          pointerEvents: open ? "auto" : "none",
+        }}
+      >
         <nav className="nav__mobile-links">
           {NAV.map((item, i) => (
             <Link
@@ -149,6 +174,6 @@ export default function SiteNav() {
           KONFIGURÁTOR <span aria-hidden>→</span>
         </Link>
       </div>
-    </header>
+    </>
   );
 }

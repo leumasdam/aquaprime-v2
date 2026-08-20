@@ -1,0 +1,72 @@
+/* Právne stránky — pokojná čitateľná sadzba, žiadny marketing. */
+
+.pravne {
+  padding: 140px 0 100px;
+  background: var(--bg, #050606);
+  color: var(--text, #e2e5e7);
+}
+.pravne__wrap {
+  max-width: 760px;
+}
+.pravne__eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(226, 229, 231, 0.45);
+  margin: 0 0 14px;
+}
+.pravne__head h1 {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  margin: 0 0 10px;
+}
+.pravne__meta {
+  font-size: 0.75rem;
+  color: rgba(226, 229, 231, 0.45);
+  margin: 0 0 28px;
+}
+.pravne__draft {
+  border: 1px solid rgba(232, 160, 71, 0.4);
+  background: rgba(232, 160, 71, 0.07);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(226, 229, 231, 0.8);
+  margin-bottom: 40px;
+}
+.pravne__draft strong {
+  color: #e8a047;
+}
+.pravne-doplnit {
+  background: rgba(232, 160, 71, 0.16);
+  color: #e8a047;
+  border-radius: var(--r-xs);
+  padding: 1px 6px;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.pravne__body h2 {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin: 40px 0 12px;
+}
+.pravne__body p,
+.pravne__body li {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: rgba(226, 229, 231, 0.78);
+}
+.pravne__body ul,
+.pravne__body ol {
+  padding-left: 22px;
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+}
+.pravne__body a {
+  color: #47c7e8;
+}

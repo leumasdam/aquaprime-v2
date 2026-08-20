@@ -49,7 +49,7 @@ export default function AkvariaPage() {
       <section className="cat-hero cat-hero--aqua">
         <div className="cat-hero__bg" aria-hidden>
           <Image
-            src="/img/akvaria/akvarium-200x60x60.webp"
+            src="/img/akvaria/akvaria-hero-wide.webp"
             alt=""
             fill
             priority
@@ -60,9 +60,6 @@ export default function AkvariaPage() {
           <div className="cat-hero__crumb" data-reveal="fade">
             <Drobcek cesta={[{ nazov: "Akváriá" }]} />
           </div>
-          <span className="cat-hero__eyebrow" data-reveal="fade">
-            AKVÁRIÁ
-          </span>
           <h1 className="cat-hero__title display" data-reveal>
             Akváriá na mieru
           </h1>
@@ -89,18 +86,6 @@ export default function AkvariaPage() {
                 </span>
               </div>
             ))}
-          </div>
-          <div
-            className="cat-hero__actions"
-            data-reveal
-            style={{ "--rd": "220ms" } as React.CSSProperties}
-          >
-            <a href="#katalog" className="btn-cyan">
-              PREZRIEŤ NÁDRŽE <span aria-hidden>↓</span>
-            </a>
-            <Link href="/skrinky" className="construct__link">
-              alebo si pozrite skrinky pod ne
-            </Link>
           </div>
         </div>
         <a href="#katalog" className="cat-hero__cue" aria-label="Prejsť na katalóg">

@@ -26,26 +26,57 @@ const DORUCENIE = [
   },
 ] as const;
 
-const PLATBA = [
-  {
-    id: "prevod",
-    nazov: "Prevodom na účet",
-    popis: "Platobné údaje pošleme po potvrdení objednávky. Nič neplatíte vopred.",
-  },
-  {
-    id: "prevzatie",
-    nazov: "Pri prevzatí",
-    popis: "Zaplatíte až keď je tovar u vás — v hotovosti alebo kartou vodičovi.",
-  },
-] as const;
+/** Platobný model: 30 % záloha po objednaní, zvyšok pri prevzatí. */
+const ZALOHA_PODIEL = 0.3;
+
+type Hotovo = {
+  cislo: string;
+  mailom: boolean;
+  vs?: string;
+  zaloha?: number;
+  doplatok?: number;
+  iban?: string | null;
+  /** Pay by Square (slovenské banky) */
+  pbs?: string | null;
+  /** QR Platba / SPD (české banky — nesie aj variabilný symbol) */
+  spd?: string | null;
+};
+
+/** riadok údaju s tlačidlom kopírovania */
+function Udaj({ nazov, hodnota, kopiruj }: { nazov: string; hodnota: string; kopiruj?: string }) {
+  const [ok, setOk] = useState(false);
+  return (
+    <div>
+      <dt>{nazov}</dt>
+      <dd>
+        {hodnota}
+        <button
+          type="button"
+          className={`kos__kopir${ok ? " is-ok" : ""}`}
+          aria-label={`Kopírovať ${nazov}`}
+          onClick={() => {
+            navigator.clipboard?.writeText(kopiruj ?? hodnota).then(() => {
+              setOk(true);
+              setTimeout(() => setOk(false), 1600);
+            });
+          }}
+        >
+          {ok ? "✓" : "⧉"}
+        </button>
+      </dd>
+    </div>
+  );
+}
 
 export default function KosikObsah() {
   const { polozky, suma, pocet, zmenPocet, uber, vyprazdni, pridaj, pripravene } =
     useKosik();
   const [dorucenie, setDorucenie] = useState<(typeof DORUCENIE)[number]["id"]>("kurier");
-  const [platba, setPlatba] = useState<(typeof PLATBA)[number]["id"]>("prevod");
   const [odosielam, setOdosielam] = useState(false);
-  const [hotovo, setHotovo] = useState<null | { cislo: string; mailom: boolean }>(null);
+  const [hotovo, setHotovo] = useState<null | Hotovo>(null);
+  const [qr, setQr] = useState("");
+  const [qrCz, setQrCz] = useState("");
+  const [banka, setBanka] = useState<"sk" | "cz">("sk");
   const [chyba, setChyba] = useState("");
   const [termin, setTermin] = useState("");
   const [f, setF] = useState({
@@ -63,6 +94,9 @@ export default function KosikObsah() {
 
   const set = (k: keyof typeof f, v: string) => setF((p) => ({ ...p, [k]: v }));
 
+  // objednávka sa nedá odoslať bez súhlasu s obchodnými podmienkami
+  const [suhlasOP, setSuhlasOP] = useState(false);
+
   /* orientačný termín výroby — počíta sa až v prehliadači kvôli hydratácii */
   useEffect(() => {
     const f2 = (d: Date) =>
@@ -77,6 +111,7 @@ export default function KosikObsah() {
   const doprava =
     dorucenie === "odber" || suma >= DOPRAVA_ZDARMA_OD || suma === 0 ? 0 : KURIER;
   const spolu = suma + doprava;
+  const zaloha = Math.round(spolu * ZALOHA_PODIEL * 100) / 100;
   const doZdarma = Math.max(0, DOPRAVA_ZDARMA_OD - suma);
   const pokrok = Math.min(100, (suma / DOPRAVA_ZDARMA_OD) * 100);
   const potrebnaAdresa = dorucenie === "kurier";
@@ -85,7 +120,8 @@ export default function KosikObsah() {
     f.meno.trim().length > 1 &&
     /.+@.+\..+/.test(f.email) &&
     (!potrebnaAdresa || (f.ulica.trim() && f.mesto.trim() && f.psc.trim())) &&
-    polozky.length > 0;
+    polozky.length > 0 &&
+    suhlasOP;
 
   /* ---- čo sa hodí k tomu, čo je v košíku ---- */
   const navrhy = useMemo(() => {
@@ -135,6 +171,17 @@ export default function KosikObsah() {
     return out.filter((x) => !videne.has(x.id) && videne.add(x.id)).slice(0, 2);
   }, [polozky]);
 
+  // QR platby sa kreslia až po prijatí objednávky — SK aj CZ formát
+  useEffect(() => {
+    if (!hotovo?.pbs && !hotovo?.spd) return;
+    import("qrcode").then((q) => {
+      if (hotovo.pbs)
+        q.toDataURL(hotovo.pbs, { width: 232, margin: 1 }).then(setQr).catch(() => null);
+      if (hotovo.spd)
+        q.toDataURL(hotovo.spd, { width: 232, margin: 1 }).then(setQrCz).catch(() => null);
+    });
+  }, [hotovo]);
+
   const odosli = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!mozeOdoslat || odosielam) return;
@@ -150,13 +197,13 @@ export default function KosikObsah() {
           doprava,
           spolu,
           dorucenie: DORUCENIE.find((d) => d.id === dorucenie)?.nazov,
-          platba: PLATBA.find((p) => p.id === platba)?.nazov,
+          platba: "Záloha 30 % prevodom, zvyšok pri prevzatí",
           ...f,
         }),
       });
       const data = await res.json();
       if (!res.ok && !data?.cislo) throw new Error();
-      setHotovo({ cislo: data.cislo, mailom: !!data.mailom });
+      setHotovo(data as Hotovo);
       vyprazdni();
     } catch {
       setChyba(
@@ -181,9 +228,88 @@ export default function KosikObsah() {
           {hotovo.mailom
             ? "Potvrdenie sme poslali na váš e-mail."
             : "Ozveme sa vám na uvedený kontakt."}{" "}
-          Do 24 hodín v pracovný deň potvrdíme termín a pošleme platobné údaje.
-          Nič neplatíte vopred.
+          Výrobu spúšťame po uhradení zálohy — zvyšok zaplatíte pri prevzatí.
         </p>
+
+        {typeof hotovo.zaloha === "number" && hotovo.zaloha > 0 && (
+          <div className="kos__zaloha">
+            <div className="kos__zaloha-head">
+              <span>Záloha na úhradu</span>
+              <b>{eur(hotovo.zaloha)}</b>
+            </div>
+            {hotovo.iban ? (
+              <>
+                <div className="kos__zaloha-banky" role="tablist" aria-label="Krajina banky">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={banka === "sk"}
+                    className={banka === "sk" ? "is-on" : ""}
+                    onClick={() => setBanka("sk")}
+                  >
+                    🇸🇰 Slovenská banka
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={banka === "cz"}
+                    className={banka === "cz" ? "is-on" : ""}
+                    onClick={() => setBanka("cz")}
+                  >
+                    🇨🇿 Česká banka
+                  </button>
+                </div>
+                <div className="kos__zaloha-telo">
+                  {(banka === "sk" ? qr : qrCz) && (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      className="kos__zaloha-qr"
+                      src={banka === "sk" ? qr : qrCz}
+                      alt={banka === "sk" ? "QR platba (Pay by Square)" : "QR Platba pre české banky"}
+                    />
+                  )}
+                  <div className="kos__zaloha-udaje">
+                    <p className="kos__zaloha-tip">
+                      {banka === "sk"
+                        ? "Naskenujte QR kód v aplikácii svojej banky — suma, účet aj symbol sa vyplnia samy."
+                        : "QR vo formáte českej QR Platby — naskenuje ho aplikácia každej českej banky a prenesie aj variabilný symbol. Platba odíde ako bežná europlatba (SEPA) v eurách."}
+                    </p>
+                    <dl>
+                      <Udaj
+                        nazov="IBAN"
+                        hodnota={hotovo.iban.replace(/(.{4})/g, "$1 ").trim()}
+                        kopiruj={hotovo.iban}
+                      />
+                      <Udaj nazov="Variabilný symbol" hodnota={hotovo.vs ?? ""} />
+                      <Udaj nazov="Suma" hodnota={eur(hotovo.zaloha)} kopiruj={hotovo.zaloha.toFixed(2)} />
+                      <Udaj nazov="Poznámka" hodnota={`Zaloha ${hotovo.cislo}`} />
+                    </dl>
+                    {banka === "cz" && (
+                      <p className="kos__zaloha-sepa">
+                        Platíte ručne cez SEPA prevod? Pole na variabilný symbol tam
+                        nie je — do správy pre príjemcu napíšte{" "}
+                        <b>/VS{hotovo.vs}/</b> alebo číslo objednávky. Platbu
+                        spárujeme.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <p className="kos__zaloha-tip">
+                Platobné údaje k zálohe vám pošleme e-mailom spolu s potvrdením
+                termínu.
+              </p>
+            )}
+            {typeof hotovo.doplatok === "number" && (
+              <p className="kos__zaloha-doplatok">
+                Zvyšok <b>{eur(hotovo.doplatok)}</b> zaplatíte pri prevzatí — v
+                hotovosti alebo kartou.
+              </p>
+            )}
+          </div>
+        )}
+
         <div className="kos__done-akcie">
           <Link href="/" className="btn-cyan">
             Späť na úvod
@@ -213,7 +339,7 @@ export default function KosikObsah() {
         <h2>Košík je zatiaľ prázdny</h2>
         <p>
           Vyberte si skrinku alebo nádrž — ceny sú cenníkové, objednávku
-          potvrdíme do 24 hodín a nič neplatíte vopred.
+          potvrdíme do 24 hodín a vopred sa platí len 30 % záloha.
         </p>
         <div className="kos__prazdny-akcie">
           <Link href="/skrinky" className="btn-cyan">
@@ -347,22 +473,26 @@ export default function KosikObsah() {
             <span className="kos__krok">03</span>
             <h2>Platba</h2>
           </header>
-          <div className="kos__volby">
-            {PLATBA.map((p) => (
-              <label key={p.id} className={`kos__volba${platba === p.id ? " is-on" : ""}`}>
-                <input
-                  type="radio"
-                  name="platba"
-                  checked={platba === p.id}
-                  onChange={() => setPlatba(p.id)}
-                />
-                <span className="kos__volba-telo">
-                  <strong>{p.nazov}</strong>
-                  <span>{p.popis}</span>
+          <div className="kos__platba-model">
+            <div className="kos__platba-faza">
+              <span className="kos__platba-podiel">30 %</span>
+              <span className="kos__platba-telo">
+                <strong>Záloha po objednaní</strong>
+                <span>
+                  Prevodom — QR kód a platobné údaje dostanete hneď po odoslaní
+                  objednávky. Výroba sa spúšťa po jej uhradení.
                 </span>
-                <span className="kos__volba-cena">0 €</span>
-              </label>
-            ))}
+              </span>
+              <b className="kos__platba-suma">{eur(zaloha)}</b>
+            </div>
+            <div className="kos__platba-faza">
+              <span className="kos__platba-podiel">70 %</span>
+              <span className="kos__platba-telo">
+                <strong>Zvyšok pri prevzatí</strong>
+                <span>V hotovosti alebo kartou pri doručení či osobnom odbere.</span>
+              </span>
+              <b className="kos__platba-suma">{eur(spolu - zaloha)}</b>
+            </div>
           </div>
         </section>
 
@@ -462,8 +592,29 @@ export default function KosikObsah() {
             <span>Spolu s DPH</span>
             <b>{eur(spolu)}</b>
           </div>
+          <div className="kos__sumrow kos__sumrow--zaloha">
+            <span>Záloha dnes (30 %)</span>
+            <b>{eur(zaloha)}</b>
+          </div>
+          <div className="kos__sumrow kos__sumrow--doplatok">
+            <span>Pri prevzatí</span>
+            <b>{eur(spolu - zaloha)}</b>
+          </div>
 
           {chyba && <p className="kos__chyba">{chyba}</p>}
+
+          <label className="kos__suhlas">
+            <input
+              type="checkbox"
+              checked={suhlasOP}
+              onChange={(e) => setSuhlasOP(e.target.checked)}
+            />
+            <span>
+              Súhlasím s <Link href="/obchodne-podmienky">obchodnými podmienkami</Link> a
+              beriem na vedomie{" "}
+              <Link href="/ochrana-osobnych-udajov">spracúvanie osobných údajov</Link>.
+            </span>
+          </label>
 
           <button type="submit" className="btn-cyan kos__odoslat" disabled={!mozeOdoslat || odosielam}>
             {odosielam ? "ODOSIELAM…" : "ZÁVÄZNE OBJEDNAŤ"} <span aria-hidden>→</span>
@@ -474,8 +625,8 @@ export default function KosikObsah() {
 
           <ul className="kos__istoty">
             <li>
-              <b>Nič neplatíte vopred</b>
-              Platba až po potvrdení termínu.
+              <b>Vopred len záloha 30 %</b>
+              Zvyšok až pri prevzatí tovaru.
             </li>
             <li>
               <b>Vyrábame na mieru</b>

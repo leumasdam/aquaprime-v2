@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <Subpage
       accent="var(--cyan)"
-      eyebrow="DOPLNKY & TECHNIKA"
+      crumb="Doplnky & technika"
       title="Technika a príslušenstvo pre hotové riešenia."
       lead="Osvetlenie, filtrácia a príslušenstvo majú vlastnú kategóriu. Nepatria do nádrží — majú vlastnú cestu, kompatibilitu a odporúčané balíky."
       main={{

@@ -15,6 +15,9 @@ const ROUTES = [
   "/o-nas",
   "/dopyt",
   "/kontakt",
+  "/obchodne-podmienky",
+  "/reklamacny-poriadok",
+  "/ochrana-osobnych-udajov",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

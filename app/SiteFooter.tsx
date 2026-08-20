@@ -44,6 +44,12 @@ export default function SiteFooter() {
         <span className="footer__social">SLEDUJTE NÁS &nbsp; f &nbsp; ◎</span>
       </div>
 
+      <div className="wrap footer__legal">
+        <Link href="/obchodne-podmienky">Obchodné podmienky</Link>
+        <Link href="/reklamacny-poriadok">Reklamačný poriadok</Link>
+        <Link href="/ochrana-osobnych-udajov">Ochrana osobných údajov</Link>
+      </div>
+
       <div className="wrap footer__bottom">
         <span>© 2026 AQUAPRIME. VŠETKY PRÁVA VYHRADENÉ.</span>
         <span>— VYROBENÉ NA SLOVENSKU</span>

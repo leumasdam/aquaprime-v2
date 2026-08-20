@@ -1,3 +1,4 @@
+import Drobcek from "../Drobcek";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -125,9 +126,9 @@ export default function Page() {
         </span>
         <div className="wrap mat-hero__grid">
           <div className="mat-hero__copy">
-            <span className="mat-hero__eyebrow" data-reveal="fade">
-              <span aria-hidden>›</span> Materiály a povrchy
-            </span>
+            <div className="pg-drobcek" data-reveal="fade">
+              <Drobcek cesta={[{ nazov: "Materiály" }]} />
+            </div>
             <h1 className="mat-hero__title display" data-reveal>
               Precízne materiály.
               <br />

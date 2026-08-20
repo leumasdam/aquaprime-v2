@@ -1,3 +1,4 @@
+import Drobcek from "../Drobcek";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -73,10 +74,9 @@ export default function Page() {
         </div>
         <div className="wrap tech-hero__grid">
           <div className="construct__copy tech-hero__copy" data-reveal="left">
-            <span className="construct__eyebrow">
-              <span className="construct__eyebrow-rule" />
-              TECHNOLÓGIA · AQUAFRAME
-            </span>
+            <div className="pg-drobcek" data-reveal="fade">
+              <Drobcek cesta={[{ nazov: "Technológia" }]} />
+            </div>
             <h1 className="construct__title">
               AquaFrame. Rám,
               <br />

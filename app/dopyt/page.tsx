@@ -1,3 +1,4 @@
+import Drobcek from "../Drobcek";
 import DopytForm from "../DopytForm";
 
 export const metadata = {
@@ -19,9 +20,9 @@ export default function Page() {
         <div className="sub__head-glow" />
         <div className="wrap dopyt__layout">
           <div className="dopyt__intro">
-            <span className="eyebrow eyebrow--rule sub__eyebrow" data-reveal="fade">
-              DOPYT NA MIERU
-            </span>
+            <div className="pg-drobcek" data-reveal="fade">
+              <Drobcek cesta={[{ nazov: "Dopyt" }]} />
+            </div>
             <h1 className="sub__title" data-reveal>
               Začnite projekt v pár krokoch.
             </h1>

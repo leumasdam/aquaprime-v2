@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
 /**
  * Príjem dopytov z formulárov. Odosiela dva maily — jeden do firmy s obsahom
@@ -30,6 +31,13 @@ const esc = (s: string) =>
   s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c]!);
 
 export async function POST(req: Request) {
+  if (prekrocenyLimit(`dopyt:${ipZ(req)}`)) {
+    return NextResponse.json(
+      { ok: false, error: "rate_limited" },
+      { status: 429, headers: { "retry-after": "600" } }
+    );
+  }
+
   const key = process.env.RESEND_API_KEY;
   const to = process.env.DOPYT_TO;
   const from = process.env.DOPYT_FROM;

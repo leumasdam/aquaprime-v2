@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <Subpage
       accent="var(--cyan)"
-      eyebrow="O NÁS"
+      crumb="O nás"
       title="Značka postavená na ráme, nosnosti a pokoji."
       lead="Jadrom AQUAPRIME sú bezpečné skrinky pod ťažké akváriá. Veríme, že akvárium má byť emóciou v interiéri — a istotou, nie obavou z váhy."
       main={{
