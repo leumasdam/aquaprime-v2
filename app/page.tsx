@@ -103,37 +103,6 @@ const COLLECTIONS = [
   { id: "premium", name: "LED", sub: "Skrinky s LED podsvietením", img: "/img/products/led/led-black-matt-zlta-3d-01.webp" },
 ];
 
-const HERO_TRIO = [
-  {
-    label: "PRÉMIOVÉ MATERIÁLY",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round">
-        <path d="M6 4h12l4 5.5L12 21 2 9.5 6 4Z" />
-        <path d="M2 9.5h20M9 4l-3 5.5L12 21M15 4l3 5.5L12 21" />
-      </svg>
-    ),
-  },
-  {
-    label: "PRECÍZNE SPRACOVANIE",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
-        <circle cx="12" cy="12" r="7.4" />
-        <circle cx="12" cy="12" r="2.6" />
-        <path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3" />
-      </svg>
-    ),
-  },
-  {
-    label: "VYROBENÉ NA SLOVENSKU",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round">
-        <path d="M12 2.8 20.5 7.4v9.2L12 21.2 3.5 16.6V7.4L12 2.8Z" />
-        <path d="M3.5 7.4 12 12l8.5-4.6M12 12v9.2" />
-      </svg>
-    ),
-  },
-];
-
 export default function Home() {
   return (
     <>
@@ -173,53 +142,44 @@ export default function Home() {
           <div className="hero__content">
             <span className="hero__eyebrow">
               <span className="hero__eyebrow-rule" />
-              PREMIUM. PRECÍZNE. NADČASOVÉ.
+              LUXUSNÉ AKVÁRIÁ. DOKONALÉ V KAŽDOM DETAILE.
             </span>
             <h1 className="hero__title">
-              Viac než skrinka.
+              Viac než akvárium.
               <br />
-              Základ pre vaše akvárium.
+              Majstrovské dielo.
             </h1>
             <p className="hero__body">
-              V AQUAPRIME spájame remeselnú dokonalosť s prémiovými materiálmi,
-              aby sme vytvorili akváriové skrinky, ktoré dokonale ladia s vaším
-              priestorom aj vašou vášňou. Na mieru. Do posledného detailu.
+              Prémiové akváriové skrinky na mieru spájajú minimalistický dizajn,
+              precízne spracovanie a najkvalitnejšie materiály. Navrhnuté pre
+              stabilitu, navrhnuté pre váš interiér. Vyrobené na Slovensku.
             </p>
-
-            {/* tri piliere — na mobile nahrádzajú bežiacu lištu pod hero */}
-            <div className="hero__trio">
-              {HERO_TRIO.map((t) => (
-                <span className="hero__trio-item" key={t.label}>
-                  <span className="hero__trio-ico" aria-hidden>
-                    {t.icon}
-                  </span>
-                  {t.label}
-                </span>
-              ))}
-            </div>
-
             <div className="hero__ctas">
               <a href="#kolekcie" className="hero__btn">
+                <span className="hero__btn-label">OBJAVTE KOLEKCIE</span>
                 <span className="hero__btn-arr" aria-hidden>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 12h15" />
-                    <path d="m13 6 6 6-6 6" />
-                  </svg>
+                  ↓
                 </span>
-                <span className="hero__btn-label">OBJAVIŤ KOLEKCIU</span>
               </a>
               <Link href="/konfigurator" className="hero__ghost">
+                <svg
+                  className="hero__ghost-ico"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3 20.5 7.75 20.5 16.25 12 21 3.5 16.25 3.5 7.75Z" />
+                  <path d="M12 12 3.5 7.75" />
+                  <path d="M12 12 20.5 7.75" />
+                  <path d="M12 12 12 21" />
+                </svg>
                 KONFIGUROVAŤ NA MIERU
               </Link>
             </div>
-
-            <span className="hero__hint" aria-hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
-                <rect x="8.5" y="3.5" width="7" height="12" rx="3.5" />
-                <path d="M12 6.6v2.2" />
-              </svg>
-              POSÚVAJTE NIŽŠIE
-            </span>
           </div>
         </div>
 
