@@ -105,7 +105,7 @@ const COLLECTIONS = [
     name: "LED",
     sub: "Skrinky s LED podsvietením",
     img: "/img/products/led/led-black-matt-zlta-3d-01.webp",
-    href: "/skrinky?led=1#katalog",
+    href: "/skrinky?rad=led#katalog",
   },
 ];
 

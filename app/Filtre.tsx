@@ -48,11 +48,58 @@ export function Segmented<T extends string>({
   ariaLabel: string;
 }) {
   const idx = Math.max(0, volby.findIndex((v) => v.id === value));
+  const box = useRef<HTMLDivElement>(null);
+
+  /**
+   * Indikátor meriame podľa skutočného tlačidla. Na mobile lišta scrolluje
+   * a stĺpce nie sú rovnako široké (dlhé „ŠTANDARD" vedľa krátkeho „LED“),
+   * takže počítať polohu ako i × 1/n by ho posunulo mimo. Zároveň aktívnu
+   * voľbu prirolujeme do záberu — inak by pri preklike z landingu ostala
+   * za okrajom.
+   */
+  useEffect(() => {
+    const el = box.current;
+    const btn = el?.querySelectorAll<HTMLElement>(".fseg__opt")[idx];
+    if (!el || !btn) return;
+    const uprav = () => {
+      el.style.setProperty("--x", `${btn.offsetLeft - el.clientLeft}px`);
+      el.style.setProperty("--w", `${btn.offsetWidth}px`);
+      /* scrollIntoView by hýbalo aj stránkou — posúvame len samotnú lištu,
+         a len keď je aktívna voľba naozaj za okrajom, nech to nebojuje
+         so zákazníkom, ktorý si lištu odscrolloval sám */
+      const zaLavym = btn.offsetLeft < el.scrollLeft;
+      const zaPravym = btn.offsetLeft + btn.offsetWidth > el.scrollLeft + el.clientWidth;
+      if (zaLavym || zaPravym) {
+        el.scrollTo({
+          left: Math.max(0, btn.offsetLeft - (el.clientWidth - btn.offsetWidth) / 2),
+          behavior: "auto",
+        });
+      }
+    };
+    /* lišta je sticky a nabieha s reveal animáciou — v momente efektu ešte
+       nemusí mať konečnú šírku, tak meriame po prekreslení a ešte raz, keď
+       doľahnú fonty (dovtedy sú tlačidlá užšie a nič by nepretekalo) */
+    let r2 = 0;
+    const r1 = requestAnimationFrame(() => {
+      uprav();
+      r2 = requestAnimationFrame(uprav);
+    });
+    document.fonts?.ready.then(uprav).catch(() => null);
+    const ro = new ResizeObserver(uprav);
+    ro.observe(el);
+    return () => {
+      cancelAnimationFrame(r1);
+      cancelAnimationFrame(r2);
+      ro.disconnect();
+    };
+  }, [idx, volby.length]);
+
   return (
     <div
       className="fseg"
       role="tablist"
       aria-label={ariaLabel}
+      ref={box}
       style={{ "--n": volby.length, "--i": idx } as CSSProperties}
     >
       <span className="fseg__ind" aria-hidden />
@@ -70,44 +117,6 @@ export function Segmented<T extends string>({
         </button>
       ))}
     </div>
-  );
-}
-
-/* ---------- prepínač áno/nie ---------- */
-
-/**
- * Samostatná zapínateľná voľba v lište — na vlastnosť, ktorá sa buď má
- * alebo nemá (podsvietenie). Dropdown s dvoma položkami by tu bol zbytočný
- * krok navyše.
- */
-export function Prepinac({
-  label,
-  zapnuty,
-  onToggle,
-  ikona,
-  count,
-}: {
-  label: string;
-  zapnuty: boolean;
-  onToggle: () => void;
-  ikona?: ReactNode;
-  count?: number;
-}) {
-  return (
-    <button
-      type="button"
-      className={`fsw${zapnuty ? " is-on" : ""}`}
-      aria-pressed={zapnuty}
-      onClick={onToggle}
-    >
-      {ikona && (
-        <span className="fsw__ico" aria-hidden>
-          {ikona}
-        </span>
-      )}
-      {label}
-      {count !== undefined && <span className="fsw__count">{count}</span>}
-    </button>
   );
 }
 
