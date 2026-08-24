@@ -3755,11 +3755,19 @@ button:focus-visible {
   padding: 5%;
   animation: galIn 0.35s var(--ease);
 }
-/* akváriá — celá scéna, nie packshot na bielom */
+/* akváriá a LED vizualizácie — celá scéna, nie packshot na bielom.
+   Biely panel s odsadením by okolo interiérového renderu nechal rám. */
 .pgal--scene .pgal__main {
   background: #0b0d0e;
 }
 .pgal--scene .pgal__main img {
+  object-fit: cover;
+  padding: 0;
+}
+.pgal--scene .pgal__thumb {
+  background: #0b0d0e;
+}
+.pgal--scene .pgal__thumb img {
   object-fit: cover;
   padding: 0;
 }

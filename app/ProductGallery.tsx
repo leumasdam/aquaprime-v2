@@ -49,7 +49,7 @@ export default function ProductGallery({ p }: { p: Product }) {
   }, [decor]);
 
   return (
-    <div className="pgal" data-reveal="scale">
+    <div className={`pgal${vizualizacia ? " pgal--scene" : ""}`} data-reveal="scale">
       {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
       <VT name={`p-${p.slug}`} share="vt-morph">
       <div className="pgal__main">
