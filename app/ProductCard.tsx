@@ -11,6 +11,8 @@ export default function ProductCard({
   delay = 0,
   reveal = false,
   entered = false,
+  foto,
+  stitok,
 }: {
   p: Product;
   delay?: number;
@@ -18,6 +20,10 @@ export default function ProductCard({
   reveal?: boolean;
   /** okamžitý vstup pri prepnutí filtra (katalóg) */
   entered?: boolean;
+  /** iná titulná fotka než p.cover — napr. LED vizualizácia pri filtri */
+  foto?: string;
+  /** doplnkový štítok cez fotku (vysvetľuje, prečo je iná) */
+  stitok?: string;
 }) {
   return (
     <Link
@@ -28,16 +34,24 @@ export default function ProductCard({
     >
       {/* rovnaké meno má galéria na detaile — karta sa doň premorfuje */}
       <VT name={`p-${p.slug}`} share="vt-morph">
-        <div className="product__media product__media--photo">
+        <div
+          className={`product__media product__media--photo${foto ? " product__media--led" : ""}`}
+        >
           <Image
-            src={p.cover}
-            alt={`${p.name} — skrinka pod akvárium`}
+            key={foto ?? p.cover}
+            src={foto ?? p.cover}
+            alt={
+              foto
+                ? `${p.name} — vizualizácia s LED podsvietením`
+                : `${p.name} — skrinka pod akvárium`
+            }
             fill
             sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"
           />
           <span className={`product__badge product__badge--${p.tier}`}>
             {p.tierLabel}
           </span>
+          {stitok && <span className="product__stitok">{stitok}</span>}
         </div>
       </VT>
       <div className="product__body">
@@ -63,7 +77,10 @@ export default function ProductCard({
           </span>
         </div>
         <div className="product__foot">
-          <span className="product__price">{p.price}</span>
+          <span className="product__price">
+            {foto && p.priceLed ? p.priceLed : p.price}
+            {foto && p.priceLed && <i className="product__price-pozn">s LED</i>}
+          </span>
           <span className="product__cta">
             Detail <span aria-hidden>→</span>
           </span>

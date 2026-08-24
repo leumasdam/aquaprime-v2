@@ -19,6 +19,20 @@ const WIDTHS = [...new Set(PRODUCTS.map((p) => p.w))].sort((a, b) => a - b);
 const maLed = (p: Product) => Boolean(p.priceLed);
 const LED_POCET = PRODUCTS.filter(maLed).length;
 
+/**
+ * Titulná fotka pre zapnutý LED filter. Dekor striedame podľa poradia
+ * produktu v cenníku — inak by celý rad ukázal päťkrát tú istú skrinku.
+ * Index berieme z PRODUCTS, nie z odfiltrovaného zoznamu, aby fotka
+ * neposkakovala pri zapnutí ďalšieho filtra.
+ */
+function ledFoto(p: Product): string | undefined {
+  const varianty = p.decors
+    .map((d) => d.led?.zlta?.[0] ?? d.led?.modra?.[0])
+    .filter((x): x is string => Boolean(x));
+  if (!varianty.length) return undefined;
+  return varianty[PRODUCTS.indexOf(p) % varianty.length];
+}
+
 const LED_IKONA = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
     <path d="M4 10.5h16" />
@@ -177,9 +191,19 @@ export default function CatalogGrid() {
       />
 
       <div className="product-grid" key={`${tier}-${[...widths].join("_")}-${radenie}-${lenLed}`}>
-        {items.map((p, i) => (
-          <ProductCard key={p.slug} p={p} entered delay={(i % 3) * 70} />
-        ))}
+        {items.map((p, i) => {
+          const led = lenLed ? ledFoto(p) : undefined;
+          return (
+            <ProductCard
+              key={p.slug}
+              p={p}
+              entered
+              delay={(i % 3) * 70}
+              foto={led}
+              stitok={led ? "Vizualizácia LED" : undefined}
+            />
+          );
+        })}
       </div>
       {items.length === 0 && (
         <p className="catalog__empty">

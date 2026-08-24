@@ -3540,6 +3540,35 @@ button:focus-visible {
   box-shadow: inset 0 0 0 1px rgba(6, 7, 7, 0.07);
   pointer-events: none;
 }
+/* LED vizualizácia — interiérová scéna, nie packshot: vyplní celú kartu,
+   biely panel pod ňou by presvital cez okraje. Musí stáť za pravidlami
+   pre --photo, inak ich gradient prebije tento. */
+.product__media--led {
+  background: #0d0e10;
+}
+.product__media--led img {
+  object-fit: cover;
+  padding: 0;
+}
+.product__media--led::after {
+  background: linear-gradient(to top, rgba(6, 7, 7, 0.5), transparent 46%);
+  box-shadow: none;
+}
+.product__stitok {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  padding: 4px 9px;
+  border-radius: var(--r-xs);
+  background: rgba(5, 6, 6, 0.72);
+  border: 1px solid rgba(255, 214, 160, 0.38);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 226, 186, 0.9);
+}
 /* interiérové rendery (akváriá) — scéna vyplní kartu, žiadny biely packshot panel */
 .product__media--scene {
   background: #0b0d0e;
@@ -3636,6 +3665,16 @@ button:focus-visible {
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--cyan);
+}
+/* pri LED filtre karta ukazuje cenu s podsvietením — treba to povedať */
+.product__price-pozn {
+  margin-left: 6px;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 226, 186, 0.72);
 }
 /* „Cena na dopyt" je veta, nie číslo — tichšia, nech neprekričí názov */
 .product__price--ask {
