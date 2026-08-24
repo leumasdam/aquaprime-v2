@@ -21,6 +21,17 @@ export default function ProductGallery({ p }: { p: Product }) {
   const [svetlo, setSvetlo] = useState<Svetlo>("bez");
   const decor = p.decors[decorIdx];
 
+  /* preklik z katalógu s LED filtrom (?led=zlta&dekor=…) — detail sa má
+     otvoriť v tom istom stave, aký bol na karte, nie v základnom */
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const dekor = q.get("dekor");
+    const i = dekor ? p.decors.findIndex((d) => d.id === dekor) : -1;
+    if (i >= 0) setDecorIdx(i);
+    const led = q.get("led");
+    if (led === "zlta" || led === "modra") setSvetlo(led);
+  }, [p]);
+
   /* dostupné farby podsvietenia pre tento dekor */
   const svetla = SVETLA.filter((s) => s.id === "bez" || decor.led?.[s.id as "zlta" | "modra"]?.length);
   const aktivne: Svetlo = svetla.some((s) => s.id === svetlo) ? svetlo : "bez";

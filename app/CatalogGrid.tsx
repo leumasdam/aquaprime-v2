@@ -25,10 +25,11 @@ const LED_POCET = PRODUCTS.filter(maLed).length;
  * Index berieme z PRODUCTS, nie z odfiltrovaného zoznamu, aby fotka
  * neposkakovala pri zapnutí ďalšieho filtra.
  */
-function ledFoto(p: Product): string | undefined {
-  const varianty = p.decors
-    .map((d) => d.led?.zlta?.[0] ?? d.led?.modra?.[0])
-    .filter((x): x is string => Boolean(x));
+function ledFoto(p: Product) {
+  const varianty = p.decors.flatMap((d) => {
+    const farba = d.led?.zlta?.length ? "zlta" : d.led?.modra?.length ? "modra" : null;
+    return farba ? [{ src: d.led![farba]![0], dekor: d.id, farba }] : [];
+  });
   if (!varianty.length) return undefined;
   return varianty[PRODUCTS.indexOf(p) % varianty.length];
 }
@@ -199,8 +200,10 @@ export default function CatalogGrid() {
               p={p}
               entered
               delay={(i % 3) * 70}
-              foto={led}
+              foto={led?.src}
               stitok={led ? "Vizualizácia LED" : undefined}
+              // detail sa má otvoriť presne v tom, čo je na karte
+              odkazParam={led ? `?led=${led.farba}&dekor=${led.dekor}` : undefined}
             />
           );
         })}

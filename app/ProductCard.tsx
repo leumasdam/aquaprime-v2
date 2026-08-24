@@ -13,6 +13,7 @@ export default function ProductCard({
   entered = false,
   foto,
   stitok,
+  odkazParam,
 }: {
   p: Product;
   delay?: number;
@@ -24,10 +25,12 @@ export default function ProductCard({
   foto?: string;
   /** doplnkový štítok cez fotku (vysvetľuje, prečo je iná) */
   stitok?: string;
+  /** query pre detail, nech sa otvorí v tom istom stave ako karta */
+  odkazParam?: string;
 }) {
   return (
     <Link
-      href={`/skrinky/${p.slug}`}
+      href={`/skrinky/${p.slug}${odkazParam ?? ""}`}
       className={`product${entered ? " product--in" : ""}`}
       {...(reveal ? { "data-reveal": "" } : {})}
       style={{ "--rd": `${delay}ms` } as CSSProperties}
