@@ -7468,23 +7468,20 @@ button:focus-visible {
 /* box má presný pomer strán renderu (2400×1054) — obrázok sa doň vloží
    CELÝ bez akéhokoľvek orezu, veľký na plnú výšku sekcie, usadený vpravo;
    maska fadeuje priamo jeho hrany do čiernej */
+/* Fotka ide cez celú šírku sekcie. Predtým bol box ukotvený za pravý okraj
+   s pevným pomerom strán, takže vľavo presahoval mimo sekcie (a tam sa
+   orezal) a vpravo mu do kraja chýbal kus. Výšku sekcie to nemení — box
+   je stále 115 % jej výšky a pretečenie hore tlmí zvislá maska. */
 .cat-hero--interier .cat-hero__bg {
-  left: auto;
-  right: 15%;
-  /* o 15 % väčší, ukotvený za pravý dolný roh — rastie smerom hore-doľava */
+  left: 0;
+  right: 0;
   top: auto;
   bottom: 0;
   height: 115%;
-  aspect-ratio: 3757 / 1086;
-  /* maska na boxe — ten sa pri ken-burns nehýbe, fade hrán drží stále */
-  -webkit-mask-image:
-    linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent),
-    linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent),
-    linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
-  mask-composite: intersect;
+  aspect-ratio: auto;
+  /* maska len zhora a zdola — bočný fade robil dojem orezanej fotky */
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
 }
 .cat-hero--interier .cat-hero__bg img {
   object-position: center;
