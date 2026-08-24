@@ -13,7 +13,7 @@ const FAKTY = [
     label: "Oceľová konštrukcia",
     hodnota: "30 × 30",
     jednotka: "mm",
-    pozn: "Zváraný uzavretý profil so stenou 2 mm. Váhu nesie kov, nie plášť.",
+    pozn: "Zváraný uzavretý profil, váhu nesie kov.",
     ikona: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <rect x="5" y="5" width="14" height="14" rx="1" />
@@ -25,7 +25,7 @@ const FAKTY = [
     label: "Prémiové povrchy",
     hodnota: "7",
     jednotka: "dekorov",
-    pozn: "LDTD 18 mm s precízne olepenými hranami — od matnej čiernej po dub.",
+    pozn: "LDTD 18 mm, od matnej čiernej po dub.",
     ikona: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M4.5 9.5 12 5l7.5 4.5L12 14 4.5 9.5Z" strokeLinejoin="round" />
@@ -37,7 +37,7 @@ const FAKTY = [
     label: "Testovaná nosnosť",
     hodnota: "770",
     jednotka: "kg",
-    pozn: "Rám dimenzovaný s rezervou na plnú nádrž aj s pieskom a kameňmi.",
+    pozn: "S rezervou na plnú nádrž aj s kameňmi.",
     ikona: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M12 3 5 5.8v5.4c0 4.3 3 8.1 7 9.3 4-1.2 7-5 7-9.3V5.8L12 3Z" strokeLinejoin="round" />
@@ -82,11 +82,13 @@ export default function Fakty() {
             <article className="fakt" key={f.label} data-i={i} data-reveal style={{ "--rd": `${i * 90}ms` } as React.CSSProperties}>
               <span className="fakt__ikona" aria-hidden>{f.ikona}</span>
               <span className="fakt__label">{f.label}</span>
-              <span className="fakt__hodnota">
-                {f.hodnota}
-                <em>{f.jednotka}</em>
-              </span>
-              <p className="fakt__pozn">{f.pozn}</p>
+              <p className="fakt__riadok">
+                <span className="fakt__hodnota">
+                  {f.hodnota}
+                  <em>{f.jednotka}</em>
+                </span>
+                <span className="fakt__pozn">{f.pozn}</span>
+              </p>
             </article>
           ))}
         </div>
