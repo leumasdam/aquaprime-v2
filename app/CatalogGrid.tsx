@@ -10,9 +10,22 @@ import {
   FilterVolba,
   FilterChipy,
   PocetVysledkov,
+  Prepinac,
 } from "./Filtre";
 
 const WIDTHS = [...new Set(PRODUCTS.map((p) => p.w))].sort((a, b) => a - b);
+
+/** LED lišta sa osádza do plášťa — rad Basic ju v cenníku nemá. */
+const maLed = (p: Product) => Boolean(p.priceLed);
+const LED_POCET = PRODUCTS.filter(maLed).length;
+
+const LED_IKONA = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+    <path d="M4 10.5h16" />
+    <path d="M6.5 14.2h11" />
+    <path d="M9 17.4h6" />
+  </svg>
+);
 
 const RADENIA = [
   { id: "odporucane", label: "Odporúčané" },
@@ -31,11 +44,14 @@ export default function CatalogGrid() {
   const [tier, setTier] = useState<Tier | "all">("all");
   const [widths, setWidths] = useState<Set<number>>(new Set());
   const [radenie, setRadenie] = useState<Radenie>("odporucane");
+  const [lenLed, setLenLed] = useState(false);
 
-  // predvoľba radu z URL (?rad= — preklik z landingu) + starší aq:tier event
+  // predvoľby z URL: ?rad= (rad skriniek) a ?led=1 (dlaždica LED na landingu)
   useEffect(() => {
-    const rad = new URLSearchParams(window.location.search).get("rad");
+    const q = new URLSearchParams(window.location.search);
+    const rad = q.get("rad");
     if (rad && TIERS.some((t) => t.id === rad)) setTier(rad as Tier);
+    if (q.get("led") === "1") setLenLed(true);
     const onTier = (e: Event) => setTier((e as CustomEvent<Tier | "all">).detail);
     window.addEventListener("aq:tier", onTier);
     return () => window.removeEventListener("aq:tier", onTier);
@@ -51,7 +67,10 @@ export default function CatalogGrid() {
 
   const items = useMemo(() => {
     const f = PRODUCTS.filter(
-      (p) => (tier === "all" || p.tier === tier) && (widths.size === 0 || widths.has(p.w)),
+      (p) =>
+        (tier === "all" || p.tier === tier) &&
+        (widths.size === 0 || widths.has(p.w)) &&
+        (!lenLed || maLed(p)),
     );
     switch (radenie) {
       case "cena-hore":
@@ -63,9 +82,12 @@ export default function CatalogGrid() {
       default:
         return f;
     }
-  }, [tier, widths, radenie]);
+  }, [tier, widths, radenie, lenLed]);
 
   const chipy = [
+    ...(lenLed
+      ? [{ id: "led", label: "S LED podsvietením", onRemove: () => setLenLed(false) }]
+      : []),
     ...(tier !== "all"
       ? [{
           id: `rad-${tier}`,
@@ -119,6 +141,13 @@ export default function CatalogGrid() {
             />
           ))}
         </Filter>
+        <Prepinac
+          label="S LED podsvietením"
+          zapnuty={lenLed}
+          onToggle={() => setLenLed((v) => !v)}
+          ikona={LED_IKONA}
+          count={LED_POCET}
+        />
         <Filter
           label="Zoradiť"
           hodnota={RADENIA.find((r) => r.id === radenie)!.label}
@@ -143,18 +172,29 @@ export default function CatalogGrid() {
           setTier("all");
           setWidths(new Set());
           setRadenie("odporucane");
+          setLenLed(false);
         }}
       />
 
-      <div className="product-grid" key={`${tier}-${[...widths].join("_")}-${radenie}`}>
+      <div className="product-grid" key={`${tier}-${[...widths].join("_")}-${radenie}-${lenLed}`}>
         {items.map((p, i) => (
           <ProductCard key={p.slug} p={p} entered delay={(i % 3) * 70} />
         ))}
       </div>
       {items.length === 0 && (
         <p className="catalog__empty">
-          Tejto kombinácii rad × šírka nezodpovedá žiadna skrinka — skúste iný
-          rad, alebo nám pošlite rozmer na mieru cez <a href="/dopyt">dopyt</a>.
+          {lenLed && tier === "basic" ? (
+            <>
+              Rad Basic nemá opláštenie, do ktorého sa LED lišta osádza — vyberte
+              Štandard alebo Premium, prípadne nám napíšte cez{" "}
+              <a href="/dopyt">dopyt</a>.
+            </>
+          ) : (
+            <>
+              Tejto kombinácii filtrov nezodpovedá žiadna skrinka — skúste iný
+              rad, alebo nám pošlite rozmer na mieru cez <a href="/dopyt">dopyt</a>.
+            </>
+          )}
         </p>
       )}
     </>

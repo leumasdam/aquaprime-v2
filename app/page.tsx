@@ -100,7 +100,13 @@ const COLLECTIONS = [
   { id: "basic", name: "Basic", sub: "Kovový rám + doska", img: "/img/products/kat-basic-v3.webp" },
   { id: "standard", name: "Standard", sub: "Bočnice a dvierka", img: "/img/products/kat-standard-v3.webp" },
   { id: "premium", name: "Premium", sub: "Kompletne opláštená", img: "/img/products/kat-premium-v3.webp" },
-  { id: "premium", name: "LED", sub: "Skrinky s LED podsvietením", img: "/img/products/led/led-black-matt-zlta-3d-01.webp" },
+  {
+    id: "led",
+    name: "LED",
+    sub: "Skrinky s LED podsvietením",
+    img: "/img/products/led/led-black-matt-zlta-3d-01.webp",
+    href: "/skrinky?led=1#katalog",
+  },
 ];
 
 export default function Home() {

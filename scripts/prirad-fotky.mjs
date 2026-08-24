@@ -120,8 +120,9 @@ for (const p of PRODUCTS) {
       d.illuSize = `${r.w} × ${r.d} cm`;
     }
 
-    /* 4. LED galéria pre tento dekor a počet dvierok */
-    const ldek = LED_DEKOR[d.id];
+    /* 4. LED galéria pre tento dekor a počet dvierok — len tam, kde sa LED
+          dá objednať; rad Basic nemá plášť, do ktorého sa lišta osádza */
+    const ldek = p.priceLed ? LED_DEKOR[d.id] : null;
     if (ldek) {
       const teply = ledSet(ldek, "zlta", D);
       const modry = ledSet(ldek, "modra", D);

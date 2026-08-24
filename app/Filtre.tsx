@@ -73,6 +73,44 @@ export function Segmented<T extends string>({
   );
 }
 
+/* ---------- prepínač áno/nie ---------- */
+
+/**
+ * Samostatná zapínateľná voľba v lište — na vlastnosť, ktorá sa buď má
+ * alebo nemá (podsvietenie). Dropdown s dvoma položkami by tu bol zbytočný
+ * krok navyše.
+ */
+export function Prepinac({
+  label,
+  zapnuty,
+  onToggle,
+  ikona,
+  count,
+}: {
+  label: string;
+  zapnuty: boolean;
+  onToggle: () => void;
+  ikona?: ReactNode;
+  count?: number;
+}) {
+  return (
+    <button
+      type="button"
+      className={`fsw${zapnuty ? " is-on" : ""}`}
+      aria-pressed={zapnuty}
+      onClick={onToggle}
+    >
+      {ikona && (
+        <span className="fsw__ico" aria-hidden>
+          {ikona}
+        </span>
+      )}
+      {label}
+      {count !== undefined && <span className="fsw__count">{count}</span>}
+    </button>
+  );
+}
+
 /* ---------- dropdown filter ---------- */
 
 const ZavriContext = createContext<() => void>(() => {});

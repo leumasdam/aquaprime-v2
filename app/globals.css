@@ -8352,6 +8352,55 @@ button:focus-visible {
   text-transform: uppercase;
   color: rgba(226, 229, 231, 0.45);
 }
+
+/* prepínač áno/nie v lište filtrov (podsvietenie) — rovnaká výška
+   a rám ako dropdowny, zapnutý stav svieti teplo ako LED lišta */
+.fsw {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--r-sm);
+  padding: 9px 13px;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(226, 229, 231, 0.85);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+.fsw:hover {
+  border-color: rgba(255, 205, 140, 0.4);
+}
+.fsw.is-on {
+  border-color: rgba(255, 205, 140, 0.6);
+  background: rgba(255, 190, 110, 0.11);
+  color: #ffe6c4;
+}
+.fsw__ico {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  color: rgba(226, 229, 231, 0.5);
+  transition: color var(--t-fast), filter var(--t-fast);
+}
+.fsw__ico svg {
+  width: 100%;
+  height: 100%;
+}
+.fsw.is-on .fsw__ico {
+  color: #ffca8a;
+  filter: drop-shadow(0 0 5px rgba(255, 190, 110, 0.7));
+}
+.fsw__count {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: rgba(226, 229, 231, 0.45);
+}
+.fsw.is-on .fsw__count {
+  color: rgba(255, 226, 190, 0.6);
+}
 .fdd__value {
   font-size: 0.75rem;
   font-weight: 600;

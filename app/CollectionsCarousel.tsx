@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-type Item = { id: string; name: string; sub: string; img: string };
+type Item = {
+  id: string;
+  name: string;
+  sub: string;
+  img: string;
+  /** kam dlaždica vedie; bez neho sa filtruje podľa radu (id) */
+  href?: string;
+};
 
 /**
  * Krokový nekonečný carousel — posun o jednu kartu (smooth, pauza, znova).
@@ -112,7 +119,7 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
             return (
               <Link
                 key={idx}
-                href={`/skrinky?rad=${c.id}`}
+                href={c.href ?? `/skrinky?rad=${c.id}#katalog`}
                 className="ccard"
                 aria-hidden={real ? undefined : true}
                 tabIndex={real ? undefined : -1}

@@ -2464,16 +2464,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-07.webp",
           "/img/products/dub-spanielsky-11.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-2d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-04.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
-          ]
-        },
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -2577,14 +2567,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -2686,14 +2668,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -2798,14 +2772,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -2910,14 +2876,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
         "inherited": true,
         "illuFrom": "rad"
       },
