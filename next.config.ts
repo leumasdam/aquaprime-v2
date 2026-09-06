@@ -21,19 +21,23 @@ const LEGACY_SLUGS: Record<string, string> = {
 // žiadne cudzie skripty okrem GTM/GA, žiadne iframy, žiadna exfiltrácia
 // na neznáme domény, žiadne object/base-uri triky. Prehodnotiť pri výbere
 // platobnej brány (embedded polia si vyžiadajú jej domény, redirect nie).
+const VYVOJ = process.env.NODE_ENV === "development";
+
 const CSP = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${VYVOJ ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' blob: data: https://www.googletagmanager.com https://*.google-analytics.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.google-analytics.com https://www.googletagmanager.com",
   "media-src 'self'",
-  "frame-src https://www.googletagmanager.com",
+  // vo vývoji si stránku vkladá do iframu vizuálny editor (public/tools) —
+  // v produkcii ostáva iframovanie zakázané
+  `frame-src ${VYVOJ ? "'self' " : ""}https://www.googletagmanager.com`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  `frame-ancestors ${VYVOJ ? "'self'" : "'none'"}`,
   "upgrade-insecure-requests",
 ].join("; ");
 
@@ -45,8 +49,9 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // web sa nikde nevkladá do iframe — chráni admin aj eshop pred clickjackingom
-          { key: "X-Frame-Options", value: "DENY" },
+          // web sa nikde nevkladá do iframe — chráni admin aj eshop pred
+          // clickjackingom; vo vývoji ho potrebuje iframovať vizuálny editor
+          { key: "X-Frame-Options", value: VYVOJ ? "SAMEORIGIN" : "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },

@@ -46,7 +46,7 @@ export const metadata = {
 export default function AkvariaPage() {
   return (
     <main className="catalog">
-      <section className="cat-hero cat-hero--aqua">
+      <section className="cat-hero cat-hero--aqua" id="hero">
         <div className="cat-hero__bg" aria-hidden>
           <Image
             src="/img/akvaria/akvaria-hero-wide.webp"
@@ -176,7 +176,7 @@ export default function AkvariaPage() {
         </div>
       </section>
 
-      <section className="section catalog__cta">
+      <section className="section catalog__cta" id="cta">
         <div className="wrap catalog__cta-inner" data-reveal>
           <div>
             <h2 className="catalog__cta-title">

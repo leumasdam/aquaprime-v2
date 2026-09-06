@@ -14,7 +14,7 @@ export default function SkrinkyPage() {
   return (
     <main className="catalog">
       {/* hero s fotkou — text centrovaný nad skrinkou */}
-      <section className="cat-hero cat-hero--interier">
+      <section className="cat-hero cat-hero--interier" id="hero">
         {/* široký interiér pre desktop */}
         <div className="cat-hero__bg" aria-hidden>
           <Image
@@ -83,7 +83,7 @@ export default function SkrinkyPage() {
       </section>
 
       {/* PREČO OCEĽOVÝ RÁM — podporný blok */}
-      <section className="section why-frame">
+      <section className="section why-frame" id="preco-ram">
         <div className="wrap why-frame__grid">
           <div data-reveal="left">
             <span className="eyebrow eyebrow--rule">KONŠTRUKCIA</span>
@@ -116,7 +116,7 @@ export default function SkrinkyPage() {
       </section>
 
       {/* CTA na dopyt alebo detail */}
-      <section className="section catalog__cta">
+      <section className="section catalog__cta" id="cta">
         <div className="wrap catalog__cta-inner" data-reveal>
           <div>
             <h2 className="catalog__cta-title">Neviete, ktorý rozmer zvládne vaše akvárium?</h2>

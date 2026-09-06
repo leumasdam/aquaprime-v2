@@ -71,6 +71,15 @@ export default function RootLayout({
          by sa bil so swipe animáciou (hlási to aj Next warningom) */
       data-scroll-behavior="smooth"
     >
+      <head>
+        {/* Vizuálny editor breakpointov (public/tools/editor.html) prilinkuje
+            svoje overrides. Len vo vývoji — do produkcie idú úpravy až vtedy,
+            keď ich prepíšeme do globals.css. Overrides sú samé !important,
+            na ostrom webe by sa to časom zamotalo. */}
+        {process.env.NODE_ENV === "development" && (
+          <script src="/tools/overrides.js" async={false} />
+        )}
+      </head>
       <body>
         <script
           type="application/ld+json"

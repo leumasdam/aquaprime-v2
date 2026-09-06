@@ -113,7 +113,7 @@ export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="hero">
+      <section className="hero" id="hero">
         <div className="hero__bg2" aria-hidden="true">
           <video
             className="hero__video"
@@ -195,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* ===== BEZPEČNOSŤ A NOSNOSŤ (rovno pod hero) ===== */}
-      <section className="safety section">
+      <section className="safety section" id="bezpecnost">
         <div className="safety__bg" aria-hidden="true" />
         <div className="wrap safety__grid">
           <div className="safety__text" data-reveal="left">
@@ -241,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* ===== DÔKAZ KVALITY — obrázkové karty (prekliky na subpages) ===== */}
-      <section className="modules section">
+      <section className="modules section" id="moduly">
         <div className="wrap modules__grid">
           {MODULES.map((m, i) => (
             <Link
@@ -273,7 +273,7 @@ export default function Home() {
       </section>
 
       {/* ===== MINI-KONFIGURÁTOR ===== */}
-      <section className="cfg section">
+      <section className="cfg section" id="konfigurator">
         <div className="wrap">
           <div className="cfg__head" data-reveal>
             <span className="cfg__eyebrow">
@@ -313,7 +313,7 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURED PRODUCTS — vybrané kusy z katalógu ===== */}
-      <section className="featured section">
+      <section className="featured section" id="vybrane">
         <div className="wrap">
           <div className="featured__head" data-reveal>
             <div>
@@ -338,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* ===== KOMPAKTNÉ DLAŽDICE (zakomentované, neskôr) =====
-      <section className="ctiles section">
+      <section className="ctiles section" id="dlazdice">
         <div className="wrap">
           {CTILES.map((t, i) => (
             <Link
