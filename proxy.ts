@@ -264,6 +264,12 @@ export async function proxy(request: NextRequest) {
     return stop ?? NextResponse.next();
   }
 
+  /* Stripe webhook chodí od Stripu, nie z prehliadača — cookie mať nemôže
+     a za zámkom by dostával 401 a platby by sa nikdy nepotvrdili. Pravosť
+     požiadavky overuje podpis v samotnej route (STRIPE_WEBHOOK_SECRET),
+     takže zámok tu nič nechráni. */
+  if (pathname === "/api/platba/webhook") return NextResponse.next();
+
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 

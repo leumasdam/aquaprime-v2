@@ -29,6 +29,41 @@ const DORUCENIE = [
 /** Platobný model: 30 % záloha po objednaní, zvyšok pri prevzatí. */
 const ZALOHA_PODIEL = 0.3;
 
+/**
+ * Ako zákazník uhradí zálohu. Prevod ostáva — časť zákazníkov ho chce
+ * a QR kódy k nemu už máme; karta rieši najmä platby z Česka, kde sa pri
+ * ručnom SEPA prevode strácal variabilný symbol.
+ */
+const SPOSOBY = [
+  {
+    id: "karta",
+    nazov: "Kartou online",
+    popis: "Visa, Mastercard, Apple Pay a Google Pay. Potvrdenie okamžite.",
+    ikona: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+        <path d="M2.5 9.5h19" />
+        <path d="M6 14.5h3.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    id: "prevod",
+    nazov: "Prevodom",
+    popis: "QR kód a údaje dostanete hneď — pre slovenské aj české banky.",
+    ikona: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <rect x="3.5" y="3.5" width="7" height="7" rx="1" />
+        <rect x="13.5" y="3.5" width="7" height="7" rx="1" />
+        <rect x="3.5" y="13.5" width="7" height="7" rx="1" />
+        <path d="M13.5 13.5h3v3M20.5 16.5v4M16.5 20.5h1" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+] as const;
+
+type Sposob = (typeof SPOSOBY)[number]["id"];
+
 type Hotovo = {
   cislo: string;
   mailom: boolean;
@@ -72,6 +107,10 @@ export default function KosikObsah() {
   const { polozky, suma, pocet, zmenPocet, uber, vyprazdni, pridaj, pripravene } =
     useKosik();
   const [dorucenie, setDorucenie] = useState<(typeof DORUCENIE)[number]["id"]>("kurier");
+  /* Kým nevieme, či je brána zapnutá, držíme prevod — ten funguje vždy.
+     Dlaždice s výberom sa ukážu, až keď karta naozaj je k dispozícii. */
+  const [sposob, setSposob] = useState<Sposob>("prevod");
+  const [kartaMozna, setKartaMozna] = useState(false);
   const [odosielam, setOdosielam] = useState(false);
   const [hotovo, setHotovo] = useState<null | Hotovo>(null);
   const [qr, setQr] = useState("");
@@ -171,6 +210,18 @@ export default function KosikObsah() {
     return out.filter((x) => !videne.has(x.id) && videne.add(x.id)).slice(0, 2);
   }, [polozky]);
 
+  // je platobná brána nastavená? bez kľúčov ostáva len prevod
+  useEffect(() => {
+    fetch("/api/platba")
+      .then((r) => r.json())
+      .then((d) => {
+        if (!d?.karta) return;
+        setKartaMozna(true);
+        setSposob("karta");
+      })
+      .catch(() => null);
+  }, []);
+
   // QR platby sa kreslia až po prijatí objednávky — SK aj CZ formát
   useEffect(() => {
     if (!hotovo?.pbs && !hotovo?.spd) return;
@@ -197,12 +248,41 @@ export default function KosikObsah() {
           doprava,
           spolu,
           dorucenie: DORUCENIE.find((d) => d.id === dorucenie)?.nazov,
-          platba: "Záloha 30 % prevodom, zvyšok pri prevzatí",
+          platba:
+            sposob === "karta"
+              ? "Záloha 30 % kartou online, zvyšok pri prevzatí"
+              : "Záloha 30 % prevodom, zvyšok pri prevzatí",
           ...f,
         }),
       });
       const data = await res.json();
       if (!res.ok && !data?.cislo) throw new Error();
+
+      /* Objednávka je prijatá — až potom platba. Keby brána zlyhala, zákazník
+         nepríde o objednávku a zálohu doplatí prevodom podľa e-mailu. */
+      if (sposob === "karta") {
+        const p = await fetch("/api/platba", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            cislo: data.cislo,
+            email: f.email,
+            dorucenie,
+            polozky: polozky.map((x) => ({ slug: x.slug, druh: x.druh, ks: x.ks })),
+          }),
+        }).then((r) => r.json()).catch(() => null);
+
+        if (p?.ok && p.url) {
+          vyprazdni();
+          window.location.href = p.url;
+          return;
+        }
+        // brána nedostupná — pokračujeme prevodom, nech objednávka nezostane visieť
+        setChyba(
+          "Platobnú bránu sa nepodarilo otvoriť. Objednávku máme prijatú — zálohu uhraďte prevodom podľa údajov nižšie."
+        );
+      }
+
       setHotovo(data as Hotovo);
       vyprazdni();
     } catch {
@@ -479,8 +559,9 @@ export default function KosikObsah() {
               <span className="kos__platba-telo">
                 <strong>Záloha po objednaní</strong>
                 <span>
-                  Prevodom — QR kód a platobné údaje dostanete hneď po odoslaní
-                  objednávky. Výroba sa spúšťa po jej uhradení.
+                  {sposob === "karta"
+                    ? "Kartou hneď po odoslaní objednávky — presmerujeme vás na zabezpečenú platobnú bránu."
+                    : "Prevodom — QR kód a platobné údaje dostanete hneď po odoslaní objednávky. Výroba sa spúšťa po jej uhradení."}
                 </span>
               </span>
               <b className="kos__platba-suma">{eur(zaloha)}</b>
@@ -494,6 +575,29 @@ export default function KosikObsah() {
               <b className="kos__platba-suma">{eur(spolu - zaloha)}</b>
             </div>
           </div>
+
+          {kartaMozna && (
+          <div className="kos__sposob" role="radiogroup" aria-label="Spôsob úhrady zálohy">
+            {SPOSOBY.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                role="radio"
+                aria-checked={sposob === s.id}
+                className={`kos__sposob-volba${sposob === s.id ? " is-on" : ""}`}
+                onClick={() => setSposob(s.id)}
+              >
+                <span className="kos__sposob-ico" aria-hidden>
+                  {s.ikona}
+                </span>
+                <span className="kos__sposob-telo">
+                  <strong>{s.nazov}</strong>
+                  <span>{s.popis}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+          )}
         </section>
 
         {/* 04 údaje */}
