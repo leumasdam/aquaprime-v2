@@ -8,6 +8,13 @@ import { VT } from "./vt";
 
 type Svetlo = "bez" | "zlta" | "modra";
 
+/**
+ * Počet dvierok podľa šírky (zadanie klienta): pod 120 cm dve, od 120 tri,
+ * 200 cm štyri. Musí sedieť s scripts/foto-dvierka.mjs, podľa ktorého sa
+ * vyberajú fotky.
+ */
+const dvierkaPreSirku = (w: number) => (w < 120 ? 2 : w >= 200 ? 4 : 3);
+
 const SVETLA: { id: Svetlo; label: string; bodka?: string }[] = [
   { id: "bez", label: "Bez LED" },
   { id: "zlta", label: "Teplá biela", bodka: "#ffd9a0" },
@@ -163,7 +170,7 @@ export default function ProductGallery({ p }: { p: Product }) {
 
       {vizualizacia ? (
         <p className="pgal__note">
-          Vizualizácia podsvietenia v {p.w <= 100 ? "2-dverovom" : "3-dverovom"} vyhotovení.
+          Vizualizácia podsvietenia v {dvierkaPreSirku(p.w)}-dverovom vyhotovení.
           LED lišta je priplácaná voľba{p.priceLed ? ` — cena s podsvietením ${p.priceLed}` : ""}.
         </p>
       ) : (
@@ -172,7 +179,7 @@ export default function ProductGallery({ p }: { p: Product }) {
             {decor.illuFrom === "rad"
               ? "Ilustračné fotografie — tento dekor máme zatiaľ nafotený len na inom rade konštrukcie."
               : decor.illuFrom === "dvierka"
-                ? `Fotografie zachytávajú ${decor.illuDvierka}-dverové vyhotovenie. Skrinka ${p.dim} má ${p.w <= 100 ? 2 : 3} dvierka — v tomto dekore ju zatiaľ nemáme nafotenú, konštrukcia aj povrch sú však zhodné.`
+                ? `Fotografie zachytávajú ${decor.illuDvierka}-dverové vyhotovenie. Skrinka ${p.dim} má ${dvierkaPreSirku(p.w)} dvierka — v tomto vyhotovení ju zatiaľ nemáme nafotenú, konštrukcia aj povrch sú však zhodné.`
                 : decor.illuSize
                   ? `Fotografie zachytávajú rovnakú skrinku v tomto dekore, len v dĺžke ${decor.illuSize}. Konštrukcia aj povrch sú zhodné.`
                   : "Fotografie zachytávajú tento dekor na skrinkách iných rozmerov. Konštrukcia aj povrch sú zhodné."}

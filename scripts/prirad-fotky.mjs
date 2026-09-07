@@ -54,12 +54,20 @@ const overenaSirka = (f, set) => {
   return r.w;
 };
 
-/** Ako ďaleko je fotka od produktu — rad váži viac než rozmer. */
+/**
+ * Ako ďaleko je fotka od produktu. Poradie váh: správne delenie čela,
+ * potom rovnaký rad, nakoniec najbližšia šírka. Delenie je hore, lebo
+ * je najviditeľnejšie — pri 200 cm skrinke (štvoro dvierok) je trojdverová
+ * fotka bližšie než dvojdverová.
+ */
 const blizkostProdukt = (p, f) => {
   const set = f.replace("/img/products/", "").replace(/-\d+\.webp$/, "");
   const r = rozborSetu(set);
   const w = overenaSirka(f, set);
-  return (r.rad === p.tier ? 0 : r.rad ? 1000 : 2000) +
+  const dv = dvierkaFotky(f);
+  const D = dvierkaPreSirku(p.w);
+  return (dv === 0 || dv === D ? 0 : Math.abs(dv - D) * 5000) +
+    (r.rad === p.tier ? 0 : r.rad ? 1000 : 2000) +
     (w === null ? 400 : Math.abs(w - p.w));
 };
 
@@ -70,10 +78,25 @@ const rozborSetu = (set) => {
 
 /* ── LED galérie ────────────────────────────────────────────────── */
 const ledSubory = fs.existsSync(LED) ? fs.readdirSync(LED).sort() : [];
-const ledSet = (dekor, farba, dv) =>
-  ledSubory
-    .filter((f) => f.startsWith(`led-${dekor}-${farba}-${dv}d-`))
-    .map((f) => `/img/products/led/${f}`);
+/**
+ * LED vizualizácie pre daný počet dvierok. Existujú len 2- a 3-dverové;
+ * 200 cm skrinky majú štvoro dvierok a vizualizácie k nim klient ešte
+ * nedodal. Namiesto prázdnej galérie vezmeme najbližší dostupný počet —
+ * podsvietenie vyzerá rovnako, líši sa len delenie čela.
+ */
+const ledSet = (dekor, farba, dv) => {
+  const podla = (n) =>
+    ledSubory
+      .filter((f) => f.startsWith(`led-${dekor}-${farba}-${n}d-`))
+      .map((f) => `/img/products/led/${f}`);
+  const presne = podla(dv);
+  if (presne.length) return presne;
+  for (const n of [3, 2].filter((x) => x !== dv)) {
+    const nahrada = podla(n);
+    if (nahrada.length) return nahrada;
+  }
+  return [];
+};
 
 /** dekor v katalógu → dekor v LED renderoch (len tam, kde sedí povrch) */
 const LED_DEKOR = {
@@ -89,11 +112,22 @@ const zmeny = [];
 for (const p of PRODUCTS) {
   const D = dvierkaPreSirku(p.w);
   const blizkost = (f) => blizkostProdukt(p, f);
+  /* Fotky so správnym delením čela pre tento produkt — ak neexistujú vôbec
+     (200 cm má štvoro dvierok a vizualizácie zatiaľ nie sú), pustíme aj iné
+     delenie. Inak by v galérii ostali samé detaily pántov. */
+  const jeNejakaSpravna = Object.values(sety)
+    .flat()
+    .some((f) => dvierkaFotky(f) === D);
+  const prijatelna = (f) => {
+    const dv = dvierkaFotky(f);
+    return dv === 0 || dv === D || !jeNejakaSpravna;
+  };
+
   for (const d of p.decors) {
     const povodne = d.images.slice();
 
     /* 1. vyhodíme fotky s nesprávnym počtom dvierok */
-    let vybrane = povodne.filter((f) => [D, 0].includes(dvierkaFotky(f)));
+    let vybrane = povodne.filter(prijatelna);
 
     /* 2. doplníme zo setov toho istého dekoru.
           Poradie: rovnaký rad má prednosť (určuje mieru opláštenia, čiže
@@ -102,7 +136,7 @@ for (const p of PRODUCTS) {
           zase 200 cm — počet dvierok sedel, proporcie nie. */
     const kandidati = [...(setyDekoru[d.id] ?? [])]
       .flatMap((set) => (sety[set] ?? []).map((f) => ({ f, ...rozborSetu(set) })))
-      .filter(({ f }) => [D, 0].includes(dvierkaFotky(f)))
+      .filter(({ f }) => prijatelna(f))
       .sort((a, b) => blizkost(a.f) - blizkost(b.f) || a.f.localeCompare(b.f))
       .map(({ f }) => f);
 
@@ -122,8 +156,14 @@ for (const p of PRODUCTS) {
     /* 3. ak pre tento počet dvierok neexistuje ani jedna fotka celej
           skrinky, radšej ukážeme pôvodné zábery a otvorene povieme,
           že zachytávajú iné vyhotovenie — prázdna galéria je horšia */
-    const bezDvierok = !vybrane.some((f) => dvierkaFotky(f) === D);
-    if (bezDvierok) vybrane = povodne.slice();
+    /* Ak sú v galérii len detaily (pánt, textúra), dvierka na nich nevidno
+       a o nezhode nemá zmysel hovoriť — hlásiť „foto 3-dverového
+       vyhotovenia“ pri zábere hrany by bolo mätúce. */
+    /* Delenie čela na fotkách nesedí s produktom. Nič nevraciame späť —
+       výber vyššie už náhradné delenie pripúšťa, keď správne fotky
+       neexistujú; tu to len poctivo označíme. */
+    const viditelne = vybrane.filter((f) => dvierkaFotky(f) > 0);
+    const bezDvierok = viditelne.length > 0 && !viditelne.some((f) => dvierkaFotky(f) === D);
 
     /* 4. príznaky ilustračnosti prepočítame nanovo — len zo záberov celej
           skrinky. Detail pántu z inej dĺžky vyzerá rovnako, ale robil
@@ -155,7 +195,10 @@ for (const p of PRODUCTS) {
     if (bezDvierok) {
       d.inherited = true;
       d.illuFrom = "dvierka";
-      d.illuDvierka = D === 3 ? 2 : 3;
+      /* koľko dvierok je naozaj na použitých fotkách — pri 200 cm skrinkách
+         (4 dvierka) zatiaľ nemáme ani jednu správnu vizualizáciu */
+      const naFotke = [...new Set(vybrane.map(dvierkaFotky).filter((n) => n > 0))];
+      if (naFotke.length) d.illuDvierka = Math.max(...naFotke);
     } else if (inyRad) {
       d.inherited = true;
       d.illuFrom = "rad";
@@ -193,9 +236,14 @@ for (const p of PRODUCTS) {
     /* Prvá fotka musí byť zatvorená skrinka so správnymi dvierkami — inak
        sa cover a detail rozídu. Penalizácie musia byť nad rozsahom
        blizkostProdukt (tá ide do ~2400), inak by zlý počet dvierok
-       „vyhral" nad vzdialenejšou, ale správnou fotkou. */
-    if (dvierkaFotky(f) !== D) return 20_000;
-    if (jeOtvorena(f) && p.tier !== "basic") return 10_000;
+       „vyhral" nad vzdialenejšou, ale správnou fotkou.
+       Detail pántu je horší než celá skrinka s iným delením čela: pri
+       200 cm (štvoro dvierok) zatiaľ správnu vizualizáciu nemáme vôbec,
+       a ukázať ako titulnú fotku záber pántu je horšie než trojdverovú
+       skrinku s poctivým štítkom. */
+    const dv = dvierkaFotky(f);
+    if (dv === 0) return 300_000;
+    if (jeOtvorena(f) && p.tier !== "basic") return 100_000 + blizkostProdukt(p, f);
     return blizkostProdukt(p, f);
   };
   const povodnePrvy = p.decors[0]?.id;
@@ -210,11 +258,15 @@ for (const p of PRODUCTS) {
   const covorOk = (f) => f && dvierkaFotky(f) === D && !(jeOtvorena(f) && p.tier !== "basic");
   let novy = covorOk(prvy) ? prvy : null;
   if (!novy) {
+    /* celá skrinka pred detailom, správne dvierka pred nesprávnymi */
     const vsetky = p.decors
       .flatMap((d) => d.images)
-      .filter((f) => dvierkaFotky(f) === D)
-      .sort((a, b) => (p.tier === "basic" ? 0 : jeOtvorena(a) - jeOtvorena(b)) || blizkostProdukt(p, a) - blizkostProdukt(p, b));
-    novy = vsetky[0];
+      .filter((f) => dvierkaFotky(f) !== 0)
+      .sort((a, b) =>
+        (dvierkaFotky(a) === D ? 0 : 1) - (dvierkaFotky(b) === D ? 0 : 1) ||
+        (p.tier === "basic" ? 0 : jeOtvorena(a) - jeOtvorena(b)) ||
+        blizkostProdukt(p, a) - blizkostProdukt(p, b));
+    novy = vsetky[0] ?? prvy;
   }
   if (novy && novy !== p.cover) {
     zmeny.push({ slug: p.slug, dekor: "cover", pred: p.cover.split("/").pop(), po: novy.split("/").pop() });

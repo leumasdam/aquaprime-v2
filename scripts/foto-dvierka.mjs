@@ -81,8 +81,13 @@ export const OTVORENE = new Set([
 export const jeOtvorena = (nazov) =>
   OTVORENE.has(nazov.replace(/^\/img\/products\//, "").replace(/\.webp$/, ""));
 
-/** Koľko dvierok má skrinka danej šírky podľa zadania klienta. */
-export const dvierkaPreSirku = (w) => (w <= 100 ? 2 : 3);
+/**
+ * Koľko dvierok má skrinka danej šírky podľa zadania klienta:
+ *   pod 120 cm        … 2
+ *   od 120 cm vrátane … 3   (120 cm už patrí sem)
+ *   200 cm            … 4   (vizualizácie zatiaľ neexistujú, klient ich dodá)
+ */
+export const dvierkaPreSirku = (w) => (w < 120 ? 2 : w >= 200 ? 4 : 3);
 
 /** Počet dvierok na konkrétnej fotke; 0 = nedá sa určiť (použiteľná vždy). */
 export function dvierkaFotky(nazov) {
