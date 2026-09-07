@@ -9086,3 +9086,95 @@ button:focus-visible {
     background: var(--cyan);
   }
 }
+
+/* ============================================================
+   HERO — layouty naladené vo vizuálnom editore (tools/editor.html)
+   Prepísané z css/overrides.css do hlavného CSS, aby platili aj
+   v produkcii; overrides.css sa načítava len vo vývoji.
+   Vynechané: posuny na <source> (neviditeľné prvky) a font-size
+   tlačidiel na mobile-s — ten je medzičasom riešený nižšie
+   spoločným pravidlom pre celý mobilný rozsah.
+   ============================================================ */
+
+/* mobile-s — video užšie a jemne doprava */
+@media (max-width: 479px) {
+  .hero__video {
+    height: 294px;
+    translate: 10px 0;
+  }
+}
+
+/* mobile-l — vyšší pás videa, text sadá pod akvárium */
+@media (min-width: 480px) and (max-width: 767px) {
+  .hero__bg2 {
+    height: 390px;
+  }
+  .hero__video {
+    height: 579px;
+    translate: -50px -50px;
+  }
+  .hero__eyebrow,
+  .hero__title,
+  .hero__body {
+    translate: 0 67px;
+  }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero__inner {
+    height: 378px;
+  }
+  .hero__video-d {
+    height: 464px;
+    translate: 130px 60px;
+  }
+  .hero__ghost,
+  .hero__btn-label {
+    font-size: 0.625rem;
+  }
+  .hero__btn-arr {
+    font-size: 0.8125rem;
+  }
+}
+
+/* tablet na šírku */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .hero__video-d {
+    height: 457px;
+    translate: 149px 21px;
+  }
+}
+
+/* laptop */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .hero__inner {
+    height: 690px;
+  }
+  .hero__video-d {
+    height: 525px;
+    translate: 80px 0;
+  }
+}
+
+/* desktop — doladený zvislý SCROLL pri ľavom okraji */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .hero__scroll-line {
+    translate: 8px 4px;
+  }
+  .hero__scroll-arr,
+  .hero__scroll-word {
+    translate: 9px 1px;
+  }
+  .hero__video-d {
+    height: 574px;
+    translate: 43px -4px;
+  }
+}
+
+/* desktop XL */
+@media (min-width: 1920px) {
+  .hero__scroll-v {
+    translate: 138px -39px;
+  }
+}
