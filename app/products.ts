@@ -142,22 +142,6 @@ export const PRODUCTS: Product[] = [
         }
       },
       {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
         "id": "cool-white",
         "name": "Cool White",
         "swatch": [
@@ -227,9 +211,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -255,9 +237,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
             "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
           ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
+        }
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -280,6 +260,20 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-black-matt-12.webp",
           "/img/products/dub-spanielsky-black-matt-13.webp",
           "/img/products/dub-spanielsky-black-matt-02.webp"
+        ]
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp"
         ],
         "inherited": true,
         "illuFrom": "rad"
@@ -312,6 +306,93 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-black-matt-zlta-3d-01.webp",
+            "/img/products/led/led-black-matt-zlta-3d-02.webp",
+            "/img/products/led/led-black-matt-zlta-3d-03.webp",
+            "/img/products/led/led-black-matt-zlta-3d-04.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-black-matt-modra-3d-01.webp",
+            "/img/products/led/led-black-matt-modra-3d-02.webp",
+            "/img/products/led/led-black-matt-modra-3d-03.webp",
+            "/img/products/led/led-black-matt-modra-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
         "swatch": [
@@ -339,37 +420,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/standard-100x40x90-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -421,66 +471,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -509,7 +499,7 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       }
     ],
-    "cover": "/img/products/standard-100x40x90-black-matt-02.webp",
+    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
     "priceLed": "400 €"
   },
   {
@@ -535,6 +525,93 @@ export const PRODUCTS: Product[] = [
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-black-matt-zlta-3d-01.webp",
+            "/img/products/led/led-black-matt-zlta-3d-02.webp",
+            "/img/products/led/led-black-matt-zlta-3d-03.webp",
+            "/img/products/led/led-black-matt-zlta-3d-04.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-black-matt-modra-3d-01.webp",
+            "/img/products/led/led-black-matt-modra-3d-02.webp",
+            "/img/products/led/led-black-matt-modra-3d-03.webp",
+            "/img/products/led/led-black-matt-modra-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
       {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
@@ -563,37 +640,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-100x40x90-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -645,66 +691,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -760,6 +746,93 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-black-matt-zlta-3d-01.webp",
+            "/img/products/led/led-black-matt-zlta-3d-02.webp",
+            "/img/products/led/led-black-matt-zlta-3d-03.webp",
+            "/img/products/led/led-black-matt-zlta-3d-04.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-black-matt-modra-3d-01.webp",
+            "/img/products/led/led-black-matt-modra-3d-02.webp",
+            "/img/products/led/led-black-matt-modra-3d-03.webp",
+            "/img/products/led/led-black-matt-modra-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
         "swatch": [
@@ -787,37 +860,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/standard-100x40x90-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -871,66 +913,6 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       },
       {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
         "id": "dub-spanielsky-black-matt",
         "name": "Dub španielsky / Čierna matná",
         "swatch": [
@@ -957,7 +939,7 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       }
     ],
-    "cover": "/img/products/standard-100x40x90-black-matt-02.webp",
+    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
     "priceLed": "420 €"
   },
   {
@@ -983,35 +965,6 @@ export const PRODUCTS: Product[] = [
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -1044,6 +997,91 @@ export const PRODUCTS: Product[] = [
         "illuFrom": "rad"
       },
       {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rad"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
+            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
+            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
+            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
+      },
+      {
         "id": "black-matt-orech",
         "name": "Black Matt / Orech",
         "swatch": [
@@ -1093,66 +1131,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -1207,6 +1185,67 @@ export const PRODUCTS: Product[] = [
       "Zákazková výroba s ručnou kontrolou"
     ],
     "decors": [
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-antracit-03.webp",
+          "/img/products/standard-80x40x90-antracit-06.webp",
+          "/img/products/standard-80x40x90-antracit-07.webp",
+          "/img/products/standard-80x40x90-antracit-02.webp",
+          "/img/products/standard-80x40x90-antracit-05.webp",
+          "/img/products/standard-80x40x90-antracit-08.webp",
+          "/img/products/standard-80x40x90-antracit-04.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-antracit-zlta-2d-01.webp",
+            "/img/products/led/led-antracit-zlta-2d-02.webp",
+            "/img/products/led/led-antracit-zlta-2d-03.webp",
+            "/img/products/led/led-antracit-zlta-2d-04.webp",
+            "/img/products/led/led-antracit-zlta-2d-05.webp",
+            "/img/products/led/led-antracit-zlta-2d-06.webp",
+            "/img/products/led/led-antracit-zlta-2d-07.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-antracit-modra-2d-01.webp",
+            "/img/products/led/led-antracit-modra-2d-02.webp",
+            "/img/products/led/led-antracit-modra-2d-03.webp",
+            "/img/products/led/led-antracit-modra-2d-04.webp",
+            "/img/products/led/led-antracit-modra-2d-05.webp",
+            "/img/products/led/led-antracit-modra-2d-06.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "80 × 40 cm"
+      },
+      {
+        "id": "artisan-antracit",
+        "name": "Artisan / Antracit",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-01.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "80 × 40 cm"
+      },
       {
         "id": "cool-white",
         "name": "Cool White",
@@ -1275,83 +1314,6 @@ export const PRODUCTS: Product[] = [
         "illuFrom": "rad"
       },
       {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "antracit",
-        "name": "Antracit",
-        "swatch": [
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-antracit-03.webp",
-          "/img/products/standard-80x40x90-antracit-06.webp",
-          "/img/products/standard-80x40x90-antracit-07.webp",
-          "/img/products/standard-80x40x90-antracit-02.webp",
-          "/img/products/standard-80x40x90-antracit-05.webp",
-          "/img/products/standard-80x40x90-antracit-08.webp",
-          "/img/products/standard-80x40x90-antracit-04.webp",
-          "/img/products/standard-80x40x90-antracit-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-2d-01.webp",
-            "/img/products/led/led-antracit-zlta-2d-02.webp",
-            "/img/products/led/led-antracit-zlta-2d-03.webp",
-            "/img/products/led/led-antracit-zlta-2d-04.webp",
-            "/img/products/led/led-antracit-zlta-2d-05.webp",
-            "/img/products/led/led-antracit-zlta-2d-06.webp",
-            "/img/products/led/led-antracit-zlta-2d-07.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-2d-01.webp",
-            "/img/products/led/led-antracit-modra-2d-02.webp",
-            "/img/products/led/led-antracit-modra-2d-03.webp",
-            "/img/products/led/led-antracit-modra-2d-04.webp",
-            "/img/products/led/led-antracit-modra-2d-05.webp",
-            "/img/products/led/led-antracit-modra-2d-06.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "80 × 40 cm"
-      },
-      {
-        "id": "artisan-antracit",
-        "name": "Artisan / Antracit",
-        "swatch": [
-          "/img/products/swatch-artisan.webp",
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "80 × 40 cm"
-      },
-      {
         "id": "dub-hunton-black-matt",
         "name": "Dub Hunton / Black Matt",
         "swatch": [
@@ -1414,9 +1376,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -1442,9 +1402,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
             "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
           ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
+        }
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -1467,9 +1425,24 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-black-matt-12.webp",
           "/img/products/dub-spanielsky-black-matt-13.webp",
           "/img/products/dub-spanielsky-black-matt-02.webp"
+        ]
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x90-black-matt-orech-01.webp"
         ],
         "inherited": true,
-        "illuFrom": "rad"
+        "illuFrom": "rozmer",
+        "illuSize": "80 × 40 cm"
       }
     ],
     "cover": "/img/products/standard-80x40x90-antracit-03.webp",
@@ -1499,42 +1472,14 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/standard-100x40x90-cool-white-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
@@ -1554,22 +1499,7 @@ export const PRODUCTS: Product[] = [
         },
         "inherited": true,
         "illuFrom": "rozmer",
-        "illuSize": "100 × 40 cm"
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuSize": "150 × 50 cm"
       },
       {
         "id": "antracit",
@@ -1603,6 +1533,104 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "rozmer",
         "illuSize": "200 × 60 cm"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 cm"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-cool-white-zlta-3d-01.webp",
+            "/img/products/led/led-cool-white-zlta-3d-02.webp",
+            "/img/products/led/led-cool-white-zlta-3d-03.webp",
+            "/img/products/led/led-cool-white-zlta-3d-04.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-cool-white-modra-3d-01.webp",
+            "/img/products/led/led-cool-white-modra-3d-02.webp",
+            "/img/products/led/led-cool-white-modra-3d-03.webp",
+            "/img/products/led/led-cool-white-modra-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
       },
       {
         "id": "artisan-antracit",
@@ -1656,65 +1684,6 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       },
       {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "200 × 60 cm"
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
         "id": "dub-spanielsky-black-matt",
         "name": "Dub španielsky / Čierna matná",
         "swatch": [
@@ -1741,7 +1710,7 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       }
     ],
-    "cover": "/img/products/standard-100x40x90-black-matt-02.webp",
+    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
     "priceLed": "390 €"
   },
   {
@@ -1792,25 +1761,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
-        },
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "100 × 40 cm"
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        }
       },
       {
         "id": "antracit",
@@ -1845,34 +1796,6 @@ export const PRODUCTS: Product[] = [
         "illuSize": "200 × 60 cm"
       },
       {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x90-cool-white-02.webp",
-          "/img/products/standard-100x40x90-cool-white-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
         "id": "dub-sonoma",
         "name": "Dub Sonoma",
         "swatch": [
@@ -1904,9 +1827,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -1928,9 +1849,50 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
             "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
           ]
+        }
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-black-matt-orech-01.webp",
+          "/img/products/standard-100x40x90-black-matt-orech-01.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-100x40x90-cool-white-01.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-cool-white-zlta-3d-01.webp",
+            "/img/products/led/led-cool-white-zlta-3d-02.webp",
+            "/img/products/led/led-cool-white-zlta-3d-03.webp",
+            "/img/products/led/led-cool-white-zlta-3d-04.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-cool-white-modra-3d-01.webp",
+            "/img/products/led/led-cool-white-modra-3d-02.webp",
+            "/img/products/led/led-cool-white-modra-3d-03.webp",
+            "/img/products/led/led-cool-white-modra-3d-04.webp"
+          ]
         },
         "inherited": true,
-        "illuFrom": "rad"
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -1986,23 +1948,6 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "200 × 60 cm"
-      },
-      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
@@ -2033,19 +1978,21 @@ export const PRODUCTS: Product[] = [
         "illuSize": "150 × 50 cm"
       },
       {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
         "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
+          "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
-          "/img/products/standard-200x60x60-black-matt-orech-01.webp"
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 cm"
       },
       {
         "id": "antracit",
@@ -2080,6 +2027,60 @@ export const PRODUCTS: Product[] = [
         "illuSize": "200 × 60 cm"
       },
       {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-black-matt-orech-02.webp",
+          "/img/products/standard-200x60x60-black-matt-orech-01.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "dvierka",
+        "illuDvierka": 2
+      },
+      {
         "id": "cool-white",
         "name": "Cool White",
         "swatch": [
@@ -2108,49 +2109,6 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       },
       {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
         "id": "dub-spanielsky-black-matt",
         "name": "Dub španielsky / Čierna matná",
         "swatch": [
@@ -2177,7 +2135,7 @@ export const PRODUCTS: Product[] = [
         "illuDvierka": 2
       }
     ],
-    "cover": "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
     "priceLed": "410 €"
   },
   {
@@ -2230,7 +2188,10 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-antracit-modra-3d-03.webp",
             "/img/products/led/led-antracit-modra-3d-04.webp"
           ]
-        }
+        },
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 cm"
       },
       {
         "id": "black-matt",
@@ -2256,6 +2217,65 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-02.webp",
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
+          ]
+        },
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 cm"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 cm"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-13.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-16.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-10.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-11.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
           ]
         }
       },
@@ -2301,63 +2321,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 2
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -2445,9 +2408,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -2463,9 +2424,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-01.webp",
           "/img/products/dub-spanielsky-07.webp",
           "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -2488,9 +2447,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-black-matt-12.webp",
           "/img/products/dub-spanielsky-black-matt-13.webp",
           "/img/products/dub-spanielsky-black-matt-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       }
     ],
     "cover": "/img/products/basic-100x40x90-01.webp"
@@ -2550,9 +2507,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -2566,9 +2521,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -2651,9 +2604,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -2667,9 +2618,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -2755,9 +2704,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -2771,9 +2718,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -2859,9 +2804,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/choco-vintage-oak-16.webp",
           "/img/products/choco-vintage-oak-05.webp",
           "/img/products/choco-vintage-oak-10.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky",
@@ -2875,9 +2818,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-06.webp",
           "/img/products/dub-spanielsky-11.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        ]
       },
       {
         "id": "dub-spanielsky-black-matt",

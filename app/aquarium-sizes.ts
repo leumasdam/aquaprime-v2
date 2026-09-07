@@ -391,6 +391,9 @@ export const AQUARIUM_SIZES: AquariumSize[] = [
     priceValue: 844,
     priceLabel: "844 €",
     cover: "/img/akvaria/akvarium-200x60x60.webp",
+    /* render je bez priečnych výstuh, hoci nádrže od 200 cm majú dve —
+       kým nebude nafotená správna verzia, nesmie sa tváriť ako presná */
+    coverIllustrative: true,
   },
   {
     slug: "akvarium-200x60x70",

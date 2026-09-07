@@ -40,6 +40,29 @@ for (const p of PRODUCTS)
       (setyDekoru[d.id] ??= new Set()).add(set);
     }
 
+/**
+ * Šírka z názvu súboru, ale len ak jej zodpovedá aj počet dvierok na zábere.
+ * `standard-100x40x90-black-matt-02` má v názve 100 cm, no reálne tri
+ * dvierka — je to teda širšia skrinka a jej názvu sa veriť nedá. V takom
+ * prípade radšej priznáme, že šírku nepoznáme.
+ */
+const overenaSirka = (f, set) => {
+  const r = rozborSetu(set);
+  if (r.w === null) return null;
+  const dv = dvierkaFotky(f);
+  if (dv !== 0 && dv !== dvierkaPreSirku(r.w)) return null;
+  return r.w;
+};
+
+/** Ako ďaleko je fotka od produktu — rad váži viac než rozmer. */
+const blizkostProdukt = (p, f) => {
+  const set = f.replace("/img/products/", "").replace(/-\d+\.webp$/, "");
+  const r = rozborSetu(set);
+  const w = overenaSirka(f, set);
+  return (r.rad === p.tier ? 0 : r.rad ? 1000 : 2000) +
+    (w === null ? 400 : Math.abs(w - p.w));
+};
+
 const rozborSetu = (set) => {
   const m = set.match(/^(premium|standard|basic)-(\d+)x(\d+)x(\d+)/);
   return m ? { rad: m[1], w: +m[2], d: +m[3] } : { rad: null, w: null, d: null };
@@ -65,30 +88,36 @@ const LED_DEKOR = {
 const zmeny = [];
 for (const p of PRODUCTS) {
   const D = dvierkaPreSirku(p.w);
+  const blizkost = (f) => blizkostProdukt(p, f);
   for (const d of p.decors) {
     const povodne = d.images.slice();
 
     /* 1. vyhodíme fotky s nesprávnym počtom dvierok */
     let vybrane = povodne.filter((f) => [D, 0].includes(dvierkaFotky(f)));
 
-    /* 2. doplníme zo setov toho istého dekoru — najprv presný rozmer,
-          potom rovnaký rad, až nakoniec zvyšok */
+    /* 2. doplníme zo setov toho istého dekoru.
+          Poradie: rovnaký rad má prednosť (určuje mieru opláštenia, čiže
+          vzhľad), no v rámci radu rozhoduje najbližšia šírka. Bez toho
+          druhého kritéria dostala 200 cm skrinka fotku 150 cm a 120 cm
+          zase 200 cm — počet dvierok sedel, proporcie nie. */
     const kandidati = [...(setyDekoru[d.id] ?? [])]
       .flatMap((set) => (sety[set] ?? []).map((f) => ({ f, ...rozborSetu(set) })))
       .filter(({ f }) => [D, 0].includes(dvierkaFotky(f)))
-      .sort((a, b) => {
-        const sk = (x) => (x.w === p.w ? 0 : x.rad === p.tier ? 1 : x.rad ? 2 : 3);
-        return sk(a) - sk(b) || a.f.localeCompare(b.f);
-      })
+      .sort((a, b) => blizkost(a.f) - blizkost(b.f) || a.f.localeCompare(b.f))
       .map(({ f }) => f);
+
+    /* aj to, čo v galérii už bolo, preusporiadame podľa rovnakého kľúča —
+       inak by staré (vzdialenejšie) fotky ostali vpredu */
+    vybrane.sort((a, b) => blizkost(a) - blizkost(b));
 
     for (const f of kandidati) {
       if (vybrane.length >= Math.max(povodne.length, 4)) break;
       if (!vybrane.includes(f)) vybrane.push(f);
     }
-    /* poradie: zatvorená skrinka → otvorená / rám → detaily */
+    /* poradie: zatvorená skrinka → otvorená / rám → detaily, a v rámci
+       každej skupiny rozmerovo najbližšia fotka napred */
     const poradie = (f) => (dvierkaFotky(f) === 0 ? 2 : jeOtvorena(f) ? 1 : 0);
-    vybrane.sort((a, b) => poradie(a) - poradie(b));
+    vybrane.sort((a, b) => poradie(a) - poradie(b) || blizkost(a) - blizkost(b));
 
     /* 3. ak pre tento počet dvierok neexistuje ani jedna fotka celej
           skrinky, radšej ukážeme pôvodné zábery a otvorene povieme,
@@ -96,11 +125,28 @@ for (const p of PRODUCTS) {
     const bezDvierok = !vybrane.some((f) => dvierkaFotky(f) === D);
     if (bezDvierok) vybrane = povodne.slice();
 
-    /* 4. príznaky ilustračnosti prepočítame nanovo */
-    const pouziteSety = [...new Set(vybrane.map((f) => f.replace("/img/products/", "").replace(/-\d+\.webp$/, "")))];
-    const rozbory = pouziteSety.map(rozborSetu);
+    /* 4. príznaky ilustračnosti prepočítame nanovo — len zo záberov celej
+          skrinky. Detail pántu z inej dĺžky vyzerá rovnako, ale robil
+          z galérie „ilustračnú" a hlásil rozmer, ktorý na hlavnej fotke
+          vôbec nebol. */
+    const pouziteSety = [...new Set(
+      vybrane.filter((f) => dvierkaFotky(f) !== 0)
+        .map((f) => f.replace("/img/products/", "").replace(/-\d+\.webp$/, "")),
+    )];
+    /* Rozmer hlásime len tam, kde mu vieme veriť. Pri fotkách, ktorých názov
+       nesedí s počtom dvierok, skutočnú šírku nepoznáme — tvrdiť „foto
+       rozmeru 100 × 40" pri trojdverovej skrinke by bola nepravda. */
+    const rozbory = pouziteSety
+      .map((set) => ({ set, r: rozborSetu(set) }))
+      .filter(({ set }) => {
+        const f = vybrane.find((x) => x.includes(set + "-"));
+        return f ? overenaSirka(f, set) !== null : true;
+      })
+      .map(({ r }) => r);
     const inyRad = rozbory.some((r) => r.rad !== p.tier);
-    const inyRozmer = rozbory.some((r) => r.w !== null && r.w !== p.w);
+    /* aj hĺbka — 200×60×60 pri produkte 200×50×70 sedí len šírkou, ale je to
+       viditeľne iná skrinka a doteraz sa tvárila ako presná fotka */
+    const inyRozmer = rozbory.some((r) => r.w !== null && (r.w !== p.w || r.d !== p.d));
 
     delete d.inherited;
     delete d.illuFrom;
@@ -114,7 +160,7 @@ for (const p of PRODUCTS) {
       d.inherited = true;
       d.illuFrom = "rad";
     } else if (inyRozmer) {
-      const r = rozbory.find((x) => x.w !== p.w);
+      const r = rozbory.find((x) => x.w !== null && (x.w !== p.w || x.d !== p.d));
       d.inherited = true;
       d.illuFrom = "rozmer";
       d.illuSize = `${r.w} × ${r.d} cm`;
@@ -137,19 +183,42 @@ for (const p of PRODUCTS) {
     if (zmenene) zmeny.push({ slug: p.slug, dekor: d.id, pred: povodne.length, po: vybrane.length });
     d.images = vybrane;
   }
-  /* cover katalógovej karty — najlepšia fotka celej skrinky so správnym
-     počtom dvierok, inak necháme pôvodnú */
-  if (dvierkaFotky(p.cover) !== D || (jeOtvorena(p.cover) && p.tier !== "basic")) {
+  /* Dekor s najvernejšou fotkou dáme prvý. Karta v katalógu ukazuje cover,
+     ale detail sa otvára na prvom dekore — keď to bol iný dekor, zákazník
+     klikol na trojdverovú skrinku v správnej šírke a dostal dvojdverovú
+     fotku z iného rozmeru so štítkom „ilustračné". */
+  const kvalita = (d) => {
+    const f = d.images[0];
+    if (!f) return 99_000;
+    /* Prvá fotka musí byť zatvorená skrinka so správnymi dvierkami — inak
+       sa cover a detail rozídu. Penalizácie musia byť nad rozsahom
+       blizkostProdukt (tá ide do ~2400), inak by zlý počet dvierok
+       „vyhral" nad vzdialenejšou, ale správnou fotkou. */
+    if (dvierkaFotky(f) !== D) return 20_000;
+    if (jeOtvorena(f) && p.tier !== "basic") return 10_000;
+    return blizkostProdukt(p, f);
+  };
+  const povodnePrvy = p.decors[0]?.id;
+  p.decors.sort((a, b) => kvalita(a) - kvalita(b));
+  if (p.decors[0]?.id !== povodnePrvy) {
+    zmeny.push({ slug: p.slug, dekor: "poradie dekorov", pred: povodnePrvy, po: p.decors[0].id });
+  }
+
+  /* cover katalógovej karty — prvá fotka prvého dekoru, nech karta a detail
+     ukazujú to isté; ak by nesedeli dvierka, hľadáme ďalej */
+  const prvy = p.decors[0]?.images?.[0];
+  const covorOk = (f) => f && dvierkaFotky(f) === D && !(jeOtvorena(f) && p.tier !== "basic");
+  let novy = covorOk(prvy) ? prvy : null;
+  if (!novy) {
     const vsetky = p.decors
       .flatMap((d) => d.images)
       .filter((f) => dvierkaFotky(f) === D)
-      .sort((a, b) => (p.tier === "basic" ? 0 : jeOtvorena(a) - jeOtvorena(b)));
-    const zRadu = vsetky.find((f) => rozborSetu(f.replace("/img/products/", "").replace(/-\d+\.webp$/, "")).rad === p.tier);
-    const novy = zRadu ?? vsetky[0];
-    if (novy && novy !== p.cover) {
-      zmeny.push({ slug: p.slug, dekor: "cover", pred: p.cover.split("/").pop(), po: novy.split("/").pop() });
-      p.cover = novy;
-    }
+      .sort((a, b) => (p.tier === "basic" ? 0 : jeOtvorena(a) - jeOtvorena(b)) || blizkostProdukt(p, a) - blizkostProdukt(p, b));
+    novy = vsetky[0];
+  }
+  if (novy && novy !== p.cover) {
+    zmeny.push({ slug: p.slug, dekor: "cover", pred: p.cover.split("/").pop(), po: novy.split("/").pop() });
+    p.cover = novy;
   }
 }
 
