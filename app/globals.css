@@ -5305,6 +5305,33 @@ button:focus-visible {
   color: inherit;
 }
 
+/* HERO CTA na mobile — kompaktnejšie.
+   Vlastný blok cez celý mobilný rozsah (do 767 px), lebo hlavný mobilný blok
+   končí na 600 px a 601–767 by inak dostalo desktopové rozmery. Výška drží
+   nad 40 px, aby zostal pohodlný dotykový cieľ. */
+@media (max-width: 767px) {
+  .hero__btn {
+    height: 42px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+  }
+  .hero__btn-label {
+    padding: 0 16px;
+  }
+  .hero__btn-arr {
+    padding: 0 12px;
+    font-size: 0.8125rem;
+  }
+  .hero__ghost {
+    gap: 9px;
+    font-size: 0.625rem;
+  }
+  .hero__ghost-ico {
+    width: 22px;
+    height: 22px;
+  }
+}
+
 /* spodná lišta — ikony v krúžkoch, prvý cyan, jemné deliče */
 .hero__bar-inner {
   align-items: stretch;
@@ -5825,9 +5852,7 @@ button:focus-visible {
     gap: 14px;
   }
   .hero__btn {
-    width: 100%;
     justify-content: space-between;
-    height: 52px;
   }
   .hero__ghost {
     justify-content: flex-start;
