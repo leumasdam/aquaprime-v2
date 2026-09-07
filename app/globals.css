@@ -5125,20 +5125,24 @@ button:focus-visible {
   .hero__bg2 {
     background-position: 22% 42%;
   }
+  /* Zatmavenie drží len pod textom vľavo — vpravo, kde je akvárium, sa
+     rýchlo vytráca. Predtým tam bolo ešte 0.4 krytia a nádrž pôsobila
+     kalne; pod 1300 px je pritom video posunuté na 22 %, takže akvárium
+     sedí ďalej vpravo než na širokom monitore. */
   .hero__bg2::after {
     background: linear-gradient(
         90deg,
         rgba(5, 6, 7, 0.86) 0%,
-        rgba(5, 6, 7, 0.72) 40%,
-        rgba(5, 6, 7, 0.4) 72%,
-        rgba(5, 6, 7, 0.14) 100%
+        rgba(5, 6, 7, 0.64) 38%,
+        rgba(5, 6, 7, 0.12) 66%,
+        rgba(5, 6, 7, 0.04) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(5, 6, 7, 0.4) 0%,
-        transparent 28%,
-        transparent 54%,
-        rgba(5, 6, 7, 0.76) 100%
+        rgba(5, 6, 7, 0.3) 0%,
+        transparent 26%,
+        transparent 58%,
+        rgba(5, 6, 7, 0.72) 100%
       );
   }
 }
