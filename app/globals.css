@@ -5513,8 +5513,11 @@ button:focus-visible {
 }
 
 /* HERO — pod 1200px oddialiť pozadie (cover príliš zoomuje široký obrázok) */
-/* 901–1500px: nižší hero (zoom-out). Pozíciu pozadia rieši ≤1300 shift / default. */
-@media (min-width: 901px) and (max-width: 1500px) {
+/* 601–1500px: nižší hero (zoom-out). Pozíciu pozadia rieši ≤1300 shift / default.
+   Spodná hranica bola pôvodne 901 px, takže tablet (768–900) vypadol a dostal
+   základných 668 px — na 900 px zostávalo 281 px prázdneho miesta a hero bol
+   vyšší než na širšom laptope. Mobil ≤600 má vlastný full-screen hero. */
+@media (min-width: 601px) and (max-width: 1500px) {
   .hero {
     min-height: clamp(430px, 49vh, 530px);
   }
@@ -6349,6 +6352,13 @@ button:focus-visible {
 @media (max-width: 1300px) {
   .hero__video-d {
     object-position: 22% 42%;
+  }
+}
+/* Tablet: hero je nižší, takže sa výrez orezáva zhora a nádrž sa dostávala
+   do textu. Nižšie Y drží akvárium pod odstavcom. */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .hero__video-d {
+    object-position: 18% 24%;
   }
 }
 /* ≥2100: zafixovaná šírka 2100px, vycentrovaná (ako background-size: 2100px) */
