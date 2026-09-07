@@ -5885,7 +5885,11 @@ button:focus-visible {
    =========================================================== */
 @media (max-width: 600px) {
   .hero {
-    min-height: 100svh;
+    /* Výška podľa obsahu, nie celá obrazovka. Pri 100svh sa na vyšších
+       telefónoch (a tie sú dnes bežné) roztiahla medzera medzi textom
+       a tlačidlami — na 1177 px vysokom displeji to bolo 418 px prázdna.
+       V editore to nebolo vidieť, jeho rám má len 740 px. */
+    min-height: auto;
     background: radial-gradient(
       125% 82% at 50% 26%,
       #0b161a 0%,
@@ -5939,9 +5943,10 @@ button:focus-visible {
     flex-direction: column;
     flex: 1;
   }
-  /* CTA dole pri spodnej línii */
+  /* CTA hneď pod textom — margin-top:auto ich tlačil na spodok hero,
+     čo na vyššom displeji roztvorilo dieru uprostred */
   .hero__ctas {
-    margin-top: auto;
+    margin-top: 28px;
   }
   /* ambientné svetlo zhora + vinetácia (statické) */
   .hero__fx-glow {
@@ -9113,10 +9118,12 @@ button:focus-visible {
     height: 579px;
     translate: -50px -50px;
   }
-  .hero__eyebrow,
-  .hero__title,
-  .hero__body {
-    translate: 0 67px;
+  /* Text sadá nižšie pod akvárium. V editore to bol `translate` na troch
+     prvkoch, lenže ten posúva len vizuálne — layout o ňom nevie a text
+     potom liezol cez tlačidlá. Odsadením sa posunie celý obsah vrátane
+     CTA, čo je to, čo bolo v editore vidieť. */
+  .hero__content {
+    padding-top: 67px;
   }
 }
 
