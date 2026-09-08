@@ -24,6 +24,12 @@ export type Decor = {
   illuSize?: string;
   /** počet dvierok na fotke — dopĺňa sa pri illuFrom: "dvierka" */
   illuDvierka?: number;
+  /**
+   * Indexy záberov, ktoré sú z iného radu či rozmeru. Keď je vyplnené,
+   * štítok „ilustračné" patrí len týmto fotkám — dekor môže mať pár
+   * vlastných a zvyšok prevzatý.
+   */
+  illuIdx?: number[];
 };
 
 export type Tier = "premium" | "standard" | "basic";
@@ -203,8 +209,12 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp"
+        ],
+        "illuIdx": [
+          0,
+          1
         ],
         "inherited": true,
         "illuFrom": "rad"
@@ -331,6 +341,13 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -347,6 +364,13 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       },
       {
@@ -451,8 +475,8 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -530,6 +554,13 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -546,6 +577,13 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       },
       {
@@ -650,8 +688,8 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -729,6 +767,13 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -745,6 +790,13 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       },
       {
@@ -849,8 +901,8 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -1051,8 +1103,8 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -1197,6 +1249,15 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-antracit-modra-2d-06.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
         "inherited": true,
         "illuFrom": "rozmer",
         "illuSize": "80 × 40 cm"
@@ -1218,6 +1279,15 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-80x40x90-artisan-antracit-07.webp",
           "/img/products/standard-80x40x90-artisan-antracit-08.webp",
           "/img/products/standard-80x40x90-artisan-antracit-01.webp"
+        ],
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
         ],
         "inherited": true,
         "illuFrom": "rozmer",
@@ -1254,6 +1324,11 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-2d-07.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2
+        ],
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -1284,6 +1359,15 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-hunton-zlta-2d-06.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
         "inherited": true,
         "illuFrom": "rad"
       },
@@ -1422,6 +1506,10 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1
+        ],
         "inherited": true,
         "illuFrom": "rozmer",
         "illuSize": "150 × 50 cm"
@@ -1863,6 +1951,10 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          1
+        ],
         "inherited": true,
         "illuFrom": "rozmer",
         "illuSize": "150 × 50 cm"
@@ -2064,6 +2156,10 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
         },
+        "illuIdx": [
+          0,
+          3
+        ],
         "inherited": true,
         "illuFrom": "dvierka",
         "illuDvierka": 3

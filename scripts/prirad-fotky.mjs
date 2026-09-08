@@ -47,7 +47,10 @@ for (const p of PRODUCTS)
  */
 const NOVE_SETY = {
   "cool-white": ["standard-100x40x80-cool-white"],
-  "black-matt-orech": ["standard-100x40x80-black-matt-orech"],
+  "black-matt-orech": [
+    "standard-100x40x80-black-matt-orech",
+    "premium-100x40x80-black-matt-orech",
+  ],
 };
 for (const [dekor, zoznam] of Object.entries(NOVE_SETY))
   for (const set of zoznam)
@@ -228,6 +231,23 @@ for (const p of PRODUCTS) {
     delete d.illuFrom;
     delete d.illuSize;
     delete d.illuDvierka;
+    delete d.illuIdx;
+
+    /* Ktoré konkrétne zábery v galérii sú z iného radu alebo rozmeru.
+       Štítok sa potom ukáže len nad nimi — dekor môže mať pár vlastných
+       fotiek a zvyšok prevzatý, a označiť celú galériu by klamalo v oboch
+       smeroch. Detaily (dvierka nevidno) sem nepatria, tie sedia vždy. */
+    const cudzia = (f) => {
+      if (dvierkaFotky(f) === 0) return false;
+      const set = f.replace("/img/products/", "").replace(/-\d+\.webp$/, "");
+      const r = rozborSetu(set);
+      if (r.rad !== null && r.rad !== p.tier) return true;
+      const w = overenaSirka(f, set);
+      return w !== null && (w !== p.w || r.d !== p.d);
+    };
+    const idx = vybrane.map((f, i) => (cudzia(f) ? i : -1)).filter((i) => i >= 0);
+    if (idx.length && idx.length < vybrane.length) d.illuIdx = idx;
+
     if (bezDvierok) {
       d.inherited = true;
       d.illuFrom = "dvierka";

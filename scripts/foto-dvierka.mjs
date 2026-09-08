@@ -30,6 +30,9 @@ export const DVIERKA = {
   "standard-100x40x80-cool-white": { def: 2, 10: 0 },
   /* jedna sada rozhádzaná pod tromi názvami rozmerov — zjednotená */
   "standard-100x40x80-black-matt-orech": { def: 2, 13: 0 },
+  /* Premium verzia — vnútro je celé opláštené, oceľový rám v ňom nevidno;
+     na štandardových záberoch toho istého dekoru rám vidieť je */
+  "premium-100x40x80-black-matt-orech": { def: 2 },
 
   "standard-150x50x80-black-matt": { def: 3 },
 
@@ -73,6 +76,7 @@ export const OTVORENE = new Set([
   "standard-80x40x90-black-matt-01", "standard-80x40x90-black-matt-02", "standard-80x40x90-black-matt-03",
   "standard-100x40x80-black-matt-orech-09", "standard-100x40x80-black-matt-orech-10",
   "standard-100x40x80-black-matt-orech-11", "standard-100x40x80-black-matt-orech-12",
+  "premium-100x40x80-black-matt-orech-01", "premium-100x40x80-black-matt-orech-02",
   "standard-80x40x90-dub-sonoma-01", "standard-80x40x90-dub-sonoma-02", "standard-80x40x90-dub-sonoma-03",
   "standard-100x40x80-cool-white-07", "standard-100x40x80-cool-white-08", "standard-100x40x80-cool-white-09",
   "choco-vintage-oak-01", "choco-vintage-oak-07", "choco-vintage-oak-08",

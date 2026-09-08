@@ -43,8 +43,13 @@ export default function ProductGallery({ p }: { p: Product }) {
   const svetla = SVETLA.filter((s) => s.id === "bez" || decor.led?.[s.id as "zlta" | "modra"]?.length);
   const aktivne: Svetlo = svetla.some((s) => s.id === svetlo) ? svetlo : "bez";
   const zoznam = aktivne === "bez" ? decor.images : (decor.led?.[aktivne] ?? decor.images);
-  const img = zoznam[Math.min(imgIdx, zoznam.length - 1)];
+  const i = Math.min(imgIdx, zoznam.length - 1);
+  const img = zoznam[i];
   const vizualizacia = aktivne !== "bez";
+
+  /* Keď je vyplnené illuIdx, časť galérie je prevzatá a časť vlastná —
+     štítok potom patrí len konkrétnym fotkám, nie celému dekoru. */
+  const prevzata = decor.illuIdx ? decor.illuIdx.includes(i) : Boolean(decor.inherited);
 
   // zvolený dekor potrebuje aj tlačidlo do košíka vedľa galérie
   useEffect(() => {
@@ -76,7 +81,7 @@ export default function ProductGallery({ p }: { p: Product }) {
             Vizualizácia LED
           </span>
         ) : (
-          decor.inherited &&
+          prevzata &&
           (decor.illuFrom === "rad" ? (
             <span className="pgal__illu" title="Tento dekor máme nafotený len na inom rade">
               Ilustračné foto — iný rad
@@ -174,7 +179,7 @@ export default function ProductGallery({ p }: { p: Product }) {
           LED lišta je priplácaná voľba{p.priceLed ? ` — cena s podsvietením ${p.priceLed}` : ""}.
         </p>
       ) : (
-        decor.inherited && (
+        prevzata && (
           <p className="pgal__note">
             {decor.illuFrom === "rad"
               ? "Ilustračné fotografie — tento dekor máme zatiaľ nafotený len na inom rade konštrukcie."
