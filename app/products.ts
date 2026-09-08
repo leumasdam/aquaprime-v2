@@ -217,16 +217,14 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-15.webp",
           "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-09.webp",
           "/img/products/choco-vintage-oak-08.webp",
           "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-13.webp"
         ]
       },
       {
@@ -239,10 +237,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-04.webp",
           "/img/products/dub-spanielsky-08.webp",
           "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-12.webp",
           "/img/products/dub-spanielsky-03.webp",
           "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-07.webp"
         ],
         "led": {
           "zlta": [
@@ -358,14 +356,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -378,8 +374,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -559,14 +555,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -579,8 +573,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -760,14 +754,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -780,8 +772,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -985,10 +977,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp"
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-07.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -1318,16 +1310,14 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-15.webp",
           "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-09.webp",
           "/img/products/choco-vintage-oak-08.webp",
           "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-13.webp"
         ]
       },
       {
@@ -1340,10 +1330,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-04.webp",
           "/img/products/dub-spanielsky-08.webp",
           "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-12.webp",
           "/img/products/dub-spanielsky-03.webp",
           "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-07.webp"
         ],
         "led": {
           "zlta": [
@@ -1486,14 +1476,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -1506,8 +1494,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -1728,14 +1716,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -1748,8 +1734,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -1931,14 +1917,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -1951,8 +1935,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ],
         "led": {
           "zlta": [
@@ -2161,10 +2145,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp"
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-07.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -2284,16 +2268,14 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-15.webp",
           "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-09.webp",
           "/img/products/choco-vintage-oak-08.webp",
           "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp",
+          "/img/products/choco-vintage-oak-13.webp"
         ]
       },
       {
@@ -2306,10 +2288,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-04.webp",
           "/img/products/dub-spanielsky-08.webp",
           "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-12.webp",
           "/img/products/dub-spanielsky-03.webp",
           "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-07.webp"
         ]
       },
       {
@@ -2385,14 +2367,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-14.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -2405,8 +2385,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ]
       },
       {
@@ -2473,14 +2453,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -2493,8 +2471,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ]
       },
       {
@@ -2564,14 +2542,12 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-14.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-11.webp",
           "/img/products/choco-vintage-oak-07.webp",
           "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-16.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-10.webp"
+          "/img/products/choco-vintage-oak-04.webp"
         ]
       },
       {
@@ -2584,8 +2560,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-11.webp"
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-06.webp"
         ]
       },
       {
@@ -2669,10 +2645,10 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-09.webp"
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-07.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",

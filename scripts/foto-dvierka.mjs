@@ -43,8 +43,10 @@ export const DVIERKA = {
   "standard-80x40x90-black-matt": { def: 2, 1: 0 },
   "standard-80x40x90-dub-sonoma": { def: 2, 2: 0 },
 
-  "choco-vintage-oak": { def: 2, 3: 3, 7: 3, 9: 3, 13: 3, 14: 3, 5: 0, 10: 0, 16: 0 },
-  "dub-spanielsky": { def: 2, 2: 3, 5: 3, 6: 3, 10: 3, 11: 0 },
+  /* zo setu vypadli tri zábery svetlého dubu (pôvodne 02, 07, 10) — patria
+     k dekoru dub španielsky, nie k čokoládovému; zvyšok prečíslovaný */
+  "choco-vintage-oak": { def: 2, 2: 3, 7: 3, 10: 3, 11: 3, 4: 0, 13: 0 },
+  "dub-spanielsky": { def: 2, 2: 3, 5: 3, 6: 3, 10: 3, 13: 3, 11: 0, 14: 0 },
   "dub-spanielsky-black-matt": { def: 2, 1: 0, 2: 0, 12: 0, 13: 0 },
 };
 
@@ -73,7 +75,7 @@ export const OTVORENE = new Set([
   "standard-100x40x80-black-matt-orech-11", "standard-100x40x80-black-matt-orech-12",
   "standard-80x40x90-dub-sonoma-01", "standard-80x40x90-dub-sonoma-02", "standard-80x40x90-dub-sonoma-03",
   "standard-100x40x80-cool-white-07", "standard-100x40x80-cool-white-08", "standard-100x40x80-cool-white-09",
-  "choco-vintage-oak-01", "choco-vintage-oak-09", "choco-vintage-oak-11",
+  "choco-vintage-oak-01", "choco-vintage-oak-07", "choco-vintage-oak-08",
   "dub-spanielsky-01", "dub-spanielsky-03", "dub-spanielsky-06", "dub-spanielsky-07",
   "dub-spanielsky-black-matt-03", "dub-spanielsky-black-matt-07", "dub-spanielsky-black-matt-10",
 ]);
