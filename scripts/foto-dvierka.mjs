@@ -28,6 +28,9 @@ export const DVIERKA = {
   "standard-100x40x90-black-matt-orech": { def: 2 },
   "standard-100x40x90-cool-white": { def: 2 },
 
+  /* dodané klientom 8. 9. 2026 — dvojdverové, čiže rozmer pod 120 cm */
+  "standard-100x40x80-cool-white": { def: 2, 10: 0 },
+
   "standard-150x50x80-black-matt": { def: 3 },
 
   "standard-200x60x60-antracit": { def: 3, 6: 0 },
@@ -72,6 +75,7 @@ export const OTVORENE = new Set([
   "standard-80x40x90-black-matt-01", "standard-80x40x90-black-matt-02", "standard-80x40x90-black-matt-03",
   "standard-80x40x90-black-matt-orech-01", "standard-80x40x90-black-matt-orech-05",
   "standard-80x40x90-dub-sonoma-01", "standard-80x40x90-dub-sonoma-02", "standard-80x40x90-dub-sonoma-03",
+  "standard-100x40x80-cool-white-07", "standard-100x40x80-cool-white-08", "standard-100x40x80-cool-white-09",
   "choco-vintage-oak-01", "choco-vintage-oak-09", "choco-vintage-oak-11",
   "dub-spanielsky-01", "dub-spanielsky-03", "dub-spanielsky-06", "dub-spanielsky-07",
   "dub-spanielsky-black-matt-03", "dub-spanielsky-black-matt-07", "dub-spanielsky-black-matt-10",

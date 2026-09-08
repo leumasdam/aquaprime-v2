@@ -41,6 +41,18 @@ for (const p of PRODUCTS)
     }
 
 /**
+ * Novo dodané sety, ktoré v katalógu ešte nie sú, a tak by ich odvodenie
+ * vyššie nenašlo — priraďujeme ich k dekoru ručne. Po prvom behu ich už
+ * katalóg obsahuje, ale zápis tu nič nepokazí.
+ */
+const NOVE_SETY = {
+  "cool-white": ["standard-100x40x80-cool-white"],
+};
+for (const [dekor, zoznam] of Object.entries(NOVE_SETY))
+  for (const set of zoznam)
+    if (sety[set]) (setyDekoru[dekor] ??= new Set()).add(set);
+
+/**
  * Šírka z názvu súboru, ale len ak jej zodpovedá aj počet dvierok na zábere.
  * `standard-100x40x90-black-matt-02` má v názve 100 cm, no reálne tri
  * dvierka — je to teda širšia skrinka a jej názvu sa veriť nedá. V takom
@@ -115,16 +127,20 @@ for (const p of PRODUCTS) {
   /* Fotky so správnym delením čela pre tento produkt — ak neexistujú vôbec
      (200 cm má štvoro dvierok a vizualizácie zatiaľ nie sú), pustíme aj iné
      delenie. Inak by v galérii ostali samé detaily pántov. */
-  const jeNejakaSpravna = Object.values(sety)
-    .flat()
-    .some((f) => dvierkaFotky(f) === D);
-  const prijatelna = (f) => {
-    const dv = dvierkaFotky(f);
-    return dv === 0 || dv === D || !jeNejakaSpravna;
-  };
+  /* Posudzuje sa to per dekor: Cool White nemá ani jednu trojdverovú fotku,
+     hoci iné dekory ju majú. Keby sa pozeralo globálne, ostali by mu pri
+     120 cm len detaily pántov a ako titulná fotka by vyšiel záber závesu. */
+  const maSpravnu = (dekorId) =>
+    [...(setyDekoru[dekorId] ?? [])]
+      .flatMap((set) => sety[set] ?? [])
+      .some((f) => dvierkaFotky(f) === D);
 
   for (const d of p.decors) {
     const povodne = d.images.slice();
+    const prijatelna = (f) => {
+      const dv = dvierkaFotky(f);
+      return dv === 0 || dv === D || !maSpravnu(d.id);
+    };
 
     /* 1. vyhodíme fotky s nesprávnym počtom dvierok */
     let vybrane = povodne.filter(prijatelna);
@@ -140,18 +156,35 @@ for (const p of PRODUCTS) {
       .sort((a, b) => blizkost(a.f) - blizkost(b.f) || a.f.localeCompare(b.f))
       .map(({ f }) => f);
 
-    /* aj to, čo v galérii už bolo, preusporiadame podľa rovnakého kľúča —
-       inak by staré (vzdialenejšie) fotky ostali vpredu */
-    vybrane.sort((a, b) => blizkost(a) - blizkost(b));
-
-    for (const f of kandidati) {
-      if (vybrane.length >= Math.max(povodne.length, 4)) break;
-      if (!vybrane.includes(f)) vybrane.push(f);
-    }
-    /* poradie: zatvorená skrinka → otvorená / rám → detaily, a v rámci
-       každej skupiny rozmerovo najbližšia fotka napred */
+    /* Poradie v galérii: zatvorená skrinka → otvorená / rám → detaily,
+       a v rámci skupiny rozmerovo najbližšia fotka napred. */
     const poradie = (f) => (dvierkaFotky(f) === 0 ? 2 : jeOtvorena(f) ? 1 : 0);
-    vybrane.sort((a, b) => poradie(a) - poradie(b) || blizkost(a) - blizkost(b));
+    const kluc = (a, b) => poradie(a) - poradie(b) || blizkost(a) - blizkost(b);
+
+    /* Doterajšie aj nové fotky posudzujeme spoločne a necháme najlepšie —
+       keby sa kandidáti len dopĺňali do limitu, novo dodaný set v presnom
+       rozmere by sa k produktu nedostal.
+       Triedi sa rovnakým kľúčom ako galéria, nie len podľa vzdialenosti:
+       detail pántu má za delenie čela nulovú penalizáciu, takže by inak
+       predbehol celé skrinky a orezanie na limit by nechalo samé detaily.
+       Fotky presne tohto radu aj rozmeru berieme všetky. */
+    /* Pri výbere rozhoduje pôvod fotky, nie to, či je skrinka zatvorená —
+       vlastný otvorený záber je lepší než cudzí zatvorený. Prirážka za
+       detail musí prevýšiť aj dva stupne rozdielu v delení čela (2 × 5000),
+       inak by pri 200 cm skrinkách vyhral záber pántu nad celou skrinkou.
+       Vlastné detaily to neodsúva — tie chytá filter `vlastne` nižšie. */
+    const vyber = (f) => blizkost(f) + (dvierkaFotky(f) === 0 ? 12_000 : 0);
+    const spolu = [...new Set([...vybrane, ...kandidati])]
+      .sort((a, b) => vyber(a) - vyber(b));
+    /* Keď má dekor dosť vlastných záberov, berieme ich všetky a cudzie
+       nepridávame — galéria by sa inak označila ako ilustračná, hoci
+       všetko podstatné v nej je. Vrátane vlastných detailov: tie by inak
+       vypadli za cudziu zatvorenú skrinku. */
+    const vlastne = spolu.filter((f) => blizkost(f) < 100);
+    vybrane = (vlastne.length >= 4
+      ? vlastne
+      : spolu.slice(0, Math.max(povodne.length, 4))
+    ).sort(kluc);
 
     /* 3. ak pre tento počet dvierok neexistuje ani jedna fotka celej
           skrinky, radšej ukážeme pôvodné zábery a otvorene povieme,
