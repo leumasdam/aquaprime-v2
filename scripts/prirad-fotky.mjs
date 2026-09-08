@@ -47,10 +47,7 @@ for (const p of PRODUCTS)
  */
 const NOVE_SETY = {
   "cool-white": ["standard-100x40x80-cool-white"],
-  "black-matt-orech": [
-    "standard-100x40x80-black-matt-orech",
-    "premium-100x40x80-black-matt-orech",
-  ],
+  "black-matt-orech": ["standard-100x40x80-black-matt-orech"],
 };
 for (const [dekor, zoznam] of Object.entries(NOVE_SETY))
   for (const set of zoznam)
