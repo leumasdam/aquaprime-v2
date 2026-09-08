@@ -47,6 +47,7 @@ for (const p of PRODUCTS)
  */
 const NOVE_SETY = {
   "cool-white": ["standard-100x40x80-cool-white"],
+  "black-matt-orech": ["standard-100x40x80-black-matt-orech"],
 };
 for (const [dekor, zoznam] of Object.entries(NOVE_SETY))
   for (const set of zoznam)
@@ -136,7 +137,9 @@ for (const p of PRODUCTS) {
       .some((f) => dvierkaFotky(f) === D);
 
   for (const d of p.decors) {
-    const povodne = d.images.slice();
+    /* fotky, ktoré medzitým zanikli (premenovanie setu), musia z katalógu
+       von — inak by v galérii ostali mŕtve odkazy */
+    const povodne = d.images.filter((f) => fs.existsSync(path.join(FOTKY, path.basename(f))));
     const prijatelna = (f) => {
       const dv = dvierkaFotky(f);
       return dv === 0 || dv === D || !maSpravnu(d.id);

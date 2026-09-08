@@ -1,9 +1,9 @@
 /**
  * Počet dvierok na každej produktovej fotke.
  *
- * Klient upresnil konštrukciu: skrinky do 100 cm majú 2 dvierka,
- * všetko nad 100 cm má 3. Fotky sa preto nesmú dediť naprieč touto
- * hranicou — 120 cm skrinka nemôže mať v galérii dvojdverovú fotku.
+ * Klient upresnil konštrukciu: pod 120 cm dve dvierka, od 120 cm tri,
+ * 200 cm štyri. Fotky sa preto nesmú dediť naprieč týmito hranicami —
+ * 150 cm skrinka nemôže mať v galérii dvojdverovú fotku.
  *
  *   2 — na zábere sú 2 dvierka (alebo rám s 2 poľami)
  *   3 — na zábere sú 3 dvierka (alebo rám s 3 poľami)
@@ -19,30 +19,28 @@ export const DVIERKA = {
   "basic-150x50x80": { def: 3 },
 
   "premium-100x40x90-black-matt": { def: 2, 3: 0 },
-  "premium-100x40x90-black-matt-orech": { def: 0 },
   "premium-100x40x90-cool-white": { def: 2, 4: 0, 5: 0 },
   "premium-100x40x90-dub-hunton-black-matt": { def: 2, 6: 0 },
   "premium-100x40x90-dub-sonoma": { def: 2, 6: 0 },
 
   "standard-100x40x90-black-matt": { def: 2, 2: 3 },
-  "standard-100x40x90-black-matt-orech": { def: 2 },
   "standard-100x40x90-cool-white": { def: 2 },
 
   /* dodané klientom 8. 9. 2026 — dvojdverové, čiže rozmer pod 120 cm */
   "standard-100x40x80-cool-white": { def: 2, 10: 0 },
+  /* jedna sada rozhádzaná pod tromi názvami rozmerov — zjednotená */
+  "standard-100x40x80-black-matt-orech": { def: 2, 13: 0 },
 
   "standard-150x50x80-black-matt": { def: 3 },
 
   "standard-200x60x60-antracit": { def: 3, 6: 0 },
   "standard-200x60x60-black-matt": { def: 3, 1: 0, 3: 0 },
-  "standard-200x60x60-black-matt-orech": { def: 0 },
   "standard-200x60x60-cool-white": { def: 0 },
   "standard-200x60x60-dub-sonoma": { def: 3 },
 
   "standard-80x40x90-antracit": { def: 2, 1: 0 },
   "standard-80x40x90-artisan-antracit": { def: 2, 1: 0, 8: 0 },
   "standard-80x40x90-black-matt": { def: 2, 1: 0 },
-  "standard-80x40x90-black-matt-orech": { def: 2, 5: 0 },
   "standard-80x40x90-dub-sonoma": { def: 2, 2: 0 },
 
   "choco-vintage-oak": { def: 2, 3: 3, 7: 3, 9: 3, 13: 3, 14: 3, 5: 0, 10: 0, 16: 0 },
@@ -57,13 +55,11 @@ export const DVIERKA = {
  */
 export const OTVORENE = new Set([
   "premium-100x40x90-black-matt-03", "premium-100x40x90-black-matt-06",
-  "premium-100x40x90-black-matt-orech-01",
   "premium-100x40x90-cool-white-05", "premium-100x40x90-cool-white-06", "premium-100x40x90-cool-white-08",
   "premium-100x40x90-dub-hunton-black-matt-03", "premium-100x40x90-dub-hunton-black-matt-06",
   "premium-100x40x90-dub-hunton-black-matt-08",
   "premium-100x40x90-dub-sonoma-04",
   "standard-100x40x90-black-matt-01",
-  "standard-100x40x90-black-matt-orech-01",
   "standard-100x40x90-cool-white-01", "standard-100x40x90-cool-white-02",
   "standard-150x50x80-black-matt-01",
   "standard-200x60x60-antracit-01",
@@ -73,7 +69,8 @@ export const OTVORENE = new Set([
   "standard-80x40x90-antracit-01", "standard-80x40x90-antracit-04", "standard-80x40x90-antracit-08",
   "standard-80x40x90-artisan-antracit-02", "standard-80x40x90-artisan-antracit-06", "standard-80x40x90-artisan-antracit-07",
   "standard-80x40x90-black-matt-01", "standard-80x40x90-black-matt-02", "standard-80x40x90-black-matt-03",
-  "standard-80x40x90-black-matt-orech-01", "standard-80x40x90-black-matt-orech-05",
+  "standard-100x40x80-black-matt-orech-09", "standard-100x40x80-black-matt-orech-10",
+  "standard-100x40x80-black-matt-orech-11", "standard-100x40x80-black-matt-orech-12",
   "standard-80x40x90-dub-sonoma-01", "standard-80x40x90-dub-sonoma-02", "standard-80x40x90-dub-sonoma-03",
   "standard-100x40x80-cool-white-07", "standard-100x40x80-cool-white-08", "standard-100x40x80-cool-white-09",
   "choco-vintage-oak-01", "choco-vintage-oak-09", "choco-vintage-oak-11",
