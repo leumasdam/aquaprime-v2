@@ -46,8 +46,12 @@ for (const p of PRODUCTS)
  * katalóg obsahuje, ale zápis tu nič nepokazí.
  */
 const NOVE_SETY = {
-  "cool-white": ["standard-100x40x80-cool-white"],
-  "black-matt-orech": ["standard-100x40x80-black-matt-orech"],
+  "cool-white": ["standard-100x40x80-cool-white", "premium-100x40x80-cool-white"],
+  "black-matt-orech": [
+    "standard-100x40x80-black-matt-orech",
+    "premium-100x40x80-black-matt-orech",
+  ],
+  "black-matt": ["standard-100x40x80-black-matt"],
 };
 for (const [dekor, zoznam] of Object.entries(NOVE_SETY))
   for (const set of zoznam)

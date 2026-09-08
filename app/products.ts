@@ -162,6 +162,9 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
+          "/img/products/premium-100x40x80-cool-white-01.webp",
+          "/img/products/premium-100x40x80-cool-white-02.webp",
+          "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp",
           "/img/products/premium-100x40x90-cool-white-05.webp"
         ],
@@ -208,9 +211,12 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
+        ],
+        "illuIdx": [
+          0
         ],
         "inherited": true,
         "illuFrom": "rad"
@@ -470,9 +476,9 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -683,9 +689,9 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -896,9 +902,9 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -1098,9 +1104,9 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
         ],
         "inherited": true,
         "illuFrom": "dvierka",
@@ -1163,9 +1169,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-cool-white-04.webp",
           "/img/products/standard-100x40x80-cool-white-05.webp",
           "/img/products/standard-100x40x80-cool-white-06.webp",
-          "/img/products/standard-100x40x80-cool-white-07.webp",
-          "/img/products/standard-100x40x80-cool-white-08.webp",
-          "/img/products/standard-100x40x80-cool-white-09.webp",
           "/img/products/standard-100x40x80-cool-white-10.webp"
         ],
         "led": {
@@ -1203,14 +1206,45 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-orech-06.webp",
           "/img/products/standard-100x40x80-black-matt-orech-07.webp",
           "/img/products/standard-100x40x80-black-matt-orech-08.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-13.webp",
           "/img/products/standard-100x40x80-black-matt-orech-09.webp",
           "/img/products/standard-100x40x80-black-matt-orech-10.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-11.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-12.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-14.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-15.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-13.webp"
+          "/img/products/standard-100x40x80-black-matt-orech-11.webp"
         ]
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-100x40x80-black-matt-01.webp",
+          "/img/products/standard-100x40x80-black-matt-02.webp",
+          "/img/products/standard-100x40x80-black-matt-03.webp",
+          "/img/products/standard-100x40x80-black-matt-04.webp",
+          "/img/products/standard-100x40x90-black-matt-01.webp",
+          "/img/products/standard-100x40x80-black-matt-05.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-black-matt-zlta-2d-01.webp",
+            "/img/products/led/led-black-matt-zlta-2d-02.webp",
+            "/img/products/led/led-black-matt-zlta-2d-03.webp",
+            "/img/products/led/led-black-matt-zlta-2d-04.webp",
+            "/img/products/led/led-black-matt-zlta-2d-05.webp",
+            "/img/products/led/led-black-matt-zlta-2d-06.webp"
+          ],
+          "modra": [
+            "/img/products/led/led-black-matt-modra-2d-01.webp",
+            "/img/products/led/led-black-matt-modra-2d-02.webp",
+            "/img/products/led/led-black-matt-modra-2d-03.webp",
+            "/img/products/led/led-black-matt-modra-2d-04.webp",
+            "/img/products/led/led-black-matt-modra-2d-05.webp",
+            "/img/products/led/led-black-matt-modra-2d-06.webp",
+            "/img/products/led/led-black-matt-modra-2d-07.webp"
+          ]
+        }
       },
       {
         "id": "antracit",
@@ -1290,45 +1324,6 @@ export const PRODUCTS: Product[] = [
         "inherited": true,
         "illuFrom": "rozmer",
         "illuSize": "80 × 40 cm"
-      },
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-02.webp",
-          "/img/products/premium-100x40x90-black-matt-04.webp",
-          "/img/products/standard-100x40x90-black-matt-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-2d-01.webp",
-            "/img/products/led/led-black-matt-zlta-2d-02.webp",
-            "/img/products/led/led-black-matt-zlta-2d-03.webp",
-            "/img/products/led/led-black-matt-zlta-2d-04.webp",
-            "/img/products/led/led-black-matt-zlta-2d-05.webp",
-            "/img/products/led/led-black-matt-zlta-2d-06.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-2d-01.webp",
-            "/img/products/led/led-black-matt-modra-2d-02.webp",
-            "/img/products/led/led-black-matt-modra-2d-03.webp",
-            "/img/products/led/led-black-matt-modra-2d-04.webp",
-            "/img/products/led/led-black-matt-modra-2d-05.webp",
-            "/img/products/led/led-black-matt-modra-2d-06.webp",
-            "/img/products/led/led-black-matt-modra-2d-07.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "dub-hunton-black-matt",

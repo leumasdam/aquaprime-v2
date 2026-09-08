@@ -27,9 +27,13 @@ export const DVIERKA = {
   "standard-100x40x90-cool-white": { def: 2 },
 
   /* dodané klientom 8. 9. 2026 — dvojdverové, čiže rozmer pod 120 cm */
-  "standard-100x40x80-cool-white": { def: 2, 10: 0 },
+  "standard-100x40x80-cool-white": { def: 2, 7: 0 },
+  "standard-100x40x80-black-matt": { def: 2 },
+  /* zábery s opláštených vnútrom — kompletné opláštenie je znak Premium */
+  "premium-100x40x80-cool-white": { def: 2 },
+  "premium-100x40x80-black-matt-orech": { def: 2 },
   /* jedna sada rozhádzaná pod tromi názvami rozmerov — zjednotená */
-  "standard-100x40x80-black-matt-orech": { def: 2, 13: 0 },
+  "standard-100x40x80-black-matt-orech": { def: 2, 12: 0 },
 
   "standard-150x50x80-black-matt": { def: 3 },
 
@@ -72,10 +76,14 @@ export const OTVORENE = new Set([
   "standard-80x40x90-artisan-antracit-02", "standard-80x40x90-artisan-antracit-06", "standard-80x40x90-artisan-antracit-07",
   "standard-80x40x90-black-matt-01", "standard-80x40x90-black-matt-02", "standard-80x40x90-black-matt-03",
   "standard-100x40x80-black-matt-orech-09", "standard-100x40x80-black-matt-orech-10",
-  "standard-100x40x80-black-matt-orech-11", "standard-100x40x80-black-matt-orech-12",
-  "standard-100x40x80-black-matt-orech-14", "standard-100x40x80-black-matt-orech-15",
+  "standard-100x40x80-black-matt-orech-11",
+  "premium-100x40x80-black-matt-orech-01", "premium-100x40x80-black-matt-orech-02",
+  "premium-100x40x80-black-matt-orech-03",
+  "premium-100x40x80-cool-white-01", "premium-100x40x80-cool-white-02",
+  "premium-100x40x80-cool-white-03",
+  "standard-100x40x80-black-matt-05",
   "standard-80x40x90-dub-sonoma-01", "standard-80x40x90-dub-sonoma-02", "standard-80x40x90-dub-sonoma-03",
-  "standard-100x40x80-cool-white-07", "standard-100x40x80-cool-white-08", "standard-100x40x80-cool-white-09",
+
   "choco-vintage-oak-01", "choco-vintage-oak-07", "choco-vintage-oak-08",
   "dub-spanielsky-01", "dub-spanielsky-03", "dub-spanielsky-06", "dub-spanielsky-07",
   "dub-spanielsky-black-matt-03", "dub-spanielsky-black-matt-07", "dub-spanielsky-black-matt-10",
