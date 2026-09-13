@@ -1,55 +1,16 @@
-import Subpage from "../Subpage";
+import type { Metadata } from "next";
+import DoplnkyObsah from "./Obsah";
+import { SK } from "../preklady";
 
-export const metadata = {
-  title: "Doplnky & technika | AQUAPRIME",
-  description:
-    "Osvetlenie, filtrácia a príslušenstvo pre hotové riešenia. Samostatná kategória, nie podkategória skriniek.",
+export const metadata: Metadata = {
+  title: SK.doplnky.metaTitul,
+  description: SK.doplnky.metaPopis,
+  alternates: {
+    canonical: "/doplnky-technika",
+    languages: { sk: "/doplnky-technika", en: "/en/doplnky-technika" },
+  },
 };
 
 export default function Page() {
-  return (
-    <Subpage
-      accent="var(--cyan)"
-      crumb="Doplnky & technika"
-      title="Technika a príslušenstvo pre hotové riešenia."
-      lead="Osvetlenie, filtrácia a príslušenstvo majú vlastnú kategóriu. Nepatria do nádrží — majú vlastnú cestu, kompatibilitu a odporúčané balíky."
-      main={{
-        label: "TECHNIKA",
-        title: "Vyladená technika, ktorá sadne k vašej zostave.",
-        body: "Vyberáme komponenty, ktoré spolu fungujú — tichý chod, správny výkon a kompatibilita so skrinkou aj nádržou. Žiadne miešanie nesúrodých dielov.",
-        points: [
-          { t: "Svetlá", b: "Spektrum a výkon podľa osadenia a hĺbky." },
-          { t: "Filtrácia", b: "Prietok a objem média dimenzovaný na litráž." },
-          { t: "Doplnky", b: "Ohrev, prúdenie, dávkovanie a automatizácia." },
-          { t: "Kompatibilita", b: "Všetko ladené k skrinke aj k zostave." },
-        ],
-        ctaLabel: "KONZULTÁCIA",
-        caHref: "/dopyt",
-      }}
-      cardsTitle="Odporúčané balíky"
-      cards={[
-        {
-          tag: "ŠTART",
-          title: "Základná zostava",
-          body: "Svetlo, filtrácia a ohrev pre spoľahlivý a tichý chod.",
-        },
-        {
-          tag: "PRÉMIUM",
-          title: "Vyladený set",
-          body: "Výkonnejšia technika, prúdenie a presnejšia regulácia.",
-        },
-        {
-          tag: "SMART",
-          title: "Automatizácia",
-          body: "Dávkovanie, senzory a riadenie pre pokoj a stabilitu.",
-        },
-      ]}
-      cta={{
-        title: "Poradíme techniku, ktorá k sebe sadne.",
-        body: "Napíšte typ nádrže a osadenie — navrhneme kompatibilný balík.",
-        href: "/dopyt",
-        label: "CHCEM PORADIŤ",
-      }}
-    />
-  );
+  return <DoplnkyObsah t={SK} jazyk="sk" />;
 }

@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check:product-images": "node scripts/check-product-images.mjs",
+    "prebuild": "npm run check:product-images"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.116.0",

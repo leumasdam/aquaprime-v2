@@ -3,13 +3,22 @@
 import { useEffect, useState } from "react";
 import DoKosika from "./DoKosika";
 import type { Product } from "./products";
+import type { Jazyk } from "./jazyk";
 
 /**
  * Tlačidlo do košíka na detaile skrinky. Dekor si vyberá zákazník v galérii
  * vedľa, tak si ho vypočujeme cez event `aq:decor` — rovnaký vzor, aký web
  * používa pri prepínaní radov medzi TierCards a katalógom.
  */
-export default function SkrinkaDoKosika({ p }: { p: Product }) {
+export default function SkrinkaDoKosika({
+  p,
+  popis,
+  jazyk = "sk",
+}: {
+  p: Product;
+  popis?: string;
+  jazyk?: Jazyk;
+}) {
   const [dekor, setDekor] = useState({
     id: p.decors[0].id,
     name: p.decors[0].name,
@@ -26,6 +35,8 @@ export default function SkrinkaDoKosika({ p }: { p: Product }) {
 
   return (
     <DoKosika
+      popis={popis}
+      jazyk={jazyk}
       polozka={{
         id: `skrinka-${p.slug}-${dekor.id}`,
         druh: "skrinka",

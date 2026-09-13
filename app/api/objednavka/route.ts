@@ -196,8 +196,8 @@ export async function POST(req: Request) {
         subject: `Vaša objednávka ${cislo} — AQUAPRIME`,
         html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
             <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
-            <p>ďakujeme za objednávku. Máme ju u seba a ozveme sa do 24 hodín
-            v pracovný deň s potvrdením termínu. Výroba sa spúšťa po uhradení
+            <p>ďakujeme za objednávku. Máme ju u seba a ozveme sa vám v pracovný
+            deň s potvrdením termínu. Výroba sa spúšťa po uhradení
             zálohy 30 % — zvyšok zaplatíte až pri prevzatí.</p>
             ${platbaBlok}
             ${suhrn}

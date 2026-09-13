@@ -60,16 +60,16 @@
   height: 26px;
   flex: none;
   border-radius: 50%;
-  background: rgba(71, 199, 232, 0.12);
-  border: 1px solid rgba(71, 199, 232, 0.4);
+  background: rgba(0, 154, 192, 0.12);
+  border: 1px solid rgba(0, 154, 192, 0.4);
   color: var(--cyan);
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 .kos__blok-meta {
   margin-left: auto;
   font-size: 0.625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--faint);
@@ -143,7 +143,7 @@
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
   overflow: hidden;
-  background: rgba(6, 8, 9, 0.5);
+  background: rgba(12, 16, 15, 0.5);
 }
 .kos__stepper button {
   width: 36px;
@@ -153,7 +153,7 @@
   transition: background var(--t-fast), color var(--t-fast);
 }
 .kos__stepper button:hover {
-  background: rgba(71, 199, 232, 0.12);
+  background: rgba(0, 154, 192, 0.12);
   color: var(--cyan);
 }
 .kos__stepper span {
@@ -189,11 +189,11 @@
 .kos__blok--navrh {
   background: linear-gradient(
       180deg,
-      rgba(71, 199, 232, 0.05),
-      rgba(71, 199, 232, 0) 60%
+      rgba(0, 154, 192, 0.05),
+      rgba(0, 154, 192, 0) 60%
     ),
     var(--card);
-  border-color: rgba(71, 199, 232, 0.22);
+  border-color: rgba(0, 154, 192, 0.22);
 }
 .kos__navrhy {
   display: grid;
@@ -208,7 +208,7 @@
   padding: 12px;
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
-  background: rgba(6, 8, 9, 0.4);
+  background: rgba(12, 16, 15, 0.4);
 }
 .kos__navrh-foto {
   position: relative;
@@ -252,16 +252,16 @@
 .kos__pridaj {
   margin-left: auto;
   padding: 7px 13px;
-  border: 1px solid rgba(71, 199, 232, 0.45);
+  border: 1px solid rgba(0, 154, 192, 0.45);
   border-radius: var(--r-sm);
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--cyan);
   transition: background var(--t-base);
 }
 .kos__pridaj:hover {
-  background: rgba(71, 199, 232, 0.12);
+  background: rgba(0, 154, 192, 0.12);
 }
 
 /* ---------- voľby dopravy a platby ---------- */
@@ -281,11 +281,11 @@
   transition: border-color var(--t-base), background var(--t-base);
 }
 .kos__volba:hover {
-  border-color: rgba(71, 199, 232, 0.45);
+  border-color: rgba(0, 154, 192, 0.45);
 }
 .kos__volba.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.07);
+  background: rgba(0, 154, 192, 0.07);
 }
 .kos__volba input {
   appearance: none;
@@ -350,7 +350,7 @@
 }
 .kos__pole > span {
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--faint);
@@ -359,7 +359,7 @@
 .kos__pole textarea {
   width: 100%;
   padding: 13px 15px;
-  background: rgba(6, 8, 9, 0.6);
+  background: rgba(12, 16, 15, 0.6);
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
   color: var(--ink);
@@ -369,14 +369,14 @@
 }
 .kos__pole input::placeholder,
 .kos__pole textarea::placeholder {
-  color: rgba(226, 229, 231, 0.28);
+  color: rgba(230, 233, 229, 0.28);
   font-size: 0.8125rem;
 }
 .kos__pole input:focus,
 .kos__pole textarea:focus {
   outline: none;
   border-color: var(--cyan);
-  background: rgba(6, 8, 9, 0.9);
+  background: rgba(12, 16, 15, 0.9);
 }
 .kos__pole textarea {
   resize: vertical;
@@ -408,8 +408,8 @@
   gap: 7px;
   padding: 12px 14px;
   border-radius: var(--r-sm);
-  background: rgba(71, 199, 232, 0.06);
-  border: 1px solid rgba(71, 199, 232, 0.2);
+  background: rgba(0, 154, 192, 0.06);
+  border: 1px solid rgba(0, 154, 192, 0.2);
   font-size: 0.75rem;
   color: var(--body);
 }
@@ -426,7 +426,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--cyan), #7ad9f2);
+  background: linear-gradient(90deg, var(--cyan), #3fb8d8);
   transition: width var(--t-slow) var(--ease);
 }
 .kos__sumrow {
@@ -571,8 +571,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 1px solid rgba(71, 199, 232, 0.5);
-  background: rgba(71, 199, 232, 0.08);
+  border: 1px solid rgba(0, 154, 192, 0.5);
+  background: rgba(0, 154, 192, 0.08);
   color: var(--cyan);
   font-size: 1.4rem;
 }
@@ -650,7 +650,7 @@
   align-items: flex-start;
   font-size: 0.75rem;
   line-height: 1.55;
-  color: rgba(226, 229, 231, 0.65);
+  color: rgba(230, 233, 229, 0.65);
   margin: 14px 0 12px;
   cursor: pointer;
 }
@@ -658,12 +658,12 @@
   margin-top: 2px;
   width: 15px;
   height: 15px;
-  accent-color: #47c7e8;
+  accent-color: #009ac0;
   flex: none;
   cursor: pointer;
 }
 .kos__suhlas a {
-  color: #47c7e8;
+  color: #009ac0;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -696,18 +696,18 @@
   transition: border-color var(--t-base), background var(--t-base);
 }
 .kos__sposob-volba:hover {
-  border-color: rgba(71, 199, 232, 0.35);
+  border-color: rgba(0, 154, 192, 0.35);
 }
 .kos__sposob-volba.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.07);
+  background: rgba(0, 154, 192, 0.07);
 }
 .kos__sposob-ico {
   flex: 0 0 auto;
   width: 22px;
   height: 22px;
   margin-top: 1px;
-  color: rgba(226, 229, 231, 0.5);
+  color: rgba(230, 233, 229, 0.5);
   transition: color var(--t-base);
 }
 .kos__sposob-volba.is-on .kos__sposob-ico {
@@ -747,10 +747,10 @@
   display: grid;
   place-items: center;
   border-radius: var(--r-sm);
-  background: rgba(71, 199, 232, 0.1);
-  border: 1px solid rgba(71, 199, 232, 0.3);
-  color: #47c7e8;
-  font-weight: 700;
+  background: rgba(0, 154, 192, 0.1);
+  border: 1px solid rgba(0, 154, 192, 0.3);
+  color: #009ac0;
+  font-weight: 600;
   font-size: 0.8125rem;
 }
 .kos__platba-telo {
@@ -764,24 +764,24 @@
 .kos__platba-telo span {
   font-size: 0.75rem;
   line-height: 1.55;
-  color: rgba(226, 229, 231, 0.55);
+  color: rgba(230, 233, 229, 0.55);
 }
 .kos__platba-suma {
   margin-left: auto;
   white-space: nowrap;
-  color: #e2e5e7;
+  color: #e6e9e5;
 }
 
 /* rozpis zálohy v súhrne */
 .kos__sumrow--zaloha {
-  color: #47c7e8;
+  color: #009ac0;
 }
 .kos__sumrow--zaloha b {
-  color: #47c7e8;
+  color: #009ac0;
 }
 .kos__sumrow--doplatok span,
 .kos__sumrow--doplatok b {
-  color: rgba(226, 229, 231, 0.55);
+  color: rgba(230, 233, 229, 0.55);
 }
 
 /* panel zálohy po odoslaní objednávky */
@@ -789,9 +789,9 @@
   margin: 26px auto 4px;
   max-width: 560px;
   text-align: left;
-  border: 1px solid rgba(71, 199, 232, 0.35);
+  border: 1px solid rgba(0, 154, 192, 0.35);
   border-radius: var(--r-md);
-  background: rgba(71, 199, 232, 0.05);
+  background: rgba(0, 154, 192, 0.05);
   overflow: hidden;
 }
 .kos__zaloha-head {
@@ -799,16 +799,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  border-bottom: 1px solid rgba(71, 199, 232, 0.2);
+  border-bottom: 1px solid rgba(0, 154, 192, 0.2);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(226, 229, 231, 0.65);
+  color: rgba(230, 233, 229, 0.65);
 }
 .kos__zaloha-head b {
   font-size: 1.15rem;
   letter-spacing: 0;
-  color: #47c7e8;
+  color: #009ac0;
 }
 .kos__zaloha-telo {
   display: flex;
@@ -830,7 +830,7 @@
   margin: 0 0 12px;
   font-size: 0.78125rem;
   line-height: 1.6;
-  color: rgba(226, 229, 231, 0.65);
+  color: rgba(230, 233, 229, 0.65);
   padding: 0 0 0 0;
 }
 .kos__zaloha > .kos__zaloha-tip {
@@ -849,7 +849,7 @@
 .kos__zaloha dt {
   flex: none;
   width: 128px;
-  color: rgba(226, 229, 231, 0.45);
+  color: rgba(230, 233, 229, 0.45);
 }
 .kos__zaloha dd {
   margin: 0;
@@ -860,10 +860,10 @@
   margin: 0;
   padding: 13px 20px 16px;
   font-size: 0.78125rem;
-  color: rgba(226, 229, 231, 0.6);
+  color: rgba(230, 233, 229, 0.6);
 }
 .kos__zaloha-doplatok b {
-  color: #e2e5e7;
+  color: #e6e9e5;
 }
 @media (max-width: 560px) {
   .kos__zaloha-telo {
@@ -884,7 +884,7 @@
 .kos__zaloha-banky button {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.03);
-  color: rgba(226, 229, 231, 0.6);
+  color: rgba(230, 233, 229, 0.6);
   font: inherit;
   font-size: 0.75rem;
   padding: 8px 14px;
@@ -893,15 +893,15 @@
   transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
 }
 .kos__zaloha-banky button.is-on {
-  border-color: rgba(71, 199, 232, 0.55);
-  background: rgba(71, 199, 232, 0.1);
-  color: #47c7e8;
+  border-color: rgba(0, 154, 192, 0.55);
+  background: rgba(0, 154, 192, 0.1);
+  color: #009ac0;
 }
 .kos__kopir {
   margin-left: 8px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: none;
-  color: rgba(226, 229, 231, 0.55);
+  color: rgba(230, 233, 229, 0.55);
   font-size: 0.7rem;
   line-height: 1;
   padding: 3px 7px;
@@ -911,8 +911,8 @@
   transition: color var(--t-fast), border-color var(--t-fast);
 }
 .kos__kopir:hover {
-  color: #47c7e8;
-  border-color: rgba(71, 199, 232, 0.5);
+  color: #009ac0;
+  border-color: rgba(0, 154, 192, 0.5);
 }
 .kos__kopir.is-ok {
   color: #6fd39a;
@@ -926,7 +926,7 @@
   border: 1px solid rgba(232, 160, 71, 0.25);
   font-size: 0.71875rem;
   line-height: 1.6;
-  color: rgba(226, 229, 231, 0.7);
+  color: rgba(230, 233, 229, 0.7);
 }
 .kos__zaloha-sepa b {
   color: #e8a047;

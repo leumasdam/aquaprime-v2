@@ -1,51 +1,16 @@
-import Drobcek from "../Drobcek";
-import KonfiguratorFull from "../KonfiguratorFull";
-import "./konfigurator.css";
+import type { Metadata } from "next";
+import KonfiguratorObsah from "./Obsah";
+import { SK } from "../preklady";
 
-export const metadata = {
-  title: "Konfigurátor skrinky | AQUAPRIME",
-  description:
-    "Navrhnite si akvarijnú skrinku na mieru — rozmery, povrchy, materiály a detaily s odhadom ceny.",
+export const metadata: Metadata = {
+  title: SK.konfigurator.metaTitul,
+  description: SK.konfigurator.metaPopis,
+  alternates: {
+    canonical: "/konfigurator",
+    languages: { sk: "/konfigurator", en: "/en/konfigurator" },
+  },
 };
 
-const TRUST = [
-  { t: "Technická dokonalosť", s: "Precízne spracovanie do posledného detailu." },
-  { t: "Prémiové materiály", s: "Vyberané pre krásu, odolnosť a dlhú životnosť." },
-  { t: "Individuálny dizajn", s: "Navrhnuté presne podľa vašich predstáv." },
-  { t: "Vyrobené na Slovensku", s: "Kvalita, ktorú podporujeme lokálne." },
-];
-
 export default function Page() {
-  return (
-    <main className="kfpage">
-      <div className="wrap">
-        <div className="kfx__head">
-          <div className="pg-drobcek">
-            <Drobcek cesta={[{ nazov: "Konfigurátor" }]} />
-          </div>
-          <h1 className="kfx__title">
-            Navrhnite si skrinku <em>na mieru</em>.
-          </h1>
-          <p className="kfx__lead">
-            Vyberte rad, rozmer a dekor — v strede vidíte reálnu fotku z
-            katalógu, prepínačom aj technickú skicu so zvolenou nádržou. Cena je
-            cenníková, nie odhad.
-          </p>
-        </div>
-
-        <KonfiguratorFull />
-        <div className="kf__trust">
-          {TRUST.map((x) => (
-            <div className="kf__trustitem" key={x.t}>
-              <span className="kf__trust-mark" />
-              <div>
-                <strong>{x.t}</strong>
-                <span>{x.s}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </main>
-  );
+  return <KonfiguratorObsah t={SK} jazyk="sk" />;
 }

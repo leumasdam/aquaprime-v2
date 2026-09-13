@@ -9,6 +9,7 @@ import ScrollProgress from "./ScrollProgress";
 import BackToTop from "./BackToTop";
 import SiteNav from "./SiteNav";
 import SiteFooter from "./SiteFooter";
+import SkipLink from "./SkipLink";
 import Analytika from "./Analytika";
 
 const tinos = Tinos({
@@ -27,11 +28,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aquaprime.sk"),
   title: {
-    default: "AQUAPRIME — Luxusné akváriá. Dokonalé v každom detaile.",
-    template: "%s · AQUAPRIME",
+    default: "Skrinky pod akváriá na mieru | AQUAPRIME",
+    template: "%s",
   },
   description:
-    "AQUAPRIME prináša technickú dokonalosť, prémiové materiály a minimalistický dizajn. Akvarijné skrinky na mieru s oceľovým rámom — nosnosť až 770 kg.",
+    "Skrinky pod akváriá s oceľovým rámom a nastaviteľnými nožičkami. Vyberte si vyhotovenie, rozmer a dekor alebo pošlite zadanie na mieru.",
   keywords: [
     "akvarijné skrinky",
     "skrinky pod akvárium",
@@ -40,9 +41,9 @@ export const metadata: Metadata = {
     "AQUAPRIME",
   ],
   openGraph: {
-    title: "AQUAPRIME — Luxusné akváriá. Dokonalé v každom detaile.",
+    title: "Skrinky pod akváriá na mieru | AQUAPRIME",
     description:
-      "Akvarijné skrinky na mieru s oceľovým rámom. Prémiové materiály, technická dokonalosť, nadčasový dizajn.",
+      "Skrinky pod akváriá s oceľovým rámom a nastaviteľnými nožičkami. Vyberte si vyhotovenie, rozmer a dekor alebo pošlite zadanie na mieru.",
     type: "website",
     locale: "sk_SK",
     siteName: "AQUAPRIME",
@@ -66,18 +67,25 @@ export default function RootLayout({
   return (
     <html
       lang="sk"
+      /* na /en prepíše jazyk dokumentu skript z app/en/layout.tsx ešte pred
+         vykreslením — React by inak hlásil nesúlad atribútu pri hydratácii */
+      suppressHydrationWarning
       className={`${tinos.variable} ${inter.variable}`}
       /* pri prechode medzi stránkami skočiť na vrch okamžite — plynulý scroll
          by sa bil so swipe animáciou (hlási to aj Next warningom) */
       data-scroll-behavior="smooth"
     >
       <head>
-        {/* Vizuálny editor breakpointov (public/tools/editor.html) prilinkuje
-            svoje overrides. Len vo vývoji — do produkcie idú úpravy až vtedy,
-            keď ich prepíšeme do globals.css. Overrides sú samé !important,
-            na ostrom webe by sa to časom zamotalo. */}
-        {process.env.NODE_ENV === "development" && (
+        {/* Vizuálny editor breakpointov (public/tools/editor.html) generuje
+            public/css/overrides.css — to je jediný zdroj hero layoutov pre
+            jednotlivé breakpointy, žiadny ručný prepis. Vo vývoji ho pripája
+            overrides.js (spolu s textovými úpravami z overrides.json),
+            v produkcii sa CSS linkuje priamo, aby web ukazoval presne to,
+            čo editor. */}
+        {process.env.NODE_ENV === "development" ? (
           <script src="/tools/overrides.js" async={false} />
+        ) : (
+          <link rel="stylesheet" href="/css/overrides.css" />
         )}
       </head>
       <body>
@@ -106,9 +114,7 @@ export default function RootLayout({
 document.addEventListener("click",function(e){if(window.__aqNavZije)return;var b=e.target.closest&&e.target.closest(".nav__burger");if(!b)return;e.preventDefault();e.stopPropagation();var m=document.querySelector(".nav__mobile");if(m){var o=!m.classList.contains("is-open");m.classList.toggle("is-open",o);b.classList.toggle("is-open",o);m.style.opacity=o?"1":"0";m.style.transform=o?"none":"translateY(-10px)";m.style.pointerEvents=o?"auto":"none";document.body.style.overflow=o?"hidden":""}},true);`,
           }}
         />
-        <a href="#main" className="skip-link">
-          Preskočiť na obsah
-        </a>
+        <SkipLink />
         <KosikProvider>
           <ScrollProgress />
           <SiteNav />

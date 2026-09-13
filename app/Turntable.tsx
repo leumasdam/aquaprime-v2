@@ -1,18 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 const FRAMES = 25;
 const SRCS = Array.from({ length: FRAMES }, (_, i) => `/img/tt/${i}.webp`);
 
 // callout: dot = bod na modeli [x%,y%], lbl = koniec čiary / popisok [x%,y%]
-const CALLOUTS = [
-  { text: "Zarovnanie povrchu", dot: [55, 22], lbl: [80, 7], align: "left" },
-  { text: "Oceľová konštrukcia", dot: [30, 45], lbl: [6, 24], align: "left" },
-  { text: "Odolné kolieska", dot: [60, 57], lbl: [74, 90], align: "left" },
+const CALLOUTS: { kluc: "bodZarovnanie" | "bodOcel" | "bodNozicky"; dot: number[]; lbl: number[]; align: string }[] = [
+  { kluc: "bodZarovnanie", dot: [55, 22], lbl: [80, 7], align: "left" },
+  { kluc: "bodOcel", dot: [30, 45], lbl: [6, 24], align: "left" },
+  { kluc: "bodNozicky", dot: [60, 57], lbl: [74, 90], align: "left" },
 ];
 
-export default function Turntable() {
+export default function Turntable({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const txt = SLOVNIKY[jazyk].spolocne;
   const [frame, setFrame] = useState(0);
   const drag = useRef(false);
   const lastX = useRef(0);
@@ -47,7 +50,7 @@ export default function Turntable() {
       <div
         className="turntable__stage"
         role="img"
-        aria-label="Oceľový rám skrinky AQUAPRIME — model na otáčanie"
+        aria-label={txt.ramAria}
         onPointerDown={onDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -58,7 +61,7 @@ export default function Turntable() {
           <img
             key={i}
             src={s}
-            alt={i === 0 ? "Oceľový rám skrinky AQUAPRIME" : ""}
+            alt={i === 0 ? txt.ramAlt : ""}
             draggable={false}
             loading={i === 0 ? "eager" : "lazy"}
             decoding="async"
@@ -103,7 +106,7 @@ export default function Turntable() {
                 { left: `${c.lbl[0]}%`, top: `${c.lbl[1]}%`, "--i": i } as React.CSSProperties
               }
             >
-              {c.text}
+              {txt[c.kluc]}
             </span>
           ))}
         </div>
@@ -113,7 +116,7 @@ export default function Turntable() {
         <button
           type="button"
           className="turntable__arrow"
-          aria-label="Otočiť doľava"
+          aria-label={txt.otocitDolava}
           onClick={() => rotate(-1)}
         >
           ‹
@@ -125,18 +128,18 @@ export default function Turntable() {
           max={FRAMES - 1}
           value={frame}
           onChange={(e) => setFrame(Number(e.target.value))}
-          aria-label="Otočiť model"
+          aria-label={txt.otocitModel}
         />
         <button
           type="button"
           className="turntable__arrow"
-          aria-label="Otočiť doprava"
+          aria-label={txt.otocitDoprava}
           onClick={() => rotate(1)}
         >
           ›
         </button>
       </div>
-      <span className="turntable__hint">Ťahaj alebo posuň pre otáčanie modelu</span>
+      <span className="turntable__hint">{txt.otacajTahom}</span>
     </div>
   );
 }

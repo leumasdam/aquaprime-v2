@@ -7,23 +7,16 @@ import { eur, useKosik, type PolozkaKosika } from "../kosik-store";
 import { AQUARIUMS } from "../aquariums";
 import { PRODUCTS } from "../products";
 import { suggestTank } from "../configurator-logic";
+import { odkaz, type Jazyk } from "../jazyk";
+import { SLOVNIKY } from "../preklady";
 
 const DOPRAVA_ZDARMA_OD = 500;
 const KURIER = 39;
 
+/** poradie musí sedieť so zoznamom `dorucenie` v slovníku */
 const DORUCENIE = [
-  {
-    id: "kurier",
-    nazov: "Kuriér po celom Slovensku",
-    popis: "Doručenie až k dverám, termín dohodneme vopred telefonicky.",
-    cena: KURIER,
-  },
-  {
-    id: "odber",
-    nazov: "Osobný odber v Bratislave",
-    popis: "Po dohode termínu v našej dielni. Skrinku si pozriete pred prevzatím.",
-    cena: 0,
-  },
+  { id: "kurier", cena: KURIER },
+  { id: "odber", cena: 0 },
 ] as const;
 
 /** Platobný model: 30 % záloha po objednaní, zvyšok pri prevzatí. */
@@ -37,8 +30,6 @@ const ZALOHA_PODIEL = 0.3;
 const SPOSOBY = [
   {
     id: "karta",
-    nazov: "Kartou online",
-    popis: "Visa, Mastercard, Apple Pay a Google Pay. Potvrdenie okamžite.",
     ikona: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
         <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
@@ -49,8 +40,6 @@ const SPOSOBY = [
   },
   {
     id: "prevod",
-    nazov: "Prevodom",
-    popis: "QR kód a údaje dostanete hneď — pre slovenské aj české banky.",
     ikona: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
         <rect x="3.5" y="3.5" width="7" height="7" rx="1" />
@@ -78,7 +67,17 @@ type Hotovo = {
 };
 
 /** riadok údaju s tlačidlom kopírovania */
-function Udaj({ nazov, hodnota, kopiruj }: { nazov: string; hodnota: string; kopiruj?: string }) {
+function Udaj({
+  nazov,
+  hodnota,
+  kopiruj,
+  kopirovat,
+}: {
+  nazov: string;
+  hodnota: string;
+  kopiruj?: string;
+  kopirovat: string;
+}) {
   const [ok, setOk] = useState(false);
   return (
     <div>
@@ -88,7 +87,7 @@ function Udaj({ nazov, hodnota, kopiruj }: { nazov: string; hodnota: string; kop
         <button
           type="button"
           className={`kos__kopir${ok ? " is-ok" : ""}`}
-          aria-label={`Kopírovať ${nazov}`}
+          aria-label={`${kopirovat} ${nazov}`}
           onClick={() => {
             navigator.clipboard?.writeText(kopiruj ?? hodnota).then(() => {
               setOk(true);
@@ -103,7 +102,9 @@ function Udaj({ nazov, hodnota, kopiruj }: { nazov: string; hodnota: string; kop
   );
 }
 
-export default function KosikObsah() {
+export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const t = SLOVNIKY[jazyk].kosik;
+  const l = (h: string) => odkaz(h, jazyk);
   const { polozky, suma, pocet, zmenPocet, uber, vyprazdni, pridaj, pripravene } =
     useKosik();
   const [dorucenie, setDorucenie] = useState<(typeof DORUCENIE)[number]["id"]>("kurier");
@@ -139,13 +140,16 @@ export default function KosikObsah() {
   /* orientačný termín výroby — počíta sa až v prehliadači kvôli hydratácii */
   useEffect(() => {
     const f2 = (d: Date) =>
-      d.toLocaleDateString("sk-SK", { day: "numeric", month: "long" });
+      d.toLocaleDateString(jazyk === "en" ? "en-GB" : "sk-SK", {
+        day: "numeric",
+        month: "long",
+      });
     const od = new Date();
     od.setDate(od.getDate() + 14);
     const doo = new Date();
     doo.setDate(doo.getDate() + 21);
     setTermin(`${f2(od)} – ${f2(doo)}`);
-  }, []);
+  }, [jazyk]);
 
   const doprava =
     dorucenie === "odber" || suma >= DOPRAVA_ZDARMA_OD || suma === 0 ? 0 : KURIER;
@@ -171,16 +175,16 @@ export default function KosikObsah() {
       if (p.druh === "skrinka") {
         const prod = PRODUCTS.find((x) => x.slug === p.slug);
         if (!prod) continue;
-        const t = suggestTank(prod.w, prod.d).best;
-        if (t && !vKosiku.has(`akvarium:${t.slug}`)) {
+        const tank = suggestTank(prod.w, prod.d).best;
+        if (tank && !vKosiku.has(`akvarium:${tank.slug}`)) {
           out.push({
-            id: `akvarium-${t.slug}-${t.glass[0].mm}`,
+            id: `akvarium-${tank.slug}-${tank.glass[0].mm}`,
             druh: "akvarium",
-            slug: t.slug,
-            nazov: `${t.name} cm`,
-            variant: `${t.vol} · sadne presne na ${prod.dim}`,
-            cena: t.priceValue,
-            obrazok: t.cover,
+            slug: tank.slug,
+            nazov: `${tank.name} cm`,
+            variant: `${tank.vol} · ${t.navrhSadne} ${prod.dim}`,
+            cena: tank.priceValue,
+            obrazok: tank.cover,
             ks: 1,
           });
         }
@@ -197,7 +201,7 @@ export default function KosikObsah() {
             druh: "skrinka",
             slug: skr.slug,
             nazov: skr.name,
-            variant: `${skr.dim} · unesie ${akv.vol} vody`,
+            variant: `${skr.dim} · ${t.navrhUnesie} ${akv.vol} ${t.navrhVody}`,
             cena: Number(skr.price.replace(/\D/g, "")),
             obrazok: skr.decors[0].images[0],
             ks: 1,
@@ -208,7 +212,8 @@ export default function KosikObsah() {
     // bez duplicít, maximálne dva návrhy
     const videne = new Set<string>();
     return out.filter((x) => !videne.has(x.id) && videne.add(x.id)).slice(0, 2);
-  }, [polozky]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [polozky, jazyk]);
 
   // je platobná brána nastavená? bez kľúčov ostáva len prevod
   useEffect(() => {
@@ -247,11 +252,8 @@ export default function KosikObsah() {
           suma,
           doprava,
           spolu,
-          dorucenie: DORUCENIE.find((d) => d.id === dorucenie)?.nazov,
-          platba:
-            sposob === "karta"
-              ? "Záloha 30 % kartou online, zvyšok pri prevzatí"
-              : "Záloha 30 % prevodom, zvyšok pri prevzatí",
+          dorucenie: t.dorucenie[dorucenie === "kurier" ? 0 : 1][0],
+          platba: sposob === "karta" ? t.platbaKarta : t.platbaPrevod,
           ...f,
         }),
       });
@@ -278,17 +280,13 @@ export default function KosikObsah() {
           return;
         }
         // brána nedostupná — pokračujeme prevodom, nech objednávka nezostane visieť
-        setChyba(
-          "Platobnú bránu sa nepodarilo otvoriť. Objednávku máme prijatú — zálohu uhraďte prevodom podľa údajov nižšie."
-        );
+        setChyba(t.chybaBrana);
       }
 
       setHotovo(data as Hotovo);
       vyprazdni();
     } catch {
-      setChyba(
-        "Objednávku sa nepodarilo odoslať. Skúste to o chvíľu znova, alebo nám zavolajte na +421 900 000 000."
-      );
+      setChyba(t.chybaOdoslanie);
     } finally {
       setOdosielam(false);
     }
@@ -302,24 +300,21 @@ export default function KosikObsah() {
         <div className="kos__done-ico" aria-hidden>
           ✓
         </div>
-        <h2 className="kos__done-title">Objednávka prijatá</h2>
+        <h2 className="kos__done-title">{t.hotovoTitul}</h2>
         <p className="kos__done-cislo">{hotovo.cislo}</p>
         <p className="kos__done-body">
-          {hotovo.mailom
-            ? "Potvrdenie sme poslali na váš e-mail."
-            : "Ozveme sa vám na uvedený kontakt."}{" "}
-          Výrobu spúšťame po uhradení zálohy — zvyšok zaplatíte pri prevzatí.
+          {hotovo.mailom ? t.hotovoMailom : t.hotovoBezMailu} {t.hotovoVyroba}
         </p>
 
         {typeof hotovo.zaloha === "number" && hotovo.zaloha > 0 && (
           <div className="kos__zaloha">
             <div className="kos__zaloha-head">
-              <span>Záloha na úhradu</span>
+              <span>{t.zalohaNaUhradu}</span>
               <b>{eur(hotovo.zaloha)}</b>
             </div>
             {hotovo.iban ? (
               <>
-                <div className="kos__zaloha-banky" role="tablist" aria-label="Krajina banky">
+                <div className="kos__zaloha-banky" role="tablist" aria-label={t.krajinaBanky}>
                   <button
                     type="button"
                     role="tab"
@@ -327,7 +322,7 @@ export default function KosikObsah() {
                     className={banka === "sk" ? "is-on" : ""}
                     onClick={() => setBanka("sk")}
                   >
-                    🇸🇰 Slovenská banka
+                    {t.bankaSk}
                   </button>
                   <button
                     type="button"
@@ -336,7 +331,7 @@ export default function KosikObsah() {
                     className={banka === "cz" ? "is-on" : ""}
                     onClick={() => setBanka("cz")}
                   >
-                    🇨🇿 Česká banka
+                    {t.bankaCz}
                   </button>
                 </div>
                 <div className="kos__zaloha-telo">
@@ -345,57 +340,58 @@ export default function KosikObsah() {
                     <img
                       className="kos__zaloha-qr"
                       src={banka === "sk" ? qr : qrCz}
-                      alt={banka === "sk" ? "QR platba (Pay by Square)" : "QR Platba pre české banky"}
+                      alt={banka === "sk" ? t.qrAltSk : t.qrAltCz}
                     />
                   )}
                   <div className="kos__zaloha-udaje">
                     <p className="kos__zaloha-tip">
-                      {banka === "sk"
-                        ? "Naskenujte QR kód v aplikácii svojej banky — suma, účet aj symbol sa vyplnia samy."
-                        : "QR vo formáte českej QR Platby — naskenuje ho aplikácia každej českej banky a prenesie aj variabilný symbol. Platba odíde ako bežná europlatba (SEPA) v eurách."}
+                      {banka === "sk" ? t.qrTipSk : t.qrTipCz}
                     </p>
                     <dl>
                       <Udaj
-                        nazov="IBAN"
+                        nazov={t.iban}
                         hodnota={hotovo.iban.replace(/(.{4})/g, "$1 ").trim()}
                         kopiruj={hotovo.iban}
+                        kopirovat={t.kopirovat}
                       />
-                      <Udaj nazov="Variabilný symbol" hodnota={hotovo.vs ?? ""} />
-                      <Udaj nazov="Suma" hodnota={eur(hotovo.zaloha)} kopiruj={hotovo.zaloha.toFixed(2)} />
-                      <Udaj nazov="Poznámka" hodnota={`Zaloha ${hotovo.cislo}`} />
+                      <Udaj nazov={t.vs} hodnota={hotovo.vs ?? ""} kopirovat={t.kopirovat} />
+                      <Udaj
+                        nazov={t.suma}
+                        hodnota={eur(hotovo.zaloha)}
+                        kopiruj={hotovo.zaloha.toFixed(2)}
+                        kopirovat={t.kopirovat}
+                      />
+                      <Udaj
+                        nazov={t.poznamkaUdaj}
+                        hodnota={`${t.poznamkaZaloha} ${hotovo.cislo}`}
+                        kopirovat={t.kopirovat}
+                      />
                     </dl>
                     {banka === "cz" && (
                       <p className="kos__zaloha-sepa">
-                        Platíte ručne cez SEPA prevod? Pole na variabilný symbol tam
-                        nie je — do správy pre príjemcu napíšte{" "}
-                        <b>/VS{hotovo.vs}/</b> alebo číslo objednávky. Platbu
-                        spárujeme.
+                        {t.sepaA} <b>/VS{hotovo.vs}/</b> {t.sepaB}
                       </p>
                     )}
                   </div>
                 </div>
               </>
             ) : (
-              <p className="kos__zaloha-tip">
-                Platobné údaje k zálohe vám pošleme e-mailom spolu s potvrdením
-                termínu.
-              </p>
+              <p className="kos__zaloha-tip">{t.udajeMailom}</p>
             )}
             {typeof hotovo.doplatok === "number" && (
               <p className="kos__zaloha-doplatok">
-                Zvyšok <b>{eur(hotovo.doplatok)}</b> zaplatíte pri prevzatí — v
-                hotovosti alebo kartou.
+                {t.doplatokA} <b>{eur(hotovo.doplatok)}</b> {t.doplatokB}
               </p>
             )}
           </div>
         )}
 
         <div className="kos__done-akcie">
-          <Link href="/" className="btn-cyan">
-            Späť na úvod
+          <Link href={l("/")} className="btn-cyan">
+            {t.spatNaUvod}
           </Link>
-          <Link href="/skrinky" className="btn-outline">
-            Pokračovať v prezeraní
+          <Link href={l("/skrinky")} className="btn-outline">
+            {t.pokracovat}
           </Link>
         </div>
       </div>
@@ -416,17 +412,14 @@ export default function KosikObsah() {
             <circle cx="17" cy="19" r="1.3" />
           </svg>
         </span>
-        <h2>Košík je zatiaľ prázdny</h2>
-        <p>
-          Vyberte si skrinku alebo nádrž — ceny sú cenníkové, objednávku
-          potvrdíme do 24 hodín a vopred sa platí len 30 % záloha.
-        </p>
+        <h2>{t.prazdnyTitul}</h2>
+        <p>{t.prazdnyText}</p>
         <div className="kos__prazdny-akcie">
-          <Link href="/skrinky" className="btn-cyan">
-            Prezrieť skrinky <span aria-hidden>→</span>
+          <Link href={l("/skrinky")} className="btn-cyan">
+            {t.prezrietSkrinky} <span aria-hidden>→</span>
           </Link>
-          <Link href="/akvaria" className="btn-outline">
-            Prezrieť akváriá <span aria-hidden>→</span>
+          <Link href={l("/akvaria")} className="btn-outline">
+            {t.prezrietAkvaria} <span aria-hidden>→</span>
           </Link>
         </div>
       </div>
@@ -441,8 +434,10 @@ export default function KosikObsah() {
         <section className="kos__blok">
           <header className="kos__blok-head">
             <span className="kos__krok">01</span>
-            <h2>Vaša objednávka</h2>
-            <span className="kos__blok-meta">{pocet} ks</span>
+            <h2>{t.blok1}</h2>
+            <span className="kos__blok-meta">
+              {pocet} {t.ks}
+            </span>
           </header>
 
           <div className="kos__items">
@@ -453,27 +448,31 @@ export default function KosikObsah() {
                 </div>
                 <div className="kos__item-info">
                   <Link
-                    href={p.druh === "skrinka" ? `/skrinky/${p.slug}` : `/akvaria/${p.slug}`}
+                    href={l(
+                      p.druh === "skrinka" ? `/skrinky/${p.slug}` : `/akvaria/${p.slug}`
+                    )}
                     className="kos__item-nazov"
                   >
                     {p.nazov}
                   </Link>
                   <span className="kos__chip">{p.variant}</span>
-                  <span className="kos__item-jedn">{eur(p.cena)} / ks</span>
+                  <span className="kos__item-jedn">
+                    {eur(p.cena)} {t.naKus}
+                  </span>
                 </div>
                 <div className="kos__stepper">
-                  <button type="button" onClick={() => zmenPocet(p.id, p.ks - 1)} aria-label="Menej">
+                  <button type="button" onClick={() => zmenPocet(p.id, p.ks - 1)} aria-label={t.menej}>
                     −
                   </button>
                   <span>{p.ks}</span>
-                  <button type="button" onClick={() => zmenPocet(p.id, p.ks + 1)} aria-label="Viac">
+                  <button type="button" onClick={() => zmenPocet(p.id, p.ks + 1)} aria-label={t.viac}>
                     +
                   </button>
                 </div>
                 <div className="kos__item-cena">
                   <b>{eur(p.cena * p.ks)}</b>
                   <button type="button" className="kos__zmaz" onClick={() => uber(p.id)}>
-                    Odstrániť
+                    {t.odstranit}
                   </button>
                 </div>
               </article>
@@ -485,8 +484,8 @@ export default function KosikObsah() {
         {navrhy.length > 0 && (
           <section className="kos__blok kos__blok--navrh">
             <header className="kos__blok-head">
-              <h2>Hodí sa k tomu</h2>
-              <span className="kos__blok-meta">pôdorys sedí</span>
+              <h2>{t.navrhTitul}</h2>
+              <span className="kos__blok-meta">{t.navrhMeta}</span>
             </header>
             <div className="kos__navrhy">
               {navrhy.map((n) => (
@@ -505,7 +504,7 @@ export default function KosikObsah() {
                       onClick={() => pridaj({ ...n })}
                       className="kos__pridaj"
                     >
-                      Pridať +
+                      {t.pridat}
                     </button>
                   </div>
                 </article>
@@ -518,10 +517,10 @@ export default function KosikObsah() {
         <section className="kos__blok">
           <header className="kos__blok-head">
             <span className="kos__krok">02</span>
-            <h2>Doručenie</h2>
+            <h2>{t.blok2}</h2>
           </header>
           <div className="kos__volby">
-            {DORUCENIE.map((d) => (
+            {DORUCENIE.map((d, i) => (
               <label key={d.id} className={`kos__volba${dorucenie === d.id ? " is-on" : ""}`}>
                 <input
                   type="radio"
@@ -530,19 +529,18 @@ export default function KosikObsah() {
                   onChange={() => setDorucenie(d.id)}
                 />
                 <span className="kos__volba-telo">
-                  <strong>{d.nazov}</strong>
-                  <span>{d.popis}</span>
+                  <strong>{t.dorucenie[i][0]}</strong>
+                  <span>{t.dorucenie[i][1]}</span>
                 </span>
                 <span className="kos__volba-cena">
-                  {d.cena === 0 || suma >= DOPRAVA_ZDARMA_OD ? "zdarma" : eur(d.cena)}
+                  {d.cena === 0 || suma >= DOPRAVA_ZDARMA_OD ? t.zdarma : eur(d.cena)}
                 </span>
               </label>
             ))}
           </div>
           {termin && (
             <p className="kos__termin">
-              <b>Predpokladaný termín</b> {termin} — vyrábame na mieru, presný
-              dátum potvrdíme pri objednávke.
+              <b>{t.terminTitul}</b> {termin} {t.terminText}
             </p>
           )}
         </section>
@@ -551,34 +549,30 @@ export default function KosikObsah() {
         <section className="kos__blok">
           <header className="kos__blok-head">
             <span className="kos__krok">03</span>
-            <h2>Platba</h2>
+            <h2>{t.blok3}</h2>
           </header>
           <div className="kos__platba-model">
             <div className="kos__platba-faza">
               <span className="kos__platba-podiel">30 %</span>
               <span className="kos__platba-telo">
-                <strong>Záloha po objednaní</strong>
-                <span>
-                  {sposob === "karta"
-                    ? "Kartou hneď po odoslaní objednávky — presmerujeme vás na zabezpečenú platobnú bránu."
-                    : "Prevodom — QR kód a platobné údaje dostanete hneď po odoslaní objednávky. Výroba sa spúšťa po jej uhradení."}
-                </span>
+                <strong>{t.zalohaFaza}</strong>
+                <span>{sposob === "karta" ? t.zalohaKarta : t.zalohaPrevod}</span>
               </span>
               <b className="kos__platba-suma">{eur(zaloha)}</b>
             </div>
             <div className="kos__platba-faza">
               <span className="kos__platba-podiel">70 %</span>
               <span className="kos__platba-telo">
-                <strong>Zvyšok pri prevzatí</strong>
-                <span>V hotovosti alebo kartou pri doručení či osobnom odbere.</span>
+                <strong>{t.doplatokFaza}</strong>
+                <span>{t.doplatokFazaText}</span>
               </span>
               <b className="kos__platba-suma">{eur(spolu - zaloha)}</b>
             </div>
           </div>
 
           {kartaMozna && (
-          <div className="kos__sposob" role="radiogroup" aria-label="Spôsob úhrady zálohy">
-            {SPOSOBY.map((s) => (
+          <div className="kos__sposob" role="radiogroup" aria-label={t.sposobLabel}>
+            {SPOSOBY.map((s, i) => (
               <button
                 key={s.id}
                 type="button"
@@ -591,8 +585,8 @@ export default function KosikObsah() {
                   {s.ikona}
                 </span>
                 <span className="kos__sposob-telo">
-                  <strong>{s.nazov}</strong>
-                  <span>{s.popis}</span>
+                  <strong>{t.sposoby[i][0]}</strong>
+                  <span>{t.sposoby[i][1]}</span>
                 </span>
               </button>
             ))}
@@ -604,62 +598,62 @@ export default function KosikObsah() {
         <section className="kos__blok">
           <header className="kos__blok-head">
             <span className="kos__krok">04</span>
-            <h2>Kontaktné údaje</h2>
+            <h2>{t.blok4}</h2>
           </header>
           <div className="kos__polia">
             <label className="kos__pole">
-              <span>Meno a priezvisko *</span>
+              <span>{t.poleMeno}</span>
               <input value={f.meno} onChange={(e) => set("meno", e.target.value)} autoComplete="name" required />
             </label>
             <label className="kos__pole">
-              <span>Telefón</span>
+              <span>{t.poleTel}</span>
               <input value={f.tel} onChange={(e) => set("tel", e.target.value)} autoComplete="tel" type="tel" placeholder="+421" />
             </label>
             <label className="kos__pole kos__pole--full">
-              <span>E-mail *</span>
+              <span>{t.poleEmail}</span>
               <input value={f.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" type="email" required />
             </label>
 
             {potrebnaAdresa && (
               <>
                 <label className="kos__pole kos__pole--full">
-                  <span>Ulica a číslo *</span>
+                  <span>{t.poleUlica}</span>
                   <input value={f.ulica} onChange={(e) => set("ulica", e.target.value)} autoComplete="street-address" required />
                 </label>
                 <label className="kos__pole">
-                  <span>Mesto *</span>
+                  <span>{t.poleMesto}</span>
                   <input value={f.mesto} onChange={(e) => set("mesto", e.target.value)} autoComplete="address-level2" required />
                 </label>
                 <label className="kos__pole">
-                  <span>PSČ *</span>
+                  <span>{t.polePsc}</span>
                   <input value={f.psc} onChange={(e) => set("psc", e.target.value)} autoComplete="postal-code" required />
                 </label>
                 <label className="kos__pole kos__pole--full">
-                  <span>Poschodie a výťah</span>
+                  <span>{t.polePoschodie}</span>
                   <input
                     value={f.poschodie}
                     onChange={(e) => set("poschodie", e.target.value)}
-                    placeholder="napr. 3. poschodie, výťah je — pri 200 cm skrinke to rozhoduje"
+                    placeholder={t.polePoschodiePh}
                   />
                 </label>
               </>
             )}
 
             <label className="kos__pole">
-              <span>Firma</span>
+              <span>{t.poleFirma}</span>
               <input value={f.firma} onChange={(e) => set("firma", e.target.value)} />
             </label>
             <label className="kos__pole">
-              <span>IČO</span>
+              <span>{t.poleIco}</span>
               <input value={f.ico} onChange={(e) => set("ico", e.target.value)} />
             </label>
             <label className="kos__pole kos__pole--full">
-              <span>Poznámka</span>
+              <span>{t.polePoznamka}</span>
               <textarea
                 rows={3}
                 value={f.poznamka}
                 onChange={(e) => set("poznamka", e.target.value)}
-                placeholder="Termín, špecifické želanie…"
+                placeholder={t.polePoznamkaPh}
               />
             </label>
           </div>
@@ -669,7 +663,7 @@ export default function KosikObsah() {
       {/* ============ SÚHRN ============ */}
       <aside className="kos__aside">
         <div className="kos__sum">
-          <h2 className="kos__sum-title">Súhrn objednávky</h2>
+          <h2 className="kos__sum-title">{t.suhrnTitul}</h2>
 
           {doprava > 0 && (
             <div className="kos__zdarma">
@@ -677,31 +671,33 @@ export default function KosikObsah() {
                 <i style={{ width: `${pokrok}%` }} />
               </div>
               <span>
-                Do dopravy zdarma chýba <b>{eur(doZdarma)}</b>
+                {t.zdarmaChybaA} <b>{eur(doZdarma)}</b>
               </span>
             </div>
           )}
 
           <div className="kos__sumrow">
-            <span>Tovar ({pocet} ks)</span>
+            <span>
+              {t.tovar} ({pocet} {t.ks})
+            </span>
             <b>{eur(suma)}</b>
           </div>
           <div className="kos__sumrow">
-            <span>Doprava</span>
+            <span>{t.doprava}</span>
             <b className={doprava === 0 ? "kos__zdarma-text" : ""}>
-              {doprava === 0 ? "zdarma" : eur(doprava)}
+              {doprava === 0 ? t.zdarma : eur(doprava)}
             </b>
           </div>
           <div className="kos__sumrow kos__sumrow--total">
-            <span>Spolu s DPH</span>
+            <span>{t.spoluSDph}</span>
             <b>{eur(spolu)}</b>
           </div>
           <div className="kos__sumrow kos__sumrow--zaloha">
-            <span>Záloha dnes (30 %)</span>
+            <span>{t.zalohaDnes}</span>
             <b>{eur(zaloha)}</b>
           </div>
           <div className="kos__sumrow kos__sumrow--doplatok">
-            <span>Pri prevzatí</span>
+            <span>{t.priPrevzati}</span>
             <b>{eur(spolu - zaloha)}</b>
           </div>
 
@@ -714,37 +710,31 @@ export default function KosikObsah() {
               onChange={(e) => setSuhlasOP(e.target.checked)}
             />
             <span>
-              Súhlasím s <Link href="/obchodne-podmienky">obchodnými podmienkami</Link> a
-              beriem na vedomie{" "}
-              <Link href="/ochrana-osobnych-udajov">spracúvanie osobných údajov</Link>.
+              {t.suhlasA}{" "}
+              <Link href={l("/obchodne-podmienky")}>{t.suhlasOdkazOp}</Link> {t.suhlasB}{" "}
+              <Link href={l("/ochrana-osobnych-udajov")}>{t.suhlasOdkazGdpr}</Link>.
             </span>
           </label>
 
           <button type="submit" className="btn-cyan kos__odoslat" disabled={!mozeOdoslat || odosielam}>
-            {odosielam ? "ODOSIELAM…" : "ZÁVÄZNE OBJEDNAŤ"} <span aria-hidden>→</span>
+            {odosielam ? t.odosielam : t.objednat} <span aria-hidden>→</span>
           </button>
           {!mozeOdoslat && (
-            <p className="kos__hint">Vyplňte označené polia nižšie a môžeme to poslať.</p>
+            <p className="kos__hint">{t.hint}</p>
           )}
 
           <ul className="kos__istoty">
-            <li>
-              <b>Vopred len záloha 30 %</b>
-              Zvyšok až pri prevzatí tovaru.
-            </li>
-            <li>
-              <b>Vyrábame na mieru</b>
-              Rozmer mimo cenníka? Ozvite sa.
-            </li>
-            <li>
-              <b>Nosnosť 770 kg</b>
-              Rám testovaný na plnú nádrž.
-            </li>
+            {t.istoty.map(([titul, popis]) => (
+              <li key={titul}>
+                <b>{titul}</b>
+                {popis}
+              </li>
+            ))}
           </ul>
 
           <p className="kos__pomoc">
-            Neviete si rady? Zavolajte na <a href="tel:+421900000000">+421 900 000 000</a>{" "}
-            alebo napíšte cez <Link href="/kontakt">kontakt</Link>.
+            {t.pomocA} <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>{" "}
+            {t.pomocB} <Link href={l("/kontakt")}>{t.pomocOdkaz}</Link>.
           </p>
         </div>
       </aside>

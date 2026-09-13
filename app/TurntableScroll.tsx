@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 const FRAMES = 25;
 const SRCS = Array.from({ length: FRAMES }, (_, i) => `/img/tt/${i}.webp`);
@@ -8,14 +10,15 @@ const SRCS = Array.from({ length: FRAMES }, (_, i) => `/img/tt/${i}.webp`);
 const TURNS = 2;
 
 // callout: dot = bod na modeli [x%,y%], lbl = koniec čiary / popisok [x%,y%]
-const CALLOUTS = [
-  { text: "Zarovnanie povrchu", dot: [55, 22], lbl: [80, 7], align: "left" },
-  { text: "Oceľová konštrukcia", dot: [30, 45], lbl: [6, 24], align: "left" },
-  { text: "Odolné kolieska", dot: [60, 57], lbl: [74, 90], align: "left" },
+const CALLOUTS: { kluc: "bodZarovnanie" | "bodOcel" | "bodNozicky"; dot: number[]; lbl: number[]; align: string }[] = [
+  { kluc: "bodZarovnanie", dot: [55, 22], lbl: [80, 7], align: "left" },
+  { kluc: "bodOcel", dot: [30, 45], lbl: [6, 24], align: "left" },
+  { kluc: "bodNozicky", dot: [60, 57], lbl: [74, 90], align: "left" },
 ];
 
 /** Turntable, ktorý sa otáča skrolovaním (scroll-scrub); ťahanie a slider ostávajú. */
-export default function TurntableScroll() {
+export default function TurntableScroll({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const txt = SLOVNIKY[jazyk].spolocne;
   const [frame, setFrame] = useState(0);
   const stageRef = useRef<HTMLDivElement>(null);
   const drag = useRef(false);
@@ -39,7 +42,12 @@ export default function TurntableScroll() {
         ticking = false;
         const r = el.getBoundingClientRect();
         const vh = window.innerHeight;
-        const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+        /* Otáčanie začne až vtedy, keď je model poriadne v obraze, nie hneď
+           ako vykukne zdola. Štart je na 62 % výšky okna, koniec vtedy, keď
+           je model z väčšiny nad horným okrajom. */
+        const zaciatok = vh * 0.62;
+        const koniec = -r.height * 0.4;
+        const p = Math.min(1, Math.max(0, (zaciatok - r.top) / (zaciatok - koniec)));
         setFrame(Math.round(p * (FRAMES * TURNS - 1)) % FRAMES);
       });
     };
@@ -77,7 +85,7 @@ export default function TurntableScroll() {
         ref={stageRef}
         className="turntable__stage"
         role="img"
-        aria-label="Oceľový rám skrinky AQUAPRIME — model na otáčanie"
+        aria-label={txt.ramAria}
         onPointerDown={onDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -88,7 +96,7 @@ export default function TurntableScroll() {
           <img
             key={i}
             src={s}
-            alt={i === 0 ? "Oceľový rám skrinky AQUAPRIME" : ""}
+            alt={i === 0 ? txt.ramAlt : ""}
             draggable={false}
             loading={i === 0 ? "eager" : "lazy"}
             decoding="async"
@@ -133,7 +141,7 @@ export default function TurntableScroll() {
                 { left: `${c.lbl[0]}%`, top: `${c.lbl[1]}%`, "--i": i } as React.CSSProperties
               }
             >
-              {c.text}
+              {txt[c.kluc]}
             </span>
           ))}
         </div>
@@ -143,7 +151,7 @@ export default function TurntableScroll() {
         <button
           type="button"
           className="turntable__arrow"
-          aria-label="Otočiť doľava"
+          aria-label={txt.otocitDolava}
           onClick={() => {
             manualAt.current = Date.now();
             rotate(-1);
@@ -161,12 +169,12 @@ export default function TurntableScroll() {
             manualAt.current = Date.now();
             setFrame(Number(e.target.value));
           }}
-          aria-label="Otočiť model"
+          aria-label={txt.otocitModel}
         />
         <button
           type="button"
           className="turntable__arrow"
-          aria-label="Otočiť doprava"
+          aria-label={txt.otocitDoprava}
           onClick={() => {
             manualAt.current = Date.now();
             rotate(1);
@@ -175,7 +183,7 @@ export default function TurntableScroll() {
           ›
         </button>
       </div>
-      <span className="turntable__hint">Skroluj alebo ťahaj — model sa otáča</span>
+      <span className="turntable__hint">{txt.otacajScrollom}</span>
     </div>
   );
 }

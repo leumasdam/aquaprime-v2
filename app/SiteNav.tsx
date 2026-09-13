@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./brand";
 import { NAV } from "./nav";
+import { jazykZCesty, odkaz } from "./jazyk";
+import JazykPrepinac from "./JazykPrepinac";
+import { SLOVNIKY } from "./preklady";
 import KosikTlacidlo from "./KosikTlacidlo";
 
 /* Poradie stránok zľava doprava — z neho sa počíta smer prechodu.
@@ -32,8 +35,15 @@ export default function SiteNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const jazyk = jazykZCesty(pathname);
+  const t = SLOVNIKY[jazyk];
+  /* odkazy aj porovnanie aktívnej položky bežia v aktuálnom jazyku */
+  const l = (href: string) => odkaz(href, jazyk);
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/" ? pathname === l("/") : pathname.startsWith(l(href));
+
+  /* na anglickej verzii je domovom /en — inak by logo viedlo späť do SK */
+  const jeDomov = pathname === l("/");
 
   const tu = indexStranky(pathname);
   const smer = (href: string): string[] | undefined => {
@@ -75,11 +85,11 @@ export default function SiteNav() {
       <div className="wrap nav__inner">
         <div className="nav__brandwrap">
           <Link
-            href="/"
+            href={l("/")}
             className="nav__brand"
-            transitionTypes={pathname === "/" ? undefined : ["nav-dozadu"]}
-            aria-label="AQUAPRIME — späť na úvodnú stránku"
-            aria-describedby={pathname === "/" ? undefined : "nav-tip"}
+            transitionTypes={jeDomov ? undefined : ["nav-dozadu"]}
+            aria-label={t.nav.logoPopis}
+            aria-describedby={jeDomov ? undefined : "nav-tip"}
             onClick={(e) => {
               setOpen(false);
               // po kliku pustiť fokus, inak :focus-within drží bublinu
@@ -90,7 +100,7 @@ export default function SiteNav() {
             <Logo />
           </Link>
           {/* doma bublina nemá čo hovoriť — „naspäť domov" už si */}
-          {pathname !== "/" && (
+          {!jeDomov && (
             <span className="nav__tip" id="nav-tip" role="tooltip">
               <span className="nav__tip-ico" aria-hidden>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -98,34 +108,34 @@ export default function SiteNav() {
                   <path d="M6.5 9.6V19h11V9.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
-              Odplávaj naspäť domov
+              {t.nav.spatNaUvod}
             </span>
           )}
         </div>
         <nav className="nav__links">
           {NAV.map((item) => (
             <Link
-              key={item.label}
-              href={item.href}
+              key={item.kluc}
+              href={l(item.href)}
               transitionTypes={smer(item.href)}
               className={`nav__link${isActive(item.href) ? " is-active" : ""}`}
             >
-              {item.label}
+              {t.nav[item.kluc]}
             </Link>
           ))}
         </nav>
-        <span className="nav__lang">SK ⌄</span>
+        <JazykPrepinac jazyk={jazyk} pathname={pathname} />
         <Link
-          href="/konfigurator"
+          href={l("/konfigurator")}
           transitionTypes={smer("/konfigurator")}
           className="nav__cta"
         >
-          KONFIGURÁTOR
+          {t.nav.konfigurator}
         </Link>
         <KosikTlacidlo />
         <button
           className={`nav__burger${open ? " is-open" : ""}`}
-          aria-label={open ? "Zavrieť menu" : "Otvoriť menu"}
+          aria-label={open ? t.nav.zavrietMenu : t.nav.otvoritMenu}
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
         >
@@ -154,25 +164,31 @@ export default function SiteNav() {
         <nav className="nav__mobile-links">
           {NAV.map((item, i) => (
             <Link
-              key={item.label}
-              href={item.href}
+              key={item.kluc}
+              href={l(item.href)}
               transitionTypes={smer(item.href)}
               className="nav__mobile-link"
               style={{ "--i": i } as React.CSSProperties}
               onClick={() => setOpen(false)}
             >
-              {item.label}
+              {t.nav[item.kluc]}
             </Link>
           ))}
         </nav>
         <Link
-          href="/konfigurator"
+          href={l("/konfigurator")}
           transitionTypes={smer("/konfigurator")}
           className="btn-cyan nav__mobile-cta"
           onClick={() => setOpen(false)}
         >
-          KONFIGURÁTOR <span aria-hidden>→</span>
+          {t.nav.konfigurator} <span aria-hidden>→</span>
         </Link>
+        <JazykPrepinac
+          jazyk={jazyk}
+          pathname={pathname}
+          variant="mobil"
+          onVyber={() => setOpen(false)}
+        />
       </div>
     </>
   );

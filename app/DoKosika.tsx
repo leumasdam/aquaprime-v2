@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useKosik, type PolozkaKosika } from "./kosik-store";
+import { type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 /**
  * Pridanie do košíka. Po kliknutí sa na dve sekundy prepne na potvrdenie,
@@ -10,10 +12,16 @@ import { useKosik, type PolozkaKosika } from "./kosik-store";
 export default function DoKosika({
   polozka,
   variant = "plne",
+  popis,
+  jazyk = "sk",
 }: {
   polozka: Omit<PolozkaKosika, "ks">;
   variant?: "plne" | "tiche";
+  /** text tlačidla — mení sa s jazykom stránky */
+  popis?: string;
+  jazyk?: Jazyk;
 }) {
+  const s = SLOVNIKY[jazyk].spolocne;
   const { pridaj } = useKosik();
   const [pridane, setPridane] = useState(false);
 
@@ -30,11 +38,11 @@ export default function DoKosika({
     >
       {pridane ? (
         <>
-          V KOŠÍKU <span aria-hidden>✓</span>
+          {s.vKosiku} <span aria-hidden>✓</span>
         </>
       ) : (
         <>
-          DO KOŠÍKA <span aria-hidden>+</span>
+          {popis ?? s.doKosika} <span aria-hidden>+</span>
         </>
       )}
     </button>

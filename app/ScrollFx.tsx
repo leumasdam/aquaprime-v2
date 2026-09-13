@@ -4,10 +4,20 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * Sleduje všetky [data-reveal] prvky a po vstupe do viewportu im pridá
- * triedu .is-in (animáciu rieši CSS). Re-skenuje pri každej zmene routy,
- * aby fungoval aj pri client-side navigácii.
+ * Sleduje všetky [data-reveal] prvky a po vstupe do viewportu ich označí
+ * (animáciu rieši CSS). Re-skenuje pri každej zmene routy, aby fungoval aj
+ * pri client-side navigácii.
+ *
+ * Označenie ide cez atribút data-in, nie len cez triedu: className si React
+ * pri prekreslení prepíše celý, takže prvok, ktorý si mení modifikátor za
+ * behu (napr. galéria pri prepnutí na LED), by o triedu prišiel a zostal
+ * neviditeľný. Trieda .is-in sa pridáva tiež, viažu sa na ňu ďalšie efekty.
  */
+function oznac(el: HTMLElement) {
+  el.dataset.in = "";
+  el.classList.add("is-in");
+}
+
 export default function ScrollFx() {
   const pathname = usePathname();
 
@@ -15,17 +25,17 @@ export default function ScrollFx() {
     let io: IntersectionObserver | null = null;
     const raf = requestAnimationFrame(() => {
       const els = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in)")
+        document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-in])")
       );
       if (!("IntersectionObserver" in window) || els.length === 0) {
-        els.forEach((el) => el.classList.add("is-in"));
+        els.forEach((el) => oznac(el));
         return;
       }
       io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
-              e.target.classList.add("is-in");
+              oznac(e.target as HTMLElement);
               io?.unobserve(e.target);
             }
           });

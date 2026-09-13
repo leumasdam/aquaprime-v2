@@ -42,15 +42,15 @@
 
 /* floating glass karty */
 .kfx__card {
-  background: rgba(11, 13, 15, 0.55);
+  background: rgba(17, 21, 21, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  padding: clamp(20px, 1.8vw, 28px);
+  padding: clamp(18px, 1.6vw, 24px);
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2vw, 28px);
+  gap: clamp(16px, 1.6vw, 22px);
   box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.85);
 }
 .kfx__group {
@@ -106,15 +106,15 @@
   height: 16px;
   border-radius: 50%;
   background: var(--cyan);
-  border: 3px solid #0b0d0f;
-  box-shadow: 0 0 10px rgba(71, 199, 232, 0.55);
+  border: 3px solid #111515;
+  box-shadow: 0 0 10px rgba(0, 154, 192, 0.55);
 }
 .kfx__slider input[type="range"]::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: var(--cyan);
-  border: 3px solid #0b0d0f;
+  border: 3px solid #111515;
 }
 
 /* nožičky / možnosti */
@@ -132,12 +132,12 @@
   transition: 0.2s;
 }
 .kfx__opt:hover {
-  border-color: rgba(71, 199, 232, 0.5);
+  border-color: rgba(0, 154, 192, 0.5);
   color: var(--ink);
 }
 .kfx__opt.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.08);
+  background: rgba(0, 154, 192, 0.08);
   color: var(--ink);
   font-weight: 600;
 }
@@ -160,7 +160,7 @@
 }
 .kfx__tier strong {
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--body);
 }
@@ -169,11 +169,11 @@
   color: var(--faint);
 }
 .kfx__tier:hover {
-  border-color: rgba(71, 199, 232, 0.5);
+  border-color: rgba(0, 154, 192, 0.5);
 }
 .kfx__tier.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.08);
+  background: rgba(0, 154, 192, 0.08);
 }
 .kfx__tier.is-on strong {
   color: var(--ink);
@@ -190,10 +190,11 @@
   align-items: baseline;
   justify-content: center;
   gap: 4px;
-  padding: 10px 8px;
+  padding: 9px 6px;
   border: 1px solid var(--line-2);
   border-radius: 7px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  white-space: nowrap;
   color: var(--body);
   font-variant-numeric: tabular-nums;
   transition: 0.2s;
@@ -204,12 +205,12 @@
   color: var(--faint);
 }
 .kfx__size:hover {
-  border-color: rgba(71, 199, 232, 0.5);
+  border-color: rgba(0, 154, 192, 0.5);
   color: var(--ink);
 }
 .kfx__size.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.08);
+  background: rgba(0, 154, 192, 0.08);
   color: var(--ink);
   font-weight: 600;
 }
@@ -246,12 +247,12 @@
 .kfx__swatches {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 4px;
 }
 .kfx__sw {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 27px;
+  height: 27px;
+  border-radius: 7px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
   cursor: pointer;
@@ -264,7 +265,7 @@
   transform: translateY(-2px);
 }
 .kfx__sw.is-on {
-  box-shadow: 0 0 0 2px #0b0d0f, 0 0 0 4px var(--cyan);
+  box-shadow: 0 0 0 2px #111515, 0 0 0 4px var(--cyan);
 }
 .kfx__pick {
   font-size: 0.8125rem;
@@ -280,11 +281,11 @@
 .kfx__tank {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 13px;
+  gap: 7px;
+  padding: 10px 12px;
   border: 1px solid var(--line-2);
   border-radius: 9px;
-  background: rgba(71, 199, 232, 0.04);
+  background: rgba(0, 154, 192, 0.04);
 }
 .kfx__tank-head {
   display: flex;
@@ -293,16 +294,15 @@
   gap: 4px 8px;
 }
 .kfx__tank-tag {
-  flex: 0 0 100%;
   font-size: 0.5625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cyan);
 }
 .kfx__tank-head strong {
   font-family: var(--display);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--ink-90);
 }
 .kfx__tank-vol {
@@ -312,11 +312,19 @@
 .kfx__selectwrap {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+}
+.kfx__note--tight {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .kfx__selectwrap > span {
   font-size: 0.625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
@@ -327,7 +335,7 @@
   font-size: 0.75rem;
   font-family: inherit;
   color: var(--ink-soft);
-  background: rgba(6, 8, 9, 0.85);
+  background: rgba(12, 16, 15, 0.85);
   border: 1px solid var(--line-2);
   border-radius: 6px;
   cursor: pointer;
@@ -361,7 +369,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--cyan), #7ad9f2);
+  background: linear-gradient(90deg, var(--cyan), #3fb8d8);
   transition: width 0.35s var(--ease);
 }
 
@@ -381,13 +389,13 @@
 }
 .kfx__sumrow span {
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--faint);
 }
 .kfx__sumrow b {
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(1.4rem, 1.1rem + 0.8vw, 1.8rem);
   color: var(--cyan);
   line-height: 1;
@@ -420,7 +428,7 @@
   color: var(--faint);
 }
 .kfx__price-v {
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(1.7rem, 1.3rem + 1vw, 2.2rem);
   color: var(--cyan);
   line-height: 1;
@@ -454,7 +462,7 @@
 .kfx__input {
   width: 100%;
   padding: 11px 13px;
-  background: rgba(6, 8, 9, 0.7);
+  background: rgba(12, 16, 15, 0.7);
   border: 1px solid var(--line-2);
   border-radius: 7px;
   color: var(--ink);
@@ -463,7 +471,7 @@
   transition: border-color 0.2s;
 }
 .kfx__input::placeholder {
-  color: rgba(226, 229, 231, 0.32);
+  color: rgba(230, 233, 229, 0.32);
 }
 .kfx__input:focus {
   outline: none;
@@ -474,9 +482,9 @@
   line-height: 1.6;
   color: var(--body);
   padding: 14px;
-  border: 1px solid rgba(71, 199, 232, 0.3);
+  border: 1px solid rgba(0, 154, 192, 0.3);
   border-radius: 9px;
-  background: rgba(71, 199, 232, 0.05);
+  background: rgba(0, 154, 192, 0.05);
 }
 .kfx__done b {
   color: var(--ink-90);
@@ -496,8 +504,8 @@
   inset: 8% 6%;
   background: radial-gradient(
     60% 58% at 50% 50%,
-    rgba(71, 199, 232, 0.16),
-    rgba(71, 199, 232, 0.05) 48%,
+    rgba(0, 154, 192, 0.16),
+    rgba(0, 154, 192, 0.05) 48%,
     transparent 74%
   );
   filter: blur(36px);
@@ -530,18 +538,18 @@
   border: 1px solid var(--line-2);
   border-radius: 100px;
   overflow: hidden;
-  background: rgba(11, 13, 15, 0.5);
+  background: rgba(17, 21, 21, 0.5);
   backdrop-filter: blur(10px);
 }
 .kfx__toggle button {
   padding: 7px 16px;
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--faint);
 }
 .kfx__toggle button.is-on {
   background: var(--cyan);
-  color: #04222b;
+  color: #032630;
 }
 .kfx__dimtag {
   position: absolute;
@@ -588,7 +596,7 @@
   height: 28px;
   border-radius: 7px;
   border: 1px solid var(--line-2);
-  background: rgba(71, 199, 232, 0.05);
+  background: rgba(0, 154, 192, 0.05);
 }
 .kf__trustitem strong {
   display: block;

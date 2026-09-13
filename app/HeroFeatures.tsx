@@ -34,29 +34,26 @@ const HF: Record<string, React.ReactNode> = {
   ),
 };
 
-const FEATURES = [
-  { k: "mira", t: "NA MIERU", s: "Každý projekt navrhujeme presne podľa vašich potrieb." },
-  { k: "material", t: "PRÉMIOVÉ MATERIÁLY", s: "Používame len špičkové materiály a osvedčené konštrukcie." },
-  { k: "presnost", t: "TECHNICKÁ PRESNOSŤ", s: "Stabilita, funkčnosť a precízne spracovanie v každom detaile." },
-  { k: "hodnota", t: "TRVÁCA HODNOTA", s: "Odolné riešenia s nadčasovým dizajnom, ktoré vydržia." },
-  { k: "slovensko", t: "SLOVENSKÁ KVALITA", s: "Navrhnuté a vyrobené na Slovensku." },
-];
 
-export default function HeroFeatures() {
-  const loop = [...FEATURES, ...FEATURES];
+
+/* Poradie ikon zodpovedá poradiu položiek v slovníku (app/preklady.ts). */
+const IKONY = ["mira", "material", "presnost", "hodnota", "slovensko"];
+
+export default function HeroFeatures({ polozky }: { polozky: [string, string][] }) {
+  const loop = [...polozky, ...polozky];
   return (
     <div className="hero__bar-inner">
       <div className="hero__bar-track">
-        {loop.map((f, i) => (
+        {loop.map(([titul, popis], i) => (
           <div
             className="hfeat"
-            key={`${f.k}-${i}`}
-            aria-hidden={i >= FEATURES.length ? "true" : undefined}
+            key={`${titul}-${i}`}
+            aria-hidden={i >= polozky.length ? "true" : undefined}
           >
-            <span className="hfeat__ring">{HF[f.k]}</span>
+            <span className="hfeat__ring">{HF[IKONY[i % polozky.length]]}</span>
             <span className="hfeat__txt">
-              <span className="hfeat__t">{f.t}</span>
-              <span className="hfeat__s">{f.s}</span>
+              <span className="hfeat__t">{titul}</span>
+              <span className="hfeat__s">{popis}</span>
             </span>
           </div>
         ))}

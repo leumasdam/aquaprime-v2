@@ -13,6 +13,7 @@ const ROUTES = [
   "/technologia",
   "/realizacie",
   "/o-nas",
+  "/konfigurator",
   "/dopyt",
   "/kontakt",
   "/obchodne-podmienky",
@@ -20,29 +21,39 @@ const ROUTES = [
   "/ochrana-osobnych-udajov",
 ];
 
+/** Každá cesta má slovenskú aj anglickú verziu — robotovi ich dvojicu ukážeme
+ *  cez hreflang, aby ich nebral ako dva samostatné weby s rovnakým obsahom. */
+function dvojjazycne(cesta: string, priorita: number) {
+  const alternates = {
+    languages: { sk: BASE + cesta, en: `${BASE}/en${cesta}` },
+  };
+  return [
+    {
+      url: BASE + (cesta || "/"),
+      changeFrequency: "monthly" as const,
+      priority: priorita,
+      alternates,
+    },
+    {
+      url: `${BASE}/en${cesta || "/"}`,
+      changeFrequency: "monthly" as const,
+      priority: Math.round(priorita * 0.9 * 10) / 10,
+      alternates,
+    },
+  ];
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // skrytý web neponúka mapu stránok — inak by ju robot našiel aj bez odkazu
   if (SKRYTY_PRED_VYHLADAVACMI) return [];
   return [
-    ...ROUTES.map((r) => ({
-      url: BASE + r,
-      changeFrequency: "monthly" as const,
-      priority:
-        r === ""
-          ? 1
-          : r === "/skrinky" || r === "/akvaria" || r === "/dopyt"
-            ? 0.9
-            : 0.7,
-    })),
-    ...PRODUCTS.map((p) => ({
-      url: `${BASE}/skrinky/${p.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...AQUARIUMS.map((a) => ({
-      url: `${BASE}/akvaria/${a.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
+    ...ROUTES.flatMap((r) =>
+      dvojjazycne(
+        r,
+        r === "" ? 1 : r === "/skrinky" || r === "/akvaria" || r === "/dopyt" ? 0.9 : 0.7
+      )
+    ),
+    ...PRODUCTS.flatMap((p) => dvojjazycne(`/skrinky/${p.slug}`, 0.8)),
+    ...AQUARIUMS.flatMap((a) => dvojjazycne(`/akvaria/${a.slug}`, 0.8)),
   ];
 }

@@ -16,10 +16,10 @@ export type Decor = {
    * Čo presne sa na fotke líši:
    *  "rozmer"  — ten istý rad aj dekor, len iná dĺžka (fotka je použiteľná)
    *  "rad"     — dekor máme nafotený len na inom rade (toto treba dofotiť)
-   *  "dvierka" — dekor máme nafotený len v inom počte dvierok (do 100 cm
-   *              má skrinka 2 dvierka, nad 100 cm 3) — toto treba dofotiť
+   *  "dvierka" — dekor máme nafotený len v inom počte dvierok (pod 120 cm
+   *              má skrinka 2 dvierka, od 120 cm 3) — toto treba dofotiť
    */
-  illuFrom?: "rozmer" | "rad" | "dvierka";
+  illuFrom?: "rozmer" | "rad" | "dvierka" | "schema";
   /** rozmer, ktorý je na fotke — dopĺňa sa pri illuFrom: "rozmer" */
   illuSize?: string;
   /** počet dvierok na fotke — dopĺňa sa pri illuFrom: "dvierka" */
@@ -58,7 +58,7 @@ export type Product = {
 export const TIERS: { id: Tier; label: string; note: string }[] = [
   { id: "premium", label: "PREMIUM", note: "Kompletne opláštená" },
   { id: "standard", label: "ŠTANDARD", note: "Bočnice a dvierka" },
-  { id: "basic", label: "BASIC", note: "Kovový rám + vrchná doska" },
+  { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -75,44 +75,14 @@ export const PRODUCTS: Product[] = [
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
     "price": "335 €",
-    "desc": "Vlajkový model — kompletne opláštená skrinka, v ktorej oceľový rám mizne v plášti z LDTD 18 mm. Bezrúčkové dvierka so symetrickou špárou a matný povrch z nej robia nábytkový kus, nie podstavec.",
+    "desc": "Kompletne opláštená skrinka s oceľovým rámom v rozmere 100 × 40 × 80 cm. Vyberte si dostupný dekor; skrinku pri osadení vyrovnáte pomocou nastaviteľných nožičiek.",
     "features": [
-      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
-      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Úplné opláštenie v zvolenom dekore",
+      "Bezúchytkové dvierka so symetrickou škárou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-2d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-04.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-05.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-06.webp"
-          ]
-        }
-      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -120,9 +90,9 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/premium-100x40x90-black-matt-04.webp",
-          "/img/products/premium-100x40x90-black-matt-05.webp",
           "/img/products/premium-100x40x90-black-matt-01.webp",
+          "/img/products/premium-100x40x90-black-matt-05.webp",
+          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
           "/img/products/premium-100x40x90-black-matt-06.webp",
           "/img/products/premium-100x40x90-black-matt-03.webp"
@@ -148,6 +118,31 @@ export const PRODUCTS: Product[] = [
         }
       },
       {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp"
+        ],
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-hunton-zlta-2d-01.webp",
+            "/img/products/led/led-dub-hunton-zlta-2d-02.webp",
+            "/img/products/led/led-dub-hunton-zlta-2d-03.webp",
+            "/img/products/led/led-dub-hunton-zlta-2d-04.webp",
+            "/img/products/led/led-dub-hunton-zlta-2d-05.webp",
+            "/img/products/led/led-dub-hunton-zlta-2d-06.webp"
+          ]
+        }
+      },
+      {
         "id": "cool-white",
         "name": "Cool White",
         "swatch": [
@@ -157,16 +152,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-07.webp",
           "/img/products/premium-100x40x90-cool-white-01.webp",
           "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-09.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-10.webp",
+          "/img/products/premium-100x40x90-cool-white-09.webp",
+          "/img/products/premium-100x40x80-cool-white-01.webp",
+          "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
-          "/img/products/premium-100x40x80-cool-white-01.webp",
-          "/img/products/premium-100x40x80-cool-white-02.webp",
-          "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp",
-          "/img/products/premium-100x40x90-cool-white-05.webp"
+          "/img/products/premium-100x40x90-cool-white-10.webp"
         ],
         "led": {
           "zlta": [
@@ -194,32 +187,13 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/premium-100x40x90-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
-        ],
-        "illuIdx": [
-          0
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
       },
       {
         "id": "choco-vintage-oak",
@@ -228,16 +202,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-06.webp",
           "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-12.webp",
           "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-08.webp",
-          "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-04.webp",
-          "/img/products/choco-vintage-oak-13.webp"
-        ]
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-04.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       },
       {
         "id": "dub-spanielsky",
@@ -247,13 +223,16 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-12.webp",
           "/img/products/dub-spanielsky-08.webp",
           "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp"
+          "/img/products/dub-spanielsky-14.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
         "led": {
           "zlta": [
             "/img/products/led/led-dub-spanielsky-zlta-2d-01.webp",
@@ -266,6 +245,33 @@ export const PRODUCTS: Product[] = [
         }
       },
       {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-04.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-05.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-06.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-07.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-100x40x80-black-matt-orech-03.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-13.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-08.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad"
+      },
+      {
         "id": "dub-spanielsky-black-matt",
         "name": "Dub španielsky / Čierna matná",
         "swatch": [
@@ -273,23 +279,23 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-11.webp",
-          "/img/products/dub-spanielsky-black-matt-09.webp",
           "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-08.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-07.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp",
-          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
           "/img/products/dub-spanielsky-black-matt-01.webp",
-          "/img/products/dub-spanielsky-black-matt-12.webp",
-          "/img/products/dub-spanielsky-black-matt-13.webp",
           "/img/products/dub-spanielsky-black-matt-02.webp"
-        ]
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       }
     ],
-    "cover": "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+    "cover": "/img/products/premium-100x40x90-black-matt-01.webp",
     "priceLed": "385 €"
   },
   {
@@ -305,16 +311,59 @@ export const PRODUCTS: Product[] = [
     "aquarium": "120 × 40 cm (pôdorys)",
     "vol": "~240 l",
     "price": "350 €",
-    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 240 litrov.",
+    "desc": "Kompletne opláštená skrinka s oceľovým rámom v rozmere 120 × 40 × 80 cm. Vyberte si dostupný dekor; skrinku pri osadení vyrovnáte pomocou nastaviteľných nožičiek.",
     "features": [
-      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
-      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Úplné opláštenie v zvolenom dekore",
+      "Bezúchytkové dvierka so symetrickou škárou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-04.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-14.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -323,12 +372,17 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
           "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-04.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp"
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad",
         "led": {
           "zlta": [
             "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -342,16 +396,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
+        }
       },
       {
         "id": "dub-sonoma",
@@ -362,127 +407,15 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
+        "inherited": true,
         "illuIdx": [
           0,
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
         ],
-        "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -492,17 +425,63 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-06.webp"
+        ]
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
         ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "images": [
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-06.webp"
+        ]
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-03.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-04.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-05.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-06.webp"
+        ]
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-cool-white-01.webp",
+          "/img/products/premium-120x40x80-cool-white-02.webp",
+          "/img/products/premium-120x40x80-cool-white-03.webp",
+          "/img/products/premium-120x40x80-cool-white-04.webp",
+          "/img/products/premium-120x40x80-cool-white-05.webp",
+          "/img/products/premium-120x40x80-cool-white-06.webp"
+        ]
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/choco-vintage-oak-10.webp",
     "priceLed": "400 €"
   },
   {
@@ -518,16 +497,78 @@ export const PRODUCTS: Product[] = [
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
     "price": "360 €",
-    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 375 litrov.",
+    "desc": "Kompletne opláštená skrinka s oceľovým rámom v rozmere 150 × 50 × 80 cm. Vyberte si dostupný dekor; skrinku pri osadení vyrovnáte pomocou nastaviteľných nožičiek.",
     "features": [
-      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
-      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Úplné opláštenie v zvolenom dekore",
+      "Bezúchytkové dvierka so symetrickou škárou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-04.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-14.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -536,12 +577,17 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-200x60x60-black-matt-04.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp"
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad",
         "led": {
           "zlta": [
             "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -555,147 +601,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
         }
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -705,17 +611,75 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-06.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-03.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-04.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-05.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-cool-white-01.webp",
+          "/img/products/premium-120x40x80-cool-white-02.webp",
+          "/img/products/premium-120x40x80-cool-white-03.webp",
+          "/img/products/premium-120x40x80-cool-white-04.webp",
+          "/img/products/premium-120x40x80-cool-white-05.webp",
+          "/img/products/premium-120x40x80-cool-white-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/standard-200x60x60-dub-sonoma-01.webp",
     "priceLed": "410 €"
   },
   {
@@ -731,16 +695,78 @@ export const PRODUCTS: Product[] = [
     "aquarium": "160 × 60 cm (pôdorys)",
     "vol": "~480 l",
     "price": "370 €",
-    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 480 litrov.",
+    "desc": "Kompletne opláštená skrinka s oceľovým rámom v rozmere 160 × 60 × 80 cm. Vyberte si dostupný dekor; skrinku pri osadení vyrovnáte pomocou nastaviteľných nožičiek.",
     "features": [
-      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
-      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Úplné opláštenie v zvolenom dekore",
+      "Bezúchytkové dvierka so symetrickou škárou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-14.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "led": {
+          "zlta": [
+            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
+            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
+          ]
+        }
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/choco-vintage-oak-10.webp",
+          "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-04.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad"
+      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -749,12 +775,17 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-200x60x60-black-matt-04.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp"
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad",
         "led": {
           "zlta": [
             "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -768,147 +799,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "inherited": true,
-        "illuFrom": "rad"
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
-        ],
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
-        "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
-        ],
-        "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
         }
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -918,17 +809,75 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-06.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-03.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-04.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-05.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-cool-white-01.webp",
+          "/img/products/premium-120x40x80-cool-white-02.webp",
+          "/img/products/premium-120x40x80-cool-white-03.webp",
+          "/img/products/premium-120x40x80-cool-white-04.webp",
+          "/img/products/premium-120x40x80-cool-white-05.webp",
+          "/img/products/premium-120x40x80-cool-white-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/dub-spanielsky-02.webp",
     "priceLed": "420 €"
   },
   {
@@ -944,14 +893,12 @@ export const PRODUCTS: Product[] = [
     "aquarium": "200 × 50 cm (pôdorys)",
     "vol": "~500 l",
     "price": "410 €",
-    "desc": "Kompletne opláštená skrinka — oceľový rám mizne v plášti z LDTD 18 mm. Reprezentatívne riešenie pre nádrže okolo 500 litrov.",
+    "desc": "Kompletne opláštená skrinka s oceľovým rámom v rozmere 200 × 50 × 70 cm. Vyberte si dostupný dekor; skrinku pri osadení vyrovnáte pomocou nastaviteľných nožičiek.",
     "features": [
-      "Kompletné opláštenie LDTD 18 mm s precíznym olepením hrán",
-      "Bezrúčkové dvierka so symetrickou dizajnovou špárou",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Matný povrch odolný voči vlhkosti a poškodeniu",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Úplné opláštenie v zvolenom dekore",
+      "Bezúchytkové dvierka so symetrickou škárou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
       {
@@ -961,11 +908,18 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
+          "/img/products/standard-200x60x60-black-matt-04.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp",
           "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp"
+          "/img/products/premium-100x40x90-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad",
         "led": {
           "zlta": [
             "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -979,26 +933,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-black-matt-modra-3d-03.webp",
             "/img/products/led/led-black-matt-modra-3d-04.webp"
           ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        }
       },
       {
         "id": "dub-spanielsky",
@@ -1009,9 +944,15 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-13.webp",
           "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp"
+          "/img/products/dub-spanielsky-14.webp"
         ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
         "led": {
           "zlta": [
             "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
@@ -1019,10 +960,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
             "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
           ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        }
       },
       {
         "id": "choco-vintage-oak",
@@ -1031,86 +969,35 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-10.webp",
           "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp"
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-04.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       },
       {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
         "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
+          "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-cool-white-01.webp",
-          "/img/products/premium-100x40x90-cool-white-02.webp",
-          "/img/products/premium-100x40x90-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-01.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-02.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp"
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rad"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -1120,17 +1007,75 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-spanielsky-black-matt-06.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-02.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-03.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-04.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-120x40x80-dub-hunton-black-matt-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "black-matt-orech",
+        "name": "Black Matt / Orech",
+        "swatch": [
+          "#17181a",
+          "/img/products/swatch-orech.webp"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-black-matt-orech-01.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-02.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-03.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-04.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-05.webp",
+          "/img/products/premium-120x40x80-black-matt-orech-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/premium-120x40x80-cool-white-01.webp",
+          "/img/products/premium-120x40x80-cool-white-02.webp",
+          "/img/products/premium-120x40x80-cool-white-03.webp",
+          "/img/products/premium-120x40x80-cool-white-04.webp",
+          "/img/products/premium-120x40x80-cool-white-05.webp",
+          "/img/products/premium-120x40x80-cool-white-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "120 × 40 × 80 cm"
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/standard-200x60x60-black-matt-04.webp",
     "priceLed": "460 €"
   },
   {
@@ -1146,16 +1091,38 @@ export const PRODUCTS: Product[] = [
     "aquarium": "100 × 40 cm (pôdorys)",
     "vol": "~200 l",
     "price": "305 €",
-    "desc": "Najuniverzálnejší rozmer do obývačky — metrové akvárium vo výške očí, technika schovaná za dvierkami v dekore.",
+    "desc": "Skrinka s oceľovým rámom, bočnicami a dvierkami v rozmere 100 × 40 × 80 cm. Má nastaviteľné nožičky a priestor pod nádržou prístupný cez dvierka.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Bočnice a dvierka v zvolenom dekore",
+      "Úložný priestor prístupný cez dvierka",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-80x40x90-antracit-06.webp",
+          "/img/products/standard-80x40x90-antracit-07.webp",
+          "/img/products/standard-80x40x90-antracit-03.webp",
+          "/img/products/standard-80x40x90-antracit-02.webp",
+          "/img/products/standard-80x40x90-antracit-05.webp",
+          "/img/products/standard-80x40x90-antracit-04.webp",
+          "/img/products/standard-80x40x90-antracit-08.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "80 × 40 × 90 cm"
+      },
       {
         "id": "cool-white",
         "name": "Cool White",
@@ -1163,32 +1130,17 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
+          "/img/products/standard-100x40x80-cool-white-03.webp",
           "/img/products/standard-100x40x80-cool-white-01.webp",
           "/img/products/standard-100x40x80-cool-white-02.webp",
-          "/img/products/standard-100x40x80-cool-white-03.webp",
           "/img/products/standard-100x40x80-cool-white-04.webp",
           "/img/products/standard-100x40x80-cool-white-05.webp",
-          "/img/products/standard-100x40x80-cool-white-06.webp",
-          "/img/products/standard-100x40x80-cool-white-10.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-2d-01.webp",
-            "/img/products/led/led-cool-white-zlta-2d-02.webp",
-            "/img/products/led/led-cool-white-zlta-2d-03.webp",
-            "/img/products/led/led-cool-white-zlta-2d-04.webp",
-            "/img/products/led/led-cool-white-zlta-2d-05.webp",
-            "/img/products/led/led-cool-white-zlta-2d-06.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-2d-01.webp",
-            "/img/products/led/led-cool-white-modra-2d-02.webp",
-            "/img/products/led/led-cool-white-modra-2d-03.webp",
-            "/img/products/led/led-cool-white-modra-2d-04.webp",
-            "/img/products/led/led-cool-white-modra-2d-05.webp",
-            "/img/products/led/led-cool-white-modra-2d-06.webp"
-          ]
-        }
+          "/img/products/standard-100x40x90-cool-white-01.webp",
+          "/img/products/standard-100x40x90-cool-white-02.webp",
+          "/img/products/standard-200x60x60-cool-white-01.webp",
+          "/img/products/standard-100x40x80-cool-white-10.webp",
+          "/img/products/standard-100x40x80-cool-white-06.webp"
+        ]
       },
       {
         "id": "black-matt-orech",
@@ -1198,18 +1150,18 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-02.webp",
           "/img/products/standard-100x40x80-black-matt-orech-03.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
           "/img/products/standard-100x40x80-black-matt-orech-04.webp",
           "/img/products/standard-100x40x80-black-matt-orech-05.webp",
           "/img/products/standard-100x40x80-black-matt-orech-06.webp",
           "/img/products/standard-100x40x80-black-matt-orech-07.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-08.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-13.webp",
           "/img/products/standard-100x40x80-black-matt-orech-09.webp",
           "/img/products/standard-100x40x80-black-matt-orech-10.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-11.webp"
+          "/img/products/standard-100x40x80-black-matt-orech-11.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-13.webp",
+          "/img/products/standard-100x40x80-black-matt-orech-08.webp"
         ]
       },
       {
@@ -1219,111 +1171,71 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/standard-100x40x80-black-matt-01.webp",
           "/img/products/standard-100x40x80-black-matt-02.webp",
+          "/img/products/standard-100x40x80-black-matt-01.webp",
           "/img/products/standard-100x40x80-black-matt-03.webp",
           "/img/products/standard-100x40x80-black-matt-04.webp",
+          "/img/products/standard-80x40x90-black-matt-04.webp",
+          "/img/products/standard-100x40x80-black-matt-05.webp",
           "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-100x40x80-black-matt-05.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-2d-01.webp",
-            "/img/products/led/led-black-matt-zlta-2d-02.webp",
-            "/img/products/led/led-black-matt-zlta-2d-03.webp",
-            "/img/products/led/led-black-matt-zlta-2d-04.webp",
-            "/img/products/led/led-black-matt-zlta-2d-05.webp",
-            "/img/products/led/led-black-matt-zlta-2d-06.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-2d-01.webp",
-            "/img/products/led/led-black-matt-modra-2d-02.webp",
-            "/img/products/led/led-black-matt-modra-2d-03.webp",
-            "/img/products/led/led-black-matt-modra-2d-04.webp",
-            "/img/products/led/led-black-matt-modra-2d-05.webp",
-            "/img/products/led/led-black-matt-modra-2d-06.webp",
-            "/img/products/led/led-black-matt-modra-2d-07.webp"
-          ]
-        }
-      },
-      {
-        "id": "antracit",
-        "name": "Antracit",
-        "swatch": [
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-80x40x90-antracit-03.webp",
-          "/img/products/standard-80x40x90-antracit-06.webp",
-          "/img/products/standard-80x40x90-antracit-07.webp",
-          "/img/products/standard-80x40x90-antracit-02.webp",
-          "/img/products/standard-80x40x90-antracit-05.webp",
-          "/img/products/standard-80x40x90-antracit-08.webp",
-          "/img/products/standard-80x40x90-antracit-04.webp",
-          "/img/products/standard-80x40x90-antracit-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-2d-01.webp",
-            "/img/products/led/led-antracit-zlta-2d-02.webp",
-            "/img/products/led/led-antracit-zlta-2d-03.webp",
-            "/img/products/led/led-antracit-zlta-2d-04.webp",
-            "/img/products/led/led-antracit-zlta-2d-05.webp",
-            "/img/products/led/led-antracit-zlta-2d-06.webp",
-            "/img/products/led/led-antracit-zlta-2d-07.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-2d-01.webp",
-            "/img/products/led/led-antracit-modra-2d-02.webp",
-            "/img/products/led/led-antracit-modra-2d-03.webp",
-            "/img/products/led/led-antracit-modra-2d-04.webp",
-            "/img/products/led/led-antracit-modra-2d-05.webp",
-            "/img/products/led/led-antracit-modra-2d-06.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+          "/img/products/standard-80x40x90-black-matt-02.webp",
+          "/img/products/standard-80x40x90-black-matt-03.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
+        "illuIdx": [
+          4,
+          7,
+          8
+        ],
         "illuFrom": "rozmer",
-        "illuSize": "80 × 40 cm"
+        "illuSize": "80 × 40 × 90 cm"
       },
       {
-        "id": "artisan-antracit",
-        "name": "Artisan / Antracit",
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
         "swatch": [
-          "/img/products/swatch-artisan.webp",
-          "#40454a"
+          "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-01.webp"
-        ],
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+          "/img/products/choco-vintage-oak-05.webp",
+          "/img/products/choco-vintage-oak-12.webp",
+          "/img/products/choco-vintage-oak-09.webp",
+          "/img/products/choco-vintage-oak-03.webp",
+          "/img/products/choco-vintage-oak-06.webp",
+          "/img/products/choco-vintage-oak-01.webp",
+          "/img/products/choco-vintage-oak-08.webp",
+          "/img/products/choco-vintage-oak-04.webp"
         ],
         "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "80 × 40 cm"
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-04.webp",
+          "/img/products/dub-spanielsky-12.webp",
+          "/img/products/dub-spanielsky-08.webp",
+          "/img/products/dub-spanielsky-09.webp",
+          "/img/products/dub-spanielsky-01.webp",
+          "/img/products/dub-spanielsky-03.webp",
+          "/img/products/dub-spanielsky-07.webp",
+          "/img/products/dub-spanielsky-14.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       },
       {
         "id": "dub-hunton-black-matt",
@@ -1333,33 +1245,11 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
           "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-08.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-2d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-04.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-05.webp",
-            "/img/products/led/led-dub-hunton-zlta-2d-06.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-07.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-05.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
+          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp"
         ],
         "inherited": true,
         "illuFrom": "rad"
@@ -1372,56 +1262,44 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/premium-100x40x90-dub-sonoma-01.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-03.webp",
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/standard-80x40x90-dub-sonoma-01.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-03.webp"
+          "/img/products/standard-80x40x90-dub-sonoma-03.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp",
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
+        "illuIdx": [
+          0,
+        ],
         "illuFrom": "rad"
       },
       {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
+        "id": "artisan-antracit",
+        "name": "Artisan / Antracit",
         "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
+          "/img/products/swatch-artisan.webp",
+          "#40454a"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-08.webp",
-          "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-04.webp",
-          "/img/products/choco-vintage-oak-13.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
+          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-09.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-08.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-02.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-06.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-07.webp",
+          "/img/products/standard-80x40x90-artisan-antracit-01.webp"
         ],
-        "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp"
+        "inherited": true,
+        "illuIdx": [
+          0,
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-2d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-04.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
-          ]
-        }
+        "illuFrom": "rozmer",
+        "illuSize": "80 × 40 × 90 cm"
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -1431,23 +1309,26 @@ export const PRODUCTS: Product[] = [
           "#121316"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-11.webp",
-          "/img/products/dub-spanielsky-black-matt-09.webp",
           "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-08.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-09.webp",
+          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-07.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp",
-          "/img/products/dub-spanielsky-black-matt-10.webp",
+          "/img/products/dub-spanielsky-black-matt-06.webp",
+          "/img/products/dub-spanielsky-black-matt-08.webp",
           "/img/products/dub-spanielsky-black-matt-01.webp",
-          "/img/products/dub-spanielsky-black-matt-12.webp",
-          "/img/products/dub-spanielsky-black-matt-13.webp",
+          "/img/products/dub-spanielsky-black-matt-03.webp",
+          "/img/products/dub-spanielsky-black-matt-07.webp",
+          "/img/products/dub-spanielsky-black-matt-10.webp",
           "/img/products/dub-spanielsky-black-matt-02.webp"
-        ]
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       }
     ],
-    "cover": "/img/products/standard-100x40x80-cool-white-01.webp",
+    "cover": "/img/products/standard-80x40x90-antracit-06.webp",
     "priceLed": "365 €"
   },
   {
@@ -1463,14 +1344,12 @@ export const PRODUCTS: Product[] = [
     "aquarium": "120 × 40 cm (pôdorys)",
     "vol": "~240 l",
     "price": "330 €",
-    "desc": "Bočnice a dvierka v dekore skryjú techniku, váhu nesie oceľový rám. Univerzálna voľba pre nádrže okolo 240 litrov.",
+    "desc": "Skrinka s oceľovým rámom, bočnicami a dvierkami v rozmere 120 × 40 × 80 cm. Má nastaviteľné nožičky a priestor pod nádržou prístupný cez dvierka.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Bočnice a dvierka v zvolenom dekore",
+      "Úložný priestor prístupný cez dvierka",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
       {
@@ -1481,31 +1360,20 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          1
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
+        "illuIdx": [
+          0,
+        ],
         "illuFrom": "rozmer",
-        "illuSize": "150 × 50 cm"
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "antracit",
@@ -1514,28 +1382,20 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-3d-01.webp",
-            "/img/products/led/led-antracit-zlta-3d-02.webp",
-            "/img/products/led/led-antracit-zlta-3d-03.webp",
-            "/img/products/led/led-antracit-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-3d-01.webp",
-            "/img/products/led/led-antracit-modra-3d-02.webp",
-            "/img/products/led/led-antracit-modra-3d-03.webp",
-            "/img/products/led/led-antracit-modra-3d-04.webp"
-          ]
-        }
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "dub-sonoma",
@@ -1546,9 +1406,17 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
           "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ]
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "choco-vintage-oak",
@@ -1558,12 +1426,16 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
           "/img/products/choco-vintage-oak-04.webp"
-        ]
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       },
       {
         "id": "dub-spanielsky",
@@ -1574,124 +1446,16 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-02.webp",
           "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-10.webp",
           "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-cool-white-01.webp",
-          "/img/products/standard-100x40x80-cool-white-02.webp",
-          "/img/products/standard-100x40x80-cool-white-03.webp",
-          "/img/products/standard-100x40x80-cool-white-04.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-14.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "artisan-antracit",
-        "name": "Artisan / Antracit",
-        "swatch": [
-          "/img/products/swatch-artisan.webp",
-          "#40454a"
+        "illuIdx": [
+          0,
         ],
-        "images": [
-          "/img/products/standard-80x40x90-artisan-antracit-03.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-04.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-05.webp",
-          "/img/products/standard-80x40x90-artisan-antracit-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-01.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-04.webp",
-          "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-hunton-zlta-3d-01.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-02.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-03.webp",
-            "/img/products/led/led-dub-hunton-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer"
       }
     ],
     "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
@@ -1710,86 +1474,14 @@ export const PRODUCTS: Product[] = [
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
     "price": "340 €",
-    "desc": "Rozmerná skrinka pre nádrže okolo 375 litrov. Oceľový rám drží presnú rovinu, dvierka sprístupnia celý úložný priestor.",
+    "desc": "Skrinka s oceľovým rámom, bočnicami a dvierkami v rozmere 150 × 50 × 80 cm. Má nastaviteľné nožičky a priestor pod nádržou prístupný cez dvierka.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Bočnice a dvierka v zvolenom dekore",
+      "Úložný priestor prístupný cez dvierka",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
-      {
-        "id": "black-matt",
-        "name": "Black Matt",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "antracit",
-        "name": "Antracit",
-        "swatch": [
-          "#40454a"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-antracit-02.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-03.webp",
-          "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-01.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-3d-01.webp",
-            "/img/products/led/led-antracit-zlta-3d-02.webp",
-            "/img/products/led/led-antracit-zlta-3d-03.webp",
-            "/img/products/led/led-antracit-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-3d-01.webp",
-            "/img/products/led/led-antracit-modra-3d-02.webp",
-            "/img/products/led/led-antracit-modra-3d-03.webp",
-            "/img/products/led/led-antracit-modra-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ]
-      },
       {
         "id": "choco-vintage-oak",
         "name": "Choco Vintage Oak",
@@ -1798,12 +1490,82 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
           "/img/products/choco-vintage-oak-04.webp"
-        ]
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
+      },
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-antracit-03.webp",
+          "/img/products/standard-200x60x60-antracit-04.webp",
+          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-02.webp",
+          "/img/products/standard-200x60x60-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "dub-spanielsky",
@@ -1812,87 +1574,21 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-cool-white-01.webp",
-          "/img/products/standard-100x40x80-cool-white-02.webp",
-          "/img/products/standard-100x40x80-cool-white-03.webp",
-          "/img/products/standard-100x40x80-cool-white-04.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-14.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
+        "illuIdx": [
+          0,
         ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer"
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/choco-vintage-oak-10.webp",
     "priceLed": "400 €"
   },
   {
@@ -1908,16 +1604,35 @@ export const PRODUCTS: Product[] = [
     "aquarium": "160 × 60 cm (pôdorys)",
     "vol": "~480 l",
     "price": "350 €",
-    "desc": "Dlhý, nízky formát pre úzke nádrže. Pôsobí ľahko, no rám z ocele 30 × 30 mm unesie aj plne osadené akvárium.",
+    "desc": "Skrinka s oceľovým rámom, bočnicami a dvierkami v rozmere 160 × 60 × 80 cm. Má nastaviteľné nožičky a priestor pod nádržou prístupný cez dvierka.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Bočnice a dvierka v zvolenom dekore",
+      "Úložný priestor prístupný cez dvierka",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
+      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -1926,45 +1641,20 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/standard-150x50x80-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-04.webp",
+          "/img/products/standard-100x40x90-black-matt-02.webp",
+          "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          1
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "150 × 50 cm"
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
+        "illuIdx": [
+          0,
         ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
-        ]
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "antracit",
@@ -1973,27 +1663,20 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-02.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
+          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-3d-01.webp",
-            "/img/products/led/led-antracit-zlta-3d-02.webp",
-            "/img/products/led/led-antracit-zlta-3d-03.webp",
-            "/img/products/led/led-antracit-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-3d-01.webp",
-            "/img/products/led/led-antracit-modra-3d-02.webp",
-            "/img/products/led/led-antracit-modra-3d-03.webp",
-            "/img/products/led/led-antracit-modra-3d-04.webp"
-          ]
-        }
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "choco-vintage-oak",
@@ -2003,12 +1686,16 @@ export const PRODUCTS: Product[] = [
         ],
         "images": [
           "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-11.webp",
+          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
           "/img/products/choco-vintage-oak-04.webp"
-        ]
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
       },
       {
         "id": "dub-spanielsky",
@@ -2017,87 +1704,21 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
           "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        }
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-cool-white-01.webp",
-          "/img/products/standard-100x40x80-cool-white-02.webp",
-          "/img/products/standard-100x40x80-cool-white-03.webp",
-          "/img/products/standard-100x40x80-cool-white-04.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
-        "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
-        ],
-        "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-14.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
+        "illuIdx": [
+          0,
         ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer"
       }
     ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
+    "cover": "/img/products/standard-200x60x60-dub-sonoma-01.webp",
     "priceLed": "410 €"
   },
   {
@@ -2113,16 +1734,34 @@ export const PRODUCTS: Product[] = [
     "aquarium": "200 × 50 cm (pôdorys)",
     "vol": "~500 l",
     "price": "420 €",
-    "desc": "Dvojmetrový formát pre veľkoobjemové nádrže okolo 600 litrov. Nízka výška stabilizuje ťažisko a uľahčuje prístup zhora.",
+    "desc": "Skrinka s oceľovým rámom, bočnicami a dvierkami v rozmere 200 × 50 × 70 cm. Má nastaviteľné nožičky a priestor pod nádržou prístupný cez dvierka.",
     "features": [
-      "Bočnice a dvierka z LDTD 18 mm v dekore podľa výberu",
-      "Oceľový rám 30 × 30 × 2 mm — váhu nesie kov, nie plášť",
-      "Precízne lícovanie dvierok",
-      "Matný povrch odolný voči vlhkosti",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Oceľový rám",
+      "Bočnice a dvierka v zvolenom dekore",
+      "Úložný priestor prístupný cez dvierka",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/dub-spanielsky-02.webp",
+          "/img/products/dub-spanielsky-05.webp",
+          "/img/products/dub-spanielsky-13.webp",
+          "/img/products/dub-spanielsky-10.webp",
+          "/img/products/dub-spanielsky-06.webp",
+          "/img/products/dub-spanielsky-14.webp"
+        ],
+        "inherited": true,
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      },
       {
         "id": "black-matt",
         "name": "Black Matt",
@@ -2130,32 +1769,21 @@ export const PRODUCTS: Product[] = [
           "#17181a"
         ],
         "images": [
+          "/img/products/standard-200x60x60-black-matt-04.webp",
           "/img/products/standard-150x50x80-black-matt-02.webp",
           "/img/products/standard-100x40x90-black-matt-02.webp",
           "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-black-matt-zlta-3d-01.webp",
-            "/img/products/led/led-black-matt-zlta-3d-02.webp",
-            "/img/products/led/led-black-matt-zlta-3d-03.webp",
-            "/img/products/led/led-black-matt-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-black-matt-modra-3d-01.webp",
-            "/img/products/led/led-black-matt-modra-3d-02.webp",
-            "/img/products/led/led-black-matt-modra-3d-03.webp",
-            "/img/products/led/led-black-matt-modra-3d-04.webp"
-          ]
-        },
-        "illuIdx": [
-          0,
-          3
+          "/img/products/standard-150x50x80-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-03.webp",
+          "/img/products/standard-80x40x90-black-matt-01.webp",
+          "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "antracit",
@@ -2164,28 +1792,20 @@ export const PRODUCTS: Product[] = [
           "#40454a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-01.webp"
+          "/img/products/standard-200x60x60-antracit-05.webp",
+          "/img/products/standard-200x60x60-antracit-02.webp",
+          "/img/products/standard-200x60x60-antracit-01.webp",
+          "/img/products/standard-80x40x90-antracit-01.webp",
+          "/img/products/standard-200x60x60-antracit-06.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-antracit-zlta-3d-01.webp",
-            "/img/products/led/led-antracit-zlta-3d-02.webp",
-            "/img/products/led/led-antracit-zlta-3d-03.webp",
-            "/img/products/led/led-antracit-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-antracit-modra-3d-01.webp",
-            "/img/products/led/led-antracit-modra-3d-02.webp",
-            "/img/products/led/led-antracit-modra-3d-03.webp",
-            "/img/products/led/led-antracit-modra-3d-04.webp"
-          ]
-        },
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "dub-sonoma",
@@ -2196,36 +1816,17 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
+          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
           "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp"
+          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
+          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
+        "illuIdx": [
+          0,
         ],
-        "images": [
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-02.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
-            "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
-          ]
-        },
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuFrom": "rozmer",
+        "illuSize": "200 × 60 × 60 cm"
       },
       {
         "id": "choco-vintage-oak",
@@ -2234,14 +1835,81 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-02.webp",
           "/img/products/choco-vintage-oak-10.webp",
           "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp"
+          "/img/products/choco-vintage-oak-02.webp",
+          "/img/products/choco-vintage-oak-07.webp",
+          "/img/products/choco-vintage-oak-04.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuIdx": [
+          0,
+        ],
+        "illuFrom": "rozmer"
+      }
+    ],
+    "cover": "/img/products/dub-spanielsky-02.webp",
+    "priceLed": "480 €"
+  },
+  {
+    "slug": "basic-100x40x80",
+    "name": "BASIC 100 × 40 × 80",
+    "tier": "basic",
+    "tierLabel": "BASIC",
+    "tierNote": "Oceľový rám + vrchná doska",
+    "dim": "100 × 40 × 80 cm",
+    "w": 100,
+    "d": 40,
+    "h": 80,
+    "aquarium": "100 × 40 cm (pôdorys)",
+    "vol": "~200 l",
+    "price": "235 €",
+    "desc": "Otvorený oceľový rám s vrchnou doskou v rozmere 100 × 40 × 80 cm. Nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
+    "features": [
+      "Otvorený oceľový rám",
+      "Vrchná doska v zvolenom dekore",
+      "Otvorený prístup k priestoru pod nádržou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
+    ],
+    "decors": [
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [
+          "/img/products/basic-100x40x90-03.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/basic-100x40x90-05.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
+      },
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/basic-100x40x90-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
       },
       {
         "id": "cool-white",
@@ -2250,104 +1918,24 @@ export const PRODUCTS: Product[] = [
           "#eef0f0"
         ],
         "images": [
-          "/img/products/standard-100x40x80-cool-white-01.webp",
-          "/img/products/standard-100x40x80-cool-white-02.webp",
-          "/img/products/standard-100x40x80-cool-white-03.webp",
-          "/img/products/standard-100x40x80-cool-white-04.webp"
+          "/img/products/basic-100x40x90-04.webp"
         ],
-        "led": {
-          "zlta": [
-            "/img/products/led/led-cool-white-zlta-3d-01.webp",
-            "/img/products/led/led-cool-white-zlta-3d-02.webp",
-            "/img/products/led/led-cool-white-zlta-3d-03.webp",
-            "/img/products/led/led-cool-white-zlta-3d-04.webp"
-          ],
-          "modra": [
-            "/img/products/led/led-cool-white-modra-3d-01.webp",
-            "/img/products/led/led-cool-white-modra-3d-02.webp",
-            "/img/products/led/led-cool-white-modra-3d-03.webp",
-            "/img/products/led/led-cool-white-modra-3d-04.webp"
-          ]
-        },
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
       },
       {
-        "id": "black-matt-orech",
-        "name": "Black Matt / Orech",
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
         "swatch": [
-          "#17181a",
-          "/img/products/swatch-orech.webp"
+          "/img/products/swatch-dub-sonoma.webp"
         ],
         "images": [
-          "/img/products/standard-100x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-100x40x80-black-matt-orech-04.webp"
+          "/img/products/basic-100x40x90-01.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
-      }
-    ],
-    "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
-    "priceLed": "480 €"
-  },
-  {
-    "slug": "basic-100x40x80",
-    "name": "BASIC 100 × 40 × 80",
-    "tier": "basic",
-    "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
-    "dim": "100 × 40 × 80 cm",
-    "w": 100,
-    "d": 40,
-    "h": 80,
-    "aquarium": "100 × 40 cm (pôdorys)",
-    "vol": "~200 l",
-    "price": "235 €",
-    "desc": "Metrový rám s vrchnou doskou v dekore. Čistý industriálny základ, ktorý nechá vyniknúť akvárium.",
-    "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
-    ],
-    "decors": [
-      {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/basic-100x40x90-01.webp",
-          "/img/products/basic-100x40x90-02.webp",
-          "/img/products/basic-100x40x90-05.webp",
-          "/img/products/basic-100x40x90-04.webp",
-          "/img/products/basic-100x40x90-06.webp",
-          "/img/products/basic-100x40x90-03.webp",
-          "/img/products/basic-100x40x90-07.webp"
-        ]
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
       },
       {
         "id": "choco-vintage-oak",
@@ -2356,65 +1944,21 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-12.webp",
-          "/img/products/choco-vintage-oak-06.webp",
-          "/img/products/choco-vintage-oak-05.webp",
-          "/img/products/choco-vintage-oak-03.webp",
-          "/img/products/choco-vintage-oak-09.webp",
-          "/img/products/choco-vintage-oak-08.webp",
-          "/img/products/choco-vintage-oak-01.webp",
-          "/img/products/choco-vintage-oak-04.webp",
-          "/img/products/choco-vintage-oak-13.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
+          "/img/products/basic-100x40x90-02.webp"
         ],
-        "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-07.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-11.webp",
-          "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-08.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-07.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp",
-          "/img/products/dub-spanielsky-black-matt-10.webp",
-          "/img/products/dub-spanielsky-black-matt-01.webp",
-          "/img/products/dub-spanielsky-black-matt-12.webp",
-          "/img/products/dub-spanielsky-black-matt-13.webp",
-          "/img/products/dub-spanielsky-black-matt-02.webp"
-        ]
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "100 × 40 × 90 cm"
       }
     ],
-    "cover": "/img/products/basic-100x40x90-01.webp"
+    "cover": "/img/products/basic-100x40x90-03.webp"
   },
   {
     "slug": "basic-120x40x80",
     "name": "BASIC 120 × 40 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
+    "tierNote": "Oceľový rám + vrchná doska",
     "dim": "120 × 40 × 80 cm",
     "w": 120,
     "d": 40,
@@ -2422,47 +1966,65 @@ export const PRODUCTS: Product[] = [
     "aquarium": "120 × 40 cm (pôdorys)",
     "vol": "~240 l",
     "price": "260 €",
-    "desc": "Vysoký rám pre 120 cm nádrže — pohodlné sledovanie postojačky a veľkorysý priestor pod akváriom.",
+    "desc": "Otvorený oceľový rám s vrchnou doskou v rozmere 120 × 40 × 80 cm. Nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
     "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Otvorený oceľový rám",
+      "Vrchná doska v zvolenom dekore",
+      "Otvorený prístup k priestoru pod nádržou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
       {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
+        "id": "black-matt",
+        "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-01.webp",
-          "/img/products/basic-150x50x80-02.webp",
-          "/img/products/basic-150x50x80-03.webp",
-          "/img/products/basic-150x50x80-04.webp",
-          "/img/products/basic-150x50x80-05.webp",
-          "/img/products/basic-150x50x80-06.webp"
+          "/img/products/basic-150x50x80-01.webp"
         ],
         "inherited": true,
         "illuFrom": "rozmer",
-        "illuSize": "150 × 50 cm"
+        "illuSize": "150 × 50 × 80 cm"
       },
       {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
+        "id": "antracit",
+        "name": "Antracit",
         "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
+          "#40454a"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ]
+          "/img/products/basic-150x50x80-04.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-05.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-03.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       },
       {
         "id": "dub-spanielsky",
@@ -2471,29 +2033,24 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/basic-150x50x80-02.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
+        "swatch": [
+          "/img/products/swatch-choco-vintage-oak.webp"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       }
     ],
     "cover": "/img/products/basic-150x50x80-01.webp"
@@ -2503,7 +2060,7 @@ export const PRODUCTS: Product[] = [
     "name": "BASIC 150 × 50 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
+    "tierNote": "Oceľový rám + vrchná doska",
     "dim": "150 × 50 × 80 cm",
     "w": 150,
     "d": 50,
@@ -2511,43 +2068,52 @@ export const PRODUCTS: Product[] = [
     "aquarium": "150 × 50 cm (pôdorys)",
     "vol": "~375 l",
     "price": "270 €",
-    "desc": "Poldruhametrový rám pre ťažké nádrže. Otvorená konštrukcia rozloží váhu a sprístupní techniku zo všetkých strán.",
+    "desc": "Otvorený oceľový rám s vrchnou doskou v rozmere 150 × 50 × 80 cm. Nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
     "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Otvorený oceľový rám",
+      "Vrchná doska v zvolenom dekore",
+      "Otvorený prístup k priestoru pod nádržou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
       {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-03.webp"
+        ]
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-02.webp",
-          "/img/products/basic-150x50x80-01.webp",
-          "/img/products/basic-150x50x80-06.webp",
-          "/img/products/basic-150x50x80-03.webp",
-          "/img/products/basic-150x50x80-04.webp",
-          "/img/products/basic-150x50x80-05.webp"
+          "/img/products/basic-150x50x80-01.webp"
         ]
       },
       {
-        "id": "choco-vintage-oak",
-        "name": "Choco Vintage Oak",
+        "id": "antracit",
+        "name": "Antracit",
         "swatch": [
-          "/img/products/swatch-choco-vintage-oak.webp"
+          "#40454a"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
+          "/img/products/basic-150x50x80-04.webp"
+        ]
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-05.webp"
         ]
       },
       {
@@ -2557,39 +2123,28 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
+          "/img/products/basic-150x50x80-02.webp"
         ]
       },
       {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
+        "id": "choco-vintage-oak",
+        "name": "Choco Vintage Oak",
         "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
+          "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+          "/img/products/basic-150x50x80-06.webp"
+        ]
       }
     ],
-    "cover": "/img/products/basic-150x50x80-02.webp"
+    "cover": "/img/products/basic-150x50x80-03.webp"
   },
   {
     "slug": "basic-160x60x80",
     "name": "BASIC 160 × 60 × 80",
     "tier": "basic",
     "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
+    "tierNote": "Oceľový rám + vrchná doska",
     "dim": "160 × 60 × 80 cm",
     "w": 160,
     "d": 60,
@@ -2597,33 +2152,14 @@ export const PRODUCTS: Product[] = [
     "aquarium": "160 × 60 cm (pôdorys)",
     "vol": "~480 l",
     "price": "280 €",
-    "desc": "Dlhý úzky rám pre 160 cm nádrže. Minimalistický základ, maximálna stabilita.",
+    "desc": "Otvorený oceľový rám s vrchnou doskou v rozmere 160 × 60 × 80 cm. Nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
     "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Otvorený oceľový rám",
+      "Vrchná doska v zvolenom dekore",
+      "Otvorený prístup k priestoru pod nádržou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
-      {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
-        "swatch": [
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/basic-150x50x80-02.webp",
-          "/img/products/basic-150x50x80-01.webp",
-          "/img/products/basic-150x50x80-06.webp",
-          "/img/products/basic-150x50x80-03.webp",
-          "/img/products/basic-150x50x80-04.webp",
-          "/img/products/basic-150x50x80-05.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "rozmer",
-        "illuSize": "150 × 50 cm"
-      },
       {
         "id": "choco-vintage-oak",
         "name": "Choco Vintage Oak",
@@ -2631,13 +2167,63 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-13.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ]
+          "/img/products/basic-150x50x80-06.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
+        "swatch": [
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-01.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-04.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-05.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-03.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       },
       {
         "id": "dub-spanielsky",
@@ -2646,39 +2232,21 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-06.webp"
-        ]
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
+          "/img/products/basic-150x50x80-02.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       }
     ],
-    "cover": "/img/products/basic-150x50x80-02.webp"
+    "cover": "/img/products/basic-150x50x80-06.webp"
   },
   {
     "slug": "basic-200x50x70",
     "name": "BASIC 200 × 50 × 70",
     "tier": "basic",
     "tierLabel": "BASIC",
-    "tierNote": "Kovový rám + vrchná doska",
+    "tierNote": "Oceľový rám + vrchná doska",
     "dim": "200 × 50 × 70 cm",
     "w": 200,
     "d": 50,
@@ -2686,30 +2254,65 @@ export const PRODUCTS: Product[] = [
     "aquarium": "200 × 50 cm (pôdorys)",
     "vol": "~500 l",
     "price": "320 €",
-    "desc": "Dvojmetrový rám pre najväčšie objemy — nízke ťažisko a masívna konštrukcia pre stovky kilogramov.",
+    "desc": "Otvorený oceľový rám s vrchnou doskou v rozmere 200 × 50 × 70 cm. Nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
     "features": [
-      "Priznaný oceľový rám 30 × 30 × 2 mm v čiernom matnom laku",
-      "Vrchná doska LDTD 18 mm v dekore podľa výberu",
-      "Otvorená konštrukcia — plný prístup k technike",
-      "Odolné kolieska pre jednoduchú manipuláciu",
-      "Zákazková výroba s ručnou kontrolou"
+      "Otvorený oceľový rám",
+      "Vrchná doska v zvolenom dekore",
+      "Otvorený prístup k priestoru pod nádržou",
+      "Nastaviteľné nožičky na vyrovnanie skrinky"
     ],
     "decors": [
       {
-        "id": "ram",
-        "name": "Čierny rám + doska v dekore",
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-04.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "black-matt",
+        "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/basic-150x50x80-01.webp",
-          "/img/products/basic-150x50x80-02.webp",
-          "/img/products/basic-150x50x80-03.webp",
-          "/img/products/basic-150x50x80-04.webp"
+          "/img/products/basic-150x50x80-01.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "cool-white",
+        "name": "Cool White",
+        "swatch": [
+          "#eef0f0"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-05.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [
+          "/img/products/basic-150x50x80-03.webp"
+        ],
+        "inherited": true,
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       },
       {
         "id": "dub-spanielsky",
@@ -2718,14 +2321,11 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp"
+          "/img/products/basic-150x50x80-02.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       },
       {
         "id": "choco-vintage-oak",
@@ -2734,34 +2334,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-07.webp"
+          "/img/products/basic-150x50x80-06.webp"
         ],
         "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "dub-spanielsky-black-matt",
-        "name": "Dub španielsky / Čierna matná",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp",
-          "#121316"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-black-matt-04.webp",
-          "/img/products/dub-spanielsky-black-matt-05.webp",
-          "/img/products/dub-spanielsky-black-matt-06.webp",
-          "/img/products/dub-spanielsky-black-matt-03.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 2
+        "illuFrom": "rozmer",
+        "illuSize": "150 × 50 × 80 cm"
       }
     ],
-    "cover": "/img/products/basic-150x50x80-01.webp"
+    "cover": "/img/products/basic-150x50x80-04.webp"
   }
   ];
 

@@ -120,8 +120,7 @@ export async function POST(req: Request) {
         html: `
           <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
             <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
-            <p>ďakujeme za správu — dorazila nám a ozveme sa spravidla do 24 hodín
-            v pracovný deň.</p>
+            <p>ďakujeme za správu — dorazila nám a ozveme sa vám v pracovný deň.</p>
             ${sprava ? `<p style="color:#666">Čo ste nám napísali:</p><p style="white-space:pre-wrap;padding-left:14px;border-left:2px solid #ddd;margin:0 0 16px">${esc(sprava)}</p>` : ""}
             <p style="color:#666;font-size:13px">AQUAPRIME · akváriá a skrinky na mieru<br/>aquaprime.sk</p>
           </div>`,

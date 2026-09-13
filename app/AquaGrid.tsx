@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { AQUARIUMS, aquariumPriceValue } from "./aquariums";
 import AquariumCard from "./AquariumCard";
+import { odkaz, type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 import {
   FilterLista,
   Segmented,
@@ -14,25 +16,27 @@ import {
 
 const LENGTHS = [...new Set(AQUARIUMS.map((a) => a.w))].sort((x, y) => x - y);
 
+type Band = Pasmo | "all";
+
+type Radenie = "odporucane" | "objem-hore" | "objem-dole" | "cena-hore";
 /** Objemové pásma — pre zákazníka zrozumiteľnejšie než holé litre. */
-const BANDS = [
-  { id: "xs", label: "do 150 l", min: 0, max: 150 },
-  { id: "s", label: "150–300 l", min: 151, max: 300 },
-  { id: "m", label: "300–500 l", min: 301, max: 500 },
-  { id: "l", label: "500 l +", min: 501, max: Infinity },
-] as const;
+type Pasmo = "xs" | "s" | "m" | "l";
+const HRANICE: Record<Pasmo, [number, number]> = {
+  xs: [0, 150],
+  s: [151, 300],
+  m: [301, 500],
+  l: [501, Infinity],
+};
 
-type Band = (typeof BANDS)[number]["id"] | "all";
-
-const RADENIA = [
-  { id: "odporucane", label: "Odporúčané" },
-  { id: "objem-hore", label: "Od najmenšieho" },
-  { id: "objem-dole", label: "Od najväčšieho" },
-  { id: "cena-hore", label: "Od najlacnejšieho" },
-] as const;
-type Radenie = (typeof RADENIA)[number]["id"];
-
-export default function AquaGrid() {
+export default function AquaGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const t = SLOVNIKY[jazyk].akvaria;
+  const BANDS = t.pasma.map(([id, label]) => ({
+    id: id as Pasmo,
+    label,
+    min: HRANICE[id as Pasmo][0],
+    max: HRANICE[id as Pasmo][1],
+  }));
+  const RADENIA = t.radenia.map(([id, label]) => ({ id: id as Radenie, label }));
   const [band, setBand] = useState<Band>("all");
   const [lens, setLens] = useState<Set<number>>(new Set());
   const [radenie, setRadenie] = useState<Radenie>("odporucane");
@@ -91,18 +95,18 @@ export default function AquaGrid() {
 
   const dlzkaHodnota =
     lens.size === 0
-      ? "Všetky"
+      ? t.filterVsetky
       : [...lens].sort((a, b) => a - b).map((w) => `${w}`).join(", ") + " cm";
 
   return (
     <>
-      <FilterLista>
+      <FilterLista ariaLabel={SLOVNIKY[jazyk].spolocne.filtreAria}>
         <Segmented
-          ariaLabel="Objem akvária"
+          ariaLabel={t.filterObjem}
           value={band}
           onChange={setBand}
           volby={[
-            { id: "all" as const, label: "Všetky" },
+            { id: "all" as const, label: t.filterVsetky },
             ...BANDS.map((b) => ({
               id: b.id,
               label: b.label,
@@ -110,7 +114,7 @@ export default function AquaGrid() {
             })),
           ]}
         />
-        <Filter label="Dĺžka" hodnota={dlzkaHodnota} aktivny={lens.size > 0}>
+        <Filter label={t.filterDlzka} hodnota={dlzkaHodnota} aktivny={lens.size > 0}>
           {LENGTHS.map((w) => (
             <FilterVolba
               key={w}
@@ -122,7 +126,7 @@ export default function AquaGrid() {
           ))}
         </Filter>
         <Filter
-          label="Zoradiť"
+          label={t.filterZoradit}
           hodnota={RADENIA.find((r) => r.id === radenie)!.label}
           aktivny={radenie !== "odporucane"}
         >
@@ -136,10 +140,16 @@ export default function AquaGrid() {
             />
           ))}
         </Filter>
-        <PocetVysledkov pocet={items.length} spolu={AQUARIUMS.length} slovo="rozmerov" />
+        <PocetVysledkov
+          pocet={items.length}
+          spolu={AQUARIUMS.length}
+          slovo={t.rozmerov}
+          zo={SLOVNIKY[jazyk].spolocne.zo}
+        />
       </FilterLista>
 
       <FilterChipy
+        zrusitVsetko={SLOVNIKY[jazyk].katalog.zrusitVsetko}
         chipy={chipy}
         onZrusVsetko={() => {
           setBand("all");
@@ -150,14 +160,13 @@ export default function AquaGrid() {
 
       <div className="product-grid" key={`${band}-${[...lens].join("_")}-${radenie}`}>
         {items.map((a, i) => (
-          <AquariumCard key={a.slug} a={a} entered delay={(i % 3) * 70} />
+          <AquariumCard key={a.slug} a={a} entered delay={(i % 3) * 70} jazyk={jazyk} />
         ))}
       </div>
       {items.length === 0 && (
         <p className="catalog__empty">
-          Tejto kombinácii objem × dĺžka nezodpovedá žiadna nádrž zo štandardnej
-          ponuky — vyrábame však na mieru, tak nám{" "}
-          <a href="/dopyt">pošlite svoj rozmer</a>.
+          {t.ziadneVysledky}{" "}
+          <a href={odkaz("/dopyt", jazyk)}>{t.ziadneVysledkyOdkaz}</a>.
         </p>
       )}
     </>

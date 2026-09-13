@@ -59,8 +59,8 @@
 }
 .kontakt__ch:hover {
   transform: translateY(-3px);
-  border-color: rgba(71, 199, 232, 0.4);
-  background: rgba(71, 199, 232, 0.04);
+  border-color: rgba(0, 154, 192, 0.4);
+  background: rgba(0, 154, 192, 0.04);
 }
 .kontakt__ch-icon {
   width: 34px;
@@ -78,7 +78,7 @@
 }
 .kontakt__ch-tag {
   font-size: 0.5625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.18em;
   color: var(--faint);
 }
@@ -159,7 +159,7 @@
 .kontakt__meta span {
   display: block;
   font-size: 0.5625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--faint);
@@ -279,7 +279,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--cyan), #7ad9f2);
+  background: linear-gradient(90deg, var(--cyan), #3fb8d8);
   transition: width var(--t-slow) var(--ease);
 }
 .kf2__restored {
@@ -347,11 +347,11 @@
   color: var(--faint);
 }
 .kf2__tema:hover {
-  border-color: rgba(71, 199, 232, 0.5);
+  border-color: rgba(0, 154, 192, 0.5);
 }
 .kf2__tema.is-on {
   border-color: var(--cyan);
-  background: rgba(71, 199, 232, 0.08);
+  background: rgba(0, 154, 192, 0.08);
 }
 .kf2__tema.is-on strong {
   color: var(--ink);
@@ -361,7 +361,7 @@
 .kf2__input {
   width: 100%;
   padding: 13px 15px;
-  background: rgba(6, 8, 9, 0.7);
+  background: rgba(12, 16, 15, 0.7);
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
   color: var(--ink);
@@ -370,12 +370,12 @@
   transition: border-color var(--t-base), background var(--t-base);
 }
 .kf2__input::placeholder {
-  color: rgba(226, 229, 231, 0.32);
+  color: rgba(230, 233, 229, 0.32);
 }
 .kf2__input:focus {
   outline: none;
   border-color: var(--cyan);
-  background: rgba(6, 8, 9, 0.95);
+  background: rgba(12, 16, 15, 0.95);
 }
 .kf2__input.is-warn {
   border-color: rgba(232, 160, 71, 0.6);
@@ -398,7 +398,7 @@
 }
 .kf2__label > span {
   font-size: 0.625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
@@ -442,7 +442,7 @@
   margin: 0;
   padding: 5px;
   list-style: none;
-  background: #0a0c0d;
+  background: #101413;
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
   box-shadow: 0 24px 48px -22px rgba(0, 0, 0, 0.9);
@@ -461,7 +461,7 @@
   transition: background var(--t-fast);
 }
 .kf2__opt.is-hi {
-  background: rgba(71, 199, 232, 0.1);
+  background: rgba(0, 154, 192, 0.1);
 }
 .kf2__opt-dim {
   font-size: 0.8125rem;
@@ -479,9 +479,9 @@
   flex-direction: column;
   gap: 13px;
   padding: var(--k-pad);
-  border: 1px solid rgba(71, 199, 232, 0.28);
+  border: 1px solid rgba(0, 154, 192, 0.28);
   border-radius: var(--r-sm);
-  background: rgba(71, 199, 232, 0.05);
+  background: rgba(0, 154, 192, 0.05);
   animation: kf2In 0.35s var(--ease);
 }
 @keyframes kf2In {
@@ -498,7 +498,7 @@
 }
 .kf2__derived-tag {
   font-size: 0.5625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cyan);
@@ -516,7 +516,7 @@
 }
 .kf2__facts dt {
   font-size: 0.5625rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--faint);
@@ -538,7 +538,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--cyan), #7ad9f2);
+  background: linear-gradient(90deg, var(--cyan), #3fb8d8);
   transition: width var(--t-slow) var(--ease);
 }
 .kf2__derived-note {
@@ -583,7 +583,7 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 1px solid rgba(71, 199, 232, 0.5);
+  border: 1px solid rgba(0, 154, 192, 0.5);
   color: var(--cyan);
   font-size: 1.3rem;
 }
@@ -690,7 +690,7 @@
   right: -6%;
   width: 55vw;
   height: 55vw;
-  background: radial-gradient(circle, rgba(71, 199, 232, 0.07), transparent 65%);
+  background: radial-gradient(circle, rgba(0, 154, 192, 0.07), transparent 65%);
   animation: kvodaSvetloA 46s ease-in-out infinite alternate;
 }
 .kvoda__svetlo--b {
@@ -698,7 +698,7 @@
   left: -12%;
   width: 44vw;
   height: 44vw;
-  background: radial-gradient(circle, rgba(32, 130, 124, 0.06), transparent 65%);
+  background: radial-gradient(circle, rgba(31, 127, 153, 0.06), transparent 65%);
   animation: kvodaSvetloB 58s ease-in-out infinite alternate;
 }
 @keyframes kvodaSvetloA {
@@ -759,8 +759,8 @@
   width: calc(3px + var(--b) * 1px);
   height: calc(3px + var(--b) * 1px);
   border-radius: 50%;
-  border: 1px solid rgba(71, 199, 232, 0.35);
-  background: rgba(71, 199, 232, 0.08);
+  border: 1px solid rgba(0, 154, 192, 0.35);
+  background: rgba(0, 154, 192, 0.08);
   animation: kvodaBublina calc(14s + var(--b) * 3s) linear calc(var(--b) * -5s) infinite;
 }
 @keyframes kvodaBublina {

@@ -24,9 +24,15 @@ import {
 
 /* ---------- lišta ---------- */
 
-export function FilterLista({ children }: { children: ReactNode }) {
+export function FilterLista({
+  children,
+  ariaLabel = "Filtre katalógu",
+}: {
+  children: ReactNode;
+  ariaLabel?: string;
+}) {
   return (
-    <div className="fbar" role="group" aria-label="Filtre katalógu">
+    <div className="fbar" role="group" aria-label={ariaLabel}>
       {children}
     </div>
   );
@@ -222,9 +228,11 @@ export function FilterVolba({
 export function FilterChipy({
   chipy,
   onZrusVsetko,
+  zrusitVsetko = "Zrušiť všetko",
 }: {
   chipy: { id: string; label: string; onRemove: () => void }[];
   onZrusVsetko: () => void;
+  zrusitVsetko?: string;
 }) {
   if (chipy.length === 0) return null;
   return (
@@ -237,7 +245,7 @@ export function FilterChipy({
       ))}
       {chipy.length > 1 && (
         <button type="button" className="fchip fchip--clear" onClick={onZrusVsetko}>
-          Zrušiť všetko
+          {zrusitVsetko}
         </button>
       )}
     </div>
@@ -246,10 +254,20 @@ export function FilterChipy({
 
 /* ---------- počítadlo ---------- */
 
-export function PocetVysledkov({ pocet, spolu, slovo }: { pocet: number; spolu: number; slovo: string }) {
+export function PocetVysledkov({
+  pocet,
+  spolu,
+  slovo,
+  zo = "z",
+}: {
+  pocet: number;
+  spolu: number;
+  slovo: string;
+  zo?: string;
+}) {
   return (
     <span className="fbar__count" key={pocet} aria-live="polite">
-      <b>{pocet === spolu ? spolu : `${pocet} z ${spolu}`}</b> {slovo}
+      <b>{pocet === spolu ? spolu : `${pocet} ${zo} ${spolu}`}</b> {slovo}
     </span>
   );
 }

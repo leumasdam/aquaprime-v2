@@ -1,8 +1,11 @@
 "use client";
 
 import { useId } from "react";
+import { dvierkaPreSirku } from "./cabinet-construction";
 import type { Tier } from "./products";
 import type { CfgDecor } from "./configurator-logic";
+import { type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 export type PreviewTank = { w: number; d: number; h: number; liters: number } | null;
 
@@ -27,6 +30,7 @@ export default function CabinetPreview({
   feet,
   led,
   tank,
+  jazyk = "sk",
 }: {
   w: number;
   h: number;
@@ -36,7 +40,9 @@ export default function CabinetPreview({
   feet: "steel" | "wheels";
   led: boolean;
   tank: PreviewTank;
+  jazyk?: Jazyk;
 }) {
+  const txt = SLOVNIKY[jazyk].spolocne;
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const VBW = 480;
   const VBH = 360;
@@ -70,7 +76,7 @@ export default function CabinetPreview({
   const plateOver = Math.max(2, 1.2 * s);
 
   // dvierka: počet podľa šírky (zodpovedá katalógu)
-  const doorCount = w <= 120 ? 2 : w <= 160 ? 3 : 4;
+  const doorCount = dvierkaPreSirku(w);
   const frame = tier === "standard" ? Math.max(3, 2.4 * s) : 0;
   const gap = Math.max(1.6, 0.7 * s);
   const areaX = x0 + frame;
@@ -87,10 +93,11 @@ export default function CabinetPreview({
   return (
     <svg
       className="cabsvg"
+      data-panels={doorCount}
       viewBox={`0 0 ${VBW} ${VBH}`}
       role="img"
-      aria-label={`Náhľad skrinky ${w} × ${h} × ${d} cm, ${decor.name}${
-        tank ? `, s akváriom ${tank.w} × ${tank.d} × ${tank.h} cm` : ""
+      aria-label={`${txt.nahladSkrinky} ${w} × ${h} × ${d} cm, ${decor.name}${
+        tank ? `, ${txt.sAkvariom} ${tank.w} × ${tank.d} × ${tank.h} cm` : ""
       }`}
     >
       <defs>
@@ -163,6 +170,7 @@ export default function CabinetPreview({
           s={s}
           bodyFill={bodyFill}
           steel={STEEL}
+          panels={doorCount}
         />
       ) : (
         <>
@@ -186,6 +194,7 @@ export default function CabinetPreview({
           {Array.from({ length: doorCount }, (_, i) => (
             <rect
               key={i}
+              data-door={i + 1}
               x={areaX + i * (doorW + gap)}
               y={areaY}
               width={doorW}
@@ -312,7 +321,9 @@ function BasicFrame({
   s,
   bodyFill,
   steel,
+  panels,
 }: {
+  panels: number;
   x0: number;
   yTop: number;
   yBase: number;
@@ -326,7 +337,7 @@ function BasicFrame({
   steel: string;
 }) {
   const leg = Math.max(3.5, 3 * s); // profil 30 × 30 mm
-  const legs = [x0, x0 + W - leg];
+  const legs = Array.from({ length: panels + 1 }, (_, i) => x0 + i * (W - leg) / panels);
   return (
     <>
       {/* zadná noha v hĺbke */}

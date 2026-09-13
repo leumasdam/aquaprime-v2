@@ -8,46 +8,46 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const FAKTY = [
-  {
-    label: "Oceľová konštrukcia",
-    hodnota: "30 × 30",
-    jednotka: "mm",
-    pozn: "Zváraný uzavretý profil, váhu nesie kov.",
-    ikona: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <rect x="5" y="5" width="14" height="14" rx="1" />
-        <rect x="8.2" y="8.2" width="7.6" height="7.6" rx="0.5" />
-      </svg>
-    ),
-  },
-  {
-    label: "Prémiové povrchy",
-    hodnota: "7",
-    jednotka: "dekorov",
-    pozn: "LDTD 18 mm, od matnej čiernej po dub.",
-    ikona: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <path d="M4.5 9.5 12 5l7.5 4.5L12 14 4.5 9.5Z" strokeLinejoin="round" />
-        <path d="m4.5 14 7.5 4.5L19.5 14" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    label: "Testovaná nosnosť",
-    hodnota: "770",
-    jednotka: "kg",
-    pozn: "S rezervou na plnú nádrž aj s kameňmi.",
-    ikona: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <path d="M12 3 5 5.8v5.4c0 4.3 3 8.1 7 9.3 4-1.2 7-5 7-9.3V5.8L12 3Z" strokeLinejoin="round" />
-        <path d="m9 11.6 2.1 2.1L15 9.8" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
+
+/* Ikony v poradí položiek zo slovníka: rám, vyhotovenia, nožičky. */
+const IKONY = [
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" key="ram">
+      <rect x="5" y="5" width="14" height="14" rx="1" />
+      <rect x="8.2" y="8.2" width="7.6" height="7.6" rx="0.5" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" key="vyhotovenia">
+      <rect x="3.5" y="6" width="17" height="12" rx="1" />
+      <path d="M9.2 6v12M14.8 6v12" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" key="nozicky">
+      <path d="M4 8.5h16v4H4z" />
+      <path d="M6.5 12.5v5M17.5 12.5v5" strokeLinecap="round" />
+      <path d="M4.8 18.5h3.4M15.8 18.5h3.4" strokeLinecap="round" />
+    </svg>
+  ),
 ];
 
-export default function Fakty() {
+export default function Fakty({
+  polozky,
+  aria,
+  prepnut,
+}: {
+  polozky: [string, string, string, string][];
+  aria: string;
+  prepnut: string;
+}) {
+  const FAKTY = polozky.map(([label, hodnota, jednotka, pozn], i) => ({
+    label,
+    hodnota,
+    jednotka,
+    pozn,
+    ikona: IKONY[i],
+  }));
   const drahá = useRef<HTMLDivElement>(null);
   const [aktivny, setAktivny] = useState(0);
 
@@ -75,7 +75,7 @@ export default function Fakty() {
   };
 
   return (
-    <section className="fakty" aria-label="Technické parametre">
+    <section className="fakty" aria-label={aria}>
       <div className="wrap">
         <div className="fakty__pas" ref={drahá}>
           {FAKTY.map((f, i) => (
@@ -93,7 +93,7 @@ export default function Fakty() {
           ))}
         </div>
 
-        <div className="fakty__bodky" role="tablist" aria-label="Prepnúť parameter">
+        <div className="fakty__bodky" role="tablist" aria-label={prepnut}>
           {FAKTY.map((f, i) => (
             <button
               key={f.label}

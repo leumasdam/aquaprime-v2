@@ -1,4 +1,4 @@
-// Katalóg akvárií AQUAPRIME — nádrže na mieru z čírého float skla.
+// Katalóg akvárií AQUAPRIME — nádrže na mieru z číreho float skla.
 //
 // Rozmery, hrúbky skla a ceny sú generované z klientovho cenníka do
 // `aquarium-sizes.ts` (na web idú len rozmery, ktoré v cenníku majú predajnú
@@ -172,14 +172,30 @@ const CLIENT_TEXTS: Record<string, ClientText> = {
 
 /** Spoločný popis výroby pre rozmery, ku ktorým klient nedodal vlastný text. */
 export const GENERIC_LEAD =
-  "Akvárium vyrábame na zákazku z kvalitného čírého float skla, ktoré zabezpečuje vysokú priehľadnosť a verné podanie farieb. Všetky spoje sú lepené profesionálnym akvaristickým silikónom, čím vzniká pevná konštrukcia pripravená na dlhoročnú prevádzku.";
+  "Akvárium vyrábame na zákazku z kvalitného číreho float skla, ktoré zabezpečuje vysokú priehľadnosť a verné podanie farieb. Všetky spoje sú lepené profesionálnym akvaristickým silikónom, čím vzniká pevná konštrukcia pripravená na dlhoročnú prevádzku.";
 
 export const GENERIC_FEATURES = [
-  "Výroba na mieru s dôrazom na kvalitu",
-  "Kvalitné číre float sklo s vysokou priehľadnosťou",
-  "Precízne ručné spracovanie každého kusu",
-  "Profesionálne lepenie odolným akvaristickým silikónom",
-  "Hrúbka skla dimenzovaná na objem nádrže",
+  "Číre float sklo",
+  "Lepené akvaristickým silikónom, čierna škára",
+  "Hrúbka skla podľa vybraného variantu",
+  "Výstuhy podľa modelu",
+  "Výroba na zákazku",
+];
+
+/**
+ * Počet stredových výstuh podľa pravidla výrobcu (Jozef Mroček, 11. 9. 2026):
+ * rozhoduje dĺžka nádrže — od 100 cm jedna stredová výstuha, od 200 cm dve.
+ * Pozdĺžne výstuhy má každá nádrž.
+ */
+export function stredoveVystuhy(s: { w: number }): number {
+  if (s.w >= 200) return 2;
+  return s.w >= 100 ? 1 : 0;
+}
+
+const VYSTUHY_TEXT = [
+  "sklenené pozdĺžne výstuhy",
+  "sklenené pozdĺžne výstuhy a jedna stredová",
+  "sklenené pozdĺžne výstuhy a dve stredové",
 ];
 
 export const AQUARIUMS: Aquarium[] = AQUARIUM_SIZES.map((s) => {
@@ -191,6 +207,8 @@ export const AQUARIUMS: Aquarium[] = AQUARIUM_SIZES.map((s) => {
     vol: `${s.liters} l`,
     featured: !!text,
     ...(text ?? {}),
+    // výstuhy vždy z pravidla — klientove staršie texty ich mali nekonzistentne
+    braces: VYSTUHY_TEXT[stredoveVystuhy(s)],
   };
 });
 

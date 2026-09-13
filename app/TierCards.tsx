@@ -6,7 +6,7 @@ import type { Tier } from "./products";
 const CARDS: { id: Tier; name: string; sub: string }[] = [
   { id: "premium", name: "PREMIUM", sub: "Kompletne opláštená" },
   { id: "standard", name: "ŠTANDARD", sub: "Bočnice a dvierka" },
-  { id: "basic", name: "BASIC", sub: "Kovový rám + doska" },
+  { id: "basic", name: "BASIC", sub: "Oceľový rám + doska" },
 ];
 
 const TIER_IDS: Tier[] = ["premium", "standard", "basic"];

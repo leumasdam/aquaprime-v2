@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ROZMER_EVENT } from "./LoadCalc";
+import { odkaz, type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 import { posliDopyt } from "./send-dopyt";
 
-const TYPY = ["Akvárium", "Terárium", "Skrinka", "Kompletná zostava"];
-const STYLY = ["Čierna štruktúra", "Drevo", "Kov", "Minimal"];
 const OWNER_EMAIL = "ahoj@aquaprime.sk";
 
-export default function DopytForm() {
+export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const t = SLOVNIKY[jazyk].dopyt;
+  const TYPY = t.formTypy;
+  const STYLY = t.formStyly;
   const [typ, setTyp] = useState("");
   const [styl, setStyl] = useState<string[]>([]);
   const [rozmer, setRozmer] = useState("");
@@ -17,6 +21,21 @@ export default function DopytForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [delivered, setDelivered] = useState(false);
+  const rozmerRef = useRef<HTMLInputElement>(null);
+
+  // kalkulačka záťaže nižšie na stránke pošle rozmery sem — vyplní pole a
+  // privedie človeka späť k formuláru
+  useEffect(() => {
+    const on = (e: Event) => {
+      setRozmer(String((e as CustomEvent).detail ?? ""));
+      const el = rozmerRef.current;
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => el.focus({ preventScroll: true }), 500);
+    };
+    window.addEventListener(ROZMER_EVENT, on);
+    return () => window.removeEventListener(ROZMER_EVENT, on);
+  }, []);
 
   const toggleStyl = (s: string) =>
     setStyl((arr) => (arr.includes(s) ? arr.filter((x) => x !== s) : [...arr, s]));
@@ -28,7 +47,7 @@ export default function DopytForm() {
     const body = [
       `Typ projektu: ${typ || "—"}`,
       `Rozmery a objem: ${rozmer || "—"}`,
-      `Preferovaný štýl: ${styl.length ? styl.join(", ") : "—"}`,
+      `Preferovaný povrch: ${styl.length ? styl.join(", ") : "—"}`,
       `Meno: ${meno || "—"}`,
       `E-mail: ${email || "—"}`,
       "",
@@ -60,22 +79,22 @@ export default function DopytForm() {
           ✓
         </div>
         <h2 className="dopyt__done-title">
-          {delivered ? "Dopyt odoslaný." : "Dopyt je pripravený."}
+          {delivered ? t.hotovoOdoslany : t.hotovoPripraveny}
         </h2>
         <p className="dopyt__done-body">
           {delivered
-            ? "Máme ho u seba a potvrdenie sme poslali aj na váš e-mail. Ozveme sa spravidla do 24 hodín v pracovný deň."
-            : `Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí odoslať. Ak sa neotvoril, napíšte nám priamo na ${OWNER_EMAIL}.`}
+            ? t.hotovoPrijaty
+            : `${t.hotovoKlient} ${OWNER_EMAIL}.`}
         </p>
       </div>
     );
   }
 
   return (
-    <form className="dopyt" onSubmit={submit}>
+    <form className="dopyt" id="dopyt-form" onSubmit={submit}>
       <fieldset className="dopyt__field">
         <legend className="dopyt__legend">
-          <span className="dopyt__n">01</span> Typ projektu
+          <span className="dopyt__n">01</span> {t.formKrok1}
         </legend>
         <div className="dopyt__chips">
           {TYPY.map((t) => (
@@ -93,12 +112,13 @@ export default function DopytForm() {
 
       <fieldset className="dopyt__field">
         <legend className="dopyt__legend">
-          <span className="dopyt__n">02</span> Rozmery a objem
+          <span className="dopyt__n">02</span> {t.formKrok2}
         </legend>
         <input
+          ref={rozmerRef}
           className="dopyt__input"
           type="text"
-          placeholder="napr. 120 × 50 × 60 cm, ~360 l"
+          placeholder={t.formRozmer}
           value={rozmer}
           onChange={(e) => setRozmer(e.target.value)}
         />
@@ -106,7 +126,7 @@ export default function DopytForm() {
 
       <fieldset className="dopyt__field">
         <legend className="dopyt__legend">
-          <span className="dopyt__n">03</span> Preferovaný štýl
+          <span className="dopyt__n">03</span> {t.formKrok3}
         </legend>
         <div className="dopyt__chips">
           {STYLY.map((s) => (
@@ -124,13 +144,13 @@ export default function DopytForm() {
 
       <fieldset className="dopyt__field">
         <legend className="dopyt__legend">
-          <span className="dopyt__n">04</span> Kontakt
+          <span className="dopyt__n">04</span> {t.formKrok4}
         </legend>
         <div className="dopyt__row">
           <input
             className="dopyt__input"
             type="text"
-            placeholder="Meno"
+            placeholder={t.formMeno}
             value={meno}
             onChange={(e) => setMeno(e.target.value)}
             required
@@ -138,7 +158,7 @@ export default function DopytForm() {
           <input
             className="dopyt__input"
             type="email"
-            placeholder="E-mail"
+            placeholder={t.formEmail}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -146,7 +166,7 @@ export default function DopytForm() {
         </div>
         <textarea
           className="dopyt__input dopyt__textarea"
-          placeholder="Poznámka — priestor, termín, vízia…"
+          placeholder={t.formPoznamka}
           rows={4}
           value={poznamka}
           onChange={(e) => setPoznamka(e.target.value)}
@@ -154,11 +174,11 @@ export default function DopytForm() {
       </fieldset>
 
       <button type="submit" className="btn-cyan dopyt__submit" disabled={sending}>
-        {sending ? "ODOSIELAM…" : "ODOSLAŤ DOPYT"} <span aria-hidden>→</span>
+        {sending ? t.formOdosielam : t.formPoslat} <span aria-hidden>→</span>
       </button>
       <p className="dopyt__note">
-        Odoslaním súhlasíte so spracovaním údajov za účelom prípravy ponuky.
-        Žiadny spam.
+        {t.formPozn1}{" "}
+        <a href={odkaz("/ochrana-osobnych-udajov", jazyk)}>{t.formPoznOdkaz}</a>.
       </p>
     </form>
   );

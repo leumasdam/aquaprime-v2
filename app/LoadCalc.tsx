@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { odkaz, type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 // Orientačný výpočet záťaže akvária: voda (1 kg/l) + sklo (~15 %) + substrát a dekor (~10 %).
-// Referenčná nosnosť rámu zodpovedá claimu "unesie aj 770 kg" z homepage.
-const CAPACITY = 770;
+// Výsledok je len odhad hmotnosti — žiadny automatický verdikt o nosnosti
+// (audit 11. 9. 2026: nosnosť konkrétnej skrinky posudzujeme podľa zostavy).
 
 const PRESETS = [
   { label: "100×40", w: 100, d: 40 },
@@ -15,7 +17,17 @@ const PRESETS = [
   { label: "200×50", w: 200, d: 50 },
 ];
 
-export default function LoadCalc() {
+/** Udalosť, cez ktorú kalkulačka pošle rozmery do formulára dopytu (DopytForm). */
+export const ROZMER_EVENT = "aq:dopyt-rozmer";
+
+export default function LoadCalc({
+  naDopyt = false,
+  jazyk = "sk",
+}: {
+  naDopyt?: boolean;
+  jazyk?: Jazyk;
+}) {
+  const t = SLOVNIKY[jazyk].kalkulacka;
   const [w, setW] = useState(120);
   const [d, setD] = useState(40);
   const [h, setH] = useState(50);
@@ -25,15 +37,22 @@ export default function LoadCalc() {
   const glass = Math.round(liters * 0.15);
   const deco = Math.round(liters * 0.1);
   const total = water + glass + deco;
-  const pct = Math.round((total / CAPACITY) * 100);
-  const over = total > CAPACITY;
 
   const preset = PRESETS.find((p) => p.w === w && p.d === d);
+
+  // na /dopyt: rozmery + objem rovno do poľa „Rozmery a objem" a scroll na formulár
+  const pouzit = () => {
+    window.dispatchEvent(
+      new CustomEvent(ROZMER_EVENT, {
+        detail: `${w} × ${d} × ${h} cm, ~${liters} l (≈ ${total} kg)`,
+      })
+    );
+  };
 
   return (
     <div className="lcalc">
       <div className="lcalc__controls">
-        <div className="lcalc__presets" role="group" aria-label="Rozmery z ponuky">
+        <div className="lcalc__presets" role="group" aria-label={t.rozmery}>
           {PRESETS.map((p) => (
             <button
               key={p.label}
@@ -51,9 +70,9 @@ export default function LoadCalc() {
 
         {(
           [
-            { id: "w", label: "Dĺžka akvária", val: w, set: setW, min: 60, max: 250 },
-            { id: "d", label: "Hĺbka akvária", val: d, set: setD, min: 30, max: 80 },
-            { id: "h", label: "Výška vodného stĺpca", val: h, set: setH, min: 30, max: 80 },
+            { id: "w", label: t.dlzka, val: w, set: setW, min: 60, max: 250 },
+            { id: "d", label: t.hlbka, val: d, set: setD, min: 30, max: 80 },
+            { id: "h", label: t.vyska, val: h, set: setH, min: 30, max: 80 },
           ] as const
         ).map((c) => (
           <label key={c.id} className="lcalc__row">
@@ -72,10 +91,7 @@ export default function LoadCalc() {
           </label>
         ))}
 
-        <p className="lcalc__note">
-          Orientačný výpočet: voda 1 kg/l, sklo ≈ 15 %, substrát a dekor ≈ 10 %.
-          Presné dimenzovanie rámu robíme pri návrhu.
-        </p>
+        <p className="lcalc__note">{t.poznamka}</p>
       </div>
 
       <div className="lcalc__result">
@@ -105,35 +121,25 @@ export default function LoadCalc() {
             );
           })()}
         </svg>
-        <span className="lcalc__result-label">Celková záťaž skrinky</span>
+        <span className="lcalc__result-label">{t.vysledok}</span>
         <span className="lcalc__total">
           ≈ {total} <small>kg</small>
         </span>
         <span className="lcalc__breakdown">
-          {liters} l vody · sklo ≈ {glass} kg · substrát ≈ {deco} kg
+          {t.rozpis
+            .replace("{l}", String(liters))
+            .replace("{sklo}", String(glass))
+            .replace("{dekor}", String(deco))}
         </span>
 
-        <div
-          className="lcalc__bar"
-          role="meter"
-          aria-valuemin={0}
-          aria-valuemax={CAPACITY}
-          aria-valuenow={Math.min(total, CAPACITY)}
-          aria-label="Využitie nosnosti referenčného rámu"
-        >
-          <i style={{ width: `${Math.min(pct, 100)}%` }} data-over={over || undefined} />
-        </div>
-
-        {over ? (
-          <p className="lcalc__verdict lcalc__verdict--over">
-            Nad referenčnú radu — rám nadimenzujeme individuálne.{" "}
-            <Link href="/dopyt">Napíšte nám rozmery →</Link>
-          </p>
-        ) : (
-          <p className="lcalc__verdict">
-            AquaFrame to unesie <b>s rezervou {100 - pct} %</b> referenčnej
-            nosnosti {CAPACITY} kg.
-          </p>
+        <p className="lcalc__verdict">
+          {t.verdikt}{" "}
+          {naDopyt ? null : <Link href={odkaz("/dopyt", jazyk)}>{t.odkaz}</Link>}
+        </p>
+        {naDopyt && (
+          <button type="button" className="btn-cyan lcalc__use" onClick={pouzit}>
+            {t.poslat} <span aria-hidden>↑</span>
+          </button>
         )}
       </div>
     </div>

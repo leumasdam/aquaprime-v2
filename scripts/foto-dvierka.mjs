@@ -2,7 +2,7 @@
  * Počet dvierok na každej produktovej fotke.
  *
  * Klient upresnil konštrukciu: pod 120 cm dve dvierka, od 120 cm tri,
- * 200 cm štyri. Fotky sa preto nesmú dediť naprieč týmito hranicami —
+ * Vrátane 200 cm tri. Fotky sa preto nesmú dediť naprieč týmito hranicami —
  * 150 cm skrinka nemôže mať v galérii dvojdverovú fotku.
  *
  *   2 — na zábere sú 2 dvierka (alebo rám s 2 poľami)
@@ -13,6 +13,9 @@
  * Hodnoty sú odčítané vizuálne z fotiek, nie odvodené z názvu súboru —
  * názov klame (napr. standard-100x40x90-black-matt-02 je trojdverová).
  */
+
+import { dvierkaPreSirku } from "../app/cabinet-construction.ts";
+export { dvierkaPreSirku };
 
 export const DVIERKA = {
   "basic-100x40x90": { def: 2 },
@@ -52,6 +55,14 @@ export const DVIERKA = {
   "choco-vintage-oak": { def: 2, 2: 3, 7: 3, 10: 3, 11: 3, 4: 0, 13: 0 },
   "dub-spanielsky": { def: 2, 2: 3, 5: 3, 6: 3, 10: 3, 13: 3, 11: 0, 14: 0 },
   "dub-spanielsky-black-matt": { def: 2, 1: 0, 2: 0, 12: 0, 13: 0 },
+
+  /* dodané 12. 9. 2026 — trojdverové zábery dekorov, ktoré sme mali len
+     na menších dvojdverových skrinkách; 05 a 06 sú detail otvorenej
+     skrinky a pántu, tam sa dvierka počítať nedajú */
+  "premium-120x40x80-dub-spanielsky-black-matt": { def: 3, 5: 0, 6: 0 },
+  "premium-120x40x80-dub-hunton-black-matt": { def: 3, 5: 0, 6: 0 },
+  "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
+  "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };
 
 /**
@@ -89,6 +100,31 @@ export const OTVORENE = new Set([
   "dub-spanielsky-black-matt-03", "dub-spanielsky-black-matt-07", "dub-spanielsky-black-matt-10",
 ]);
 
+/**
+ * Čelné zábery zatvorenej skrinky (kamera kolmo spredu). Katalógová karta
+ * ich uprednostňuje, aby boli všetky skrinky otočené z rovnakého uhla.
+ * Odčítané z fotiek: sklon hornej hrany do 0,002 šírky, bez scén a bočníc.
+ */
+export const CELNE = new Set([
+  "basic-100x40x90-01", "basic-100x40x90-02", "basic-100x40x90-03", "basic-100x40x90-04",
+  "basic-100x40x90-05", "basic-100x40x90-06", "basic-100x40x90-07",
+  "choco-vintage-oak-02", "choco-vintage-oak-09",
+  "dub-spanielsky-10", "dub-spanielsky-12",
+  "premium-100x40x90-black-matt-04",
+  "premium-100x40x90-cool-white-07",
+  "premium-100x40x90-dub-hunton-black-matt-05",
+  "premium-100x40x90-dub-sonoma-02",
+  "standard-100x40x80-black-matt-01",
+  "standard-100x40x80-black-matt-orech-01",
+  "standard-100x40x80-cool-white-03",
+  "standard-200x60x60-antracit-02", "standard-200x60x60-black-matt-02", "standard-200x60x60-dub-sonoma-04",
+  "standard-80x40x90-antracit-03",
+]);
+
+/** Je záber čelný (kolmo spredu)? */
+export const jeCelna = (nazov) =>
+  CELNE.has(nazov.replace(/^\/img\/products\//, "").replace(/\.webp$/, ""));
+
 /** Je na zábere otvorená skrinka / holý rám? */
 export const jeOtvorena = (nazov) =>
   OTVORENE.has(nazov.replace(/^\/img\/products\//, "").replace(/\.webp$/, ""));
@@ -97,16 +133,20 @@ export const jeOtvorena = (nazov) =>
  * Koľko dvierok má skrinka danej šírky podľa zadania klienta:
  *   pod 120 cm        … 2
  *   od 120 cm vrátane … 3   (120 cm už patrí sem)
- *   200 cm            … 4   (vizualizácie zatiaľ neexistujú, klient ich dodá)
+ *   200 cm            … 3
  */
-export const dvierkaPreSirku = (w) => (w < 120 ? 2 : w >= 200 ? 4 : 3);
+
 
 /** Počet dvierok na konkrétnej fotke; 0 = nedá sa určiť (použiteľná vždy). */
 export function dvierkaFotky(nazov) {
+  const led = nazov.match(/-(2|3)d-\d+\.webp$/);
+  if (led) return Number(led[1]);
+  const schema = nazov.match(/-(2|3)d\.svg$/);
+  if (schema) return Number(schema[1]);
   const m = nazov.replace(/^\/img\/products\//, "").match(/^(.+)-(\d+)\.webp$/);
-  if (!m) return 0;
+  if (!m) return null;
   const set = DVIERKA[m[1]];
-  if (!set) return 0;
+  if (!set) return null;
   const n = Number(m[2]);
   return set[n] ?? set.def;
 }

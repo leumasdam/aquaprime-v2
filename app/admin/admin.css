@@ -10,14 +10,14 @@ body:has(.admin-root) .totop {
 }
 
 .admin-root {
-  --ad-bg: #060808;
+  --ad-bg: #0c100e;
   --ad-panel: rgba(255, 255, 255, 0.028);
   --ad-panel2: rgba(255, 255, 255, 0.05);
   --ad-line: rgba(255, 255, 255, 0.08);
-  --ad-text: #e4e7e9;
-  --ad-dim: rgba(228, 231, 233, 0.52);
-  --ad-cyan: #47c7e8;
-  --ad-cyan-soft: rgba(71, 199, 232, 0.12);
+  --ad-text: #e7eae6;
+  --ad-dim: rgba(231, 234, 230, 0.52);
+  --ad-cyan: #009ac0;
+  --ad-cyan-soft: rgba(0, 154, 192, 0.12);
   --ad-warn: #e8a047;
   --ad-ok: #6fd39a;
   --ad-r: 16px;
@@ -38,9 +38,9 @@ body:has(.admin-root) .totop {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(52% 38% at 82% -6%, rgba(71, 199, 232, 0.11), transparent 70%),
-    radial-gradient(40% 34% at -8% 108%, rgba(32, 130, 124, 0.10), transparent 70%),
-    radial-gradient(28% 22% at 50% 118%, rgba(71, 199, 232, 0.05), transparent 70%);
+    radial-gradient(52% 38% at 82% -6%, rgba(0, 154, 192, 0.11), transparent 70%),
+    radial-gradient(40% 34% at -8% 108%, rgba(31, 127, 153, 0.10), transparent 70%),
+    radial-gradient(28% 22% at 50% 118%, rgba(0, 154, 192, 0.05), transparent 70%);
 }
 .ad-ambient::after {
   /* jemná konštrukčná mriežka hore, stráca sa smerom dole */
@@ -93,13 +93,13 @@ body:has(.admin-root) .totop {
   display: grid;
   place-items: center;
   border-radius: var(--r-sm);
-  color: #f4f1eb;
+  color: #f7f6f2;
   background:
-    radial-gradient(120% 120% at 30% 20%, rgba(71, 199, 232, 0.22), rgba(71, 199, 232, 0.04) 70%);
-  border: 1px solid rgba(71, 199, 232, 0.28);
+    radial-gradient(120% 120% at 30% 20%, rgba(0, 154, 192, 0.22), rgba(0, 154, 192, 0.04) 70%);
+  border: 1px solid rgba(0, 154, 192, 0.28);
   box-shadow:
-    0 0 22px rgba(71, 199, 232, 0.18),
-    inset 0 0 14px rgba(71, 199, 232, 0.08);
+    0 0 22px rgba(0, 154, 192, 0.18),
+    inset 0 0 14px rgba(0, 154, 192, 0.08);
 }
 .ad-side__mark svg {
   width: 26px;
@@ -136,7 +136,7 @@ body:has(.admin-root) .totop {
   font-size: 0.5938rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(228, 231, 233, 0.32);
+  color: rgba(231, 234, 230, 0.32);
   padding: 0 12px 7px;
 }
 
@@ -177,13 +177,13 @@ body:has(.admin-root) .totop {
 }
 .ad-side__link.is-active {
   color: var(--ad-text);
-  background: linear-gradient(90deg, rgba(71, 199, 232, 0.14), rgba(71, 199, 232, 0.03) 80%);
+  background: linear-gradient(90deg, rgba(0, 154, 192, 0.14), rgba(0, 154, 192, 0.03) 80%);
 }
 .ad-side__link.is-active .ad-side__ico {
   background: var(--ad-cyan);
   border-color: var(--ad-cyan);
-  color: #04222b;
-  box-shadow: 0 0 16px rgba(71, 199, 232, 0.35);
+  color: #032630;
+  box-shadow: 0 0 16px rgba(0, 154, 192, 0.35);
 }
 .ad-side__link.is-active::before {
   content: "";
@@ -194,7 +194,7 @@ body:has(.admin-root) .totop {
   width: 3px;
   border-radius: 0 3px 3px 0;
   background: var(--ad-cyan);
-  box-shadow: 0 0 10px rgba(71, 199, 232, 0.6);
+  box-shadow: 0 0 10px rgba(0, 154, 192, 0.6);
 }
 
 .ad-side__badge {
@@ -207,7 +207,7 @@ body:has(.admin-root) .totop {
   background: rgba(232, 160, 71, 0.16);
   color: var(--ad-warn);
   font-size: 0.625rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0 5px;
 }
 
@@ -252,7 +252,7 @@ body:has(.admin-root) .totop {
 }
 .ad-side__out:hover {
   color: var(--ad-cyan);
-  border-color: rgba(71, 199, 232, 0.4);
+  border-color: rgba(0, 154, 192, 0.4);
 }
 
 /* ---------- obsah ---------- */
@@ -374,13 +374,13 @@ body:has(.admin-root) .totop {
   position: absolute;
   inset: 0 0 auto 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(71, 199, 232, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 154, 192, 0.45), transparent);
   opacity: 0;
   transition: opacity var(--t-base);
 }
 .ad-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(71, 199, 232, 0.25);
+  border-color: rgba(0, 154, 192, 0.25);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
 }
 .ad-card:hover::before {
@@ -391,12 +391,12 @@ body:has(.admin-root) .totop {
   font-size: 2.35rem;
   line-height: 1;
   color: var(--ad-cyan);
-  text-shadow: 0 0 26px rgba(71, 199, 232, 0.35);
+  text-shadow: 0 0 26px rgba(0, 154, 192, 0.35);
 }
 .ad-card__n em {
   font-style: normal;
   font-size: 1.3rem;
-  color: rgba(71, 199, 232, 0.5);
+  color: rgba(0, 154, 192, 0.5);
 }
 .ad-card__t {
   font-size: 0.8125rem;
@@ -437,7 +437,7 @@ body:has(.admin-root) .totop {
   display: grid;
   place-items: center;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 .ad-check li.is-ok .ad-check__ico {
   background: rgba(111, 211, 154, 0.12);
@@ -488,7 +488,7 @@ body:has(.admin-root) .totop {
   transition: background var(--t-fast);
 }
 .ad-table tbody tr:hover {
-  background: rgba(71, 199, 232, 0.035);
+  background: rgba(0, 154, 192, 0.035);
 }
 .ad-table tr:last-child td {
   border-bottom: 0;
@@ -515,8 +515,8 @@ body:has(.admin-root) .totop {
   display: block;
   height: 6px;
   border-radius: var(--r-xs);
-  background: linear-gradient(90deg, var(--ad-cyan), rgba(71, 199, 232, 0.25));
-  box-shadow: 0 0 8px rgba(71, 199, 232, 0.25);
+  background: linear-gradient(90deg, var(--ad-cyan), rgba(0, 154, 192, 0.25));
+  box-shadow: 0 0 8px rgba(0, 154, 192, 0.25);
 }
 
 .ad-two {
@@ -539,7 +539,7 @@ body:has(.admin-root) .totop {
 }
 .ad-bar {
   flex: 1;
-  background: linear-gradient(180deg, var(--ad-cyan), rgba(71, 199, 232, 0.3));
+  background: linear-gradient(180deg, var(--ad-cyan), rgba(0, 154, 192, 0.3));
   border-radius: 3px 3px 0 0;
   min-height: 4px;
 }
@@ -561,11 +561,11 @@ body:has(.admin-root) .totop {
   transition: border-color var(--t-base);
 }
 .ad-agent:hover {
-  border-color: rgba(71, 199, 232, 0.22);
+  border-color: rgba(0, 154, 192, 0.22);
 }
 .ad-agent.is-busy {
-  border-color: rgba(71, 199, 232, 0.45);
-  box-shadow: 0 0 24px rgba(71, 199, 232, 0.1);
+  border-color: rgba(0, 154, 192, 0.45);
+  box-shadow: 0 0 24px rgba(0, 154, 192, 0.1);
 }
 .ad-agent__top {
   display: flex;
@@ -590,7 +590,7 @@ body:has(.admin-root) .totop {
 }
 .ad-agent__meta {
   font-size: 0.6875rem !important;
-  color: rgba(228, 231, 233, 0.4) !important;
+  color: rgba(231, 234, 230, 0.4) !important;
 }
 .ad-agent .ad-btn {
   margin-top: auto;
@@ -600,7 +600,7 @@ body:has(.admin-root) .totop {
 /* setup karta pre nezapojené služby */
 .ad-setup {
   background: var(--ad-panel);
-  border: 1px dashed rgba(71, 199, 232, 0.4);
+  border: 1px dashed rgba(0, 154, 192, 0.4);
   border-radius: var(--r-md);
   padding: 26px 28px;
   max-width: 660px;
@@ -610,7 +610,7 @@ body:has(.admin-root) .totop {
   font-size: 0.625rem;
   letter-spacing: 0.16em;
   color: var(--ad-cyan);
-  border: 1px solid rgba(71, 199, 232, 0.4);
+  border: 1px solid rgba(0, 154, 192, 0.4);
   border-radius: var(--r-pill);
   padding: 4px 11px;
   margin-bottom: 13px;
@@ -681,7 +681,7 @@ body:has(.admin-root) .totop {
   white-space: nowrap;
 }
 .ad-tag.is-a { background: rgba(111, 211, 154, 0.12); color: var(--ad-ok); }
-.ad-tag.is-b { background: rgba(71, 199, 232, 0.12); color: var(--ad-cyan); }
+.ad-tag.is-b { background: rgba(0, 154, 192, 0.12); color: var(--ad-cyan); }
 .ad-tag.is-c { background: rgba(255, 255, 255, 0.07); color: var(--ad-dim); }
 .ad-tag.is-off { background: rgba(232, 160, 71, 0.12); color: var(--ad-warn); }
 
@@ -690,10 +690,10 @@ body:has(.admin-root) .totop {
   border: 0;
   border-radius: var(--r-sm);
   background: var(--ad-cyan);
-  color: #04222b;
+  color: #032630;
   font: inherit;
   font-size: 0.7188rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 12px 22px;
@@ -701,7 +701,7 @@ body:has(.admin-root) .totop {
   transition: box-shadow var(--t-fast), transform var(--t-fast);
 }
 .ad-btn:hover:not(:disabled) {
-  box-shadow: 0 0 22px rgba(71, 199, 232, 0.35);
+  box-shadow: 0 0 22px rgba(0, 154, 192, 0.35);
   transform: translateY(-1px);
 }
 .ad-btn:disabled {
@@ -711,7 +711,7 @@ body:has(.admin-root) .totop {
 .ad-btn--ghost {
   background: transparent;
   color: var(--ad-cyan);
-  border: 1px solid rgba(71, 199, 232, 0.4);
+  border: 1px solid rgba(0, 154, 192, 0.4);
   padding: 10px 18px;
 }
 .ad-btn--ghost:hover:not(:disabled) {
@@ -739,7 +739,7 @@ body:has(.admin-root) .totop {
 .ad-report li {
   font-size: 0.8438rem;
   line-height: 1.7;
-  color: rgba(228, 231, 233, 0.85);
+  color: rgba(231, 234, 230, 0.85);
 }
 .ad-report ul {
   padding-left: 20px;
@@ -795,7 +795,7 @@ body:has(.admin-root) .totop {
   transition: border-color var(--t-fast), color var(--t-fast);
 }
 .ad-links a:hover {
-  border-color: rgba(71, 199, 232, 0.5);
+  border-color: rgba(0, 154, 192, 0.5);
   color: var(--ad-cyan);
 }
 

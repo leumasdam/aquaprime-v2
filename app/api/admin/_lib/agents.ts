@@ -132,7 +132,7 @@ async function strateg(
     max_tokens: 4096,
     system:
       "Si SEO stratég pre aquaprime.sk — slovenský e-shop s prémiovými akvarijnými " +
-      "skrinkami (oceľový rám, nosnosť 770 kg, jediný na trhu) a akváriami na mieru. " +
+      "skrinkami (oceľový rám, nastaviteľné nožičky, tri vyhotovenia) a akváriami na mieru. " +
       "Dostaneš aktuálny plán fráz, čerstvé návrhy z Google Autocomplete a prípadne " +
       "reálne dopyty zo Search Console. Odpovedaj po slovensky, Markdown. Štruktúra: " +
       "'## Čo hovoria dáta' (2–3 vety), '## Frázy na pridanie do plánu' (max 5, každá " +

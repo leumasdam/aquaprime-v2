@@ -1,0 +1,105 @@
+{
+ "mobile-s": {
+  "#hero > div.hero__bg2 > video.hero__video": {
+   "tx": 10,
+   "h": 294
+  },
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(1)": {
+   "tx": 60,
+   "ty": 30
+  },
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(2)": {
+   "tx": 60,
+   "ty": 20
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn": {
+   "fs": 12
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__ghost": {
+   "fs": 12
+  }
+ },
+ "mobile-l": {
+  "#hero > div.wrap.hero__inner > div.hero__content > p.hero__body": {
+   "tx": 1,
+   "ty": 67
+  },
+  "#hero > div.hero__bg2": {
+   "h": 390
+  },
+  "#hero > div.hero__bg2 > video.hero__video": {
+   "tx": -50,
+   "ty": -50,
+   "h": 579
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > h1.hero__title": {
+   "ty": 67
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > span.hero__eyebrow": {
+   "ty": 67
+  }
+ },
+ "tablet": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 378
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 130,
+   "ty": 60,
+   "h": 464
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__ghost": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-label": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-arr": {
+   "fs": 13
+  }
+ },
+ "tablet-landscape": {
+  "#hero > div.wrap.hero__inner": {
+   "ty": 1
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 149,
+   "ty": 21,
+   "h": 457
+  }
+ },
+ "laptop": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 690
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 80,
+   "h": 525
+  }
+ },
+ "desktop": {
+  "#hero > div.hero__scroll-v > span.hero__scroll-line": {
+   "tx": 8,
+   "ty": 4
+  },
+  "#hero > div.hero__scroll-v > span.hero__scroll-arr": {
+   "tx": 9,
+   "ty": 1
+  },
+  "#hero > div.hero__scroll-v > span.hero__scroll-word": {
+   "tx": 9,
+   "ty": 1
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 43,
+   "ty": -4,
+   "h": 574
+  }
+ },
+ "desktop-xl": {
+  "#hero > div.hero__scroll-v": {
+   "tx": 138,
+   "ty": -39
+  }
+ }
+}

@@ -1,3 +1,4 @@
+import { cabinetSurfaces } from "./cabinet-construction";
 // Zdieľaná logika konfigurátora — ceny, dekory a párovanie akvária.
 // Cieľ: konfigurátor musí hovoriť to isté čo katalóg. Preto sa ceny počítajú
 // z reálnych cenníkových kotiev v products.ts, nie z vymysleného vzorca.
@@ -51,14 +52,13 @@ export function toCfgDecor(d: Decor): CfgDecor {
   return {
     id: d.id,
     name: d.name,
-    doors: d.swatch[0],
-    body: d.swatch[1] ?? d.swatch[0],
+    ...cabinetSurfaces(d),
     swatch: d.swatch,
   };
 }
 
 export const CFG_TIERS: CfgTier[] = [
-  { id: "basic", label: "BASIC", note: "Kovový rám + vrchná doska" },
+  { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
   { id: "standard", label: "ŠTANDARD", note: "Bočnice a dvierka" },
   { id: "premium", label: "PREMIUM", note: "Kompletne opláštená" },
 ];

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import type { Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type Item = {
@@ -8,8 +10,7 @@ type Item = {
   name: string;
   sub: string;
   img: string;
-  /** kam dlaždica vedie; bez neho sa filtruje podľa radu (id) */
-  href?: string;
+  href: string;
 };
 
 /**
@@ -20,7 +21,14 @@ type Item = {
  *  - pauza pri skrytej karte prehliadača (setInterval by inak bežal ďalej),
  *  - záchranná normalizácia, ak by index predsa unikol z bezpečného rozsahu.
  */
-export default function CollectionsCarousel({ items }: { items: Item[] }) {
+export default function CollectionsCarousel({
+  items,
+  jazyk = "sk",
+}: {
+  items: Item[];
+  jazyk?: Jazyk;
+}) {
+  const t = SLOVNIKY[jazyk].domov;
   const N = items.length;
   const slides = [...items, ...items, ...items];
   const [i, setI] = useState(0);
@@ -87,6 +95,22 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
 
   const go = (dir: number) => setI((x) => x + dir);
 
+  // swipe prstom na mobile: vodorovný ťah nad 40 px posunie o jednu kartu;
+  // počas dotyku stojí auto-posun, zvislý scroll stránky ostáva prehliadaču
+  const touchX = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchX.current = e.touches[0].clientX;
+    paused.current = true;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const x0 = touchX.current;
+    touchX.current = null;
+    if (!document.hidden) paused.current = false;
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+  };
+
   return (
     <div
       className="collections__viewport"
@@ -94,11 +118,14 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
       onMouseLeave={() => {
         if (!document.hidden) paused.current = false;
       }}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      style={{ touchAction: "pan-y" }}
     >
       <button
         type="button"
         className="coll-arrow coll-arrow--prev"
-        aria-label="Predchádzajúca kolekcia"
+        aria-label={t.predchadzajuca}
         onClick={() => go(-1)}
       >
         <svg viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -119,7 +146,7 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
             return (
               <Link
                 key={idx}
-                href={c.href ?? `/skrinky?rad=${c.id}#katalog`}
+                href={c.href}
                 className="ccard"
                 aria-hidden={real ? undefined : true}
                 tabIndex={real ? undefined : -1}
@@ -139,7 +166,7 @@ export default function CollectionsCarousel({ items }: { items: Item[] }) {
       <button
         type="button"
         className="coll-arrow coll-arrow--next"
-        aria-label="Ďalšia kolekcia"
+        aria-label={t.dalsia}
         onClick={() => go(1)}
       >
         <svg viewBox="0 0 24 24" fill="none" aria-hidden>

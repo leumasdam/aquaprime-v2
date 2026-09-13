@@ -3,19 +3,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AQUARIUMS } from "./aquariums";
 import { PRODUCTS } from "./products";
-import { FRAME_LOAD_KG, cabinetPrice, tankLoadKg } from "./configurator-logic";
+import { cabinetPrice, tankLoadKg } from "./configurator-logic";
+import { type Jazyk } from "./jazyk";
+import { SLOVNIKY } from "./preklady";
 
 const OWNER_EMAIL = "ahoj@aquaprime.sk";
 const DRAFT_KEY = "aq:kontakt:draft";
 
-const TEMY = [
-  { id: "akvarium", label: "Akvárium", hint: "Nádrž na mieru alebo z cenníka." },
-  { id: "skrinka", label: "Skrinka", hint: "Podstavec na oceľovom ráme." },
-  { id: "zostava", label: "Kompletná zostava", hint: "Nádrž aj skrinka spolu." },
-  { id: "terarium", label: "Terárium", hint: "Suché aj vlhké, na mieru." },
-  { id: "servis", label: "Servis a poradenstvo", hint: "Máte otázku k prevádzke." },
-  { id: "ine", label: "Niečo iné", hint: "Spolupráca, veľkoobchod, médiá." },
-] as const;
+/** poradie musí sedieť so zoznamom `temy` v slovníku */
+const TEMA_ID = ["akvarium", "skrinka", "zostava", "terarium", "servis", "ine"] as const;
 
 /** Domény, ktoré na Slovensku pokryjú väčšinu adries. */
 const DOMENY = [
@@ -73,7 +69,13 @@ function formatTel(raw: string): string {
   return (prefix + groups.join(" ")).trim();
 }
 
-export default function KontaktForm() {
+export default function KontaktForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const t = SLOVNIKY[jazyk].kontakt;
+  const TEMY = TEMA_ID.map((id, i) => ({
+    id,
+    label: t.temy[i][0],
+    hint: t.temy[i][1],
+  }));
   const [d, setD] = useState<Draft>(EMPTY);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -163,7 +165,7 @@ export default function KontaktForm() {
     const cab = cabinet
       ? { name: `${cabinet.w} × ${cabinet.d} × ${cabinet.h} cm`, price: cabinet.price }
       : {
-          name: `${dims.w} × ${dims.d} cm na mieru`,
+          name: `${dims.w} × ${dims.d} cm ${t.naMieru}`,
           price: `od ${cabinetPrice("standard", dims.w, dims.d, 80, false).value} €`,
         };
     return {
@@ -172,10 +174,10 @@ export default function KontaktForm() {
       exact,
       glass: (exact ?? near).glass.map((g) => g.mm),
       load: tankLoadKg(liters),
-      loadPct: Math.min(100, Math.round((tankLoadKg(liters) / FRAME_LOAD_KG) * 100)),
       cab,
     };
-  }, [d.rozmer]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [d.rozmer, jazyk]);
 
   /* ---- doplnenie e-mailovej domény ---- */
   const emailNavrh = useMemo(() => {
@@ -203,30 +205,32 @@ export default function KontaktForm() {
     return Math.round((kroky.filter(Boolean).length / kroky.length) * 100);
   }, [d]);
 
+  const odvodeneText = odvodene
+    ? `~${odvodene.liters} l · ${t.spravaSklo} ${odvodene.glass.join("/")} mm · ` +
+      `${t.spravaZatazenie} ~${odvodene.load} kg · ${t.spravaSkrinka} ${odvodene.cab.name}`
+    : "";
+
   const emailOk = /.+@.+\..+/.test(d.email);
   const canSend = !!d.meno.trim() && emailOk;
 
   const sprava = useMemo(() => {
-    const t = TEMY.find((x) => x.id === d.tema);
+    const tema = TEMY.find((x) => x.id === d.tema);
     return [
-      `Téma: ${t ? t.label : "—"}`,
-      `Rozmer: ${d.rozmer || "—"}`,
-      odvodene
-        ? `Odvodené: ~${odvodene.liters} l · sklo ${odvodene.glass.join(
-            "/"
-          )} mm · zaťaženie ~${odvodene.load} kg · skrinka ${odvodene.cab.name}`
-        : "",
+      `${t.spravaTema} ${tema ? tema.label : "—"}`,
+      `${t.spravaRozmer} ${d.rozmer || "—"}`,
+      odvodene ? `${t.spravaOdvodene} ${odvodeneText}` : "",
       "",
-      `Meno: ${d.meno || "—"}`,
-      `E-mail: ${d.email || "—"}`,
-      `Telefón: ${d.tel || "—"}`,
+      `${t.spravaMeno} ${d.meno || "—"}`,
+      `${t.spravaEmail} ${d.email || "—"}`,
+      `${t.spravaTelefon} ${d.tel || "—"}`,
       "",
-      "Správa:",
+      t.spravaSprava,
       d.sprava || "—",
     ]
       .filter((x) => x !== "")
       .join("\n");
-  }, [d, odvodene]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [d, odvodene, odvodeneText, jazyk]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -247,11 +251,7 @@ export default function KontaktForm() {
           email: d.email,
           tel: d.tel,
           sprava: d.sprava,
-          odvodene: odvodene
-            ? `~${odvodene.liters} l · sklo ${odvodene.glass.join(
-                "/"
-              )} mm · zaťaženie ~${odvodene.load} kg · skrinka ${odvodene.cab.name}`
-            : "",
+          odvodene: odvodeneText,
           web: hp,
         }),
       });
@@ -262,7 +262,7 @@ export default function KontaktForm() {
 
     if (!odoslane) {
       window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
-        `Správa z webu — ${TEMY.find((x) => x.id === d.tema)?.label ?? "kontakt"}`
+        `${t.spravaPredmet} ${TEMY.find((x) => x.id === d.tema)?.label ?? t.drobcek}`
       )}&body=${encodeURIComponent(sprava)}`;
     }
 
@@ -278,7 +278,9 @@ export default function KontaktForm() {
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(`${sprava}\n\n— odoslať na ${OWNER_EMAIL}`);
+      await navigator.clipboard.writeText(
+        `${sprava}\n\n${t.spravaOdoslatNa} ${OWNER_EMAIL}`
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 2600);
     } catch {
@@ -293,25 +295,21 @@ export default function KontaktForm() {
           ✓
         </div>
         <h2 className="kf2__done-title">
-          {delivered ? "Správa odoslaná." : "Správa je pripravená na odoslanie."}
+          {delivered ? t.hotovoOdoslane : t.hotovoPripravene}
         </h2>
         <p className="kf2__done-body">
           {delivered ? (
-            <>
-              Máme ju u seba a potvrdenie sme poslali aj na váš e-mail. Ozveme sa
-              spravidla do 24 hodín v pracovný deň.
-            </>
+            t.hotovoTextOdoslane
           ) : (
             <>
-              Otvorili sme váš e-mailový klient s vyplnenými údajmi — stačí
-              stlačiť odoslať. Ak sa neotvoril, skopírujte si správu a pošlite ju
-              na <a href={`mailto:${OWNER_EMAIL}`}>{OWNER_EMAIL}</a>.
+              {t.hotovoTextKlientA}{" "}
+              <a href={`mailto:${OWNER_EMAIL}`}>{OWNER_EMAIL}</a>.
             </>
           )}
         </p>
         <div className="kf2__done-actions">
           <button type="button" className="btn-outline" onClick={copy}>
-            {copied ? "Skopírované ✓" : "Skopírovať správu"}
+            {copied ? t.skopirovane : t.skopirovatSpravu}
           </button>
           <button
             type="button"
@@ -321,7 +319,7 @@ export default function KontaktForm() {
               setSent(false);
             }}
           >
-            Napísať ďalšiu
+            {t.hotovoDalsia}
           </button>
         </div>
       </div>
@@ -337,11 +335,7 @@ export default function KontaktForm() {
             className={`kf2__dot${online ? " is-on" : ""}`}
             aria-hidden
           />
-          {online === null
-            ? "Zisťujeme dostupnosť…"
-            : online
-              ? "Sme pri telefóne — ozveme sa dnes."
-              : "Mimo pracovného času — ozveme sa hneď v pracovný deň ráno."}
+          {online === null ? t.stavNeznamy : online ? t.stavOnline : t.stavOffline}
         </div>
         <div className="kf2__progress" aria-hidden>
           <i style={{ width: `${hotovo}%` }} />
@@ -350,7 +344,7 @@ export default function KontaktForm() {
 
       {restored && (
         <p className="kf2__restored" role="status">
-          Načítali sme váš rozpísaný dopyt.{" "}
+          {t.obnovene}{" "}
           <button
             type="button"
             onClick={() => {
@@ -363,7 +357,7 @@ export default function KontaktForm() {
               }
             }}
           >
-            Začať odznova
+            {t.obnoveneTlacidlo}
           </button>
         </p>
       )}
@@ -371,7 +365,7 @@ export default function KontaktForm() {
       {/* 01 téma */}
       <fieldset className="kf2__field">
         <legend className="kf2__legend">
-          <span className="kf2__n">01</span> S čím vám pomôžeme?
+          <span className="kf2__n">01</span> {t.krok1}
         </legend>
         <div className="kf2__temy">
           {TEMY.map((t) => (
@@ -392,8 +386,8 @@ export default function KontaktForm() {
       {/* 02 rozmer s našepkávačom */}
       <fieldset className="kf2__field">
         <legend className="kf2__legend">
-          <span className="kf2__n">02</span> Rozmer
-          <em>nepovinné — ale zrýchli to odpoveď</em>
+          <span className="kf2__n">02</span> {t.krok2}
+          <em>{t.krok2Pozn}</em>
         </legend>
         <div className="kf2__combo">
           <input
@@ -402,7 +396,7 @@ export default function KontaktForm() {
             type="text"
             inputMode="numeric"
             autoComplete="off"
-            placeholder="napíšte napr. 120 alebo 120 × 50 × 50"
+            placeholder={t.rozmerPlaceholder}
             value={d.rozmer}
             onChange={(e) => {
               set("rozmer", e.target.value);
@@ -464,7 +458,7 @@ export default function KontaktForm() {
           <div className="kf2__derived" role="status">
             <div className="kf2__derived-head">
               <span className="kf2__derived-tag">
-                {odvodene.exact ? "Máme v cenníku" : "Dopočítali sme"}
+                {odvodene.exact ? t.vCennikuTag : t.dopocitaneTag}
               </span>
               <strong>
                 {odvodene.dims.w} × {odvodene.dims.d} × {odvodene.dims.h} cm
@@ -472,35 +466,32 @@ export default function KontaktForm() {
             </div>
             <dl className="kf2__facts">
               <div>
-                <dt>Objem</dt>
+                <dt>{t.objem}</dt>
                 <dd>~{odvodene.liters} l</dd>
               </div>
               <div>
-                <dt>Hrúbka skla</dt>
+                <dt>{t.hrubkaSkla}</dt>
                 <dd>{odvodene.glass.join(" / ")} mm</dd>
               </div>
               <div>
-                <dt>Zaťaženie</dt>
+                <dt>{t.odhadZatazenia}</dt>
                 <dd>~{odvodene.load} kg</dd>
               </div>
               <div>
-                <dt>Sadne skrinka</dt>
+                <dt>{t.sadneSkrinka}</dt>
                 <dd>{odvodene.cab.name}</dd>
               </div>
             </dl>
-            <div className="kf2__load">
-              <i style={{ width: `${odvodene.loadPct}%` }} />
-            </div>
             <p className="kf2__derived-note">
               {odvodene.exact ? (
                 <>
-                  Nádrž je v ponuke za <b>{odvodene.exact.priceLabel}</b>, skrinka{" "}
-                  {odvodene.cab.price}. Rám je testovaný na {FRAME_LOAD_KG} kg.
+                  {t.odvodeneVCennikuA} <b>{odvodene.exact.priceLabel}</b>,{" "}
+                  {t.odvodeneVCennikuB} {odvodene.cab.price}.{" "}
+                  {t.odvodeneVCennikuC}
                 </>
               ) : (
                 <>
-                  Tento rozmer v cenníku nie je, ale vyrobíme ho na mieru.
-                  Najbližšia skrinka {odvodene.cab.name} ({odvodene.cab.price}).
+                  {t.odvodeneNaMieru} {odvodene.cab.name} ({odvodene.cab.price}).
                 </>
               )}
             </p>
@@ -511,41 +502,41 @@ export default function KontaktForm() {
       {/* 03 kontakt */}
       <fieldset className="kf2__field">
         <legend className="kf2__legend">
-          <span className="kf2__n">03</span> Kam vám odpovedať
+          <span className="kf2__n">03</span> {t.krok3}
         </legend>
         <div className="kf2__row">
           <label className="kf2__label">
-            <span>Meno</span>
+            <span>{t.meno}</span>
             <input
               className="kf2__input"
               type="text"
               autoComplete="name"
-              placeholder="Jana Nováková"
+              placeholder={t.menoPlaceholder}
               value={d.meno}
               onChange={(e) => set("meno", e.target.value)}
               required
             />
           </label>
           <label className="kf2__label">
-            <span>Telefón — nepovinné</span>
+            <span>{t.telefon}</span>
             <input
               className="kf2__input"
               type="tel"
               autoComplete="tel"
               inputMode="tel"
-              placeholder="+421 900 000 000"
+              placeholder="+421 9xx xxx xxx"
               value={d.tel}
               onChange={(e) => set("tel", formatTel(e.target.value))}
             />
           </label>
         </div>
         <label className="kf2__label">
-          <span>E-mail</span>
+          <span>{t.email}</span>
           <input
             className={`kf2__input${d.email && !emailOk ? " is-warn" : ""}`}
             type="email"
             autoComplete="email"
-            placeholder="jana@gmail.com"
+            placeholder={t.emailPlaceholder}
             value={d.email}
             onChange={(e) => set("email", e.target.value)}
             onKeyDown={(e) => {
@@ -562,11 +553,11 @@ export default function KontaktForm() {
               className="kf2__ghost"
               onClick={() => set("email", emailNavrh)}
             >
-              Doplniť na <b>{emailNavrh}</b> <em>Tab</em>
+              {t.emailDoplnit} <b>{emailNavrh}</b> <em>Tab</em>
             </button>
           )}
           {d.email && !emailOk && !emailNavrh && (
-            <span className="kf2__warn">E-mail zatiaľ nevyzerá úplne.</span>
+            <span className="kf2__warn">{t.emailChyba}</span>
           )}
         </label>
       </fieldset>
@@ -574,15 +565,13 @@ export default function KontaktForm() {
       {/* 04 správa */}
       <fieldset className="kf2__field">
         <legend className="kf2__legend">
-          <span className="kf2__n">04</span> Vaša správa
+          <span className="kf2__n">04</span> {t.krok4}
         </legend>
         <textarea
           className="kf2__input kf2__textarea"
           rows={5}
           placeholder={
-            d.tema === "servis"
-              ? "Opíšte, čo sa deje — objem nádrže, ako dlho beží, čo ste už skúsili…"
-              : "Priestor, termín, predstava… pokojne aj v bodoch."
+            d.tema === "servis" ? t.spravaPlaceholderServis : t.spravaPlaceholder
           }
           value={d.sprava}
           onChange={(e) => set("sprava", e.target.value)}
@@ -613,17 +602,14 @@ export default function KontaktForm() {
           className="btn-cyan kf2__submit"
           disabled={!canSend || sending}
         >
-          {sending ? "ODOSIELAM…" : "ODOSLAŤ SPRÁVU"} <span aria-hidden>→</span>
+          {sending ? t.odosielam : t.poslat} <span aria-hidden>→</span>
         </button>
         <button type="button" className="btn-outline" onClick={copy}>
-          {copied ? "Skopírované ✓" : "Skopírovať"}
+          {copied ? t.skopirovane : t.skopirovat}
         </button>
       </div>
       <p className="kf2__note">
-        {canSend
-          ? "Otvorí sa váš e-mailový klient s predvyplnenou správou."
-          : "Doplňte meno a e-mail — potom vás pustíme ďalej."}{" "}
-        Rozpísanú správu si web pamätá, aj keď stránku zavriete.
+        {canSend ? t.poznMozem : t.poznChyba} {t.poznPamat}
       </p>
     </form>
   );

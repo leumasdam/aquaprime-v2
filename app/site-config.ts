@@ -10,3 +10,10 @@
  * a funkčné odosielanie formulárov.
  */
 export const SKRYTY_PRED_VYHLADAVACMI = true;
+
+/**
+ * Profil na Instagrame — odkaz z pásu s dlaždicami na domovskej stránke.
+ * POZOR: prezývka je zatiaľ odhad, klient ju musí potvrdiť.
+ */
+export const INSTAGRAM_PROFIL = "https://www.instagram.com/aquaprime.sk/";
+export const INSTAGRAM_MENO = "@aquaprime.sk";

@@ -14,17 +14,16 @@ export default function Proof3D() {
         <div className="construct__copy" data-reveal>
           <span className="construct__eyebrow">
             <span className="construct__eyebrow-rule" />
-            KONŠTRUKCIA · NOSNOSŤ
+            KONŠTRUKCIA
           </span>
           <h2 className="construct__title">
             Skrytá oceľová kostra,
             <br />
-            ktorá unesie aj <em>770 kg</em>.
+            ktorá <em>nesie akvárium</em>.
           </h2>
           <p className="construct__body">
-            Bežná skrinka sa pod stovkami litrov vody prehne. Náš oceľový rám
-            rozloží váhu a drží sklo v dokonalej rovine — pôsobí ako nábytok,
-            ale unesie akvárium.
+            Nosnú časť skrinky tvorí zváraný oceľový rám. Opláštenie určuje
+            jej vzhľad a nastaviteľné nožičky umožňujú vyrovnanie pri osadení.
           </p>
 
           <div className="construct__actions">

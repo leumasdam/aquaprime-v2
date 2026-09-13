@@ -2,8 +2,8 @@
 
 .pravne {
   padding: 140px 0 100px;
-  background: var(--bg, #050606);
-  color: var(--text, #e2e5e7);
+  background: var(--bg, #0b0e0c);
+  color: var(--text, #e6e9e5);
 }
 .pravne__wrap {
   max-width: 760px;
@@ -12,7 +12,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(226, 229, 231, 0.45);
+  color: rgba(230, 233, 229, 0.45);
   margin: 0 0 14px;
 }
 .pravne__head h1 {
@@ -23,7 +23,7 @@
 }
 .pravne__meta {
   font-size: 0.75rem;
-  color: rgba(226, 229, 231, 0.45);
+  color: rgba(230, 233, 229, 0.45);
   margin: 0 0 28px;
 }
 .pravne__draft {
@@ -33,7 +33,7 @@
   padding: 14px 18px;
   font-size: 0.8125rem;
   line-height: 1.6;
-  color: rgba(226, 229, 231, 0.8);
+  color: rgba(230, 233, 229, 0.8);
   margin-bottom: 40px;
 }
 .pravne__draft strong {
@@ -58,7 +58,7 @@
 .pravne__body li {
   font-size: 0.875rem;
   line-height: 1.75;
-  color: rgba(226, 229, 231, 0.78);
+  color: rgba(230, 233, 229, 0.78);
 }
 .pravne__body ul,
 .pravne__body ol {
@@ -68,5 +68,23 @@
   margin: 12px 0;
 }
 .pravne__body a {
-  color: #47c7e8;
+  color: #009ac0;
+}
+
+/* miesta čakajúce na potvrdenie procesu alebo právnu kontrolu */
+.pravne-overit {
+  background: rgba(0, 154, 192, 0.16);
+  color: var(--cyan);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 0.9em;
+  font-style: italic;
+}
+/* vzorový formulár na odstúpenie od zmluvy */
+.pravne__formular {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  line-height: 2;
 }

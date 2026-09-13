@@ -1,8 +1,9 @@
-// Zdieľaná navigácia
+// Zdieľaná navigácia. Popisky sú kľúče do slovníka (app/preklady.ts),
+// odkazy sa v anglickej verzii prefixujú cez odkaz() z app/jazyk.ts.
 export const NAV = [
-  { label: "SKRINKY", href: "/skrinky" },
-  { label: "AKVÁRIÁ", href: "/akvaria" },
-  { label: "TECHNOLÓGIA", href: "/technologia" },
-  { label: "REALIZÁCIE", href: "/realizacie" },
-  { label: "KONTAKT", href: "/kontakt" },
-];
+  { kluc: "skrinky", href: "/skrinky" },
+  { kluc: "akvaria", href: "/akvaria" },
+  { kluc: "konstrukcia", href: "/technologia" },
+  { kluc: "realizacie", href: "/realizacie" },
+  { kluc: "kontakt", href: "/kontakt" },
+] as const;
