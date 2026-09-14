@@ -3213,20 +3213,26 @@ export const PRODUCTS: Product[] = [
           ]
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ]
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3379,20 +3385,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3544,20 +3559,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3717,20 +3741,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3883,20 +3916,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4048,20 +4090,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4213,20 +4264,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4379,20 +4439,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "black-matt-orech",
           "name": "Black Matt / Orech",
           "swatch": [
             "#17181a",
             "/img/products/swatch-orech.webp"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-black-matt-orech-01.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-02.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-03.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-04.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-05.webp",
+            "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true

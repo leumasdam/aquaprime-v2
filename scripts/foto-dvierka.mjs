@@ -65,6 +65,7 @@ export const DVIERKA = {
   /* dodané 14. 9. 2026 — ŠTANDARD trojdverový, doteraz chýbal
      (04 je bočnica, 06 detail pántu, na oboch dvierka nevidno) */
   "standard-120x40x80-dub-hunton-black-matt": { def: 3, 4: 0, 6: 0 },
+  "standard-120x40x80-black-matt-orech": { def: 3, 4: 0, 6: 0 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };
