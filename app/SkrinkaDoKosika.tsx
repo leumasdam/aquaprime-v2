@@ -23,6 +23,7 @@ export default function SkrinkaDoKosika({
     id: p.decors[0].id,
     name: p.decors[0].name,
     image: p.decors[0].images[0],
+    chyba: false,
   });
 
   useEffect(() => {
@@ -32,6 +33,11 @@ export default function SkrinkaDoKosika({
   }, []);
 
   const cena = Number(p.price.replace(/[^\d]/g, ""));
+
+  /* Dekor, ktorý ešte nie je nafotený, sa objednať nedá — nevieme ukázať,
+     ako vyzerá, a pri niektorých radoch ani to, či sa v ňom vyrába. Zostáva
+     vedľajšie tlačidlo na dopyt. */
+  if (dekor.chyba) return null;
 
   return (
     <DoKosika

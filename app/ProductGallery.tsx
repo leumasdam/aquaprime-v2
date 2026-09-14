@@ -56,7 +56,12 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   useEffect(() => {
     window.dispatchEvent(
       new CustomEvent("aq:decor", {
-        detail: { id: decor.id, name: decor.name, image: decor.images[0] ?? p.cover },
+        detail: {
+          id: decor.id,
+          name: decor.name,
+          image: decor.images[0] ?? p.cover,
+          chyba: Boolean(decor.chyba),
+        },
       })
     );
   }, [decor, p.cover]);
