@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { eur, useKosik, type PolozkaKosika } from "../kosik-store";
 import { AQUARIUMS } from "../aquariums";
-import { PRODUCTS } from "../products";
+import { cenaEur, PRODUCTS } from "../products";
 import { suggestTank } from "../configurator-logic";
 import { odkaz, type Jazyk } from "../jazyk";
 import { SLOVNIKY } from "../preklady";
@@ -191,7 +191,7 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       } else {
         const akv = AQUARIUMS.find((x) => x.slug === p.slug);
         if (!akv) continue;
-        const skr = PRODUCTS.filter((x) => x.w === akv.w).sort(
+        const skr = PRODUCTS.filter((x) => x.w === akv.w && cenaEur(x) !== null).sort(
           (a, b) =>
             Number(a.price.replace(/\D/g, "")) - Number(b.price.replace(/\D/g, ""))
         )[0];

@@ -3,7 +3,7 @@ import { cabinetSurfaces } from "./cabinet-construction";
 // Cieľ: konfigurátor musí hovoriť to isté čo katalóg. Preto sa ceny počítajú
 // z reálnych cenníkových kotiev v products.ts, nie z vymysleného vzorca.
 
-import { PRODUCTS, type Decor, type Product, type Tier } from "./products";
+import { cenaEur, PRODUCTS, type Decor, type Product, type Tier } from "./products";
 import { AQUARIUMS, type Aquarium } from "./aquariums";
 
 export type CfgTier = { id: Tier; label: string; note: string };
@@ -20,6 +20,9 @@ export type CfgSize = {
 export const CFG_SIZES: CfgSize[] = (() => {
   const seen = new Map<string, CfgSize>();
   for (const p of PRODUCTS) {
+    // Rozmery, ktoré ešte nie sú v cenníku, konfigurátor neponúka — počítal
+    // by z nich cenu a tá by vyšla nula.
+    if (cenaEur(p) === null) continue;
     const key = `${p.w}x${p.d}x${p.h}`;
     if (!seen.has(key)) {
       seen.set(key, { key, w: p.w, d: p.d, h: p.h, label: `${p.w} × ${p.d} × ${p.h}` });
@@ -80,7 +83,7 @@ type Anchor = { w: number; d: number; h: number; price: number; led: number | nu
 
 /** Cenníkové kotvy pre rad, zoradené podľa šírky. */
 function anchors(tier: Tier): Anchor[] {
-  return PRODUCTS.filter((p) => p.tier === tier)
+  return PRODUCTS.filter((p) => p.tier === tier && cenaEur(p) !== null)
     .map((p) => ({
       w: p.w,
       d: p.d,

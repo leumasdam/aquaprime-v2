@@ -66,6 +66,15 @@ export function dekorNazov(nazov: string, jazyk: Jazyk): string {
     .join(" / ");
 }
 
+/**
+ * Ceny a objemy sú v dátach reťazce. Pri rozmeroch, ktoré klient zatiaľ
+ * neocenil, stojí namiesto čísla „Na dopyt" — to je jediné slovo, ktoré
+ * treba na anglickej verzii prepísať.
+ */
+export function cenaText(text: string, jazyk: Jazyk): string {
+  return jazyk === "en" ? text.replace("Na dopyt", "On request") : text;
+}
+
 /** „160 × 60 cm (pôdorys)" → „160 × 60 cm (footprint)" */
 export function podorysText(text: string, jazyk: Jazyk): string {
   return jazyk === "en" ? text.replace("(pôdorys)", "(footprint)") : text;

@@ -248,6 +248,12 @@ export const SK = {
       "Na fotografii je tento dekor v rozmere {foteny}. Objednávaný rozmer je {rozmer}.",
     poznInyRozmer:
       "Na fotografii je tento dekor na skrinke iného rozmeru. Objednávaný rozmer je {rozmer}.",
+    chybaStitok: "Fotka sa pripravuje",
+    chybaTitulka: "Tento dekor pre daný rozmer ešte nemáme nafotený",
+    chybaPozn:
+      "Dekor {dekor} v rozmere {rozmer} zatiaľ nemáme nafotený. Vyrábame ho — vzorku aj cenu vám pošleme na vyžiadanie.",
+    naDopyt: "Cena na dopyt",
+    naDopytPozn: "Tento rozmer zatiaľ nie je v cenníku. Cenu vám pošleme obratom.",
   },
   akvaria: {
     metaTitul: "Akváriá z číreho skla | AQUAPRIME",
@@ -1296,6 +1302,12 @@ export const EN: Slovnik = {
       "The photograph shows this decor in size {foteny}. The size ordered is {rozmer}.",
     poznInyRozmer:
       "The photograph shows this decor on a cabinet of a different size. The size ordered is {rozmer}.",
+    chybaStitok: "Photo coming soon",
+    chybaTitulka: "We have not photographed this decor in this size yet",
+    chybaPozn:
+      "We have not photographed the {dekor} decor in size {rozmer} yet. We do build it — ask us and we will send a sample and the price.",
+    naDopyt: "Price on request",
+    naDopytPozn: "This size is not in the price list yet. We will send you the price right away.",
   },
   akvaria: {
     metaTitul: "Clear-glass aquariums | AQUAPRIME",

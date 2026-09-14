@@ -9,13 +9,23 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 assert.equal(dvierkaPreSirku(119),2);
 for(const width of [120,150,160,180,200])assert.equal(dvierkaPreSirku(width),3);
 assert.equal(dvierkaFotky('/img/products/unclassified-01.webp'),null);
-let galleries=0,photos=0,leds=0,schematics=0,borrowed=0;
+let galleries=0,photos=0,leds=0,schematics=0,borrowed=0,missing=0;
 const unique=new Set();
 for(const p of PRODUCTS){
  const expected=dvierkaPreSirku(p.w);
  assert.equal(p.cover,p.decors[0].images[0],`${p.slug}: cover differs from gallery`);
  for(const d of p.decors){
   galleries++;
+  // Dekor, ktorý rad ponúka, ale pri tomto rozmere ho nemáme nafotený.
+  // Galéria je prázdna zámerne — na webe stojí namiesto fotky placeholder.
+  // Prvý dekor ním byť nesmie, z neho je titulná fotka produktu.
+  if(d.chyba){
+   missing++;
+   assert.equal(d.images.length,0,`${p.slug}/${d.id}: decor marked chyba but has photos`);
+   assert.ok(!d.led,`${p.slug}/${d.id}: decor marked chyba but has LED photos`);
+   assert.notEqual(d,p.decors[0],`${p.slug}/${d.id}: cover decor cannot be missing photos`);
+   continue;
+  }
   assert.ok(d.images.length,`${p.slug}/${d.id}: empty gallery`);
   // Dekor nafotený len v inom počte dvierok je dovolený, ale musí byť
   // označený (illuDvierka) a všetky jeho fotky musia sedieť s tým štítkom.
@@ -46,4 +56,4 @@ for(const p of PRODUCTS){
 }
 const surfaces=cabinetSurfaces({id:'dub-spanielsky-black-matt',swatch:['wood','black']});
 assert.deepEqual(surfaces,{doors:'black',body:'wood'});
-console.log(`PASS: ${PRODUCTS.length} products, ${galleries} decor galleries, ${photos} photo references, ${leds} LED references, ${schematics} labelled schematics, ${borrowed} labelled other-door-count galleries, ${unique.size} unique assets. No mismatched or unknown panel counts.`);
+console.log(`PASS: ${PRODUCTS.length} products, ${galleries} decor galleries, ${photos} photo references, ${leds} LED references, ${schematics} labelled schematics, ${borrowed} labelled other-door-count galleries, ${missing} decors awaiting photos, ${unique.size} unique assets. No mismatched or unknown panel counts.`);

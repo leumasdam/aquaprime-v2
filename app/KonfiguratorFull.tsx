@@ -19,7 +19,7 @@ import {
   toCfgDecor,
 } from "./configurator-logic";
 import { posliDopyt } from "./send-dopyt";
-import type { Tier } from "./products";
+import { nafoteneDekory, type Tier } from "./products";
 import { dvierkaPreSirku } from "./cabinet-construction";
 import { dekorNazov, odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -70,11 +70,13 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   // dekor sa drží naprieč zmenou radu, len ak ho daný produkt naozaj má;
   // bez voľby ukáž najlepšie zdokumentovaný — vlastná fotka pred fotkou inej
   // dĺžky, tá pred fotkou iného radu
+  /* konfigurátor ukazuje fotku, tak ponúka len nafotené dekory */
+  const dekory = nafoteneDekory(product);
   const decor =
-    product.decors.find((x) => x.id === decorId) ??
-    product.decors.find((x) => !x.inherited) ??
-    product.decors.find((x) => x.illuFrom === "rozmer") ??
-    product.decors[0];
+    dekory.find((x) => x.id === decorId) ??
+    dekory.find((x) => !x.inherited) ??
+    dekory.find((x) => x.illuFrom === "rozmer") ??
+    dekory[0];
   const cfgDecor = toCfgDecor(decor);
 
   const ledPrem = ledOf(product);
@@ -319,10 +321,10 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
         <div className="kfx__group">
           <span className="kfx__legend">
             <span className="kfx__n">03</span> {t.krok3}
-            <em>{product.decors.length} {t.dekorPocet}</em>
+            <em>{dekory.length} {t.dekorPocet}</em>
           </span>
           <div className="kfx__swatches">
-            {product.decors.map((c) => (
+            {dekory.map((c) => (
               <button
                 key={c.id}
                 className={`kfx__sw${decor.id === c.id ? " is-on" : ""}`}

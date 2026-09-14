@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { PRODUCTS, type Product, type Tier } from "../products";
+import { cenaEur, PRODUCTS, type Product, type Tier } from "../products";
 import { odkaz, podorysText, radText, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import ProductGallery from "../ProductGallery";
@@ -24,6 +24,8 @@ export default function ProduktObsah({
   jazyk: Jazyk;
 }) {
   const tp = t.produkt;
+  /* rozmery bez ceny v cenníku idú na dopyt, nie do košíka */
+  const maCenu = cenaEur(p) !== null;
   /* popis a vlastnosti sú v dátach po slovensky — na /en ich skladáme
      zo šablóny pre daný rad, aby sa nemuseli duplikovať pri každom modeli */
   const popis =
@@ -80,12 +82,13 @@ export default function ProduktObsah({
               </span>
               <h1 className="pdetail__name">{radText(p.name, jazyk)}</h1>
               <div className="pdetail__price">
-                {tp.cena} {p.price}
+                {maCenu ? `${tp.cena} ${p.price}` : tp.naDopyt}
                 {p.priceLed && (
                   <span className="pdetail__price-led">
                     {tp.sLed} {p.priceLed}
                   </span>
                 )}
+                {!maCenu && <span className="pdetail__price-led">{tp.naDopytPozn}</span>}
               </div>
               <p className="pdetail__desc">{popis}</p>
               <dl className="pdetail__specs">
@@ -115,9 +118,13 @@ export default function ProduktObsah({
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+              {/* Rozmery, ktoré klient zatiaľ neocenil, sa nedajú kúpiť —
+                  vedú rovno na dopyt, inak by v košíku skončila nula. */}
               <div className="pdetail__actions">
-                <SkrinkaDoKosika key={p.slug} p={p} popis={tp.doKosika} jazyk={jazyk} />
-                <Link href={l("/dopyt")} className="btn-outline">
+                {maCenu && (
+                  <SkrinkaDoKosika key={p.slug} p={p} popis={tp.doKosika} jazyk={jazyk} />
+                )}
+                <Link href={l("/dopyt")} className={maCenu ? "btn-outline" : "btn-cyan"}>
                   {tp.opytatSa} <span aria-hidden>→</span>
                 </Link>
               </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AQUARIUMS } from "./aquariums";
-import { PRODUCTS } from "./products";
+import { cenaEur, PRODUCTS } from "./products";
 import { cabinetPrice, tankLoadKg } from "./configurator-logic";
 import { type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -159,7 +159,7 @@ export default function KontaktForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     const near = AQUARIUMS.reduce((a, b) =>
       Math.abs(b.liters - liters) < Math.abs(a.liters - liters) ? b : a
     );
-    const cabinet = PRODUCTS.filter((p) => p.w === dims.w).sort(
+    const cabinet = PRODUCTS.filter((p) => p.w === dims.w && cenaEur(p) !== null).sort(
       (x, y) => Number(x.price.replace(/\D/g, "")) - Number(y.price.replace(/\D/g, ""))
     )[0];
     const cab = cabinet

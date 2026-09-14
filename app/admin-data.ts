@@ -16,6 +16,8 @@ export function katalogStats() {
   const vlastne = dekory.filter(({ d }) => !d.inherited && !d.illuFrom);
   const inyRozmer = dekory.filter(({ d }) => d.illuFrom === "rozmer");
   const inyRad = dekory.filter(({ d }) => d.illuFrom === "rad");
+  /* dekor, ktorý rad ponúka, ale v tomto rozmere ešte nie je nafotený */
+  const bezFotky = dekory.filter(({ d }) => d.chyba);
 
   const cenySkriniek = PRODUCTS.map((p) => cenaNaCislo(p.price)).filter((n) => n > 0);
   const cenyAkvarii = AQUARIUMS.map(aquariumPriceValue).filter((n) => n > 0);
@@ -43,8 +45,9 @@ export function katalogStats() {
       vlastne: vlastne.length,
       fotoInehoRozmeru: inyRozmer.length,
       fotoInehoRadu: inyRad.length,
-      /** varianty, kde treba dofotiť — dekor je nafotený len na inom rade */
-      naDofotenie: inyRad.map(({ p, d }) => `${p.name} — ${d.name}`),
+      bezFotky: bezFotky.length,
+      /** varianty, kde treba fotiť — buď nie sú vôbec, alebo sú z iného radu */
+      naDofotenie: [...bezFotky, ...inyRad].map(({ p, d }) => `${p.name} — ${d.name}`),
     },
   };
 }

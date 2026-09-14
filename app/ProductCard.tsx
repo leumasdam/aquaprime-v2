@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, type CSSProperties } from "react";
 import type { Decor, Product } from "./products";
-import { dekorNazov, odkaz as odkazJazyk, radText, type Jazyk } from "./jazyk";
+import { cenaText, dekorNazov, odkaz as odkazJazyk, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 import Swatch from "./Swatch";
 import { VT } from "./vt";
@@ -98,7 +98,10 @@ export default function ProductCard({
             {p.decors.map((d) => (
               <span
                 key={d.id}
-                className={`product__decor${dekor?.id === d.id ? " is-on" : ""}`}
+                className={`product__decor${dekor?.id === d.id ? " is-on" : ""}${
+                  /* dekor z ponuky, ktorý ešte nie je nafotený — zošedne */
+                  d.chyba ? " product__decor--chyba" : ""
+                }`}
                 onMouseEnter={() => setDekor(d)}
                 aria-label={dekorNazov(d.name, jazyk)}
               >
@@ -114,12 +117,12 @@ export default function ProductCard({
           </span>
           <span>
             <i>{s.akvarium}</i>
-            {p.vol}
+            {cenaText(p.vol, jazyk)}
           </span>
         </div>
         <div className="product__foot">
           <span className="product__price">
-            {foto && p.priceLed ? p.priceLed : p.price}
+            {cenaText(foto && p.priceLed ? p.priceLed : p.price, jazyk)}
             {foto && p.priceLed && <i className="product__price-pozn">{s.sLed}</i>}
           </span>
           <span className="product__cta">

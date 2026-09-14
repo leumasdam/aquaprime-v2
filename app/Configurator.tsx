@@ -11,7 +11,7 @@ import {
   priceOf,
   productFor,
 } from "./configurator-logic";
-import type { Tier } from "./products";
+import { nafoteneDekory, type Tier } from "./products";
 import { dekorNazov, odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 
@@ -30,11 +30,13 @@ export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
   const product = productFor(tier, size)!;
   // bez vlastnej voľby ukáž najlepšie zdokumentovaný dekor
+  /* konfigurátor ukazuje fotku, tak ponúka len nafotené dekory */
+  const dekory = nafoteneDekory(product);
   const decor =
-    product.decors.find((x) => x.id === decorId) ??
-    product.decors.find((x) => !x.inherited) ??
-    product.decors.find((x) => x.illuFrom === "rozmer") ??
-    product.decors[0];
+    dekory.find((x) => x.id === decorId) ??
+    dekory.find((x) => !x.inherited) ??
+    dekory.find((x) => x.illuFrom === "rozmer") ??
+    dekory[0];
   const price = priceOf(product, false);
   const ledPrem = ledOf(product);
 
@@ -117,7 +119,7 @@ export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             <span className="cfg__n">03</span> {t.cfgKroky.dekor}
           </span>
           <div className="cfg__swatches">
-            {product.decors.map((c) => (
+            {dekory.map((c) => (
               <button
                 key={c.id}
                 type="button"

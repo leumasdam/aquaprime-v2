@@ -45,6 +45,8 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   const i = Math.max(0, Math.min(imgIdx, zoznam.length - 1));
   const img = zoznam[i];
   const vizualizacia = aktivne !== "bez";
+  /* dekor z ponuky, ktorý ešte nie je nafotený — namiesto fotky placeholder */
+  const chyba = Boolean(decor.chyba) || !img;
 
   /* Keď je vyplnené illuIdx, časť galérie je prevzatá a časť vlastná —
      štítok potom patrí len konkrétnym fotkám, nie celému dekoru. */
@@ -54,28 +56,35 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   useEffect(() => {
     window.dispatchEvent(
       new CustomEvent("aq:decor", {
-        detail: { id: decor.id, name: decor.name, image: decor.images[0] },
+        detail: { id: decor.id, name: decor.name, image: decor.images[0] ?? p.cover },
       })
     );
-  }, [decor]);
+  }, [decor, p.cover]);
 
   return (
     <div className={`pgal${vizualizacia ? " pgal--scene" : ""}`} data-reveal="scale">
       {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
       <VT name={`p-${p.slug}`} share="vt-morph">
-      <div className="pgal__main">
-        <Image
-          key={img}
-          src={img}
-          alt={`${radText(p.name, jazyk)} — ${SLOVNIKY[jazyk].spolocne.altDekor} ${dekorNazov(decor.name, jazyk)}`}
-          fill
-          priority
-          sizes="(max-width: 820px) 92vw, 48vw"
-        />
+      <div className={`pgal__main${chyba ? " pgal__main--chyba" : ""}`}>
+        {chyba ? (
+          <span className="pgal__prazdno" aria-hidden>
+            <span className="pgal__prazdno-ram" />
+            <span className="pgal__prazdno-text">{tp.chybaStitok}</span>
+          </span>
+        ) : (
+          <Image
+            key={img}
+            src={img}
+            alt={`${radText(p.name, jazyk)} — ${SLOVNIKY[jazyk].spolocne.altDekor} ${dekorNazov(decor.name, jazyk)}`}
+            fill
+            priority
+            sizes="(max-width: 820px) 92vw, 48vw"
+          />
+        )}
         <span className={`product__badge product__badge--${p.tier}`}>
           {radText(p.tierLabel, jazyk)}
         </span>
-        {vizualizacia ? (
+        {chyba ? null : vizualizacia ? (
           <span className="pgal__illu pgal__illu--led" title={tp.titulkaLed}>
             {tp.vizualizaciaLed}
           </span>
@@ -158,10 +167,16 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
               <button
                 key={d.id}
                 type="button"
-                title={dekorNazov(d.name, jazyk)}
+                title={
+                  d.chyba
+                    ? `${dekorNazov(d.name, jazyk)} — ${tp.chybaTitulka}`
+                    : dekorNazov(d.name, jazyk)
+                }
                 aria-label={dekorNazov(d.name, jazyk)}
                 aria-pressed={i === decorIdx}
-                className={`pgal__decorbtn${i === decorIdx ? " is-on" : ""}`}
+                className={`pgal__decorbtn${i === decorIdx ? " is-on" : ""}${
+                  d.chyba ? " pgal__decorbtn--chyba" : ""
+                }`}
                 onClick={() => {
                   setDecorIdx(i);
                   setImgIdx(0);
@@ -174,7 +189,13 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
         </div>
       )}
 
-      {vizualizacia ? (
+      {chyba ? (
+        <p className="pgal__note pgal__note--chyba">
+          {tp.chybaPozn
+            .replace("{dekor}", dekorNazov(decor.name, jazyk))
+            .replace("{rozmer}", p.dim)}
+        </p>
+      ) : vizualizacia ? (
         <p className="pgal__note">
           {tp.poznLed.replace("{n}", String(dvierkaPreSirku(p.w)))}
           {p.priceLed ? tp.poznLedCena.replace("{cena}", p.priceLed) : ""}.

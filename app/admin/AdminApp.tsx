@@ -19,7 +19,7 @@ type Stav = {
   katalog: {
     skrinky: { pocet: number; rady: Record<string, number>; cenaOd: number; cenaDo: number; sLed: number };
     akvaria: { pocet: number; sVlastnymTextom: number; cenaOd: number; cenaDo: number };
-    fotky: { variantovSpolu: number; vlastne: number; fotoInehoRozmeru: number; fotoInehoRadu: number; naDofotenie: string[] };
+    fotky: { variantovSpolu: number; vlastne: number; fotoInehoRozmeru: number; fotoInehoRadu: number; bezFotky: number; naDofotenie: string[] };
   };
   zdravie: { id: string; ok: boolean; titul: string; detail: string }[];
   integracie: Record<string, boolean>;
@@ -384,7 +384,7 @@ export default function AdminApp() {
                       {Math.round(((stav.katalog.fotky.vlastne + stav.katalog.fotky.fotoInehoRozmeru) / stav.katalog.fotky.variantovSpolu) * 100)}%
                     </span>
                     <span className="ad-card__t">variantov s použiteľným fotom</span>
-                    <span className="ad-card__d">{stav.katalog.fotky.fotoInehoRadu} čaká na dofotenie</span>
+                    <span className="ad-card__d">{stav.katalog.fotky.fotoInehoRadu + stav.katalog.fotky.bezFotky} čaká na dofotenie</span>
                   </div>
                   <div className="ad-card">
                     <span className="ad-card__n">
