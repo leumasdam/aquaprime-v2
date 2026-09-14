@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { PRODUCTS } from "../app/products.ts";
 const ID = process.argv[2];
 const SUBOR = "app/products.ts";
-const FOTKY = Array.from({ length: 6 }, (_, i) => `/img/products/standard-120x40x80-${ID}-${String(i + 1).padStart(2, "0")}.webp`);
+const FOTKY = Array.from({ length: Number(process.argv[3] ?? 6) }, (_, i) => `/img/products/standard-120x40x80-${ID}-${String(i + 1).padStart(2, "0")}.webp`);
 const vzor = PRODUCTS.find((p) => p.slug === "standard-100x40x80").decors.find((d) => d.id === ID);
 let n = 0;
 const vsetky = PRODUCTS.map((p) => {

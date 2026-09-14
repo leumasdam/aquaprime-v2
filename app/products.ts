@@ -3229,6 +3229,21 @@ export const PRODUCTS: Product[] = [
           ]
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ]
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -3243,16 +3258,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -3404,6 +3409,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -3418,16 +3441,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -3578,6 +3591,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -3592,16 +3623,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -3760,6 +3781,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -3774,16 +3813,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -3935,6 +3964,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -3949,16 +3996,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -4109,6 +4146,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -4123,16 +4178,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -4283,6 +4328,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -4297,16 +4360,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
@@ -4458,6 +4511,24 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
+          "id": "dub-spanielsky-black-matt",
+          "name": "Dub španielsky / Čierna matná",
+          "swatch": [
+            "/img/products/swatch-dub-spanielsky.webp",
+            "#121316"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
+            "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
           "id": "cool-white",
           "name": "Cool White",
           "swatch": [
@@ -4472,16 +4543,6 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
           ],
           "images": [],
           "chyba": true
