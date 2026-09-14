@@ -4450,46 +4450,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "100 × 40 × 90 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4574,46 +4534,6 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/basic-100x40x90-02.webp"
           ]
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4716,46 +4636,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "100 × 40 × 90 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4858,46 +4738,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5000,46 +4840,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5142,46 +4942,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5266,46 +5026,6 @@ export const PRODUCTS: Product[] = [
           "images": [
             "/img/products/basic-150x50x80-06.webp"
           ]
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-03.webp"
@@ -5408,46 +5128,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5550,46 +5230,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5692,46 +5332,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-06.webp"
@@ -5834,46 +5434,6 @@ export const PRODUCTS: Product[] = [
           "inherited": true,
           "illuFrom": "rozmer",
           "illuSize": "150 × 50 × 80 cm"
-        },
-        {
-          "id": "dub-hunton-black-matt",
-          "name": "Dub Hunton / Black Matt",
-          "swatch": [
-            "/img/products/swatch-dub-hunton.webp",
-            "#17181a"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "black-matt-orech",
-          "name": "Black Matt / Orech",
-          "swatch": [
-            "#17181a",
-            "/img/products/swatch-orech.webp"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "dub-spanielsky-black-matt",
-          "name": "Dub španielsky / Čierna matná",
-          "swatch": [
-            "/img/products/swatch-dub-spanielsky.webp",
-            "#121316"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
-          "id": "artisan-antracit",
-          "name": "Artisan / Antracit",
-          "swatch": [
-            "/img/products/swatch-artisan.webp",
-            "#40454a"
-          ],
-          "images": [],
-          "chyba": true
         }
       ],
       "cover": "/img/products/basic-150x50x80-04.webp"
