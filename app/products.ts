@@ -124,7 +124,7 @@ export const PRODUCTS: Product[] = [
           },
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "dub-hunton-black-matt",
@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
           },
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "cool-white",
@@ -192,8 +192,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -211,7 +210,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -226,10 +225,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-03.webp",
             "/img/products/choco-vintage-oak-06.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -253,10 +249,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
               "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt-orech",
@@ -299,10 +292,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-01.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         }
       ],
       "cover": "/img/products/premium-100x40x90-black-matt-01.webp"
@@ -453,12 +443,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-03.webp",
             "/img/products/choco-vintage-oak-06.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -473,11 +458,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-09.webp",
             "/img/products/dub-spanielsky-14.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
           "led": {
             "zlta": [
               "/img/products/led/led-dub-spanielsky-zlta-2d-01.webp",
@@ -511,10 +491,18 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-100x40x80-black-matt-orech-08.webp"
           ],
           "inherited": true,
+          "illuFrom": "rad",
           "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11
+          ]
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -532,12 +520,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-01.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         }
       ],
       "cover": "/img/products/premium-100x40x90-black-matt-01.webp",
@@ -599,7 +582,7 @@ export const PRODUCTS: Product[] = [
           },
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "dub-hunton-black-matt",
@@ -627,7 +610,7 @@ export const PRODUCTS: Product[] = [
           },
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "cool-white",
@@ -667,8 +650,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -686,7 +668,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -701,10 +683,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-03.webp",
             "/img/products/choco-vintage-oak-06.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -728,10 +707,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
               "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt-orech",
@@ -774,10 +750,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-08.webp",
             "/img/products/dub-spanielsky-black-matt-01.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         }
       ],
       "cover": "/img/products/premium-100x40x90-black-matt-01.webp"
@@ -814,12 +787,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -834,11 +802,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-14.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
           "led": {
             "zlta": [
               "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
@@ -862,11 +825,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad",
           "led": {
             "zlta": [
               "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -880,7 +838,9 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-black-matt-modra-3d-03.webp",
               "/img/products/led/led-black-matt-modra-3d-04.webp"
             ]
-          }
+          },
+          "inherited": true,
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -896,10 +856,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1000,10 +957,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -1025,10 +979,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
               "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt",
@@ -1059,8 +1010,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -1076,8 +1026,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1189,10 +1138,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -1214,10 +1160,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
               "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt",
@@ -1248,8 +1191,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -1265,8 +1207,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1381,10 +1322,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -1397,12 +1335,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -1417,11 +1350,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-14.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
           "led": {
             "zlta": [
               "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
@@ -1445,11 +1373,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad",
           "led": {
             "zlta": [
               "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -1463,7 +1386,9 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-black-matt-modra-3d-03.webp",
               "/img/products/led/led-black-matt-modra-3d-04.webp"
             ]
-          }
+          },
+          "inherited": true,
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1576,10 +1501,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -1601,10 +1523,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
               "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt",
@@ -1635,8 +1554,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -1652,8 +1570,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1765,10 +1682,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -1790,10 +1704,7 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-dub-spanielsky-zlta-3d-03.webp",
               "/img/products/led/led-dub-spanielsky-zlta-3d-04.webp"
             ]
-          },
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          }
         },
         {
           "id": "black-matt",
@@ -1824,8 +1735,7 @@ export const PRODUCTS: Product[] = [
             ]
           },
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -1841,8 +1751,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -1956,11 +1865,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-14.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
           "led": {
             "zlta": [
               "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
@@ -1981,12 +1885,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-sonoma",
@@ -2002,10 +1901,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+          "illuFrom": "rozmer"
         },
         {
           "id": "black-matt",
@@ -2021,11 +1917,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad",
           "led": {
             "zlta": [
               "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -2039,7 +1930,9 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-black-matt-modra-3d-03.webp",
               "/img/products/led/led-black-matt-modra-3d-04.webp"
             ]
-          }
+          },
+          "inherited": true,
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -2155,11 +2048,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-black-matt-03.webp",
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad",
           "led": {
             "zlta": [
               "/img/products/led/led-black-matt-zlta-3d-01.webp",
@@ -2173,7 +2061,9 @@ export const PRODUCTS: Product[] = [
               "/img/products/led/led-black-matt-modra-3d-03.webp",
               "/img/products/led/led-black-matt-modra-3d-04.webp"
             ]
-          }
+          },
+          "inherited": true,
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky",
@@ -2188,11 +2078,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-14.webp"
           ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
           "led": {
             "zlta": [
               "/img/products/led/led-dub-spanielsky-zlta-3d-01.webp",
@@ -2213,12 +2098,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-11.webp",
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-sonoma",
@@ -2234,10 +2114,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -2357,8 +2234,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "cool-white",
@@ -2379,8 +2255,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-100x40x80-cool-white-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "black-matt-orech",
@@ -2428,8 +2303,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -2446,10 +2320,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-01.webp",
             "/img/products/choco-vintage-oak-08.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -2466,10 +2337,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-07.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-hunton-black-matt",
@@ -2486,8 +2354,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rad"
         },
         {
           "id": "dub-sonoma",
@@ -2506,8 +2373,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "artisan-antracit",
@@ -2529,7 +2395,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "80 × 40 × 90 cm"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -2550,10 +2416,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-10.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         }
       ],
       "cover": "/img/products/standard-80x40x90-antracit-06.webp"
@@ -2597,11 +2460,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "80 × 40 × 90 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "cool-white",
@@ -2620,6 +2479,12 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-cool-white-01.webp",
             "/img/products/standard-100x40x80-cool-white-10.webp",
             "/img/products/standard-100x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "200 × 60 × 60 cm",
+          "illuIdx": [
+            7
           ]
         },
         {
@@ -2665,13 +2530,15 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
+          "illuFrom": "rozmer",
           "illuIdx": [
             4,
             7,
-            8
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "80 × 40 × 90 cm"
+            8,
+            9,
+            10,
+            11
+          ]
         },
         {
           "id": "choco-vintage-oak",
@@ -2688,12 +2555,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-01.webp",
             "/img/products/choco-vintage-oak-08.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -2710,12 +2572,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-07.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-hunton-black-matt",
@@ -2751,10 +2608,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rad"
+          "illuFrom": "rozmer"
         },
         {
           "id": "artisan-antracit",
@@ -2775,9 +2629,6 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-artisan-antracit-01.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
           "illuFrom": "rozmer",
           "illuSize": "80 × 40 × 90 cm"
         },
@@ -2800,12 +2651,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-10.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         }
       ],
       "cover": "/img/products/standard-80x40x90-antracit-06.webp",
@@ -2850,8 +2696,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "cool-white",
@@ -2872,8 +2717,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-100x40x80-cool-white-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "black-matt-orech",
@@ -2921,8 +2765,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -2939,10 +2782,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-01.webp",
             "/img/products/choco-vintage-oak-08.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -2959,10 +2799,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-03.webp",
             "/img/products/dub-spanielsky-07.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-hunton-black-matt",
@@ -2979,8 +2816,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rad"
         },
         {
           "id": "dub-sonoma",
@@ -2999,8 +2835,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/premium-100x40x90-dub-sonoma-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "artisan-antracit",
@@ -3022,7 +2857,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "80 × 40 × 90 cm"
         },
         {
           "id": "dub-spanielsky-black-matt",
@@ -3043,10 +2878,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-black-matt-07.webp",
             "/img/products/dub-spanielsky-black-matt-10.webp",
             "/img/products/dub-spanielsky-black-matt-02.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          ]
         }
       ],
       "cover": "/img/products/standard-80x40x90-antracit-06.webp"
@@ -3089,11 +2921,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -3111,11 +2939,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -3132,11 +2956,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -3150,12 +2970,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -3170,12 +2985,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "cool-white",
@@ -3268,8 +3078,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -3287,8 +3096,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -3305,8 +3113,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -3320,10 +3127,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -3338,10 +3142,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "cool-white",
@@ -3433,8 +3234,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -3452,8 +3252,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -3470,8 +3269,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -3485,10 +3283,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -3503,10 +3298,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "cool-white",
@@ -3593,12 +3385,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-sonoma",
@@ -3615,11 +3402,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "black-matt",
@@ -3638,11 +3421,15 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
           "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuIdx": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ]
         },
         {
           "id": "antracit",
@@ -3660,11 +3447,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-spanielsky",
@@ -3679,12 +3462,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "cool-white",
@@ -3777,8 +3555,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -3796,8 +3573,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -3814,8 +3590,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -3829,10 +3604,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -3847,10 +3619,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "cool-white",
@@ -3942,8 +3711,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -3961,8 +3729,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -3979,8 +3746,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -3994,10 +3760,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -4012,10 +3775,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          ]
         },
         {
           "id": "cool-white",
@@ -4105,11 +3865,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "black-matt",
@@ -4128,11 +3884,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -4150,11 +3902,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -4168,12 +3916,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "dub-spanielsky",
@@ -4188,12 +3931,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "cool-white",
@@ -4282,12 +4020,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/dub-spanielsky-10.webp",
             "/img/products/dub-spanielsky-06.webp",
             "/img/products/dub-spanielsky-14.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "black-matt",
@@ -4306,11 +4039,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-black-matt-01.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "antracit",
@@ -4328,11 +4057,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-200x60x60-antracit-06.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "dub-sonoma",
@@ -4349,11 +4074,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/standard-80x40x90-dub-sonoma-02.webp"
           ],
           "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer",
-          "illuSize": "200 × 60 × 60 cm"
+          "illuFrom": "rozmer"
         },
         {
           "id": "choco-vintage-oak",
@@ -4367,12 +4088,7 @@ export const PRODUCTS: Product[] = [
             "/img/products/choco-vintage-oak-02.webp",
             "/img/products/choco-vintage-oak-07.webp",
             "/img/products/choco-vintage-oak-04.webp"
-          ],
-          "inherited": true,
-          "illuIdx": [
-            0
-          ],
-          "illuFrom": "rozmer"
+          ]
         },
         {
           "id": "cool-white",
@@ -4459,7 +4175,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "black-matt",
@@ -4472,7 +4188,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "antracit",
@@ -4485,7 +4201,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "cool-white",
@@ -4498,7 +4214,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "dub-sonoma",
@@ -4511,7 +4227,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -4524,7 +4240,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4558,10 +4274,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-03.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         },
         {
           "id": "black-matt",
@@ -4571,10 +4284,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-05.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         },
         {
           "id": "antracit",
@@ -4584,10 +4294,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-06.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         },
         {
           "id": "cool-white",
@@ -4597,10 +4304,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-04.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         },
         {
           "id": "dub-sonoma",
@@ -4610,10 +4314,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-01.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         },
         {
           "id": "choco-vintage-oak",
@@ -4623,10 +4324,7 @@ export const PRODUCTS: Product[] = [
           ],
           "images": [
             "/img/products/basic-100x40x90-02.webp"
-          ],
-          "inherited": true,
-          "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 90 cm"
+          ]
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4663,7 +4361,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "black-matt",
@@ -4676,7 +4374,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "antracit",
@@ -4689,7 +4387,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "cool-white",
@@ -4702,7 +4400,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "dub-sonoma",
@@ -4715,7 +4413,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -4728,7 +4426,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "100 × 40 × 80 cm"
+          "illuSize": "100 × 40 × 90 cm"
         }
       ],
       "cover": "/img/products/basic-100x40x90-03.webp"
@@ -4867,7 +4565,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "antracit",
@@ -4880,7 +4578,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "cool-white",
@@ -4893,7 +4591,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-sonoma",
@@ -4906,7 +4604,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-spanielsky",
@@ -4919,7 +4617,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -4932,7 +4630,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -4969,7 +4667,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "antracit",
@@ -4982,7 +4680,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "cool-white",
@@ -4995,7 +4693,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-sonoma",
@@ -5008,7 +4706,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-spanielsky",
@@ -5021,7 +4719,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -5034,7 +4732,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5155,7 +4853,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "antracit",
@@ -5168,7 +4866,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "cool-white",
@@ -5181,7 +4879,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-sonoma",
@@ -5194,7 +4892,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-spanielsky",
@@ -5207,7 +4905,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -5220,7 +4918,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
@@ -5257,7 +4955,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "antracit",
@@ -5270,7 +4968,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "cool-white",
@@ -5283,7 +4981,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-sonoma",
@@ -5296,7 +4994,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "dub-spanielsky",
@@ -5309,7 +5007,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         },
         {
           "id": "choco-vintage-oak",
@@ -5322,7 +5020,7 @@ export const PRODUCTS: Product[] = [
           ],
           "inherited": true,
           "illuFrom": "rozmer",
-          "illuSize": "120 × 40 × 80 cm"
+          "illuSize": "150 × 50 × 80 cm"
         }
       ],
       "cover": "/img/products/basic-150x50x80-01.webp"
