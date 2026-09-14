@@ -26,6 +26,7 @@ export default function VideoNaScroll({
 }) {
   const vpred = useRef<HTMLVideoElement>(null);
   const spat = useRef<HTMLVideoElement>(null);
+  const nahlad = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const a = vpred.current;
@@ -69,15 +70,34 @@ export default function VideoNaScroll({
       else if (smer < -1 || y <= 8) prepni(false);
     };
 
+    const schovajNahlad = () => {
+      const n = nahlad.current;
+      if (n) n.style.opacity = "0";
+    };
+    a.addEventListener("playing", schovajNahlad);
+
     a.pause();
     b.pause();
     b.style.opacity = "0";
     window.addEventListener("scroll", uprav, { passive: true });
-    return () => window.removeEventListener("scroll", uprav);
+    return () => {
+      window.removeEventListener("scroll", uprav);
+      a.removeEventListener("playing", schovajNahlad);
+    };
   }, []);
 
   return (
     <>
+      {/* prekrytie, kým sa video nerozbehne — iPhone nad zastaveným videom
+          kreslí vlastné tlačidlo prehrať */}
+      <img
+        ref={nahlad}
+        className={className}
+        src={poster}
+        alt=""
+        aria-hidden="true"
+        style={{ zIndex: 1, transition: "opacity .4s ease" }}
+      />
       <video ref={vpred} className={className} muted playsInline preload="auto" poster={poster}>
         <source src={src} type="video/mp4" />
       </video>

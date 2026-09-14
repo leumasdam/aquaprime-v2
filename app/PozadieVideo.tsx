@@ -17,6 +17,7 @@ export default function PozadieVideo({
   className?: string;
 }) {
   const video = useRef<HTMLVideoElement>(null);
+  const nahlad = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const element = video.current;
@@ -41,6 +42,12 @@ export default function PozadieVideo({
       document.removeEventListener("touchstart", znovaSkus);
       document.removeEventListener("scroll", znovaSkus);
     };
+    const schovajNahlad = () => {
+      const n = nahlad.current;
+      if (n) n.style.opacity = "0";
+    };
+    element.addEventListener("playing", schovajNahlad);
+
     document.addEventListener("pointerdown", znovaSkus, { passive: true });
     document.addEventListener("touchstart", znovaSkus, { passive: true });
     document.addEventListener("scroll", znovaSkus, { passive: true });
@@ -62,6 +69,7 @@ export default function PozadieVideo({
     reduced.addEventListener("change", sync);
     return () => {
       odpoj();
+      element.removeEventListener("playing", schovajNahlad);
       observer.disconnect();
       document.removeEventListener("visibilitychange", sync);
       reduced.removeEventListener("change", sync);
@@ -70,6 +78,18 @@ export default function PozadieVideo({
   }, []);
 
   return (
+    <>
+      {/* Kým video nebeží, prekrýva ho ten istý záber ako statický obrázok.
+          Safari na iPhone totiž nad zastaveným videom kreslí vlastné tlačidlo
+          prehrať a v režime šetrenia energie ho spustiť nedovolí. */}
+      <img
+        ref={nahlad}
+        className={className}
+        src={poster}
+        alt=""
+        aria-hidden="true"
+        style={{ position: "absolute", inset: 0, zIndex: 1, transition: "opacity .4s ease" }}
+      />
     <video
       ref={video}
       className={className}
@@ -86,5 +106,6 @@ export default function PozadieVideo({
     >
       <source src={src} type="video/mp4" />
     </video>
+    </>
   );
 }
