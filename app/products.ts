@@ -300,8 +300,16 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#40454a"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/premium-100x40x80-antracit-01.webp",
+            "/img/products/premium-100x40x80-antracit-02.webp",
+            "/img/products/premium-100x40x80-antracit-03.webp",
+            "/img/products/premium-100x40x80-antracit-04.webp",
+            "/img/products/premium-100x40x80-antracit-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "100 × 40 × 80 cm"
         },
         {
           "id": "artisan-antracit",
@@ -547,8 +555,13 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#40454a"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/premium-100x40x80-antracit-01.webp",
+            "/img/products/premium-100x40x80-antracit-02.webp",
+            "/img/products/premium-100x40x80-antracit-03.webp",
+            "/img/products/premium-100x40x80-antracit-04.webp",
+            "/img/products/premium-100x40x80-antracit-05.webp"
+          ]
         },
         {
           "id": "artisan-antracit",
@@ -796,8 +809,16 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#40454a"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/premium-100x40x80-antracit-01.webp",
+            "/img/products/premium-100x40x80-antracit-02.webp",
+            "/img/products/premium-100x40x80-antracit-03.webp",
+            "/img/products/premium-100x40x80-antracit-04.webp",
+            "/img/products/premium-100x40x80-antracit-05.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "100 × 40 × 80 cm"
         },
         {
           "id": "artisan-antracit",

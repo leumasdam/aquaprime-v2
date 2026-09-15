@@ -73,6 +73,7 @@ export const DVIERKA = {
 
   /* PREMIUM v dekoroch, ktore mal doteraz len standard — 04 je bocnica */
   "premium-120x40x80-antracit": { def: 3, 4: 0 },
+  "premium-100x40x80-antracit": { def: 2, 4: 0 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };
