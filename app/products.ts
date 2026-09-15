@@ -3265,8 +3265,14 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ]
         }
       ],
       "cover": "/img/products/standard-150x50x80-black-matt-02.webp",
@@ -3457,8 +3463,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -3648,8 +3663,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -3847,8 +3871,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/choco-vintage-oak-10.webp",
@@ -4039,8 +4072,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -4230,8 +4272,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/standard-150x50x80-black-matt-02.webp"
@@ -4421,8 +4472,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/standard-200x60x60-dub-sonoma-01.webp",
@@ -4613,8 +4673,17 @@ export const PRODUCTS: Product[] = [
           "swatch": [
             "#eef0f0"
           ],
-          "images": [],
-          "chyba": true
+          "images": [
+            "/img/products/standard-120x40x80-cool-white-01.webp",
+            "/img/products/standard-120x40x80-cool-white-02.webp",
+            "/img/products/standard-120x40x80-cool-white-03.webp",
+            "/img/products/standard-120x40x80-cool-white-04.webp",
+            "/img/products/standard-120x40x80-cool-white-05.webp",
+            "/img/products/standard-120x40x80-cool-white-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
         }
       ],
       "cover": "/img/products/dub-spanielsky-02.webp",

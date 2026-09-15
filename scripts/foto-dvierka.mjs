@@ -68,6 +68,8 @@ export const DVIERKA = {
   "standard-120x40x80-black-matt-orech": { def: 3, 4: 0, 6: 0 },
   "standard-120x40x80-dub-spanielsky-black-matt": { def: 3, 4: 0 },
   "standard-120x40x80-artisan-antracit": { def: 3, 4: 0, 6: 0 },
+  /* biela sada z 12. 9. — bez bocnice, 05 a 06 su detaily pantu */
+  "standard-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };
