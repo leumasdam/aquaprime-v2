@@ -67,6 +67,7 @@ export const DVIERKA = {
   "standard-120x40x80-dub-hunton-black-matt": { def: 3, 4: 0, 6: 0 },
   "standard-120x40x80-black-matt-orech": { def: 3, 4: 0, 6: 0 },
   "standard-120x40x80-dub-spanielsky-black-matt": { def: 3, 4: 0 },
+  "standard-120x40x80-artisan-antracit": { def: 3, 4: 0, 6: 0 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };

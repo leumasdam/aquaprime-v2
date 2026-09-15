@@ -3244,20 +3244,26 @@ export const PRODUCTS: Product[] = [
           ]
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ]
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3427,20 +3433,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3609,20 +3624,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3799,20 +3823,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -3982,20 +4015,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4164,20 +4206,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4346,20 +4397,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
@@ -4529,20 +4589,29 @@ export const PRODUCTS: Product[] = [
           "illuSize": "120 × 40 × 80 cm"
         },
         {
-          "id": "cool-white",
-          "name": "Cool White",
-          "swatch": [
-            "#eef0f0"
-          ],
-          "images": [],
-          "chyba": true
-        },
-        {
           "id": "artisan-antracit",
           "name": "Artisan / Antracit",
           "swatch": [
             "/img/products/swatch-artisan.webp",
             "#40454a"
+          ],
+          "images": [
+            "/img/products/standard-120x40x80-artisan-antracit-01.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-02.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-03.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-04.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-05.webp",
+            "/img/products/standard-120x40x80-artisan-antracit-06.webp"
+          ],
+          "inherited": true,
+          "illuFrom": "rozmer",
+          "illuSize": "120 × 40 × 80 cm"
+        },
+        {
+          "id": "cool-white",
+          "name": "Cool White",
+          "swatch": [
+            "#eef0f0"
           ],
           "images": [],
           "chyba": true
