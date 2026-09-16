@@ -26,7 +26,12 @@ const pocetPreSirku = (w: number) =>
  * prepínači ako Premium/Štandard/Basic, nie ako samostatný filter.
  */
 type Rad = Tier | "all" | "led";
-const jeLed = (p: Product) => p.tier === "premium" && Boolean(p.priceLed);
+/* LED dlaždica potrebuje vizualizácie — 200 cm má štyri dvierka a LED
+   zábery zatiaľ len trojdverové, tak zostáva bez dlaždice */
+const jeLed = (p: Product) =>
+  p.tier === "premium" &&
+  Boolean(p.priceLed) &&
+  p.decors.some((d) => d.led?.zlta?.length || d.led?.modra?.length);
 const LED_POCET = PRODUCTS.filter(jeLed).length;
 
 /**

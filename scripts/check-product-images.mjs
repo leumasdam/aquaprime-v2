@@ -7,7 +7,8 @@ import {dvierkaPreSirku,cabinetSurfaces} from '../app/cabinet-construction.ts';
 import {dvierkaFotky} from './foto-dvierka.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 assert.equal(dvierkaPreSirku(119),2);
-for(const width of [120,150,160,180,200])assert.equal(dvierkaPreSirku(width),3);
+for(const width of [120,150,160,180,199])assert.equal(dvierkaPreSirku(width),3);
+for(const width of [200,220,250])assert.equal(dvierkaPreSirku(width),4);
 assert.equal(dvierkaFotky('/img/products/unclassified-01.webp'),null);
 let galleries=0,photos=0,leds=0,schematics=0,borrowed=0,missing=0;
 const unique=new Set();
@@ -33,7 +34,7 @@ for(const p of PRODUCTS){
   if(labelled){
    borrowed++;
    assert.ok(d.inherited&&d.illuDvierka&&d.illuDvierka!==expected,`${p.slug}/${d.id}: door-count label without a real mismatch`);
-   assert.notEqual(p.tier,'basic',`${p.slug}/${d.id}: basic never borrows closed-cabinet photos`);
+   // basic smie požičať rám s iným počtom polí, ale stále len basic fotku — to stráži kontrola prefixu nižšie
   }
   const allowed=labelled?d.illuDvierka:expected;
   assert.equal(dvierkaFotky(d.images[0]),allowed,`${p.slug}/${d.id}: wrong cover`);

@@ -1,6 +1,7 @@
-/** Záväzné delenie skrinky: pod 120 cm dve polia, od 120 cm tri. */
-export function dvierkaPreSirku(width: number): 2 | 3 {
-  return width < 120 ? 2 : 3;
+/** Záväzné delenie skrinky: pod 120 cm dve polia, od 120 cm tri, od 200 cm štyri. */
+export function dvierkaPreSirku(width: number): 2 | 3 | 4 {
+  if (width < 120) return 2;
+  return width < 200 ? 3 : 4;
 }
 /** Materiály odčítané z fotiek; názvy kombinácií nemajú jednotné poradie. */
 export function cabinetSurfaces(decor: { id: string; swatch: string[] }) {

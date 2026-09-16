@@ -74,6 +74,18 @@ export const DVIERKA = {
   /* PREMIUM v dekoroch, ktore mal doteraz len standard — 04 je bocnica */
   "premium-120x40x80-antracit": { def: 3, 4: 0 },
   "premium-100x40x80-antracit": { def: 2, 4: 0 },
+
+  /* 4-dverové sady od klienta 16. 9. 2026 — od 200 cm sú štyri dvierka */
+  "premium-200x50x70-antracit": { def: 4 },
+  "premium-200x50x70-artisan": { def: 4 },
+  "premium-200x50x70-artisan-cierna": { def: 4 },
+  "premium-200x50x70-cool-white": { def: 4 },
+  "premium-200x50x70-choco-vintage-oak": { def: 4 },
+  "premium-200x50x70-black-matt": { def: 4 },
+  "premium-200x50x70-dub-hunton": { def: 4 },
+  "premium-200x50x70-dub-spanielsky": { def: 4 },
+  "premium-200x50x70-mouse-grey": { def: 4 },
+  "premium-200x50x70-black-matt-orech": { def: 4 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
 };
