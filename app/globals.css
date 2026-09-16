@@ -10909,9 +10909,20 @@ a.dopyt-alt__card:hover {
     left: 0;
     right: 0;
     height: 40svh;
-    /* spodná polovica pásu sa rozplýva skôr, nech titulok sedí v tme a nie na skrinke */
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 46%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 46%, transparent 100%);
+    /* bez závoja — záber je vidieť celý, len úplná spodná hrana sa krátko
+       rozplynie, aby rez pásu nerobil vodorovnú čiaru */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 88%, transparent 100%);
+  }
+  .hero__bg2::after {
+    /* len horná hrana pod pruhom, dole nič */
+    background: linear-gradient(
+      180deg,
+      #0d1515 0%,
+      rgba(13, 21, 21, 0.72) 5%,
+      rgba(13, 21, 21, 0.24) 11%,
+      transparent 18%
+    );
   }
   .hero__inner {
     flex: none;
