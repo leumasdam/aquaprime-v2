@@ -10886,7 +10886,7 @@ a.dopyt-alt__card:hover {
 @media (max-width: 767px) {
   .hero {
     /* rovnaká výška ako .vhero — text sedí pri spodnej hrane, nad ním pás videa */
-    min-height: min(86svh, 800px);
+    min-height: min(96svh, 900px);
     justify-content: flex-end;
   }
   /* pruh s kontaktom ako plný pás v tyrkysovej, ostré hrany, čierny text */
@@ -11008,7 +11008,7 @@ a.dopyt-alt__card:hover {
      bol záber vždy aspoň taký vysoký ako pás (40 svh / 0,4239). */
   .hero__video {
     --sirka-videa: max(min(215vw, 1150px), 95svh);
-    transform: translate(-59.5%, -57%);
+    transform: translate(-59.5%, -53%);
   }
   .hero__ghost {
     border-bottom-color: var(--line-2);
