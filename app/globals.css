@@ -10908,7 +10908,7 @@ a.dopyt-alt__card:hover {
     top: var(--nav-h);
     left: 0;
     right: 0;
-    height: 44svh;
+    height: 40svh;
     /* spodná polovica pásu sa rozplýva skôr, nech titulok sedí v tme a nie na skrinke */
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 46%, transparent 100%);
     mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 46%, transparent 100%);
@@ -11003,8 +11003,11 @@ a.dopyt-alt__card:hover {
     font-size: 1rem;
     line-height: 1;
   }
-  /* záber o kúsok vyššie, nech akvárium nesedí tak blízko k titulku */
+  /* záber o kúsok vyššie a o desatinu menší — akvárium má okolo seba viac
+     miestnosti a nesedí tak blízko k titulku. Spodný strop šírky drží, aby
+     bol záber vždy aspoň taký vysoký ako pás (40 svh / 0,4239). */
   .hero__video {
+    --sirka-videa: max(min(215vw, 1150px), 95svh);
     transform: translate(-59.5%, -57%);
   }
   .hero__ghost {
