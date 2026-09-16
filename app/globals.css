@@ -11030,13 +11030,14 @@ a.dopyt-alt__card:hover {
     height: calc(0.4239 * var(--sirka-videa));
     /* hneď pod pruhom, žiadna medzera ani rez hore — horná hrana sa krátko
        rozplynie do rozmazaného pozadia */
-    top: calc(var(--nav-h) + 34px + 10px);
+    /* tesne pod pruhom, horná hrana bez rozplynutia — inak nad videom vzniká čierny pás */
+    top: calc(var(--nav-h) + 34px);
     left: 50%;
     object-fit: cover;
     object-position: 59.5% 50%;
     transform: translateX(-59.5%);
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 72%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 72%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
   }
   /* rozmazané pozadie z posteru — ten istý záber, len cez celú plochu */
   .hero__bg2::before {
