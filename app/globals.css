@@ -10921,7 +10921,8 @@ a.dopyt-alt__card:hover {
   .hero__inner {
     flex: none;
     z-index: 2;
-    padding-block: 0 clamp(18px, 3.4vw, 44px);
+    /* o pár pixelov vyššie, než by dal samotný clamp */
+    padding-block: 0 calc(clamp(18px, 3.4vw, 44px) + 8px);
   }
   .hero__content {
     max-width: none;
@@ -10952,6 +10953,8 @@ a.dopyt-alt__card:hover {
     color: var(--ink);
     text-wrap: balance;
     margin-bottom: 16px;
+    /* serifové V má vlastný ľavý odsadok, titulok ide o kúsok k okraju */
+    margin-left: -0.05em;
   }
   .hero__bodka {
     color: var(--cyan);
