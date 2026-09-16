@@ -10915,11 +10915,11 @@ a.dopyt-alt__card:hover {
   .hero__bg2::after {
     background: linear-gradient(
       180deg,
-      rgba(11, 15, 14, 0.18) 0%,
+      rgba(11, 15, 14, 0.16) 0%,
       rgba(11, 15, 14, 0.04) 22%,
       rgba(11, 15, 14, 0.3) 46%,
-      rgba(12, 16, 15, 0.84) 66%,
-      var(--bg) 92%
+      rgba(12, 16, 15, 0.72) 68%,
+      rgba(12, 16, 15, 0.9) 100%
     );
   }
   .hero__inner {
@@ -11019,22 +11019,20 @@ a.dopyt-alt__card:hover {
      miestnosti a nesedí tak blízko k titulku. Spodný strop šírky drží, aby
      bol záber vždy aspoň taký vysoký ako pás (40 svh / 0,4239). */
   .hero__video {
-    /* Celý záber obývačky, oddialený: šírka 124 % displeja, nádrž je v ňom
-       na 63 % šírky a tá ide do stredu. Premennú má aj samotné video
-       z pravidla pre 360–766 px, tak ju tu prepíšeme. */
-    /* Pri posune na 63 % musí byť záber aspoň 135 % displeja, inak mu vpravo
-       ostane medzera (50 % − 0,63 × šírka + šírka < 100 %). 150 % dáva
-       väčší záber a rezervu na oboch stranách. */
-    --sirka-videa: min(150vw, 900px);
-    width: var(--sirka-videa);
-    height: calc(0.5625 * var(--sirka-videa));
-    top: calc(var(--nav-h) + 34px + 36px);
-    left: 50%;
-    object-position: 63% 50%;
-    transform: translateX(-63%);
-    /* spodná tretina záberu sa rozplynie, závoj sekcie ju dotmaví */
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+    /* Ako na Akváriách: záber vypĺňa celú sekciu od pruhu až po výzvy,
+       text sedí na jeho stmavenej spodnej časti. Rám videa tak nikdy
+       nekončí uprostred sekcie. Nádrž je v zábere na 63 % šírky, tá ide
+       do stredu; na výšku sa drží horná časť so sklom. */
+    --sirka-videa: auto;
+    width: 100%;
+    height: calc(100% - var(--nav-h) - 34px);
+    top: calc(var(--nav-h) + 34px);
+    left: 0;
+    transform: none;
+    object-fit: cover;
+    object-position: 63% 38%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .hero__ghost {
     border-bottom-color: var(--line-2);
