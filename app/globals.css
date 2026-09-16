@@ -11019,11 +11019,11 @@ a.dopyt-alt__card:hover {
      miestnosti a nesedí tak blízko k titulku. Spodný strop šírky drží, aby
      bol záber vždy aspoň taký vysoký ako pás (40 svh / 0,4239). */
   .hero__video {
-    /* Oddialený záber s celou nádržou: 140 % displeja (od 135 % siaha za oba
+    /* Oddialený záber s celou nádržou: 165 % displeja (od 135 % siaha za oba
        okraje pri posune na 63 %). Pod ním leží rozmazaná statická kópia
        záberu cez celú sekciu, takže obraz pokračuje až po výzvy a rám
        videa sa neukáže — spodná štvrtina sa doň rozplynie. */
-    --sirka-videa: min(140vw, 860px);
+    --sirka-videa: min(165vw, 1000px);
     width: var(--sirka-videa);
     height: calc(0.5625 * var(--sirka-videa));
     top: calc(var(--nav-h) + 34px + 28px);
