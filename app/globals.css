@@ -10886,7 +10886,7 @@ a.dopyt-alt__card:hover {
 @media (max-width: 767px) {
   .hero {
     /* rovnaká výška ako .vhero — text sedí pri spodnej hrane, nad ním pás videa */
-    min-height: min(96svh, 900px);
+    min-height: min(100svh, 940px);
     justify-content: flex-end;
   }
   /* pruh s kontaktom ako plný pás v tyrkysovej, ostré hrany, čierny text */
@@ -11022,10 +11022,13 @@ a.dopyt-alt__card:hover {
     /* Celý záber obývačky, oddialený: šírka 124 % displeja, nádrž je v ňom
        na 63 % šírky a tá ide do stredu. Premennú má aj samotné video
        z pravidla pre 360–766 px, tak ju tu prepíšeme. */
-    --sirka-videa: min(124vw, 760px);
+    /* Pri posune na 63 % musí byť záber aspoň 135 % displeja, inak mu vpravo
+       ostane medzera (50 % − 0,63 × šírka + šírka < 100 %). 150 % dáva
+       väčší záber a rezervu na oboch stranách. */
+    --sirka-videa: min(150vw, 900px);
     width: var(--sirka-videa);
     height: calc(0.5625 * var(--sirka-videa));
-    top: calc(var(--nav-h) + 34px + 14px);
+    top: calc(var(--nav-h) + 34px + 36px);
     left: 50%;
     object-position: 63% 50%;
     transform: translateX(-63%);
