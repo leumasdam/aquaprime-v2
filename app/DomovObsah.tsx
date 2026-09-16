@@ -7,6 +7,7 @@ import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
 import ProductCard from "./ProductCard";
 import { PRODUCTS } from "./products";
+import PasKarusel from "./PasKarusel";
 import InstagramPas from "./InstagramPas";
 
 // najpredávanejší rozmer podľa klienta: 120 × 40 × 80 (covery v bielej)
@@ -236,8 +237,9 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
           <Configurator jazyk={jazyk} />
         </div>
 
-        {/* LED zapaľovanie: po linke prebehne impulz a postupne zapína body */}
-        <div className="wrap construct__steps" data-reveal="fade">
+        {/* LED zapaľovanie: po linke prebehne impulz a postupne zapína body.
+            Na telefóne je to pás, ktorý sa prepína po jednom kroku. */}
+        <PasKarusel className="wrap construct__steps" data-reveal="fade">
           {d.kroky.map((label, i) => (
             <div
               className="cstep"
@@ -248,7 +250,7 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
               <span className="cstep__label">{label}</span>
             </div>
           ))}
-        </div>
+        </PasKarusel>
       </section>
 
       {/* ===== FEATURED PRODUCTS — vybrané kusy z katalógu ===== */}

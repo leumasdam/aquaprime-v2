@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type HTMLAttributes, type ReactNode } from "react";
 
 /**
  * Vodorovný pás, ktorý sa sám prepína na ďalšiu kartu.
@@ -15,10 +15,11 @@ const PAUZA = 9000;         // ticho po dotyku
 export default function PasKarusel({
   className,
   children,
+  ...rest
 }: {
   className?: string;
   children: ReactNode;
-}) {
+} & HTMLAttributes<HTMLDivElement>) {
   const pas = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function PasKarusel({
   }, []);
 
   return (
-    <div className={className} ref={pas}>
+    <div className={className} ref={pas} {...rest}>
       {children}
     </div>
   );
