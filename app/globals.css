@@ -11029,7 +11029,7 @@ a.dopyt-alt__card:hover {
     height: calc(0.5625 * var(--sirka-videa));
     /* hneď pod pruhom, žiadna medzera ani rez hore — horná hrana sa krátko
        rozplynie do rozmazaného pozadia */
-    top: var(--nav-h);
+    top: calc(var(--nav-h) + 34px);
     left: 50%;
     object-fit: cover;
     object-position: 63% 50%;
