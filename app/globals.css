@@ -10904,8 +10904,8 @@ a.dopyt-alt__card:hover {
   }
   .hero__bg2 {
     position: absolute;
-    /* video začína až pod pásom */
-    top: calc(var(--nav-h) + 34px);
+    /* pás leží cez horný okraj videa, video sa preň neposúva */
+    top: var(--nav-h);
     left: 0;
     right: 0;
     height: 44svh;
