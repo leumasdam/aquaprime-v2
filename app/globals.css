@@ -10889,13 +10889,23 @@ a.dopyt-alt__card:hover {
     min-height: min(86svh, 800px);
     justify-content: flex-end;
   }
-  /* pruh s kontaktom na tomto rozložení nie je, video začína hneď pod lištou */
+  /* pruh s kontaktom ako plný pás v tyrkysovej, ostré hrany, čierny text */
   .hero__pruh {
-    display: none;
+    height: 34px;
+    background: var(--cyan);
+    color: #0b0f0f;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .hero__pruh-odkaz {
+    color: #0b0f0f;
+    font-weight: 700;
   }
   .hero__bg2 {
     position: absolute;
-    top: var(--nav-h);
+    /* video začína až pod pásom */
+    top: calc(var(--nav-h) + 34px);
     left: 0;
     right: 0;
     height: 44svh;
