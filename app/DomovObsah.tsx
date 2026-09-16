@@ -92,17 +92,27 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
           <div className="hero__content">
             <span className="hero__eyebrow">
               <span className="hero__eyebrow-rule" />
-              {d.eyebrow}
+              <span className="hero__eyebrow-text hero__eyebrow-text--d">{d.eyebrow}</span>
+              <span className="hero__eyebrow-text hero__eyebrow-text--m">{d.eyebrowM}</span>
             </span>
             <h1 className="hero__title">
               {d.titul1}
               <br />
-              {d.titul2}
+              {/* na telefóne je bodka tyrkysová ako na podstránkach, inde dedí farbu */}
+              {d.titul2.replace(/\.$/, "")}
+              {d.titul2.endsWith(".") && (
+                <span className="hero__bodka" aria-hidden>
+                  .
+                </span>
+              )}
             </h1>
-            <p className="hero__body">{d.lead}</p>
+            {/* Dlhý odsek na počítači, krátky na telefóne — CSS ukáže vždy len jeden. */}
+            <p className="hero__body hero__body--dlhy">{d.lead}</p>
+            <p className="hero__body hero__body--kratky">{d.leadKratky}</p>
             <div className="hero__ctas">
               <a href="#kolekcie" className="hero__btn">
-                <span className="hero__btn-label">{d.ctaKolekcie}</span>
+                <span className="hero__btn-label hero__btn-label--d">{d.ctaKolekcie}</span>
+                <span className="hero__btn-label hero__btn-label--m">{d.ctaKolekcieM}</span>
                 <span className="hero__btn-arr" aria-hidden>
                   ↓
                 </span>
@@ -123,7 +133,8 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
                   <path d="M12 12 20.5 7.75" />
                   <path d="M12 12 12 21" />
                 </svg>
-                <span className="hero__ghost-label">{d.ctaKonfigurator}</span>
+                <span className="hero__ghost-label hero__ghost-label--d">{d.ctaKonfigurator}</span>
+                <span className="hero__ghost-label hero__ghost-label--m">{d.ctaKonfiguratorM}</span>
               </Link>
             </div>
           </div>
