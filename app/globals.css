@@ -10902,29 +10902,25 @@ a.dopyt-alt__card:hover {
     color: #0b0f0f;
     font-weight: 700;
   }
+  /* Záber a závoj ako na Akváriách: pozadie drží celú sekciu, video sedí
+     v jej hornej časti oddialené tak, aby bola vidieť celá miestnosť, a
+     závoj nad ním hustne smerom dole až po koniec odseku. */
   .hero__bg2 {
     position: absolute;
-    /* pás leží cez horný okraj videa, video sa preň neposúva */
-    top: var(--nav-h);
-    left: 0;
-    right: 0;
-    /* Záber obývačky je už orezaný na nádrž so skrinkou (pomer 1,387 : 1),
-       tak stačí, aby bol o osemnásť percent širší než displej a celá nádrž
-       sa zmestí. Výška pásu ide z tej istej šírky, nech záber nikdy nekončí
-       vnútri pásu. */
-    --sirka-videa: min(118vw, 700px);
-    height: calc(0.721 * var(--sirka-videa));
-    /* bez závoja — záber je vidieť celý, len úplná spodná hrana sa krátko
-       rozplynie, aby rez pásu nerobil vodorovnú čiaru */
-    /* Svetlá obývačka končí drevenou podlahou, tmavé pozadie stránky pod ňou
-       by robilo ostrú hranu. Posledná šestina pásu sa preto mäkko rozplynie —
-       je to len hrana, nie závoj cez záber. */
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+    inset: 0;
+    height: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
-  /* žiadny gradient nad záberom, ani hore pod pruhom */
   .hero__bg2::after {
-    background: none;
+    background: linear-gradient(
+      180deg,
+      rgba(11, 15, 14, 0.18) 0%,
+      rgba(11, 15, 14, 0.04) 22%,
+      rgba(11, 15, 14, 0.3) 46%,
+      rgba(12, 16, 15, 0.84) 66%,
+      var(--bg) 92%
+    );
   }
   .hero__inner {
     flex: none;
@@ -11023,14 +11019,19 @@ a.dopyt-alt__card:hover {
      miestnosti a nesedí tak blízko k titulku. Spodný strop šírky drží, aby
      bol záber vždy aspoň taký vysoký ako pás (40 svh / 0,4239). */
   .hero__video {
-    /* premennú má aj samotné video z pravidla pre 360–766 px, tak ju tu
-       prepíšeme, inak by zostala stará šírka 235 vw */
-    --sirka-videa: min(118vw, 700px);
+    /* Celý záber obývačky, oddialený: šírka 124 % displeja, nádrž je v ňom
+       na 63 % šírky a tá ide do stredu. Premennú má aj samotné video
+       z pravidla pre 360–766 px, tak ju tu prepíšeme. */
+    --sirka-videa: min(124vw, 760px);
     width: var(--sirka-videa);
-    height: calc(0.721 * var(--sirka-videa));
-    /* nádrž je v orezanom zábere na 52 % šírky — do stredu ide ona */
-    object-position: 52% 50%;
-    transform: translate(-52%, -50%);
+    height: calc(0.5625 * var(--sirka-videa));
+    top: calc(var(--nav-h) + 34px + 14px);
+    left: 50%;
+    object-position: 63% 50%;
+    transform: translateX(-63%);
+    /* spodná tretina záberu sa rozplynie, závoj sekcie ju dotmaví */
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
   }
   .hero__ghost {
     border-bottom-color: var(--line-2);
@@ -11067,5 +11068,126 @@ a.dopyt-alt__card:hover {
   .hero__btn,
   .hero__ghost {
     font-size: 0.8125rem;
+  }
+}
+
+
+/* ===========================================================
+   MOBILNÉ MENU — podvodný záber na pozadí, serifové položky so šípkou,
+   tyrkysová pilulka konfigurátora a spodná lišta ako v aplikácii (16. 9. 2026)
+   =========================================================== */
+@media (max-width: 1024px) {
+  .nav__mobile {
+    inset: 0;
+    padding: calc(var(--nav-h) + 22px) clamp(22px, 6vw, 40px) 120px;
+    background: #0a1214 url(/img/nav-bg-m.webp) center / cover no-repeat;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  /* jemný závoj, nech text drží kontrast aj nad svetlejšou hladinou */
+  .nav__mobile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 14, 16, 0.55) 0%, rgba(8, 14, 16, 0.3) 45%, rgba(8, 14, 16, 0.5) 100%);
+    pointer-events: none;
+  }
+  .nav__mobile > * {
+    position: relative;
+  }
+  /* lišta hore pri otvorenom menu bez pozadia — logo leží priamo na zábere */
+  .menu-otvorene .nav {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+  .nav__mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: clamp(1.15rem, 5vw, 1.45rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(247, 246, 242, 0.82);
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .nav__mobile-link.is-active {
+    color: #fff;
+    font-weight: 700;
+  }
+  .nav__mobile-arr {
+    font-family: var(--ui);
+    font-size: 1.1rem;
+    color: rgba(120, 200, 226, 0.9);
+    transition: transform var(--t-base) var(--ease);
+  }
+  .nav__mobile-link:hover {
+    padding-left: 0;
+  }
+  .nav__mobile-link:hover .nav__mobile-arr {
+    transform: translateX(4px);
+  }
+  .nav__mobile-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 46px;
+    padding: 0 24px;
+    margin-top: 30px;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+  }
+  .nav__mobile-cta-ico {
+    width: 18px;
+    height: 18px;
+  }
+  .nav__mobile-tabs {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 6px 9px;
+    border-radius: 24px;
+    background: rgba(16, 24, 27, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+  .nav__mobile-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--ui);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(240, 244, 244, 0.72);
+  }
+  .nav__mobile-tab-ico {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: background var(--t-base), color var(--t-base);
+  }
+  .nav__mobile-tab-ico svg {
+    width: 20px;
+    height: 20px;
+  }
+  .nav__mobile-tab.is-active {
+    color: var(--cyan);
+  }
+  .nav__mobile-tab.is-active .nav__mobile-tab-ico {
+    background: rgba(0, 154, 192, 0.22);
+    color: #6fd3f0;
   }
 }

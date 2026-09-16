@@ -20,6 +20,8 @@ export const SK = {
     otvoritMenu: "Otvoriť menu",
     zavrietMenu: "Zavrieť menu",
     kosik: "Košík",
+    /* spodná lišta v mobilnom menu */
+    taby: ["Domov", "Skrinky", "Košík", "Kontakt"] as [string, string, string, string],
     preskocit: "Preskočiť na obsah",
     jazyk: "Jazyk stránky",
     jazykSk: "Slovenčina",
@@ -1079,6 +1081,7 @@ export const EN: Slovnik = {
     otvoritMenu: "Open menu",
     zavrietMenu: "Close menu",
     kosik: "Cart",
+    taby: ["Home", "Cabinets", "Cart", "Contact"] as [string, string, string, string],
     preskocit: "Skip to content",
     jazyk: "Page language",
     jazykSk: "Slovenčina",

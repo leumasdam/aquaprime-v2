@@ -74,8 +74,11 @@ export default function SiteNav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    /* lišta hore pri otvorenom menu stráca pozadie, nech logo leží na zábere */
+    document.body.classList.toggle("menu-otvorene", open);
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-otvorene");
     };
   }, [open]);
 
@@ -167,11 +170,14 @@ export default function SiteNav() {
               key={item.kluc}
               href={l(item.href)}
               transitionTypes={smer(item.href)}
-              className="nav__mobile-link"
+              className={`nav__mobile-link${isActive(item.href) ? " is-active" : ""}`}
               style={{ "--i": i } as React.CSSProperties}
               onClick={() => setOpen(false)}
             >
-              {t.nav[item.kluc]}
+              <span>{t.nav[item.kluc]}</span>
+              <span className="nav__mobile-arr" aria-hidden>
+                →
+              </span>
             </Link>
           ))}
         </nav>
@@ -181,6 +187,12 @@ export default function SiteNav() {
           className="btn-cyan nav__mobile-cta"
           onClick={() => setOpen(false)}
         >
+          <svg className="nav__mobile-cta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+            <circle cx="9" cy="7" r="2" fill="currentColor" stroke="none" />
+            <circle cx="15" cy="12" r="2" fill="currentColor" stroke="none" />
+            <circle cx="8" cy="17" r="2" fill="currentColor" stroke="none" />
+          </svg>
           {t.nav.konfigurator} <span aria-hidden>→</span>
         </Link>
         <JazykPrepinac
@@ -189,6 +201,32 @@ export default function SiteNav() {
           variant="mobil"
           onVyber={() => setOpen(false)}
         />
+        {/* spodná lišta so štyrmi cieľmi — ako v natívnej aplikácii */}
+        <nav className="nav__mobile-tabs" aria-label={t.nav.taby.join(", ")}>
+          {(
+            [
+              ["/", t.nav.taby[0], "M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"],
+              ["/skrinky", t.nav.taby[1], "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"],
+              ["/kosik", t.nav.taby[2], "M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H6.5M9 20a1 1 0 1 0 0-.1M17 20a1 1 0 1 0 0-.1"],
+              ["/kontakt", t.nav.taby[3], "M4 6h16v12H4zM4 7l8 6 8-6"],
+            ] as [string, string, string][]
+          ).map(([href, popis, cesta]) => (
+            <Link
+              key={href}
+              href={l(href)}
+              transitionTypes={smer(href)}
+              className={`nav__mobile-tab${isActive(href) ? " is-active" : ""}`}
+              onClick={() => setOpen(false)}
+            >
+              <span className="nav__mobile-tab-ico" aria-hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
+                  <path d={cesta} />
+                </svg>
+              </span>
+              {popis}
+            </Link>
+          ))}
+        </nav>
       </div>
     </>
   );
