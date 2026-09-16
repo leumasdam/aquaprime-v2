@@ -11024,16 +11024,17 @@ a.dopyt-alt__card:hover {
        okraje pri posune na 63 %). Pod ním leží rozmazaná statická kópia
        záberu cez celú sekciu, takže obraz pokračuje až po výzvy a rám
        videa sa neukáže — spodná štvrtina sa doň rozplynie. */
-    --sirka-videa: min(165vw, 1000px);
+    /* pôvodný záber tmavej miestnosti má pomer 2,36 : 1 a nádrž na 59,5 % */
+    --sirka-videa: min(200vw, 1150px);
     width: var(--sirka-videa);
-    height: calc(0.5625 * var(--sirka-videa));
+    height: calc(0.4239 * var(--sirka-videa));
     /* hneď pod pruhom, žiadna medzera ani rez hore — horná hrana sa krátko
        rozplynie do rozmazaného pozadia */
     top: calc(var(--nav-h) + 34px + 10px);
     left: 50%;
     object-fit: cover;
-    object-position: 63% 50%;
-    transform: translateX(-63%);
+    object-position: 59.5% 50%;
+    transform: translateX(-59.5%);
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 72%, transparent 100%);
     mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 72%, transparent 100%);
   }
@@ -11042,7 +11043,7 @@ a.dopyt-alt__card:hover {
     content: "";
     position: absolute;
     inset: -20px;
-    background: url(/img/hero-natural-m-poster.webp) 63% 42% / cover no-repeat;
+    background: url(/img/hero-water-poster.webp) 59.5% 45% / cover no-repeat;
     filter: blur(16px) brightness(0.62) saturate(0.9);
   }
   .hero__ghost {

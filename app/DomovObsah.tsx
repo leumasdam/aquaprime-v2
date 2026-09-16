@@ -60,17 +60,16 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
           </Link>
         </div>
         <div className="hero__bg2" aria-hidden="true">
-          {/* telefón: iný záber než na počítači — svetlá obývačka s akváriom,
-              orezaná na nádrž so skrinkou, aby sa zmestila na šírku displeja */}
           <video
             className="hero__video"
             autoPlay
             muted
             loop
             playsInline
-            poster="/img/hero-natural-m-poster.webp"
+            poster="/img/hero-water-poster.webp"
           >
-            <source src="/video/hero-natural-m.mp4" type="video/mp4" />
+            <source src="/video/hero-water.webm" type="video/webm" />
+            <source src="/video/hero-water.mp4" type="video/mp4" />
           </video>
           <video
             className="hero__video-d"
