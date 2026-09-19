@@ -1,6 +1,6 @@
 ---
-title: Ako vybrať skrinku pod akvárium — BASIC, ŠTANDARD, PREMIUM
-description: Ako vybrať skrinku pod akvárium: porovnanie vyhotovení BASIC, ŠTANDARD a PREMIUM, ceny s LED, počet dvierok a prečo oceľový rám namiesto komody.
+title: Ako vybrať skrinku pod akvárium? Porovnali sme BASIC, ŠTANDARD a PREMIUM
+description: Porovnajte skrinky BASIC, ŠTANDARD a PREMIUM, ich ceny, opláštenie aj LED podsvietenie. Vysvetlíme tiež, prečo bežná komoda nestačí.
 date: 2026-09-19
 category: skrinky
 keywords: skrinka pod akvárium, stolík pod akvárium, podstavec pod akvárium, akvarijný nábytok
@@ -11,32 +11,34 @@ faq:
   - q: Koľko stojí LED podsvietenie navyše?
     a: Pri skrinke 120 × 40 × 80 cm je LED doplnok o 60 € drahší pri ŠTANDARD (330 € → 390 €) a o 50 € pri PREMIUM (350 € → 400 €). Vyberáte medzi teplou bielou a modrou farbou.
   - q: Koľko dvierok má skrinka dlhá 150 cm?
-    a: Troje. Skrinky kratšie ako 120 cm majú dvoje dvierok, od 120 do 199 cm troje a od 200 cm štvoro.
+    a: Tri. Skrinky kratšie ako 120 cm majú dve dvierka, od 120 do 199 cm tri a od 200 cm štyri.
 ---
 
-Skrinka pod akvárium nie je obyčajný podstavec. Je to konštrukcia, ktorá roky nesie hmotnosť vody, skla a dekoru sústredenú na jednom mieste, a zároveň má v obývačke vyzerať tak, ako si predstavujete. Pri výbere skrinky pod akvárium sa preto rozhodujete v dvoch rovinách naraz: akú konštrukciu potrebujete a koľko techniky chcete mať na očiach. Prejdeme si tri vyhotovenia z ponuky AQUAPRIME aj to, prečo sa bežná komoda z drevotriesky pod akvárium nehodí.
+Skrinka pod akváriom môže niesť stovky kilogramov nepretržite celé roky. Zároveň stojí na očiach v obývačke a ukrýva filter, káble aj ďalšiu techniku. Nie je preto iba ďalším kusom nábytku.
 
-Rozhodovanie sa väčšinou zúži na tri otázky: koľko chcete vidieť z filtrácie a káblov, aký máte rozpočet a kam skrinka fyzicky príde — do obývačky, alebo do technickej miestnosti. Odpovede vás rýchlo dovedú k jednému z troch vyhotovení.
+Pri výbere rozhoduje pevná konštrukcia, vzhľad aj to, koľko technického vybavenia chcete nechať viditeľného. Porovnali sme tri vyhotovenia AQUAPRIME a vysvetľujeme, prečo bežná komoda z drevotriesky nie je vhodnou náhradou.
 
-## Tri úrovne — BASIC, ŠTANDARD, PREMIUM
+Rozhodovanie si zjednodušíte tromi otázkami: Má zostať filtrácia viditeľná? Koľko chcete investovať? A bude zostava v reprezentatívnej obývačke alebo v technickej miestnosti?
 
-Všetky skrinky AQUAPRIME stoja na rovnakej konštrukcii — zváranom oceľovom ráme. Líšia sa tým, koľko z rámu je opláštené a koľko ostáva viditeľné.
+## Nosný základ je rovnaký, mení sa opláštenie
+
+Každá skrinka AQUAPRIME stojí na zváranom oceľovom ráme. Jednotlivé verzie sa líšia rozsahom opláštenia a tým, koľko konštrukcie zostáva viditeľnej.
 
 - **BASIC** — otvorený oceľový rám s vrchnou doskou. Technika je viditeľná, bočnice ani dvierka nemá.
 - **ŠTANDARD** — rám doplnený o bočnice a dvierka. Vnútro je zakryté, no cez otvorené dvierka vidno samotný rám.
 - **PREMIUM** — kompletne opláštená skrinka vrátane dna, s bezúchytkovými dvierkami a symetrickou škárou. Rám nevidno zo žiadnej strany.
 
-Rozdiel teda nie je v tom, čo skrinka unesie — nosnosť posudzujeme vždy podľa celej zostavy, nie podľa opláštenia. Rozdiel je vo vzhľade, v tom, nakoľko je technika skrytá, a v cene.
+Opláštenie nerozhoduje o nosnosti. Tú treba vždy posúdiť podľa kompletnej zostavy. BASIC, ŠTANDARD a PREMIUM sa odlišujú najmä vzhľadom, mierou zakrytia techniky a cenou.
 
-Ako stolík pod akvárium alebo podstavec pod akvárium poslúži ktorékoľvek z troch vyhotovení. Rozdiel medzi nimi pocítite skôr pri každodennej obsluhe — pri výmene vody či prístupe k filtru — než pri samotnom nesení akvária.
+Každé vyhotovenie plní úlohu bezpečného podstavca. Rozdiel pocítite najmä pri každodennom používaní, upratovaní a prístupe k filtru.
 
-## BASIC — kedy si ju vybrať
+## BASIC: otvorená konštrukcia a najnižšia cena
 
-BASIC dáva zmysel tam, kde vám otvorená konštrukcia neprekáža alebo ju priamo chcete. Priestor pod akváriom ostáva prístupný zo všetkých strán, čo sa hodí do technickej miestnosti, dielne alebo chovateľskej zostavy s viacerými nádržami, kde potrebujete rýchly prístup k filtrácii a káblom.
+BASIC je určený tam, kde otvorená konštrukcia neprekáža alebo je priamo výhodou. Priestor pod nádržou zostáva prístupný zo všetkých strán, čo oceníte v technickej miestnosti, dielni alebo pri chovateľskej zostave s viacerými nádržami.
 
-Zároveň je to najlacnejšie z troch vyhotovení. Ak vám viditeľná technika nevadí a hlavným kritériom je cena, na konštrukcii nič nestrácate — rám je rovnaký ako pri drahších vyhotoveniach.
+Ide o najlacnejšie vyhotovenie, no nie o slabší nosný základ. Oceľový rám je rovnaký ako pri drahších verziách. Šetrí sa na opláštení, nie na konštrukcii.
 
-Volia si ho aj akvaristi, ktorí plánujú pridať ďalšiu nádrž alebo meniť techniku. Bez dvierok a bočníc je výmena hadičiek alebo pridanie ďalšieho filtra rýchlejšie.
+Otvorený prístup vyhovuje aj akvaristom, ktorí často menia techniku alebo plánujú ďalšiu nádrž. Výmena hadíc či doplnenie filtra je bez bočníc a dvierok jednoduchšie.
 
 | Rozmer (Š × H × V) | Cena BASIC |
 |---|---|
@@ -46,13 +48,13 @@ Volia si ho aj akvaristi, ktorí plánujú pridať ďalšiu nádrž alebo meniť
 | 160 × 60 × 80 cm | 280 € |
 | 200 × 50 × 70 cm | 320 € |
 
-## ŠTANDARD — stredná cesta
+## ŠTANDARD: technika zmizne za dvierkami
 
-ŠTANDARD pridáva bočnice a dvierka, takže filter, ohrievač a káble zmiznú z pohľadu, no cena ostáva bližšie k BASIC než k PREMIUM. Pre väčšinu domácností, ktoré chcú akvárium ako súčasť obývačky bez techniky na očiach, je to zvyčajne najpraktickejšia voľba.
+ŠTANDARD pridáva bočnice a dvierka, za ktoré schováte filter, hadice aj káble. Pre väčšinu domácností predstavuje praktický kompromis medzi cenou a čistým vzhľadom.
 
-Vnútro nie je obložené — cez otvorené dvierka vidno oceľový rám. Pri zatvorených dvierkach, teda väčšinu času, to nevidno vôbec.
+Vnútro zostáva bez opláštenia, takže po otvorení vidíte oceľový rám. Pri zatvorených dvierkach však pôsobí skrinka zvonka ako celistvý kus nábytku.
 
-Ako akvarijný nábytok do obývačky je ŠTANDARD rozumný kompromis: technika je schovaná za dvierkami a za detaily, ktoré si všimnete až zblízka, nepriplácate.
+Do obývačky je ŠTANDARD rozumnou voľbou, ak chcete ukryť techniku, no nepotrebujete dokončený interiér skrinky.
 
 | Rozmer (Š × H × V) | Cena ŠTANDARD | S LED |
 |---|---|---|
@@ -64,13 +66,13 @@ Ako akvarijný nábytok do obývačky je ŠTANDARD rozumný kompromis: technika 
 
 > **Tip:** LED podsvietenie si k vybraným skrinkám ŠTANDARD a PREMIUM doobjednáte v teplej bielej alebo modrej farbe. Ako si vybrať farbu a čo od podsvietenia čakať, nájdete v článku o [LED podsvietení akvária](/blog/led-podsvietenie-akvaria).
 
-## PREMIUM — skrinka ako kus nábytku
+## PREMIUM: čistý vzhľad zvonka aj zvnútra
 
-PREMIUM je kompletne opláštená skrinka — vrátane dna — s bezúchytkovými dvierkami a symetrickou škárou. Z konštrukcie nevidno nič, ani cez otvorené dvierka. Je to vyhotovenie pre interiéry, kde má akvárium pôsobiť ako nábytok, nie ako technické zariadenie s vodou.
+PREMIUM má opláštené celé vnútro vrátane dna. Oceľový rám zostáva skrytý aj po otvorení bezúchytkových dvierok so symetrickými škárami. Táto verzia je určená do interiérov, v ktorých má akvárium pôsobiť ako plnohodnotný kus nábytku.
 
-Cenový rozdiel oproti ŠTANDARD nie je pri menších rozmeroch veľký, pretože ide o dokončenie povrchov a detail dvierok, nie o inú konštrukciu.
+Nosná konštrukcia zostáva rovnaká. Príplatok preto smeruje do dokončenia vnútorných povrchov a detailnejšieho spracovania dvierok.
 
-Bezúchytkové dvierka nemajú na čelnej strane žiadne kľučky ani úchytky. Najviac to vynikne pri dlhších skrinkách so štyrmi dvierkami (od 200 cm), kde čelná plocha pôsobí súvislo, prerušená len rovnomernými škárami.
+Na čelnej strane nenájdete kľučky ani vystupujúce úchytky. Efekt najviac vynikne pri dlhých skrinkách so štyrmi dvierkami, kde zostáva plocha súvislá a delená iba rovnomernými škárami.
 
 | Rozmer (Š × H × V) | Cena PREMIUM | S LED |
 |---|---|---|
@@ -80,9 +82,9 @@ Bezúchytkové dvierka nemajú na čelnej strane žiadne kľučky ani úchytky. 
 | 160 × 60 × 80 cm | 370 € | 420 € |
 | 200 × 50 × 70 cm | 410 € | 460 € |
 
-## Porovnanie na jednom mieste
+## Ktoré vyhotovenie sa hodí práve vám?
 
-Ak sa rozhodujete medzi vyhotoveniami, najlepšie sa to vidí vedľa seba. Tabuľka ukazuje, čo každé vyhotovenie obsahuje, komu sa hodí a koľko stojí pri bežnom rozmere 120 × 40 × 80 cm.
+V tabuľke vidíte rozdiely vedľa seba vrátane ceny pri bežnom rozmere 120 × 40 × 80 cm.
 
 | Vyhotovenie | Čo obsahuje | Pre koho | Cena (120 × 40 × 80 cm) |
 |---|---|---|---|
@@ -90,48 +92,48 @@ Ak sa rozhodujete medzi vyhotoveniami, najlepšie sa to vidí vedľa seba. Tabu�
 | ŠTANDARD | Rám + bočnice a dvierka (rám vidno zvnútra) | Obývačka, bežná domácnosť, technika skrytá za dvierkami | 330 € |
 | PREMIUM | Kompletné opláštenie vrátane dna, bezúchytkové dvierka | Reprezentatívny interiér, dôraz na vzhľad bez viditeľnej techniky | 350 € |
 
-Pri rozmere 120 × 40 × 80 cm je rozdiel medzi ŠTANDARD a PREMIUM len 20 €, medzi BASIC a ŠTANDARD 70 €. Pri iných rozmeroch je pomer iný, preto si konkrétny rozmer porovnajte v [konfigurátore skriniek](/konfigurator).
+Pri rozmere 120 × 40 × 80 cm stojí PREMIUM o 20 € viac než ŠTANDARD, zatiaľ čo prechod z BASIC na ŠTANDARD predstavuje 70 €. Pri iných veľkostiach sa rozdiel mení, preto si vlastnú kombináciu overte v [konfigurátore](/konfigurator).
 
-## Oceľový rám AquaFrame — prečo nie bežná komoda
+## Prečo akvárium nepatrí na bežnú komodu?
 
-Bežná komoda alebo skrinka z laminovanej drevotriesky nie je stavaná na to, čo od nej akvárium vyžaduje. Stretávajú sa tam naraz tri veci:
+Bežná komoda z drevotriesky nepočíta s podmienkami, ktoré vytvára veľké akvárium. Problémom je kombinácia troch faktorov:
 
 - **Vlhkosť.** Pri výmene vody, dolievaní alebo kondenzácii na skle sa drevotrieska pri dlhodobom kontakte s vlhkosťou napučí a stráca pevnosť, najmä v hranách a spojoch.
 - **Trvalé zaťaženie.** Hmotnosť akvária pôsobí na pomerne malú plochu nepretržite, celé roky. Nohy a bočnice bežnej komody nie sú na takú záťaž dimenzované.
 - **Nerovná podlaha.** Aj mierny sklon alebo nerovnosť podlahy sa pri komode bez možnosti vyrovnania prenesie do korpusu a ďalej do dna akvária — pri sklenenej nádrži plnej vody je to rizikový detail.
 
-Skrinky AQUAPRIME preto stoja na zváranom oceľovom ráme z uzavretého profilu 30 × 30 mm s hrúbkou steny 2 mm. Opláštenie z laminovanej drevotriesky (LDTD) hrúbky 18 mm má už len estetickú funkciu — nosnú prácu robí oceľ. Rám má nastaviteľné nožičky, ktorými skrinku pri osadení vyrovnáte aj na mierne nerovnej podlahe, bez podkladania a provizórií.
+Skrinky AQUAPRIME preto využívajú zváraný oceľový rám z uzavretého profilu 30 × 30 mm s hrúbkou steny 2 mm. Laminovaná drevotrieska s hrúbkou 18 mm tvorí opláštenie, zatiaľ čo záťaž prenáša oceľ. Nastaviteľné nožičky umožňujú skrinku presne vyrovnať bez podkladania a provizórnych riešení.
 
-Zváraná konštrukcia sa navyše časom neuvoľňuje tak ako skrutkovaný nábytok — skrutkové spoje v drevotrieske pri opakovanom zaťažení postupne povoľujú, zvar na oceli nie. Preto je oceľový rám AquaFrame rovnaký vo všetkých troch vyhotoveniach; BASIC, ŠTANDARD a PREMIUM sa líšia len tým, čo je okolo rámu vidieť.
+Zváraná konštrukcia nemá skrutkové spoje v drevotrieske, ktoré by sa pri dlhodobom zaťažení mohli uvoľňovať. Rovnaký rám AquaFrame preto tvorí základ každej z troch verzií. Mení sa iba jeho opláštenie.
 
-Presnú nosnosť skrinky v kilogramoch neuvádzame — posudzujeme ju vždy podľa celej zostavy, teda akvária, vody, skla aj dekoru. Ako si túto hmotnosť spočítať a či ju unesie vaša podlaha, sa dočítate v článku o [nosnosti a hmotnosti akvária](/blog/nosnost-hmotnost-akvaria). Konštrukciu rámu aj kalkulačku hmotnosti nájdete na stránke [oceľový rám AquaFrame](/technologia).
+Univerzálne číslo nosnosti neuvádzame, pretože vhodnosť treba posúdiť podľa akvária, vody, skla, dekorácií aj miesta osadenia. Hmotnosť si môžete odhadnúť podľa článku o [nosnosti akvária](/blog/nosnost-hmotnost-akvaria) alebo pomocou kalkulačky pri technológii [AquaFrame](/technologia).
 
-## Počet dvierok podľa dĺžky
+## Dlhšia skrinka potrebuje viac dvierok
 
-Počet dvierok závisí od dĺžky skrinky, nie od vyhotovenia — pravidlo platí rovnako pre ŠTANDARD aj PREMIUM:
+Počet dvierok určuje dĺžka skrinky. Rovnaké pravidlo platí pre ŠTANDARD aj PREMIUM:
 
-1. **Kratšie ako 120 cm** — dvoje dvierok.
-2. **120 až 199 cm** — troje dvierok.
-3. **Od 200 cm** — štvoro dvierok.
+1. **Kratšie ako 120 cm** — dve dvierka.
+2. **120 až 199 cm** — tri dvierka.
+3. **Od 200 cm** — štyri dvierka.
 
-Dôvod je praktický aj vizuálny. Pri dlhších skrinkách by jedny alebo dvoje dvierka boli príliš široké — horšie by sa otvárali a pôsobili by neproporčne. Viac užších dvierok zároveň drží symetriu škár, ktorá je pri vyhotovení PREMIUM súčasťou dizajnu.
+Viac užších dvierok sa pohodlnejšie otvára a pôsobí proporčnejšie než dvojica veľmi širokých čiel. Pri vyhotovení PREMIUM zároveň vytvára pravidelný rytmus symetrických škár.
 
-Vyhotovenia BASIC sa pravidlo netýka, keďže bočnice ani dvierka nemá — vidno len vrchnú dosku a rám, bez delenia na segmenty.
+BASIC dvierka ani bočnice nemá, preto sa ho toto delenie netýka.
 
 > **Pozor:** Ak plánujete akvárium s objemom okolo 200 l a skrinku dlhú 120 cm alebo viac, počítajte s tromi dvierkami. Prehľad rozmerov pre tento objem nájdete v článku [akvárium 200 litrov](/blog/akvarium-200-litrov).
 
 ## Dekory a povrchy
 
-Dekor si vyberáte nezávisle od vyhotovenia — paleta je spoločná pre BASIC, ŠTANDARD aj PREMIUM. V ponuke sú Black Matt, Cool White, Dub Sonoma, Choco Vintage Oak, Dub španielsky, Antracit, Artisan, Dub Hunton a Mouse Grey, aj kombinácie ako Dub Hunton / Black Matt alebo Artisan / Antracit.
+Paleta dekorov je spoločná pre BASIC, ŠTANDARD aj PREMIUM. Vybrať si môžete Black Matt, Cool White, Dub Sonoma, Choco Vintage Oak, Dub španielsky, Antracit, Artisan, Dub Hunton či Mouse Grey. Dostupné sú aj kombinácie Dub Hunton / Black Matt alebo Artisan / Antracit.
 
-Dekor vyberajte spolu s celkovým štýlom miestnosti — tmavé matné odtiene objem skrinky opticky zmenšujú, svetlé dekory ju naopak nechajú vyniknúť ako samostatný kus nábytku. Kombinácie dvoch dekorov (napríklad Dub španielsky / Čierna matná) sa hodia tam, kde chcete odlíšiť korpus od dvierok alebo skrinku zladiť s dvoma odtieňmi v interiéri. Celý prehľad nájdete na stránke [dekory a povrchy](/materialy).
+Tmavé matné odtiene dokážu objem skrinky opticky potlačiť, svetlé ju nechajú viac vyniknúť. Dvojfarebné kombinácie sa hodia vtedy, keď chcete odlíšiť dvierka od korpusu alebo prepojiť skrinku s viacerými materiálmi v interiéri. Všetky možnosti nájdete medzi [dekormi a povrchmi](/materialy).
 
-Pri akváriu v obývačke rozhoduje dekor skrinky rovnako ako výber miesta v miestnosti — tomu sa venuje samostatný článok o [umiestnení akvária v byte](/blog/umiestnenie-akvaria-v-byte).
+V obývačke je dekor rovnako dôležitý ako samotná poloha zostavy. Tej sa venujeme v článku o [umiestnení akvária v byte](/blog/umiestnenie-akvaria-v-byte).
 
-## Konfigurátor — vyskúšajte si to na vlastnom rozmere
+## Poskladajte si vlastnú kombináciu
 
-Tabuľky v tomto článku pokrývajú najčastejšie rozmery, no [skrinky pod akváriá](/skrinky) sa vyrábajú aj v ďalších rozmeroch na dopyt a mimo katalógu individuálne. Ak si chcete poskladať vyhotovenie, dekor a LED doplnok pre konkrétny rozmer, otvorte si [konfigurátor skriniek](/konfigurator).
+Tabuľky zahŕňajú najčastejšie rozmery, no [skrinky pod akváriá](/skrinky) sa vyrábajú aj individuálne. V [konfigurátore](/konfigurator) si môžete spojiť konkrétny rozmer, vyhotovenie, dekor a LED podsvietenie.
 
-Pri rozmeroch mimo štandardnej ponuky, alebo ak si nie ste istí, ktoré vyhotovenie sa hodí k vášmu akváriu, napíšte nám cez [nezáväzný dopyt](/dopyt). Prejdeme si spolu celú zostavu a navrhneme riešenie, ktoré sedí vizuálne aj konštrukčne.
+Ak potrebujete atypický rozmer alebo si nie ste istí vhodnou verziou, pošlite [nezáväzný dopyt](/dopyt). Celú zostavu možno navrhnúť tak, aby fungovala konštrukčne aj vizuálne.
 
-Ak ešte len vyberáte rozmer samotného akvária, pozrite si aj [akváriá na mieru](/akvaria) — skrinku a nádrž si tak naplánujete ako jednu zostavu, nie ako dva samostatné nákupy.
+Ak ešte nemáte vybranú nádrž, pozrite si aj [akváriá na mieru](/akvaria). Skrinku a akvárium je najlepšie plánovať ako jeden celok.
