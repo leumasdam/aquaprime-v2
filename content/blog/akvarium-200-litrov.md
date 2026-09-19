@@ -1,6 +1,7 @@
 ---
 title: Akvárium s objemom 200 litrov: aké rozmery, sklo a skrinku vybrať?
-description: Aké rozmery má 200-litrové akvárium, akú hrúbku skla potrebuje a aká skrinka je preň vhodná? Pozrite si prehľad veľkostí, hmotnosti aj cien s DPH.
+seoTitle: Akvárium 200 litrov: rozmery, sklo a skrinka
+description: Aké rozmery má 200-litrové akvárium, akú hrúbku skla potrebuje a aká skrinka je preň vhodná? Prehľad veľkostí, hmotnosti aj cien s DPH.
 date: 2026-09-14
 category: akvaria
 keywords: akvárium 200 litrov, 200 l akvárium rozmery, skrinka pod 200 litrov, akvárium 200 litrový

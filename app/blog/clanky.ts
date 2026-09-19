@@ -15,6 +15,8 @@ export type Faq = { q: string; a: string };
 export type Clanok = {
   slug: string;
   title: string;
+  /** kratsi titulok do <title> a vysledkov vyhladavania; inak sa pouzije title */
+  seoTitle: string;
   description: string;
   /** ISO dátum (2026-09-19) */
   date: string;
@@ -276,6 +278,7 @@ function nacitaj(subor: string): Clanok {
   return {
     slug,
     title: String(meta.title ?? slug),
+    seoTitle: String(meta.seoTitle ?? meta.title ?? slug),
     description: String(meta.description ?? ""),
     date: String(meta.date ?? "2026-09-19"),
     category: kategoria,

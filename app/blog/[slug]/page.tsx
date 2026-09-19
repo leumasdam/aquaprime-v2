@@ -16,7 +16,7 @@ export async function generateMetadata({
   const c = najdiClanok(slug);
   if (!c) return { title: "Článok sa nenašiel | AQUAPRIME" };
   return {
-    title: `${c.title} | AQUAPRIME`,
+    title: `${c.seoTitle} | AQUAPRIME`,
     description: c.description,
     keywords: c.keywords,
     alternates: { canonical: `/blog/${c.slug}` },

@@ -1,6 +1,7 @@
 ---
 title: Údržba akvária bez chaosu: ako udržať vodu aj biológiu stabilnú
-description: Ako sa správne starať o akvárium? Vysvetľujeme výmenu vody, čistenie filtra, kŕmenie aj testy, ktoré pomáhajú udržať nádrž stabilnú.
+seoTitle: Údržba akvária a stabilná biológia
+description: Ako sa správne starať o akvárium? Vysvetľujeme výmenu vody, čistenie filtra, kŕmenie aj testy, ktoré pomáhajú udržať nádrž stabilnú.
 date: 2026-09-10
 category: zaklady
 keywords: údržba akvária, nitrifikačný cyklus akvária, rovnováha akvária, čistenie filtra

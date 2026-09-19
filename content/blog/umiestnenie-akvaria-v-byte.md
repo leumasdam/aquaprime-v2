@@ -1,6 +1,7 @@
 ---
 title: Kam umiestniť akvárium v byte? Pozor na slnko, radiátor aj podlahu
-description: Hľadáte správne miesto pre akvárium? Poradíme s odstupom od okna a radiátora, nosnosťou podlahy, elektrinou aj priestorom na údržbu.
+seoTitle: Kam umiestniť akvárium v byte
+description: Hľadáte správne miesto pre akvárium? Poradíme s odstupom od okna a radiátora, nosnosťou podlahy, elektrinou aj priestorom na údržbu.
 date: 2026-09-15
 category: interier
 keywords: kde umiestniť akvárium, akvárium v obývačke, umiestnenie akvária v byte, miesto na akvárium

@@ -1,6 +1,7 @@
 ---
 title: Morské verzus sladkovodné akvárium: ktoré je pre vás vhodnejšie?
-description: Porovnali sme sladkovodné a morské akvárium z pohľadu náročnosti, techniky, nákladov aj priestoru. Zistite, s ktorým sa oplatí začať.
+seoTitle: Morské alebo sladkovodné akvárium?
+description: Porovnali sme sladkovodné a morské akvárium z pohľadu náročnosti, techniky, nákladov aj priestoru. Zistite, s ktorým sa oplatí začať.
 date: 2026-09-11
 category: zaklady
 keywords: morské alebo sladkovodné akvárium, morské akvárium, sladkovodné akvárium, rozdiel morské sladkovodné

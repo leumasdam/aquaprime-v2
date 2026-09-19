@@ -1,6 +1,7 @@
 ---
 title: Ako vybrať skrinku pod akvárium? Porovnali sme BASIC, ŠTANDARD a PREMIUM
-description: Porovnajte skrinky BASIC, ŠTANDARD a PREMIUM, ich ceny, opláštenie aj LED podsvietenie. Vysvetlíme tiež, prečo bežná komoda nestačí.
+seoTitle: Skrinka pod akvárium: BASIC, ŠTANDARD, PREMIUM
+description: Porovnajte skrinky BASIC, ŠTANDARD a PREMIUM, ich ceny, opláštenie aj LED podsvietenie. Vysvetlíme tiež, prečo bežná komoda nestačí.
 date: 2026-09-19
 category: skrinky
 keywords: skrinka pod akvárium, stolík pod akvárium, podstavec pod akvárium, akvarijný nábytok

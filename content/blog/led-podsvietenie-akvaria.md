@@ -1,6 +1,7 @@
 ---
 title: LED podsvietenie akvária: vybrať teplú bielu alebo modrú?
-description: LED podsvietenie dokáže zmeniť atmosféru celej zostavy. Poradíme, kedy zvoliť teplú bielu či modrú a ako svetlo zladiť s interiérom.
+seoTitle: LED podsvietenie akvária a skrinky
+description: LED podsvietenie dokáže zmeniť atmosféru celej zostavy. Poradíme, kedy zvoliť teplú bielu či modrú a ako svetlo zladiť s interiérom.
 date: 2026-09-13
 category: skrinky
 keywords: LED podsvietenie akvárium, LED na akvárium, teplá biela alebo modrá LED, podsvietenie skrinky

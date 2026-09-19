@@ -1,6 +1,7 @@
 ---
 title: Aquascaping pre začiatočníkov: ako skombinovať rastliny, kamene a korene
-description: Ako začať s aquascapingom? Spoznajte základné štýly, pravidlá kompozície, vhodný substrát, nenáročné rastliny aj úlohu svetla a CO2.
+seoTitle: Aquascaping pre začiatočníkov: rastliny a dekor
+description: Ako začať s aquascapingom? Spoznajte základné štýly, pravidlá kompozície, vhodný substrát, nenáročné rastliny aj úlohu svetla a CO2.
 date: 2026-09-12
 category: zaklady
 keywords: aquascaping, rastliny v akváriu, dekor akvária, prírodný štýl akvária

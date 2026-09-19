@@ -1,6 +1,7 @@
 ---
 title: Zakladáte prvé akvárium? Takto sa vyhnete najčastejším chybám
-description: Ako založiť prvé akvárium krok za krokom? Poradíme s veľkosťou nádrže, technikou, nitrifikačným cyklom aj výberom prvých rýb.
+seoTitle: Prvé akvárium: ako začať bez chýb
+description: Ako založiť prvé akvárium krok za krokom? Poradíme s veľkosťou nádrže, technikou, nitrifikačným cyklom aj výberom prvých rýb.
 date: 2026-09-16
 category: zaklady
 keywords: prvé akvárium, ako začať s akváriom, akvárium pre začiatočníka, zakladanie akvária

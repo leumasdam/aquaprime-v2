@@ -1,6 +1,7 @@
 ---
 title: Koľko váži akvárium s vodou? Jednoduchý výpočet hmotnosti
-description: Vypočítajte si hmotnosť akvária s vodou, sklom a dekoráciami. Zistite, čo to znamená pre nosnosť skrinky aj zaťaženie podlahy.
+seoTitle: Koľko váži akvárium s vodou? Výpočet hmotnosti
+description: Vypočítajte si hmotnosť akvária s vodou, sklom a dekoráciami. Zistite, čo to znamená pre nosnosť skrinky aj zaťaženie podlahy.
 date: 2026-09-18
 category: skrinky
 keywords: nosnosť skrinky pod akvárium, koľko váži akvárium s vodou, hmotnosť akvária, zaťaženie podlahy akvárium

@@ -1,6 +1,7 @@
 ---
 title: Akú hrúbku skla potrebuje akvárium? Rozhoduje najmä jeho výška
-description: Akú hrúbku skla zvoliť podľa rozmerov akvária? Pozrite si prehľad od 4 do 12 mm, konkrétne príklady aj ceny z ponuky AQUAPRIME.
+seoTitle: Hrúbka skla na akvárium podľa rozmeru
+description: Akú hrúbku skla zvoliť podľa rozmerov akvária? Pozrite si prehľad od 4 do 12 mm, konkrétne príklady aj ceny z ponuky AQUAPRIME.
 date: 2026-09-17
 category: akvaria
 keywords: hrúbka skla na akvárium, aké sklo na akvárium, výška vodného stĺpca a hrúbka skla, 6 mm vs 8 mm vs 10 mm sklo
