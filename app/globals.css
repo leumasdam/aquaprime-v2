@@ -11280,19 +11280,68 @@ a.dopyt-alt__card:hover {
   .tech-stats__grid::-webkit-scrollbar {
     display: none;
   }
+  /* karta ako fakt pod hero na Akváriách: ikona vľavo, tučný údaj, popis
+     pod ním; ďalšia karta kúsok vykúka, nech vidno, že sa dá listovať */
   .tech-stat {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-    gap: 10px;
-    padding-inline: 0;
+    flex: 0 0 calc(100% - 34px);
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    text-align: left;
+    padding: 4px 0;
+    scroll-snap-align: start;
   }
   .tech-stat + .tech-stat {
     border-left: none;
   }
+  .tech-stat__ikona {
+    display: block;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    color: var(--cyan);
+  }
+  .tech-stat__ikona svg {
+    width: 100%;
+    height: 100%;
+  }
+  .tech-stat__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
   .tech-stat__n {
-    font-size: 2.4rem;
+    font-family: var(--ui);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ink-90);
+  }
+  .tech-stat__n small {
+    font-size: 0.85em;
+    color: var(--ink-90);
+    margin-left: 4px;
+    letter-spacing: 0;
   }
   .tech-stat__label {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--body-dim);
+    line-height: 1.4;
+  }
+  .tech-stats__grid {
+    gap: 14px;
+    scroll-padding-inline: var(--pad);
+  }
+}
+/* od tabletu ostáva pôvodný vzhľad: veľké číslo v strede, bez ikony */
+@media (min-width: 768px) {
+  .tech-stat__ikona {
+    display: none;
+  }
+  .tech-stat__text {
+    display: contents;
   }
 }

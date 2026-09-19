@@ -24,6 +24,23 @@ const STEP_IMGS = [
 /* Opis vlastnej konštrukcie (audit 11. 9. 2026 nahradil porovnanie
    s „bežným nábytkom", ktoré nebolo podložené). */
 
+/* ikony k trom číslam: profil, hrúbka steny, opláštenie — kreslené rovnako
+   ako ikony faktov na Akváriách, tenkou linkou */
+const CISLA_IKONY = [
+  <svg key="profil" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+    <rect x="4" y="4" width="16" height="16" rx="1" />
+    <rect x="7.5" y="7.5" width="9" height="9" rx="0.6" opacity="0.5" />
+  </svg>,
+  <svg key="stena" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+    <path d="M4 5v14M20 5v14" strokeLinecap="round" />
+    <path d="M7 12h10M9 9.5 7 12l2 2.5M15 9.5l2 2.5-2 2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+  </svg>,
+  <svg key="plast" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+    <path d="M4 8.5 12 4l8 4.5-8 4.5z" strokeLinejoin="round" />
+    <path d="M4 12.5 12 17l8-4.5M4 16.5 12 21l8-4.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
+  </svg>,
+];
+
 export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
   const k = t.konstrukcia;
   const l = (h: string) => odkaz(h, jazyk);
@@ -80,11 +97,17 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
               data-reveal
               style={{ "--rd": `${i * 80}ms` } as CSSProperties}
             >
-              <span className="tech-stat__n">
-                <CountUp to={s.to} />
-                <small>{s.unit}</small>
+              {/* ikona len na telefóne — karta má rovnakú stavbu ako fakty pod hero na Akváriách */}
+              <span className="tech-stat__ikona" aria-hidden>
+                {CISLA_IKONY[i]}
               </span>
-              <span className="tech-stat__label">{s.label}</span>
+              <span className="tech-stat__text">
+                <span className="tech-stat__n">
+                  <CountUp to={s.to} />
+                  <small>{s.unit}</small>
+                </span>
+                <span className="tech-stat__label">{s.label}</span>
+              </span>
             </div>
               );
             })()
