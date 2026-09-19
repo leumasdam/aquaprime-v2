@@ -114,14 +114,19 @@ export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
         <legend className="dopyt__legend">
           <span className="dopyt__n">02</span> {t.formKrok2}
         </legend>
-        <input
-          ref={rozmerRef}
-          className="dopyt__input"
-          type="text"
-          placeholder={t.formRozmer}
-          value={rozmer}
-          onChange={(e) => setRozmer(e.target.value)}
-        />
+        <label className="dopyt__label" htmlFor="dopyt-rozmer">
+          <span className="len-pre-citacky">{t.formKrok2}</span>
+          <input
+            ref={rozmerRef}
+            id="dopyt-rozmer"
+            name="rozmer"
+            className="dopyt__input"
+            type="text"
+            placeholder={t.formRozmer}
+            value={rozmer}
+            onChange={(e) => setRozmer(e.target.value)}
+          />
+        </label>
       </fieldset>
 
       <fieldset className="dopyt__field">
@@ -147,30 +152,47 @@ export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
           <span className="dopyt__n">04</span> {t.formKrok4}
         </legend>
         <div className="dopyt__row">
-          <input
-            className="dopyt__input"
-            type="text"
-            placeholder={t.formMeno}
-            value={meno}
-            onChange={(e) => setMeno(e.target.value)}
-            required
-          />
-          <input
-            className="dopyt__input"
-            type="email"
-            placeholder={t.formEmail}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <label className="dopyt__label" htmlFor="dopyt-meno">
+            <span className="len-pre-citacky">{t.formMeno}</span>
+            <input
+              id="dopyt-meno"
+              name="meno"
+              className="dopyt__input"
+              type="text"
+              autoComplete="name"
+              placeholder={t.formMeno}
+              value={meno}
+              onChange={(e) => setMeno(e.target.value)}
+              required
+            />
+          </label>
+          <label className="dopyt__label" htmlFor="dopyt-email">
+            <span className="len-pre-citacky">{t.formEmail}</span>
+            <input
+              id="dopyt-email"
+              name="email"
+              className="dopyt__input"
+              type="email"
+              autoComplete="email"
+              placeholder={t.formEmail}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
         </div>
-        <textarea
-          className="dopyt__input dopyt__textarea"
-          placeholder={t.formPoznamka}
-          rows={4}
-          value={poznamka}
-          onChange={(e) => setPoznamka(e.target.value)}
-        />
+        <label className="dopyt__label" htmlFor="dopyt-poznamka">
+          <span className="len-pre-citacky">{t.formPoznamka}</span>
+          <textarea
+            id="dopyt-poznamka"
+            name="poznamka"
+            className="dopyt__input dopyt__textarea"
+            placeholder={t.formPoznamka}
+            rows={4}
+            value={poznamka}
+            onChange={(e) => setPoznamka(e.target.value)}
+          />
+        </label>
       </fieldset>
 
       <button type="submit" className="btn-cyan dopyt__submit" disabled={sending}>

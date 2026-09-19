@@ -155,6 +155,10 @@ export default function SiteNav() {
           prehliadačov (Safari) orezalo na výšku lišty */}
       <div
         className={`nav__mobile${open ? " is-open" : ""}`}
+        /* zatvorené menu nesmie ostať v poradí prechádzania klávesnicou —
+           samotná priehľadnosť ho skryje len pre oko, nie pre tabulátor */
+        aria-hidden={!open}
+        inert={!open}
         // inline štýly namiesto spoliehania sa na class-match: pri prvom
         // otvorení po načítaní stránky prehliadač pravidlo .is-open aplikoval
         // až s ~1s oneskorením (menu pôsobilo mŕtvo). Inline platí okamžite,

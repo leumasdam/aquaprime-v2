@@ -134,7 +134,7 @@
 /* jemný scrim len pod textom vľavo — zvyšok rieši maska videa */
 .coverMedia::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 14, 13, 0.72) 0%, rgba(11, 14, 13, 0.42) 26%, rgba(11, 14, 13, 0.12) 45%, transparent 60%); }
 .coverCopy { position: relative; max-width: 1600px; height: 100%; margin: 0 auto; padding: 32px var(--pad) 35px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
-.coverCopy h1 { font-size: clamp(42px, 3.8vw, 66px); line-height: 1.12; letter-spacing: .055em; text-transform: uppercase; margin: 0; }
+.coverCopy h1 { font-size: clamp(2.6rem, 3.4vw, 3.6rem); line-height: 1.12; letter-spacing: -.01em; margin: 0; }
 .coverRule { display: block; width: 60px; height: 1px; background: #009ac0; margin: 15px 0 15px; }
 .coverCopy p { font-size: clamp(13px, 1vw, 16px); line-height: 1.65; color: #bcbcb6; margin: 0; max-width: 430px; }
 .coverScroll { position: absolute; bottom: 17px; left: max(16px, calc((100vw - 1600px) / 2 + 20px)); display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; color: #009ac0; }
@@ -147,8 +147,8 @@
 .galleryTitle { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .filterBar { margin-bottom: 24px; padding: 7px 0; min-height: 54px; border-color: #282a29; }
 .filters button { border-radius: 0; border-width: 0 0 1px; padding: 12px 14px; }
-.filters button[aria-pressed="true"] { color: #d7ae67; border-color: #009ac0; background: transparent; }
+.filters button[aria-pressed="true"] { color: var(--cyan); border-color: var(--cyan); background: transparent; }
 @media (min-width: 1700px) { .coverCopy { padding-left: 106px; padding-right: 106px; } }
-@media (max-width: 1000px) { .coverCopy h1 { font-size: 43px; }.coverCopy p { font-size: 13px; }.coverScroll { left: 12px; }.gallery { padding-top: 0; } }
-@media (max-width: 760px) { .coverHero { height: 300px; }.coverCopy { justify-content: flex-start; padding-top: 40px; }.coverCopy h1 { font-size: clamp(30px, 5.6vw, 42px); letter-spacing: .035em; }.coverCopy p { max-width: 300px; font-size: 12px; }.coverVideo { width: 100%; object-fit: cover; object-position: 60% 55%; }.coverMedia::after { background: linear-gradient(90deg, #050607e6, #05060780 53%, transparent); }.coverScroll { display: none; }.coverPause { right: 18px; bottom: 16px; }.filterBar { margin-bottom: 20px; }.resultCount { margin-top: 0; padding: 5px 10px 8px; }.filters button { padding: 10px 8px; }.gallery { padding-top: 0; } }
-@media (max-width: 420px) { .coverHero { height: 300px; }.coverCopy { padding-top: 35px; }.coverCopy h1 { font-size: 31px; }.coverCopy p { max-width: 255px; }.coverBreak { display: none; }.coverVideo { object-position: 58% 55%; } }
+@media (max-width: 1000px) { .coverCopy h1 { font-size: 2.6rem; }.coverCopy p { font-size: 13px; }.coverScroll { left: 12px; }.gallery { padding-top: 0; } }
+@media (max-width: 760px) { .coverHero { height: 300px; }.coverCopy { justify-content: flex-start; padding-top: 40px; }.coverCopy h1 { font-size: clamp(2.05rem, 5.6vw, 2.6rem); letter-spacing: -.01em; }.coverCopy p { max-width: 300px; font-size: 12px; }.coverVideo { width: 100%; object-fit: cover; object-position: 60% 55%; }.coverMedia::after { background: linear-gradient(90deg, #050607e6, #05060780 53%, transparent); }.coverScroll { display: none; }.coverPause { right: 18px; bottom: 16px; }.filterBar { margin-bottom: 20px; }.resultCount { margin-top: 0; padding: 5px 10px 8px; }.filters button { padding: 10px 8px; }.gallery { padding-top: 0; } }
+@media (max-width: 420px) { .coverHero { height: 300px; }.coverCopy { padding-top: 35px; }.coverCopy h1 { font-size: 2.05rem; }.coverCopy p { max-width: 255px; }.coverBreak { display: none; }.coverVideo { object-position: 58% 55%; } }

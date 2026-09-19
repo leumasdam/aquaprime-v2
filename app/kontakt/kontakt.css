@@ -65,7 +65,7 @@
 }
 .kontakt__title {
   font-family: var(--display);
-  font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.6rem);
+  font-size: var(--h1);
   line-height: 1.05;
   color: var(--ink-90);
   margin-bottom: 16px;

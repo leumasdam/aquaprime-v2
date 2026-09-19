@@ -16,7 +16,7 @@
 }
 .kos__title {
   font-family: var(--display);
-  font-size: clamp(1.9rem, 1.3rem + 2vw, 3rem);
+  font-size: var(--h1);
   line-height: 1.05;
   color: var(--ink-90);
 }
@@ -463,8 +463,12 @@
   height: 52px;
   font-size: 0.8125rem;
 }
+/* neaktívny stav nesmie spadnúť pod čitateľnosť — namiesto stlmenia celého
+   tlačidla sa mení plocha, text ostáva plný */
 .kos__odoslat:disabled {
-  opacity: 0.4;
+  opacity: 1;
+  background: rgba(0, 154, 192, 0.22);
+  color: var(--ink);
   cursor: not-allowed;
 }
 .kos__hint,
@@ -646,8 +650,11 @@
 /* súhlas s OP pred odoslaním */
 .kos__suhlas {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: flex-start;
+  /* celý riadok je klikací a vysoký aspoň 44 px */
+  min-height: 44px;
+  padding-block: 4px;
   font-size: 0.75rem;
   line-height: 1.55;
   color: rgba(230, 233, 229, 0.65);
@@ -656,8 +663,8 @@
 }
 .kos__suhlas input {
   margin-top: 2px;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   accent-color: #009ac0;
   flex: none;
   cursor: pointer;

@@ -25,7 +25,8 @@
   --body: rgba(220, 225, 220, 0.66);
   --body-dim: rgba(223, 228, 223, 0.52);
   --dim: rgba(222, 225, 221, 0.55);
-  --faint: rgba(150, 158, 154, 0.44);
+  /* kontrast na pozadí --bg je 4,6 : 1 (predtým 2,28 : 1) */
+  --faint: rgba(168, 178, 174, 0.72);
   --nav-ink: rgba(219, 222, 218, 0.6);
 
   /* akcenty — z palety manuálu; tyrkysová je jediný brandový akcent */
@@ -74,6 +75,9 @@
   --content: 1708px;
   --pad: clamp(20px, 5.52vw, 106px);
   --nav-h: 66px;
+  /* jeden hlavný nadpis pre obsahové stránky: 33 px na telefóne, 52 px na
+     veľkom monitore. Obrazové hero sekcie majú vlastnú, väčšiu mierku. */
+  --h1: clamp(2.05rem, 1.3rem + 2.4vw, 3.25rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* prechody stránok a panelov — krivka prebratá zo zenko.sk, nemeniť */
@@ -635,6 +639,12 @@ video:not([controls])::-webkit-media-controls-panel {
   height: 16px;
   position: relative;
 }
+/* klikacia plocha 44 × 44 px cez pseudo prvok — poloha ikony sa nemení */
+.nav__burger::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+}
 .nav__burger span {
   position: absolute;
   left: 0;
@@ -749,8 +759,8 @@ video:not([controls])::-webkit-media-controls-panel {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  height: 48px;
-  padding: 0 26px;
+  height: 44px;
+  padding: 0 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--r-sm);
   font-weight: 600;
@@ -1207,13 +1217,14 @@ video:not([controls])::-webkit-media-controls-panel {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  height: 44px;
-  padding: 0 24px;
+  /* primárna akcia je najväčšia — sekundárna .btn-outline má 44px */
+  height: 48px;
+  padding: 0 26px;
   background: var(--cyan-btn);
   border-radius: var(--r-sm);
   font-weight: 600;
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   /* tmavý text na tyrkysovej má kontrast 5,6 : 1; biely len 3,0 : 1 */
   color: var(--bg);
@@ -1222,6 +1233,20 @@ video:not([controls])::-webkit-media-controls-panel {
 .btn-cyan:hover {
   filter: brightness(1.12);
   transform: translateY(-1px);
+}
+/* neaktívny stav platí pre obe tlačidlá aj pre formulárové tlačidlá bez triedy */
+.btn-cyan:disabled,
+.btn-outline:disabled,
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: none;
+}
+.btn-cyan:disabled:hover,
+.btn-outline:disabled:hover,
+button:disabled:hover {
+  transform: none;
+  filter: none;
 }
 .config-options {
   display: flex;
@@ -2341,7 +2366,7 @@ video:not([controls])::-webkit-media-controls-panel {
 .footer__nav a {
   font-family: var(--ui);
   font-weight: 600;
-  font-size: 0.5625rem;
+  font-size: 0.625rem;
   letter-spacing: 0.155em;
   text-transform: uppercase;
   line-height: 1;
@@ -2372,9 +2397,9 @@ video:not([controls])::-webkit-media-controls-panel {
 .footer__legal span,
 .footer__legal a {
   font-family: var(--ui);
-  font-size: 0.5625rem;
-  line-height: 1;
-  color: #66716d;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: #7f8a86;
   text-decoration: none;
 }
 .footer__legal a {
@@ -2386,7 +2411,7 @@ video:not([controls])::-webkit-media-controls-panel {
 .footer__made {
   font-family: var(--ui);
   font-weight: 600;
-  font-size: 0.5625rem;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   line-height: 1;
@@ -3048,7 +3073,7 @@ video:not([controls])::-webkit-media-controls-panel {
 .sub__title {
   position: relative;
   font-family: var(--display);
-  font-size: clamp(2.3rem, 1.3rem + 2.8vw, 3.6rem);
+  font-size: var(--h1);
   line-height: 1.08;
   letter-spacing: -0.01em;
   color: var(--ink-90);
@@ -3430,6 +3455,22 @@ video:not([controls])::-webkit-media-controls-panel {
   background: rgba(0, 154, 192, 0.04);
   box-shadow: 0 0 0 3px rgba(0, 154, 192, 0.12);
 }
+/* popisok pre čítačky obrazovky — nezaberá miesto, takže rozloženie
+   formulára ostáva presne také, aké bolo */
+.len-pre-citacky {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.dopyt__label {
+  display: block;
+}
 .dopyt__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3677,7 +3718,6 @@ video:not([controls])::-webkit-media-controls-panel {
 :focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
-  border-radius: var(--r-xs);
 }
 a:focus-visible,
 button:focus-visible {
@@ -4312,7 +4352,7 @@ button:focus-visible {
 }
 .pdetail__name {
   font-family: var(--display);
-  font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem);
+  font-size: var(--h1);
   line-height: 1.05;
   color: var(--ink-90);
   margin-bottom: 12px;
@@ -11448,4 +11488,130 @@ a.dopyt-alt__card:hover {
   @media (min-width: 1921px) {
     html { zoom: clamp(1, 1 + (100vw - 1920px) / 7600px, 1.2); }
   }
+}
+
+/* ===========================================================
+   VLNA 1 — PRIMÁRNA AKCIA V HERO SEKCIÁCH (19. 9. 2026)
+   Prvá výzva na domovskej stránke aj na podstránkach bola obrysová, takže
+   tlačidlo v hornej lište ju vizuálne prebíjalo. Teraz je vyplnená značkovou
+   tyrkysovou pri každej šírke; druhá výzva ostáva tichým odkazom.
+   Geometria sa nemení, mení sa iba plocha a farba textu.
+   =========================================================== */
+.hero__btn,
+.vhero__odkaz:not(.vhero__odkaz--tichy) {
+  background: var(--cyan-btn);
+  border-color: transparent;
+  color: var(--bg);
+}
+.hero__btn .hero__btn-arr,
+.vhero__odkaz:not(.vhero__odkaz--tichy) > span:not(.vhero__odkaz-text) {
+  border-left-color: rgba(4, 12, 14, 0.22);
+  color: inherit;
+}
+.hero__btn:hover,
+.vhero__odkaz:not(.vhero__odkaz--tichy):hover {
+  background: var(--cyan-btn);
+  border-color: transparent;
+  color: var(--bg);
+  filter: brightness(1.12);
+}
+.hero__btn:hover .hero__btn-arr,
+.vhero__odkaz:not(.vhero__odkaz--tichy):hover > span:not(.vhero__odkaz-text) {
+  border-left-color: rgba(4, 12, 14, 0.22);
+}
+
+/* Na tablete a telefóne boli obe výzvy zhodné podčiarknuté odkazy. Prvá je
+   teraz kompaktné vyplnené tlačidlo s dotykovou plochou 44 px. */
+@media (max-width: 1023px) {
+  .vhero__odkaz:not(.vhero__odkaz--tichy) {
+    min-height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    color: var(--bg);
+  }
+  .vhero__odkaz:not(.vhero__odkaz--tichy):hover {
+    gap: 8px;
+  }
+  .vhero__odkaz--tichy {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+@media (max-width: 767px) {
+  .hero__btn {
+    min-height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    color: var(--bg);
+    align-items: center;
+  }
+  .hero__btn .hero__btn-label {
+    padding: 0;
+  }
+  .hero__btn .hero__btn-arr {
+    padding: 0 0 0 10px;
+    border-left: 0;
+  }
+  .hero__ghost {
+    min-height: 44px;
+  }
+}
+
+/* ===========================================================
+   VLNA 1 — VIDITEĽNÉ OZNAČENIE PRI OVLÁDANÍ KLÁVESNICOU (19. 9. 2026)
+   Posuvníky, textové polia a pole newslettera mali outline: none s vyššou
+   špecificitou než globálne pravidlo, takže sa nedalo zistiť, čo je vybrané.
+   =========================================================== */
+.turntable__slider:focus-visible,
+.newsletter input:focus-visible,
+.dopyt__input:focus-visible,
+.cfg__slider input[type="range"]:focus-visible,
+.lcalc input[type="range"]:focus-visible,
+.kfx__slider input[type="range"]:focus-visible,
+.kfx__input:focus-visible,
+.kf2__input:focus-visible,
+.kos__pole input:focus-visible,
+.kos__pole textarea:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+/* posuvník sa označuje za jazdec, nie za celú dráhu */
+.cfg__slider input[type="range"]:focus-visible::-webkit-slider-thumb,
+.lcalc input[type="range"]:focus-visible::-webkit-slider-thumb,
+.kfx__slider input[type="range"]:focus-visible::-webkit-slider-thumb,
+.turntable__slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(0, 154, 192, 0.45);
+}
+
+/* Zatvorené mobilné menu sa skrývalo len priehľadnosťou, takže jeho odkazy
+   ostávali v poradí prechádzania klávesnicou. */
+.nav__mobile[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+/* ===========================================================
+   VLNA 1 — VÄČŠIE KLIKACIE PLOCHY (19. 9. 2026)
+   Odkazy v lište, v pätičke a drobné ovládanie v košíku mali plochu vysokú
+   10 až 20 px. Plocha sa zväčšuje neviditeľným pseudo prvkom, takže sadzba
+   ani rozloženie sa nemenia.
+   =========================================================== */
+.nav__link,
+.footer__nav a,
+.footer__legal a,
+.kos__zmaz,
+.drobcek__krok a {
+  position: relative;
+}
+.nav__link::before,
+.footer__nav a::before,
+.footer__legal a::before,
+.kos__zmaz::before,
+.drobcek__krok a::before {
+  content: "";
+  position: absolute;
+  inset: -10px -6px;
 }
