@@ -11435,3 +11435,15 @@ a.dopyt-alt__card:hover {
     border-top: 1px solid rgba(43, 48, 46, 0.8);
   }
 }
+
+/* ===========================================================
+   VEĽMI ŠIROKÉ OBRAZOVKY (≥2100 px): celý web sa vykreslí ako pri
+   prehliadači prezoomovanom na 120 % — obsah nezostane malý v strede.
+   Media queries sa ďalej vyhodnocujú voči skutočnej šírke okna,
+   layout vnútri počíta so šírkou / 1,2 (2400 px → 2000 px). (19. 9. 2026)
+   =========================================================== */
+@media (min-width: 2100px) {
+  html {
+    zoom: 1.2;
+  }
+}
