@@ -11237,14 +11237,22 @@ a.dopyt-alt__card:hover {
   .construct__steps::-webkit-scrollbar {
     display: none;
   }
+  /* jedna karta cez celú šírku, vycentrovaná; čiaru drží len obal pásu,
+     karta vlastnú nemá — dve čiary nad sebou vyzerali ako prerušená */
   .cstep {
-    flex: 0 0 calc(100% - 34px);
-    scroll-snap-align: start;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
     align-items: center;
     text-align: center;
-    padding: 14px 0 6px;
-    border-left: none;
-    border-top: 1px solid var(--line-2);
+    gap: 10px;
+    padding: 6px 0 8px;
+    border: none;
+  }
+  .cstep__n {
+    font-size: 2.2rem;
+  }
+  .cstep__label {
+    font-size: 1.25rem;
   }
   .cstep:hover {
     transform: none;
