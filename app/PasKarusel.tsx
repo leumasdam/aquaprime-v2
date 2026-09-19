@@ -15,10 +15,13 @@ const PAUZA = 9000;         // ticho po dotyku
 export default function PasKarusel({
   className,
   children,
+  interval = INTERVAL,
   ...rest
 }: {
   className?: string;
   children: ReactNode;
+  /** ako často sa pás posunie, v milisekundách */
+  interval?: number;
 } & HTMLAttributes<HTMLDivElement>) {
   const pas = useRef<HTMLDivElement>(null);
 
@@ -43,7 +46,7 @@ export default function PasKarusel({
       if (r.bottom < 0 || r.top > window.innerHeight) return;
       const naKonci = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
       el.scrollTo({ left: naKonci ? 0 : el.scrollLeft + el.clientWidth, behavior: "smooth" });
-    }, INTERVAL);
+    }, interval);
 
     return () => {
       window.clearInterval(casovac);
@@ -51,7 +54,7 @@ export default function PasKarusel({
       el.removeEventListener("wheel", oznacRucne);
       el.removeEventListener("touchstart", oznacRucne);
     };
-  }, []);
+  }, [interval]);
 
   return (
     <div className={className} ref={pas} {...rest}>

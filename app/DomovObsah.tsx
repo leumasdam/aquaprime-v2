@@ -238,7 +238,7 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
 
         {/* LED zapaľovanie: po linke prebehne impulz a postupne zapína body.
             Na telefóne je to pás, ktorý sa prepína po jednom kroku. */}
-        <PasKarusel className="wrap construct__steps" data-reveal="fade">
+        <PasKarusel className="wrap construct__steps" data-reveal="fade" interval={3000}>
           {d.kroky.map((label, i) => (
             <div
               className="cstep"
