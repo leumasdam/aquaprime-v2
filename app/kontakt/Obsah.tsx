@@ -64,7 +64,10 @@ export default function KontaktObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
 
       {/* Všetko ďalej stojí na jednom 12-stĺpcovom gride s jednou medzerou,
           takže karty, formulár aj otázky sedia na tie isté zvislé osi. */}
+      {/* Ľavý stĺpec nesie kanál aj kroky a je vysoký ako formulár, takže
+          lepiace sa kroky nikdy nevyjdú pod neho. Otázky sú mimo gridu. */}
       <div className="wrap kontakt__grid" id="formular">
+        <div className="kontakt__left">
         {KANALY.map((c) => (
           <a href={c.href} key={c.title} className="kcard kontakt__ch" data-reveal>
             <span className="kontakt__ch-icon" aria-hidden>
@@ -75,10 +78,6 @@ export default function KontaktObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
             <span className="kontakt__ch-body">{k.emailPozn}</span>
           </a>
         ))}
-
-        <div className="kcard kontakt__formcard" data-reveal>
-          <KontaktForm jazyk={jazyk} />
-        </div>
 
         <aside className="kontakt__rail">
           <div className="kcard">
@@ -101,7 +100,14 @@ export default function KontaktObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
             </div>
           </div>
         </aside>
+        </div>
 
+        <div className="kcard kontakt__formcard" data-reveal>
+          <KontaktForm jazyk={jazyk} />
+        </div>
+      </div>
+
+      <div className="wrap">
         <section className="kontakt__faq">
           <h2 className="kontakt__faq-title" data-reveal>
             {k.faqTitul}

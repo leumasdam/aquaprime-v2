@@ -94,12 +94,23 @@
 }
 
 /* formulár a bočný panel — 8 + 4 */
+/* ľavý stĺpec: kanál hore, kroky pod ním; ťahá sa na výšku formulára,
+   aby sa mali lepiace kroky kde posúvať a neskončili pod otázkami */
+.kontakt__left {
+  grid-column: span 4;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-gap);
+}
+.kontakt__left .kontakt__ch {
+  grid-column: auto;
+}
 .kontakt__formcard {
   grid-column: span 8;
   padding: clamp(20px, 2vw, 34px);
 }
 .kontakt__rail {
-  grid-column: span 4;
   display: flex;
   flex-direction: column;
   gap: var(--k-gap);
@@ -171,8 +182,7 @@
 
 /* časté otázky — cez celú šírku, v dvoch stĺpcoch */
 .kontakt__faq {
-  grid-column: span 12;
-  margin-top: clamp(20px, 2.6vw, 44px);
+  margin-top: clamp(28px, 3vw, 52px);
 }
 .kontakt__faq-title {
   font-family: var(--display);
@@ -615,7 +625,7 @@
    =========================================================== */
 @media (max-width: 1180px) {
   .kontakt__formcard,
-  .kontakt__rail {
+  .kontakt__left {
     grid-column: span 12;
   }
   .kontakt__rail {
@@ -642,10 +652,6 @@
   }
 }
 @media (max-width: 620px) {
-  .kontakt__ch,
-  .kontakt__rail {
-    grid-column: span 12;
-  }
   .kontakt__rail {
     grid-template-columns: 1fr;
   }

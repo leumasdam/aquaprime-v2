@@ -10204,32 +10204,55 @@ button:focus-visible {
   .fakty__pas::-webkit-scrollbar {
     display: none;
   }
+  /* karta ako fakt pod hero na Akváriách: ikona vľavo, tučný názov,
+     hodnota a popis pod ním; ďalšia karta kúsok vykúka */
+  .fakty__pas {
+    gap: 14px;
+    scroll-padding-inline: var(--pad);
+  }
   .fakt {
-    flex: 0 0 100%;
+    flex: 0 0 calc(100% - 34px);
     scroll-snap-align: start;
-    padding: 0;
+    padding: 4px 0;
     border-left: 0;
-    column-gap: 11px;
-    row-gap: 3px;
+    column-gap: 14px;
+    row-gap: 2px;
   }
-  .fakty__bodky {
-    display: flex;
-    gap: 7px;
-    margin-top: 14px;
-  }
-  .fakty__bodky button {
-    width: 26px;
-    height: 3px;
-    border: 0;
-    padding: 0;
-    border-radius: var(--r-pill);
-    background: rgba(255, 255, 255, 0.16);
-    cursor: pointer;
-    transition: background var(--t-base) var(--ease), width var(--t-base) var(--ease);
-  }
-  .fakty__bodky button.is-on {
+  .fakt__ikona {
     width: 38px;
-    background: var(--cyan);
+    height: 38px;
+  }
+  .fakt__label {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-90);
+  }
+  .fakt__riadok {
+    gap: 2px 6px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--body-dim);
+  }
+  .fakt__hodnota {
+    font-family: var(--ui);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--body-dim);
+    gap: 4px;
+  }
+  .fakt__hodnota em {
+    font-size: 0.875rem;
+    color: var(--body-dim);
+    letter-spacing: 0;
+  }
+  .fakt__hodnota::after {
+    content: "·";
+    margin-left: 2px;
+  }
+  .fakt__pozn {
+    font-size: 0.875rem;
   }
 }
 
