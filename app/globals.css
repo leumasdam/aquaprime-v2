@@ -3021,17 +3021,22 @@ video:not([controls])::-webkit-media-controls-panel {
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
+/* Žiara v hlavičke podstránky. Pôvodne to bol úzky vysoký obdĺžnik pri pravom
+   okraji — jeho ľavá hrana bola na tmavom pozadí vidieť ako svetlý pás. Teraz
+   leží cez celú hlavičku a mäkne do stratena vo všetkých smeroch: vodorovne
+   samotným gradientom, zvisle maskou, takže žiadna hrana nevznikne. */
 .sub__head-glow {
   position: absolute;
-  top: -30%;
-  right: -5%;
-  width: 50%;
-  height: 160%;
+  inset: 0;
+  height: min(100%, 620px);
   background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--accent) 14%, transparent),
-    transparent 65%
+    46% 58% at 84% 16%,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    color-mix(in srgb, var(--accent) 5%, transparent) 46%,
+    transparent 74%
   );
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
   pointer-events: none;
 }
 .sub .eyebrow--rule::before {
@@ -11376,18 +11381,12 @@ a.dopyt-alt__card:hover {
    cez celú hlavičku ako mäkká elipsa bez hrán, k tomu jemná mriežka. */
 @media (max-width: 767px) {
   .sub__head-glow {
-    inset: 0;
-    top: 0;
-    right: 0;
-    width: auto;
     height: auto;
     background:
-      radial-gradient(70% 55% at 88% 6%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 72%),
+      radial-gradient(76% 46% at 86% 8%, color-mix(in srgb, var(--accent) 17%, transparent), transparent 74%),
       linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     background-size: 100% 100%, 44px 44px, 44px 44px;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
   }
 }
 
