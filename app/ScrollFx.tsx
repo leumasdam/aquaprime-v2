@@ -31,16 +31,21 @@ export default function ScrollFx() {
         els.forEach((el) => oznac(el));
         return;
       }
+      /* Prah 14 % platí pre bežné bloky. Vysoký prvok (formulár na Kontakte
+         je dlhší než obrazovka telefónu) by 14 % svojej výšky nikdy naraz
+         neukázal a po načítaní zostal neviditeľný, kým človek nescrolloval.
+         Stačí preto aj 120 px viditeľnej výšky. */
       io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) {
+            const dost = e.intersectionRatio >= 0.14 || e.intersectionRect.height >= 120;
+            if (e.isIntersecting && dost) {
               oznac(e.target as HTMLElement);
               io?.unobserve(e.target);
             }
           });
         },
-        { threshold: 0.14, rootMargin: "0px 0px -7% 0px" }
+        { threshold: [0, 0.14], rootMargin: "0px 0px -7% 0px" }
       );
       els.forEach((el) => io!.observe(el));
     });
