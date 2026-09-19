@@ -11390,3 +11390,48 @@ a.dopyt-alt__card:hover {
     mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
   }
 }
+
+
+/* Pätička — rad troch buniek bez rámu (19. 9. 2026). Deliace čiary idú od
+   hornej hrany pätičky po spodnú, spodná čiara ide od okraja po okraj. */
+.footer {
+  overflow-x: clip;
+}
+.footer__in {
+  padding-top: 0;
+}
+.footer__cells {
+  /* na celú šírku okna, obsah ostáva na osi .wrap */
+  width: auto;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: max(var(--pad), calc((100vw - var(--maxw)) / 2 + var(--pad)));
+  border-bottom: 1px solid rgba(43, 48, 46, 0.8);
+}
+.footer-cell {
+  margin: 0;
+  padding: 26px 26px;
+  min-height: 0;
+  background: none;
+  border: 0;
+}
+.footer-cell:first-child {
+  padding-left: 0;
+}
+.footer-cell + .footer-cell {
+  border-left: 1px solid rgba(43, 48, 46, 0.8);
+}
+.footer__mid {
+  margin-top: 44px;
+  padding-top: 0;
+  border-top: 0;
+}
+@media (max-width: 767px) {
+  .footer-cell {
+    padding: 18px 0;
+    margin: 0;
+  }
+  .footer-cell + .footer-cell {
+    border-left: 0;
+    border-top: 1px solid rgba(43, 48, 46, 0.8);
+  }
+}
