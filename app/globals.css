@@ -10229,18 +10229,20 @@ button:focus-visible {
     text-transform: none;
     color: var(--ink-90);
   }
+  /* hodnota a popis tečú ako jedna veta, bodka medzi nimi nezostane visieť na konci riadku */
   .fakt__riadok {
-    gap: 2px 6px;
+    display: block;
     font-size: 0.875rem;
     line-height: 1.4;
     color: var(--body-dim);
   }
   .fakt__hodnota {
+    display: inline;
     font-family: var(--ui);
     font-size: 0.875rem;
     line-height: 1.4;
     color: var(--body-dim);
-    gap: 4px;
+    white-space: normal;
   }
   .fakt__hodnota em {
     font-size: 0.875rem;
@@ -10248,8 +10250,7 @@ button:focus-visible {
     letter-spacing: 0;
   }
   .fakt__hodnota::after {
-    content: "·";
-    margin-left: 2px;
+    content: " · ";
   }
   .fakt__pozn {
     font-size: 0.875rem;
