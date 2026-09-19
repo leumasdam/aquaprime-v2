@@ -11261,3 +11261,38 @@ a.dopyt-alt__card:hover {
     display: none;
   }
 }
+
+
+/* Čísla na /technologia na telefóne: jeden údaj na obrazovke, ďalší sa
+   prisunie sám alebo prstom — rovnaký pás ako kroky konštrukcie na úvode. */
+@media (max-width: 767px) {
+  .tech-stats__grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+  }
+  .tech-stats__grid::-webkit-scrollbar {
+    display: none;
+  }
+  .tech-stat {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    gap: 10px;
+    padding-inline: 0;
+  }
+  .tech-stat + .tech-stat {
+    border-left: none;
+  }
+  .tech-stat__n {
+    font-size: 2.4rem;
+  }
+  .tech-stat__label {
+    font-size: 0.75rem;
+  }
+}

@@ -6,6 +6,7 @@ import TurntableScroll from "../TurntableScroll";
 import CountUp from "../CountUp";
 import LoadCalc from "../LoadCalc";
 import PozadieVideo from "../PozadieVideo";
+import PasKarusel from "../PasKarusel";
 import VideoNaScroll from "../VideoNaScroll";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
@@ -67,7 +68,8 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
 
       {/* ---- ČÍSLA ---- */}
       <section className="tech-stats" id="cisla">
-        <div className="wrap tech-stats__grid">
+        {/* na telefóne pás po jednom údaji, posúva sa sám */}
+        <PasKarusel className="wrap tech-stats__grid" interval={3000}>
           {k.cisla.map(([hodnota, unit, label], i) => (
             (() => {
               const s = { to: Number(hodnota), unit, label };
@@ -87,7 +89,7 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
               );
             })()
           ))}
-        </div>
+        </PasKarusel>
       </section>
 
       {/* ---- 360° MODEL ---- */}
