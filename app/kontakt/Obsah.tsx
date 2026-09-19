@@ -1,6 +1,7 @@
 import Link from "next/link";
 import KontaktForm from "../KontaktForm";
 import Drobcek from "../Drobcek";
+import PozadieVideo from "../PozadieVideo";
 import { AquaFishMark } from "../brand";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
@@ -46,6 +47,14 @@ export default function KontaktObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
 
       <section className="kontakt__head">
         <div className="sub__head-glow" />
+        {/* od tabletu: štúdiový záber nádrže vpravo, doľava sa rozplýva pod text */}
+        <div className="kontakt__video" aria-hidden>
+          <PozadieVideo
+            src="/video/kontakt-hero.mp4"
+            poster="/img/kontakt-hero-poster.webp"
+            className="kontakt__video-el"
+          />
+        </div>
         <div className="wrap">
           <div className="kontakt__crumb" data-reveal="fade">
             <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />

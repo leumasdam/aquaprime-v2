@@ -19,23 +19,34 @@
 /* Od tabletu je v hlavičke tá istá miestnosť s nádržou ako na úvodnej
    stránke — stojí vpravo, doľava sa rozplynie pod text, dole do stránky.
    Prázdna tmavá plocha s vodoznakom pôsobila nedokončene. */
+.kontakt__video {
+  display: none;
+}
 @media (min-width: 768px) {
-  .kontakt__head::before {
-    content: "";
+  .kontakt__video {
+    display: block;
     position: absolute;
     inset: 0 0 0 auto;
-    width: min(1250px, 68%);
-    background: url(/img/hero-room.webp) 62% 45% / cover no-repeat;
+    width: min(1250px, 64%);
+    overflow: hidden;
     -webkit-mask-image:
-      linear-gradient(90deg, transparent 0%, #000 34%),
-      linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+      linear-gradient(90deg, transparent 0%, #000 38%),
+      linear-gradient(180deg, #000 0%, #000 58%, transparent 100%);
     mask-image:
-      linear-gradient(90deg, transparent 0%, #000 34%),
-      linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+      linear-gradient(90deg, transparent 0%, #000 38%),
+      linear-gradient(180deg, #000 0%, #000 58%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
-    opacity: 0.85;
     z-index: 0;
+  }
+  .kontakt__video-el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* nádrž sedí v spodnej polovici štvorcového záberu */
+    object-position: 50% 62%;
   }
   .kontakt__head > .wrap {
     position: relative;
