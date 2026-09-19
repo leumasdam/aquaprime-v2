@@ -14,6 +14,40 @@
 .kontakt__head {
   position: relative;
   padding-block: clamp(48px, 6vw, 96px) clamp(28px, 3vw, 46px);
+  overflow: hidden;
+}
+/* Od tabletu je v hlavičke tá istá miestnosť s nádržou ako na úvodnej
+   stránke — stojí vpravo, doľava sa rozplynie pod text, dole do stránky.
+   Prázdna tmavá plocha s vodoznakom pôsobila nedokončene. */
+@media (min-width: 768px) {
+  .kontakt__head::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: min(1250px, 68%);
+    background: url(/img/hero-room.webp) 62% 45% / cover no-repeat;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 34%),
+      linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 34%),
+      linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    opacity: 0.85;
+    z-index: 0;
+  }
+  .kontakt__head > .wrap {
+    position: relative;
+    z-index: 1;
+  }
+  .kontakt__head .sub__head-glow {
+    display: none;
+  }
+}
+/* ambientná voda s rybkami odišla — hlavička má fotku, zvyšok stránky ticho */
+.kvoda {
+  display: none;
 }
 .kontakt__head .eyebrow {
   margin-bottom: 18px;
