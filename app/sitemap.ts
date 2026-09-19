@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { PRODUCTS } from "./products";
 import { AQUARIUMS } from "./aquariums";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
+import { vsetkyClanky } from "./blog/clanky";
 
 const BASE = "https://aquaprime.sk";
 const ROUTES = [
@@ -12,6 +13,7 @@ const ROUTES = [
   "/materialy",
   "/technologia",
   "/realizacie",
+  "/blog",
   "/o-nas",
   "/konfigurator",
   "/dopyt",
@@ -55,5 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
     ...PRODUCTS.flatMap((p) => dvojjazycne(`/skrinky/${p.slug}`, 0.8)),
     ...AQUARIUMS.flatMap((a) => dvojjazycne(`/akvaria/${a.slug}`, 0.8)),
+    /* články sú zatiaľ len po slovensky — bez anglickej dvojičky */
+    ...vsetkyClanky().map((c) => ({
+      url: `${BASE}/blog/${c.slug}`,
+      lastModified: c.date,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }
