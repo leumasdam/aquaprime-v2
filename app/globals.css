@@ -11437,13 +11437,22 @@ a.dopyt-alt__card:hover {
 }
 
 /* ===========================================================
-   VEĽMI ŠIROKÉ OBRAZOVKY (≥2100 px): celý web sa vykreslí ako pri
-   prehliadači prezoomovanom na 120 % — obsah nezostane malý v strede.
-   Media queries sa ďalej vyhodnocujú voči skutočnej šírke okna,
-   layout vnútri počíta so šírkou / 1,2 (2400 px → 2000 px). (19. 9. 2026)
+   VEĽMI ŠIROKÉ OBRAZOVKY: nad 1920 px rastie celý web plynulo so šírkou
+   okna (ako prezoomovaný prehliadač) — 2560 px ≈ 133 %, 3440 px ≈ 179 %,
+   strop 200 %. Layout vnútri tak vždy počíta so šírkou 1920 px.
+   Media queries sa vyhodnocujú voči skutočnej šírke okna. (19. 9. 2026)
    =========================================================== */
-@media (min-width: 2100px) {
-  html {
-    zoom: 1.2;
+@media (min-width: 1921px) {
+  /* schodíky pre prehliadače bez delenia dĺžok v calc() */
+  html { zoom: 1.1; }
+}
+@media (min-width: 2300px) { html { zoom: 1.2; } }
+@media (min-width: 2600px) { html { zoom: 1.35; } }
+@media (min-width: 3000px) { html { zoom: 1.55; } }
+@media (min-width: 3400px) { html { zoom: 1.8; } }
+@media (min-width: 3840px) { html { zoom: 2; } }
+@supports (zoom: calc(100vw / 1920px)) {
+  @media (min-width: 1921px) {
+    html { zoom: clamp(1, 100vw / 1920px, 2); }
   }
 }
