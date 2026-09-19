@@ -1,6 +1,6 @@
 ---
-title: Údržba akvária — ako udržať stabilnú biológiu
-description: Údržba akvária krok za krokom — nitrifikačný cyklus, výmeny vody, čistenie filtra, kŕmenie a testy, vďaka ktorým zostane biológia v nádrži stabilná.
+title: Údržba akvária bez chaosu: ako udržať vodu aj biológiu stabilnú
+description: Ako sa správne starať o akvárium? Vysvetľujeme výmenu vody, čistenie filtra, kŕmenie aj testy, ktoré pomáhajú udržať nádrž stabilnú.
 date: 2026-09-10
 category: zaklady
 keywords: údržba akvária, nitrifikačný cyklus akvária, rovnováha akvária, čistenie filtra
@@ -8,27 +8,29 @@ related: prve-akvarium-zacinajuci, umiestnenie-akvaria-v-byte, aquascaping-rastl
 faq:
   - q: Ako často mám v akváriu meniť vodu?
     a: Bežná prax je približne 20 – 30 % objemu raz týždenne. Menšie pravidelné výmeny udržia hodnoty stabilné a šetria baktérie vo filtri lepšie než jedna veľká výmena raz za čas.
-  - q: Prečo sa mi po výmene vody alebo vyčistení filtra zakalilo akvárium alebo uhynuli ryby?
-    a: Najčastejšie ide o narušenie nitrifikačného cyklu — pri príliš dôkladnom čistení filtra alebo výmene väčšiny vody naraz sa odstráni veľká časť baktérií, ktoré rozkladajú amoniak a dusitany. Tie sa potom krátkodobo nahromadia a poškodia ryby.
+  - q: Prečo sa mi po údržbe zakalilo akvárium alebo zhoršil stav rýb?
+    a: Problémom môže byť príliš dôkladné vyčistenie filtra, prudká zmena teploty či parametrov vody alebo viac veľkých zásahov naraz. Užitočné baktérie žijú najmä vo filtri a na povrchoch, preto filtračné náplne nečistite všetky súčasne ani pod chlórovanou vodou.
   - q: Ako často mám testovať vodu v zabehnutom akváriu?
     a: Pri stabilnom, zabehnutom akváriu stačí orientačný test raz mesačne. Po založení nádrže, po väčšom zásahu do filtra alebo pri podozrivom správaní rýb je vhodné testovať týždenne, kým sa hodnoty neustália.
 ---
 
-Údržba akvária nie je o veľkých zásahoch, ale o pravidelnosti. Stabilná biológia v nádrži stojí na neviditeľnej práci baktérií, ktoré rozkladajú odpad rýb, a na tom, že im ju pravidelnou, no miernou údržbou nenarušíte. Vysvetlíme nitrifikačný cyklus, ako často meniť vodu, ako čistiť filter bez rizika a aké hodnoty sledovať testami.
+Akvárium nepotrebuje generálne upratovanie. Oveľa viac mu prospieva krátka a pravidelná starostlivosť, ktorá nenaruší biologickú rovnováhu.
 
-## Nitrifikačný cyklus — srdce akvária
+Za čistou vodou stojí najmä neviditeľná práca baktérií vo filtri a substráte. Vysvetlíme, ako fungujú, koľko vody meniť, ako bezpečne čistiť filter a ktoré hodnoty sa oplatí sledovať.
 
-Ryby vylučujú amoniak (NH3) — cez žiabre aj vo výkaloch. Amoniak je pre ryby toxický už v malých množstvách. V zabehnutom akváriu ho však rozkladajú baktérie usadené najmä vo filtri, na dekore a v substráte.
+## Nitrifikačný cyklus drží nádrž pri živote
 
-Prvá skupina baktérií mení amoniak na dusitany (NO2), ktoré sú tiež jedovaté. Druhá skupina následne mení dusitany na dusičnany (NO3) — tie sú v bežných koncentráciách pre ryby výrazne menej škodlivé a odstraňujú sa pravidelnou výmenou vody.
+Ryby cez žiabre aj výkaly uvoľňujú amoniak (NH3), ktorý je toxický už v nízkych koncentráciách. V zabehnutej nádrži ho spracúvajú baktérie usadené najmä vo filtri, substráte a na ďalších povrchoch.
 
-Reťazec amoniak → dusitany → dusičnany sa nazýva nitrifikačný cyklus (niekedy aj dusíkový cyklus). V novom akváriu trvá jeho rozbeh približne 4 – 6 týždňov — dovtedy sa baktérie len množia a nádrž nie je biologicky stabilná. Práve preto sa prvé ryby nasadzujú postupne a v malom počte.
+Jedna skupina baktérií premieňa amoniak na stále nebezpečné dusitany (NO2). Ďalšia ich spracuje na menej škodlivé dusičnany (NO3), ktoré sa priebežne odstraňujú výmenou vody a spotrebúvajú ich aj rastliny.
+
+Tento reťazec sa nazýva nitrifikačný cyklus. V novom akváriu sa rozbieha niekoľko týždňov a jeho priebeh treba overovať testami. Kým sa baktérie dostatočne nerozmnožia, nádrž nie je biologicky stabilná. Aj preto sa ryby nepridávajú naraz.
 
 > **Pozor:** Baktérie nitrifikačného cyklu žijú hlavne vo filtri, nie vo vode. Preto je spôsob, akým filter čistíte, jedna z najdôležitejších vecí v celej údržbe.
 
-## Týždenná a mesačná údržba — praktický prehľad
+## Čo kontrolovať každý týždeň a čo stačí raz za mesiac?
 
-Pravidelná menšia údržba akvária je jednoduchšia a bezpečnejšia než veľké zásahy raz za čas. Orientačný rozpis, ktorý sa dá prispôsobiť veľkosti nádrže:
+Menšie pravidelné zásahy sú jednoduchšie a bezpečnejšie než veľké upratovanie raz za čas. Tento orientačný rozpis si prispôsobte veľkosti a osadeniu nádrže:
 
 | Čo | Ako často | Čas (min) |
 |---|---|---|
@@ -41,26 +43,26 @@ Pravidelná menšia údržba akvária je jednoduchšia a bezpečnejšia než ve�
 | Kontrola a strihanie rastlín | 1× za 2 – 4 týždne | 10 – 20 |
 | Dôkladnejšia kontrola techniky, tesnení a skrinky | 1× mesačne | 10 |
 
-Rozpis netreba dodržiavať na minútu — dôležitejšia je pravidelnosť než presnosť. Akvárium, ktoré dostáva krátku pozornosť každý týždeň, je stabilnejšie než to, ktoré „dostane veľké upratovanie“ raz za dva mesiace.
+Časy netreba dodržiavať na minútu. Dôležitý je pravidelný rytmus. Akváriu prospeje krátka týždenná kontrola viac než rozsiahle upratovanie raz za dva mesiace.
 
-## Výmena vody — koľko a ako často
+## Pravidelná výmena vody je lepšia než nárazový zásah
 
-Osvedčená miera je približne 20 – 30 % objemu raz týždenne. Taká výmena odstráni časť dusičnanov, doplní stopové prvky a obnoví vodu bez toho, aby výrazne zasiahla do chemickej rovnováhy, na ktorú sú ryby a rastliny zvyknuté.
+Bežným východiskom je výmena približne 20 až 30 % objemu raz týždenne. Odstránite tým časť dusičnanov a ďalších nahromadených látok bez prudkej zmeny podmienok, na ktoré sú ryby a rastliny zvyknuté.
 
-Väčšia jednorazová výmena — napríklad polovica objemu a viac — neznamená automaticky lepšiu vodu. Náhla zmena teploty, tvrdosti alebo pH dokáže rybám a rastlinám spôsobiť väčší stres než postupne rastúce dusičnany. Veľké výmeny sa preto robia len výnimočne, napríklad pri riešení problému, a aj vtedy sa hodnoty novej vody čo najviac priblížia pôvodným.
+Väčšia jednorazová výmena automaticky neznamená lepší výsledok. Ak sa nová voda výrazne líši teplotou, tvrdosťou alebo pH, prudká zmena môže obyvateľov nádrže stresovať. Pri riešení akútneho problému môže byť veľká výmena potrebná, parametre novej vody však treba čo najviac priblížiť tým pôvodným.
 
-Vodu z vodovodu nechajte pred pridaním do akvária odstáť alebo ju upravte prípravkom na odstránenie chlóru a teplotu vyrovnajte s vodou v nádrži. Postup pri bežnej výmene:
+Vodovodnú vodu upravte vhodným prípravkom podľa typu dezinfekcie vo vašom vodovode a teplotu priblížte vode v nádrži. Pri bežnej výmene postupujte takto:
 
 1. Vypnite filter aj ohrievač — filter by bežal nasucho a ohrievač mimo vody sa môže poškodiť.
 2. Odsajte hadicou 20 – 30 % vody spolu s časťou detritu zo substrátu.
 3. Novú vodu vyrovnanej teploty dolievajte pomaly, aby nedošlo k prudkej zmene.
 4. Zapnite filter a ohrievač späť.
 
-## Údržba filtra — mechanická a biologická filtrácia
+## Filter čistite tak, aby v ňom zostali baktérie
 
-Filter plní dve úlohy: mechanicky zachytáva nečistoty a biologicky nesie baktérie nitrifikačného cyklu. Údržba filtra sa musí robiť tak, aby ste splnili prvú úlohu a nezničili druhú.
+Filter zachytáva mechanické nečistoty a zároveň poskytuje domov baktériám nitrifikačného cyklu. Pri čistení preto potrebujete odstrániť usadeniny bez toho, aby ste zničili biologickú časť filtrácie.
 
-Zásadné pravidlo: filter sa nikdy nečistí celý naraz. Ak vymeníte alebo dôkladne vypláchnete všetky náplne súčasne, odstránite väčšinu baktérií a nitrifikačný cyklus sa musí rozbiehať odznova — s rizikom skoku amoniaku a dusitanov.
+Najdôležitejšie pravidlo znie: všetky náplne nečistite ani nevymieňajte súčasne. Príliš dôkladný zásah môže výrazne znížiť množstvo baktérií a spôsobiť nárast amoniaku alebo dusitanov.
 
 Preto sa v praxi strieda:
 
@@ -69,19 +71,19 @@ Preto sa v praxi strieda:
 
 > **Tip:** Náplne filtra preplachujte vždy vo vode odobratej z akvária, nikdy pod tečúcou vodou z vodovodu. Chlór baktérie usmrcuje a z „čistenia“ sa stane reštart celého cyklu.
 
-## Kŕmenie rýb — menej je viac
+## Pri kŕmení naozaj platí, že menej je viac
 
-Prekrmovanie je jedna z najčastejších príčin nestabilnej vody v akváriu. Nezožrané krmivo sa rozkladá, zaťažuje filter a priamo zvyšuje množstvo amoniaku, ktoré musia baktérie spracovať.
+Prekrmovanie patrí medzi najčastejšie príčiny nestabilnej vody. Nezožraté zvyšky sa rozkladajú, zaťažujú filter a zvyšujú množstvo odpadu, ktoré musia baktérie spracovať.
 
-Bezpečné pravidlo: dávkujte toľko krmiva, koľko ryby zjedia približne do 2 – 3 minút. Zvyšky, ktoré po tomto čase zostanú na dne, radšej odstráňte sieťkou, než aby ste ich nechali „dojesť“ neskôr.
+Podávajte iba toľko krmiva, koľko ryby zjedia približne za 2 až 3 minúty. Zvyšky na dne odstráňte namiesto toho, aby sa v nádrži postupne rozkladali.
 
 - Kŕmte radšej menšie dávky častejšie než jednu veľkú dávku raz denne.
 - Raz za týždeň môžete rybám jeden deň kŕmenie bez rizika vynechať.
 - Rôznorodé krmivo (vločky, granule, mrazené) prospieva zdraviu viac než veľké množstvo jedného druhu.
 
-## Testovanie vody — čo sledovať a aké hodnoty
+## Číra voda ešte nemusí byť zdravá
 
-Testy vody sú jediný spôsob, ako zistiť skutočné hodnoty — číra voda ešte neznamená zdravú vodu. Orientačné rozpätia pre bežné sladkovodné akvárium s tropickými rybami:
+Skutočné parametre odhalia až testy. Voda môže vyzerať krištáľovo čisto a napriek tomu obsahovať nebezpečné koncentrácie látok. Pre bežné sladkovodné akvárium s tropickými rybami slúžia ako orientácia tieto hodnoty:
 
 | Parameter | Cieľová hodnota |
 |---|---|
@@ -95,32 +97,32 @@ Amoniak a dusitany by v zabehnutom akváriu mali byť trvalo na nule — akýko�
 
 Kým sa nádrž zabehne, testujte týždenne. Pri stabilnom akváriu postačí orientačný test raz mesačne, prípadne vždy, keď sa niečo zmení — nová ryba, väčší zásah do filtra alebo podozrivé správanie rýb.
 
-## Svetlo a riasy — ako predchádzať premnoženiu
+## Riasy často upozorňujú na nerovnováhu
 
-Riasy potrebujú svetlo a živiny — presne to isté, čo akváriové rastliny. Premnoženie rias je preto najčastejšie dôsledkom príliš dlhého alebo príliš silného osvetlenia v kombinácii s nadbytkom živín z prekrmovania alebo zriedkavých výmen vody.
+Riasy využívajú rovnaké svetlo a živiny ako akváriové rastliny. Ich premnoženie preto často súvisí s príliš dlhým či silným osvetlením, prekrmovaním alebo nepravidelnou výmenou vody.
 
-Bezpečný svetelný režim je približne 8 – 10 hodín denne, pravidelne v rovnakom čase — ideálne cez časovač. Priame slnečné svetlo z okna pôsobí na riasy podobne ako umelé osvetlenie, len menej kontrolovane. Aj preto sa pri [umiestnení akvária v byte](/blog/umiestnenie-akvaria-v-byte) odporúča vyhnúť sa priamemu slnku.
+Ako východisko môžete nastaviť približne 8 až 10 hodín denne, vždy v rovnakom čase a ideálne cez časovač. Priame slnko pôsobí podobne ako umelé svetlo, no oveľa horšie sa kontroluje. Aj preto sa pri [umiestnení akvária v byte](/blog/umiestnenie-akvaria-v-byte) odporúča vyhnúť slnečnému oknu.
 
-Husté zarastenie rastlinami rovnováhu naopak podporuje — rastliny spotrebúvajú tie isté živiny ako riasy a konkurujú im. Viac o výbere a rozmiestnení rastlín nájdete v článku o [aquascapingu](/blog/aquascaping-rastliny).
+Zdravé rastliny riasam konkurujú, pretože spotrebúvajú rovnaké živiny. Výber a rozmiestnenie vhodných druhov rozoberáme v článku o [aquascapingu](/blog/aquascaping-rastliny).
 
-## Väčší objem odpúšťa chyby
+## Väčší objem reaguje na chyby pomalšie
 
-Malá nádrž zriedi akúkoľvek chybu — prekrmenie, oneskorenú výmenu vody, výpadok filtra — oveľa menej než veľká. Preto sa aj skúsenejší akvaristi zhodujú, že väčšie [akváriá](/akvaria) sú v praxi na údržbu jednoduchšie, nie náročnejšie, hoci začiatočníci si to často predstavujú opačne.
+V malej nádrži sa prekŕmenie, oneskorená výmena vody či výpadok filtra prejavia rýchlejšie. Väčšie [akváriá](/akvaria) preto môžu byť v praxi stabilnejšie, hoci na prvý pohľad pôsobia náročnejšie.
 
-V 300-litrovej nádrži zmení jedno zabudnuté kŕmenie navyše koncentráciu látok len minimálne. V 40-litrovej to isté posunie hodnoty citeľne rýchlejšie. Kto plánuje prvé akvárium, nájde širšie porovnanie objemov v článku [prvé akvárium — ako začať bez chýb](/blog/prve-akvarium-zacinajuci).
+Rovnaké množstvo krmiva navyše zmení parametre 40-litrovej nádrže oveľa výraznejšie než pri 300 litroch. Širšie porovnanie objemov nájdete v článku [prvé akvárium – ako začať bez chýb](/blog/prve-akvarium-zacinajuci).
 
-## Praktická stránka údržby v byte
+## Pomôcky majte poruke, nie po celom byte
 
-Pravidelná údržba má aj fyzickú stránku — vedrá, hadice, testovacie sady a náhradné náplne filtra potrebujú v byte svoje miesto, ideálne priamo pri akváriu.
+Vedro, hadica, testy a náhradné náplne potrebujú svoje stále miesto. Ideálne priamo pri akváriu, aby sa bežná údržba zbytočne nekomplikovala.
 
 - **Vedro a sifónová hadica** na výmenu vody — bez nich sa týždenná rutina zbytočne komplikuje.
 - **Testovacie sady** (kvapkové testy alebo prúžky) — skladujte mimo priameho slnka a mimo vlhkosti z akvária.
 - **Náhradné náplne filtra, prípravok na úpravu vody, sieťka** — priestor na drobný materiál oceníte pri každej údržbe.
 
-Práve tu sa prejavuje rozdiel medzi vyhotoveniami [skriniek pod akváriá](/skrinky). Skrinka BASIC má otvorený oceľový rám bez dvierok — vybavenie na údržbu tam ostáva na očiach. Skrinky ŠTANDARD a PREMIUM majú dvierka, takže vedro, hadicu aj testy uložíte mimo pohľadu a mimo prachu.
+Tu sa ukáže praktický rozdiel medzi [skrinkami pod akváriá](/skrinky). BASIC má otvorený rám bez dvierok, takže uložené vybavenie zostáva viditeľné. Verzie ŠTANDARD a PREMIUM ho skryjú za dvierka a chránia pred prachom.
 
-Pri samotnej výmene vody sa oplatí chrániť aj podlahu pod skrinkou — podložka alebo handra pod miestom, kade vedie hadica alebo kde stojí vedro, ušetrí starosti pri náhodnom vyliatí. Skrinky AQUAPRIME majú nastaviteľné nožičky, ktorými zostavu vyrovnáte do roviny, aby bolo dno nádrže zaťažené rovnomerne. Oceľový rám AquaFrame stačí pri údržbe utrieť suchou alebo mierne vlhkou handrou; vodu naň zbytočne nelejte.
+Pri výmene vody chráňte podlahu podložkou alebo handrou pod hadicou a vedrom. Skrinky AQUAPRIME majú nastaviteľné nožičky, ktorými sa zostava vyrovná do roviny. Oceľový rám AquaFrame stačí utrieť suchou alebo mierne vlhkou handrou a nenechávať na ňom stáť vodu.
 
 Kto si zostavu ešte len vyberá alebo hľadá inšpiráciu, ako môže hotové akvárium v byte vyzerať, nájde fotky reálnych zostáv v [realizáciách](/realizacie).
 
-Údržba akvária sa časom stane rutinou, ktorá zaberie pár minút týždenne. Pravidelnosť menších zásahov — výmena vody, jemné čistenie filtra, primerané kŕmenie a občasný test — robí biológiu v nádrži stabilnejšou než akékoľvek veľké „upratovanie“ raz za čas.
+Časom sa z údržby stane jednoduchá rutina. Pravidelná výmena časti vody, šetrné čistenie filtra, primerané kŕmenie a občasné testovanie udržia nádrž stabilnejšiu než akékoľvek veľké upratovanie raz za čas.

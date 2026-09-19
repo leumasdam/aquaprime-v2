@@ -1,6 +1,6 @@
 ---
-title: Koľko váži akvárium s vodou — výpočet hmotnosti
-description: Koľko váži akvárium s vodou a ako z toho posúdiť nosnosť skrinky pod akvárium aj zaťaženie podlahy v byte. Vzorec, tabuľka objemov a praktické rady.
+title: Koľko váži akvárium s vodou? Jednoduchý výpočet hmotnosti
+description: Vypočítajte si hmotnosť akvária s vodou, sklom a dekoráciami. Zistite, čo to znamená pre nosnosť skrinky aj zaťaženie podlahy.
 date: 2026-09-18
 category: skrinky
 keywords: nosnosť skrinky pod akvárium, koľko váži akvárium s vodou, hmotnosť akvária, zaťaženie podlahy akvárium
@@ -14,25 +14,27 @@ faq:
     a: Konkrétne číslo v kilogramoch neuvádzame — nosnosť posudzujeme vždy podľa celej zostavy, teda akvária, vody, skrinky aj miesta osadenia. Rám je zváraný z uzavretého oceľového profilu 30 × 30 mm s hrúbkou steny 2 mm.
 ---
 
-Skôr než si objednáte akvárium, oplatí sa vedieť, koľko bude celá zostava vážiť. Od toho, koľko váži akvárium s vodou, závisí výber skrinky pod akvárium aj to, či záťaž bez obáv unesie podlaha. Výpočet nie je zložitý — stačí poznať objem nádrže a pripočítať hmotnosť skla, substrátu a dekorácií.
+Akvárium s objemom 200 litrov neváži 200 kilogramov. Voda tvorí iba jednu časť výsledku – pripočítať treba sklo, substrát, dekorácie, techniku aj samotnú skrinku.
 
-## Ako sa počíta celková hmotnosť akvária
+Celková hmotnosť rozhoduje o výbere nosnej konštrukcie aj vhodnom mieste v byte. Dobrou správou je, že na základný odhad nepotrebujete zložitý výpočet.
 
-Celková hmotnosť zostavy má štyri zložky: vodu, sklo, substrát a dekor. Vodu spočítate najľahšie, pretože jeden liter zodpovedá jednému kilogramu. K nej sa pripočíta sklo a vnútorné vybavenie.
+## Voda je iba začiatok
 
-Orientačný výpočet, ktorý používame aj v kalkulačke na webe, vyzerá takto: hmotnosť vody plus približne 15 % na sklo a približne 10 % na substrát a dekor. Pri akváriu 120 × 50 × 50 cm, teda pri objeme 300 l, tak vychádza približne 375 kg.
+Základ výpočtu tvoria štyri položky: voda, sklo, substrát a dekorácie. Najjednoduchšia je voda, keďže jeden liter zodpovedá približne jednému kilogramu. Zvyšné časti pridajú ďalšie desiatky percent.
 
-Je to odhad, nie váženie na gram — skutočná hmotnosť sa líši podľa hrúbky skla, typu substrátu a množstva dekorácií. Na plánovanie skrinky aj podlahy je však dostatočne presný.
+V orientačnej kalkulačke k hmotnosti vody pridávame približne 15 % za sklo a ďalších 10 % za substrát s dekoráciami. Akvárium 120 × 50 × 50 cm s objemom 300 litrov tak vychádza približne na 375 kg.
 
-Prečo počítať s celou zostavou, a nie len s vodou? Pri malom akváriu do 100 l je rozdiel medzi hmotnosťou vody a celkovou hmotnosťou malý — pár kilogramov skla a substrátu nič nerozhodne. Pri nádržiach nad 300 l už ide o desiatky kilogramov navyše, ktoré sa premietnu do voľby skrinky aj do úvahy o podlahe.
+Ide o praktický odhad, nie o presné váženie. Výsledok ovplyvní hrúbka skla, typ substrátu aj množstvo kameňov či koreňov. Na predbežné plánovanie skrinky a umiestnenia však poskytne užitočnú orientáciu.
 
-## Koľko váži voda — základný vzorec a tabuľka objemov
+Pri malej nádrži môže rozdiel predstavovať iba niekoľko kilogramov. Nad 300 litrov však sklo, substrát a dekorácie pridajú desiatky kilogramov, ktoré už nemožno pri výbere skrinky ani posudzovaní podlahy ignorovať.
 
-Základ je jednoduchý: 1 l vody = 1 kg. Objem akvária zistíte tak, že vynásobíte rozmery v centimetroch (šírka × hĺbka × výška) a výsledok vydelíte 1000 — dostanete objem v litroch, ktorý sa rovná hmotnosti vody v kilogramoch.
+## Základný vzorec zvládnete bez kalkulačky
 
-V praxi sa do nádrže nikdy nezmestí presne toľko vody, koľko vychádza z rozmerov — hladina je o niečo nižšie a časť priestoru zaberá substrát a dekor. Prepočet s prirážkou 15 % a 10 % je preto zámerne zjednodušený a počíta skôr s rezervou než s presným číslom.
+Platí jednoduchá orientácia: 1 liter vody váži približne 1 kilogram. Objem nádrže získate vynásobením rozmerov v centimetroch – šírka × hĺbka × výška – a vydelením výsledku číslom 1 000.
 
-Tabuľka ukazuje orientačnú celkovú hmotnosť zostavy (voda + sklo + substrát a dekor) pre bežné objemy:
+Reálne množstvo vody bude o niečo menšie, pretože hladina nesiaha po horný okraj a časť objemu zaberie substrát s dekoráciami. Zjednodušený prepočet preto zámerne pracuje s rezervou, nie s presnosťou na kilogram.
+
+Takto vyzerá orientačná hmotnosť kompletnej zostavy pri bežných objemoch:
 
 | Objem | Hmotnosť vody | Celková hmotnosť zostavy |
 |---|---|---|
@@ -46,29 +48,29 @@ Tabuľka ukazuje orientačnú celkovú hmotnosť zostavy (voda + sklo + substrá
 
 > **Tip:** Pri výbere rozmeru sa neriaďte len litrami, ale aj tým, kam sa akvárium zmestí a aká skrinka pod akvárium k nemu pasuje. Prehľad rozmerov nájdete pri [akváriách na mieru](/akvaria).
 
-## Hrúbka skla a jej podiel na hmotnosti
+## Čím vyššia nádrž, tým ťažšie sklo
 
-Sklo je druhá najväčšia zložka hmotnosti. Jeho hrúbka rastie s výškou vodného stĺpca — čím vyššia nádrž, tým väčší tlak pôsobí na dno a steny a tým hrubšie sklo je potrebné.
+Po vode tvorí sklo druhú najväčšiu časť hmotnosti. Jeho potrebná hrúbka rastie najmä s výškou vodného stĺpca. Vyššia nádrž znamená väčší tlak na dno a steny, a teda aj hrubšie tabule.
 
 Pri akváriách do 40 cm výšky sa bežne používa sklo 6 mm, pri výške 50 cm sklo 8 mm a od približne 400 l alebo dĺžky 160 cm sa siaha po 10 mm. Pri vysokých nádržiach s výškou 70 až 80 cm a objemom od 600 l sa pracuje s 12 mm sklom. Podrobný prehľad podľa rozmerov nájdete v článku o [hrúbke skla na akvárium](/blog/hrubka-skla-akvarium).
 
-Akváriá AQUAPRIME sa vyrábajú z číreho float skla lepeného akvaristickým silikónom, pri väčších rozmeroch so sklenenými pozdĺžnymi výstuhami. Práve výstuhy o niečo zvyšujú hmotnosť skla oproti jednoduchému výpočtu z plochy tabúľ.
+Akváriá AQUAPRIME sa vyrábajú z číreho float skla spojeného akvaristickým silikónom. Väčšie rozmery dopĺňajú pozdĺžne výstuhy, ktoré výslednú hmotnosť ešte mierne zvýšia.
 
-## Substrát a dekor — koľko pridajú na váhe
+## Kamene a substrát vedia pridať desiatky kilogramov
 
-Substrát a dekor tvoria menšiu, no nie zanedbateľnú časť hmotnosti. Patrí sem piesok, štrk, korene aj kamene.
+Substrát a dekorácie tvoria menšiu, no stále významnú časť hmotnosti. Počíta sa piesok, štrk, kamene aj nasiaknuté korene.
 
 - **Piesok a jemný substrát** — je hutnejší, na rovnaký objem váži viac ako hrubý štrk.
 - **Štrk a väčšie kamenivo** — medzi zrnami ostáva viac vzduchu, hmotnosť na objem je nižšia.
 - **Korene** — vo vode nasiaknu a časom oťažejú.
 
-V orientačnom výpočte sa substrát a dekor spolu počítajú ako približne 10 % hmotnosti vody. Pri bohato osadenom akváriu s hrubšou vrstvou substrátu alebo väčšími kameňmi býva skutočný podiel vyšší — pri väčšej zostave preto počítajte s rezervou.
+V základnom odhade im priraďujeme približne 10 % hmotnosti vody. Bohato osadené akvárium s hrubou vrstvou substrátu a veľkými kameňmi však môže túto hodnotu prekročiť. Pri väčšej zostave preto vždy počítajte s rezervou.
 
-Pri akváriu 300 l pridajú substrát a dekor orientačne 30 kg, pri 500 l zhruba 50 kg. Nie je to zanedbateľné, najmä keď k tomu pripočítate techniku (filtráciu, ohrev, osvetlenie) a samotnú skrinku, na ktorej celá zostava stojí.
+Pri 300-litrovom akváriu môžu substrát a dekorácie pridať približne 30 kg, pri 500 litroch okolo 50 kg. Navyše zostáva technika a hmotnosť skrinky, na ktorej celý systém stojí.
 
-## Nosnosť skrinky pod akvárium — oceľový rám AquaFrame
+## Hmotnosť musí bezpečne preniesť nosný rám
 
-Skrinka pod akvárium nesie celú hmotnosť zostavy, preto jej konštrukcia rozhoduje prinajmenšom rovnako ako výber skla. AQUAPRIME stavia skrinky na zváranom oceľovom ráme AquaFrame — uzavretom profile 30 × 30 mm s hrúbkou steny 2 mm, opláštenom laminovanou drevotrieskou hrúbky 18 mm. Skrinka stojí na nastaviteľných nožičkách, ktorými sa pri osadení vyrovná.
+Skrinka nesie hmotnosť celej zostavy, preto je jej konštrukcia rovnako dôležitá ako samotné sklo. Základ skriniek AQUAPRIME tvorí zváraný rám AquaFrame z uzavretého oceľového profilu 30 × 30 mm s hrúbkou steny 2 mm. Opláštenie je z laminovanej drevotriesky s hrúbkou 18 mm a nastaviteľné nožičky umožňujú presné vyrovnanie.
 
 Ponuka zahŕňa tri vyhotovenia:
 
@@ -76,11 +78,11 @@ Ponuka zahŕňa tri vyhotovenia:
 2. **ŠTANDARD** — rám doplnený o bočnice a dvierka, zvnútra rám vidno.
 3. **PREMIUM** — kompletne opláštená skrinka vrátane dna, s bezúchytkovými dvierkami.
 
-Vo všetkých troch prípadoch nesie záťaž rovnaký oceľový rám — rozdiel je v opláštení a vzhľade, nie v tom, čo skrinku drží. Konkrétnu nosnosť v kilogramoch zámerne neuvádzame, pretože skutočná záťaž závisí od celej zostavy — od objemu akvária, hrúbky skla aj od miesta, kde skrinka bude stáť. Viac o konštrukcii nájdete pri [oceľovom ráme AquaFrame](/technologia), výber vyhotovenia zase pri [skrinkách pod akváriá](/skrinky).
+Vo všetkých troch verziách prenáša záťaž rovnaký oceľový rám. Rozdiel spočíva v opláštení a výslednom vzhľade. Jedno univerzálne číslo nosnosti preto neuvádzame – vhodnosť sa posudzuje podľa objemu, hrúbky skla, vybavenia aj miesta osadenia. Viac o konštrukcii nájdete pri [oceľovom ráme AquaFrame](/technologia) a jednotlivé vyhotovenia v ponuke [skriniek pod akváriá](/skrinky).
 
-## Zaťaženie podlahy v byte — na čo si dať pozor
+## Pri väčšom akváriu treba myslieť aj na podlahu
 
-Skrinka je len jedna časť rovnice. Druhou je podlaha, na ktorej celá zostava stojí. Pri bežných akváriách do približne 200 l sa v štandardnom byte zvyčajne nemusí riešiť nič mimoriadne — záťaž je porovnateľná s plnou knižnicou alebo ťažkou sedačkou.
+Nosná skrinka je iba jedna časť rovnice. Druhou je konštrukcia podlahy. Pri bežných akváriách do približne 200 litrov nebýva v štandardnom byte potrebné mimoriadne riešenie, vždy však záleží na konkrétnej stavbe a rozložení hmotnosti.
 
 Pri väčších objemoch má zmysel zvážiť niekoľko vecí:
 
@@ -92,10 +94,10 @@ Pri väčších objemoch má zmysel zvážiť niekoľko vecí:
 
 Výberu miesta v byte, vrátane vzdialenosti od okna a zdrojov tepla, sa podrobnejšie venuje samostatný článok o [umiestnení akvária v byte](/blog/umiestnenie-akvaria-v-byte).
 
-Myslite aj na to, že zaťaženie inštaláciou nekončí. Naplnené akvárium sa už bežne nepresúva — sťahovanie plnej nádrže je nepraktické a riskantné. Umiestnenie a nosnosť podlahy si preto premyslite vopred, ešte pred kúpou, nie až po dodaní.
+Naplnené akvárium sa bežne nepresúva. Manipulácia s plnou nádržou je nepraktická a riskantná, preto vhodné miesto aj podlahu vyriešte ešte pred objednávkou.
 
-## Kalkulačka hmotnosti na webe
+## Výpočet za vás spraví online kalkulačka
 
-Ak si chcete výpočet zjednodušiť, na stránke [oceľový rám AquaFrame](/technologia) nájdete kalkulačku hmotnosti. Zadáte rozmery akvária a kalkulačka spočíta orientačnú celkovú hmotnosť zostavy podľa rovnakého vzorca — voda plus približne 15 % na sklo plus približne 10 % na substrát a dekor.
+Na stránke [oceľového rámu AquaFrame](/technologia) nájdete kalkulačku, do ktorej stačí zadať rozmery akvária. Výsledok vychádza z rovnakého orientačného vzorca: voda plus približne 15 % za sklo a 10 % za substrát s dekoráciami.
 
-Vždy ide o odhad. Vhodnosť skrinky aj podlahy sa posudzuje podľa celej zostavy, nie podľa jedného čísla. Ak si nie ste istí rozmermi alebo vyhotovením, najrýchlejšie si to overíte cez [nezáväzný dopyt](/dopyt), kde vám poradíme podľa konkrétneho priestoru a predstavy. Pri výbere samotnej skrinky pomôže aj článok o tom, [ako vybrať skrinku pod akvárium](/blog/vybrat-skrinku-pod-akvarium).
+Výsledok zostáva odhadom. Vhodnosť skrinky a podlahy nemožno posúdiť podľa jediného čísla bez kontextu celej zostavy. Ak si nie ste istí rozmermi alebo vyhotovením, pošlite [nezáväzný dopyt](/dopyt). Pri výbere vám pomôže aj článok o tom, [ako vybrať skrinku pod akvárium](/blog/vybrat-skrinku-pod-akvarium).

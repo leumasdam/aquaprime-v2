@@ -1,6 +1,6 @@
 ---
-title: Hrúbka skla na akvárium — ako vybrať podľa rozmeru
-description: Aká hrúbka skla patrí k akváriu podľa výšky vodného stĺpca a objemu — prehľad od 4 mm po 12 mm s konkrétnymi rozmermi a cenami z ponuky AQUAPRIME.
+title: Akú hrúbku skla potrebuje akvárium? Rozhoduje najmä jeho výška
+description: Akú hrúbku skla zvoliť podľa rozmerov akvária? Pozrite si prehľad od 4 do 12 mm, konkrétne príklady aj ceny z ponuky AQUAPRIME.
 date: 2026-09-17
 category: akvaria
 keywords: hrúbka skla na akvárium, aké sklo na akvárium, výška vodného stĺpca a hrúbka skla, 6 mm vs 8 mm vs 10 mm sklo
@@ -14,21 +14,23 @@ faq:
     a: Pri výške 50 cm ide o 8 mm sklo. V ponuke AQUAPRIME je tento rozmer vedený za 143,90 €. Konkrétne zadanie aj cenu si overíte v nezáväznom dopyte.
 ---
 
-Hrúbka skla na akvárium sa neriadi počtom litrov, ale výškou vodného stĺpca. Dve nádrže s rovnakým objemom môžu potrebovať inú hrúbku skla, ak majú rozmery rozdelené inak. Nižšie nájdete tabuľku hrúbok podľa výšky a objemu, vysvetlenie, prečo rozhoduje práve výška, a to, kedy sa pri väčších nádržiach dopĺňajú sklenené výstuhy.
+Pri výbere akvária nestačí sledovať počet litrov. O potrebnej hrúbke skla rozhoduje najmä výška vodného stĺpca, takže dve nádrže s rovnakým objemom môžu mať rozdielne sklo.
 
-## Čo rozhoduje o hrúbke skla
+V prehľade nižšie vysvetľujeme, prečo je výška taká dôležitá, kedy stačí 6 či 8 mm a v akých prípadoch sa používajú sklenené výstuhy.
 
-Rozhoduje výška vodného stĺpca, teda vzdialenosť od dna po hladinu. Tlak vody na dno a na spodné hrany bočných skiel rastie s výškou, nie s celkovým objemom. Vysoká a úzka nádrž preto potrebuje hrubšie sklo než dlhá a plytká nádrž s rovnakým množstvom vody.
+## Najdôležitejšia je výška vodného stĺpca
 
-Rozmer dna je až druhý v poradí. Ovplyvňuje najmä to, či treba tabuľu spevniť sklenenou výstuhou, aby sa pri napustení nevydula. Čím väčšia plocha skla, tým viac sa pod tlakom prehýba, a to aj pri rovnakej hrúbke.
+Vodný stĺpec je vzdialenosť od dna po hladinu. S jeho výškou rastie tlak vody na dno a spodné hrany bočných skiel. Vysoká a úzka nádrž preto môže potrebovať hrubšie sklo než dlhé, plytké akvárium s rovnakým objemom.
 
-Z cenníka AQUAPRIME vychádza jednoduché pravidlo: do výšky približne 40 cm postačí 6 mm sklo, do 50 cm sa používa 8 mm, od objemu okolo 400 l a dĺžky okolo 160 cm nastupuje 10 mm a pri výške 70–80 cm a objeme od 600 l sa počíta s 12 mm. Je to pravidlo odvodené z ponuky rozmerov, nie fyzikálna konštanta — pri neštandardnom rozmere sa hrúbka posudzuje individuálne.
+Pôdorys prichádza na rad až potom. Ovplyvňuje najmä potrebu výstuh, ktoré bránia vydutiu skla po napustení. Čím väčšia je plocha tabule, tým viac sa môže pod tlakom prehýbať – aj pri rovnakej hrúbke.
+
+Ponuka AQUAPRIME naznačuje jednoduchú orientáciu: pri výške približne do 40 cm sa používa 6 mm sklo, pri 50 cm spravidla 8 mm. Pri objeme okolo 400 litrov a dĺžke približne 160 cm nastupuje 10 mm, zatiaľ čo nádrže vysoké 70 až 80 cm s objemom od 600 litrov už počítajú s 12 mm sklom. Nejde však o univerzálny vzorec. Každý atypický rozmer treba posúdiť individuálne.
 
 > **Tip:** Pri výbere rozmeru si najprv všimnite výšku, nie objem v litroch. Dve nádrže s 300 l môžu mať inú hrúbku skla, ak je jedna nízka a dlhá a druhá vyššia a kratšia.
 
 ## Tabuľka hrúbok skla podľa výšky a objemu
 
-Tabuľka ukazuje reprezentatívny rozmer z ponuky AQUAPRIME pre každú bežnú hrúbku skla, vrátane objemu a ceny s DPH.
+V tabuľke nájdete typický rozmer z ponuky AQUAPRIME pre každú bežnú hrúbku skla. Uvádzame aj objem a cenu s DPH.
 
 | Hrúbka skla | Rozmer (Š × H × V cm) | Objem | Výška vodného stĺpca | Cena |
 |---|---|---|---|---|
@@ -38,50 +40,50 @@ Tabuľka ukazuje reprezentatívny rozmer z ponuky AQUAPRIME pre každú bežnú 
 | 10 mm | 200 × 50 × 60 | 600 l | 60 cm | 383,20 € |
 | 12 mm | 200 × 70 × 80 | 1 120 l | 80 cm | 1 052 € |
 
-Rovnaký princíp platí aj pri bežnejších rozmeroch. [Akvárium 100 × 40 × 50 cm](/akvaria/akvarium-100x40x50) má výšku 50 cm, patrí teda do kategórie 8 mm skla, rovnako ako [akvárium 120 × 50 × 50 cm](/akvaria/akvarium-120x50x50). Keď narastie dĺžka aj výška, ako pri [akváriu 200 × 50 × 60 cm](/akvaria/akvarium-200x50x60), nádrž sa posúva do kategórie 10 mm.
+Rovnaká logika platí aj pri bežných rozmeroch. [Akvárium 100 × 40 × 50 cm](/akvaria/akvarium-100x40x50) je vysoké 50 cm, preto sa vyrába z 8 mm skla. To isté platí pre [akvárium 120 × 50 × 50 cm](/akvaria/akvarium-120x50x50). Keď narastie dĺžka aj výška, ako pri modeli [200 × 50 × 60 cm](/akvaria/akvarium-200x50x60), používa sa už 10 mm sklo.
 
 Ak hľadáte rozmer okolo 200 l, porovnanie variantov aj skrinky nájdete v prehľade [akvárium 200 litrov — rozmery, sklo a skrinka](/blog/akvarium-200-litrov).
 
-## Tlak na sklo — fyzika za tým
+## Prečo tlak rastie s výškou?
 
-Tlak vody na dne rastie priamo úmerne s výškou vodného stĺpca. Zjednodušene: v 80 cm vysokej nádrži pôsobí na spodnú hranu skla približne dvojnásobný tlak ako v nádrži vysokej 40 cm, bez ohľadu na jej dĺžku a hĺbku. Hrubšie sklo preto potrebujú vyššie nádrže, aj keď majú menší objem než nízka, ale dlhá zostava.
+Tlak pri dne rastie priamo s výškou vodného stĺpca. Zjednodušene povedané, v 80 cm vysokej nádrži pôsobí na spodnú hranu približne dvojnásobný tlak ako v 40 cm vysokej. Dĺžka ani hĺbka na tomto pomere nič nemenia.
 
-Platí to aj opačne. Pri plytkých nádržiach, napríklad paludáriách alebo nízkych rastlinných miskách, stačí tenšie sklo, hoci má nádrž rozľahlý pôdorys. Rozhoduje výška, nie plocha dna.
+Platí to aj opačne. Plytké paludárium alebo nízka rastlinná nádrž môže mať veľký pôdorys, no stále si vystačí s tenším sklom. Výška však nie je jediný parameter – veľká plocha môže vyžadovať výstuhy.
 
-Prakticky z toho vyplýva jedno: keď porovnávate dve ponuky na podobný objem, pozrite sa najprv na posledné číslo v rozmere. Pri zápise dĺžka × hĺbka × výška práve výška najviac rozhoduje o hrúbke skla aj o tom, koľko bude vážiť samotná nádrž.
+Keď porovnávate dve nádrže s podobným objemom, sledujte najmä posledné číslo v rozmere. Pri zápise dĺžka × hĺbka × výška práve ono najviac ovplyvňuje hrúbku skla aj hmotnosť prázdneho akvária.
 
-## Prečo sa pri niektorých rozmeroch ponúkajú dve hrúbky
+## Prečo má rovnaký rozmer niekedy dve možnosti?
 
-Pri niektorých rozmeroch nájdete v ponuke AQUAPRIME dve hrúbky skla. Akvárium 150 × 50 × 50 cm (375 l) je dostupné v 8 mm vyhotovení za 235,50 € alebo v 10 mm za 303,80 €. Akvárium 200 × 50 × 60 cm (600 l) sa vyrába s 10 mm sklom za 383,20 €, prípadne s 12 mm za 794 €.
+Pri niektorých rozmeroch ponúka AQUAPRIME dve hrúbky. Akvárium 150 × 50 × 50 cm s objemom 375 litrov môže mať 8 mm sklo za 235,50 € alebo 10 mm sklo za 303,80 €. Pri rozmere 200 × 50 × 60 cm a objeme 600 litrov je na výber 10 mm verzia za 383,20 € a 12 mm verzia za 794 €.
 
-Dôvod je jednoduchý: tieto rozmery ležia na hranici rozsahu pre danú hrúbku. Tenší variant zodpovedá bežnému výpočtu podľa výšky vodného stĺpca a je lacnejší aj ľahší. Hrubší variant pridáva rezervu — hodí sa pri ťažkej dekorácii, hrubšej vrstve substrátu, morskej zostave s objemnejšou technikou alebo vtedy, keď chcete mať od hranice väčší odstup.
+Tieto rozmery sa nachádzajú na hranici bežného rozsahu. Tenší variant zodpovedá štandardnému výpočtu, stojí menej a má nižšiu hmotnosť. Hrubšie sklo pridáva rezervu. Zmysel môže mať pri ťažkej dekorácii, hrubej vrstve substrátu, morskej zostave s rozsiahlejšou technikou alebo jednoducho vtedy, keď chcete väčší odstup od hraničnej hodnoty.
 
 > **Pozor:** Hrubšie sklo zvyšuje hmotnosť celej zostavy. Pri výbere medzi dvoma hrúbkami počítajte s tým, že sklo tvorí približne 15 % hmotnosti akvária s vodou — podrobný výpočet nájdete v článku o [nosnosti a hmotnosti akvária](/blog/nosnost-hmotnost-akvaria).
 
 ## Sklenené výstuhy pri väčších rozmeroch
 
-Pri väčších pôdorysoch sa okrem hrubšieho skla dopĺňajú sklenené pozdĺžne výstuhy. Sú to úzke sklenené pásy lepené pod hornou hranou nádrže, medzi predné a zadné sklo alebo pozdĺž stien.
+Pri väčších nádržiach nestačí vždy iba hrubšie sklo. Konštrukciu dopĺňajú pozdĺžne výstuhy – úzke sklenené pásy nalepené pod hornou hranou, medzi predným a zadným sklom alebo pozdĺž stien.
 
-Držia steny pri sebe a bránia tomu, aby sa pod tlakom vody vydúvali von. Bez nich by sa pri veľkej ploche skla postupne namáhal lepený spoj, najmä pri dlhších a zároveň vyšších nádržiach. Výstuhy hrúbku tabule nenahrádzajú, spevňujú konštrukciu ako celok.
+Výstuhy držia steny pri sebe a obmedzujú ich vydutie pod tlakom vody. Bez nich by sa pri veľkej ploche viac namáhali lepené spoje, najmä pri dlhých a zároveň vysokých nádržiach. Nenahrádzajú správnu hrúbku tabule, ale spevňujú akvárium ako celok.
 
-Pri väčšom rozmere teda počítajte s tým, že AQUAPRIME zvolí kombináciu hrúbky skla a výstuh podľa konkrétneho zadania, nielen podľa pravidla z tabuľky.
+Pri väčšom alebo atypickom rozmere preto AQUAPRIME posudzuje hrúbku skla spolu s potrebnými výstuhami. Samotná tabuľka na takéto rozhodnutie nestačí.
 
-## Float sklo — čo to je
+## Čo znamená float sklo?
 
-Akváriá AQUAPRIME sa vyrábajú z číreho float skla. Vzniká plavením na hladine roztaveného kovu, vďaka čomu má rovnomernú hrúbku, hladký povrch bez vĺn a minimum optického skreslenia. V akvaristike je to bežný štandard práve preto, že pohľad do nádrže zostáva čistý aj cez veľkú tabuľu.
+Akváriá AQUAPRIME sa vyrábajú z číreho float skla. Pri výrobe sa sklo plaví na hladine roztaveného kovu, vďaka čomu získava rovnomernú hrúbku a hladký povrch bez výrazných vĺn. Pohľad do nádrže tak zostáva čistý aj cez väčšiu tabuľu.
 
-Tabule sa lepia akvaristickým silikónom, ktorý znesie dlhodobý kontakt s vodou. Float sklo je vhodné na sladkovodné aj morské nádrže; pri väčších objemoch a náročnejších zostavách sa hrúbka aj výstuhy riešia podľa zadania. Rovnakou technológiou vznikajú aj teráriá na zákazku.
+Jednotlivé tabule sa spájajú akvaristickým silikónom určeným na dlhodobý kontakt s vodou. Float sklo je vhodné pre sladkovodné aj morské nádrže a rovnakou technológiou vznikajú aj teráriá na zákazku. Pri väčších objemoch sa hrúbka a výstuhy vždy prispôsobujú konkrétnemu zadaniu.
 
-Oproti akrylátu má sklo dve praktické výhody: pri čistení stierkou alebo magnetickým čističom sa oveľa menej škrabe a v čase nemení tvar. Nevýhodou je vyššia hmotnosť pri rovnakej hrúbke, ktorá sa premieta do záťaže na skrinku aj na podlahu. Preto sa hrúbka skla posudzuje spolu s ostatnými zložkami zostavy — konštrukciu aj kalkulačku hmotnosti nájdete v sekcii [oceľový rám AquaFrame](/technologia).
+Oproti akrylátu sa sklo pri bežnom čistení stierkou alebo magnetickým čističom poškriabe podstatne ťažšie a časom nemení tvar. Je však ťažšie, čo zvyšuje záťaž na skrinku aj podlahu. Preto treba sklo posudzovať spolu s celou zostavou. Konštrukciu aj kalkulačku hmotnosti nájdete v sekcii [oceľový rám AquaFrame](/technologia).
 
-## Ako si objednať správne sklo
+## Čo uviesť v dopyte?
 
-Pri dopyte na [akvárium na mieru](/akvaria) stačí uviesť tri rozmery — dĺžku, hĺbku a výšku — a účel nádrže: sladkovodná, morská, prípadne terárium. Hrúbku skla a prípadné výstuhy navrhne AQUAPRIME podľa výšky vodného stĺpca a plochy skla, rovnako ako pri rozmeroch v tomto článku.
+Pri dopyte na [akvárium na mieru](/akvaria) uveďte dĺžku, hĺbku a výšku, ale aj účel nádrže – či pôjde o sladkovodné alebo morské akvárium, prípadne terárium. AQUAPRIME následne navrhne vhodnú hrúbku skla aj potrebné výstuhy.
 
-Užitočné je napísať aj to, či bude nádrž stáť samostatne, alebo sa bude vyrábať spolu so skrinkou. Pri zákazke na mieru sa oceľový rám aj sklo navrhujú tak, aby na seba presne sadli. Ak si nie ste istí, ktorý katalógový rozmer máte najbližšie, vyjdite z [akvárií v ponuke](/akvaria) a odtiaľ riešte úpravy.
+Pomôže aj informácia, či bude nádrž stáť na existujúcom podklade, alebo sa má vyrábať spolu so skrinkou. Pri zákazke na mieru sa oceľový rám a akvárium navrhnú ako jeden celok. Ak neviete, od akého rozmeru vychádzať, porovnajte si najskôr [akváriá v ponuke](/akvaria).
 
-Sklo aj skrinku sa oplatí riešiť naraz, keďže oboje sa navrhuje s ohľadom na hmotnosť celej zostavy. Porovnanie vyhotovení nájdete v článku [ako vybrať skrinku pod akvárium](/blog/vybrat-skrinku-pod-akvarium).
+Sklo a skrinku sa oplatí riešiť spoločne, pretože obe časti musia počítať s hmotnosťou kompletnej zostavy. Jednotlivé možnosti porovnávame v článku [ako vybrať skrinku pod akvárium](/blog/vybrat-skrinku-pod-akvarium).
 
 > **Tip:** Do dopytu napíšte aj to, či počítate s ťažším substrátom, kameňmi alebo rozsiahlym hardscapom. Tieto detaily rozhodujú o tom, či sa tam, kde je na výber, oplatí siahnuť po hrubšom skle.
 
-Presný rozmer, hrúbku skla aj cenu si overíte cez [nezáväzný dopyt](/dopyt) — stačí popísať predstavu a AQUAPRIME pripraví konkrétnu ponuku.
+Presný rozmer, hrúbku skla aj cenu získate cez [nezáväzný dopyt](/dopyt). Stačí opísať svoju predstavu a AQUAPRIME pripraví konkrétny návrh.
