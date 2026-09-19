@@ -1,0 +1,232 @@
+{
+ "mobile-s": {
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(1)": {
+   "tx": 60,
+   "ty": 30
+  },
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(2)": {
+   "tx": 60,
+   "ty": 20
+  },
+  "#hero > div.vhero__media > div.svetlo": {},
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva.svetlo__vrstva--zapnute": {},
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva": {},
+  "#hero > div.hero__bg2 > video.hero__video": {
+   "tx": 0,
+   "h": 426,
+   "ty": -30
+  }
+ },
+ "mobile-l": {
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(1)": {
+   "tx": 60,
+   "ty": 30
+  },
+  "#hero > div.hero__bg2 > video.hero__video > source:nth-child(2)": {
+   "tx": 60,
+   "ty": 20
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "ty": -3,
+   "tx": 22,
+   "h": 586
+  }
+ },
+ "tablet-s": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 378
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 130,
+   "ty": 60,
+   "h": 464
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__ghost": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-label": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-arr": {
+   "fs": 13
+  },
+  "#hero > div.wrap.vhero__in": {},
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva.svetlo__vrstva--zapnute": {},
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva": {},
+  "#hero > div.wrap.vhero__in > h1.vhero__title.display": {},
+  "#hero > div.vhero__media > div.svetlo": {
+   "tx": 190,
+   "ty": 70,
+   "w": 797,
+   "h": 364
+  }
+ },
+ "tablet": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 378
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 130,
+   "ty": 60,
+   "h": 464
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__ghost": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-label": {
+   "fs": 10
+  },
+  "#hero > div.wrap.hero__inner > div.hero__content > div.hero__ctas > a.hero__btn > span.hero__btn-arr": {
+   "fs": 13
+  },
+  "#hero > div.hero__scroll-v.vhero__scroll": {},
+  "#hero > div.wrap.vhero__in": {},
+  "#katalog > div.wrap > div.catalog__subhead > h2.catalog__h2": {},
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva": {
+   "w": 1309
+  },
+  "#hero": {},
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1064,
+   "h": 760,
+   "tx": 338,
+   "ty": -106
+  },
+  "#hero > div.vhero__media > div.svetlo > img.svetlo__vrstva.svetlo__vrstva--zapnute": {
+   "w": 1319
+  }
+ },
+ "tablet-landscape": {
+  "#hero > div.wrap.hero__inner": {
+   "ty": 1
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 149,
+   "ty": 21,
+   "h": 457
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 892,
+   "h": 592,
+   "tx": 50,
+   "ty": -49
+  },
+  "#hero > div.wrap.tech-hero__grid > div.construct__copy.tech-hero__copy.is-in > h1.construct__title": {
+   "tx": 0,
+   "ty": 0
+  },
+  "#hero": {},
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 220,
+   "ty": -100,
+   "h": 846
+  },
+  "#hero > div.wrap.tech-hero__crumb > nav.drobcek": {
+   "ty": 60
+  }
+ },
+ "laptop-s": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 690
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 80,
+   "h": 525
+  },
+  "#hero > div.wrap.vhero__in": {
+   "tx": 0,
+   "ty": 2
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1108,
+   "h": 756,
+   "tx": 110
+  },
+  "#hero > div.wrap.tech-hero__grid": {},
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 410
+  },
+  "#hero": {}
+ },
+ "laptop": {
+  "#hero > div.wrap.hero__inner": {
+   "h": 690
+  },
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 80,
+   "h": 525
+  },
+  "#hero > div.wrap.vhero__in > h1.vhero__title.display": {
+   "tx": 0,
+   "ty": -9
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1213,
+   "h": 796,
+   "tx": 160,
+   "ty": 0
+  },
+  "#hero > div.wrap.tech-hero__grid": {},
+  "#hero": {},
+  "#hero > div.wrap.tech-hero__grid > div.construct__copy.tech-hero__copy.is-in": {},
+  "#cisla > div.wrap.tech-stats__grid > div.tech-stat.is-in:nth-child(1) > span.tech-stat__n > span": {},
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 410,
+   "ty": 0
+  }
+ },
+ "desktop": {
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 43,
+   "ty": -4,
+   "h": 574
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1315,
+   "h": 896,
+   "tx": 110,
+   "ty": 0
+  },
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 410,
+   "ty": 0
+  }
+ },
+ "desktop-l": {
+  "#hero > div.hero__bg2 > video.hero__video-d": {
+   "tx": 43,
+   "ty": -4,
+   "h": 574
+  },
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1636,
+   "h": 1064,
+   "tx": 190,
+   "ty": -20
+  },
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 410,
+   "ty": 0
+  }
+ },
+ "desktop-xl": {
+  "#hero > div.vhero__media > div.svetlo": {
+   "w": 1550,
+   "h": 979,
+   "tx": 10,
+   "ty": 10
+  },
+  "#hero": {},
+  "#hero > div.tech-hero__video > video.tech-hero__video-el": {
+   "tx": 410,
+   "ty": 0
+  }
+ },
+ "mobile-xl": {
+  "#hero > div.vhero__media > div.svetlo": {
+   "ty": -60,
+   "tx": 20,
+   "h": 772
+  }
+ }
+}

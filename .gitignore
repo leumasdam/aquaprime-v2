@@ -50,7 +50,6 @@ _*.png
 # stray build artefakt z omylom spusteneho buildu v podpriecinku
 app/.next/
 
-# vizualny editor breakpointov — nastroj, do produkcie nepatri
-public/tools/
-public/css/overrides.*
-public/assets/
+# vizualny editor breakpointov (public/tools) a jeho overrides (public/css)
+# su v gite, aby sa dalo pracovat na viacerych pocitacoch; layout ich
+# nacitava aj v produkcii, tak sa nasadzuju spolu so stránkou

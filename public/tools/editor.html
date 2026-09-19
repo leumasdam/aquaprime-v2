@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Layout editor — vizuálne ladenie breakpointov</title>
+<style>
+  :root{ --bg:#16161a; --panel:#1f1f26; --line:#33333d; --acc:#00e0ff; --acc2:#ff4fa3; --txt:#e8e8ee; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--txt); font:13px/1.4 "Segoe UI", system-ui, sans-serif; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+  /* toolbar */
+  #bar{ display:flex; align-items:center; gap:12px; padding:8px 14px; background:var(--panel); border-bottom:1px solid var(--line); flex:none; flex-wrap:wrap; }
+  #bar b.logo{ color:var(--acc); font-size:14px; }
+  #bar label{ display:flex; align-items:center; gap:5px; cursor:pointer; white-space:nowrap; }
+  select,input[type=range],input[type=text]{ background:#2a2a33; color:var(--txt); border:1px solid var(--line); border-radius:4px; padding:3px 6px; }
+  input[type=text]{ width:110px; font-family:Consolas,monospace; font-size:11px; }
+  button{ background:#2a2a33; color:var(--txt); border:1px solid var(--line); border-radius:4px; padding:5px 12px; cursor:pointer; }
+  button:hover{ border-color:var(--acc); color:var(--acc); }
+  button.primary{ background:var(--acc); color:#000; font-weight:700; border-color:var(--acc); }
+  #status{ margin-left:auto; opacity:.85; }
+
+  /* hlavný layout: vrstvy | plátno | panel — panely majú vlastné stĺpce, artboardy nič neprekrýva */
+  #main{ flex:1; display:flex; overflow:hidden; min-height:0; }
+  #stage{ position:relative; flex:1; overflow:auto; padding:20px; display:flex; gap:26px; align-items:flex-start; min-width:0; }
+  .board{ flex:none; }
+  .board h3{ font-size:12px; font-weight:600; color:#aaa; margin-bottom:6px; }
+  .board h3 b{ color:var(--txt); }
+  .board.active h3 b{ color:var(--acc); }
+  .holder{ background:#000; border:1px solid var(--line); }
+  .board.active .holder{ border-color:var(--acc); }
+  .holder > div{ transform-origin:0 0; }
+  iframe{ border:0; display:block; background:#fff; }
+
+  /* panel */
+  #panel{ width:300px; flex:none; overflow:auto; background:var(--panel); border-left:1px solid var(--line); padding:12px; }
+  #panel h4{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#999; margin:0 0 8px; }
+  #selInfo{ font-family:Consolas,monospace; font-size:11px; color:var(--acc); word-break:break-all; margin-bottom:8px; min-height:16px; }
+  #vals{ font-family:Consolas,monospace; font-size:11px; white-space:pre-line; margin-bottom:10px; color:#ccc; }
+  #panel .row{ display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
+  #panel button.on{ border-color:var(--acc); color:var(--acc); background:#0e3a44; }
+  details{ border-top:1px solid var(--line); padding:8px 0; }
+  details summary{ cursor:pointer; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#999; user-select:none; }
+  .tok{ display:flex; align-items:center; gap:8px; margin:6px 0; }
+  .tok code{ font-size:11px; color:#bbb; flex:1; }
+  .tok input[type=color]{ width:34px; height:24px; border:1px solid var(--line); background:none; padding:0; cursor:pointer; }
+  .tok input[type=text]{ width:90px; }
+  #cssOut{ width:100%; height:160px; background:#111; color:#8f8; font:10px Consolas,monospace; border:1px solid var(--line); margin-top:6px; }
+  #bpConf{ width:100%; height:120px; background:#111; color:#ccc; font:10px Consolas,monospace; border:1px solid var(--line); margin-top:6px; }
+  #help{ font-size:11px; color:#8a8a95; line-height:1.6; border-top:1px solid var(--line); padding-top:8px; margin-top:6px; }
+  kbd{ background:#2a2a33; border:1px solid var(--line); border-radius:3px; padding:0 4px; font-family:Consolas,monospace; font-size:10px; }
+
+  /* layers panel vľavo */
+  #layers{ width:260px; flex:none; overflow:auto; background:var(--panel); border-right:1px solid var(--line); padding:8px; display:none; }
+  #layersHead{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  #layersHead b{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#999; flex:1; }
+  #layersHead button{ padding:2px 8px; }
+  .lrow{ display:flex; align-items:center; gap:5px; padding:2px 4px; font:11.5px "Segoe UI",sans-serif; color:#ccc; cursor:pointer; border-radius:3px; white-space:nowrap; overflow:hidden; }
+  .lrow:hover{ background:#2a2a33; color:var(--acc); }
+  .lrow.sel{ background:#0e3a44; color:var(--acc); }
+  .lrow small{ color:#777; margin-left:auto; }
+  .lrow .arr{ width:12px; flex:none; color:#777; text-align:center; }
+  .lrow .licon{ width:16px; flex:none; text-align:center; opacity:.8; }
+  .lrow .lname{ overflow:hidden; text-overflow:ellipsis; }
+  .lrow.grp{ margin-top:2px; }
+  .lrow.grp .lname{ font-weight:600; color:#e2e2ea; }
+  .lrow.grp.sel .lname, .lrow.sel .lname{ color:var(--acc); }
+
+  /* inšpektor */
+  #insp{ font:11px Consolas,monospace; color:#ccc; line-height:1.7; }
+  #insp .swatch{ display:inline-block; width:10px; height:10px; border:1px solid #555; border-radius:2px; vertical-align:middle; margin-right:5px; }
+  #insp .rule{ border-left:2px solid #333; margin:5px 0; padding-left:7px; color:#9a9aa5; white-space:pre-wrap; word-break:break-all; font-size:10px; }
+  #insp .rule b{ color:#7fd4e2; font-weight:400; }
+  #insp .rule i{ color:#666; font-style:normal; }
+
+  /* grid popover */
+  #gridPop{ display:none; position:absolute; left:0; top:calc(100% + 6px); z-index:300;
+    background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px;
+    min-width:200px; box-shadow:0 8px 30px rgba(0,0,0,.6); }
+  #gridPop label{ display:flex; margin-bottom:8px; }
+  #gPrev{ position:relative; width:100%; height:96px; margin-bottom:10px; border-radius:4px; overflow:hidden;
+    background:linear-gradient(90deg, #E8402B 0 50%, #F0EDE5 50% 100%); }
+  #gridPop .grow{ display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:8px; }
+  #gridPop select{ margin-left:4px; }
+  #gridBtn.on{ border-color:var(--acc); color:var(--acc); }
+  #handBtn.on, #snapBtn.on{ border-color:var(--acc); color:var(--acc); background:#0e3a44; }
+  .num{ width:46px; background:#2a2a33; color:var(--txt); border:1px solid var(--line); border-radius:4px; padding:2px 4px; font-size:11px; }
+  .nlab{ color:#8a8a95; font-size:11px; align-self:center; }
+  body.hand #stage{ cursor:grab; }
+  body.hand.panning #stage{ cursor:grabbing; }
+
+  /* správca referencií */
+  #refsPop{ display:none; position:absolute; left:0; top:calc(100% + 6px); z-index:300;
+    background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px;
+    min-width:260px; max-height:340px; overflow:auto; box-shadow:0 8px 30px rgba(0,0,0,.6); }
+  .refrow{ display:flex; align-items:center; gap:8px; padding:4px 0; border-bottom:1px solid #26262e; }
+  .refrow img{ width:52px; height:34px; object-fit:cover; border-radius:3px; border:1px solid var(--line); }
+  .refrow small{ flex:1; color:#9aa; font-size:11px; }
+  .refrow button{ padding:2px 8px; font-size:11px; }
+
+  /* referenčné obrázky na ploche */
+  .refimg{ position:absolute; z-index:5; cursor:move; box-shadow:0 6px 24px rgba(0,0,0,.6); border:1px solid #33333d; border-radius:3px; user-select:none; }
+  .refimg img{ display:block; width:100%; height:auto; pointer-events:none; border-radius:3px; }
+  .refimg .rx, .refimg .rz{ position:absolute; display:none; }
+  .refimg:hover .rx, .refimg:hover .rz{ display:flex; }
+  .refimg .rx{ top:-10px; right:-10px; width:22px; height:22px; align-items:center; justify-content:center;
+    background:#1f1f26; color:#ff5566; border:1px solid #33333d; border-radius:50%; cursor:pointer; font-size:12px; }
+  .refimg .rz{ bottom:-7px; right:-7px; width:16px; height:16px; background:var(--acc); border:2px solid #fff; border-radius:3px; cursor:nwse-resize; }
+  .refimg .rt{ position:absolute; top:-30px; left:0; display:none; align-items:center; gap:6px;
+    background:#1f1f26; border:1px solid #33333d; border-radius:6px; padding:3px 8px; }
+  .refimg:hover .rt{ display:flex; }
+  .refimg .rt input{ width:90px; }
+  .refimg .rt .rlk{ cursor:pointer; font-size:13px; }
+  .refimg .rt .rin{ cursor:pointer; font-size:14px; color:var(--acc); font-weight:700; }
+  .refimg.locked{ pointer-events:none; box-shadow:none; border-color:transparent; }
+  .refimg.locked .rt, .refimg.locked .rx, .refimg.locked .rz{ display:none !important; }
+  .refimg .rlb{ display:none; position:absolute; top:4px; left:4px; pointer-events:auto; cursor:pointer;
+    background:rgba(31,31,38,.9); border:1px solid #33333d; border-radius:6px; padding:2px 6px; font-size:12px; }
+  .refimg.locked .rlb{ display:block; }
+  #stage.dropping{ outline:2px dashed var(--acc); outline-offset:-6px; }
+
+  /* picker vrstiev (pravý klik) */
+  #picker{ position:fixed; z-index:200; background:var(--panel); border:1px solid var(--acc); border-radius:6px; padding:4px; max-height:320px; overflow:auto; box-shadow:0 8px 30px rgba(0,0,0,.6); display:none; }
+  #picker button{ display:block; width:100%; text-align:left; border:0; background:none; padding:5px 10px; font:11px Consolas,monospace; color:#ccc; border-radius:4px; }
+  #picker button:hover{ background:#2a2a33; color:var(--acc); }
+  #picker button small{ color:#777; margin-left:8px; }
+  #picker button.pact{ display:inline-block; width:auto; border:1px solid var(--line); padding:4px 9px; font-size:12px; }
+</style>
+</head>
+<body>
+
+<div id="bar">
+  <b class="logo">Layout editor</b>
+  <button id="layersBtn">☰ Vrstvy</button>
+  <label>Stránka <input type="text" id="pageUrl" value="/"></label>
+  <label>Sekcia
+    <!-- naplní sa zo <section id> načítanej stránky, viď populateSlideSel() -->
+    <select id="slideSel"><option value="">—</option></select>
+  </label>
+  <label>Zoom <input type="range" id="zoom" min="0.12" max="1.5" step="0.02" value="0.3"></label>
+  <span id="bpToggles"></span>
+  <span style="position:relative">
+    <button id="refsBtn" title="Správca referencií (predlôh)">🖼 Refs</button>
+    <div id="refsPop"></div>
+  </span>
+  <button id="handBtn" title="H — hand tool (posúvanie plochy)">✋</button>
+  <button id="snapBtn" class="on" title="Prichytávanie na guides, prvky a grid (Ctrl počas ťahania dočasne vypne)">🧲</button>
+  <span style="position:relative">
+    <button id="gridBtn">▦ Grid</button>
+    <div id="gridPop">
+      <div id="gPrev" title="Živý náhľad — vľavo na červenej, vpravo na krémovej"></div>
+      <label>Preset
+        <select id="gPreset">
+          <option value="">— vlastný —</option>
+          <optgroup label="Web frameworky">
+            <option value="bootstrap">Bootstrap 5 · 12 st. / gutter 24 / kontajner 1320</option>
+            <option value="material-d">Material · 12 st. / gutter 24 / margin 24 + 8pt</option>
+            <option value="material-t">Material tablet · 8 st. / gutter 24</option>
+            <option value="material-m">Material mobil · 4 st. / gutter 16</option>
+            <option value="g960-12">960.gs · 12 st. / gutter 20 / 960 px</option>
+            <option value="g960-16">960.gs · 16 st. / gutter 20 / 960 px</option>
+          </optgroup>
+          <optgroup label="Editorial / kreatívne">
+            <option value="swiss">Švajčiarsky · 6 st. podľa okrajov webu</option>
+            <option value="modular">Modulárny (Müller-Brockmann) · 6×4 moduly</option>
+            <option value="editorial">Editorial · delenie 2/3 + 1/3</option>
+            <option value="thirds">Pravidlo tretín · osi 33/66 %</option>
+            <option value="golden">Zlatý rez · osi 38,2/61,8 %</option>
+            <option value="8pt">8pt systém · baseline 8 px</option>
+          </optgroup>
+        </select>
+      </label>
+      <label><input type="checkbox" id="gCols"> stĺpce
+        <select id="gColsN"><option>16</option><option>12</option><option>8</option><option>6</option><option>4</option><option>3</option></select>
+      </label>
+      <label><input type="checkbox" id="gRows"> riadky (moduly)
+        <select id="gRowsN"><option>3</option><option>4</option><option>6</option><option>8</option></select>
+      </label>
+      <label>gutter <input type="number" id="gGutter" style="width:52px" value="20"> px</label>
+      <label>okraje
+        <select id="gMargin"><option value="site">podľa webu</option><option value="px">px →</option><option value="none">žiadne</option></select>
+        <input type="number" id="gMarginPx" style="width:52px" value="24">
+      </label>
+      <label>kontajner <input type="number" id="gMaxW" style="width:62px" placeholder="100 %"> px</label>
+      <label><input type="checkbox" id="gBase"> baseline
+        <select id="gBaseN"><option>8</option><option>12</option><option>16</option></select> px
+      </label>
+      <label><input type="checkbox" id="gSquare"> mriežka
+        <select id="gSquareN"><option>32</option><option>64</option><option>96</option></select> px
+      </label>
+      <label><input type="checkbox" id="gCenter"> stredové osi</label>
+      <label><input type="checkbox" id="gRulers"> pravítka (ťahaním z nich guide)</label>
+      <label>viditeľnosť <input type="range" id="gAlpha" min="1" max="6" step="0.5" style="width:90px"></label>
+      <div class="grow">
+        <button id="gAddV">＋ zvislá</button>
+        <button id="gAddH">＋ vodorovná</button>
+        <button id="gClear">✕ guides</button>
+      </div>
+    </div>
+  </span>
+  <button id="undoBtn" title="Ctrl+Z">↶</button>
+  <button id="redoBtn" title="Ctrl+Y">↷</button>
+  <button id="reloadBtn">↻ Reload</button>
+  <button id="saveBtn" class="primary">💾 Uložiť CSS</button>
+  <span id="status">–</span>
+</div>
+
+<div id="main">
+
+<div id="layers">
+  <div id="layersHead"><b>Vrstvy</b>
+    <label style="font-size:11px;color:#999;gap:4px"><input type="checkbox" id="layersSimple" checked>čisté</label>
+    <button id="layersRefresh">↻</button><button id="layersClose">✕</button>
+  </div>
+  <div id="layersTree"></div>
+</div>
+
+<div id="stage"></div>
+
+<div id="panel">
+  <h4>Výber <span id="bpName" style="color:var(--acc)"></span></h4>
+  <div id="selInfo">klikni na element… (Ctrl/Shift+klik = viac naraz)</div>
+  <div id="vals"></div>
+  <div class="row">
+    <button id="resetElBtn">Reset výberu</button>
+    <button id="deselBtn">✕ zruš</button>
+    <button id="moveBtn" title="M — režim Move: ťahaj KDEKOĽVEK na artboarde a hýbeš aktuálnym výberom (aj neklikateľné SVG)">✥ Move</button>
+  </div>
+  <div class="row" title="Presné hodnoty pre aktívny breakpoint (posun X/Y, šírka, výška, text) — Enter potvrdí">
+    <span class="nlab">X</span><input type="number" id="nX" class="num">
+    <span class="nlab">Y</span><input type="number" id="nY" class="num">
+    <span class="nlab">Š</span><input type="number" id="nW" class="num">
+    <span class="nlab">V</span><input type="number" id="nH" class="num">
+    <span class="nlab">T</span><input type="number" id="nF" class="num">
+  </div>
+  <div class="row" title="Priehľadnosť vybraných vrstiev (pre aktívny breakpoint)">
+    <span class="nlab">opacita</span>
+    <input type="range" id="nOp" min="0" max="100" step="1" value="100" style="flex:1">
+    <span id="nOpVal" class="nlab" style="width:34px;text-align:right">100%</span>
+  </div>
+  <!-- výrez média: viditeľné len keď je vybraný obrázok alebo video -->
+  <div id="mediaBox" style="display:none;border-top:1px solid var(--line);margin-top:8px;padding-top:8px">
+    <div class="row">
+      <span class="nlab">výrez</span>
+      <select id="mFit" style="flex:1" title="cover = vyplní rám a oreže · contain = celé médium v ráme · fill = roztiahne">
+        <option value="cover">cover — vyplní rám</option>
+        <option value="contain">contain — celé v ráme</option>
+        <option value="fill">fill — roztiahne</option>
+      </select>
+      <button id="mReset" title="Vrátiť pôvodný výrez">↺</button>
+    </div>
+    <div class="row">
+      <span class="nlab">posun</span>
+      <input type="number" id="mX" step="1" style="width:52px" title="vodorovne (%)">
+      <input type="number" id="mY" step="1" style="width:52px" title="zvisle (%)">
+      <span class="nlab" style="width:34px">zoom</span>
+      <input type="number" id="mZ" step="2" min="100" max="320" style="width:56px" title="priblíženie (%)">
+    </div>
+    <div class="row" title="Médium prestane byť orezávané: celé sa zmestí do rámu, zmizne maska aj orezanie rodičom. Potom sa dá voľne zväčšovať úchytkami a posúvať ťahaním — ako vrstva.">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#c8ccd2;cursor:pointer">
+        <input type="checkbox" id="mVolne"> voľná vrstva — neorezávať
+      </label>
+    </div>
+    <div class="row" style="color:#8a8f98;font-size:10px;line-height:1.5">
+      Dvojklik na obrázok/video na plátne — potom ťahaj myšou, koliesko zoomuje,
+      šípky posúvajú po pixeli, Esc končí.
+    </div>
+  </div>
+
+  <div class="row" title="Výplň vybraného prvku (pri gradiente prefarbí gradient)">
+    <span class="nlab">výplň</span>
+    <input type="color" id="nFill" value="#E8402B" style="width:40px;height:24px;padding:0;border:1px solid var(--line);background:none;cursor:pointer">
+    <button id="nFillClear" title="Odstrániť inline výplň">✕</button>
+    <button id="delBtn" title="Delete — zmaž vybrané vrstvy" style="margin-left:auto">🗑 Zmazať</button>
+  </div>
+  <div class="row" title="Typografická rola z dizajn systému — text dostane font-size z tokenu (--fs-*), jednotne na všetkých breakpointoch. Ručná zmena veľkosti rolu prebije.">
+    <span class="nlab">rola</span>
+    <select id="nRole" style="flex:1">
+      <option value="">— vlastná veľkosť —</option>
+      <option value="display">display (hero)</option>
+      <option value="h1">h1 (sekčný gigant)</option>
+      <option value="h2">h2 (modrý nadpis)</option>
+      <option value="h3">h3 (titulok karty)</option>
+      <option value="body">body (text)</option>
+      <option value="small">small (label)</option>
+      <option value="btn">btn (tlačidlo)</option>
+    </select>
+  </div>
+  <div class="row" title="Výška slidu (zo Slide selectu hore) pre zvolený breakpoint. Prázdne = default.">
+    <select id="slideHbp" style="max-width:92px"></select>
+    <input type="text" id="slideHval" placeholder="100vh / 760px / auto" style="width:104px">
+    <button id="slideHapply">Výška slidu</button>
+  </div>
+  <div class="row" title="Prekliknutie výberu po strome vrstiev">
+    <button id="parentBtn" title="Shift+Enter">⬆ rodič</button>
+    <button id="childBtn" title="Enter">⬇ dieťa</button>
+    <button id="prevBtn" title="Shift+Tab">← predošlá</button>
+    <button id="nextBtn" title="Tab">→ ďalšia</button>
+  </div>
+  <div class="row">
+    <button id="zUpBtn" title="Ctrl+]">⬆ dopredu</button>
+    <button id="zDownBtn" title="Ctrl+[">⬇ dozadu</button>
+    <button id="lockBtn">🔒 Zamknúť</button>
+    <button id="unlockAllBtn" title="Zruší všetky zámky vrstiev (aj automaticky zamknuté pozadia)">🔓 Odomknúť všetko</button>
+  </div>
+  <div class="row" title="Kopírovanie hodnôt vrstvy medzi breakpointmi">
+    <button id="copyBtn" title="Ctrl+C">⎘ Kopíruj hodnoty</button>
+    <button id="pasteBtn" title="Ctrl+V">⎙ Prilep</button>
+  </div>
+  <div class="row" title="Skupina: klik na člena vyberie celú skupinu, ťahá sa spolu">
+    <button id="groupBtn" title="Ctrl+G">🔗 Group</button>
+    <button id="ungroupBtn" title="Ctrl+Shift+G">⛓ Ungroup</button>
+  </div>
+
+  <details open>
+    <summary>Inšpektor</summary>
+    <div id="insp">vyber jeden prvok…</div>
+  </details>
+
+  <details id="dsBox">
+    <summary>Dizajn systém (tokeny)</summary>
+    <div id="tokens"></div>
+  </details>
+
+  <details>
+    <summary>CSS výstup (na kopírovanie)</summary>
+    <textarea id="cssOut" readonly></textarea>
+  </details>
+
+  <details>
+    <summary>Breakpointy (JSON konfig)</summary>
+    <textarea id="bpConf"></textarea>
+    <div class="row" style="margin-top:6px"><button id="bpApply">Použiť breakpointy</button></div>
+  </details>
+
+  <div id="help">
+    <kbd>klik</kbd> výber • <kbd>Ctrl/Shift+klik</kbd> pridať do výberu<br>
+    <kbd>pravý klik</kbd> = zoznam vrstiev pod kurzorom (aj „neklikateľné"<br>prvky ako vystrihnutý chlapec, čísla slidov, nite)<br>
+    <kbd>dvojklik</kbd> na text = písanie priamo (Esc zruší, klik mimo uloží)<br>
+    <kbd>ťahaj</kbd> posun (aj skupiny) • <kbd>šípky</kbd> 1px, +<kbd>Shift</kbd> 10px<br>
+    <kbd>rohová úchytka</kbd> škálovanie — text mení font-size,<br>obrázok/box mení width+height, skupina proporčne všetko<br>
+    <kbd>+</kbd>/<kbd>−</kbd> text ±2px • <kbd>[</kbd>/<kbd>]</kbd> šírka ±10px (mení zalomenie) • <kbd>Esc</kbd> zruš<br>
+    <kbd>Ctrl+]</kbd>/<kbd>Ctrl+[</kbd> dopredu/dozadu (len text a obrázky)<br>
+    <kbd>☰ Vrstvy</kbd> = strom vrstiev slidu (klik vyberá, zámok zamyká)<br>
+    <kbd>🔒 Zamknúť</kbd> zamkne výber — klik ním prechádza na vrstvu pod ním;<br>podrž myš nad zamknutým ~0,7 s a vyskočí 🔓 na odomknutie<br>
+    Pozadia slidov sú <b>zamknuté od začiatku</b> (obsah nie) — odomkneš<br>ich podržaním myši alebo zámkom pri riadku „Slide" vo Vrstvách<br>
+    <kbd>Enter</kbd>/<kbd>Shift+Enter</kbd> dieťa/rodič • <kbd>Tab</kbd>/<kbd>Shift+Tab</kbd> súrodenci<br>
+    <kbd>Ctrl+C</kbd> kopíruj hodnoty vrstvy → klikni tú istú vrstvu v inom<br>artboarde → <kbd>Ctrl+V</kbd> prilep (prenos medzi breakpointmi)<br>
+    alebo <kbd>pravý klik</kbd>: „⎘ Kopíruj hodnoty" v zdrojovom artboarde<br>→ „⎙ Prilep sem — replace" v cieľovom<br>
+    ťahanie riadku vo Vrstvách = zmena poradia (v rámci rodiča)<br>
+    <kbd>Výška slidu</kbd>: vyber Slide hore + breakpoint + hodnotu<br>(<code>100vh</code> = presne obrazovka, <code>760px</code> = pevná, <code>auto</code> = podľa obsahu, prázdne = default)<br>
+    <kbd>▦ Grid</kbd>: stĺpce/baseline/mriežka/osi + guides<br>(guide: ťahaj = posun, dvojklik = zmazať, sú spoločné pre všetky artboardy)<br>
+    <kbd>H</kbd> = ✋ hand tool (ťahaj plochu) • <kbd>Ctrl+koliesko</kbd> = zoom ku kurzoru<br>
+    <kbd>Ctrl+G</kbd> group / <kbd>Ctrl+Shift+G</kbd> ungroup — klik na člena<br>vyberie celú skupinu, Ctrl+klik jednotlivca<br>
+    <kbd>🧲</kbd> snapping na guides/prvky/grid (Ctrl pri ťahaní vypne)<br>
+    <kbd>ťahanie po pozadí</kbd> = marquee výber rámikom<br>
+    <kbd>Alt+ťahanie</kbd> = duplikát • <kbd>Alt+hover</kbd> = meranie vzdialeností<br>
+    <kbd>ťahanie z pravítka</kbd> = nová guide<br>
+    <kbd>drop obrázka na plochu</kbd> = referencia na porovnanie<br>(ťahaj = presun, roh = veľkosť, ✕ = zmazať; pamätá sa)<br>
+    <kbd>Delete</kbd> zmaže výber • <kbd>pravý klik</kbd> = plné menu: zmazať,<br>duplikovať, group, vrstvenie, zámok + vkladanie tvarov a gradientov<br>
+    <kbd>výplň</kbd> v paneli farbí tvary aj prefarbuje gradienty<br>
+    <kbd>Alt+klik</kbd> rodič • <kbd>Ctrl+Z</kbd>/<kbd>Ctrl+Y</kbd> undo/redo<br>
+    Pozície/veľkosti platia per breakpoint; texty a tokeny globálne.
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div id="picker"></div>
+<div id="unlockTip" style="display:none; position:fixed; z-index:210;"></div>
+
+<script>
+/* ============ konfig (persistuje v localStorage — použiteľné aj pre iné weby) ============ */
+/* frame = typická REÁLNA výška viewportu prehliadača na danom zariadení
+   (obrazovka mínus systémové lišty a chrome prehliadača) */
+const DEFAULT_BPS = [
+  /* Jemnejšie rozsahy (11. 9. 2026): každý board pokrýva úzky pás šírok,
+     aby úpravy sedeli v celom rozsahu, nie len pri šírke artboardu.
+     Hranice 767 | 1023 | 1199 | 1439 | 1899 sú zarovnané s hero CSS webu. */
+  { name:'mobile-s',         min:0,    max:479,  w:375,  h:740,  on:false },  /* iPhone/Android ~390×844 */
+  { name:'mobile-l',         min:480,  max:599,  w:540,  h:900,  on:false },  /* veľké telefóny */
+  { name:'mobile-xl',        min:600,  max:767,  w:760,  h:900,  on:true  },  /* fablety a úzke okná na desktope */
+  { name:'tablet-s',         min:768,  max:899,  w:820,  h:1120, on:false },  /* iPad portrét 820×1180 */
+  { name:'tablet',           min:900,  max:1023, w:960,  h:1120, on:true  },  /* väčšie tablety na výšku */
+  { name:'tablet-landscape', min:1024, max:1199, w:1100, h:760,  on:false },  /* iPad na šírku ~1180×820 */
+  { name:'laptop-s',         min:1200, max:1319, w:1280, h:720,  on:false },  /* 1280×800 */
+  { name:'laptop',           min:1320, max:1439, w:1366, h:720,  on:true  },  /* 1366×768 s lištou */
+  { name:'desktop',          min:1440, max:1679, w:1512, h:830,  on:true  },  /* 1440×900 / MacBook 1512 */
+  { name:'desktop-l',        min:1680, max:1899, w:1720, h:900,  on:false },  /* 1680×1050, notebooky s lištou */
+  { name:'desktop-xl',       min:1900, max:2559, w:1905, h:940,  on:false },  /* FullHD 1920×1080 so scrollbarom (~1905 px) */
+];
+let BPS;
+try{
+  const stored=JSON.parse(localStorage.getItem('mib-ed-bps'));
+  const ver=localStorage.getItem('mib-ed-bps-v');
+  if(stored && ver==='6'){ BPS=stored; }
+  else if(stored){
+    /* migrácia: nové realistické rozmery, ale zachovaj zapnuté/vypnuté */
+    BPS=DEFAULT_BPS.map(d=>{ const s=stored.find(x=>x.name===d.name); return s?{...d,on:!!s.on}:{...d}; });
+    const ZRUSENE=new Set([]);   /* zrušené breakpointy sa z uloženej konfigurácie nevracajú */
+    for(const s of stored) if(!ZRUSENE.has(s.name) && !DEFAULT_BPS.find(d=>d.name===s.name)) BPS.push(s);
+    localStorage.setItem('mib-ed-bps', JSON.stringify(BPS));
+  } else BPS=DEFAULT_BPS;
+  localStorage.setItem('mib-ed-bps-v','6');
+}catch(e){ BPS = DEFAULT_BPS; }
+
+const TEXT_TAGS = new Set(['H1','H2','H3','H4','H5','H6','P','A','SPAN','LI','BLOCKQUOTE','FIGCAPTION','B','STRONG','EM','BUTTON','SMALL','I']);
+
+let overrides = {};      // { bpName:{ selector:{tx,ty,fs,w,h} }, tokens:{--x:v}, content:{sel:html} }
+let selection = [];      // pole selektorov
+let activeBp  = null;
+let frames    = {};
+let history   = [], redo = [];
+let editing   = null;    // prebiehajúca inline editácia textu
+const $ = id => document.getElementById(id);
+
+/* ============ artboardy ============ */
+function buildBoards(){
+  $('stage').innerHTML=''; frames={};
+  const z = parseFloat($('zoom').value);
+  for(const bp of BPS){
+    if(!bp.on) continue;
+    const board = document.createElement('div'); board.className='board'; board.dataset.bp=bp.name;
+    board.innerHTML = `<h3><b>${bp.name}</b> ${bp.min}–${bp.max} px · frame ${bp.w}×${bp.h}</h3>`;
+    const holder = document.createElement('div'); holder.className='holder';
+    holder.style.cssText = `width:${bp.w*z}px;height:${bp.h*z}px;overflow:hidden;`;
+    const wrap = document.createElement('div'); wrap.style.transform=`scale(${z})`;
+    const fr = document.createElement('iframe');
+    fr.width=bp.w; fr.height=bp.h; fr.src=$('pageUrl').value;
+    fr.addEventListener('load', ()=>initFrame(bp, fr));
+    wrap.appendChild(fr); holder.appendChild(wrap); board.appendChild(holder);
+    $('stage').appendChild(board);
+    frames[bp.name]=fr;
+  }
+  setTimeout(()=>{ renderRefs(); autoAnchorRefs(); }, 80);
+}
+function autoAnchorRefs(){
+  const els=[...document.querySelectorAll('.refimg')];
+  let changed=false;
+  refs.forEach((rf,i)=>{
+    if(!rf.anchor && els[i]){ anchorRef(rf, els[i]); if(rf.anchor) changed=true; }
+  });
+  if(changed){ saveRefs(); renderRefs(); }
+}
+
+/* ============ inicializácia frame ============ */
+/* zoznam sekcii v hornej liste — z <section id> stranky, nie natvrdo.
+   Popis berie z nadpisu vnutri sekcie, inak z data-nazov alebo id. */
+function populateSlideSel(doc){
+  const sel=$('slideSel');
+  const sekcie=[...doc.querySelectorAll('section[id],[data-sekcia][id]')];
+  if(!sekcie.length) return;
+  const nove=sekcie.map(s=>'#'+s.id).join('|');
+  if(sel.dataset.zoznam===nove) return;      /* uz je naplneny z tejto stranky */
+  sel.dataset.zoznam=nove;
+  const bol=sel.value;
+  sel.innerHTML='<option value="">—</option>';
+  for(const s of sekcie){
+    const h=s.querySelector('h1,h2,h3');
+    const popis=(s.dataset.nazov || (h&&h.textContent) || '').trim().replace(/\s+/g,' ').slice(0,34);
+    const o=document.createElement('option');
+    o.value='#'+s.id;
+    o.textContent=popis ? s.id+' · '+popis : s.id;
+    sel.appendChild(o);
+  }
+  if([...sel.options].some(o=>o.value===bol)) sel.value=bol;
+}
+
+function initFrame(bp, fr){
+  const doc = fr.contentDocument;
+  populateSlideSel(doc);
+  doc.documentElement.style.scrollBehavior='auto';
+  const snap = doc.querySelector('.snap'); if(snap){ snap.style.scrollBehavior='auto'; snap.addEventListener('scroll', ()=>updateHandles()); }
+  fr.contentWindow.addEventListener('scroll', ()=>updateHandles());
+  gotoSlide(fr);
+  ensureDefaultLocks(doc);
+  applyContent(); applyOverrides(); applyHighlight(); applyLockStyles(); buildLayers(); applyGrid();
+  if(handMode) setHand(true);   /* re-injektuj kurzor do nového framu */
+  if(!$('tokens').children.length) buildTokens(doc);
+
+  /* dvojklik = inline editácia textu, na médiu úprava výrezu */
+  doc.addEventListener('dblclick', e=>{
+    let t=e.target;
+    if(t.id==='mib-hbox'||t.closest('#mib-hbox')) return;
+    if(t.tagName==='IMG'||t.tagName==='VIDEO'){
+      const s=cssPath(t, doc); if(!s) return;
+      e.preventDefault(); e.stopPropagation();
+      selection=[s]; setActive(bp);
+      zapniVyrez(doc, fr, bp, t, s);
+      return;
+    }
+    if(!TEXT_TAGS.has(t.tagName) && t.children.length) return;
+    const s=cssPath(t, doc); if(!s) return;
+    e.preventDefault(); e.stopPropagation();
+    pushHistory();
+    editing={doc, el:t, sel:s, prev:t.innerHTML};
+    t.contentEditable='true'; t.style.outline='2px solid #ff4fa3'; t.focus();
+    const commit=()=>{
+      if(!editing) return;
+      t.contentEditable='false'; t.style.outline='';
+      if(!(s in contentBaseline)) contentBaseline[s]=editing.prev;
+      overrides.content=overrides.content||{};
+      overrides.content[s]=t.innerHTML;
+      editing=null;
+      applyContent(); applyOverrides(); refreshPanel();
+      t.removeEventListener('blur', commit);
+    };
+    t.addEventListener('blur', commit);
+    t.addEventListener('keydown', ev=>{
+      if(!editing || editing.el!==t) return;   /* mimo aktívnej editácie klávesy NEŽER — inak prestanú fungovať šípky/Delete/undo */
+      if(ev.key==='Escape'){ t.innerHTML=editing.prev; editing=null; t.contentEditable='false'; t.style.outline=''; ev.stopPropagation(); return; }
+      ev.stopPropagation();          /* nech šípky/+- fungujú v texte normálne */
+    }, true);
+  }, true);
+
+  /* drop obrázka priamo na artboard = upload + vloženie do slidu ako vrstva */
+  doc.addEventListener('dragover', e=>{ e.preventDefault(); }, true);
+  doc.addEventListener('drop', async e=>{
+    e.preventDefault(); e.stopPropagation();
+    const files=[...((e.dataTransfer&&e.dataTransfer.files)||[])].filter(f=>/^image\/(png|jpe?g)/.test(f.type));
+    if(!files.length) return;
+    let off=0;
+    for(const f of files){
+      const src=await uploadImageFile(f);
+      if(!src){ $('status').textContent='⚠ upload zlyhal'; continue; }
+      insertImgToSlide(doc, bp, src, e.clientX+off, e.clientY+off, 320);
+      off+=24;
+    }
+  }, true);
+
+  /* pravý klik = picker vrstiev pod kurzorom (aj pointer-events:none elementy) */
+  doc.addEventListener('contextmenu', e=>{
+    e.preventDefault(); e.stopPropagation();
+    showPicker(e, bp, fr);
+  }, true);
+
+  /* hand tool + ctrl-zoom fungujú aj s kurzorom nad artboardom */
+  doc.addEventListener('wheel', e=>{
+    if(!e.ctrlKey) return;
+    e.preventDefault(); e.stopPropagation();
+    const z=parseFloat($('zoom').value);
+    const ir=fr.getBoundingClientRect();
+    zoomAt(ir.left+e.clientX*z, ir.top+e.clientY*z, e.deltaY);
+  }, {passive:false});
+  doc.addEventListener('pointermove', e=>{ if(panning){ e.preventDefault(); movePan(e.screenX, e.screenY); } }, true);
+  doc.addEventListener('pointerup', endPan, true);
+
+  let drag=null;
+  doc.addEventListener('pointerdown', e=>{
+    if(editing) return;
+    if(handMode){ e.preventDefault(); e.stopPropagation(); startPan(e.screenX, e.screenY); return; }
+    /* ✥ Move režim: ťahaj hocikde = hýbeš aktuálnym výberom, nič sa nepreberá */
+    if(moveMode && selection.length){
+      e.preventDefault(); e.stopPropagation();
+      setActive(bp); pushHistory();
+      const mvSels=filterNested(selection, doc);
+      drag={ x:e.clientX, y:e.clientY, bbox:bboxOf(doc, mvSels),
+             targets: snapOn ? collectSnapTargets(doc, mvSels.map(x=>doc.querySelector(x)).filter(Boolean)) : null,
+             start: mvSels.map(sl=>{ const o=getOv(bp.name,sl); return {sl, tx:o.tx||0, ty:o.ty||0}; }) };
+      return;
+    }
+    if(e.target.closest('#mib-hbox')) return;      /* úchytky riešia vlastný handler */
+    if(e.target.closest('#mib-grid')) return;      /* guides majú vlastné ťahanie */
+
+    pushHistory();   /* snapshot PRED zmenou výberu — Ctrl+Z vráti aj označenie */
+
+    /* najprv zisti, čo je pod kurzorom */
+    let t = e.target;
+    if(t.tagName==='IMG' && t.parentElement && t.parentElement.tagName!=='BODY') t=t.parentElement;
+    let s = cssPath(t, doc);
+
+    /* zamknutá vrstva prepúšťa klik na prvú nezamknutú pod kurzorom */
+    let hitLocked=false, hitLockedSel=null;
+    if(s && lockedAncestor(t, doc)){
+      hitLocked=true; hitLockedSel=lockedAncestor(t, doc); s=null;
+      for(const el of doc.elementsFromPoint(e.clientX, e.clientY)){
+        if(el.id==='mib-hbox'||el.closest('#mib-hbox')) continue;
+        if(['STYLE','SCRIPT','HTML','BODY'].includes(el.tagName)) continue;
+        let cand=el;
+        if(cand.tagName==='IMG' && cand.parentElement) cand=cand.parentElement;
+        if(lockedAncestor(cand, doc)) continue;
+        const c=cssPath(cand, doc); if(!c) continue;
+        s=c; break;
+      }
+    }
+
+    /* ťahaj existujúci výber IBA ak: klikol si priamo na vybraný prvok, alebo bod
+       leží vo vybranom prvku, ktorý je pre myš neviditeľný (pointer-events:none —
+       napr. vystrihnutý chlapec). Inak klik vždy vyberá nanovo — žiadne zaseknutie
+       na veľkom prvku (celé pozadie). */
+    let dragExisting = false;
+    if(!e.ctrlKey && !e.shiftKey && !e.altKey && selection.length){
+      if(s && selection.includes(s)) dragExisting = true;
+      else dragExisting = selection.some(sl=>{
+        const el=doc.querySelector(sl); if(!el) return false;
+        if(fr.contentWindow.getComputedStyle(el).pointerEvents!=='none') return false;
+        const r=el.getBoundingClientRect();
+        return e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom;
+      });
+    }
+
+    if(!dragExisting){
+      if(!s){
+        /* prázdna/zamknutá plocha = marquee výber rámikom */
+        e.preventDefault(); e.stopPropagation();
+        startMarquee(doc, bp, e);
+        return;
+      }
+      const keepForAltDup = e.altKey && selection.includes(s);   /* alt+drag na výbere = duplikuj celý výber */
+      if(!keepForAltDup){
+        if(e.ctrlKey || e.shiftKey){
+          const i = selection.indexOf(s);
+          i>=0 ? selection.splice(i,1) : selection.push(s);
+        } else {
+          const g=groupOf(s);
+          selection = g ? [...overrides.groups[g]] : [s];   /* klik na člena = celá skupina */
+          if(g) $('status').textContent=`🔗 skupina (${selection.length}) — Ctrl+klik vyberie jednotlivca`;
+        }
+      }
+      if(hitLocked && hitLockedSel){
+        $('status').textContent=`🔒 ${shortLabel(hitLockedSel)} je zamknuté (preskočené) → vybraté ${shortLabel(s)} · odomkneš pravým klikom alebo podržaním myši`;
+      }
+    }
+    e.preventDefault(); e.stopPropagation();
+    setActive(bp);
+    if(e.altKey && !e.ctrlKey && selection.length){          /* Alt+ťahanie = duplikát */
+      const clones=duplicateSelection(doc);
+      if(clones.length) selection=clones;
+    }
+    const moveSels=filterNested(selection, doc);   /* potomkov vybraných neposúvaj druhýkrát */
+    drag = { x:e.clientX, y:e.clientY,
+             bbox: bboxOf(doc, moveSels),
+             targets: snapOn ? collectSnapTargets(doc, moveSels.map(x=>doc.querySelector(x)).filter(Boolean)) : null,
+             start: moveSels.map(sl=>{ const o=getOv(bp.name,sl); return {sl, tx:o.tx||0, ty:o.ty||0}; }) };
+  }, true);
+  doc.addEventListener('pointermove', e=>{
+    if(marquee){ e.preventDefault(); moveMarquee(e); return; }
+    if(!drag) return;
+    e.preventDefault();
+    let dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+    /* snapping — Ctrl počas ťahania dočasne vypne */
+    if(drag.targets && drag.bbox && !e.ctrlKey){
+      const sr=snapDelta(drag.bbox, dx, dy, drag.targets);
+      dx=sr.dx; dy=sr.dy;
+      clearFx(doc);
+      const vw=doc.documentElement.clientWidth, vh=doc.documentElement.clientHeight;
+      if(sr.lx!==null) fxLine(doc,'v',sr.lx,0,vh);
+      if(sr.ly!==null) fxLine(doc,'h',sr.ly,0,vw);
+    }
+    for(const st of drag.start){
+      if(/^#[\w-]+$/.test(st.sl) || autoLocked.has(st.sl)) continue;   /* pozadia a celoplošné obaly sa neposúvajú */
+      const o=getOv(bp.name, st.sl);
+      o.tx=Math.round(st.tx+dx); o.ty=Math.round(st.ty+dy);
+    }
+    applyOverrides(); refreshPanel();
+  }, true);
+  doc.addEventListener('pointerup', ()=>{ if(drag) clearFx(doc); drag=null; endMarquee(); }, true);
+  doc.addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); }, true);
+  doc.addEventListener('keydown', onKeys, true);
+
+  /* dlhšie podržanie myši nad zamknutou vrstvou → ponuka na odomknutie */
+  let hoverTimer=null, hoverLockedSel=null, measuring=false;
+  doc.addEventListener('pointermove', e=>{
+    if(drag||marquee||panning) return;
+    /* Alt+hover = meranie vzdialeností od výberu */
+    if(e.altKey && selection.length && activeBp && activeBp.name===bp.name){
+      measuring=true; drawMeasure(doc, e); return;
+    }
+    if(measuring){ measuring=false; clearFx(doc); }
+    const el=doc.elementFromPoint(e.clientX, e.clientY);
+    const la=el ? lockedAncestor(el, doc) : null;
+    if(la){
+      if(hoverLockedSel!==la){
+        hoverLockedSel=la; clearTimeout(hoverTimer);
+        const x=e.clientX, y=e.clientY;
+        hoverTimer=setTimeout(()=>showUnlockTip(la, bp, fr, x, y), 450);
+      }
+    } else if(hoverLockedSel){
+      hoverLockedSel=null; clearTimeout(hoverTimer); hideUnlockTipSoon();
+    }
+  });
+}
+
+/* ============ selektor ============ */
+function cssPath(el, doc){
+  if(!el || el===doc.body || el===doc.documentElement) return null;
+  const sec = el.closest('section[id]');
+  if(!sec) return null;
+  if(el===sec) return '#'+sec.id;
+  const parts=[]; let cur=el;
+  while(cur && cur!==sec){
+    let p=cur.tagName.toLowerCase();
+    if(cur.classList.length) p+='.'+[...cur.classList].map(c=>CSS.escape(c)).join('.');
+    const parent=cur.parentElement;
+    if(parent){
+      const same=[...parent.children].filter(ch=>ch.tagName===cur.tagName && ch.className===cur.className);
+      if(same.length>1) p+=`:nth-child(${[...parent.children].indexOf(cur)+1})`;
+    }
+    parts.unshift(p); cur=cur.parentElement;
+  }
+  return '#'+sec.id+' > '+parts.join(' > ');
+}
+
+/* ============ výrez média v ráme ============
+   Obrázok aj video sedia v ráme cez object-fit: cover, takže sa vždy niečo
+   oreže. Toto je úprava toho, čo je v ráme vidieť — ťahaním sa posúva
+   object-position, kolieskom sa zoomuje. Rám (kontajner) sa nemení; ten sa
+   dá naďalej ťahať a resizovať bežným výberom. */
+let vyrez=null;
+function zapniVyrez(doc, fr, bp, el, sel){
+  vypniVyrez();
+  const o=getOv(bp.name, sel);
+  const cs=fr.contentWindow.getComputedStyle(el);
+  if(o.ofx===undefined || o.ofy===undefined){
+    const p=cs.objectPosition.split(' ');
+    const na=(v,rozmer)=>{
+      if(v.endsWith('%')) return parseFloat(v);
+      if(v==='left'||v==='top') return 0;
+      if(v==='right'||v==='bottom') return 100;
+      if(v==='center') return 50;
+      const px=parseFloat(v); return Number.isFinite(px)&&rozmer ? +(px/rozmer*100).toFixed(1) : 50;
+    };
+    o.ofx=na(p[0], parseFloat(cs.width));
+    o.ofy=na(p[1]??p[0], parseFloat(cs.height));
+  }
+  if(!o.ofit) o.ofit=cs.objectFit||'cover';
+  if(!o.ofz) o.ofz=100;
+
+  /* rám, aby bolo vidieť, čoho sa úprava týka */
+  const ram=doc.createElement('div'); ram.id='mib-vyrez';
+  const r=el.getBoundingClientRect();
+  ram.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;`
+    +'border:2px solid #ff4fa3;box-shadow:0 0 0 9999px rgba(0,0,0,.22);pointer-events:none;z-index:99998;';
+  doc.body.appendChild(ram);
+
+  const posun=(dx,dy)=>{
+    const w=parseFloat(cs.width)||1, h=parseFloat(cs.height)||1;
+    o.ofx=Math.max(0,Math.min(100, +(o.ofx - dx/w*100).toFixed(1)));
+    o.ofy=Math.max(0,Math.min(100, +(o.ofy - dy/h*100).toFixed(1)));
+    applyOverrides(); refreshPanel(); stavVyrez();
+  };
+  const onDown=ev=>{
+    if(ev.target!==el) return;
+    ev.preventDefault(); ev.stopPropagation();
+    pushHistory();
+    const z=parseFloat($('zoom').value)||1;
+    let px=ev.clientX, py=ev.clientY;
+    const mv=m=>{ posun((m.clientX-px)/z, (m.clientY-py)/z); px=m.clientX; py=m.clientY; };
+    const up=()=>{ doc.removeEventListener('pointermove',mv,true); doc.removeEventListener('pointerup',up,true); };
+    doc.addEventListener('pointermove',mv,true);
+    doc.addEventListener('pointerup',up,true);
+  };
+  const onWheel=ev=>{
+    ev.preventDefault(); ev.stopPropagation();
+    o.ofz=Math.max(100, Math.min(320, (o.ofz||100) + (ev.deltaY<0?4:-4)));
+    applyOverrides(); refreshPanel(); stavVyrez();
+  };
+  const onKey=ev=>{
+    if(ev.key==='Escape'){ vypniVyrez(); return; }
+    const k=ev.shiftKey?10:1;
+    const smer={ArrowLeft:[k,0],ArrowRight:[-k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[ev.key];
+    if(!smer) return;
+    ev.preventDefault(); ev.stopPropagation();
+    posun(smer[0], smer[1]);
+  };
+  doc.addEventListener('pointerdown', onDown, true);
+  doc.addEventListener('wheel', onWheel, {capture:true, passive:false});
+  doc.addEventListener('keydown', onKey, true);
+  document.addEventListener('keydown', onKey, true);
+  el.style.cursor='move';
+
+  vyrez={doc, el, sel, bp, ram, onDown, onWheel, onKey};
+  applyOverrides(); refreshPanel(); stavVyrez();
+}
+function stavVyrez(){
+  if(!vyrez) return;
+  const o=getOv(vyrez.bp.name, vyrez.sel);
+  $('status').textContent=`výrez ${o.ofx}% ${o.ofy}% · ${o.ofz}% · ${o.ofit} — ťahaj myšou, koliesko = zoom, Esc = koniec`;
+  const r=vyrez.el.getBoundingClientRect();
+  vyrez.ram.style.left=r.left+'px'; vyrez.ram.style.top=r.top+'px';
+  vyrez.ram.style.width=r.width+'px'; vyrez.ram.style.height=r.height+'px';
+}
+function vypniVyrez(){
+  if(!vyrez) return;
+  const {doc, el, ram, onDown, onWheel, onKey}=vyrez;
+  doc.removeEventListener('pointerdown', onDown, true);
+  doc.removeEventListener('wheel', onWheel, {capture:true});
+  doc.removeEventListener('keydown', onKey, true);
+  document.removeEventListener('keydown', onKey, true);
+  if(ram) ram.remove();
+  if(el) el.style.cursor='';
+  vyrez=null;
+  $('status').textContent='výrez uložený';
+}
+
+/* ============ overrides + CSS ============ */
+function getOv(bpName, s){
+  overrides[bpName]=overrides[bpName]||{};
+  overrides[bpName][s]=overrides[bpName][s]||{};
+  return overrides[bpName][s];
+}
+function cssText(){
+  let out='/* overrides — generuje tools/editor.html, needitovat rucne */\n';
+  if(overrides.tokens && Object.keys(overrides.tokens).length){
+    out+=':root{\n';
+    for(const [k,v] of Object.entries(overrides.tokens)) out+=`  ${k}: ${v} !important;\n`;
+    out+='}\n';
+  }
+  /* bp-only viditeľnosť: prvok s triedou .bp-only-<bp> existuje všade,
+     ale zobrazí sa len v rozsahu daného breakpointu */
+  for(const bp of BPS) out+=`.bp-only-${bp.name}{ display:none !important; }\n`;
+  for(const bp of BPS){
+    const rules=overrides[bp.name]||{};
+    const body=[`  .bp-only-${bp.name}{ display:revert !important; }`];
+    /* rodičia, ktorí nesmú orezávať — zbierame počas prechodu pravidiel */
+    const volneRodicia=new Set();
+    for(const [s,o] of Object.entries(rules)){
+      const d=[];
+      if(o.tx||o.ty) d.push(`translate:${o.tx||0}px ${o.ty||0}px !important`);
+      if(o.fs) d.push(`font-size:${o.fs}px !important`);
+      else if(o.fsRole) d.push(`font-size:var(--fs-${o.fsRole}) !important`);
+      if(o.w)  d.push(`width:${o.w}px !important`);
+      if(o.h)  d.push(`height:${o.h}px !important`);
+      if(o.z!==undefined) d.push(`z-index:${o.z} !important`);
+      if(o.zrel) d.push(`position:relative !important`);
+      if(o.op!==undefined) d.push(`opacity:${(o.op/100).toFixed(2)} !important`);
+      /* výrez média v ráme — obrázok/video sa hýbe vnútri kontajnera,
+         rám ostáva. `scale` je samostatná CSS property, takže nekoliduje
+         s `translate` vyššie ani s prípadným transform na stránke. */
+      if(o.ofit) d.push(`object-fit:${o.ofit} !important`);
+      if(o.ofx!==undefined || o.ofy!==undefined)
+        d.push(`object-position:${o.ofx??50}% ${o.ofy??50}% !important`);
+      if(o.ofz && o.ofz!==100) d.push(`scale:${(o.ofz/100).toFixed(3)} !important`);
+      /* voľná vrstva: médium sa prestane orezávať. Orezávajú ho tri veci
+         naraz — object-fit: cover zvnútra, maska, a overflow: hidden na
+         rodičovi. Vypnúť treba všetky tri, inak sa zväčšenie len oreže. */
+      if(o.volne){
+        d.push('object-fit:contain !important');
+        d.push('-webkit-mask-image:none !important');
+        d.push('mask-image:none !important');
+        const rodic=s.replace(/\s*>\s*[^>]+$/, '');
+        if(rodic && rodic!==s) volneRodicia.add(rodic);
+      }
+      if(d.length) body.push(`  ${s}{ ${d.join('; ')}; }`);
+    }
+    for(const r of volneRodicia) body.push(`  ${r}{ overflow:visible !important; }`);
+    /* výšky slidov pre tento breakpoint */
+    const slH=(overrides.slides||{})[bp.name]||{};
+    for(const [sel,v] of Object.entries(slH)){
+      if(v==='auto') body.push(`  ${sel}{ height:auto !important; }`);
+      else body.push(`  ${sel}{ height:${v} !important; min-height:${v} !important; }`);
+    }
+    if(!body.length) continue;
+    const mq = bp.min===0 ? `(max-width:${bp.max}px)` :
+               bp.max>=2559 ? `(min-width:${bp.min}px)` :
+               `(min-width:${bp.min}px) and (max-width:${bp.max}px)`;
+    out+=`@media ${mq}{\n${body.join('\n')}\n}\n`;
+  }
+  return out;
+}
+function applyOverrides(){
+  const css=cssText();
+  for(const fr of Object.values(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let st=doc.getElementById('mib-ovr');
+    if(!st){ st=doc.createElement('style'); st.id='mib-ovr'; doc.head.appendChild(st); }
+    st.textContent=css;
+  }
+  $('cssOut').value=css;
+  try{ localStorage.setItem('mib-overrides', JSON.stringify(overrides)); }catch(e){}
+  updateHandles();
+}
+const contentBaseline={};   /* pôvodné HTML pred prvou zmenou — aby undo vedel vrátiť DOM */
+function applyContent(){
+  const cur=overrides.content||{};
+  /* rodičia PRED deťmi — inak neskoršia rodičovská snímka prepíše obnovené dieťa */
+  const byDepth=(a,b)=>a[0].split('>').length - b[0].split('>').length;
+  for(const fr of Object.values(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    /* selektory, ktorých override zanikol (undo) → vráť pôvodný obsah */
+    for(const [s,orig] of Object.entries(contentBaseline).sort(byDepth)){
+      if(cur[s]!==undefined) continue;
+      const el=doc.querySelector(s);
+      if(el && !el.isContentEditable && el.innerHTML!==orig) el.innerHTML=orig;
+    }
+    for(const [s,html] of Object.entries(cur).sort(byDepth)){
+      const el=doc.querySelector(s);
+      if(el && !el.isContentEditable && el.innerHTML!==html) el.innerHTML=html;
+    }
+  }
+}
+function applyHighlight(){
+  const css = selection.length ? selection.map(s=>`${s}{ outline:2px dashed #00e0ff !important; outline-offset:2px; }`).join('\n') : '';
+  for(const fr of Object.values(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let st=doc.getElementById('mib-sel');
+    if(!st){ st=doc.createElement('style'); st.id='mib-sel'; doc.head.appendChild(st); }
+    st.textContent=css;
+  }
+  updateHandles();
+}
+
+/* ============ úchytky (bounding box + rohy) v aktívnom frame ============ */
+function updateHandles(){
+  for(const bp of BPS){
+    const fr=frames[bp.name]; if(!fr) continue;
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let box=doc.getElementById('mib-hbox');
+    const isActive = activeBp && bp.name===activeBp.name && selection.length;
+    if(!isActive){ if(box) box.remove(); continue; }
+    const rects = selection.map(s=>doc.querySelector(s)).filter(Boolean).map(el=>el.getBoundingClientRect());
+    if(!rects.length){ if(box) box.remove(); continue; }
+    const x1=Math.min(...rects.map(r=>r.left)), y1=Math.min(...rects.map(r=>r.top));
+    const x2=Math.max(...rects.map(r=>r.right)), y2=Math.max(...rects.map(r=>r.bottom));
+    if(!box){
+      box=doc.createElement('div'); box.id='mib-hbox';
+      box.innerHTML='<div class="mh" data-c="nw"></div><div class="mh" data-c="ne"></div><div class="mh" data-c="sw"></div><div class="mh" data-c="se"></div><div class="mdim"></div>';
+      const st=doc.createElement('style');
+      st.textContent=`#mib-hbox{position:fixed;border:1.5px solid #00e0ff;pointer-events:none;z-index:99999;}
+        #mib-hbox .mh{position:absolute;width:14px;height:14px;background:#00e0ff;border:2px solid #fff;border-radius:3px;pointer-events:auto;}
+        #mib-hbox .mh[data-c=nw]{left:-8px;top:-8px;cursor:nwse-resize}#mib-hbox .mh[data-c=ne]{right:-8px;top:-8px;cursor:nesw-resize}
+        #mib-hbox .mh[data-c=sw]{left:-8px;bottom:-8px;cursor:nesw-resize}#mib-hbox .mh[data-c=se]{right:-8px;bottom:-8px;cursor:nwse-resize}
+        #mib-hbox .mdim{position:absolute;left:50%;top:100%;transform:translate(-50%,8px);background:#00e0ff;color:#000;font-family:Consolas,monospace;font-weight:700;padding:.15em .5em;border-radius:.2em;white-space:nowrap;}`;
+      box.appendChild(st);
+      doc.body.appendChild(box);
+      box.querySelectorAll('.mh').forEach(h=>h.addEventListener('pointerdown', e=>startResize(e, bp, fr)));
+    }
+    box.style.left=x1+'px'; box.style.top=y1+'px';
+    box.style.width=(x2-x1)+'px'; box.style.height=(y2-y1)+'px';
+    const dim=box.querySelector('.mdim');
+    const z=parseFloat($('zoom').value);
+    dim.style.fontSize=Math.round(11/z)+'px';
+    dim.textContent=Math.round(x2-x1)+' × '+Math.round(y2-y1);
+  }
+}
+function startResize(e, bp, fr){
+  e.preventDefault(); e.stopPropagation();
+  pushHistory();
+  const doc=fr.contentDocument;
+  const corner=e.target.dataset.c;
+  const box=doc.getElementById('mib-hbox').getBoundingClientRect();
+  const startW=box.width||1, startH=box.height||1;
+  const startX=e.clientX, startY=e.clientY;
+  const frameW=doc.documentElement.clientWidth;
+  const items=selection.map(s=>{
+    const el=doc.querySelector(s); if(!el) return null;
+    const cs=fr.contentWindow.getComputedStyle(el);
+    const r=el.getBoundingClientRect();
+    return { s, isText:TEXT_TAGS.has(el.tagName), isSec:el.tagName==='SECTION',
+             isImg:el.tagName==='IMG',             /* obrázky držia pomer strán — mení sa len šírka */
+             fullW:r.width>=frameW*0.98,           /* plnošírkové (pozadia) — šírka sa NIKDY nemení */
+             fs:parseFloat(cs.fontSize), w:parseFloat(cs.width), h:parseFloat(cs.height) };
+  }).filter(Boolean);
+  function move(ev){
+    const dirX = (corner==='ne'||corner==='se') ? 1 : -1;
+    const dirY = (corner==='sw'||corner==='se') ? 1 : -1;
+    let rX = Math.max(.05, (startW + dirX*(ev.clientX-startX)) / startW);
+    let rY = Math.max(.05, (startH + dirY*(ev.clientY-startY)) / startH);
+    if(ev.shiftKey){ rY=rX; }                       /* Shift = proporčne */
+    for(const it of items){
+      if(it.isSec){                                  /* sekcia = výška slidu, šírka vždy 100 % */
+        overrides.slides=overrides.slides||{}; overrides.slides[bp.name]=overrides.slides[bp.name]||{};
+        overrides.slides[bp.name][it.s]=Math.max(200, Math.round(it.h*rY))+'px';
+        continue;
+      }
+      const o=getOv(bp.name, it.s);
+      if(it.isText){ o.fs=Math.max(6, Math.round(it.fs*rX)); }
+      else if(it.isImg){ o.w=Math.max(20, Math.round(it.w*rX)); delete o.h; }  /* pomer strán drží */
+      else if(it.fullW){ o.h=Math.max(20, Math.round(it.h*rY)); }   /* len výška */
+      else{ o.w=Math.max(20, Math.round(it.w*rX)); o.h=Math.max(20, Math.round(it.h*rY)); }
+    }
+    applyOverrides(); refreshPanel(); slideHSync();
+  }
+  function up(){ doc.removeEventListener('pointermove',move,true); doc.removeEventListener('pointerup',up,true); }
+  doc.addEventListener('pointermove',move,true);
+  doc.addEventListener('pointerup',up,true);
+}
+
+/* ============ picker vrstiev (pravý klik) ============ */
+function showPicker(e, bp, fr){
+  const doc=fr.contentDocument;
+  const x=e.clientX, y=e.clientY;
+  const sec=[...doc.querySelectorAll('section[id]')].find(s=>{const r=s.getBoundingClientRect(); return y>=r.top&&y<=r.bottom;});
+  if(!sec) return;
+  const cand=[];
+  for(const el of [sec, ...sec.querySelectorAll('*')]){
+    if(el.id==='mib-hbox'||el.closest('#mib-hbox')) continue;
+    if(el.tagName==='STYLE'||el.tagName==='SCRIPT'||el.tagName==='PATH'||el.tagName==='CIRCLE') continue;
+    const r=el.getBoundingClientRect();
+    if(r.width<2||r.height<2) continue;
+    if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom) cand.push({el, r});
+  }
+  cand.sort((a,b)=>(a.r.width*a.r.height)-(b.r.width*b.r.height));
+  const picker=$('picker'); picker.innerHTML='';
+
+  /* akcie hore: kopírovanie/prilepenie hodnôt medzi breakpointmi priamo z pravého kliku */
+  const resolveClicked=()=>{
+    if(!cand.length) return null;
+    let el=cand[0].el;
+    if(el.tagName==='IMG' && el.parentElement) el=el.parentElement;
+    return cssPath(el, doc);
+  };
+  const actWrap=document.createElement('div');
+  actWrap.style.cssText='border-bottom:1px solid #33333d;margin-bottom:4px;padding-bottom:4px;';
+  const cpBtn=document.createElement('button');
+  cpBtn.innerHTML=`⎘ Kopíruj hodnoty <small>(${bp.name})</small>`;
+  cpBtn.addEventListener('click', ()=>{
+    if(!(selection.length && activeBp && activeBp.name===bp.name)){
+      const s=resolveClicked(); if(!s) return;
+      selection=[s];
+    }
+    setActive(bp); copyOv(); hidePicker();
+  });
+  actWrap.appendChild(cpBtn);
+  if(bpClipboard && bpClipboard.from!==bp.name){
+    const psBtn=document.createElement('button');
+    psBtn.innerHTML=`⎙ Prilep sem — replace <small>(z ${bpClipboard.from})</small>`;
+    psBtn.addEventListener('click', ()=>{
+      setActive(bp); pasteOv();
+      selection=Object.keys(bpClipboard.data);
+      applyHighlight(); refreshPanel(); markLayers(); hidePicker();
+    });
+    actWrap.appendChild(psBtn);
+  }
+  /* nástroje — pôsobia na výber (ak nič nevybrané, vezmú kliknutý prvok) */
+  const cx=e.clientX, cy=e.clientY;
+  const ensureSel=()=>{ if(!selection.length){ const s0=resolveClicked(); if(s0){ selection=[s0]; } } setActive(bp); };
+  const mkA=(html, title, fn)=>{
+    const b=document.createElement('button'); b.className='pact';
+    b.innerHTML=html; b.title=title;
+    b.addEventListener('click', ()=>{ fn(); hidePicker(); });
+    return b;
+  };
+  const tools=document.createElement('div');
+  tools.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin:4px 0;';
+  tools.appendChild(mkA('🗑','Zmazať (Delete)', ()=>{ ensureSel(); deleteSelection(doc); }));
+  tools.appendChild(mkA('⧉','Duplikovať', ()=>{ ensureSel(); const c=duplicateSelection(doc); if(c.length){selection=c; setActive(bp);} }));
+  tools.appendChild(mkA('🔗','Group (Ctrl+G)', ()=>{ ensureSel(); doGroup(); }));
+  tools.appendChild(mkA('⛓','Ungroup', ()=>{ ensureSel(); doUngroup(); }));
+  tools.appendChild(mkA('⬆','Dopredu (Ctrl+])', ()=>{ ensureSel(); nudgeZ(1); }));
+  tools.appendChild(mkA('⬇','Dozadu (Ctrl+[)', ()=>{ ensureSel(); nudgeZ(-1); }));
+  tools.appendChild(mkA('🔒','Zamknúť výber', ()=>{ ensureSel(); for(const s2 of [...selection]) if(!locked.has(s2)) toggleLock(s2); }));
+  actWrap.appendChild(tools);
+  const shapes=document.createElement('div');
+  shapes.style.cssText='display:flex;flex-wrap:wrap;gap:4px;border-top:1px solid #33333d;padding-top:4px;align-items:center;';
+  const onlyChk=document.createElement('label');
+  onlyChk.style.cssText='display:flex;gap:4px;align-items:center;font-size:11px;color:#9aa;width:100%;cursor:pointer;';
+  onlyChk.innerHTML=`<input type="checkbox" id="shapeOnly"> vložiť len pre <b style="color:#00e0ff">${bp.name}</b>`;
+  shapes.appendChild(onlyChk);
+  const only=()=>onlyChk.querySelector('input').checked;
+  shapes.appendChild(mkA('▭ štvorec','Vložiť obdĺžnik sem', ()=>insertShape(doc, bp, 'rect', cx, cy, only())));
+  shapes.appendChild(mkA('● kruh','Vložiť kruh sem', ()=>insertShape(doc, bp, 'circle', cx, cy, only())));
+  shapes.appendChild(mkA('◐ tmavý','Tmavý gradient (fade obrázka zdola)', ()=>insertShape(doc, bp, 'grad-dark', cx, cy, only())));
+  shapes.appendChild(mkA('◑ svetlý','Svetlý gradient (fade obrázka zdola)', ()=>insertShape(doc, bp, 'grad-light', cx, cy, only())));
+  actWrap.appendChild(shapes);
+  picker.appendChild(actWrap);
+  for(const {el,r} of cand.slice(0,14)){
+    const s=cssPath(el, doc); if(!s) continue;
+    const b=document.createElement('button');
+    const isL=locked.has(s);
+    const label=el.tagName.toLowerCase()+(el.classList.length?'.'+[...el.classList].join('.'):'');
+    b.innerHTML=`${isL?'🔒 ':''}${label}<small>${Math.round(r.width)}×${Math.round(r.height)}</small>`;
+    b.addEventListener('mouseenter', ()=>previewHi(doc, s));
+    b.addEventListener('mouseleave', ()=>previewHi(doc, null));
+    b.addEventListener('click', ev=>{
+      pushHistory();
+      if(locked.has(s)) toggleLock(s);   /* klik na zamknutú položku = odomkni a rovno vyber */
+      if(ev.ctrlKey||ev.shiftKey){ if(!selection.includes(s)) selection.push(s); }
+      else selection=[s];
+      setActive(bp); previewHi(doc, null); hidePicker();
+    });
+    picker.appendChild(b);
+  }
+  if(!picker.children.length) return;
+  /* pozícia v parent súradniciach: iframe rect + bod v iframe × zoom */
+  const z=parseFloat($('zoom').value);
+  const ir=fr.getBoundingClientRect();
+  picker.style.left=Math.min(window.innerWidth-260, ir.left + x*z + 8)+'px';
+  picker.style.top =Math.min(window.innerHeight-340, ir.top + y*z + 8)+'px';
+  picker.style.display='block';
+}
+function previewHi(doc, s){
+  let st=doc.getElementById('mib-pick');
+  if(!st){ st=doc.createElement('style'); st.id='mib-pick'; doc.head.appendChild(st); }
+  st.textContent=s?`${s}{ outline:3px solid #ff4fa3 !important; outline-offset:2px; }`:'';
+}
+function hidePicker(){ $('picker').style.display='none'; }
+document.addEventListener('mousedown', e=>{
+  if(!e.target.closest('#picker')) hidePicker();
+  if(!e.target.closest('#unlockTip')) hideUnlockTip();
+});
+
+/* ============ zámky vrstiev ============ */
+let locked = new Set();
+let unlockedSecs = new Set();   /* sekcie (pozadia), ktoré user vedome odomkol */
+try{ locked = new Set(JSON.parse(localStorage.getItem('mib-ed-locked')||'[]')); }catch(e){}
+try{ unlockedSecs = new Set(JSON.parse(localStorage.getItem('mib-ed-unlocked')||'[]')); }catch(e){}
+function saveLocked(){
+  localStorage.setItem('mib-ed-locked', JSON.stringify([...locked]));
+  localStorage.setItem('mib-ed-unlocked', JSON.stringify([...unlockedSecs]));
+}
+/* pozadia sú zamknuté defaultne: sekcia + každý priamy potomok, ktorý pokrýva
+   ~celý slide (neviditeľné celoplošné obaly ako .hero__collage) */
+let autoLocked = new Set();
+function ensureDefaultLocks(doc){
+  let changed=false;
+  for(const sec of doc.querySelectorAll('section[id]')){
+    const sr=sec.getBoundingClientRect();
+    /* Médiá v hero sekciách sa nezamykajú, aj keď pokrývajú celý slide —
+       práve ich treba posúvať a zväčšovať najčastejšie. */
+    const MEDIA='.tech-hero__video,.vhero__media,.svetlo,.hero__bg2,.cat-hero__bg';
+    const bgs=[sec, ...[...sec.children].filter(ch=>{
+      if(ch.matches(MEDIA)) return false;
+      const r=ch.getBoundingClientRect();
+      return sr.width>0 && r.width>=sr.width*0.93 && r.height>=sr.height*0.93;
+    })];
+    for(const el of bgs){
+      const s=cssPath(el, doc); if(!s) continue;
+      autoLocked.add(s);
+      if(!unlockedSecs.has(s) && !locked.has(s)){ locked.add(s); changed=true; }
+    }
+  }
+  if(changed) saveLocked();
+}
+/* zámok platí LEN na samotný prvok — deti zamknutého obalu ostávajú voľné */
+function lockedAncestor(el, doc){
+  let cand=el;
+  if(cand.tagName==='IMG' && cand.parentElement && cand.parentElement.tagName!=='BODY') cand=cand.parentElement;
+  const s=cssPath(cand, doc);
+  return (s && locked.has(s)) ? s : null;
+}
+function applyLockStyles(){
+  /* obrys len pre ručne zamknuté prvky; auto-zamknuté pozadia bez obrysu (šum) */
+  const css=[...locked].filter(s=>!autoLocked.has(s) && !/^#[\w-]+$/.test(s))
+    .map(s=>`${s}{ outline:1px dotted rgba(140,140,140,.9) !important; }`).join('\n');
+  for(const fr of Object.values(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let st=doc.getElementById('mib-lock');
+    if(!st){ st=doc.createElement('style'); st.id='mib-lock'; doc.head.appendChild(st); }
+    st.textContent=css;
+  }
+}
+function toggleLock(s){
+  pushHistory();
+  if(locked.has(s)){
+    locked.delete(s);
+    unlockedSecs.add(s);                    /* nech sa default zámok nevráti */
+    $('status').textContent='🔓 odomknuté: '+shortLabel(s);
+  } else {
+    locked.add(s);
+    unlockedSecs.delete(s);
+    selection=selection.filter(x=>x!==s);
+    $('status').textContent='🔒 zamknuté: '+shortLabel(s);
+  }
+  saveLocked(); applyLockStyles(); applyHighlight(); refreshPanel(); buildLayers();
+}
+function shortLabel(s){ return s.split('>').pop().trim(); }
+let unlockHideTimer=null;
+function showUnlockTip(s, bp, fr, x, y){
+  clearTimeout(unlockHideTimer);
+  const tip=$('unlockTip');
+  tip.innerHTML='';
+  const b=document.createElement('button');
+  b.textContent='🔓 Odomknúť '+shortLabel(s);
+  b.style.cssText='background:#1f1f26;color:#e8e8ee;border:1px solid #00e0ff;border-radius:6px;padding:10px 16px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.6);font-size:13px;';
+  b.addEventListener('click', ()=>{ toggleLock(s); hideUnlockTip(); });
+  tip.appendChild(b);
+  const z=parseFloat($('zoom').value);
+  const ir=fr.getBoundingClientRect();
+  tip.style.left=Math.min(window.innerWidth-240, ir.left + x*z + 10)+'px';
+  tip.style.top =Math.min(window.innerHeight-60, ir.top + y*z + 10)+'px';
+  tip.style.display='block';
+}
+function hideUnlockTip(){ clearTimeout(unlockHideTimer); $('unlockTip').style.display='none'; }
+/* skrytie s odkladom — nech sa dá myšou dôjsť na tlačidlo */
+function hideUnlockTipSoon(){ clearTimeout(unlockHideTimer); unlockHideTimer=setTimeout(hideUnlockTip, 900); }
+$('unlockTip').addEventListener('mouseenter', ()=>clearTimeout(unlockHideTimer));
+$('unlockTip').addEventListener('mouseleave', hideUnlockTipSoon);
+
+/* ============ layers panel ============ */
+function layersBp(){
+  return activeBp || BPS.find(b=>b.on && frames[b.name] && frames[b.name].contentDocument);
+}
+function nodeInfo(el){
+  const txt=()=>{ const x=(el.textContent||'').trim().replace(/\s+/g,' '); return x.length>26?x.slice(0,26)+'…':(x||'—'); };
+  const t=el.tagName;
+  if(t==='SECTION') return {i:'▤', n:'Slide '+(el.id||'').replace('s','')};
+  if(/^H[1-6]$/.test(t)) return {i:'T', n:txt()};
+  if(t==='IMG') return {i:'🖼', n:el.alt||decodeURIComponent((el.src||'').split('/').pop())};
+  if(t==='VIDEO'){
+    const zdroj=el.currentSrc||el.src||(el.querySelector('source')||{}).src||'';
+    return {i:'🎬', n:decodeURIComponent(zdroj.split('/').pop())||'video'};
+  }
+  if(t==='PICTURE') return {i:'🖼', n:'obrázok'};
+  if(t==='FIGURE'){ const im=el.querySelector('img'); return {i:'🖼', n:(im&&(im.alt||decodeURIComponent((im.src||'').split('/').pop())))||'obrázok'}; }
+  if((t==='A'&&el.classList.contains('btn'))||t==='BUTTON') return {i:'⬚', n:'Tlačidlo: '+txt()};
+  if(t==='A') return {i:'↗', n:txt()};
+  if(['P','BLOCKQUOTE','FIGCAPTION','SPAN','SMALL','B','STRONG','EM'].includes(t)) return {i:'¶', n:txt()};
+  if(t.toLowerCase()==='svg') return {i:'✎', n:'dekorácia (svg)'};
+  if(t==='NAV') return {i:'≡', n:'navigácia'};
+  if(t==='UL') return {i:'≡', n:'zoznam'};
+  if(t==='LI') return {i:'·', n:txt()};
+  if(t==='HR') return {i:'—', n:'čiara'};
+  if(t==='INPUT') return {i:'⌨', n:el.placeholder||'pole'};
+  if(t==='FORM') return {i:'▭', n:'formulár'};
+  if(t==='HEADER') return {i:'▭', n:'logo blok'};
+  if(t==='FOOTER') return {i:'▭', n:'pätička'};
+  if(t==='ASIDE') return {i:'▭', n:'rail'};
+  if(el.getAttribute('aria-hidden')==='true' && !el.querySelector('img,video,picture'))
+    return {i:'✎', n:'dekorácia'};
+  const cls=el.classList.length?el.classList[el.classList.length-1]:null;
+  return {i:'▭', n:cls||t.toLowerCase()};
+}
+function buildLayers(){
+  if($('layers').style.display==='none') return;
+  const tree=$('layersTree'); tree.innerHTML='';
+  const bp=layersBp(); if(!bp) return;
+  const fr=frames[bp.name]; if(!fr||!fr.contentDocument) return;
+  const doc=fr.contentDocument;
+  const sec=doc.querySelector($('slideSel').value || '#s01') || doc.querySelector('section[id]');
+  if(!sec) return;
+  const simple=$('layersSimple').checked;
+  /* v čistom režime sú tieto listy stromu — nejdeme do ich vnútra */
+  const LEAF=new Set(['H1','H2','H3','H4','H5','H6','P','A','BUTTON','BLOCKQUOTE','LI','FIGCAPTION','IMG','VIDEO','PICTURE','INPUT','SPAN','SMALL','HR']);
+  /* Obalový div, ktorý len drží jedno dieťa a sám nič nekreslí, je v strome
+     šum — kliká sa cezeň k tomu, čo je vidieť. V čistom režime ho
+     preskakujeme, aj keď má triedu. */
+  const jeObal=(el, cw)=>{
+    if(el.tagName!=='DIV' || el.children.length!==1) return false;
+    if(el.id) return false;
+    const c=cw.getComputedStyle(el);
+    return c.backgroundImage==='none'
+      && (c.backgroundColor==='rgba(0, 0, 0, 0)' || c.backgroundColor==='transparent')
+      && c.borderStyle==='none' && parseFloat(c.opacity)===1;
+  };
+  const build=(el, depth, box)=>{
+    if(el.id==='mib-hbox' || ['STYLE','SCRIPT','SOURCE','NOSCRIPT'].includes(el.tagName)) return;
+    if(el.namespaceURI && el.namespaceURI.includes('svg') && el.tagName.toLowerCase()!=='svg') return;
+    const s=cssPath(el, doc);
+    const transparent = simple &&
+      ((el.tagName==='DIV' && !el.classList.length) || jeObal(el, fr.contentWindow));
+    let childBox=box, kids=null, arr=null;
+    if(s && !transparent){
+      const info=nodeInfo(el);
+      const isLocked=locked.has(s);
+      const ecs=fr.contentWindow.getComputedStyle(el);
+      const peNone=ecs.pointerEvents==='none';
+      const isHidden=ecs.display==='none';
+      const row=document.createElement('div'); row.className='lrow'; row.dataset.sel=s; row.title=s;
+      if(isHidden) row.style.opacity='.4';
+      row.style.paddingLeft=(4+depth*13)+'px';
+      arr=document.createElement('span'); arr.className='arr'; arr.textContent='▾';
+      const lk=document.createElement('span'); lk.textContent=isLocked?'🔒':'·'; lk.title=isLocked?'Odomknúť':'Zamknúť';
+      lk.style.cssText='width:15px;flex:none;text-align:center;opacity:'+(isLocked?'1':'0.4');
+      lk.addEventListener('click', ev=>{ ev.stopPropagation(); toggleLock(s); });
+      const ic=document.createElement('span'); ic.className='licon'; ic.textContent=info.i;
+      const lb=document.createElement('span'); lb.className='lname'; lb.textContent=info.n;
+      row.appendChild(arr); row.appendChild(lk); row.appendChild(ic); row.appendChild(lb);
+      if(isHidden){ const sm=document.createElement('small'); sm.textContent='skryté'; sm.title='display:none na tomto breakpointe'; row.appendChild(sm); }
+      else if(peNone){ const sm=document.createElement('small'); sm.textContent='∅'; sm.title='neklikateľný na plátne — vyber tu alebo pravým klikom'; row.appendChild(sm); }
+      row.addEventListener('mouseenter', ()=>previewHi(doc, s));
+      row.addEventListener('mouseleave', ()=>previewHi(doc, null));
+      row.addEventListener('click', ev=>{
+        if(locked.has(s)){ $('status').textContent='🔒 vrstva je zamknutá — klikni na zámok'; return; }
+        if(ev.ctrlKey||ev.shiftKey){ const i=selection.indexOf(s); i>=0?selection.splice(i,1):selection.push(s); }
+        else selection=[s];
+        setActive(bp);
+      });
+      /* drag & drop preusporiadanie v rámci rovnakého rodiča */
+      row.draggable=true;
+      row.addEventListener('dragstart', ev=>{ ev.dataTransfer.setData('text/plain', s); ev.dataTransfer.effectAllowed='move'; });
+      row.addEventListener('dragover', ev=>{ ev.preventDefault(); row.style.borderTop='2px solid var(--acc)'; });
+      row.addEventListener('dragleave', ()=>{ row.style.borderTop=''; });
+      row.addEventListener('drop', ev=>{
+        ev.preventDefault(); row.style.borderTop='';
+        const srcSel=ev.dataTransfer.getData('text/plain');
+        if(!srcSel || srcSel===s) return;
+        const a=doc.querySelector(srcSel), b=doc.querySelector(s);
+        if(!a||!b){ $('status').textContent='vrstvu sa nepodarilo nájsť'; return; }
+        if(a.parentElement!==b.parentElement){ $('status').textContent='presúvať sa dá len v rámci rovnakého rodiča'; return; }
+        const ps=cssPath(a.parentElement, doc);
+        if(ps && !(ps in contentBaseline)) contentBaseline[ps]=a.parentElement.innerHTML;  /* stav PRED presunom */
+        pushHistory();
+        a.parentElement.insertBefore(a, b);
+        if(ps){
+          overrides.content=overrides.content||{};
+          overrides.content[ps]=a.parentElement.innerHTML;
+        }
+        applyContent(); applyOverrides(); buildLayers();
+        $('status').textContent='vrstva presunutá (poradie v DOM)';
+      });
+      box.appendChild(row);
+      kids=document.createElement('div'); box.appendChild(kids); childBox=kids;
+      arr.addEventListener('click', ev=>{
+        ev.stopPropagation();
+        const open=kids.style.display!=='none';
+        kids.style.display=open?'none':'';
+        arr.textContent=open?'▸':'▾';
+      });
+    }
+    /* Dekorácia (aria-hidden) je pre editáciu jeden celok — jej vnútro
+       (jednotlivé písmená, šípky, čiarky) v strome len prekáža. Výnimkou je
+       obal s obrázkom či videom: hero pozadie je tiež aria-hidden, ale to
+       médium sa vybrať musí dať, inak sa nedostaneš k výrezu. */
+    const dekoracia = el.getAttribute('aria-hidden')==='true'
+      && !el.querySelector('img,video,picture');
+    const leaf = simple && (LEAF.has(el.tagName) || dekoracia);
+    if(!leaf) for(const ch of el.children) build(ch, depth+(s&&!transparent?1:0), childBox);
+    if(arr && kids){
+      if(!kids.children.length) arr.style.visibility='hidden';
+      else{ const r=kids.previousElementSibling; if(r) r.classList.add('grp'); }   /* kontajnery tučnejšie */
+    }
+  };
+  build(sec, 0, tree);
+  markLayers();
+}
+function markLayers(){
+  document.querySelectorAll('#layers .lrow').forEach(r=>r.classList.toggle('sel', selection.includes(r.dataset.sel)));
+}
+
+/* ============ inšpektor ============ */
+function rgb2hex(v){
+  const m=v && v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if(!m) return v;
+  if(m[4]!==undefined && parseFloat(m[4])===0) return null;
+  return '#'+[m[1],m[2],m[3]].map(x=>(+x).toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+function matchedRules(el, doc, win){
+  const out=[];
+  for(const sheet of doc.styleSheets){
+    let rules; try{ rules=sheet.cssRules; }catch(e){ continue; }
+    const src=(sheet.href||'inline').split('/').pop().split('?')[0];
+    if(src.startsWith('css2')) continue;                    /* google fonts */
+    const scan=list=>{
+      for(const rl of list||[]){
+        if(rl.type===1){ try{ if(el.matches(rl.selectorText)) out.push({src, sel:rl.selectorText, css:rl.style.cssText}); }catch(e){} }
+        else if(rl.type===4 && win.matchMedia(rl.conditionText).matches) scan(rl.cssRules);
+      }
+    };
+    scan(rules);
+  }
+  return out;
+}
+function renderInspector(){
+  const box=$('insp');
+  if(selection.length!==1 || !activeBp){ box.textContent = selection.length>1 ? selection.length+' prvkov — inšpektor ukazuje jeden' : 'vyber jeden prvok…'; return; }
+  const fr=frames[activeBp.name]; if(!fr||!fr.contentDocument){ box.textContent='—'; return; }
+  const doc=fr.contentDocument, win=fr.contentWindow;
+  const el=doc.querySelector(selection[0]); if(!el){ box.textContent='—'; return; }
+  const cs=win.getComputedStyle(el);
+  const r=el.getBoundingClientRect();
+  const sec=el.closest('section')||doc.body; const sr=sec.getBoundingClientRect();
+  const col=rgb2hex(cs.color), bg=rgb2hex(cs.backgroundColor);
+  let h='';
+  h+=`<div><b style="color:#7fd4e2">${el.tagName.toLowerCase()}</b> ${el.classList.length?'.'+[...el.classList].join(' .'):''}</div>`;
+  h+=`rozmer: ${Math.round(r.width)} × ${Math.round(r.height)} px  (${(r.width/sr.width*100).toFixed(1)} % šírky slidu)<br>`;
+  h+=`pozícia v slide: x ${Math.round(r.left-sr.left)}, y ${Math.round(r.top-sr.top)} px<br>`;
+  h+=`font: ${cs.fontFamily.split(',')[0].replace(/"/g,'')} ${Math.round(parseFloat(cs.fontSize))}px / ${cs.fontWeight} / stretch ${cs.fontStretch}<br>`;
+  if(col) h+=`farba: <span class="swatch" style="background:${col}"></span>${col}<br>`;
+  if(bg)  h+=`pozadie: <span class="swatch" style="background:${bg}"></span>${bg}<br>`;
+  h+=`position: ${cs.position} · z-index: ${cs.zIndex} · pointer-events: ${cs.pointerEvents}<br>`;
+  if(el.tagName==='IMG') h+=`object-fit: ${cs.objectFit} · object-position: ${cs.objectPosition}<br>`;
+  const rules=matchedRules(el, doc, win);
+  if(rules.length){
+    h+=`<div style="margin-top:6px;color:#999">CSS pravidlá (${rules.length}, posledné vyhráva):</div>`;
+    for(const rl of rules.slice(-7)){
+      const css=rl.css.length>150?rl.css.slice(0,150)+'…':rl.css;
+      h+=`<div class="rule"><b>${rl.sel}</b> <i>(${rl.src})</i>\n${css}</div>`;
+    }
+  }
+  box.innerHTML=h;
+}
+
+/* ============ hand tool + zoom (Photoshop štýl) ============ */
+let handMode=false, panning=null, moveMode=false;
+function setMove(on){
+  moveMode=on;
+  const b=document.getElementById('moveBtn'); if(b) b.classList.toggle('on', on);
+  $('status').textContent = on ? '✥ Move — ťahaj kdekoľvek a hýbeš výberom (M/Esc vypne)' : '';
+}
+function setHand(on){
+  handMode=on;
+  document.body.classList.toggle('hand', on);
+  $('handBtn').classList.toggle('on', on);
+  for(const fr of Object.values(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let st=doc.getElementById('mib-hand');
+    if(!st){ st=doc.createElement('style'); st.id='mib-hand'; doc.head.appendChild(st); }
+    st.textContent=on?'*{cursor:grab !important}':'';
+  }
+  $('status').textContent = on ? '✋ hand tool — ťahaj plochu kdekoľvek (H alebo Esc vypne)' : '';
+}
+function startPan(sx,sy){
+  const st=$('stage');
+  panning={x:sx, y:sy, l:st.scrollLeft, t:st.scrollTop};
+  document.body.classList.add('panning');
+}
+function movePan(sx,sy){
+  if(!panning) return;
+  const st=$('stage');
+  st.scrollLeft=panning.l-(sx-panning.x);
+  st.scrollTop =panning.t-(sy-panning.y);
+}
+function endPan(){ panning=null; document.body.classList.remove('panning'); }
+
+/* zoom bez reloadu iframov — len preškáluje existujúce artboardy */
+function applyZoom(){
+  const z=parseFloat($('zoom').value);
+  document.querySelectorAll('.board').forEach(b=>{
+    const bp=BPS.find(x=>x.name===b.dataset.bp); if(!bp) return;
+    const holder=b.querySelector('.holder'); if(!holder) return;
+    holder.style.width=bp.w*z+'px'; holder.style.height=bp.h*z+'px';
+    holder.firstElementChild.style.transform=`scale(${z})`;
+  });
+  updateHandles();
+  applyGrid();          /* rulery a labely kompenzujú zoom */
+  renderRefs();         /* ukotvené predlohy sa preškálujú s artboardmi */
+}
+function zoomAt(clientX, clientY, deltaY){
+  const sl=$('zoom');
+  const st=$('stage');
+  const z1=parseFloat(sl.value);
+  let z2=z1*(deltaY<0?1.12:1/1.12);
+  z2=Math.max(parseFloat(sl.min), Math.min(parseFloat(sl.max), z2));
+  if(Math.abs(z2-z1)<0.001) return;
+  const r=st.getBoundingClientRect();
+  const cx=clientX-r.left, cy=clientY-r.top;
+  const ox=st.scrollLeft+cx, oy=st.scrollTop+cy;
+  sl.value=z2; applyZoom();
+  st.scrollLeft=ox*(z2/z1)-cx;
+  st.scrollTop =oy*(z2/z1)-cy;
+}
+
+/* ============ snapping, smart guides, meranie, marquee, duplikácia ============ */
+let snapOn=true, marquee=null;
+function ensureFx(doc){
+  let d=doc.getElementById('mib-smart');
+  if(!d){ d=doc.createElement('div'); d.id='mib-smart';
+    d.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:99998;';
+    doc.body.appendChild(d); }
+  return d;
+}
+function clearFx(doc){ const d=doc.getElementById('mib-smart'); if(d) d.innerHTML=''; }
+function fxLine(doc, axis, pos, from, to){
+  const d=ensureFx(doc), l=doc.createElement('div');
+  l.style.cssText = axis==='v'
+    ? `position:absolute;left:${pos}px;top:${Math.min(from,to)}px;height:${Math.abs(to-from)}px;width:1px;background:#ff3355;`
+    : `position:absolute;top:${pos}px;left:${Math.min(from,to)}px;width:${Math.abs(to-from)}px;height:1px;background:#ff3355;`;
+  d.appendChild(l);
+}
+function fxLabel(doc, x, y, text){
+  const d=ensureFx(doc), z=parseFloat($('zoom').value);
+  const s=doc.createElement('div');
+  s.textContent=text;
+  s.style.cssText=`position:absolute;left:${x}px;top:${y}px;transform:translate(-50%,-110%);background:#ff3355;color:#fff;font:${Math.round(11/z)}px/1.4 Consolas,monospace;padding:.05em .35em;border-radius:.2em;white-space:nowrap;`;
+  d.appendChild(s);
+}
+function collectSnapTargets(doc, exEls){
+  const xs=[], ys=[];
+  const vw=doc.documentElement.clientWidth, vh=doc.documentElement.clientHeight;
+  for(const p of grid.gv) xs.push(p/100*vw);
+  for(const p of grid.gh) ys.push(p/100*vh);
+  if(grid.center){ xs.push(vw/2); ys.push(vh/2); }
+  if(grid.cols) for(const c of doc.querySelectorAll('#mib-grid i')){
+    const r=c.getBoundingClientRect(); if(r.width>2){ xs.push(r.left, r.right); }
+  }
+  const sec=exEls[0] ? exEls[0].closest('section') : null;
+  if(sec){
+    const sr=sec.getBoundingClientRect();
+    xs.push(sr.left, sr.left+sr.width/2, sr.right);
+    ys.push(sr.top, sr.top+sr.height/2, sr.bottom);
+    for(const el of sec.querySelectorAll('*')){
+      if(el.closest('#mib-hbox')||el.closest('#mib-grid')||el.closest('#mib-smart')) continue;
+      if(['STYLE','SCRIPT','I','SPAN','B','STRONG','EM','SMALL'].includes(el.tagName)) continue;
+      if(el.namespaceURI && el.namespaceURI.includes('svg')) continue;
+      if(exEls.some(x=>x===el||x.contains(el)||el.contains(x))) continue;
+      const r=el.getBoundingClientRect();
+      if(r.width<8||r.height<8) continue;
+      xs.push(r.left, r.left+r.width/2, r.right);
+      ys.push(r.top, r.top+r.height/2, r.bottom);
+    }
+  }
+  return {xs, ys};
+}
+function snapDelta(bbox, dx, dy, targets){
+  const T=8/parseFloat($('zoom').value);
+  const mx=[bbox.l+dx, (bbox.l+bbox.r)/2+dx, bbox.r+dx];
+  const my=[bbox.t+dy, (bbox.t+bbox.b)/2+dy, bbox.b+dy];
+  let bx=null, by=null;
+  for(const m of mx) for(const t of targets.xs){ const d=t-m; if(Math.abs(d)<=T && (!bx||Math.abs(d)<Math.abs(bx.d))) bx={d,at:t}; }
+  for(const m of my) for(const t of targets.ys){ const d=t-m; if(Math.abs(d)<=T && (!by||Math.abs(d)<Math.abs(by.d))) by={d,at:t}; }
+  return { dx:dx+(bx?bx.d:0), dy:dy+(by?by.d:0), lx:bx?bx.at:null, ly:by?by.at:null };
+}
+function bboxOf(doc, sels){
+  const rs=sels.map(s=>doc.querySelector(s)).filter(Boolean).map(x=>x.getBoundingClientRect());
+  if(!rs.length) return null;
+  return {l:Math.min(...rs.map(r=>r.left)), t:Math.min(...rs.map(r=>r.top)),
+          r:Math.max(...rs.map(r=>r.right)), b:Math.max(...rs.map(r=>r.bottom))};
+}
+/* Alt+ťahanie: duplikuj výber (klony vzniknú hneď za originálmi) */
+function duplicateSelection(doc){
+  const sels=filterNested(selection, doc);
+  const clones=[];
+  pushHistory();
+  for(const s of sels){
+    const el=doc.querySelector(s); if(!el||!el.parentElement) continue;
+    const parent=el.parentElement;
+    const ps=cssPath(parent, doc);
+    if(ps && !(ps in contentBaseline)) contentBaseline[ps]=parent.innerHTML;
+    const cl=el.cloneNode(true);
+    parent.insertBefore(cl, el.nextSibling);
+    if(ps){ overrides.content=overrides.content||{}; overrides.content[ps]=parent.innerHTML; }
+    const c=cssPath(cl, doc); if(c) clones.push(c);
+  }
+  applyContent(); applyOverrides(); buildLayers();
+  if(clones.length) $('status').textContent='⎘ duplikované ('+clones.length+') — ťahaj';
+  return clones;
+}
+/* marquee select */
+function startMarquee(doc, bp, e){
+  marquee={doc, bp, x:e.clientX, y:e.clientY, x2:e.clientX, y2:e.clientY, add:(e.ctrlKey||e.shiftKey)};
+  const d=ensureFx(doc);
+  const m=doc.createElement('div'); m.id='mib-marq';
+  m.style.cssText='position:fixed;border:1px dashed #00e0ff;background:rgba(0,224,255,.08);z-index:99999;';
+  d.appendChild(m);
+}
+function moveMarquee(e){
+  if(!marquee) return;
+  marquee.x2=e.clientX; marquee.y2=e.clientY;
+  const m=marquee.doc.getElementById('mib-marq'); if(!m) return;
+  m.style.left=Math.min(marquee.x,marquee.x2)+'px';
+  m.style.top =Math.min(marquee.y,marquee.y2)+'px';
+  m.style.width =Math.abs(marquee.x2-marquee.x)+'px';
+  m.style.height=Math.abs(marquee.y2-marquee.y)+'px';
+}
+function endMarquee(){
+  if(!marquee) return;
+  const {doc,bp,add}=marquee;
+  const x1=Math.min(marquee.x,marquee.x2), x2=Math.max(marquee.x,marquee.x2);
+  const y1=Math.min(marquee.y,marquee.y2), y2=Math.max(marquee.y,marquee.y2);
+  clearFx(doc);
+  const w=x2-x1, h=y2-y1;
+  marquee=null;
+  if(w<6||h<6){ $('status').textContent='🔒 pozadie je zamknuté — ťahaním vyberieš rámikom (marquee)'; return; }
+  const found=[];
+  for(const sec of doc.querySelectorAll('section[id]')){
+    for(const el of sec.querySelectorAll('*')){
+      if(el.closest('#mib-hbox')||el.closest('#mib-grid')||el.closest('#mib-smart')) continue;
+      if(['STYLE','SCRIPT'].includes(el.tagName)) continue;
+      if(el.namespaceURI && el.namespaceURI.includes('svg') && el.tagName.toLowerCase()!=='svg') continue;
+      const s=cssPath(el, doc); if(!s) continue;
+      if(locked.has(s)||autoLocked.has(s)||/^#[\w-]+$/.test(s)) continue;
+      const r=el.getBoundingClientRect();
+      if(r.width<6||r.height<6) continue;
+      if(r.left>=x1 && r.right<=x2 && r.top>=y1 && r.bottom<=y2) found.push(s);
+    }
+  }
+  const list=filterNested(found, doc).slice(0,60);
+  pushHistory();   /* výber pred marquee do histórie */
+  selection = add ? [...new Set([...selection, ...list])] : list;
+  setActive(bp);
+  if(list.length) $('status').textContent='⛶ vybraté rámikom: '+selection.length;
+}
+/* Alt+hover: meranie vzdialeností od výberu k prvku pod kurzorom */
+function drawMeasure(doc, e){
+  clearFx(doc);
+  let el=doc.elementFromPoint(e.clientX, e.clientY); if(!el) return;
+  if(el.closest('#mib-grid')||el.closest('#mib-hbox')||el.closest('#mib-smart')) return;
+  if(el.tagName==='IMG' && el.parentElement) el=el.parentElement;
+  const s=cssPath(el, doc); if(!s || selection.includes(s)) return;
+  const A=bboxOf(doc, selection); if(!A) return;
+  const B=el.getBoundingClientRect();
+  const box=doc.createElement('div');
+  box.style.cssText=`position:absolute;left:${B.left}px;top:${B.top}px;width:${B.width}px;height:${B.height}px;border:1px solid #ff3355;`;
+  ensureFx(doc).appendChild(box);
+  const midY=(Math.max(A.t,B.top)+Math.min(A.b,B.bottom))/2;
+  const midX=(Math.max(A.l,B.left)+Math.min(A.r,B.right))/2;
+  if(B.left>=A.r){ fxLine(doc,'h',midY,A.r,B.left); fxLabel(doc,(A.r+B.left)/2,midY,Math.round(B.left-A.r)); }
+  else if(A.l>=B.right){ fxLine(doc,'h',midY,B.right,A.l); fxLabel(doc,(B.right+A.l)/2,midY,Math.round(A.l-B.right)); }
+  if(B.top>=A.b){ fxLine(doc,'v',midX,A.b,B.top); fxLabel(doc,midX,(A.b+B.top)/2,Math.round(B.top-A.b)); }
+  else if(A.t>=B.bottom){ fxLine(doc,'v',midX,B.bottom,A.t); fxLabel(doc,midX,(B.bottom+A.t)/2,Math.round(A.t-B.bottom)); }
+}
+
+/* ============ referenčné obrázky na ploche (ako vo Figme/PS) ============ */
+let refs=[];
+let refsHidden=false;
+try{ refs=JSON.parse(localStorage.getItem('mib-ed-refs')||'[]'); }catch(e){}
+try{ refsHidden=localStorage.getItem('mib-ed-refs-hidden')==='1'; }catch(e){}
+function saveRefs(){
+  localStorage.setItem('mib-ed-refs', JSON.stringify(refs));
+  localStorage.setItem('mib-ed-refs-hidden', refsHidden?'1':'0');
+}
+/* nájdi artboard pod bodom (client súradnice) */
+function boardUnderClient(cx, cy){
+  for(const b of BPS){
+    const fr=frames[b.name]; if(!fr) continue;
+    const ir=fr.getBoundingClientRect();
+    if(cx>=ir.left && cx<=ir.right && cy>=ir.top && cy<=ir.bottom) return {bp:b, fr, ir};
+  }
+  return null;
+}
+/* ukotvi referenciu k artboardu pod jej stredom (ostane s ním pri zoome/scrolle) */
+function anchorRef(rf, el){
+  const r=el.getBoundingClientRect();
+  const hit=boardUnderClient(r.left+r.width/2, r.top+r.height/2);
+  const st=$('stage'), stR=st.getBoundingClientRect();
+  if(hit){
+    const z=parseFloat($('zoom').value);
+    rf.anchor=hit.bp.name;
+    rf.fx=(r.left-hit.ir.left)/z;
+    rf.fy=(r.top -hit.ir.top )/z;
+    rf.fw=r.width/z;
+  }else{
+    rf.anchor=null;
+    rf.x=Math.round(r.left-stR.left+st.scrollLeft);
+    rf.y=Math.round(r.top -stR.top +st.scrollTop);
+    rf.w=Math.round(r.width);
+  }
+}
+function renderRefs(){
+  document.querySelectorAll('.refimg').forEach(n=>n.remove());
+  const st=$('stage');
+  const stR=st.getBoundingClientRect();
+  const zz=parseFloat($('zoom').value);
+  $('refsBtn').classList.toggle('on', refsHidden);
+  if(refsHidden) return;                       /* 👁 globálne skryté predlohy */
+  refs.forEach((rf,i)=>{
+    if(rf.hide) return;                        /* skrytá jednotlivá predloha */
+    const d=document.createElement('div');
+    d.className='refimg'+(rf.lock?' locked':'');
+    /* ukotvená = pozícia z frame súradníc artboardu; voľná = stage px */
+    let L=rf.x, T=rf.y, Wd=rf.w;
+    if(rf.anchor && frames[rf.anchor]){
+      const ir=frames[rf.anchor].getBoundingClientRect();
+      L=ir.left-stR.left+st.scrollLeft + rf.fx*zz;
+      T=ir.top -stR.top +st.scrollTop  + rf.fy*zz;
+      Wd=rf.fw*zz;
+    }
+    d.style.left=Math.round(L)+'px'; d.style.top=Math.round(T)+'px'; d.style.width=Math.round(Wd)+'px';
+    d.style.opacity=(rf.op!==undefined?rf.op:1);
+    d.innerHTML=`<img src="${rf.src}" draggable="false">`+
+      `<span class="rx" title="Odstrániť referenciu">✕</span><span class="rz" title="Zmena veľkosti"></span>`+
+      `<div class="rt"><input type="range" class="rop" min="5" max="100" value="${Math.round((rf.op!==undefined?rf.op:1)*100)}" title="Priehľadnosť"><span class="rlk" title="Zamknúť (bude priehľadná pre kliky — editujesh artboard pod ňou)">🔒</span><span class="rin" title="Vložiť do slidu pod ňou ako dizajnovú vrstvu">⇢</span></div>`+
+      `<span class="rlb" title="Odomknúť referenciu">🔒</span>`;
+    /* opacity + zámok */
+    const rop=d.querySelector('.rop');
+    let ropB=false;
+    rop.addEventListener('pointerdown', e=>e.stopPropagation());
+    rop.addEventListener('input', ()=>{ if(!ropB){ pushHistory(); ropB=true; } rf.op=+rop.value/100; d.style.opacity=rf.op; });
+    rop.addEventListener('change', ()=>{ ropB=false; saveRefs(); });
+    d.querySelector('.rlk').addEventListener('click', e=>{ e.stopPropagation(); pushHistory(); rf.lock=true; saveRefs(); renderRefs(); });
+    /* ⇢ premeň referenciu na dizajnovú vrstvu v artboarde pod jej stredom */
+    d.querySelector('.rin').addEventListener('click', e=>{
+      e.stopPropagation();
+      const dr=d.getBoundingClientRect();
+      const cx=dr.left+dr.width/2, cy=dr.top+dr.height/2;
+      const z=parseFloat($('zoom').value);
+      for(const b of BPS){
+        const fr=frames[b.name]; if(!fr) continue;
+        const ir=fr.getBoundingClientRect();
+        if(cx>=ir.left && cx<=ir.right && cy>=ir.top && cy<=ir.bottom){
+          const fx=(cx-ir.left)/z, fy=(cy-ir.top)/z;
+          const s=insertImgToSlide(fr.contentDocument, b, rf.src, fx, fy, rf.w/z);
+          if(s){ refs.splice(i,1); saveRefs(); renderRefs(); }
+          return;
+        }
+      }
+      $('status').textContent='⇢ potiahni referenciu nad artboard a skús znova';
+    });
+    d.querySelector('.rlb').addEventListener('click', e=>{ e.stopPropagation(); pushHistory(); rf.lock=false; saveRefs(); renderRefs(); });
+    /* presun — po pustení sa referencia znovu ukotví k artboardu pod ňou */
+    d.addEventListener('pointerdown', e=>{
+      if(rf.lock) return;
+      if(e.target.classList.contains('rx')||e.target.classList.contains('rz')||e.target.closest('.rt')) return;
+      e.preventDefault(); e.stopPropagation();
+      pushHistory();
+      const sx=e.clientX, sy=e.clientY, ox=parseFloat(d.style.left), oy=parseFloat(d.style.top);
+      const mv=m=>{ d.style.left=Math.round(ox+m.clientX-sx)+'px'; d.style.top=Math.round(oy+m.clientY-sy)+'px'; };
+      const up=()=>{
+        window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up);
+        anchorRef(rf, d); saveRefs(); renderRefs();
+      };
+      window.addEventListener('pointermove',mv);
+      window.addEventListener('pointerup',up);
+    });
+    /* resize */
+    d.querySelector('.rz').addEventListener('pointerdown', e=>{
+      e.preventDefault(); e.stopPropagation();
+      pushHistory();
+      const sx=e.clientX, ow=parseFloat(d.style.width);
+      const mv=m=>{ d.style.width=Math.max(60, Math.round(ow+m.clientX-sx))+'px'; };
+      const up=()=>{
+        window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up);
+        anchorRef(rf, d); saveRefs(); renderRefs();
+      };
+      window.addEventListener('pointermove',mv);
+      window.addEventListener('pointerup',up);
+    });
+    /* zmazanie */
+    d.querySelector('.rx').addEventListener('click', e=>{
+      e.stopPropagation();
+      pushHistory();
+      refs.splice(i,1); saveRefs(); renderRefs();
+      $('status').textContent='referencia zmazaná — Ctrl+Z vráti';
+    });
+    st.appendChild(d);
+  });
+}
+async function addRefFiles(files, dropX, dropY){
+  pushHistory();
+  let off=0;
+  for(const f of files){
+    if(!/^image\/(png|jpe?g)/.test(f.type)) continue;
+    const ext=f.type.includes('png')?'png':'jpg';
+    const name=`ref-${Date.now().toString(36)}${off}.${ext}`;
+    try{
+      const r=await fetch('/upload?name='+name, {method:'POST', body:f});
+      if(!r.ok){ $('status').textContent='⚠ upload referencie zlyhal'; continue; }
+      refs.push({src:'/assets/'+name, x:dropX+off, y:dropY+off, w:320});
+      off+=24;
+    }catch(e){ $('status').textContent='⚠ '+e.message; }
+  }
+  saveRefs(); renderRefs(); autoAnchorRefs();
+  $('status').textContent='🖼 referencia pridaná ('+refs.length+' na ploche)';
+}
+
+/* ============ grid + guidelines ============ */
+let grid={ cols:false, colsN:12, rows:false, rowsN:4, gutter:20, marginMode:'site', marginPx:24, maxW:null,
+           base:false, baseN:8, square:false, squareN:64, center:false, gv:[], gh:[], strength:2.5 };
+try{ grid=Object.assign(grid, JSON.parse(localStorage.getItem('mib-ed-grid')||'{}')); }catch(e){}
+if(grid.rulers===undefined) grid.rulers=true;
+
+/* hotové presety — hodnoty podľa oficiálnych špecifikácií */
+const GRID_PRESETS={
+  'bootstrap' :{ cols:true, colsN:12, gutter:24, marginMode:'px', marginPx:12, maxW:1320, rows:false },
+  'material-d':{ cols:true, colsN:12, gutter:24, marginMode:'px', marginPx:24, maxW:null, rows:false, base:true, baseN:8 },
+  'material-t':{ cols:true, colsN:8,  gutter:24, marginMode:'px', marginPx:24, maxW:null, rows:false, base:true, baseN:8 },
+  'material-m':{ cols:true, colsN:4,  gutter:16, marginMode:'px', marginPx:16, maxW:null, rows:false, base:true, baseN:8 },
+  'g960-12'   :{ cols:true, colsN:12, gutter:20, marginMode:'px', marginPx:10, maxW:960,  rows:false },
+  'g960-16'   :{ cols:true, colsN:16, gutter:20, marginMode:'px', marginPx:10, maxW:960,  rows:false },
+  'swiss'     :{ cols:true, colsN:6,  gutter:24, marginMode:'site', maxW:null, rows:false },
+  'modular'   :{ cols:true, colsN:6,  gutter:24, marginMode:'site', maxW:null, rows:true, rowsN:4 },
+  'editorial' :{ cols:false, rows:false, gv:[66.7], gh:[] },
+  'thirds'    :{ cols:false, rows:false, gv:[33.33,66.67], gh:[33.33,66.67] },
+  'golden'    :{ cols:false, rows:false, gv:[38.2,61.8],  gh:[38.2,61.8]  },
+  '8pt'       :{ cols:false, rows:false, base:true, baseN:8 },
+};
+function saveGrid(){ localStorage.setItem('mib-ed-grid', JSON.stringify(grid)); }
+function gridActive(){ return grid.cols||grid.rows||grid.base||grid.square||grid.center||grid.rulers||grid.gv.length||grid.gh.length; }
+function applyGrid(){
+  $('gridBtn').classList.toggle('on', !!gridActive());
+  if($('gPrev')) renderGridPreview();
+  for(const [bpName,fr] of Object.entries(frames)){
+    const doc=fr.contentDocument; if(!doc||!doc.body) continue;
+    let ov=doc.getElementById('mib-grid');
+    if(!gridActive()){ if(ov) ov.remove(); continue; }
+    if(!ov){
+      ov=doc.createElement('div'); ov.id='mib-grid';
+      ov.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:99997;';
+      doc.body.appendChild(ov);
+    }
+    /* pozadia: baseline / štvorcová mriežka — biele + mix-blend difference,
+       aby boli viditeľné na červenej aj krémovej */
+    const k=grid.strength||2.5;
+    const A=x=>Math.min(1, x*k).toFixed(2);
+    ov.innerHTML='';
+    ov.style.backgroundImage='';
+    const bgs=[];
+    if(grid.base) bgs.push(`repeating-linear-gradient(to bottom, rgba(255,255,255,${A(.3)}) 0 1px, transparent 1px ${grid.baseN}px)`);
+    if(grid.square){
+      bgs.push(`repeating-linear-gradient(to bottom, rgba(255,255,255,${A(.2)}) 0 1px, transparent 1px ${grid.squareN}px)`);
+      bgs.push(`repeating-linear-gradient(to right, rgba(255,255,255,${A(.2)}) 0 1px, transparent 1px ${grid.squareN}px)`);
+    }
+    if(bgs.length){
+      const bgl=doc.createElement('div');
+      bgl.style.cssText='position:absolute;inset:0;pointer-events:none;mix-blend-mode:difference;background-image:'+bgs.join(',')+';';
+      ov.appendChild(bgl);
+    }
+    /* okraje: podľa webu / v px / žiadne */
+    let padL='0px', padR='0px';
+    if(grid.marginMode==='site'){
+      const sec=doc.querySelector('section');
+      const cs=sec?fr.contentWindow.getComputedStyle(sec):null;
+      padL=cs?cs.paddingLeft:'40px'; padR=cs?cs.paddingRight:'60px';
+    } else if(grid.marginMode==='px'){ padL=padR=(grid.marginPx||0)+'px'; }
+    const contStyle = grid.maxW
+      ? `left:50%;transform:translateX(-50%);width:min(100%, ${grid.maxW}px);`
+      : `left:0;right:0;`;
+    /* stĺpcový grid */
+    if(grid.cols){
+      const wrap=doc.createElement('div');
+      wrap.style.cssText=`position:absolute;top:0;bottom:0;${contStyle}display:flex;gap:${grid.gutter}px;padding:0 ${padR} 0 ${padL};box-sizing:border-box;mix-blend-mode:difference;`;
+      for(let i=0;i<grid.colsN;i++){
+        const c=doc.createElement('i');
+        c.style.cssText=`flex:1;background:rgba(255,255,255,${A(.1)});border-left:1px solid rgba(255,255,255,${A(.45)});border-right:1px solid rgba(255,255,255,${A(.45)});`;
+        wrap.appendChild(c);
+      }
+      ov.appendChild(wrap);
+      if(grid.maxW){ /* hranice kontajnera */
+        const edge=doc.createElement('div');
+        edge.style.cssText=`position:absolute;top:0;bottom:0;${contStyle}border-left:1px solid rgba(255,255,255,${A(.7)});border-right:1px solid rgba(255,255,255,${A(.7)});mix-blend-mode:difference;`;
+        ov.appendChild(edge);
+      }
+    }
+    /* riadky (modulárny grid) */
+    if(grid.rows){
+      const wrap=doc.createElement('div');
+      wrap.style.cssText=`position:absolute;top:0;bottom:0;${contStyle}display:flex;flex-direction:column;gap:${grid.gutter}px;padding:0 ${padR} 0 ${padL};box-sizing:border-box;mix-blend-mode:difference;`;
+      for(let i=0;i<grid.rowsN;i++){
+        const c=doc.createElement('i');
+        c.style.cssText=`flex:1;background:rgba(255,255,255,${A(.07)});border-top:1px dashed rgba(255,255,255,${A(.4)});border-bottom:1px dashed rgba(255,255,255,${A(.4)});`;
+        wrap.appendChild(c);
+      }
+      ov.appendChild(wrap);
+    }
+    /* stredové osi */
+    if(grid.center){
+      for(const [pos,dim] of [['left:50%;top:0;bottom:0;width:1px',''],['top:50%;left:0;right:0;height:1px','']]){
+        const l=doc.createElement('div');
+        l.style.cssText=`position:absolute;${pos};background:rgba(255,255,255,${A(.55)});mix-blend-mode:difference;`;
+        ov.appendChild(l);
+      }
+    }
+    /* guides — ťahateľné, spoločné pre všetky artboardy (v %) */
+    grid.gv.forEach((pct,i)=>ov.appendChild(makeGuide(doc, fr, 'v', pct, i)));
+    grid.gh.forEach((pct,i)=>ov.appendChild(makeGuide(doc, fr, 'h', pct, i)));
+  }
+  renderRulers();
+}
+
+/* Pravítka po vonkajšom obvode artboardu.
+   Zámerne v rodičovskom dokumente, nie v iframe: vnútri prekrývali horný
+   pás a ľavý okraj stránky, takže sa navigácia ani hero nedali poriadne
+   posúdiť. Hrúbka je konštantná v pixeloch obrazovky, dieliky sa počítajú
+   v súradniciach stránky a násobia zoomom. */
+const RUL_TH = 18;
+function renderRulers(){
+  const z = parseFloat($('zoom').value);
+  document.querySelectorAll('.board').forEach(b=>{
+    b.querySelectorAll('.ruler').forEach(r=>r.remove());
+    const holder = b.querySelector('.holder'); if(!holder) return;
+    const bp = BPS.find(x=>x.name===b.dataset.bp); if(!bp) return;
+
+    if(!grid.rulers){ holder.style.margin=''; return; }
+    /* offsetTop musí byť voči boardu, tak ho zarodičujeme skôr, než meriame */
+    b.style.position = 'relative';
+    holder.style.margin = `${RUL_TH}px 0 0 ${RUL_TH}px`;
+
+    /* krok dielikov: pri odzoomovaní by sa popisky po 100 px zlievali */
+    const krok = z >= 0.7 ? 100 : z >= 0.35 ? 200 : 500;
+
+    const mk = (horiz)=>{
+      const r = document.createElement('div');
+      r.className = 'ruler';
+      const dlzka = (horiz ? bp.w : bp.h) * z;
+      r.style.cssText = horiz
+        ? `position:absolute;left:${RUL_TH}px;top:${holder.offsetTop - RUL_TH}px;width:${dlzka}px;height:${RUL_TH}px;`
+        : `position:absolute;left:0;top:${holder.offsetTop}px;width:${RUL_TH}px;height:${dlzka}px;`;
+      r.style.cssText += `background:#141418;border:1px solid var(--line);box-sizing:border-box;overflow:hidden;cursor:${horiz?'ns':'ew'}-resize;`;
+
+      for(let px=0; px<(horiz?bp.w:bp.h); px+=krok){
+        const p = px*z;
+        const tick = document.createElement('i');
+        tick.style.cssText = horiz
+          ? `position:absolute;left:${p}px;top:9px;bottom:0;width:1px;background:#4a5058;`
+          : `position:absolute;top:${p}px;left:9px;right:0;height:1px;background:#4a5058;`;
+        r.appendChild(tick);
+        if(px===0) continue;
+        const lb = document.createElement('span');
+        lb.textContent = px;
+        lb.style.cssText = horiz
+          ? `position:absolute;left:${p+3}px;top:1px;`
+          : `position:absolute;top:${p+2}px;left:2px;`;
+        lb.style.cssText += 'color:#7d848e;font:9px Consolas,monospace;line-height:1;pointer-events:none;';
+        r.appendChild(lb);
+      }
+
+      /* ťahaním z pravítka vzniká guide — guides žijú v % vnútri iframu,
+         tak pozíciu prepočítame cez rect holdera */
+      r.addEventListener('pointerdown', ev=>{
+        ev.preventDefault();
+        pushHistory();
+        const rect = holder.getBoundingClientRect();
+        const pct = m => Math.max(0, Math.min(100, +(((horiz
+          ? (m.clientY-rect.top)/rect.height
+          : (m.clientX-rect.left)/rect.width))*100).toFixed(2)));
+        const arr = horiz ? grid.gh : grid.gv;
+        arr.push(pct(ev));
+        const idx = arr.length-1;
+        const mv = m => { arr[idx]=pct(m); applyGrid(); };
+        const up = () => {
+          document.removeEventListener('pointermove',mv,true);
+          document.removeEventListener('pointerup',up,true);
+          saveGrid(); applyGrid();
+        };
+        document.addEventListener('pointermove',mv,true);
+        document.addEventListener('pointerup',up,true);
+        saveGrid(); applyGrid();
+      });
+      return r;
+    };
+
+    b.appendChild(mk(true));
+    b.appendChild(mk(false));
+  });
+}
+function makeGuide(doc, fr, axis, pct, idx){
+  const g=doc.createElement('div');
+  const line = axis==='v'
+    ? `left:${pct}%;top:0;bottom:0;width:1px;border-left:1px dashed rgba(0,224,255,.9);cursor:ew-resize;`
+    : `top:${pct}%;left:0;right:0;height:1px;border-top:1px dashed rgba(0,224,255,.9);cursor:ns-resize;`;
+  g.style.cssText=`position:absolute;${line}pointer-events:auto;`;
+  /* širšia neviditeľná chytacia zóna */
+  g.style[axis==='v'?'paddingLeft':'paddingTop']='0';
+  g.style[axis==='v'?'marginLeft':'marginTop']='-4px';
+  g.style[axis==='v'?'width':'height']='9px';
+  g.addEventListener('pointerdown', e=>{
+    e.preventDefault(); e.stopPropagation();
+    pushHistory();   /* pozícia guide pred ťahaním */
+    const move=ev=>{
+      const p = axis==='v'
+        ? ev.clientX/doc.documentElement.clientWidth*100
+        : ev.clientY/doc.documentElement.clientHeight*100;
+      (axis==='v'?grid.gv:grid.gh)[idx]=Math.max(0,Math.min(100,+p.toFixed(2)));
+      g.style[axis==='v'?'left':'top']=(axis==='v'?grid.gv:grid.gh)[idx]+'%';
+    };
+    const up=()=>{ doc.removeEventListener('pointermove',move,true); doc.removeEventListener('pointerup',up,true); saveGrid(); applyGrid(); };
+    doc.addEventListener('pointermove',move,true);
+    doc.addEventListener('pointerup',up,true);
+  }, true);
+  g.addEventListener('dblclick', e=>{
+    e.preventDefault(); e.stopPropagation();
+    pushHistory();
+    (axis==='v'?grid.gv:grid.gh).splice(idx,1);
+    saveGrid(); applyGrid();
+  }, true);
+  g.title='ťahaj = posun · dvojklik = zmazať';
+  return g;
+}
+
+/* ============ panel ============ */
+/* ============ zásahy do DOM: delete, shapes, výplň ============ */
+function persistParents(doc, parents){
+  overrides.content=overrides.content||{};
+  for(const p of parents){
+    const ps=cssPath(p, doc); if(!ps) continue;
+    overrides.content[ps]=p.innerHTML;
+  }
+}
+function baselineParents(doc, parents){
+  for(const p of parents){
+    const ps=cssPath(p, doc);
+    if(ps && !(ps in contentBaseline)) contentBaseline[ps]=p.innerHTML;
+  }
+}
+function deleteSelection(doc){
+  const sels=filterNested(selection, doc).filter(s=>!/^#[\w-]+$/.test(s) && !autoLocked.has(s));
+  const els=sels.map(s=>doc.querySelector(s)).filter(Boolean);
+  if(!els.length){ $('status').textContent='niet čo zmazať (pozadia sa mazať nedajú)'; return; }
+  const parents=new Set(els.map(el=>el.parentElement).filter(Boolean));
+  baselineParents(doc, parents);
+  pushHistory();
+  for(const el of els) el.remove();
+  persistParents(doc, parents);
+  selection=[];
+  applyContent(); applyOverrides(); applyHighlight(); refreshPanel(); buildLayers();
+  $('status').textContent='🗑 zmazané ('+els.length+') — Ctrl+Z vráti';
+}
+function insertShape(doc, bp, kind, x, y, onlyThisBp){
+  const stack=doc.elementsFromPoint(x, y);
+  const sec=stack.map(el=>el.closest && el.closest('section[id]')).find(Boolean)
+    || doc.querySelector($('slideSel').value||'#s01') || doc.querySelector('section[id]');
+  if(!sec){ $('status').textContent='nenašiel som slide na vloženie'; return; }
+  const sr=sec.getBoundingClientRect();
+  const el=doc.createElement('div');
+  el.className='mib-shape' + (onlyThisBp ? ' bp-only-'+bp.name : '');
+  let st=`position:absolute;left:${Math.round(x-sr.left)}px;top:${Math.round(y-sr.top)}px;z-index:15;`;
+  if(kind==='rect')   st+='width:160px;height:160px;background:#111111;';
+  if(kind==='circle'){ st+='width:150px;height:150px;border-radius:50%;background:#FFFFFF;'; }
+  if(kind==='grad-dark'){ el.dataset.grad='to top'; st+='width:340px;height:240px;pointer-events:none;background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0) 70%);'; }
+  if(kind==='grad-light'){ el.dataset.grad='to top'; st+='width:340px;height:240px;pointer-events:none;background:linear-gradient(to top, rgba(255,255,255,.85), rgba(255,255,255,0) 70%);'; }
+  el.style.cssText=st;
+  baselineParents(doc, [sec]);
+  pushHistory();
+  sec.appendChild(el);
+  persistParents(doc, [sec]);
+  applyContent(); applyOverrides(); buildLayers();
+  const s=cssPath(el, doc);
+  if(s){ selection=[s]; setActive(bp); }
+  $('status').textContent='＋ vložené ('+kind+')'+(onlyThisBp?' — LEN pre '+bp.name:'')+' — ťahaj, meň veľkosť, farbu v paneli';
+}
+let fillBurst=false;
+function applyFill(color, commit){
+  if(!selection.length || !activeBp) return;
+  const doc=frames[activeBp.name].contentDocument;
+  const parents=new Set(selection.map(s=>{const el=doc.querySelector(s); return el&&el.parentElement;}).filter(Boolean));
+  if(!fillBurst){ baselineParents(doc, parents); pushHistory(); fillBurst=true; }  /* baseline PRED prvou zmenou */
+  for(const s of selection){
+    if(/^#[\w-]+$/.test(s)) continue;
+    const el=doc.querySelector(s); if(!el) continue;
+    if(el.dataset && el.dataset.grad) el.style.background=`linear-gradient(${el.dataset.grad}, ${color}D9, ${color}00 70%)`;
+    else el.style.background=color;
+  }
+  if(commit){
+    fillBurst=false;
+    persistParents(doc, parents);
+    applyContent(); applyOverrides(); refreshPanel();
+    $('status').textContent='🎨 výplň '+color;
+  }
+}
+function clearFill(){
+  if(!selection.length || !activeBp) return;
+  const doc=frames[activeBp.name].contentDocument;
+  pushHistory();
+  const parents=new Set();
+  for(const s of selection){
+    const el=doc.querySelector(s); if(!el) continue;
+    el.style.background='';
+    if(el.parentElement) parents.add(el.parentElement);
+  }
+  baselineParents(doc, parents); persistParents(doc, parents);
+  applyContent(); applyOverrides(); refreshPanel();
+}
+
+/* obrázok ako skutočná vrstva v slide (drop na artboard / ⇢ z referencie) */
+function insertImgToSlide(doc, bp, src, x, y, wPx){
+  const stack=doc.elementsFromPoint(x, y);
+  const sec=stack.map(el=>el.closest && el.closest('section[id]')).find(Boolean)
+    || doc.querySelector($('slideSel').value||'#s01') || doc.querySelector('section[id]');
+  if(!sec){ $('status').textContent='nenašiel som slide'; return null; }
+  const sr=sec.getBoundingClientRect();
+  baselineParents(doc, [sec]);
+  pushHistory();
+  const img=doc.createElement('img');
+  img.src=src; img.className='mib-img';
+  img.style.cssText=`position:absolute;left:${Math.round(x-sr.left)}px;top:${Math.round(y-sr.top)}px;width:${Math.round(wPx||320)}px;height:auto;z-index:14;`;
+  sec.appendChild(img);
+  persistParents(doc, [sec]);
+  applyContent(); applyOverrides(); buildLayers();
+  const s=cssPath(img, doc);
+  if(s){ selection=[s]; setActive(bp); }
+  $('status').textContent='🖼 vložené do slidu — plnohodnotná vrstva (opacita, zámok, resize…)';
+  return s;
+}
+async function uploadImageFile(f){
+  const ext=f.type.includes('png')?'png':'jpg';
+  const name=`img-${Date.now().toString(36)}${Math.floor(Math.random()*99)}.${ext}`;
+  const r=await fetch('/upload?name='+name, {method:'POST', body:f});
+  return r.ok ? 'assets/'+name : null;
+}
+
+/* ============ skupiny (virtuálne — bez zásahu do DOM) ============ */
+function groupOf(s){
+  const gs=overrides.groups||{};
+  for(const [id,arr] of Object.entries(gs)) if(arr.includes(s)) return id;
+  return null;
+}
+function doGroup(){
+  if(selection.length<2){ $('status').textContent='vyber aspoň 2 prvky (Ctrl+klik)'; return; }
+  pushHistory();
+  overrides.groups=overrides.groups||{};
+  for(const s of selection){                       /* člen môže byť len v jednej skupine */
+    const g=groupOf(s);
+    if(g){ overrides.groups[g]=overrides.groups[g].filter(x=>!selection.includes(x));
+           if(overrides.groups[g].length<2) delete overrides.groups[g]; }
+  }
+  const id='g'+Date.now().toString(36);
+  overrides.groups[id]=[...selection];
+  applyOverrides(); refreshPanel();
+  $('status').textContent=`🔗 skupina vytvorená (${selection.length} prvkov)`;
+}
+function doUngroup(){
+  const ids=new Set(selection.map(groupOf).filter(Boolean));
+  if(!ids.size){ $('status').textContent='výber nie je v žiadnej skupine'; return; }
+  pushHistory();
+  for(const id of ids) delete overrides.groups[id];
+  applyOverrides(); refreshPanel();
+  $('status').textContent='⛓ skupina zrušená';
+}
+/* pri spoločnom posune vynechaj potomkov iných vybraných prvkov —
+   inak sa posúvajú dvojnásobne a layout sa rozbíja */
+function filterNested(sels, doc){
+  const els=sels.map(s=>({s, el:doc.querySelector(s)})).filter(x=>x.el);
+  return els.filter(x=>!els.some(y=>y!==x && y.el.contains(x.el))).map(x=>x.s);
+}
+
+/* prekliknutie výberu po strome */
+function navSelect(kind){
+  if(selection.length!==1 || !activeBp){ $('status').textContent='vyber najprv jeden prvok'; return; }
+  const doc=frames[activeBp.name].contentDocument;
+  const el=doc.querySelector(selection[0]); if(!el) return;
+  const nxt = kind==='parent' ? el.parentElement
+           : kind==='child'  ? el.firstElementChild
+           : kind==='next'   ? el.nextElementSibling
+           : el.previousElementSibling;
+  if(!nxt){ $('status').textContent='tam už nič nie je'; return; }
+  const s=cssPath(nxt, doc);
+  if(!s){ $('status').textContent='mimo slidu'; return; }
+  selection=[s]; setActive(activeBp);
+}
+
+/* kopírovanie override hodnôt vrstvy medzi breakpointmi */
+let bpClipboard=null;
+function copyOv(){
+  if(!selection.length || !activeBp){ $('status').textContent='najprv niečo vyber'; return; }
+  bpClipboard={ from:activeBp.name, data:{} };
+  for(const s of selection) bpClipboard.data[s]={...getOv(activeBp.name, s)};
+  $('status').textContent=`⎘ skopírované z ${activeBp.name} (${selection.length})`;
+}
+function pasteOv(){
+  if(!bpClipboard){ $('status').textContent='schránka je prázdna (⎘ najprv kopíruj)'; return; }
+  if(!activeBp){ $('status').textContent='klikni najprv do cieľového artboardu'; return; }
+  pushHistory();
+  for(const [s,v] of Object.entries(bpClipboard.data)){
+    overrides[activeBp.name]=overrides[activeBp.name]||{};
+    overrides[activeBp.name][s]={...v};
+  }
+  applyOverrides(); refreshPanel();
+  $('status').textContent=`⎙ prilepené ${bpClipboard.from} → ${activeBp.name} (${Object.keys(bpClipboard.data).length})`;
+}
+
+/* výška slidu per breakpoint */
+function populateSlideHbp(){
+  const sel=$('slideHbp'); const cur=sel.value;
+  sel.innerHTML='';
+  for(const bp of BPS.filter(b=>b.on)){
+    const o=document.createElement('option'); o.value=bp.name; o.textContent=bp.name;
+    sel.appendChild(o);
+  }
+  if(activeBp && BPS.find(b=>b.name===activeBp.name && b.on)) sel.value=activeBp.name;
+  else if(cur && [...sel.options].some(o=>o.value===cur)) sel.value=cur;
+  slideHSync();
+}
+function slideHSync(){
+  const bp=$('slideHbp').value, sl=$('slideSel').value||'#s01';
+  $('slideHval').value=(overrides.slides&&overrides.slides[bp]&&overrides.slides[bp][sl])||'';
+}
+function applySlideH(){
+  const bp=$('slideHbp').value;
+  const sl=$('slideSel').value||'#s01';
+  if(!bp){ $('status').textContent='zapni aspoň jeden breakpoint'; return; }
+  let v=$('slideHval').value.trim();
+  pushHistory();
+  if(!v){
+    if(overrides.slides&&overrides.slides[bp]) delete overrides.slides[bp][sl];
+    $('status').textContent=`výška ${sl} @ ${bp}: default`;
+  } else {
+    if(/^\d+$/.test(v)) v+='px';
+    if(!/^(auto|\d+(px|vh|dvh|%))$/.test(v)){ $('status').textContent='formát: 100vh / 760px / auto'; return; }
+    overrides.slides=overrides.slides||{}; overrides.slides[bp]=overrides.slides[bp]||{};
+    overrides.slides[bp][sl]=v;
+    $('status').textContent=`výška ${sl} @ ${bp}: ${v}`;
+  }
+  applyOverrides();
+}
+
+function deselectAll(){
+  pushHistory();   /* zrušenie výberu je krok — Ctrl+Z označenie vráti */
+  selection=[]; activeBp=null;
+  document.querySelectorAll('.board').forEach(b=>b.classList.remove('active'));
+  $('bpName').textContent='';
+  applyHighlight(); refreshPanel(); markLayers(); hidePicker(); hideUnlockTip();
+}
+function setActive(bp){
+  activeBp=bp;
+  document.querySelectorAll('.board').forEach(b=>b.classList.toggle('active', b.dataset.bp===bp.name));
+  $('bpName').textContent='· '+bp.name;
+  if([...$('slideHbp').options].some(o=>o.value===bp.name)){ $('slideHbp').value=bp.name; slideHSync(); }
+  applyHighlight(); refreshPanel(); markLayers();
+}
+function refreshPanel(){
+  if(!selection.length){ $('selInfo').textContent='klikni na element… (Ctrl/Shift+klik = viac naraz)'; $('vals').textContent=''; return; }
+  $('selInfo').textContent = selection.length===1 ? selection[0] : `${selection.length} elementov:\n`+selection.slice(0,3).join('\n')+(selection.length>3?'\n…':'');
+  if(!activeBp) return;
+  const lines=[];
+  for(const s of selection.slice(0,4)){
+    const o=getOv(activeBp.name,s);
+    lines.push(`${s.split('>').pop().trim()} → ${o.tx||0},${o.ty||0}px${o.fs?' fs:'+o.fs:''}${o.w?' w:'+o.w:''}${o.h?' h:'+o.h:''}${o.z!==undefined?' z:'+o.z:''}${o.op!==undefined?' op:'+o.op+'%':''}`);
+  }
+  $('vals').textContent=lines.join('\n');
+  /* číselné polia */
+  if(activeBp && selection.length){
+    const fr2=frames[activeBp.name];
+    const o=getOv(activeBp.name, selection[0]);
+    const el=fr2 && fr2.contentDocument.querySelector(selection[0]);
+    const cs=el ? fr2.contentWindow.getComputedStyle(el) : null;
+    $('nX').value=o.tx||0; $('nY').value=o.ty||0;
+    $('nW').value=o.w || (cs?Math.round(parseFloat(cs.width)):'');
+    $('nH').value=o.h || (cs?Math.round(parseFloat(cs.height)):'');
+    $('nF').value=o.fs|| (cs?Math.round(parseFloat(cs.fontSize)):'');
+    $('nRole').value=o.fs ? '' : (o.fsRole||'');
+    const opv = o.op!==undefined ? o.op : (cs ? Math.round(parseFloat(cs.opacity)*100) : 100);
+    $('nOp').value=opv; $('nOpVal').textContent=opv+'%';
+
+    /* výrez sa ponúka len tam, kde dáva zmysel */
+    const jeMedium = el && (el.tagName==='IMG'||el.tagName==='VIDEO');
+    $('mediaBox').style.display = jeMedium ? '' : 'none';
+    if(jeMedium){
+      /* bez override čítame skutočný stav zo stránky, nech polia nie sú
+         prázdne — inak to vyzerá, že sa výrez nedá nastaviť */
+      const p=(cs?cs.objectPosition:'50% 50%').split(' ');
+      const pct=(v,rozmer)=>{
+        if(!v) return 50;
+        if(v.endsWith('%')) return Math.round(parseFloat(v));
+        if(v==='left'||v==='top') return 0;
+        if(v==='right'||v==='bottom') return 100;
+        if(v==='center') return 50;
+        const px=parseFloat(v);
+        return Number.isFinite(px)&&rozmer ? Math.round(px/rozmer*100) : 50;
+      };
+      $('mFit').value = o.ofit || (cs?cs.objectFit:'cover');
+      $('mX').value = o.ofx!==undefined ? o.ofx : pct(p[0], cs&&parseFloat(cs.width));
+      $('mY').value = o.ofy!==undefined ? o.ofy : pct(p[1]??p[0], cs&&parseFloat(cs.height));
+      $('mZ').value = o.ofz || 100;
+      $('mVolne').checked = !!o.volne;
+      /* pri voľnej vrstve je fit vždy contain — prepínač by klamal */
+      $('mFit').disabled = !!o.volne;
+    }
+  } else {
+    for(const id of ['nX','nY','nW','nH','nF']) $(id).value='';
+    $('nRole').value='';
+    $('nOp').value=100; $('nOpVal').textContent='—';
+  }
+  renderInspector();
+}
+function wireNum(id, prop){
+  $(id).addEventListener('change', ()=>{
+    if(!selection.length || !activeBp) return;
+    pushHistory();
+    const v=parseFloat($(id).value);
+    const doc=frames[activeBp.name].contentDocument;
+    const targets=(prop==='tx'||prop==='ty') ? filterNested(selection, doc) : selection;
+    for(const s of targets){
+      if(/^#[\w-]+$/.test(s)) continue;
+      const o=getOv(activeBp.name, s);
+      if(isNaN(v)) delete o[prop]; else o[prop]=Math.round(v);
+    }
+    applyOverrides(); refreshPanel();
+  });
+  $(id).addEventListener('keydown', e=>e.stopPropagation());
+}
+wireNum('nX','tx'); wireNum('nY','ty'); wireNum('nW','w'); wireNum('nH','h'); wireNum('nF','fs');
+$('nRole').addEventListener('change', ()=>{
+  if(!selection.length || !activeBp) return;
+  pushHistory();
+  const v=$('nRole').value;
+  for(const s of selection){
+    if(/^#[\w-]+$/.test(s)) continue;
+    const o=getOv(activeBp.name, s);
+    if(v){ o.fsRole=v; delete o.fs; }         /* rola nahrádza ručné px */
+    else { delete o.fsRole; }
+  }
+  applyOverrides(); refreshPanel();
+  $('status').textContent = v ? 'rola '+v+' priradená ('+selection.length+')' : 'rola odobratá';
+});
+
+/* ============ poradie vrstiev (len texty a obrázky) ============ */
+function isZTarget(el){
+  return TEXT_TAGS.has(el.tagName) || el.tagName==='IMG' || el.tagName==='FIGURE' ||
+         (el.tagName==='DIV' && el.querySelector(':scope > img'));
+}
+function nudgeZ(dir){
+  if(!selection.length || !activeBp) return;
+  pushHistory();
+  const fr=frames[activeBp.name];
+  let touched=0;
+  for(const s of selection){
+    const el=fr && fr.contentDocument.querySelector(s); if(!el) continue;
+    if(!isZTarget(el)){ continue; }
+    const cs=fr.contentWindow.getComputedStyle(el);
+    const o=getOv(activeBp.name, s);
+    if(o.z===undefined){ const cz=parseInt(cs.zIndex); o.z=isNaN(cz)?0:cz; }
+    o.z+=dir; touched++;
+    if(cs.position==='static') o.zrel=1;
+  }
+  $('status').textContent = touched ? `vrstva ${dir>0?'+':'−'}1 (${touched}×)` : 'výber nie je text/obrázok';
+  applyOverrides(); refreshPanel();
+}
+
+/* ============ klávesy ============ */
+function onKeys(e){
+  if(editing) return;
+  if((e.key==='h'||e.key==='H') && !e.ctrlKey && !e.altKey){
+    const t=e.target;
+    if(t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;   /* písanie do polí nechaj tak */
+    e.preventDefault(); setHand(!handMode); return;
+  }
+  if((e.key==='m'||e.key==='M') && !e.ctrlKey && !e.altKey){
+    const t=e.target;
+    if(t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+    e.preventDefault(); setMove(!moveMode); return;
+  }
+  if(e.key==='Escape' && handMode){ setHand(false); return; }
+  if(e.key==='Escape' && moveMode){ setMove(false); return; }
+  if(e.ctrlKey && (e.key==='z'||e.key==='Z')){ e.preventDefault(); e.shiftKey?doRedo():doUndo(); return; }
+  if(e.ctrlKey && (e.key==='y'||e.key==='Y')){ e.preventDefault(); doRedo(); return; }
+  if(e.ctrlKey && e.key===']'){ e.preventDefault(); nudgeZ(1); return; }
+  if(e.ctrlKey && e.key==='['){ e.preventDefault(); nudgeZ(-1); return; }
+  if(e.ctrlKey && (e.key==='g'||e.key==='G')){ e.preventDefault(); e.shiftKey?doUngroup():doGroup(); return; }
+  if(e.ctrlKey && (e.key==='c'||e.key==='C')){ if(selection.length){ e.preventDefault(); copyOv(); } return; }
+  if(e.ctrlKey && (e.key==='v'||e.key==='V')){ if(bpClipboard){ e.preventDefault(); pasteOv(); } return; }
+  if(e.key==='Enter'){ e.preventDefault(); navSelect(e.shiftKey?'parent':'child'); return; }
+  if(e.key==='Tab'){ e.preventDefault(); navSelect(e.shiftKey?'prev':'next'); return; }
+  if(e.key==='Delete' || e.key==='Backspace'){
+    if(selection.length && activeBp){ e.preventDefault(); deleteSelection(frames[activeBp.name].contentDocument); }
+    return;
+  }
+  if(e.ctrlKey && (e.key==='d'||e.key==='D')){          /* Ctrl+D = duplikuj ako v Adobe */
+    if(selection.length && activeBp){
+      e.preventDefault();
+      const c=duplicateSelection(frames[activeBp.name].contentDocument);
+      if(c.length){ selection=c; applyHighlight(); refreshPanel(); markLayers(); }
+    }
+    return;
+  }
+  if(!selection.length || !activeBp) return;
+  const step=e.shiftKey?10:1; let used=true;
+  const fr=frames[activeBp.name];
+  pushHistoryDebounced();
+  const moveSels = e.key.startsWith('Arrow') && fr
+    ? filterNested(selection, fr.contentDocument)
+    : selection;
+  for(const s of moveSels){
+    if((/^#[\w-]+$/.test(s) || autoLocked.has(s)) && e.key.startsWith('Arrow')) continue;   /* pozadia/obaly sa neposúvajú ani šípkami */
+    const o=getOv(activeBp.name,s);
+    const el=fr&&fr.contentDocument.querySelector(s);
+    const cs=el?fr.contentWindow.getComputedStyle(el):null;
+    switch(e.key){
+      case 'ArrowLeft': o.tx=(o.tx||0)-step; break;
+      case 'ArrowRight': o.tx=(o.tx||0)+step; break;
+      case 'ArrowUp': o.ty=(o.ty||0)-step; break;
+      case 'ArrowDown': o.ty=(o.ty||0)+step; break;
+      case '+': case '=': o.fs=Math.round((o.fs||parseFloat(cs?cs.fontSize:16))+2); break;
+      case '-': case '_': o.fs=Math.max(6,Math.round((o.fs||parseFloat(cs?cs.fontSize:16))-2)); break;
+      case ']': o.w=Math.round((o.w||parseFloat(cs?cs.width:100))+10); break;
+      case '[': o.w=Math.max(20,Math.round((o.w||parseFloat(cs?cs.width:100))-10)); break;
+      case 'Escape': deselectAll(); return;
+      default: used=false;
+    }
+    if(!used) break;
+  }
+  if(used){ e.preventDefault(); applyOverrides(); refreshPanel(); }
+}
+document.addEventListener('keydown', onKeys, true);
+
+/* ============ história — pokrýva hodnoty, obsah/poradie vrstiev aj zámky ============ */
+function snapState(){
+  return JSON.stringify({
+    o:overrides, l:[...locked], u:[...unlockedSecs],
+    g:{ gv:[...grid.gv], gh:[...grid.gh] },
+    r:refs, rh:refsHidden,                   /* referencie (predlohy) sú tiež kroky */
+    s:[...selection], ab:activeBp?activeBp.name:null
+  });
+}
+function restoreState(s){
+  const d=JSON.parse(s);
+  if(d && d.o){
+    overrides=d.o; locked=new Set(d.l||[]); unlockedSecs=new Set(d.u||[]);
+    if(d.g){ grid.gv=[...(d.g.gv||[])]; grid.gh=[...(d.g.gh||[])]; saveGrid(); }
+    if(d.r){ refs.length=0; refs.push(...JSON.parse(JSON.stringify(d.r))); if(d.rh!==undefined) refsHidden=d.rh; saveRefs(); renderRefs(); }
+    selection = d.s ? [...d.s] : [];
+  }
+  else overrides=d;                              /* starší formát */
+  saveLocked();
+  applyContent(); applyOverrides(); applyLockStyles(); applyGrid();
+  const bp = d && d.ab ? BPS.find(b=>b.name===d.ab && frames[b.name]) : null;
+  if(bp && selection.length){ setActive(bp); }
+  else{
+    activeBp=bp||activeBp;
+    document.querySelectorAll('.board').forEach(b=>b.classList.toggle('active', !!(bp && b.dataset.bp===bp.name)));
+    applyHighlight(); refreshPanel(); markLayers();
+  }
+  buildLayers();
+}
+function pushHistory(){
+  const s=snapState();
+  if(history.length && history[history.length-1]===s) return;   /* dedupe — žiadne prázdne kroky */
+  history.push(s); if(history.length>100) history.shift(); redo=[];
+}
+let lastPush=0;
+function pushHistoryDebounced(){ const t=Date.now(); if(t-lastPush>800){ pushHistory(); lastPush=t; } }
+function doUndo(){ if(!history.length) return; redo.push(snapState()); restoreState(history.pop()); }
+function doRedo(){ if(!redo.length) return; history.push(snapState()); restoreState(redo.pop()); }
+
+/* ============ dizajn systém (tokeny z :root) ============ */
+function buildTokens(doc){
+  const vars={};
+  try{
+    for(const sheet of doc.styleSheets){
+      let rules; try{ rules=sheet.cssRules; }catch(e){ continue; }
+      for(const r of rules||[]){
+        if(r.selectorText && r.selectorText.includes(':root')){
+          for(const name of r.style){
+            if(name.startsWith('--')) vars[name]=r.style.getPropertyValue(name).trim();
+          }
+        }
+      }
+    }
+  }catch(e){}
+  const holder=$('tokens'); holder.innerHTML='';
+  for(const [name,val] of Object.entries(vars)){
+    const row=document.createElement('div'); row.className='tok';
+    const code=document.createElement('code'); code.textContent=name;
+    let input;
+    const isColor=/^#([0-9a-f]{6}|[0-9a-f]{3})$/i.test(val);
+    if(isColor){ input=document.createElement('input'); input.type='color'; input.value=val.length===4?'#'+[...val.slice(1)].map(c=>c+c).join(''):val; }
+    else{ input=document.createElement('input'); input.type='text'; input.value=(overrides.tokens&&overrides.tokens[name])||val; }
+    input.addEventListener('change', ()=>{
+      pushHistory();
+      overrides.tokens=overrides.tokens||{};
+      overrides.tokens[name]=input.value;
+      applyOverrides();
+    });
+    if(overrides.tokens && overrides.tokens[name] && isColor) input.value=overrides.tokens[name];
+    row.appendChild(code); row.appendChild(input); holder.appendChild(row);
+  }
+}
+
+/* ============ toolbar ============ */
+function gotoSlide(fr){
+  const v=$('slideSel').value; if(!v) return;
+  const doc=fr.contentDocument; if(!doc) return;
+  const el=doc.querySelector(v); if(el) el.scrollIntoView({behavior:'instant'});
+}
+$('slideSel').addEventListener('change', ()=>{ Object.values(frames).forEach(gotoSlide); buildLayers(); slideHSync(); });
+$('slideHbp').addEventListener('change', slideHSync);
+$('slideHapply').addEventListener('click', applySlideH);
+$('slideHval').addEventListener('keydown', e=>{ if(e.key==='Enter') applySlideH(); e.stopPropagation(); });
+$('layersBtn').addEventListener('click', ()=>{
+  const p=$('layers');
+  p.style.display = p.style.display==='none'||!p.style.display ? 'block' : 'none';
+  buildLayers();
+});
+$('layersRefresh').addEventListener('click', buildLayers);
+$('layersSimple').addEventListener('change', buildLayers);
+
+/* správca referencií */
+function buildRefsPop(){
+  const p=$('refsPop'); p.innerHTML='';
+  if(!refs.length){ p.innerHTML='<small style="color:#9aa">žiadne referencie — pretiahni obrázok na plochu</small>'; return; }
+  const gEye=document.createElement('button');
+  gEye.textContent=refsHidden?'👁 Zobraziť všetky predlohy':'🚫 Skryť všetky predlohy';
+  gEye.style.cssText='margin-bottom:8px;width:100%;';
+  gEye.addEventListener('click', ()=>{ pushHistory(); refsHidden=!refsHidden; saveRefs(); renderRefs(); buildRefsPop(); });
+  p.appendChild(gEye);
+  refs.forEach((rf,i)=>{
+    const row=document.createElement('div'); row.className='refrow';
+    row.innerHTML=`<img src="${rf.src}"><small>${rf.anchor||'voľná'} · ${Math.round((rf.op!==undefined?rf.op:1)*100)}%${rf.lock?' · 🔒':''}${rf.hide?' · skrytá':''}</small>`;
+    const bE=document.createElement('button'); bE.textContent=rf.hide?'👁':'🚫'; bE.title=rf.hide?'Zobraziť':'Skryť';
+    bE.addEventListener('click', ()=>{ pushHistory(); rf.hide=!rf.hide; saveRefs(); renderRefs(); buildRefsPop(); });
+    row.appendChild(bE);
+    const bL=document.createElement('button'); bL.textContent=rf.lock?'🔓':'🔒';
+    bL.addEventListener('click', ()=>{ pushHistory(); rf.lock=!rf.lock; saveRefs(); renderRefs(); buildRefsPop(); });
+    const bD=document.createElement('button'); bD.textContent='✕'; bD.style.color='#ff5566';
+    bD.addEventListener('click', ()=>{ pushHistory(); refs.splice(i,1); saveRefs(); renderRefs(); buildRefsPop(); });
+    row.appendChild(bL); row.appendChild(bD);
+    p.appendChild(row);
+  });
+  const all=document.createElement('button');
+  all.textContent='✕ Zmazať všetky referencie'; all.style.cssText='margin-top:8px;color:#ff5566;';
+  all.addEventListener('click', ()=>{ pushHistory(); refs.length=0; saveRefs(); renderRefs(); buildRefsPop(); });
+  p.appendChild(all);
+}
+$('refsBtn').addEventListener('click', ()=>{
+  const p=$('refsPop');
+  p.style.display = p.style.display==='block' ? 'none' : 'block';
+  buildRefsPop();
+});
+document.addEventListener('mousedown', e=>{
+  if(!e.target.closest('#refsPop') && !e.target.closest('#refsBtn')) $('refsPop').style.display='none';
+});
+
+/* grid ovládanie */
+function syncGridUI(){
+  $('gCols').checked=grid.cols; $('gColsN').value=grid.colsN;
+  $('gRows').checked=grid.rows; $('gRowsN').value=grid.rowsN;
+  $('gGutter').value=grid.gutter;
+  $('gMargin').value=grid.marginMode; $('gMarginPx').value=grid.marginPx;
+  $('gMaxW').value=grid.maxW||'';
+  $('gBase').checked=grid.base; $('gBaseN').value=grid.baseN;
+  $('gSquare').checked=grid.square; $('gSquareN').value=grid.squareN;
+  $('gCenter').checked=grid.center;
+  $('gRulers').checked=!!grid.rulers;
+  $('gAlpha').value=grid.strength||2.5;
+}
+/* mini náhľad gridu v paneli — rovnaké farby/blend ako v artboardoch */
+function renderGridPreview(){
+  const p=$('gPrev'); p.innerHTML='';
+  const k=grid.strength||2.5, A=x=>Math.min(1,x*k).toFixed(2);
+  const S=0.115;  /* mierka náhľadu ~1/8.7 */
+  const bgs=[];
+  if(grid.base) bgs.push(`repeating-linear-gradient(to bottom, rgba(255,255,255,${A(.3)}) 0 1px, transparent 1px ${Math.max(2,Math.round(grid.baseN*S*4))}px)`);
+  if(grid.square){
+    const st=Math.max(3,Math.round(grid.squareN*S));
+    bgs.push(`repeating-linear-gradient(to bottom, rgba(255,255,255,${A(.2)}) 0 1px, transparent 1px ${st}px)`);
+    bgs.push(`repeating-linear-gradient(to right, rgba(255,255,255,${A(.2)}) 0 1px, transparent 1px ${st}px)`);
+  }
+  if(bgs.length){
+    const b=document.createElement('div');
+    b.style.cssText='position:absolute;inset:0;mix-blend-mode:difference;background-image:'+bgs.join(',')+';';
+    p.appendChild(b);
+  }
+  if(grid.cols){
+    const w=document.createElement('div');
+    w.style.cssText=`position:absolute;inset:0;display:flex;gap:${Math.max(1,Math.round(grid.gutter*S))}px;padding:0 ${grid.marginMode==='none'?0:6}px;mix-blend-mode:difference;`;
+    for(let i=0;i<grid.colsN;i++){
+      const c=document.createElement('i');
+      c.style.cssText=`flex:1;background:rgba(255,255,255,${A(.1)});border-left:1px solid rgba(255,255,255,${A(.45)});border-right:1px solid rgba(255,255,255,${A(.45)});`;
+      w.appendChild(c);
+    }
+    p.appendChild(w);
+  }
+  if(grid.rows){
+    const w=document.createElement('div');
+    w.style.cssText=`position:absolute;inset:0;display:flex;flex-direction:column;gap:2px;mix-blend-mode:difference;`;
+    for(let i=0;i<grid.rowsN;i++){
+      const c=document.createElement('i');
+      c.style.cssText=`flex:1;border-top:1px dashed rgba(255,255,255,${A(.4)});border-bottom:1px dashed rgba(255,255,255,${A(.4)});`;
+      w.appendChild(c);
+    }
+    p.appendChild(w);
+  }
+  if(grid.center){
+    for(const pos of ['left:50%;top:0;bottom:0;width:1px','top:50%;left:0;right:0;height:1px']){
+      const l=document.createElement('div');
+      l.style.cssText=`position:absolute;${pos};background:rgba(255,255,255,${A(.55)});mix-blend-mode:difference;`;
+      p.appendChild(l);
+    }
+  }
+  for(const pct of grid.gv){
+    const g=document.createElement('div');
+    g.style.cssText=`position:absolute;left:${pct}%;top:0;bottom:0;width:0;border-left:1px dashed #00e0ff;`;
+    p.appendChild(g);
+  }
+  for(const pct of grid.gh){
+    const g=document.createElement('div');
+    g.style.cssText=`position:absolute;top:${pct}%;left:0;right:0;height:0;border-top:1px dashed #00e0ff;`;
+    p.appendChild(g);
+  }
+}
+
+$('gPreset').addEventListener('change', ()=>{
+  const p=GRID_PRESETS[$('gPreset').value];
+  if(!p) return;
+  Object.assign(grid, p);
+  if(p.gv) grid.gv=[...p.gv];
+  if(p.gh) grid.gh=[...p.gh];
+  syncGridUI(); saveGrid(); applyGrid();
+});
+$('gridBtn').addEventListener('click', ()=>{
+  const p=$('gridPop');
+  p.style.display = p.style.display==='block' ? 'none' : 'block';
+  syncGridUI(); renderGridPreview();
+});
+document.addEventListener('mousedown', e=>{
+  if(!e.target.closest('#gridPop') && !e.target.closest('#gridBtn')) $('gridPop').style.display='none';
+});
+const gridWire=(id, fn)=>$(id).addEventListener('change', ()=>{ fn(); $('gPreset').value=''; saveGrid(); applyGrid(); });
+gridWire('gCols',   ()=>grid.cols=$('gCols').checked);
+gridWire('gColsN',  ()=>grid.colsN=+$('gColsN').value);
+gridWire('gRows',   ()=>grid.rows=$('gRows').checked);
+gridWire('gRowsN',  ()=>grid.rowsN=+$('gRowsN').value);
+gridWire('gGutter', ()=>grid.gutter=Math.max(0,+$('gGutter').value||0));
+gridWire('gMargin', ()=>grid.marginMode=$('gMargin').value);
+gridWire('gMarginPx',()=>grid.marginPx=Math.max(0,+$('gMarginPx').value||0));
+gridWire('gMaxW',   ()=>grid.maxW=+$('gMaxW').value>0?+$('gMaxW').value:null);
+gridWire('gBase',   ()=>grid.base=$('gBase').checked);
+gridWire('gBaseN',  ()=>grid.baseN=+$('gBaseN').value);
+gridWire('gSquare', ()=>grid.square=$('gSquare').checked);
+gridWire('gSquareN',()=>grid.squareN=+$('gSquareN').value);
+gridWire('gCenter', ()=>grid.center=$('gCenter').checked);
+gridWire('gRulers', ()=>grid.rulers=$('gRulers').checked);
+$('gAlpha').addEventListener('input', ()=>{ grid.strength=+$('gAlpha').value; saveGrid(); applyGrid(); });
+$('snapBtn').addEventListener('click', ()=>{ snapOn=!snapOn; $('snapBtn').classList.toggle('on', snapOn); $('status').textContent=snapOn?'🧲 snapping zapnutý':'🧲 snapping vypnutý'; });
+$('gAddV').addEventListener('click', ()=>{ pushHistory(); grid.gv.push(50); saveGrid(); applyGrid(); });
+$('gAddH').addEventListener('click', ()=>{ pushHistory(); grid.gh.push(50); saveGrid(); applyGrid(); });
+$('gClear').addEventListener('click', ()=>{ pushHistory(); grid.gv=[]; grid.gh=[]; saveGrid(); applyGrid(); });
+$('layersClose').addEventListener('click', ()=>{ $('layers').style.display='none'; });
+$('lockBtn').addEventListener('click', ()=>{
+  if(!selection.length){ $('status').textContent='najprv niečo vyber'; return; }
+  for(const s of [...selection]) if(!locked.has(s)) toggleLock(s);
+});
+$('unlockAllBtn').addEventListener('click', ()=>{
+  const refLocks=refs.filter(r=>r.lock).length;
+  if(!locked.size && !refLocks){ $('status').textContent='nič nie je zamknuté'; return; }
+  pushHistory();
+  const n=locked.size;
+  for(const s of locked) unlockedSecs.add(s);   /* nech sa default zámky pozadí nevrátia */
+  locked.clear();
+  saveLocked(); applyLockStyles(); applyHighlight(); refreshPanel(); buildLayers();
+  /* odomkni aj všetky referencie (predlohy) — majú vlastný zámkový systém */
+  for(const r of refs) r.lock=false;
+  if(refLocks){ saveRefs(); renderRefs(); }
+  $('status').textContent=`🔓 odomknuté všetko — vrstvy: ${n}, referencie: ${refLocks} (vrstvy vráti Ctrl+Z)`;
+});
+$('zoom').addEventListener('input', applyZoom);
+$('handBtn').addEventListener('click', ()=>setHand(!handMode));
+/* ctrl+koliesko = zoom ku kurzoru; hand pan na tmavej ploche */
+$('stage').addEventListener('wheel', e=>{
+  if(e.ctrlKey){ e.preventDefault(); zoomAt(e.clientX, e.clientY, e.deltaY); }
+}, {passive:false});
+$('stage').addEventListener('pointerdown', e=>{
+  if(handMode){ e.preventDefault(); startPan(e.screenX, e.screenY); }
+});
+window.addEventListener('pointermove', e=>movePan(e.screenX, e.screenY));
+window.addEventListener('pointerup', ()=>{ endPan(); endMarquee(); });
+/* H a Esc rieši onKeys (beží na dokumente aj vo frames) — tu nič, inak by sa toggle zdvojil */
+$('pageUrl').addEventListener('change', ()=>{ localStorage.setItem('mib-ed-page', $('pageUrl').value); buildBoards(); });
+$('reloadBtn').addEventListener('click', buildBoards);
+$('undoBtn').addEventListener('click', doUndo);
+$('redoBtn').addEventListener('click', doRedo);
+$('deselBtn').addEventListener('click', deselectAll);
+$('moveBtn').addEventListener('click', ()=>setMove(!moveMode));
+/* klik do tmavej plochy okolo artboardov = zruš výber */
+$('stage').addEventListener('mousedown', e=>{
+  if(e.target.id==='stage' || e.target.classList.contains('board') || e.target.closest('h3')) deselectAll();
+});
+/* drop obrázkov z disku = referencie na ploche */
+$('stage').addEventListener('dragover', e=>{ e.preventDefault(); $('stage').classList.add('dropping'); });
+$('stage').addEventListener('dragleave', ()=>$('stage').classList.remove('dropping'));
+$('stage').addEventListener('drop', e=>{
+  e.preventDefault(); $('stage').classList.remove('dropping');
+  if(!e.dataTransfer.files.length) return;
+  const st=$('stage'), r=st.getBoundingClientRect();
+  addRefFiles([...e.dataTransfer.files], Math.round(st.scrollLeft+e.clientX-r.left), Math.round(st.scrollTop+e.clientY-r.top));
+});
+renderRefs();
+$('zUpBtn').addEventListener('click', ()=>nudgeZ(1));
+$('zDownBtn').addEventListener('click', ()=>nudgeZ(-1));
+$('resetElBtn').addEventListener('click', ()=>{
+  if(!activeBp||!overrides[activeBp.name]) return;
+  pushHistory();
+  for(const s of selection) delete overrides[activeBp.name][s];
+  applyOverrides(); refreshPanel();
+});
+$('parentBtn').addEventListener('click', ()=>navSelect('parent'));
+$('childBtn').addEventListener('click', ()=>navSelect('child'));
+$('prevBtn').addEventListener('click', ()=>navSelect('prev'));
+$('nextBtn').addEventListener('click', ()=>navSelect('next'));
+$('copyBtn').addEventListener('click', copyOv);
+$('pasteBtn').addEventListener('click', pasteOv);
+$('groupBtn').addEventListener('click', doGroup);
+$('ungroupBtn').addEventListener('click', doUngroup);
+$('delBtn').addEventListener('click', ()=>{ if(activeBp) deleteSelection(frames[activeBp.name].contentDocument); });
+let opBurst=false;
+$('nOp').addEventListener('input', ()=>{
+  if(!selection.length || !activeBp) return;
+  if(!opBurst){ pushHistory(); opBurst=true; }
+  const v=+$('nOp').value;
+  $('nOpVal').textContent=v+'%';
+  for(const s of selection){
+    if(/^#[\w-]+$/.test(s)) continue;
+    getOv(activeBp.name, s).op=v;
+  }
+  applyOverrides();
+});
+$('nOp').addEventListener('change', ()=>{ opBurst=false; refreshPanel(); });
+/* výrez média z panela — to isté, čo robí ťahanie na plátne */
+function nastavVyrez(kluc, hodnota, zapisHistoriu=true){
+  if(!selection.length || !activeBp) return;
+  if(zapisHistoriu) pushHistory();
+  const o=getOv(activeBp.name, selection[0]);
+  o[kluc]=hodnota;
+  if(o.ofx===undefined) o.ofx=50;
+  if(o.ofy===undefined) o.ofy=50;
+  applyOverrides(); refreshPanel(); stavVyrez();
+}
+$('mFit').addEventListener('change', ()=>nastavVyrez('ofit', $('mFit').value));
+$('mX').addEventListener('input', ()=>nastavVyrez('ofx', +$('mX').value, false));
+$('mY').addEventListener('input', ()=>nastavVyrez('ofy', +$('mY').value, false));
+$('mZ').addEventListener('input', ()=>nastavVyrez('ofz', +$('mZ').value, false));
+$('mVolne').addEventListener('change', ()=>{
+  if(!selection.length || !activeBp) return;
+  pushHistory();
+  const o=getOv(activeBp.name, selection[0]);
+  const zap=$('mVolne').checked;
+  if(zap){
+    o.volne=true;
+    /* pri contain nemá výrez zmysel — celé médium je vidieť */
+    delete o.ofz;
+    if(o.ofx===undefined) o.ofx=50;
+    if(o.ofy===undefined) o.ofy=50;
+  } else delete o.volne;
+  applyOverrides(); refreshPanel();
+  $('status').textContent = zap
+    ? 'voľná vrstva — médium sa neoreže; meň veľkosť úchytkami, posúvaj ťahaním'
+    : 'späť do rámu (orezáva sa)';
+});
+$('mReset').addEventListener('click', ()=>{
+  if(!selection.length || !activeBp) return;
+  pushHistory();
+  const o=getOv(activeBp.name, selection[0]);
+  delete o.ofx; delete o.ofy; delete o.ofz; delete o.ofit; delete o.volne;
+  vypniVyrez(); applyOverrides(); refreshPanel();
+  $('status').textContent='výrez vrátený na pôvodný';
+});
+$('nFill').addEventListener('input',  ()=>applyFill($('nFill').value, false));
+$('nFill').addEventListener('change', ()=>applyFill($('nFill').value, true));
+$('nFillClear').addEventListener('click', clearFill);
+$('saveBtn').addEventListener('click', async ()=>{
+  try{
+    const r1=await fetch('/upload?name=overrides.css',{method:'POST', body:cssText()});
+    const r2=await fetch('/upload?name=overrides.json',{method:'POST', body:JSON.stringify(overrides,null,1)});
+    $('status').textContent=(r1.ok&&r2.ok)?'✔ uložené '+new Date().toLocaleTimeString():'⚠ chyba ukladania';
+  }catch(e){ $('status').textContent='⚠ '+e.message; }
+});
+$('bpApply').addEventListener('click', ()=>{
+  try{
+    BPS=JSON.parse($('bpConf').value);
+    localStorage.setItem('mib-ed-bps', JSON.stringify(BPS));
+    buildBpToggles(); buildBoards();
+  }catch(e){ $('status').textContent='⚠ zlý JSON breakpointov'; }
+});
+
+function buildBpToggles(){
+  $('bpToggles').innerHTML='';
+  for(const bp of BPS){
+    const l=document.createElement('label');
+    const c=document.createElement('input'); c.type='checkbox'; c.checked=!!bp.on;
+    c.addEventListener('change', ()=>{ bp.on=c.checked; localStorage.setItem('mib-ed-bps', JSON.stringify(BPS)); buildBoards(); populateSlideHbp(); });
+    l.appendChild(c); l.appendChild(document.createTextNode(bp.name));
+    $('bpToggles').appendChild(l);
+  }
+  $('bpConf').value=JSON.stringify(BPS,null,1);
+  populateSlideHbp();
+}
+
+/* ============ štart ============ */
+(async ()=>{
+  const savedPage=localStorage.getItem('mib-ed-page'); if(savedPage) $('pageUrl').value=savedPage;
+  try{ const r=await fetch('/css/overrides.json'); if(r.ok) overrides=await r.json(); }catch(e){}
+  if(!Object.keys(overrides).length){
+    try{ overrides=JSON.parse(localStorage.getItem('mib-overrides')||'{}'); }catch(e){}
+  }
+  buildBpToggles();
+  buildBoards();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>MIB cutout tool</title>
+<style>body{font-family:monospace;padding:20px;background:#111;color:#0f0}#log{white-space:pre-line}</style>
+</head>
+<body>
+<div id="log">starting…</div>
+<img id="preview" style="max-width:600px;background:#e8402b;display:block;margin-top:16px">
+<script type="module">
+const log = (m) => { document.getElementById('log').textContent += '\n' + m; window.__status = m; };
+try {
+  log('loading imgly background-removal…');
+  const { removeBackground } = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');
+  log('module loaded, fetching image…');
+  const src = await (await fetch('/assets/hero-cyclist-clean.png')).blob();
+  log('image loaded (' + src.size + ' B), running model…');
+  let lastKey = '';
+  const blob = await removeBackground(src, {
+    publicPath: 'https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/',
+    progress: (key, current, total) => {
+      if (key !== lastKey) { lastKey = key; log(key + ' ' + current + '/' + total); }
+      window.__status = key + ' ' + current + '/' + total;
+    }
+  });
+  log('cutout done, size=' + blob.size + ' — uploading…');
+  const res = await fetch('/upload?name=hero-cyclist-cutout.png', { method: 'POST', body: blob });
+  log('upload: ' + res.status + ' ' + await res.text());
+  document.getElementById('preview').src = URL.createObjectURL(blob);
+  window.__status = 'DONE';
+  log('DONE');
+} catch (e) {
+  window.__status = 'ERROR: ' + e.message;
+  log('ERROR: ' + e.message + '\n' + (e.stack || ''));
+}
+</script>
+</body>
+</html>
