@@ -11659,3 +11659,57 @@ a.dopyt-alt__card:hover {
     right: var(--pad);
   }
 }
+
+/* ===========================================================
+   JEDNOTNÁ VÝŠKA HERO SEKCIÍ NA POČÍTAČI (20. 9. 2026)
+   Domovská stránka sa ustálila na ~569 px, kým skrinky, akváriá a realizácie
+   rástli so šírkou okna až na 756 px. Od 1024 px preto všetky štyri hero
+   sekcie stoja na jednej premennej. Hodnota je zámerne o kúsok vyššia než
+   obsah domovského hero (569 px), takže výška je vo všetkých prípadoch
+   rovnaká a nezávisí od toho, koľko textu v sekcii je.
+   Telefón a tablet do 1023 px zostávajú nedotknuté.
+   =========================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --hero-d: clamp(580px, 62vh, 660px);
+  }
+  .hero,
+  .vhero,
+  .tech-hero {
+    min-height: var(--hero-d);
+  }
+}
+
+/* Scéna na skrinkách je zafixovaná vo vizuálnom editore na výšky 796 až
+   1064 px. Do nižšej sekcie sa nezmestila a orezávala skrinku, preto sa od
+   1440 px zmenšuje tak, aby z nej bolo vidieť rovnaký výrez ako predtým.
+   Vlastnosť transform nekoliduje s translate, ktorým polohu riadi editor. */
+@media (min-width: 1440px) {
+  .vhero--bocny .svetlo {
+    transform-origin: right center;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1679px) {
+  .vhero--bocny .svetlo {
+    transform: scale(0.88);
+  }
+}
+@media (min-width: 1680px) and (max-width: 1899px) {
+  .vhero--bocny .svetlo {
+    transform: scale(0.79);
+  }
+}
+@media (min-width: 1900px) {
+  .vhero--bocny .svetlo {
+    transform: scale(0.77);
+  }
+}
+
+/* Pri 1024 až 1199 px je scéna v editore posunutá o 49 px hore, takže po
+   znížení sekcie pod ňou ostával pás pozadia. Predĺži sa nadol — výšku má
+   editor zamknutú cez height, min-height ju prebije bez zásahu doň. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .vhero--bocny .svetlo {
+    min-height: calc(100% + 70px);
+  }
+}
