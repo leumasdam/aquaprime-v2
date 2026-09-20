@@ -11672,11 +11672,17 @@ a.dopyt-alt__card:hover {
 @media (min-width: 1024px) {
   :root {
     --hero-d: clamp(580px, 62vh, 660px);
+    /* Domovské hero má v spodnej časti pás s ikonami (81 až 93 px), ktorý je
+       súčasťou sekcie. Samotný záber je preto o toľko nižší. Podstránky pás
+       nemajú, takže sa porovnávajú so záberom, nie s celou sekciou. */
+    --hero-pas: 86px;
   }
-  .hero,
+  .hero {
+    min-height: var(--hero-d);
+  }
   .vhero,
   .tech-hero {
-    min-height: var(--hero-d);
+    min-height: calc(var(--hero-d) - var(--hero-pas));
   }
 }
 
