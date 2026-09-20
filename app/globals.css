@@ -11615,3 +11615,47 @@ a.dopyt-alt__card:hover {
   position: absolute;
   inset: -10px -6px;
 }
+
+/* Pozastavenie záberu v hero sekcii realizácií. Ostatné hero sekcie majú
+   statický záber alebo tichú slučku; tu beží dlhší pohyb, ktorý musí ísť
+   zastaviť. Tvar aj farby sú z rovnakej sady ako zvyšok webu. */
+.vhero__pauza {
+  position: absolute;
+  right: max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad)));
+  bottom: 22px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(8, 12, 11, 0.55);
+  color: var(--ink);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color var(--t-base), background var(--t-base), color var(--t-base);
+}
+.vhero__pauza:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(8, 12, 11, 0.75);
+}
+
+/* Záber realizácií je širokouhlý (2,33 : 1) a hlavný motív má pri pravom
+   okraji. Pri úzkom okne by orez ukazoval prázdnu tmu vľavo, preto sa výrez
+   posúva k motívu. Tlačidlo pauzy ide na telefóne hore, aby nestálo v ceste
+   výzvam. */
+.vhero__video--sirokouhle {
+  object-position: 60% 50%;
+}
+@media (max-width: 899px) {
+  .vhero__video--sirokouhle {
+    object-position: 74% 46%;
+  }
+  .vhero__pauza {
+    top: calc(var(--nav-h) + 14px);
+    bottom: auto;
+    right: var(--pad);
+  }
+}

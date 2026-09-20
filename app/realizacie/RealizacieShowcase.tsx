@@ -51,7 +51,7 @@ export default function RealizacieShowcase({ t, jazyk }: { t: Slovnik["realizaci
   }, [isOpen]);
 
   return <>
-    <RealizacieHero t={t} />
+    <RealizacieHero t={t} jazyk={jazyk} />
 
     <section id="galeria" className={s.gallery} aria-labelledby="gallery-title">
       <h2 id="gallery-title" className={s.galleryTitle}>{t.galeria}</h2>

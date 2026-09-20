@@ -587,6 +587,7 @@ export const SK = {
     metaTitul: "Realizácie akvárií a skriniek | AQUAPRIME",
     metaPopis:
       "Pozrite si zostavy v interiéroch, detaily skriniek a fotografie pred zariadením akvária aj po ňom.",
+    drobcek: "Realizácie",
     heroTitul1: "Priestory,",
     heroTitul2: "kde dizajn žije",
     heroLead1: "Pozrite si hotové zostavy, detaily skriniek",
@@ -1670,6 +1671,7 @@ export const EN: Slovnik = {
     metaTitul: "Aquarium and cabinet projects | AQUAPRIME",
     metaPopis:
       "See our sets in real interiors, cabinet details and photos before and after the aquarium was set up.",
+    drobcek: "Projects",
     heroTitul1: "Spaces where",
     heroTitul2: "design lives",
     heroLead1: "See finished sets, cabinet details",
