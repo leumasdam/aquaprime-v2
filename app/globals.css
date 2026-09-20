@@ -11719,3 +11719,22 @@ a.dopyt-alt__card:hover {
     min-height: calc(100% + 70px);
   }
 }
+
+/* ===========================================================
+   NÁHĽAD PRED SPUSTENÍM ZÁBERU (20. 9. 2026)
+   Videá v hero sekciách majú nad sebou ten istý záber ako obrázok — je tam
+   kvôli Safari na iPhone, ktoré nad zastaveným videom kreslí vlastné tlačidlo
+   prehrať. Vizuálny editor však posúva a zväčšuje samotný prvok video
+   (selektor video.trieda), takže obrázok ostával na pôvodnom mieste a hero
+   pred prvým posunom stránky vyzeralo inak než po ňom.
+   Na počítači sa preto prekrytie nekreslí; miesto neho drží náhľad samotné
+   video cez atribút poster, ktorý má rovnakú geometriu. Telefón a tablet
+   prekrytie ďalej majú.
+   =========================================================== */
+@media (min-width: 1024px) {
+  img.tech-hero__video-el,
+  img.hero__video-d,
+  img.vhero__video {
+    display: none;
+  }
+}
