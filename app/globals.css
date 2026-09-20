@@ -8005,6 +8005,10 @@ button:focus-visible {
   right: 0;
   z-index: 2;
 }
+/* do 1023 px platí ten istý stav ako doteraz — drobček nad záberom */
+.tech-hero__crumb--v-texte {
+  display: none;
+}
 .tech-hero__crumb .drobcek {
   margin-bottom: 0;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
@@ -11736,5 +11740,24 @@ a.dopyt-alt__card:hover {
   img.hero__video-d,
   img.vhero__video {
     display: none;
+  }
+}
+
+
+/* Drobček na Konštrukcii visel absolútne pod lištou, takže sa pri nižšej hero
+   sekcii takmer dotýkal titulku (odstup −8 px), kým na ostatných podstránkach
+   stojí v textovom bloku s odstupom 18 px. Od notebooku ide teda aj tu do
+   textu, nad titulok. */
+@media (min-width: 1024px) {
+  .tech-hero__crumb:not(.tech-hero__crumb--v-texte) {
+    display: none;
+  }
+  .tech-hero__crumb--v-texte {
+    display: block;
+    position: static;
+    margin-bottom: 18px;
+  }
+  .tech-hero__crumb--v-texte .drobcek {
+    margin-bottom: 0;
   }
 }

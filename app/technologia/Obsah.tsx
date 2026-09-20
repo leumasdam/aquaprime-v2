@@ -64,6 +64,12 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
         </div>
         <div className="wrap tech-hero__grid">
           <div className="construct__copy tech-hero__copy" data-reveal="left">
+            {/* Rovnako ako na skrinkách a akváriách: na telefóne stojí drobček
+                nad záberom, od notebooku ide do textového bloku nad titulok.
+                Vždy je viditeľný práve jeden. */}
+            <div className="tech-hero__crumb tech-hero__crumb--v-texte">
+              <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
+            </div>
             <h1 className="construct__title">
               {k.titul1}
               <sup className="tm">™</sup>
