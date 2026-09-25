@@ -57,9 +57,11 @@ export default function ProductCard({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const el = karta.current;
     if (!el) return;
-    /* každá karta začne v inom okamihu, aby sa mriežka nemenila naraz */
-    let faza = 0;
-    for (let i = 0; i < p.slug.length; i++) faza = (faza + p.slug.charCodeAt(i) * 131) % INTERVAL_MS;
+    /* každá karta začne v inom okamihu, aby sa mriežka nemenila naraz —
+       slugy susedných rozmerov sa líšia v jednom znaku, preto hash a nie súčet */
+    let h = 2166136261;
+    for (let i = 0; i < p.slug.length; i++) h = Math.imul(h ^ p.slug.charCodeAt(i), 16777619) >>> 0;
+    const faza = h % INTERVAL_MS;
     let timer: number | undefined;
     let viditelna = false;
     const stop = () => {
