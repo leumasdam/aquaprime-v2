@@ -95,6 +95,15 @@ export const DVIERKA = {
   "premium-200x50x70-black-matt-orech": { def: 4 },
   "premium-120x40x80-black-matt-orech": { def: 3, 5: 0, 6: 0 },
   "premium-120x40x80-cool-white": { def: 3, 5: 0, 6: 0 },
+  /* STANDARD 200 x 50 x 70 - stvordverove, dodane klientom 25. 9. 2026 */
+  "standard-200x50x70-black-matt": { def: 4 },
+  "standard-200x50x70-cool-white": { def: 4 },
+  "standard-200x50x70-choco-vintage-oak": { def: 4 },
+  "standard-200x50x70-black-matt-orech": { def: 4 },
+  "standard-200x50x70-dub-hunton": { def: 4 },
+  "standard-200x50x70-artisan": { def: 4 },
+  "standard-200x50x70-artisan-cierna": { def: 4 },
+  "standard-200x50x70-mouse-grey": { def: 4 },
 };
 
 /**

@@ -4606,79 +4606,24 @@ export const PRODUCTS: Product[] = [
     ],
     "decors": [
       {
-        "id": "dub-spanielsky",
-        "name": "Dub španielsky",
-        "swatch": [
-          "/img/products/swatch-dub-spanielsky.webp"
-        ],
-        "images": [
-          "/img/products/dub-spanielsky-02.webp",
-          "/img/products/dub-spanielsky-05.webp",
-          "/img/products/dub-spanielsky-13.webp",
-          "/img/products/dub-spanielsky-10.webp",
-          "/img/products/dub-spanielsky-06.webp",
-          "/img/products/dub-spanielsky-14.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
         "id": "black-matt",
         "name": "Black Matt",
         "swatch": [
           "#17181a"
         ],
         "images": [
-          "/img/products/standard-200x60x60-black-matt-04.webp",
-          "/img/products/standard-150x50x80-black-matt-02.webp",
-          "/img/products/standard-100x40x90-black-matt-02.webp",
-          "/img/products/standard-200x60x60-black-matt-02.webp",
-          "/img/products/standard-150x50x80-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
-          "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-01.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+          "/img/products/standard-200x50x70-black-matt-01.webp"
+        ]
       },
       {
-        "id": "antracit",
-        "name": "Antracit",
+        "id": "cool-white",
+        "name": "Cool White",
         "swatch": [
-          "#40454a"
+          "#eef0f0"
         ],
         "images": [
-          "/img/products/standard-200x60x60-antracit-03.webp",
-          "/img/products/standard-200x60x60-antracit-04.webp",
-          "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
-          "/img/products/standard-200x60x60-antracit-01.webp",
-          "/img/products/standard-80x40x90-antracit-01.webp",
-          "/img/products/standard-200x60x60-antracit-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "dub-sonoma",
-        "name": "Dub Sonoma",
-        "swatch": [
-          "/img/products/swatch-dub-sonoma.webp"
-        ],
-        "images": [
-          "/img/products/standard-200x60x60-dub-sonoma-01.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-03.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-02.webp",
-          "/img/products/standard-80x40x90-dub-sonoma-02.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+          "/img/products/standard-200x50x70-cool-white-01.webp"
+        ]
       },
       {
         "id": "choco-vintage-oak",
@@ -4687,34 +4632,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-choco-vintage-oak.webp"
         ],
         "images": [
-          "/img/products/choco-vintage-oak-10.webp",
-          "/img/products/choco-vintage-oak-11.webp",
-          "/img/products/choco-vintage-oak-02.webp",
-          "/img/products/choco-vintage-oak-07.webp",
-          "/img/products/choco-vintage-oak-04.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "dub-hunton-black-matt",
-        "name": "Dub Hunton / Black Matt",
-        "swatch": [
-          "/img/products/swatch-dub-hunton.webp",
-          "#17181a"
-        ],
-        "images": [
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-01.webp",
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-02.webp",
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-03.webp",
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-04.webp",
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-05.webp",
-          "/img/products/standard-120x40x80-dub-hunton-black-matt-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+          "/img/products/standard-200x50x70-choco-vintage-oak-01.webp"
+        ]
       },
       {
         "id": "black-matt-orech",
@@ -4724,16 +4643,86 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-orech.webp"
         ],
         "images": [
-          "/img/products/standard-120x40x80-black-matt-orech-01.webp",
-          "/img/products/standard-120x40x80-black-matt-orech-02.webp",
-          "/img/products/standard-120x40x80-black-matt-orech-03.webp",
-          "/img/products/standard-120x40x80-black-matt-orech-04.webp",
-          "/img/products/standard-120x40x80-black-matt-orech-05.webp",
-          "/img/products/standard-120x40x80-black-matt-orech-06.webp"
+          "/img/products/standard-200x50x70-black-matt-orech-01.webp"
+        ]
+      },
+      {
+        "id": "dub-hunton",
+        "name": "Dub Hunton",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp"
         ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "images": [
+          "/img/products/standard-200x50x70-dub-hunton-01.webp"
+        ]
+      },
+      {
+        "id": "artisan",
+        "name": "Artisan",
+        "swatch": [
+          "/img/products/swatch-artisan.webp"
+        ],
+        "images": [
+          "/img/products/standard-200x50x70-artisan-01.webp"
+        ]
+      },
+      {
+        "id": "artisan-cierna",
+        "name": "Artisan / Čierna matná",
+        "swatch": [
+          "/img/products/swatch-artisan.webp",
+          "#17181a"
+        ],
+        "images": [
+          "/img/products/standard-200x50x70-artisan-cierna-01.webp"
+        ]
+      },
+      {
+        "id": "mouse-grey",
+        "name": "Mouse Grey",
+        "swatch": [
+          "#9b9ea2"
+        ],
+        "images": [
+          "/img/products/standard-200x50x70-mouse-grey-01.webp"
+        ]
+      },
+      {
+        "id": "dub-spanielsky",
+        "name": "Dub španielsky",
+        "swatch": [
+          "/img/products/swatch-dub-spanielsky.webp"
+        ],
+        "images": [],
+        "chyba": true
+      },
+      {
+        "id": "antracit",
+        "name": "Antracit",
+        "swatch": [
+          "#40454a"
+        ],
+        "images": [],
+        "chyba": true
+      },
+      {
+        "id": "dub-sonoma",
+        "name": "Dub Sonoma",
+        "swatch": [
+          "/img/products/swatch-dub-sonoma.webp"
+        ],
+        "images": [],
+        "chyba": true
+      },
+      {
+        "id": "dub-hunton-black-matt",
+        "name": "Dub Hunton / Black Matt",
+        "swatch": [
+          "/img/products/swatch-dub-hunton.webp",
+          "#17181a"
+        ],
+        "images": [],
+        "chyba": true
       },
       {
         "id": "dub-spanielsky-black-matt",
@@ -4742,16 +4731,8 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp",
           "#121316"
         ],
-        "images": [
-          "/img/products/standard-120x40x80-dub-spanielsky-black-matt-01.webp",
-          "/img/products/standard-120x40x80-dub-spanielsky-black-matt-02.webp",
-          "/img/products/standard-120x40x80-dub-spanielsky-black-matt-03.webp",
-          "/img/products/standard-120x40x80-dub-spanielsky-black-matt-04.webp",
-          "/img/products/standard-120x40x80-dub-spanielsky-black-matt-05.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "images": [],
+        "chyba": true
       },
       {
         "id": "artisan-antracit",
@@ -4760,38 +4741,11 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-artisan.webp",
           "#40454a"
         ],
-        "images": [
-          "/img/products/standard-120x40x80-artisan-antracit-01.webp",
-          "/img/products/standard-120x40x80-artisan-antracit-02.webp",
-          "/img/products/standard-120x40x80-artisan-antracit-03.webp",
-          "/img/products/standard-120x40x80-artisan-antracit-04.webp",
-          "/img/products/standard-120x40x80-artisan-antracit-05.webp",
-          "/img/products/standard-120x40x80-artisan-antracit-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
-      },
-      {
-        "id": "cool-white",
-        "name": "Cool White",
-        "swatch": [
-          "#eef0f0"
-        ],
-        "images": [
-          "/img/products/standard-120x40x80-cool-white-01.webp",
-          "/img/products/standard-120x40x80-cool-white-02.webp",
-          "/img/products/standard-120x40x80-cool-white-03.webp",
-          "/img/products/standard-120x40x80-cool-white-04.webp",
-          "/img/products/standard-120x40x80-cool-white-05.webp",
-          "/img/products/standard-120x40x80-cool-white-06.webp"
-        ],
-        "inherited": true,
-        "illuFrom": "dvierka",
-        "illuDvierka": 3
+        "images": [],
+        "chyba": true
       }
     ],
-    "cover": "/img/products/dub-spanielsky-02.webp",
+    "cover": "/img/products/standard-200x50x70-black-matt-01.webp",
     "priceLed": "480 €"
   },
   {
