@@ -11768,18 +11768,32 @@ a.dopyt-alt__card:hover {
    dekoru; predošlá fotka ostáva pod novou, kým prelínanie nedobehne.
    Vzorka aktívneho dekoru sa pritom zvýrazní rovnako ako pri hoveri.
    =========================================================== */
-@keyframes productFotoIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Výmena dekoru na karte: starý záber odchádza doľava, nový priletí sprava.
+   Tá istá dráha pre samovoľnú výmenu aj pre hover na vzorke. */
+@keyframes productFotoSem {
+  from { transform: translateX(104%); }
+  to { transform: translateX(0); }
+}
+@keyframes productFotoPrec {
+  from { transform: translateX(0); }
+  to { transform: translateX(-104%); }
 }
 .product__media img.product__foto--nova {
-  animation: productFotoIn 0.9s var(--ease) both;
+  animation: productFotoSem 0.72s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;
+}
+.product__media img.product__foto--prec {
+  animation: productFotoPrec 0.72s cubic-bezier(0.22, 0.61, 0.2, 1) forwards;
+  pointer-events: none;
 }
 .product__decor {
   transition: transform var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
 }
 @media (prefers-reduced-motion: reduce) {
-  .product__media img.product__foto--nova {
+  .product__media img.product__foto--nova,
+  .product__media img.product__foto--prec {
     animation: none;
+  }
+  .product__media img.product__foto--prec {
+    display: none;
   }
 }

@@ -9,8 +9,10 @@ import { SLOVNIKY } from "./preklady";
 import Swatch from "./Swatch";
 import { VT } from "./vt";
 
-/** Ako často sa na karte sama vymení farba a ako dlho trvá prelínanie. */
-const INTERVAL_MS = 4000;
+/** Samovoľná výmena farby nemá pevný takt: každá karta si po každej výmene
+    vyžrebuje ďalšiu pauzu z tohto rozpätia, takže sa prehodí raz tá, raz iná. */
+const PAUZA_MIN_MS = 6000;
+const PAUZA_MAX_MS = 15000;
 
 /** Zdieľaná produktová karta — katalóg, home featured aj súvisiace na detaile. */
 export default function ProductCard({
@@ -57,32 +59,32 @@ export default function ProductCard({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const el = karta.current;
     if (!el) return;
-    /* každá karta začne v inom okamihu, aby sa mriežka nemenila naraz —
-       slugy susedných rozmerov sa líšia v jednom znaku, preto hash a nie súčet */
-    let h = 2166136261;
-    for (let i = 0; i < p.slug.length; i++) h = Math.imul(h ^ p.slug.charCodeAt(i), 16777619) >>> 0;
-    const faza = h % INTERVAL_MS;
     let timer: number | undefined;
-    let viditelna = false;
     const stop = () => {
-      if (timer !== undefined) window.clearInterval(timer);
+      if (timer !== undefined) window.clearTimeout(timer);
       timer = undefined;
+    };
+    /* náhodná pauza pred každou výmenou — karty v mriežke sa neprehadzujú
+       naraz ani v pravidelnom rytme */
+    const dalsia = () => {
+      timer = window.setTimeout(() => {
+        setAuto((i) => (i + 1) % cyklus.length);
+        dalsia();
+      }, PAUZA_MIN_MS + Math.random() * (PAUZA_MAX_MS - PAUZA_MIN_MS));
     };
     const start = () => {
       stop();
-      timer = window.setInterval(() => setAuto((i) => (i + 1) % cyklus.length), INTERVAL_MS);
+      dalsia();
     };
     const io = new IntersectionObserver(
       ([z]) => {
-        viditelna = z.isIntersecting;
-        if (viditelna) start();
+        if (z.isIntersecting) start();
         else stop();
       },
       { threshold: 0.25 }
     );
-    const rozbeh = window.setTimeout(() => io.observe(el), faza);
+    io.observe(el);
     return () => {
-      window.clearTimeout(rozbeh);
       io.disconnect();
       stop();
     };
@@ -91,7 +93,7 @@ export default function ProductCard({
   const aktivny: Decor | null = hover ?? (cyklus.length ? cyklus[auto % cyklus.length] : null);
   const nahlad = foto ?? aktivny?.images[0] ?? p.cover;
 
-  /* prelínanie: predošlá fotka ostáva pod novou, kým nová nedobehne */
+  /* výmena: predošlá fotka odchádza doľava, nová priletí sprava (CSS) */
   const posledna = useRef(nahlad);
   const predosla = posledna.current !== nahlad ? posledna.current : null;
   useEffect(() => {
@@ -125,7 +127,15 @@ export default function ProductCard({
           className={`product__media product__media--photo${foto ? " product__media--led" : ""}`}
         >
           {predosla && (
-            <Image key={`predosla-${predosla}`} src={predosla} alt="" aria-hidden fill sizes={velkosti} />
+            <Image
+              key={`predosla-${predosla}`}
+              src={predosla}
+              alt=""
+              aria-hidden
+              className="product__foto--prec"
+              fill
+              sizes={velkosti}
+            />
           )}
           <Image
             key={nahlad}
