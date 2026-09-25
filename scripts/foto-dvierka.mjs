@@ -35,6 +35,13 @@ export const DVIERKA = {
   /* zábery s opláštených vnútrom — kompletné opláštenie je znak Premium */
   "premium-100x40x80-cool-white": { def: 2 },
   "premium-100x40x80-black-matt-orech": { def: 2 },
+  /* otvorené dvierka, opláštené dno aj bočnice — dodané klientom 25. 9. 2026 */
+  "premium-100x40x80-black-matt": { def: 2 },
+  "premium-100x40x80-dub-sonoma": { def: 2 },
+  "premium-100x40x80-dub-spanielsky": { def: 2 },
+  "premium-100x40x80-choco-vintage-oak": { def: 2 },
+  "premium-100x40x80-dub-hunton-black-matt": { def: 2 },
+  "premium-100x40x80-dub-spanielsky-black-matt": { def: 2 },
   /* jedna sada rozhádzaná pod tromi názvami rozmerov — zjednotená */
   "standard-100x40x80-black-matt-orech": { def: 2, 12: 0 },
 
