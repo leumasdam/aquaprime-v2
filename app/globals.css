@@ -11696,7 +11696,9 @@ a.dopyt-alt__card:hover {
    Vlastnosť transform nekoliduje s translate, ktorým polohu riadi editor. */
 @media (min-width: 1440px) {
   .vhero--bocny .svetlo {
-    transform-origin: right center;
+    /* kotva vpravo hore: zmenšená scéna ostáva prilepená k vrchu sekcie,
+       akvárium tak sedí vysoko vedľa titulku a dole nevzniká tmavý pás */
+    transform-origin: right top;
   }
 }
 @media (min-width: 1440px) and (max-width: 1679px) {
