@@ -7980,6 +7980,18 @@ button:focus-visible {
   /* copy je na obrázku, nie vedľa modelu — zarovnanie doľava */
   text-align: left;
 }
+/* ručné zalomenie titulku len tam, kde je naň miesto */
+.vhero__zlom {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .vhero__zlom {
+    display: inline;
+  }
+  .vhero__title--siroky {
+    max-width: 24ch;
+  }
+}
 .tech-hero .vhero__title em {
   font-style: normal;
   color: var(--cyan);

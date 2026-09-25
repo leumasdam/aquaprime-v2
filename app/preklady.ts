@@ -588,8 +588,8 @@ export const SK = {
     metaPopis:
       "Pozrite si zostavy v interiéroch, detaily skriniek a fotografie pred zariadením akvária aj po ňom.",
     drobcek: "Realizácie",
-    heroTitul1: "Priestory,",
-    heroTitul2: "kde dizajn žije",
+    heroTitul1: "Priestory, v ktorých",
+    heroTitul2: "to doslova žije",
     heroLead1: "Pozrite si hotové zostavy, detaily skriniek",
     heroLead2: "aj fotografie pred zariadením akvária.",
     heroCta: "Pozrieť galériu",

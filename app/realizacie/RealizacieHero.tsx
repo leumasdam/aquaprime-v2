@@ -105,8 +105,12 @@ export default function RealizacieHero({
           <Drobcek cesta={drobcek} jazyk={jazyk} />
         </div>
         <span className="vhero__eyebrow">{t.drobcek}</span>
-        <h1 className="vhero__title display" id="realizacie-title">
-          {t.heroTitul1} {t.heroTitul2}
+        <h1 className="vhero__title display vhero__title--siroky" id="realizacie-title">
+          {t.heroTitul1}
+          {/* od notebooku titulok stojí v dvoch riadkoch podľa zmyslu vety,
+              na telefóne si ho zalomí šírka sama */}
+          <br className="vhero__zlom" />{" "}
+          {t.heroTitul2}
           <span className="vhero__bodka" aria-hidden>
             .
           </span>
