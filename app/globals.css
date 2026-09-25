@@ -11892,6 +11892,22 @@ a.dopyt-alt__card:hover {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 @media (max-width: 767px) {
+  /* na výšku je v zábere aj vpálený text z vizuálu — zhora ho prekryje
+     čierny prechod, pod ktorým ostane čitateľná lišta aj drobček */
+  .sety-hero__media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      #0b0e0d 0%,
+      rgba(11, 14, 13, 0.96) 22%,
+      rgba(11, 14, 13, 0.6) 34%,
+      transparent 48%
+    );
+    pointer-events: none;
+  }
   /* na telefóne čipy stoja hore vpravo vedľa drobčeka a nesú len farbu */
   .sety-hero__vyber {
     top: calc(var(--nav-h) + 14px);
