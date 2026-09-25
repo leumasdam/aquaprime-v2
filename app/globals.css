@@ -11799,7 +11799,131 @@ a.dopyt-alt__card:hover {
    Hlavička je spoločná so sub-stránkami, každý set je jeden široký blok:
    vizuál vľavo, parametre, prevedenia a výzvy vpravo.
    =========================================================== */
-.sety .sub__eyebrow {
+/* hero: záber vpravo, ľavá hrana sa rozplýva do skoro čiernej sekcie;
+   kamera sa priblíži na aktívne prevedenie (ohnisko nesie --ohnisko-x) */
+.sety-hero__media {
+  inset: 0;
+}
+.sety-hero__zaber {
+  object-fit: cover;
+  object-position: 50% 54%;
+  transform: scale(1.16);
+  transform-origin: var(--ohnisko-x, 50%) 60%;
+  transition: transform-origin 1.8s var(--ease), transform 1.8s var(--ease);
+  will-change: transform;
+}
+@media (min-width: 768px) {
+  .sety-hero__media {
+    inset: 0 0 0 40%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
+  }
+}
+@media (min-width: 1920px) {
+  .sety-hero__media {
+    left: calc(50% - var(--maxw) / 2 + var(--maxw) * 0.4);
+    right: calc(50% - var(--maxw) / 2);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 95%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 95%, transparent 100%);
+  }
+}
+.sety-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.sety-hero__eyebrow-delic {
+  color: var(--faint);
+}
+.sety-hero__eyebrow-prevedenie {
+  color: var(--ink);
+  animation: setyPrevedenieIn 0.6s var(--ease) both;
+}
+@keyframes setyPrevedenieIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* výber prevedenia — čipy vpravo dole, ako tlačidlo pauzy pri videu */
+.sety-hero__vyber {
+  position: absolute;
+  z-index: 3;
+  right: max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad)));
+  bottom: 22px;
+  display: flex;
+  gap: 8px;
+}
+.sety-hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 36px;
+  padding: 0 14px 0 9px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(12, 16, 15, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+}
+.sety-hero__chip:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.sety-hero__chip.is-on {
+  border-color: var(--led);
+  box-shadow: 0 0 0 1px var(--led), 0 0 22px color-mix(in srgb, var(--led) 45%, transparent);
+}
+.sety-hero__chip-farba {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+@media (max-width: 767px) {
+  /* na telefóne čipy stoja hore vpravo vedľa drobčeka a nesú len farbu */
+  .sety-hero__vyber {
+    top: calc(var(--nav-h) + 14px);
+    bottom: auto;
+    right: var(--pad);
+    gap: 6px;
+  }
+  .sety-hero__chip {
+    height: 30px;
+    padding: 0 8px;
+  }
+  .sety-hero__chip-text {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sety-hero__zaber {
+    transition: none;
+  }
+  .sety-hero__eyebrow-prevedenie {
+    animation: none;
+  }
+}
+
+/* úvod zoznamu pod hero */
+.sety__zoznam {
+  padding-top: clamp(40px, 5vw, 72px);
+}
+.sety__uvod {
+  margin-bottom: clamp(24px, 3vw, 44px);
+}
+.sety__eyebrow {
   display: block;
   font-family: var(--ui);
   font-weight: 600;
@@ -11809,8 +11933,20 @@ a.dopyt-alt__card:hover {
   color: var(--cyan);
   margin-bottom: 14px;
 }
-.sety__zoznam {
-  padding-top: 0;
+.sety__titul {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.sety__lead {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 58ch;
 }
 .set {
   display: grid;

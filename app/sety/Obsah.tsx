@@ -1,39 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import Drobcek from "../Drobcek";
 import { cenaText, odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import { SETY } from "../sety";
+import SetyHero from "./SetyHero";
 import Swatch from "../Swatch";
 
 /**
- * Stránka Sety — hotové dvojice skrinka + akvárium. Hlavička je rovnaká ako
- * na ostatných obsahových podstránkach (.sub__head), pod ňou stojí každý set
- * ako jeden široký blok: vizuál vľavo, parametre a výzvy vpravo.
+ * Stránka Sety — hotové dvojice skrinka + akvárium. Hore hero so záberom
+ * prevedení (SetyHero), pod ním stojí každý set ako jeden široký blok:
+ * vizuál vľavo, parametre a výzvy vpravo.
  */
 export default function SetyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
   const k = t.sety;
   const l = (h: string) => odkaz(h, jazyk);
   return (
-    <main className="sub sety" style={{ "--accent": "var(--cyan)" } as CSSProperties}>
-      <section className="sub__head section">
-        <div className="sub__head-glow" />
-        <div className="wrap">
-          <div className="pg-drobcek" data-reveal="fade">
-            <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
-          </div>
-          <span className="sub__eyebrow">{k.eyebrow}</span>
-          <h1 className="sub__title" data-reveal>
-            {k.titul}
-          </h1>
-          <p className="sub__lead" data-reveal style={{ "--rd": "90ms" } as CSSProperties}>
-            {k.lead}
-          </p>
-        </div>
-      </section>
+    <main className="catalog sety" style={{ "--accent": "var(--cyan)" } as CSSProperties}>
+      <SetyHero t={t} jazyk={jazyk} />
 
       <section className="section sety__zoznam" id="sety">
+        <div className="wrap sety__uvod">
+          <span className="sety__eyebrow">{k.eyebrow}</span>
+          <h2 className="sety__titul">{k.titul}</h2>
+          <p className="sety__lead">{k.lead}</p>
+        </div>
         <div className="wrap">
           {SETY.map((set, i) => (
             <article

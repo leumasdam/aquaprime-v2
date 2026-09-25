@@ -36,6 +36,10 @@ export const SK = {
       "Hotové sety skrinky s akváriom. Krevetárium Scape 60: úzka skrinka 60 × 35 × 75 cm, akvárium 60 × 35 × 35 cm z klasického skla, LED podsvietenie, tri prevedenia.",
     drobcek: "Sety",
     eyebrow: "HOTOVÉ ZOSTAVY",
+    heroTitul: "Krevetárium, ktoré sa zmestí všade",
+    heroLead:
+      "Úzka skrinka s oceľovým rámom, akvárium z klasického skla a LED pod jeho hranou. Tri prevedenia, jedna výška.",
+    heroCta: "Pozrieť set",
     titul: "Sety skrinka + akvárium",
     lead:
       "Skrinka a akvárium, ktoré k sebe sedia na milimeter. Vyberiete prevedenie, my dodáme celok pripravený na napustenie.",
@@ -1149,6 +1153,10 @@ export const EN: Slovnik = {
       "Ready-made cabinet and aquarium sets. Scape 60 shrimp tank: narrow 60 × 35 × 75 cm cabinet, 60 × 35 × 35 cm classic-glass aquarium, LED backlight, three finishes.",
     drobcek: "Sets",
     eyebrow: "READY-MADE SETS",
+    heroTitul: "A shrimp tank that fits anywhere",
+    heroLead:
+      "A narrow steel-framed cabinet, a classic-glass aquarium and LED under its edge. Three finishes, one height.",
+    heroCta: "See the set",
     titul: "Cabinet + aquarium sets",
     lead:
       "A cabinet and an aquarium matched to the millimetre. Pick the finish, we deliver the whole set ready to fill.",
