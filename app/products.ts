@@ -168,7 +168,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/premium-100x40x80-cool-white-01.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
@@ -312,7 +311,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x80-antracit-02.webp",
           "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
-          "/img/products/premium-100x40x80-antracit-05.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ],
         "inherited": true,
@@ -426,7 +424,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/premium-100x40x80-cool-white-01.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
@@ -575,7 +572,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x80-antracit-02.webp",
           "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
-          "/img/products/premium-100x40x80-antracit-05.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ]
       },
@@ -693,7 +689,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
-          "/img/products/premium-100x40x80-cool-white-01.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
           "/img/products/premium-100x40x90-cool-white-06.webp",
           "/img/products/premium-100x40x90-cool-white-08.webp",
@@ -837,7 +832,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x80-antracit-02.webp",
           "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
-          "/img/products/premium-100x40x80-antracit-05.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ],
         "inherited": true,
