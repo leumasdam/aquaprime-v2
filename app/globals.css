@@ -8046,6 +8046,10 @@ button:focus-visible {
   .tech-hero__video-el {
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 20%);
+    /* Záber sa škáluje na šírku prvku — užší prvok ho o kúsok vzdiali, aby
+       rám nebol taký natesno. Výrez o niečo vyššie v zábere ho posadí nižšie. */
+    width: 84%;
+    object-position: 50% 30%;
   }
   .tech-hero::after {
     background: linear-gradient(
