@@ -11761,3 +11761,25 @@ a.dopyt-alt__card:hover {
     margin-bottom: 0;
   }
 }
+
+/* ===========================================================
+   KARTA PRODUKTU — POMALÉ STRIEDANIE DEKOROV (25. 9. 2026)
+   Náhľad na karte sa každé štyri sekundy prelína do ďalšieho nafoteného
+   dekoru; predošlá fotka ostáva pod novou, kým prelínanie nedobehne.
+   Vzorka aktívneho dekoru sa pritom zvýrazní rovnako ako pri hoveri.
+   =========================================================== */
+@keyframes productFotoIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.product__media img.product__foto--nova {
+  animation: productFotoIn 0.9s var(--ease) both;
+}
+.product__decor {
+  transition: transform var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .product__media img.product__foto--nova {
+    animation: none;
+  }
+}

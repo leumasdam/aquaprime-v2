@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import type { Decor, Product } from "./products";
 import { cenaText, dekorNazov, odkaz as odkazJazyk, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 import Swatch from "./Swatch";
 import { VT } from "./vt";
+
+/** Ako často sa na karte sama vymení farba a ako dlho trvá prelínanie. */
+const INTERVAL_MS = 4000;
 
 /** Zdieľaná produktová karta — katalóg, home featured aj súvisiace na detaile. */
 export default function ProductCard({
@@ -38,36 +41,97 @@ export default function ProductCard({
   /** jazyk odkazu na detail */
   jazyk?: Jazyk;
 }) {
-  // hover / fokus na vzorke dekoru prepne náhľad na jeho titulnú fotku;
-  // preklik potom otvorí detail rovno v tom dekore
   const s = SLOVNIKY[jazyk].spolocne;
-  const [dekor, setDekor] = useState<Decor | null>(null);
-  const nahlad = foto ?? dekor?.images[0] ?? p.cover;
-  const odkazParametre = odkazParam ?? (dekor ? `?dekor=${dekor.id}` : "");
+
+  /* Náhľad sa pomaly sám strieda cez dekory, ktoré majú fotku. Hover alebo
+     fokus na vzorke to preruší a ukáže vybraný dekor; po odchode myši sa
+     striedanie rozbehne znova. LED dlaždica (foto) má pevný záber. */
+  const cyklus = foto ? [] : p.decors.filter((d) => !d.chyba && d.images.length > 0);
+  const [hover, setHover] = useState<Decor | null>(null);
+  const [auto, setAuto] = useState(0);
+  const [pauza, setPauza] = useState(false);
+  const karta = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (cyklus.length < 2 || pauza) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = karta.current;
+    if (!el) return;
+    /* každá karta začne v inom okamihu, aby sa mriežka nemenila naraz */
+    let faza = 0;
+    for (let i = 0; i < p.slug.length; i++) faza = (faza + p.slug.charCodeAt(i) * 131) % INTERVAL_MS;
+    let timer: number | undefined;
+    let viditelna = false;
+    const stop = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => setAuto((i) => (i + 1) % cyklus.length), INTERVAL_MS);
+    };
+    const io = new IntersectionObserver(
+      ([z]) => {
+        viditelna = z.isIntersecting;
+        if (viditelna) start();
+        else stop();
+      },
+      { threshold: 0.25 }
+    );
+    const rozbeh = window.setTimeout(() => io.observe(el), faza);
+    return () => {
+      window.clearTimeout(rozbeh);
+      io.disconnect();
+      stop();
+    };
+  }, [cyklus.length, pauza, p.slug]);
+
+  const aktivny: Decor | null = hover ?? (cyklus.length ? cyklus[auto % cyklus.length] : null);
+  const nahlad = foto ?? aktivny?.images[0] ?? p.cover;
+
+  /* prelínanie: predošlá fotka ostáva pod novou, kým nová nedobehne */
+  const posledna = useRef(nahlad);
+  const predosla = posledna.current !== nahlad ? posledna.current : null;
+  useEffect(() => {
+    posledna.current = nahlad;
+  }, [nahlad]);
+
+  const odkazParametre = odkazParam ?? (aktivny ? `?dekor=${aktivny.id}` : "");
+  const alt = foto
+    ? `${radText(p.name, jazyk)} — ${s.altLed}`
+    : aktivny
+      ? `${radText(p.name, jazyk)} — ${s.altDekor} ${dekorNazov(aktivny.name, jazyk)}`
+      : `${radText(p.name, jazyk)} — ${s.altSkrinka}`;
+  const velkosti = "(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw";
+
   return (
     <Link
+      ref={karta}
       href={odkazJazyk(`/skrinky/${p.slug}${odkazParametre}`, jazyk)}
       className={`product${entered ? " product--in" : ""}`}
       {...(reveal ? { "data-reveal": "" } : {})}
       style={{ "--rd": `${delay}ms` } as CSSProperties}
+      onMouseEnter={() => setPauza(true)}
+      onMouseLeave={() => {
+        setPauza(false);
+        setHover(null);
+      }}
     >
       {/* rovnaké meno má galéria na detaile — karta sa doň premorfuje */}
       <VT name={`p-${p.slug}${znacka ? "-led" : ""}`} share="vt-morph">
         <div
           className={`product__media product__media--photo${foto ? " product__media--led" : ""}`}
         >
+          {predosla && (
+            <Image key={`predosla-${predosla}`} src={predosla} alt="" aria-hidden fill sizes={velkosti} />
+          )}
           <Image
             key={nahlad}
             src={nahlad}
-            alt={
-              foto
-                ? `${radText(p.name, jazyk)} — ${s.altLed}`
-                : dekor
-                  ? `${radText(p.name, jazyk)} — ${s.altDekor} ${dekorNazov(dekor.name, jazyk)}`
-                  : `${radText(p.name, jazyk)} — ${s.altSkrinka}`
-            }
+            alt={alt}
+            className={predosla ? "product__foto--nova" : undefined}
             fill
-            sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw"
+            sizes={velkosti}
           />
           <span
             className={`product__badge product__badge--${znacka ? "led" : p.tier}`}
@@ -89,20 +153,19 @@ export default function ProductCard({
           <div
             className="product__decors"
             title={
-              dekor
-                ? dekorNazov(dekor.name, jazyk)
+              aktivny
+                ? dekorNazov(aktivny.name, jazyk)
                 : `${p.decors.length} ${SLOVNIKY[jazyk].katalog.dekorov}`
             }
-            onMouseLeave={() => setDekor(null)}
           >
             {p.decors.map((d) => (
               <span
                 key={d.id}
-                className={`product__decor${dekor?.id === d.id ? " is-on" : ""}${
+                className={`product__decor${aktivny?.id === d.id ? " is-on" : ""}${
                   /* dekor z ponuky, ktorý ešte nie je nafotený — zošedne */
                   d.chyba ? " product__decor--chyba" : ""
                 }`}
-                onMouseEnter={() => setDekor(d)}
+                onMouseEnter={() => setHover(d)}
                 aria-label={dekorNazov(d.name, jazyk)}
               >
                 <Swatch swatch={d.swatch} className="swatch--dot" />
