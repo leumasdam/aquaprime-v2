@@ -18,6 +18,7 @@ const PORADIE: Record<string, number> = {
   "/akvaria": 2,
   "/technologia": 3,
   "/realizacie": 4,
+  "/sety": 5,
   "/blog": 5,
   "/kontakt": 6,
   "/konfigurator": 7,

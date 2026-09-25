@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { najdiSet } from "./sety";
 import { ROZMER_EVENT } from "./LoadCalc";
 import { odkaz, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -21,6 +22,21 @@ export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [delivered, setDelivered] = useState(false);
+
+  /* odkaz zo stránky Sety (?set=scape-60) predvyplní rozmer akvária a poznámku,
+     aby zákazník nemusel set opisovať; čo už napísal, sa neprepíše */
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("set");
+    const set = id ? najdiSet(id) : undefined;
+    if (!set) return;
+    setRozmer((r) => r || set.akvarium);
+    setPoznamka((p) =>
+      p ||
+      (jazyk === "en"
+        ? `I am interested in the ${set.nazov} set (${set.podtitul.en}).`
+        : `Mám záujem o set ${set.nazov} (${set.podtitul.sk}).`)
+    );
+  }, [jazyk]);
   const rozmerRef = useRef<HTMLInputElement>(null);
 
   // kalkulačka záťaže nižšie na stránke pošle rozmery sem — vyplní pole a

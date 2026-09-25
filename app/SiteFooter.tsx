@@ -47,6 +47,8 @@ export default function SiteFooter() {
                 {nav[n.kluc]}
               </Link>
             ))}
+            {/* blog v hornej lište nahradili Sety — v pätičke ostáva dostupný */}
+            <Link href={l("/blog")}>{nav.blog}</Link>
           </nav>
         </div>
 

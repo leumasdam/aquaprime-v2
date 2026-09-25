@@ -11793,3 +11793,223 @@ a.dopyt-alt__card:hover {
     display: none;
   }
 }
+
+/* ===========================================================
+   SETY — hotové dvojice skrinka + akvárium (25. 9. 2026)
+   Hlavička je spoločná so sub-stránkami, každý set je jeden široký blok:
+   vizuál vľavo, parametre, prevedenia a výzvy vpravo.
+   =========================================================== */
+.sety .sub__eyebrow {
+  display: block;
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+.sety__zoznam {
+  padding-top: 0;
+}
+.set {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+  padding: clamp(28px, 4vw, 56px) 0;
+  border-top: 1px solid var(--line-2);
+}
+.set__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0b0e0d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.set__media img {
+  object-fit: cover;
+}
+.set__stitok {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  margin-bottom: 16px;
+  font-family: var(--ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--cyan);
+}
+.set__eyebrow {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.set__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.set__bodka {
+  color: var(--cyan);
+}
+.set__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--body);
+  max-width: 56ch;
+}
+.set__specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 28px 0 0;
+  background: var(--line-2);
+  border: 1px solid var(--line-2);
+}
+.set__specs > div {
+  padding: 14px 16px;
+  background: var(--bg);
+}
+.set__specs dt,
+.set__label {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+.set__label {
+  margin-bottom: 12px;
+}
+.set__specs dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+.set__prevedenia,
+.set__prekoho {
+  margin-top: 26px;
+}
+.set__prevedenia ul,
+.set__prekoho ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.set__prevedenia ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+.set__prevedenia li {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+  color: var(--ink);
+}
+/* vzorka mimo produktovej karty nemá rodiča, ktorý by jej dal rozmer */
+.set__prevedenia .swatch {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+.set__prevedenia small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.set__prekoho ul {
+  display: grid;
+  gap: 8px;
+}
+.set__prekoho li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--body);
+}
+.set__prekoho li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 1px;
+  background: var(--cyan);
+}
+.set__pata {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-2);
+}
+.set__cena b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.set__cena small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  max-width: 34ch;
+}
+.set__akcie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+.sety__dalsie {
+  margin: clamp(28px, 4vw, 48px) 0 clamp(24px, 4vw, 56px);
+  padding-top: 22px;
+  border-top: 1px solid var(--line-2);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.sety__dalsie a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 899px) {
+  .set {
+    grid-template-columns: 1fr;
+  }
+  .set__media {
+    max-width: 520px;
+  }
+  .set__pata {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

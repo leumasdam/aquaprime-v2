@@ -13,6 +13,7 @@ const ROUTES = [
   "/materialy",
   "/technologia",
   "/realizacie",
+  "/sety",
   "/blog",
   "/o-nas",
   "/konfigurator",

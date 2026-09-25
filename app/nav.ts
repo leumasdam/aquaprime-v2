@@ -5,6 +5,6 @@ export const NAV = [
   { kluc: "akvaria", href: "/akvaria" },
   { kluc: "konstrukcia", href: "/technologia" },
   { kluc: "realizacie", href: "/realizacie" },
-  { kluc: "blog", href: "/blog" },
+  { kluc: "sety", href: "/sety" },
   { kluc: "kontakt", href: "/kontakt" },
 ] as const;
