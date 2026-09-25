@@ -81,7 +81,7 @@
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* prechody stránok a panelov — krivka prebratá zo zenko.sk, nemeniť */
-  --ease-swipe: var(--ease-swipe);
+  --ease-swipe: cubic-bezier(0.32, 0.72, 0.2, 1);
   color-scheme: dark;
 }
 
