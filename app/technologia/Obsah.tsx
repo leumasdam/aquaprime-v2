@@ -70,19 +70,26 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
             <div className="tech-hero__crumb tech-hero__crumb--v-texte">
               <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
             </div>
-            <h1 className="construct__title">
+            {/* rovnaké triedy ako hero skriniek, akvárií a realizácií — jeden
+                titulok, jeden perex, jedna dvojica výziev */}
+            <h1 className="vhero__title display">
               {k.titul1}
               <sup className="tm">™</sup>
               <br />
-              {k.titul2} <em>{k.titulEm}</em>.
+              {k.titul2} <em>{k.titulEm}</em>
+              <span className="vhero__bodka" aria-hidden>
+                .
+              </span>
             </h1>
-            <p className="construct__body">{k.lead}</p>
-            <div className="construct__actions">
-              <Link href={l("/skrinky")} className="btn-cyan">
-                {k.ctaSkrinka} <span aria-hidden>→</span>
+            <p className="vhero__lead">{k.lead}</p>
+            <div className="vhero__odkazy">
+              <Link href={l("/skrinky")} className="vhero__odkaz">
+                <span className="vhero__odkaz-text">{k.ctaSkrinka}</span>
+                <span aria-hidden>↗</span>
               </Link>
-              <Link href={l("/dopyt")} className="construct__link">
-                {k.ctaDopyt}
+              <Link href={l("/dopyt")} className="vhero__odkaz vhero__odkaz--tichy">
+                <span className="vhero__odkaz-text">{k.ctaDopyt}</span>
+                <span aria-hidden>↗</span>
               </Link>
             </div>
           </div>

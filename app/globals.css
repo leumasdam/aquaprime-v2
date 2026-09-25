@@ -7980,16 +7980,21 @@ button:focus-visible {
   /* copy je na obrázku, nie vedľa modelu — zarovnanie doľava */
   text-align: left;
 }
-.tech-hero__copy .construct__eyebrow,
-.tech-hero__copy .construct__actions {
-  justify-content: flex-start;
+.tech-hero .vhero__title em {
+  font-style: normal;
+  color: var(--cyan);
 }
-/* v hero je tlačidlo bližšie k textu — sekcia má byť nízka */
-.tech-hero__copy .construct__actions {
-  margin-top: 24px;
+/* „Oceľový rám pod akvárium." má 24 znakov — o osem viac než limit
+   ostatných hero titulkov, inak by sa lámal do troch riadkov */
+@media (min-width: 1024px) {
+  .tech-hero .vhero__title {
+    max-width: 24ch;
+  }
 }
-.tech-hero__copy .construct__body {
-  margin-left: 0;
+@media (min-width: 1200px) {
+  .tech-hero__copy {
+    max-width: 780px;
+  }
 }
 @media (max-width: 700px) {
   .tech-hero {
@@ -8050,6 +8055,7 @@ button:focus-visible {
        rám nebol taký natesno. Výrez o niečo vyššie v zábere ho posadí nižšie. */
     width: 84%;
     object-position: 50% 30%;
+    left: 8%;
   }
   .tech-hero::after {
     background: linear-gradient(
@@ -8089,47 +8095,6 @@ button:focus-visible {
   .tech-hero__copy {
     max-width: none;
   }
-  .tech-hero__copy .construct__title {
-    font-size: clamp(2.3rem, 9.4vw, 3.3rem);
-    line-height: 1.04;
-    margin-bottom: 14px;
-  }
-  .tech-hero__copy .construct__body {
-    font-size: 1rem;
-    max-width: 34ch;
-  }
-  .tech-hero__copy .construct__actions {
-    flex-wrap: wrap;
-    gap: 12px clamp(18px, 4vw, 32px);
-    margin-top: 24px;
-  }
-  /* tlačidlo sa mení na podčiarknutý odkaz, rovnako ako na ostatných hero */
-  .tech-hero__copy .btn-cyan {
-    height: auto;
-    padding: 0 0 7px;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--cyan);
-    border-radius: 0;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    color: var(--ink);
-    gap: 8px;
-  }
-  .tech-hero__copy .btn-cyan span {
-    color: var(--cyan);
-  }
-  .tech-hero__copy .construct__link {
-    padding-bottom: 7px;
-    border-bottom: 1px solid var(--line-2);
-    font-size: 0.8125rem;
-    color: var(--ink-soft);
-  }
-  .tech-hero__copy .construct__link::after {
-    display: none;
-  }
 }
 
 /* V na výšku vysokej sekcii by sa 16:9 záber orezal na úzky výsek a
@@ -8152,7 +8117,8 @@ button:focus-visible {
 }
 
 /* ochranná známka pri názve AquaFrame — malá, vyzdvihnutá, nie krik */
-.construct__title .tm {
+.construct__title .tm,
+.tech-hero .vhero__title .tm {
   font-size: 0.3em;
   vertical-align: super;
   line-height: 0;

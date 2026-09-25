@@ -471,8 +471,8 @@ export const SK = {
     titulEm: "akvárium",
     lead:
       "Nosnú časť skrinky tvorí zváraný oceľový rám. Opláštenie určuje jej vzhľad a nastaviteľné nožičky umožňujú vyrovnanie pri osadení.",
-    ctaSkrinka: "VYBRAŤ SKRINKU",
-    ctaDopyt: "alebo nezáväzný dopyt",
+    ctaSkrinka: "Vybrať skrinku",
+    ctaDopyt: "Nezáväzný dopyt",
     cisla: [
       ["30", "×30 mm", "uzavretý oceľový profil"],
       ["2", "mm", "hrúbka steny profilu"],
@@ -1555,8 +1555,8 @@ export const EN: Slovnik = {
     titulEm: "aquarium",
     lead:
       "The load-bearing part of the cabinet is a welded steel frame. The cladding defines its look and adjustable feet allow levelling during installation.",
-    ctaSkrinka: "CHOOSE A CABINET",
-    ctaDopyt: "or send an enquiry",
+    ctaSkrinka: "Choose a cabinet",
+    ctaDopyt: "Send an enquiry",
     cisla: [
       ["30", "×30 mm", "closed steel profile"],
       ["2", "mm", "profile wall thickness"],
