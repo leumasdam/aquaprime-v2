@@ -7263,6 +7263,12 @@ button:focus-visible {
   .vhero--bocny::after {
     background: none;
   }
+  /* Hrana záberu sa rozplýva do pozadia sekcie — to je rovnaká skoro čierna,
+     akou závoj stmavuje ľavý kraj na akváriách a konštrukcii. Pri pozadí
+     stránky (--bg) pôsobil prechod sivo a každý hero mal inú farbu kraja. */
+  .vhero--bocny {
+    background: #0b0e0d;
+  }
   .vhero__scroll {
     display: flex;
   }
