@@ -11814,64 +11814,117 @@ a.dopyt-alt__card:hover {
    Hlavička je spoločná so sub-stránkami, každý set je jeden široký blok:
    vizuál vľavo, parametre, prevedenia a výzvy vpravo.
    =========================================================== */
-/* hero: záber vpravo, ľavá hrana sa rozplýva do skoro čiernej sekcie;
-   kamera sa priblíži na aktívne prevedenie (ohnisko nesie --ohnisko-x) */
-.sety-hero__media {
-  inset: 0;
+/* hero setov (26. 9. 2026): interiér cez celú sekciu, skrinka vo zvolenom
+   prevedení stojí na svojom mieste v zábere, vpravo náhľady, dole čipy.
+   Javisko má rozmer záberu pri object-fit: cover (počíta ho komponent),
+   výrez prevedenia sa polohuje v percentách javiska. */
+.sety-hero__javisko {
+  position: absolute;
+  left: var(--st-x, 0);
+  top: var(--st-y, 0);
+  width: var(--st-w, 100%);
+  height: var(--st-h, 100%);
 }
-.sety-hero__zaber {
+.sety-hero__pozadie {
   object-fit: cover;
-  object-position: 50% 54%;
-  transform: scale(1.16);
-  transform-origin: var(--ohnisko-x, 50%) 60%;
-  transition: transform-origin 1.8s var(--ease), transform 1.8s var(--ease);
-  will-change: transform;
+  object-position: 50% 60%;
 }
-@media (min-width: 768px) {
-  .sety-hero__media {
-    inset: 0 0 0 40%;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 28%);
+.sety-hero__produkt {
+  position: absolute;
+  left: var(--sk-cx);
+  top: var(--sk-top);
+  height: var(--sk-h);
+  aspect-ratio: 0.55;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.sety-hero.is-zmerane .sety-hero__produkt {
+  opacity: 1;
+}
+.sety-hero__kus {
+  object-fit: contain;
+  object-position: 50% 100%;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+}
+.sety-hero__kus.is-on {
+  opacity: 1;
+}
+/* textový blok má v návrhu miesto po skrinku — širší než bežné hero,
+   inak sa titulok na veľkom monitore láme do troch riadkov */
+@media (min-width: 1024px) {
+  .sety-hero .vhero__in {
+    max-width: min(900px, 60%);
   }
 }
-@media (min-width: 1920px) {
-  .sety-hero__media {
-    left: calc(50% - var(--maxw) / 2 + var(--maxw) * 0.4);
-    right: calc(50% - var(--maxw) / 2);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 95%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 95%, transparent 100%);
-  }
-}
+/* nadpisok s linkou ako v návrhu */
 .sety-hero__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
-.sety-hero__eyebrow-delic {
-  color: var(--faint);
+.sety-hero__eyebrow::after {
+  content: "";
+  width: 44px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
 }
-.sety-hero__eyebrow-prevedenie {
-  color: var(--ink);
-  animation: setyPrevedenieIn 0.6s var(--ease) both;
+/* stĺpec náhľadov vpravo — len od notebooku, kde je naň miesto */
+.sety-hero__nahlady {
+  display: none;
 }
-@keyframes setyPrevedenieIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
+@media (min-width: 1024px) {
+  .sety-hero__nahlady {
+    position: absolute;
+    z-index: 3;
+    right: max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad)));
+    top: 50%;
+    transform: translateY(-56%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  to {
-    opacity: 1;
-    transform: none;
-  }
 }
-/* výber prevedenia — čipy vpravo dole, ako tlačidlo pauzy pri videu */
+.sety-hero__nahlad {
+  position: relative;
+  width: 96px;
+  height: 88px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(10, 13, 13, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+}
+.sety-hero__nahlad img {
+  object-fit: contain;
+  padding: 7px;
+}
+.sety-hero__nahlad:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.sety-hero__nahlad.is-on {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 1px var(--cyan), 0 0 26px rgba(0, 154, 192, 0.45);
+}
+/* lišta s čipmi vpravo dole */
 .sety-hero__vyber {
   position: absolute;
   z-index: 3;
   right: max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad)));
   bottom: 22px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  padding: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(10, 13, 13, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .sety-hero__chip {
   display: inline-flex;
@@ -11879,11 +11932,9 @@ a.dopyt-alt__card:hover {
   gap: 9px;
   height: 36px;
   padding: 0 14px 0 9px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(12, 16, 15, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: none;
   color: var(--ink);
   font-family: var(--ui);
   font-size: 0.6875rem;
@@ -11891,14 +11942,15 @@ a.dopyt-alt__card:hover {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+  transition: border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease),
+    background var(--t-slow) var(--ease);
 }
 .sety-hero__chip:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
 }
 .sety-hero__chip.is-on {
-  border-color: var(--led);
-  box-shadow: 0 0 0 1px var(--led), 0 0 22px color-mix(in srgb, var(--led) 45%, transparent);
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px rgba(0, 154, 192, 0.35);
 }
 .sety-hero__chip-farba {
   width: 14px;
@@ -11907,28 +11959,13 @@ a.dopyt-alt__card:hover {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 @media (max-width: 767px) {
-  /* na výšku je v zábere aj vpálený text z vizuálu — zhora ho prekryje
-     čierny prechod, pod ktorým ostane čitateľná lišta aj drobček */
-  .sety-hero__media::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      180deg,
-      #0b0e0d 0%,
-      rgba(11, 14, 13, 0.96) 22%,
-      rgba(11, 14, 13, 0.6) 34%,
-      transparent 48%
-    );
-    pointer-events: none;
-  }
   /* na telefóne čipy stoja hore vpravo vedľa drobčeka a nesú len farbu */
   .sety-hero__vyber {
-    top: calc(var(--nav-h) + 14px);
+    top: calc(var(--nav-h) + 12px);
     bottom: auto;
     right: var(--pad);
-    gap: 6px;
+    gap: 4px;
+    padding: 4px;
   }
   .sety-hero__chip {
     height: 30px;
@@ -11939,11 +11976,9 @@ a.dopyt-alt__card:hover {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sety-hero__zaber {
+  .sety-hero__kus,
+  .sety-hero__produkt {
     transition: none;
-  }
-  .sety-hero__eyebrow-prevedenie {
-    animation: none;
   }
 }
 

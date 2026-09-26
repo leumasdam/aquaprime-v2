@@ -1,28 +1,59 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Drobcek from "../Drobcek";
 import type { Jazyk } from "../jazyk";
 import { SLOVNIKY, type Slovnik } from "../preklady";
 import { SETY } from "../sety";
 
-/** Kde v zábere stojí ktoré prevedenie (vodorovný stred panelu v % šírky). */
-const OHNISKA = [18, 50, 82];
-/** Farba LED pod akváriom v danom prevedení — svieti v ráme aktívneho čipu. */
-const LED = ["#f1c27a", "#f1c27a", "#4aa8ff"];
+/** Záber interiéru s prázdnym miestom pre skrinku (rozmer súboru). */
+const POZADIE = { src: "/img/sety/krevety-hero.webp", w: 2794, h: 831 };
+/** Kde v zábere stojí skrinka: stred na šírku, horná hrana akvária a
+    spodok skrinky — podiely z rozmeru záberu. Výrez prevedenia sa naň lepí. */
+const SKRINKA = { cx: 0.574, top: 0.1, bot: 0.918 };
+/** Ktorý bod záberu drží pri orezaní (ako object-position) — desktop / telefón. */
+const OHNISKO = { d: [0.5, 0.6], m: [0.585, 0.6] } as const;
 const INTERVAL_MS = 4200;
 
+type Javisko = { x: number; y: number; w: number; h: number };
+
 /**
- * Hero setov: záber s tromi prevedeniami Scape 60 stojí vpravo a kamera sa
- * pomaly presúva z jedného na druhé — priblíži sa na aktívny panel a čip
- * s jeho názvom sa rozsvieti farbou LED. Klik na čip preberie riadenie.
+ * Hero setov podľa návrhu z 26. 9. 2026: interiér cez celú sekciu, v ňom
+ * stojí skrinka s akváriom vo zvolenom prevedení, vpravo stĺpec náhľadov
+ * a dole lišta s čipmi. Prevedenia sú samostatné výrezy, ktoré sa
+ * prelínajú presne na mieste skrinky v zábere.
+ *
+ * Záber sa kreslí ako „javisko“ s rozmerom, aký by mal pri object-fit: cover,
+ * a výrez sa polohuje v percentách javiska — tak sedí na skrinke pri každej
+ * šírke okna, aj keď je záber orezaný zboku alebo zhora.
  */
 export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
   const k = t.sety;
   const set = SETY[0];
-  const [i, setI] = useState(0);
+  const sekcia = useRef<HTMLElement>(null);
+  const [i, setI] = useState(1);
   const [rucne, setRucne] = useState(false);
+  const [javisko, setJavisko] = useState<Javisko | null>(null);
+
+  useEffect(() => {
+    const el = sekcia.current;
+    if (!el) return;
+    const prepocitaj = () => {
+      const W = el.clientWidth;
+      const H = el.clientHeight;
+      const mobil = window.matchMedia("(max-width: 767px)").matches;
+      const [px, py] = mobil ? OHNISKO.m : OHNISKO.d;
+      const s = Math.max(W / POZADIE.w, H / POZADIE.h);
+      const w = POZADIE.w * s;
+      const h = POZADIE.h * s;
+      setJavisko({ x: (W - w) * px, y: (H - h) * py, w, h });
+    };
+    prepocitaj();
+    const ro = new ResizeObserver(prepocitaj);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     if (rucne) return;
@@ -34,16 +65,57 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
     return () => window.clearInterval(id);
   }, [rucne, set.prevedenia.length]);
 
+  const vyber = (j: number) => {
+    setI(j);
+    setRucne(true);
+  };
+
+  const style = {
+    ...(javisko
+      ? {
+          "--st-x": `${javisko.x}px`,
+          "--st-y": `${javisko.y}px`,
+          "--st-w": `${javisko.w}px`,
+          "--st-h": `${javisko.h}px`,
+        }
+      : {}),
+    "--sk-cx": `${SKRINKA.cx * 100}%`,
+    "--sk-top": `${SKRINKA.top * 100}%`,
+    "--sk-h": `${(SKRINKA.bot - SKRINKA.top) * 100}%`,
+  } as CSSProperties;
+
   return (
     <section
-      className="vhero vhero--bocny sety-hero"
+      ref={sekcia}
+      className={`vhero sety-hero${javisko ? " is-zmerane" : ""}`}
       id="sety-hero"
       aria-labelledby="sety-title"
-      style={{ "--ohnisko-x": `${OHNISKA[i]}%`, "--led": LED[i] } as CSSProperties}
+      style={style}
     >
-      <div className="vhero__media sety-hero__media" aria-hidden>
-        {/* jediný 158 kB webp — bez optimalizátora, nech hero nečaká na srcset */}
-        <Image src={set.obrazok} alt="" fill priority unoptimized className="sety-hero__zaber" />
+      <div className="vhero__media" aria-hidden>
+        <div className="sety-hero__javisko">
+          <Image
+            src={POZADIE.src}
+            alt=""
+            fill
+            priority
+            unoptimized
+            className="sety-hero__pozadie"
+          />
+          <div className="sety-hero__produkt">
+            {set.prevedenia.map((p, j) => (
+              <Image
+                key={p.id}
+                src={p.obrazok}
+                alt=""
+                fill
+                unoptimized
+                priority={j === 1}
+                className={`sety-hero__kus${j === i ? " is-on" : ""}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="hero__scroll-v vhero__scroll" aria-hidden>
@@ -60,7 +132,7 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
         <div className="vhero__crumb vhero__crumb--v-texte">
           <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
         </div>
-        <span className="vhero__eyebrow">{k.heroEyebrow}</span>
+        <span className="vhero__eyebrow sety-hero__eyebrow">{set.nazov}</span>
         <h1 className="vhero__title display vhero__title--siroky" id="sety-title">
           {k.heroTitul}
           <span className="vhero__bodka" aria-hidden>
@@ -71,9 +143,25 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
         <div className="vhero__odkazy">
           <a href={`#${set.id}`} className="vhero__odkaz">
             <span className="vhero__odkaz-text">{k.heroCta}</span>
-            <span aria-hidden>↗</span>
+            <span aria-hidden>→</span>
           </a>
         </div>
+      </div>
+
+      {/* stĺpec náhľadov vpravo — každý ukazuje jedno prevedenie */}
+      <div className="sety-hero__nahlady" role="group" aria-label={k.prevedenia}>
+        {set.prevedenia.map((p, j) => (
+          <button
+            key={p.id}
+            type="button"
+            className={`sety-hero__nahlad${j === i ? " is-on" : ""}`}
+            aria-pressed={j === i}
+            aria-label={p.nazov}
+            onClick={() => vyber(j)}
+          >
+            <Image src={p.obrazok} alt="" fill unoptimized sizes="120px" />
+          </button>
+        ))}
       </div>
 
       <div className="sety-hero__vyber" role="group" aria-label={k.prevedenia}>
@@ -83,10 +171,7 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
             type="button"
             className={`sety-hero__chip${j === i ? " is-on" : ""}`}
             aria-pressed={j === i}
-            onClick={() => {
-              setI(j);
-              setRucne(true);
-            }}
+            onClick={() => vyber(j)}
           >
             <span className="sety-hero__chip-farba" style={{ background: p.swatch[0] }} />
             <span className="sety-hero__chip-text">{p.nazov}</span>

@@ -11,6 +11,8 @@ export type Prevedenie = {
   nazov: string;
   swatch: string[];
   led: Record<Jazyk, string>;
+  /** výrez skrinky s akváriom (priehľadné pozadie) do hero */
+  obrazok: string;
 };
 
 export type Set = {
@@ -70,18 +72,21 @@ export const SETY: Set[] = [
         id: "cool-white",
         nazov: "Cool White",
         swatch: ["#eef0f0"],
+        obrazok: "/img/sety/scape-60-cool-white.webp",
         led: { sk: "teplá biela", en: "warm white" },
       },
       {
         id: "black-matt",
         nazov: "Black Matt",
         swatch: ["#17181a"],
+        obrazok: "/img/sety/scape-60-black-matt.webp",
         led: { sk: "teplá biela", en: "warm white" },
       },
       {
         id: "antracit",
         nazov: "Antracit",
         swatch: ["#40454a"],
+        obrazok: "/img/sety/scape-60-antracit.webp",
         led: { sk: "modrá", en: "blue" },
       },
     ],
