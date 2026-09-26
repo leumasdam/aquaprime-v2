@@ -12328,24 +12328,43 @@ a.dopyt-alt__card:hover {
   }
 }
 .ck__in {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 18px clamp(20px, 3vw, 44px);
   padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2.2vw, 28px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 154, 192, 0.3);
   border-radius: 16px;
-  background: rgba(9, 12, 12, 0.96);
+  /* tyrkysový nádych v rohu, odkiaľ svieti aj hero — lišta tak patrí k webu
+     a nepôsobí ako cudzí panel nalepený na stránku */
+  background:
+    radial-gradient(120% 200% at 0% 0%, rgba(0, 154, 192, 0.16), transparent 58%),
+    rgba(9, 12, 12, 0.96);
   backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+/* tenký svetelný prúžok po hornej hrane */
+.ck__in::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan) 22%, var(--cyan) 62%, transparent);
+  opacity: 0.85;
 }
 .ck__text {
   flex: 1 1 380px;
   min-width: 0;
 }
 .ck__eyebrow {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--ui);
   font-size: 0.5625rem;
   font-weight: 700;
@@ -12353,6 +12372,15 @@ a.dopyt-alt__card:hover {
   text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 7px;
+}
+/* tyrkysový bod pred slovom COOKIES */
+.ck__eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 154, 192, 0.9);
 }
 .ck__text p {
   margin: 0;
@@ -12404,10 +12432,17 @@ a.dopyt-alt__card:hover {
   border-color: transparent;
   background: var(--cyan-btn);
   color: var(--bg);
+  box-shadow: 0 0 22px rgba(0, 154, 192, 0.38);
 }
 .ck__btn--hlavny:hover {
   border-color: transparent;
-  background: var(--cyan);
+  background: #00b0da;
+  box-shadow: 0 0 30px rgba(0, 154, 192, 0.5);
+}
+/* vedľajšie tlačidlo sa rozsvieti až pod kurzorom */
+.ck__btn:not(.ck__btn--hlavny):hover {
+  border-color: rgba(0, 154, 192, 0.65);
+  background: rgba(0, 154, 192, 0.08);
 }
 .ck__tichy {
   border: 0;
@@ -12433,7 +12468,7 @@ a.dopyt-alt__card:hover {
   display: grid;
   gap: 2px;
   margin-top: 2px;
-  border-top: 1px solid var(--line-2);
+  border-top: 1px solid rgba(0, 154, 192, 0.22);
   padding-top: 16px;
 }
 @media (min-width: 900px) {
@@ -12446,11 +12481,22 @@ a.dopyt-alt__card:hover {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 8px 0;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
   font-size: 0.8125rem;
   line-height: 1.55;
   color: var(--ink-soft);
   cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
+}
+/* zapnutá kategória sa priznáva farbou, nie len prepínačom */
+.ck__volba:has(input:checked) {
+  border-color: rgba(0, 154, 192, 0.28);
+  background: rgba(0, 154, 192, 0.07);
+}
+.ck__volba:hover:not(.is-locked) {
+  border-color: rgba(0, 154, 192, 0.45);
 }
 .ck__volba b {
   display: block;
@@ -12461,6 +12507,9 @@ a.dopyt-alt__card:hover {
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 4px;
+}
+.ck__volba:has(input:checked) b {
+  color: var(--cyan);
 }
 .ck__volba.is-locked {
   cursor: default;
