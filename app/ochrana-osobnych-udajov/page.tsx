@@ -21,7 +21,7 @@ export default function OchranaOsobnychUdajov() {
         <Doplnit co="IČO" /> (ďalej len „prevádzkovateľ“).
       </p>
       <p>
-        Kontakt na uplatnenie práv: <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>,{" "}
+        Kontakt na uplatnenie práv: <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,{" "}
         <Doplnit co="poštová adresa na uplatnenie práv" />.{" "}
         <Doplnit co="zodpovedná osoba (DPO), ak je určená — inak tento údaj vypustiť" />
       </p>
@@ -161,7 +161,7 @@ export default function OchranaOsobnychUdajov() {
       </ul>
       <p>
         Práva si uplatníte e-mailom na{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>. Odpovieme do jedného
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>. Odpovieme do jedného
         mesiaca od doručenia žiadosti; v odôvodnených prípadoch môžeme lehotu predĺžiť
         a budeme vás o tom informovať.
       </p>

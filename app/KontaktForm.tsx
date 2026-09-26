@@ -7,7 +7,7 @@ import { cabinetPrice, tankLoadKg } from "./configurator-logic";
 import { type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 
-const OWNER_EMAIL = "ahoj@aquaprime.sk";
+const OWNER_EMAIL = "patrikranda225@gmail.com";
 const DRAFT_KEY = "aq:kontakt:draft";
 
 /** poradie musí sedieť so zoznamom `temy` v slovníku */

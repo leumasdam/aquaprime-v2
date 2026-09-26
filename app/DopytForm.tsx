@@ -7,7 +7,7 @@ import { odkaz, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 import { posliDopyt } from "./send-dopyt";
 
-const OWNER_EMAIL = "ahoj@aquaprime.sk";
+const OWNER_EMAIL = "patrikranda225@gmail.com";
 
 export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].dopyt;

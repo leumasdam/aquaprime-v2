@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
+import { mailNastaveny, posliMail } from "../_lib/mail";
 
 /**
  * Príjem dopytov z formulárov. Odosiela dva maily — jeden do firmy s obsahom
  * dopytu, druhý zákazníkovi ako potvrdenie, že správa dorazila.
  *
- * Potrebné premenné prostredia (Vercel → Settings → Environment Variables):
- *   RESEND_API_KEY   kľúč z resend.com
- *   DOPYT_TO         kam chodia dopyty; viac adries oddelí čiarka
- *   DOPYT_FROM       overený odosielateľ na doméne (napr. web@aquaprime.sk)
- * Kým kľúč chýba, endpoint vráti 503 a formulár sa prepne na mailto.
+ * Odosielanie rieši spoločný pomocník app/api/_lib/mail.ts (SMTP alebo
+ * Resend). Kým nie je nastavené, endpoint vráti 503 a formulár na webe sa
+ * prepne na otvorenie poštového klienta.
  */
 
 const MAX = 5000;
@@ -42,11 +40,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const key = process.env.RESEND_API_KEY;
-  const to = process.env.DOPYT_TO;
-  const from = process.env.DOPYT_FROM;
-
-  if (!key || !to || !from) {
+  if (!mailNastaveny()) {
     return NextResponse.json(
       { ok: false, error: "not_configured" },
       { status: 503 }
@@ -81,7 +75,6 @@ export async function POST(req: Request) {
   ].filter(([, v]) => v) as [string, string][];
 
   const sprava = (body.sprava ?? "").trim().slice(0, MAX);
-  const resend = new Resend(key);
 
   const html = `
     <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6;color:#111">
@@ -106,21 +99,16 @@ export async function POST(req: Request) {
     </div>`;
 
   try {
-    const { error } = await resend.emails.send({
-      from,
-      to: prijemcovia(to),
-      replyTo: email,
-      subject: `Dopyt z webu — ${body.tema || "kontakt"} · ${meno}`,
+    await posliMail({
+      odpovedatNa: email,
+      predmet: `Dopyt z webu — ${body.tema || "kontakt"} · ${meno}`,
       html,
     });
-    if (error) throw new Error(error.message);
 
     // potvrdenie zákazníkovi; keď zlyhá, dopyt aj tak prešiel
-    await resend
-      .emails.send({
-        from,
-        to: [email],
-        subject: "Vaša správa dorazila — AQUAPRIME",
+    await posliMail({
+        komu: email,
+        predmet: "Vaša správa dorazila — AQUAPRIME",
         html: `
           <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
             <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
@@ -128,8 +116,7 @@ export async function POST(req: Request) {
             ${sprava ? `<p style="color:#666">Čo ste nám napísali:</p><p style="white-space:pre-wrap;padding-left:14px;border-left:2px solid #ddd;margin:0 0 16px">${esc(sprava)}</p>` : ""}
             <p style="color:#666;font-size:13px">AQUAPRIME · akváriá a skrinky na mieru<br/>aquaprime.sk</p>
           </div>`,
-      })
-      .catch(() => null);
+    }).catch(() => null);
 
     return NextResponse.json({ ok: true });
   } catch (e) {

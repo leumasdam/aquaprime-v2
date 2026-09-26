@@ -45,7 +45,7 @@ export default function TermsAndConditions() {
         &bdquo;seller&ldquo;).
       </p>
       <p>
-        Contact details: e-mail <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>,
+        Contact details: e-mail <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,
         phone <Doplnit en co="phone" />, delivery address{" "}
         <Doplnit en co="address for correspondence and returns" />.
       </p>
@@ -152,7 +152,7 @@ export default function TermsAndConditions() {
       </p>
       <p>
         Withdrawal can be notified by e-mail to{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a> or in writing to the
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> or in writing to the
         registered office. The model form below may also be used. The seller confirms
         receipt of the withdrawal without undue delay.
       </p>

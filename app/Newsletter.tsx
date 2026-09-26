@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { posliDopyt } from "./send-dopyt";
 
-const OWNER_EMAIL = "ahoj@aquaprime.sk";
+const OWNER_EMAIL = "patrikranda225@gmail.com";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");

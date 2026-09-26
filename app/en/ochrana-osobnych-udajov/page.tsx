@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
       </p>
       <p>
         Contact for exercising your rights:{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>,{" "}
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,{" "}
         <Doplnit en co="postal address for exercising rights" />.{" "}
         <Doplnit
           en
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
       </ul>
       <p>
         You can exercise these rights by e-mail at{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>. We reply within one month
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>. We reply within one month
         of receiving the request; in justified cases we may extend the period and will let
         you know.
       </p>

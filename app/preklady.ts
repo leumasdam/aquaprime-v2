@@ -1041,7 +1041,7 @@ export const SK = {
     chybaBrana:
       "Platobnú bránu sa nepodarilo otvoriť. Objednávku máme prijatú — zálohu uhraďte prevodom podľa údajov nižšie.",
     chybaOdoslanie:
-      "Objednávku sa nepodarilo odoslať. Skúste to znova alebo nás kontaktujte e-mailom na ahoj@aquaprime.sk.",
+      "Objednávku sa nepodarilo odoslať. Skúste to znova alebo nás kontaktujte e-mailom na patrikranda225@gmail.com.",
     platbaKarta: "Záloha 30 % kartou online, zvyšok pri prevzatí",
     platbaPrevod: "Záloha 30 % prevodom, zvyšok pri prevzatí",
   },
@@ -2170,7 +2170,7 @@ export const EN: Slovnik = {
     chybaBrana:
       "The payment gateway could not be opened. We have your order — please pay the deposit by transfer using the details below.",
     chybaOdoslanie:
-      "The order could not be sent. Please try again or contact us by e-mail at ahoj@aquaprime.sk.",
+      "The order could not be sent. Please try again or contact us by e-mail at patrikranda225@gmail.com.",
     platbaKarta: "30 % deposit by card online, the rest on handover",
     platbaPrevod: "30 % deposit by transfer, the rest on handover",
   },

@@ -733,7 +733,7 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
           </ul>
 
           <p className="kos__pomoc">
-            {t.pomocA} <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>{" "}
+            {t.pomocA} <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>{" "}
             {t.pomocB} <Link href={l("/kontakt")}>{t.pomocOdkaz}</Link>.
           </p>
         </div>

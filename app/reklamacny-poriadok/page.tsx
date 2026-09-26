@@ -56,7 +56,7 @@ export default function ReklamacnyPoriadok() {
       <h2>3. Uplatnenie reklamácie</h2>
       <p>
         Reklamáciu môže kupujúci uplatniť e-mailom na{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a> alebo písomne na adrese{" "}
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> alebo písomne na adrese{" "}
         <Doplnit co="adresa na uplatnenie reklamácie" />. V oznámení je vhodné uviesť číslo
         objednávky, popis vady, kedy sa vada prejavila, a priložiť fotografie. Tieto údaje
         slúžia na rýchlejšie vybavenie; ich neuvedenie nie je dôvodom na zamietnutie

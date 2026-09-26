@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { prijemcovia } from "../dopyt/route";
+import { mailNastaveny, posliMail } from "../_lib/mail";
 import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
@@ -166,13 +165,9 @@ export async function POST(req: Request) {
       }
     </div>`;
 
-  const key = process.env.RESEND_API_KEY;
-  const to = process.env.DOPYT_TO;
-  const from = process.env.DOPYT_FROM;
-
-  if (!key || !to || !from) {
+  if (!mailNastaveny()) {
     // objednávka je platná, len ju zatiaľ nemáme ako odoslať — nech sa nestratí
-    console.warn(`OBJEDNÁVKA ${cislo} bez odoslania (chýba Resend):`, {
+    console.warn(`OBJEDNÁVKA ${cislo} bez odoslania (mail nie je nastavený):`, {
       meno,
       email,
       polozky,
@@ -182,19 +177,14 @@ export async function POST(req: Request) {
   }
 
   try {
-    const resend = new Resend(key);
-    await resend.emails.send({
-      from,
-      to: prijemcovia(to),
-      replyTo: email,
-      subject: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
+    await posliMail({
+      odpovedatNa: email,
+      predmet: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
       html: platbaBlok + suhrn,
     });
-    await resend.emails
-      .send({
-        from,
-        to: [email],
-        subject: `Vaša objednávka ${cislo} — AQUAPRIME`,
+    await posliMail({
+        komu: email,
+        predmet: `Vaša objednávka ${cislo} — AQUAPRIME`,
         html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
             <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
             <p>ďakujeme za objednávku. Máme ju u seba a ozveme sa vám v pracovný
@@ -204,8 +194,7 @@ export async function POST(req: Request) {
             ${suhrn}
             <p style="color:#666;font-size:13px">AQUAPRIME · aquaprime.sk</p>
           </div>`,
-      })
-      .catch(() => null);
+    }).catch(() => null);
     return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: true });
   } catch (e) {
     console.error(`OBJEDNÁVKA ${cislo} — odoslanie zlyhalo`, e);

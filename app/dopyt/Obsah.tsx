@@ -165,8 +165,8 @@ export default function DopytObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
                 <span className="dopyt-alt__tag">{d.napisatTag}</span>
                 <strong className="dopyt-alt__t">{d.napisatTitul}</strong>
                 <p className="dopyt-alt__b">{d.napisatText}</p>
-                <a href="mailto:ahoj@aquaprime.sk" className="dopyt-alt__mail">
-                  ahoj@aquaprime.sk
+                <a href="mailto:patrikranda225@gmail.com" className="dopyt-alt__mail">
+                  patrikranda225@gmail.com
                 </a>
                 <Link href={l("/kontakt")} className="dopyt-alt__link">
                   {d.napisatCta} <span aria-hidden>→</span>

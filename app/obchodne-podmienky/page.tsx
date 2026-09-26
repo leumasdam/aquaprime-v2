@@ -37,7 +37,7 @@ export default function ObchodnePodmienky() {
         zapísaný v <Doplnit co="register a číslo zápisu" /> (ďalej len „predávajúci“).
       </p>
       <p>
-        Kontaktné údaje: e-mail <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a>,
+        Kontaktné údaje: e-mail <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,
         telefón <Doplnit co="telefón" />, adresa na doručovanie{" "}
         <Doplnit co="adresa na doručovanie a vrátenie tovaru" />.
       </p>
@@ -130,7 +130,7 @@ export default function ObchodnePodmienky() {
       </p>
       <p>
         Odstúpenie je možné oznámiť e-mailom na{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a> alebo písomne na adresu
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> alebo písomne na adresu
         sídla. Použiť možno aj vzorový formulár nižšie. Predávajúci potvrdí prijatie
         odstúpenia bez zbytočného odkladu.
       </p>

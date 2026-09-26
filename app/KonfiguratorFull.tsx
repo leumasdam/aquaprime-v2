@@ -28,7 +28,7 @@ import { SLOVNIKY } from "./preklady";
    nastaviteľné nožičky, bez výberu a bez príplatku. */
 const FEET = [{ id: "steel", name: "Nastaviteľné nožičky", prem: 0 }] as const;
 
-const OWNER_EMAIL = "ahoj@aquaprime.sk";
+const OWNER_EMAIL = "patrikranda225@gmail.com";
 
 export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].konfigurator;

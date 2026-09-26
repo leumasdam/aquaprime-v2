@@ -63,7 +63,7 @@ export default function ComplaintsProcedure() {
       <h2>3. Making a complaint</h2>
       <p>
         A complaint can be made by e-mail to{" "}
-        <a href="mailto:ahoj@aquaprime.sk">ahoj@aquaprime.sk</a> or in writing to{" "}
+        <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> or in writing to{" "}
         <Doplnit en co="address for making complaints" />. It helps to state the order
         number, a description of the defect and when it appeared, and to attach
         photographs. These details speed up the process; not providing them is not a reason
