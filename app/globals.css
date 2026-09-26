@@ -12777,6 +12777,60 @@ a.dopyt-alt__card:hover {
 }
 
 /* ---- zrno cez celý web: rozbije banding tmavých plôch ---- */
+/* ============================================================
+   RASTER V POZADÍ (26. 9. 2026)
+   Veľmi jemná technická mriežka pod celým webom, odvodená od oceľového
+   profilu 30 × 30 mm, z ktorého sú rámy skriniek. Kreslí sa pod obsah
+   (z-index -1), takže ju vidno len v tmavých medzerách medzi sekciami —
+   fotky, karty a bloky s vlastným pozadím ju prekryjú.
+
+   Pri skrolovaní sa vrstva posúva pomalšie než obsah, takže stránka
+   dostane hĺbku. Posun beží na scroll-driven animácii bez JavaScriptu;
+   prehliadače, ktoré ju nevedia (Safari, Firefox), ukážu mriežku
+   nehybne a efekt im nechýba.
+   ============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  /* vrstva presahuje obrazovku, aby pri posune neodhalila prázdny okraj */
+  inset: -30vh 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(226, 232, 228, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 228, 0.03) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 154, 192, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 154, 192, 0.055) 1px, transparent 1px);
+  /* jemná sieť po 30 px = profil rámu, každá piata linka je tyrkysová */
+  background-size: 30px 30px, 30px 30px, 150px 150px, 150px 150px;
+  /* raster nesmie končiť ostrou hranou — do okrajov okna sa rozplynie */
+  -webkit-mask-image: radial-gradient(130% 80% at 50% 42%, #000 22%, transparent 76%);
+  mask-image: radial-gradient(130% 80% at 50% 42%, #000 22%, transparent 76%);
+}
+@keyframes rasterPlavanie {
+  from {
+    transform: translate3d(0, -11vh, 0);
+  }
+  to {
+    transform: translate3d(0, 11vh, 0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    body::before {
+      will-change: transform;
+      animation: rasterPlavanie linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+/* na telefóne je sieť po 30 px príliš hustá — pri pohybe by sa chvela */
+@media (max-width: 760px) {
+  body::before {
+    background-size: 44px 44px, 44px 44px, 220px 220px, 220px 220px;
+  }
+}
+
 body::after {
   content: "";
   position: fixed;
