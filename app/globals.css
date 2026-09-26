@@ -7440,9 +7440,9 @@ button:focus-visible {
   }
   .vhero--bocny .svetlo {
     right: calc(50% - var(--maxw) / 2);
-    /* pravá hrana už nekončí na okraji obrazovky, tak sa aj ona rozplynie */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 95%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 95%, transparent 100%);
+    /* rozplýva sa len ľavá hrana pri texte, pravá ostáva ostrá */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
   }
 }
 
@@ -11707,7 +11707,7 @@ a.dopyt-alt__card:hover {
 }
 @media (min-width: 1900px) {
   .vhero--bocny .svetlo {
-    transform: scale(0.77);
+    transform: scale(0.84);
   }
 }
 
