@@ -13,7 +13,12 @@ const POZADIE = { src: "/img/sety/krevety-hero.webp", w: 2794, h: 831 };
     spodok skrinky — podiely z rozmeru záberu. Výrez prevedenia sa naň lepí. */
 const SKRINKA = { cx: 0.574, top: 0.1, bot: 0.918 };
 /** Ktorý bod záberu drží pri orezaní (ako object-position) — desktop / telefón. */
-const OHNISKO = { d: [0.5, 0.6], m: [0.585, 0.6] } as const;
+const OHNISKO = { d: [0.35, 0], m: [0.585, 0.6] } as const;
+/** Na desktope je záber o kúsok väčší a posadený nižšie: vrch akvária tak
+    nie je nalepený na lištu. Pás pod lištou, ktorý záber nepokryje, drží
+    farba sekcie — vrch scény je aj tak takmer čierny. */
+const PRIBLIZENIE = { d: 1, m: 1 } as const;
+const POSUN_Y = { d: 48, m: 0 } as const;
 const INTERVAL_MS = 4200;
 
 type Javisko = { x: number; y: number; w: number; h: number };
@@ -44,10 +49,10 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
       const H = el.clientHeight;
       const mobil = window.matchMedia("(max-width: 767px)").matches;
       const [px, py] = mobil ? OHNISKO.m : OHNISKO.d;
-      const s = Math.max(W / POZADIE.w, H / POZADIE.h);
+      const s = Math.max(W / POZADIE.w, H / POZADIE.h) * (mobil ? PRIBLIZENIE.m : PRIBLIZENIE.d);
       const w = POZADIE.w * s;
       const h = POZADIE.h * s;
-      setJavisko({ x: (W - w) * px, y: (H - h) * py, w, h });
+      setJavisko({ x: (W - w) * px, y: (H - h) * py + (mobil ? POSUN_Y.m : POSUN_Y.d), w, h });
     };
     prepocitaj();
     const ro = new ResizeObserver(prepocitaj);

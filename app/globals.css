@@ -11818,6 +11818,9 @@ a.dopyt-alt__card:hover {
    prevedení stojí na svojom mieste v zábere, vpravo náhľady, dole čipy.
    Javisko má rozmer záberu pri object-fit: cover (počíta ho komponent),
    výrez prevedenia sa polohuje v percentách javiska. */
+.sety-hero {
+  background: #0b0e0d;
+}
 .sety-hero__javisko {
   position: absolute;
   left: var(--st-x, 0);
