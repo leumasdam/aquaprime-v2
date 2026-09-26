@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Drobcek from "../Drobcek";
@@ -72,8 +73,19 @@ export default function RealizacieHero({
   const drobcek = [{ nazov: t.drobcek }];
 
   return (
-    <section className="vhero" id="hero" aria-labelledby="realizacie-title">
+    <section className="vhero vhero--real" id="hero" aria-labelledby="realizacie-title">
       <div className="vhero__media" aria-hidden>
+        {/* na telefóne stojí v hero rovnaký pokojný záber interiéru ako na
+           ostatných podstránkach — makro so svorkou rybiek bolo na úzkom
+           displeji orezané na nečitateľný detail */}
+        <Image
+          src="/realizacie/galeria/dubovy-interier.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="vhero__foto-mobil"
+        />
         <video
           ref={video}
           className="vhero__video vhero__video--sirokouhle"

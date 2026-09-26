@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type TouchEvent } from "react";
 import RealizacieHero from "./RealizacieHero";
+import { FilterLista, Segmented } from "../Filtre";
 import { categories, photo, projects as PROJEKTY_SK, type Category, type Project } from "./projects";
 import { projektEN } from "./projects-en";
 import s from "./realizacie.module.css";
@@ -55,7 +56,21 @@ export default function RealizacieShowcase({ t, jazyk }: { t: Slovnik["realizaci
 
     <section id="galeria" className={s.gallery} aria-labelledby="gallery-title">
       <h2 id="gallery-title" className={s.galleryTitle}>{t.galeria}</h2>
-      <div className={s.filterBar}><div className={s.filters} role="group" aria-label={t.filtrovat}>{categories.map((c, ci) => <button type="button" key={c} aria-pressed={category === c} onClick={() => setCategory(c)}>{t.kategorie[ci]}<span>{c === categories[0] ? projects.length : projects.filter(p => p.category === c).length}</span></button>)}</div><span className={s.resultCount} role="status">{t.zabery} {visible.length} / {projects.length}</span></div>
+      <FilterLista ariaLabel={t.filtrovat}>
+        <Segmented
+          ariaLabel={t.filtrovat}
+          value={category}
+          onChange={setCategory}
+          volby={categories.map((c, ci) => ({
+            id: c,
+            label: t.kategorie[ci],
+            count: c === categories[0] ? projects.length : projects.filter(p => p.category === c).length,
+          }))}
+        />
+        <span className="fbar__count" key={visible.length} aria-live="polite">
+          {t.zabery} <b>{visible.length === projects.length ? projects.length : `${visible.length} / ${projects.length}`}</b>
+        </span>
+      </FilterLista>
       <div className={s.grid}>{visible.map(p => <article className={s.card} key={p.id}>
         <button type="button" className={s.cardImage} onClick={() => openPhoto(p)} aria-label={`${t.zvacsit}: ${p.title}`}><Image src={photo(p)} alt={p.alt} fill sizes="(max-width: 620px) 90vw, (max-width: 1000px) 44vw, 29vw" /><span className={s.zoom} aria-hidden>↗</span><span className={s.cardCategory}>{t.kategorie[categories.indexOf(p.category)]}</span></button>
         <div className={s.cardText}><p className={s.detail}>{p.detail}</p><h3><button type="button" onClick={() => openPhoto(p)}>{p.title}</button></h3><Review project={p} /></div>

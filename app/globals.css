@@ -11685,7 +11685,51 @@ a.dopyt-alt__card:hover {
 .vhero__video--sirokouhle {
   object-position: 60% 50%;
 }
+
+/* Hero realizácií (26. 9. 2026)
+   Telefón: zostava je rovnaká ako na ostatných podstránkach — pokojný záber
+   interiéru na celú plochu, žiadne video ani tlačidlo pauzy. Makro so
+   svorkou rybiek sa na úzkom displeji orezalo na nečitateľný detail.
+   Počítač: video nestojí cez celú šírku, ale v užšom páse pri pravom okraji,
+   kde má motív. Menší výrez znamená menšie priblíženie a text vľavo sedí na
+   čistej tmavej ploche. */
+.vhero--real .vhero__foto-mobil {
+  object-fit: cover;
+  object-position: 50% 45%;
+}
 @media (max-width: 899px) {
+  /* záber je svetlejší než videá na ostatných podstránkach, preto má vlastný
+     závoj — drobček hore aj titulok dole tak držia kontrast */
+  .vhero--real .vhero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 10, 10, 0.72) 0%,
+      rgba(8, 10, 10, 0.3) 26%,
+      rgba(8, 10, 10, 0.34) 52%,
+      rgba(8, 10, 10, 0.86) 100%
+    );
+  }
+}
+@media (min-width: 900px) {
+  .vhero--real .vhero__foto-mobil {
+    display: none;
+  }
+  /* video stojí v toku média, nie absolútne — doprava ho posunie margin */
+  .vhero--real .vhero__video {
+    width: min(74%, 1180px);
+    margin-left: auto;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+  }
+}
+@media (max-width: 899px) {
+  .vhero--real .vhero__video,
+  .vhero--real .vhero__pauza {
+    display: none;
+  }
   .vhero__video--sirokouhle {
     object-position: 74% 46%;
   }
