@@ -88,6 +88,16 @@ export default function RootLayout({
         ) : (
           <link rel="stylesheet" href="/css/overrides.css" />
         )}
+        {/* Safari si pred prechodom odfotí celú starú stránku a pri úvodnej
+            stránke mu to trvá aj niekoľko sekúnd — obraz zamrzne a prechod
+            aj tak nevidno. Podstrčíme mu preto prechod, ktorý len prepne
+            obsah. Musí to byť tu v hlavičke, nech to platí od prvej
+            navigácie a stránky ostanú staticky generované. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var u=navigator.userAgent;if(!/Safari/i.test(u)||/Chrome|Chromium|Edg|OPR|Android/i.test(u))return;if(!document.startViewTransition)return;document.startViewTransition=function(a){var r;try{r=typeof a==="function"?a():a&&a.update&&a.update()}catch(e){r=Promise.reject(e)}var p=Promise.resolve(r);var t=p.then(function(){},function(){});return{ready:t,finished:t,updateCallbackDone:p,types:new Set(),skipTransition:function(){}}}})();`,
+          }}
+        />
       </head>
       <body>
         <script
