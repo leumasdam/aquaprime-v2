@@ -6769,7 +6769,7 @@ button:focus-visible {
 @media (min-width: 1401px) {
   .safety__bg {
     /* štvorhodnotový zápis — tri hodnoty prehliadač zahodí ako neplatné */
-    background-position: left 59% bottom -26px;
+    background-position: left 53% bottom -68px;
     opacity: 0.78;
   }
   .safety__bg::after {
@@ -11738,12 +11738,20 @@ a.dopyt-alt__card:hover {
     transform: translateX(90px);
   }
 }
+/* Na 1400 až 1800 px sedela scéna príliš vpravo a nízko — posunieme ju
+   späť doľava a o kus vyššie. Kotva transform-origin je vpravo hore, preto
+   posun nahor treba zadať zvlášť. */
 @media (min-width: 1440px) and (max-width: 1679px) {
   .vhero--bocny .svetlo {
-    transform: translateX(80px) scale(0.88);
+    transform: translate(-10px, -26px) scale(0.88);
   }
 }
-@media (min-width: 1680px) and (max-width: 1899px) {
+@media (min-width: 1680px) and (max-width: 1799px) {
+  .vhero--bocny .svetlo {
+    transform: translate(-16px, -26px) scale(0.79);
+  }
+}
+@media (min-width: 1800px) and (max-width: 1899px) {
   .vhero--bocny .svetlo {
     transform: translateX(70px) scale(0.79);
   }
