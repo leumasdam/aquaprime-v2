@@ -12577,15 +12577,11 @@ a.dopyt-alt__card:hover {
   color: var(--ink);
 }
 @media (max-width: 720px) {
-  /* na telefóne lišta brala takmer tretinu obrazovky — nižšia vlna,
-     tesnejšie riadky a menšie tlačidlá ju stiahnu na polovicu */
-  .ck {
-    --vlna-v: 16px;
-  }
+  /* na telefóne lišta brala takmer tretinu obrazovky — vlna ostáva rovnaká,
+     stiahne ju menšie písmo, tesnejšie riadky a nižšie tlačidlá */
   .ck__in {
     gap: 10px;
-    padding: calc(var(--vlna-v) + 12px) var(--pad) 14px;
-    background-size: 240px 16px, auto;
+    padding: calc(var(--vlna-v) + 10px) var(--pad) 14px;
   }
   .ck__eyebrow {
     display: none;
@@ -12637,13 +12633,7 @@ a.dopyt-alt__card:hover {
     transform: translateX(13px);
   }
 }
-@media (max-width: 720px) {
-  /* vlna je na telefóne nižšia, tak sa musí zmenšiť aj jej maska */
-  .ck__in {
-    -webkit-mask-size: 240px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
-    mask-size: 240px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
-  }
-}
+
 @media (prefers-reduced-motion: reduce) {
   .ck,
   .ck__in {
