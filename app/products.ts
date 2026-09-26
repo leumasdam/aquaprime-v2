@@ -233,12 +233,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-14.webp",
-          "/img/products/premium-100x40x80-dub-spanielsky-20.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ],
         "led": {
           "zlta": [
@@ -249,7 +251,9 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
             "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
           ]
-        }
+        },
+        "inherited": true,
+        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -475,12 +479,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-14.webp",
-          "/img/products/premium-100x40x80-dub-spanielsky-20.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ],
         "led": {
           "zlta": [
@@ -491,7 +497,9 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
             "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
           ]
-        }
+        },
+        "inherited": true,
+        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -736,12 +744,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-14.webp",
-          "/img/products/premium-100x40x80-dub-spanielsky-20.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ],
         "led": {
           "zlta": [
@@ -752,7 +762,9 @@ export const PRODUCTS: Product[] = [
             "/img/products/led/led-dub-spanielsky-zlta-2d-05.webp",
             "/img/products/led/led-dub-spanielsky-zlta-2d-06.webp"
           ]
-        }
+        },
+        "inherited": true,
+        "illuFrom": "rad"
       },
       {
         "id": "black-matt-orech",
@@ -2564,6 +2576,23 @@ export const PRODUCTS: Product[] = [
         "illuFrom": "rozmer"
       },
       {
+        "id": "artisan",
+        "name": "Artisan",
+        "swatch": [
+          "/img/products/swatch-artisan.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x80-artisan-01.webp",
+          "/img/products/standard-100x40x80-artisan-02.webp",
+          "/img/products/standard-100x40x80-artisan-03.webp",
+          "/img/products/standard-100x40x80-artisan-04.webp",
+          "/img/products/standard-100x40x80-artisan-05.webp",
+          "/img/products/standard-100x40x80-artisan-06.webp",
+          "/img/products/standard-100x40x80-artisan-07.webp",
+          "/img/products/standard-100x40x80-artisan-08.webp"
+        ]
+      },
+      {
         "id": "choco-vintage-oak",
         "name": "Choco Vintage Oak",
         "swatch": [
@@ -2587,14 +2616,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-14.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ]
       },
       {
@@ -2794,6 +2823,23 @@ export const PRODUCTS: Product[] = [
         ]
       },
       {
+        "id": "artisan",
+        "name": "Artisan",
+        "swatch": [
+          "/img/products/swatch-artisan.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x80-artisan-01.webp",
+          "/img/products/standard-100x40x80-artisan-02.webp",
+          "/img/products/standard-100x40x80-artisan-03.webp",
+          "/img/products/standard-100x40x80-artisan-04.webp",
+          "/img/products/standard-100x40x80-artisan-05.webp",
+          "/img/products/standard-100x40x80-artisan-06.webp",
+          "/img/products/standard-100x40x80-artisan-07.webp",
+          "/img/products/standard-100x40x80-artisan-08.webp"
+        ]
+      },
+      {
         "id": "choco-vintage-oak",
         "name": "Choco Vintage Oak",
         "swatch": [
@@ -2817,14 +2863,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-14.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ]
       },
       {
@@ -3016,6 +3062,23 @@ export const PRODUCTS: Product[] = [
         "illuFrom": "rozmer"
       },
       {
+        "id": "artisan",
+        "name": "Artisan",
+        "swatch": [
+          "/img/products/swatch-artisan.webp"
+        ],
+        "images": [
+          "/img/products/standard-100x40x80-artisan-01.webp",
+          "/img/products/standard-100x40x80-artisan-02.webp",
+          "/img/products/standard-100x40x80-artisan-03.webp",
+          "/img/products/standard-100x40x80-artisan-04.webp",
+          "/img/products/standard-100x40x80-artisan-05.webp",
+          "/img/products/standard-100x40x80-artisan-06.webp",
+          "/img/products/standard-100x40x80-artisan-07.webp",
+          "/img/products/standard-100x40x80-artisan-08.webp"
+        ]
+      },
+      {
         "id": "choco-vintage-oak",
         "name": "Choco Vintage Oak",
         "swatch": [
@@ -3039,14 +3102,14 @@ export const PRODUCTS: Product[] = [
           "/img/products/swatch-dub-spanielsky.webp"
         ],
         "images": [
-          "/img/products/dub-spanielsky-04.webp",
-          "/img/products/dub-spanielsky-12.webp",
-          "/img/products/dub-spanielsky-08.webp",
-          "/img/products/dub-spanielsky-09.webp",
-          "/img/products/dub-spanielsky-01.webp",
-          "/img/products/dub-spanielsky-03.webp",
-          "/img/products/dub-spanielsky-07.webp",
-          "/img/products/dub-spanielsky-14.webp"
+          "/img/products/standard-100x40x80-dub-spanielsky-01.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-02.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-03.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-04.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-05.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-06.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-07.webp",
+          "/img/products/standard-100x40x80-dub-spanielsky-08.webp"
         ]
       },
       {

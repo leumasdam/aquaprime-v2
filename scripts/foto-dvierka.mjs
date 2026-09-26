@@ -32,6 +32,8 @@ export const DVIERKA = {
   /* dodané klientom 8. 9. 2026 — dvojdverové, čiže rozmer pod 120 cm */
   "standard-100x40x80-cool-white": { def: 2, 7: 0 },
   "standard-100x40x80-black-matt": { def: 2 },
+  "standard-100x40x80-artisan": { def: 2 },
+  "standard-100x40x80-dub-spanielsky": { def: 2 },
   /* zábery s opláštených vnútrom — kompletné opláštenie je znak Premium */
   "premium-100x40x80-cool-white": { def: 2 },
   "premium-100x40x80-black-matt-orech": { def: 2 },
