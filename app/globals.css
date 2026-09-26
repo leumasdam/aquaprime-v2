@@ -11872,33 +11872,51 @@ a.dopyt-alt__card:hover {
    Hlavička je spoločná so sub-stránkami, každý set je jeden široký blok:
    vizuál vľavo, parametre, prevedenia a výzvy vpravo.
    =========================================================== */
-/* hero setov: zábery prevedení sa prelínajú. Fotky sú na výšku, preto na
-   šírku celej sekcie stoja len v pravom páse a ich ľavá hrana sa rozplynie
-   do pozadia — inak by z nich ostal úzky vodorovný výrez. */
-.sety-hero__zaber {
-  object-fit: cover;
-  object-position: 50% 34%;
-  opacity: 0;
-  transition: opacity 1.1s var(--ease);
+/* hero setov (26. 9. 2026): interiér cez celú sekciu, skrinka vo zvolenom
+   prevedení stojí na svojom mieste v zábere, vpravo náhľady, dole čipy.
+   Javisko má rozmer záberu pri object-fit: cover (počíta ho komponent),
+   výrez prevedenia sa polohuje v percentách javiska. */
+.sety-hero {
+  background: #0b0e0d;
 }
-.sety-hero__zaber.is-on {
+.sety-hero__javisko {
+  position: absolute;
+  left: var(--st-x, 0);
+  top: var(--st-y, 0);
+  width: var(--st-w, 100%);
+  height: var(--st-h, 100%);
+}
+.sety-hero__pozadie {
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.sety-hero__produkt {
+  position: absolute;
+  left: var(--sk-cx);
+  top: var(--sk-top);
+  height: var(--sk-h);
+  aspect-ratio: 0.55;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.sety-hero.is-zmerane .sety-hero__produkt {
   opacity: 1;
 }
-@media (min-width: 768px) {
-  .sety-hero .vhero__media {
-    inset: 0 0 0 auto;
-    /* užší pás je bližšie k pomeru fotky (na výšku), takže z nej ostane
-       viac než vodorovný výrez */
-    width: min(42%, 620px);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
-  }
+.sety-hero__kus {
+  object-fit: contain;
+  object-position: 50% 100%;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
 }
-@media (min-width: 1920px) {
-  .sety-hero .vhero__media {
-    right: calc(50% - var(--maxw) / 2);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 94%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 94%, transparent 100%);
+.sety-hero__kus.is-on {
+  opacity: 1;
+}
+/* textový blok má v návrhu miesto po skrinku — širší než bežné hero,
+   inak sa titulok na veľkom monitore láme do troch riadkov */
+@media (min-width: 1024px) {
+  .sety-hero .vhero__in {
+    max-width: min(900px, 60%);
   }
 }
 /* karta setu: fotky sú na výšku a scéna je tmavá — karta preto nemá

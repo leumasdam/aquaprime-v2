@@ -21,6 +21,8 @@ export type Prevedenie = {
   swatch: string[];
   /** fotky setu v tomto prevedení; prvá je titulná */
   fotky: string[];
+  /** výrez skrinky s akváriom (priehľadné pozadie) do hero */
+  obrazok?: string;
 };
 
 export type Set = {
@@ -80,6 +82,7 @@ export const SETY: Set[] = [
         id: "black-matt",
         nazov: "Black Matt",
         swatch: ["#17181a"],
+        obrazok: "/img/sety/scape-60-black-matt.webp",
         fotky: [
           "/img/sety/scape-60-black-matt-01.webp",
           "/img/sety/scape-60-black-matt-02.webp",
@@ -91,6 +94,7 @@ export const SETY: Set[] = [
         id: "cool-white",
         nazov: "Cool White",
         swatch: ["#eef0f0"],
+        obrazok: "/img/sety/scape-60-cool-white.webp",
         fotky: [
           "/img/sety/scape-60-cool-white-01.webp",
           "/img/sety/scape-60-cool-white-02.webp",
@@ -102,6 +106,7 @@ export const SETY: Set[] = [
         id: "antracit",
         nazov: "Antracit",
         swatch: ["#40454a"],
+        obrazok: "/img/sety/scape-60-antracit.webp",
         fotky: [
           "/img/sety/scape-60-antracit-01.webp",
           "/img/sety/scape-60-antracit-02.webp",
