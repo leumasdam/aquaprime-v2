@@ -11,6 +11,7 @@ import SiteNav from "./SiteNav";
 import SiteFooter from "./SiteFooter";
 import SkipLink from "./SkipLink";
 import Analytika from "./Analytika";
+import PauzaPriPrechode from "./PauzaPriPrechode";
 
 const tinos = Tinos({
   variable: "--f-display",
@@ -124,6 +125,7 @@ document.addEventListener("click",function(e){if(window.__aqNavZije)return;var b
         <BackToTop />
         <ScrollFx />
         <Analytika />
+        <PauzaPriPrechode />
         {process.env.NODE_ENV === "development" && <DevViewport />}
       </body>
     </html>
