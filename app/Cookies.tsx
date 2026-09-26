@@ -23,12 +23,13 @@ export default function Cookies({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const [detail, setDetail] = useState(false);
   const [analyticke, setAnalyticke] = useState(true);
   const [marketingove, setMarketingove] = useState(true);
-  /* ?cookies=biela prepne lištu na svetlú — dočasné, kým si Samuel vyberie */
-  const [biela, setBiela] = useState(false);
+  /* ?cookies=biela / ?cookies=modra prepne vzhľad — dočasné na porovnanie */
+  const [vzhlad, setVzhlad] = useState("");
   const panel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setBiela(new URLSearchParams(window.location.search).get("cookies") === "biela");
+    const v = new URLSearchParams(window.location.search).get("cookies") ?? "";
+    setVzhlad(["biela", "modra"].includes(v) ? v : "");
   }, []);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function Cookies({ jazyk = "sk" }: { jazyk?: Jazyk }) {
 
   return (
     <div
-      className={`ck${detail ? " ck--detail" : ""}${biela ? " ck--biela" : ""}`}
+      className={`ck${detail ? " ck--detail" : ""}${vzhlad ? ` ck--${vzhlad}` : ""}`}
       role="dialog"
       aria-live="polite"
       aria-label={t.titul}

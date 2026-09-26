@@ -12650,3 +12650,82 @@ a.dopyt-alt__card:hover {
 .ck--biela .ck__prepinac input:checked + span::after {
   background: #fff;
 }
+/* Tyrkysová varianta — ?cookies=modra. Celá lišta v brandovej farbe,
+   text a tlačidlá v tmavej, aby bol kontrast čitateľný. */
+.ck--modra .ck__in {
+  background: linear-gradient(135deg, #009ac0 0%, #0086a8 62%, #00718f 100%);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 22px 54px rgba(0, 70, 90, 0.5);
+}
+.ck--modra .ck__in::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85) 22%, rgba(255, 255, 255, 0.85) 62%, transparent);
+}
+.ck--modra .ck__eyebrow {
+  color: #0b1f26;
+}
+.ck--modra .ck__eyebrow::before {
+  background: #0b1f26;
+  box-shadow: none;
+}
+.ck--modra .ck__text p,
+.ck--modra .ck__volba {
+  color: #e6f7fc;
+}
+.ck--modra .ck__odkaz {
+  color: #fff;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+.ck--modra .ck__odkaz:hover {
+  text-decoration-color: #fff;
+}
+.ck--modra .ck__btn {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.ck--modra .ck__btn:not(.ck__btn--hlavny):hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+.ck--modra .ck__btn--hlavny {
+  background: #0b0e0d;
+  color: #fff;
+  box-shadow: none;
+}
+.ck--modra .ck__btn--hlavny:hover {
+  background: #14201f;
+}
+.ck--modra .ck__tichy {
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+}
+.ck--modra .ck__tichy:hover {
+  color: #fff;
+}
+.ck--modra .ck__volby {
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+.ck--modra .ck__volba b {
+  color: #fff;
+}
+.ck--modra .ck__volba:has(input:checked) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.ck--modra .ck__volba:has(input:checked) b {
+  color: #fff;
+}
+.ck--modra .ck__volba:hover:not(.is-locked) {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.ck--modra .ck__prepinac > span {
+  background: rgba(11, 14, 13, 0.3);
+}
+.ck--modra .ck__prepinac > span::after {
+  background: #e6f7fc;
+}
+.ck--modra .ck__prepinac input:checked + span {
+  background: #0b0e0d;
+}
+.ck--modra .ck__prepinac input:checked + span::after {
+  background: #fff;
+}
