@@ -12313,13 +12313,13 @@ a.dopyt-alt__card:hover {
    COOKIES — lišta so súhlasom (26. 9. 2026)
    Tyrkysový pás od kraja po kraj pri spodnej hrane okna. Horná hrana je
    vodná hladina: maska odkrojí vlnu, pozadie na ňu dokreslí biely lem.
-   Vlna je dlaždica 360 × 28 px s nepravidelnými hrebeňmi, takže pôsobí
-   ako voda a nie ako zúbky; amplitúda je pri každej šírke rovnaká.
+   Vlna je dlaždica 120 × 28 px s pravidelnými oblými hrebeňmi (ten
+   nepravidelný tvar sa nepáčil); amplitúda je pri každej šírke rovnaká.
    =========================================================== */
 .ck {
   --vlna-v: 28px;
-  --vlna-tvar: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='28'%3E%3Cpath d='M0 15C14 7 28 5 46 11C64 17 78 25 100 20C122 15 130 4 152 9C174 14 186 24 210 19C234 14 246 6 268 11C290 16 304 23 326 18C342 14 348 22 360 15V28H0Z' fill='%23fff'/%3E%3C/svg%3E");
-  --vlna-lem: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='28'%3E%3Cpath d='M0 15C14 7 28 5 46 11C64 17 78 25 100 20C122 15 130 4 152 9C174 14 186 24 210 19C234 14 246 6 268 11C290 16 304 23 326 18C342 14 348 22 360 15' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E");
+  --vlna-tvar: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12V28H0Z' fill='%23fff'/%3E%3C/svg%3E");
+  --vlna-lem: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E");
   position: fixed;
   z-index: 90;
   left: 0;
@@ -12347,12 +12347,12 @@ a.dopyt-alt__card:hover {
   /* obsah sedí na tom istom stĺpci ako zvyšok webu (.wrap) */
   padding: calc(var(--vlna-v) + 14px) max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad))) 20px;
   background:
-    var(--vlna-lem) left top / 360px 28px repeat-x,
+    var(--vlna-lem) left top / 120px 28px repeat-x,
     linear-gradient(135deg, #009ac0 0%, #0089ab 55%, #00738f 100%);
   -webkit-mask-image: var(--vlna-tvar), linear-gradient(#000, #000);
   mask-image: var(--vlna-tvar), linear-gradient(#000, #000);
-  -webkit-mask-size: 360px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
-  mask-size: 360px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
+  -webkit-mask-size: 120px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
+  mask-size: 120px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
   -webkit-mask-position: left top, left bottom;
   mask-position: left top, left bottom;
   -webkit-mask-repeat: repeat-x, no-repeat;
