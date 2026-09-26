@@ -98,11 +98,9 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-05.webp",
-          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
           "/img/products/premium-100x40x90-black-matt-06.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/premium-100x40x80-black-matt-20.webp"
+          "/img/products/premium-100x40x90-black-matt-03.webp"
         ],
         "led": {
           "zlta": [
@@ -169,7 +167,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-08.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp",
           "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x80-cool-white-20.webp"
@@ -207,8 +204,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp",
-          "/img/products/premium-100x40x80-dub-sonoma-20.webp"
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
         "illuFrom": "rozmer",
@@ -288,7 +284,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -306,7 +301,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x80-antracit-01.webp",
           "/img/products/premium-100x40x80-antracit-02.webp",
-          "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ],
@@ -357,11 +351,9 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-05.webp",
-          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
           "/img/products/premium-100x40x90-black-matt-06.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/premium-100x40x80-black-matt-20.webp"
+          "/img/products/premium-100x40x90-black-matt-03.webp"
         ],
         "led": {
           "zlta": [
@@ -422,7 +414,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-08.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp",
           "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x80-cool-white-20.webp"
@@ -458,8 +449,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp",
-          "/img/products/premium-100x40x80-dub-sonoma-20.webp"
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ]
       },
       {
@@ -546,7 +536,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -564,7 +553,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x80-antracit-01.webp",
           "/img/products/premium-100x40x80-antracit-02.webp",
-          "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ]
@@ -613,11 +601,9 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x90-black-matt-01.webp",
           "/img/products/premium-100x40x90-black-matt-05.webp",
-          "/img/products/premium-100x40x90-black-matt-04.webp",
           "/img/products/premium-100x40x90-black-matt-02.webp",
           "/img/products/premium-100x40x90-black-matt-06.webp",
-          "/img/products/premium-100x40x90-black-matt-03.webp",
-          "/img/products/premium-100x40x80-black-matt-20.webp"
+          "/img/products/premium-100x40x90-black-matt-03.webp"
         ],
         "led": {
           "zlta": [
@@ -684,7 +670,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-cool-white-02.webp",
           "/img/products/premium-100x40x90-cool-white-09.webp",
           "/img/products/premium-100x40x80-cool-white-03.webp",
-          "/img/products/premium-100x40x90-cool-white-08.webp",
           "/img/products/premium-100x40x90-cool-white-04.webp",
           "/img/products/premium-100x40x90-cool-white-10.webp",
           "/img/products/premium-100x40x80-cool-white-20.webp"
@@ -722,8 +707,7 @@ export const PRODUCTS: Product[] = [
           "/img/products/premium-100x40x90-dub-sonoma-02.webp",
           "/img/products/premium-100x40x90-dub-sonoma-05.webp",
           "/img/products/premium-100x40x90-dub-sonoma-04.webp",
-          "/img/products/premium-100x40x90-dub-sonoma-06.webp",
-          "/img/products/premium-100x40x80-dub-sonoma-20.webp"
+          "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
         "illuFrom": "rozmer",
@@ -803,7 +787,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -821,7 +804,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/premium-100x40x80-antracit-01.webp",
           "/img/products/premium-100x40x80-antracit-02.webp",
-          "/img/products/premium-100x40x80-antracit-03.webp",
           "/img/products/premium-100x40x80-antracit-04.webp",
           "/img/products/premium-100x40x80-antracit-20.webp"
         ],
@@ -939,7 +921,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -1133,7 +1114,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -1341,7 +1321,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -1483,7 +1462,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -1758,7 +1736,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -1966,7 +1943,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -2143,7 +2119,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/premium-100x40x90-dub-sonoma-06.webp"
         ],
         "inherited": true,
@@ -2580,13 +2555,9 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-01.webp",
           "/img/products/standard-100x40x80-black-matt-03.webp",
           "/img/products/standard-100x40x80-black-matt-04.webp",
-          "/img/products/standard-80x40x90-black-matt-04.webp",
           "/img/products/standard-100x40x80-black-matt-05.webp",
           "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-02.webp",
-          "/img/products/standard-80x40x90-black-matt-03.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -2694,7 +2665,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -2807,13 +2777,9 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-01.webp",
           "/img/products/standard-100x40x80-black-matt-03.webp",
           "/img/products/standard-100x40x80-black-matt-04.webp",
-          "/img/products/standard-80x40x90-black-matt-04.webp",
           "/img/products/standard-100x40x80-black-matt-05.webp",
           "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-02.webp",
-          "/img/products/standard-80x40x90-black-matt-03.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -2929,7 +2895,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -3042,13 +3007,9 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-01.webp",
           "/img/products/standard-100x40x80-black-matt-03.webp",
           "/img/products/standard-100x40x80-black-matt-04.webp",
-          "/img/products/standard-80x40x90-black-matt-04.webp",
           "/img/products/standard-100x40x80-black-matt-05.webp",
           "/img/products/standard-100x40x90-black-matt-01.webp",
-          "/img/products/standard-80x40x90-black-matt-02.webp",
-          "/img/products/standard-80x40x90-black-matt-03.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -3156,7 +3117,6 @@ export const PRODUCTS: Product[] = [
         "images": [
           "/img/products/dub-spanielsky-black-matt-05.webp",
           "/img/products/dub-spanielsky-black-matt-09.webp",
-          "/img/products/dub-spanielsky-black-matt-11.webp",
           "/img/products/dub-spanielsky-black-matt-04.webp",
           "/img/products/dub-spanielsky-black-matt-06.webp",
           "/img/products/dub-spanielsky-black-matt-08.webp",
@@ -3204,7 +3164,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -3220,7 +3179,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -3238,7 +3196,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -3390,7 +3347,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -3406,7 +3362,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -3424,7 +3379,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -3590,7 +3544,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -3606,7 +3559,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -3624,7 +3576,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -3801,7 +3752,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -3821,7 +3771,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-03.webp",
-          "/img/products/standard-80x40x90-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -3845,7 +3794,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -3999,7 +3947,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -4015,7 +3962,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -4033,7 +3979,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -4199,7 +4144,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-80x40x90-black-matt-01.webp",
-          "/img/products/standard-200x60x60-black-matt-03.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -4215,7 +4159,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -4233,7 +4176,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -4396,7 +4338,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-dub-sonoma-01.webp",
           "/img/products/standard-200x60x60-dub-sonoma-03.webp",
           "/img/products/standard-200x60x60-dub-sonoma-05.webp",
-          "/img/products/standard-200x60x60-dub-sonoma-04.webp",
           "/img/products/standard-200x60x60-dub-sonoma-02.webp",
           "/img/products/standard-80x40x90-dub-sonoma-02.webp"
         ],
@@ -4416,7 +4357,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-black-matt-02.webp",
           "/img/products/standard-150x50x80-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-03.webp",
-          "/img/products/standard-80x40x90-black-matt-01.webp",
           "/img/products/standard-200x60x60-black-matt-01.webp"
         ],
         "inherited": true,
@@ -4432,7 +4372,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-200x60x60-antracit-03.webp",
           "/img/products/standard-200x60x60-antracit-04.webp",
           "/img/products/standard-200x60x60-antracit-05.webp",
-          "/img/products/standard-200x60x60-antracit-02.webp",
           "/img/products/standard-200x60x60-antracit-01.webp",
           "/img/products/standard-80x40x90-antracit-01.webp",
           "/img/products/standard-200x60x60-antracit-06.webp"
@@ -5817,7 +5756,6 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-150x50x80-04.webp"
   }
 ];
-
 export function getProduct(slug: string): Product | undefined {
   return PRODUCTS.find((p) => p.slug === slug);
 }
