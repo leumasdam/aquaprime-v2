@@ -11982,6 +11982,112 @@ a.dopyt-alt__card:hover {
   }
 }
 
+/* prepínač kategórií setov — pilulky ako čipy v hero; kategórie bez setu
+   sú zošednuté so štítkom „čoskoro“, ale dajú sa zvoliť */
+.sety-filtre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(22px, 3vw, 36px);
+}
+.sety-filtre__volba {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+.sety-filtre__volba:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.sety-filtre__volba.is-on {
+  border-color: var(--cyan);
+  background: rgba(0, 154, 192, 0.12);
+  color: #e6f7fc;
+}
+.sety-filtre__volba--chystame {
+  color: var(--faint);
+  border-style: dashed;
+}
+.sety-filtre__volba--chystame.is-on {
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.sety-filtre__pocet,
+.sety-filtre__coskoro {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+}
+.sety-filtre__pocet {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ink-soft);
+}
+.sety-filtre__coskoro {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--faint);
+  text-transform: uppercase;
+}
+/* prázdna kategória */
+.sety-chystame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+.sety-chystame__stitok {
+  font-family: var(--ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.sety-chystame p {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+/* karta setu — štítok kategórie v rohu ako pri LED dlaždici */
+.product__badge--set {
+  border-color: rgba(0, 154, 192, 0.8);
+  background: rgba(0, 154, 192, 0.3);
+  color: #e6f7fc;
+  letter-spacing: 0.1em;
+}
+/* detail setu */
+.sety__detail {
+  position: relative;
+  padding-top: clamp(28px, 4vw, 56px);
+}
+.sety__detail .set {
+  border-top: none;
+  padding-top: clamp(18px, 2.5vw, 32px);
+}
+.sety__detail .set__title {
+  font-size: clamp(2.2rem, 1.5rem + 2.4vw, 3.4rem);
+}
+
 /* úvod zoznamu pod hero */
 .sety__zoznam {
   padding-top: clamp(40px, 5vw, 72px);

@@ -16,13 +16,13 @@ const PORADIE: Record<string, number> = {
   "/": 0,
   "/skrinky": 1,
   "/akvaria": 2,
-  "/technologia": 3,
-  "/realizacie": 4,
-  "/sety": 5,
-  "/blog": 5,
-  "/kontakt": 6,
-  "/konfigurator": 7,
-  "/kosik": 8,
+  "/sety": 3,
+  "/technologia": 4,
+  "/realizacie": 5,
+  "/blog": 6,
+  "/kontakt": 7,
+  "/konfigurator": 8,
+  "/kosik": 9,
 };
 
 function indexStranky(pathname: string): number {

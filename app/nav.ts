@@ -3,8 +3,8 @@
 export const NAV = [
   { kluc: "skrinky", href: "/skrinky" },
   { kluc: "akvaria", href: "/akvaria" },
+  { kluc: "sety", href: "/sety" },
   { kluc: "konstrukcia", href: "/technologia" },
   { kluc: "realizacie", href: "/realizacie" },
-  { kluc: "sety", href: "/sety" },
   { kluc: "kontakt", href: "/kontakt" },
 ] as const;

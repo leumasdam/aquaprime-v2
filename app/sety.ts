@@ -15,8 +15,13 @@ export type Prevedenie = {
   obrazok: string;
 };
 
+/** Kategórie v poradí, v akom stoja v prepínači na stránke Sety. */
+export const KATEGORIE = ["akvariove", "krevetariove", "terariove"] as const;
+export type KategoriaSetu = (typeof KATEGORIE)[number];
+
 export type Set = {
   id: string;
+  kategoria: KategoriaSetu;
   nazov: string;
   podtitul: Record<Jazyk, string>;
   /** odseky popisu */
@@ -36,6 +41,7 @@ export type Set = {
 export const SETY: Set[] = [
   {
     id: "scape-60",
+    kategoria: "krevetariove",
     nazov: "Scape 60",
     podtitul: {
       sk: "Kompaktný set pre chov kreviet",

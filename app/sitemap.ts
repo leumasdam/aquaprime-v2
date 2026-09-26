@@ -3,6 +3,7 @@ import { PRODUCTS } from "./products";
 import { AQUARIUMS } from "./aquariums";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 import { vsetkyClanky } from "./blog/clanky";
+import { SETY } from "./sety";
 
 const BASE = "https://aquaprime.sk";
 const ROUTES = [
@@ -56,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         r === "" ? 1 : r === "/skrinky" || r === "/akvaria" || r === "/dopyt" ? 0.9 : 0.7
       )
     ),
+    ...SETY.flatMap((s) => dvojjazycne(`/sety/${s.id}`, 0.7)),
     ...PRODUCTS.flatMap((p) => dvojjazycne(`/skrinky/${p.slug}`, 0.8)),
     ...AQUARIUMS.flatMap((a) => dvojjazycne(`/akvaria/${a.slug}`, 0.8)),
     /* články sú zatiaľ len po slovensky — bez anglickej dvojičky */
