@@ -270,7 +270,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-orech-05.webp",
           "/img/products/standard-100x40x80-black-matt-orech-06.webp",
           "/img/products/standard-100x40x80-black-matt-orech-07.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp",
           "/img/products/standard-100x40x80-black-matt-orech-13.webp",
           "/img/products/standard-100x40x80-black-matt-orech-08.webp",
           "/img/products/premium-100x40x80-black-matt-orech-20.webp"
@@ -519,7 +518,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-orech-05.webp",
           "/img/products/standard-100x40x80-black-matt-orech-06.webp",
           "/img/products/standard-100x40x80-black-matt-orech-07.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp",
           "/img/products/standard-100x40x80-black-matt-orech-13.webp",
           "/img/products/standard-100x40x80-black-matt-orech-08.webp",
           "/img/products/premium-100x40x80-black-matt-orech-20.webp"
@@ -787,7 +785,6 @@ export const PRODUCTS: Product[] = [
           "/img/products/standard-100x40x80-black-matt-orech-05.webp",
           "/img/products/standard-100x40x80-black-matt-orech-06.webp",
           "/img/products/standard-100x40x80-black-matt-orech-07.webp",
-          "/img/products/premium-100x40x80-black-matt-orech-03.webp",
           "/img/products/standard-100x40x80-black-matt-orech-13.webp",
           "/img/products/standard-100x40x80-black-matt-orech-08.webp",
           "/img/products/premium-100x40x80-black-matt-orech-20.webp"
