@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { mailNastaveny, posliMail } from "../../_lib/mail";
+import { mailHtml } from "../../_lib/sablona";
 import { stripe } from "../_lib/stripe";
 
 /**
@@ -56,26 +57,54 @@ export async function POST(req: Request) {
   }
 
   await posliMail({
-      predmet: `Zaplatená záloha ${eur(zaplatene)} — objednávka ${cislo}`,
-      html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6">
-          <p><b>Objednávka ${cislo}</b> — záloha <b>${eur(zaplatene)}</b> je zaplatená kartou.</p>
-          ${doplatok ? `<p>Doplatok pri prevzatí: <b>${eur(doplatok)}</b></p>` : ""}
-          ${email ? `<p>Zákazník: ${email}</p>` : ""}
-          <p style="color:#666;font-size:13px">Výrobu možno spustiť.</p>
-        </div>`,
+    predmet: `Zaplatená záloha ${eur(zaplatene)} — objednávka ${cislo}`,
+    html: mailHtml({
+      nahlad: `Objednávka ${cislo} — záloha zaplatená kartou`,
+      eyebrow: "Platba prijatá",
+      titul: `Záloha k objednávke ${cislo} je zaplatená`,
+      bloky: [
+        { typ: "suma", popis: "Zaplatená záloha", hodnota: eur(zaplatene) },
+        {
+          typ: "tabulka",
+          riadky: [
+            ["Objednávka", cislo],
+            ...(doplatok ? ([["Doplatok pri prevzatí", eur(doplatok)]] as [string, string][]) : []),
+            ...(email ? ([["Zákazník", email]] as [string, string][]) : []),
+            ["Spôsob", "Platobná karta (Stripe)"],
+          ],
+        },
+        { typ: "text", text: "Výrobu možno spustiť." },
+      ],
+    }),
   }).catch((e) => console.error("interné oznámenie o platbe zlyhalo", e));
 
   if (email) {
     await posliMail({
-        komu: email,
-        predmet: `Záloha prijatá — objednávka ${cislo}`,
-        html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
-            <p>Dobrý deň,</p>
-            <p>zálohu <b>${eur(zaplatene)}</b> k objednávke <b>${cislo}</b> sme prijali.
-            Výrobu spúšťame a ozveme sa s termínom.</p>
-            ${doplatok ? `<p>Zvyšok <b>${eur(doplatok)}</b> zaplatíte až pri prevzatí.</p>` : ""}
-            <p style="color:#666;font-size:13px">AQUAPRIME · aquaprime.sk</p>
-          </div>`,
+      komu: email,
+      predmet: `Záloha prijatá — objednávka ${cislo}`,
+      html: mailHtml({
+        nahlad: `Zálohu ${eur(zaplatene)} sme prijali, výrobu spúšťame.`,
+        eyebrow: `Objednávka ${cislo}`,
+        titul: "Zálohu sme prijali.",
+        perex: "Výrobu spúšťame a ozveme sa vám s termínom dodania.",
+        bloky: [
+          { typ: "suma", popis: "Zaplatená záloha", hodnota: eur(zaplatene) },
+          ...(doplatok
+            ? ([
+                {
+                  typ: "tabulka",
+                  riadky: [["Zvyšok pri prevzatí", eur(doplatok)]] as [string, string][],
+                },
+              ] as const)
+            : []),
+          {
+            typ: "obrazok",
+            src: "https://aquaprime.sk/mail/skrinka.jpg",
+            popis: "Zváraný oceľový rám 30 × 30 mm a opláštenie vo zvolenom dekore.",
+          },
+        ],
+        zaver: "Na tento e-mail môžete kedykoľvek odpovedať.",
+      }),
     }).catch((e) => console.error("potvrdenie zákazníkovi zlyhalo", e));
   }
 

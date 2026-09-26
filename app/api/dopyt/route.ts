@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 import { mailNastaveny, posliMail } from "../_lib/mail";
+import { mailHtml } from "../_lib/sablona";
 
 /**
  * Príjem dopytov z formulárov. Odosiela dva maily — jeden do firmy s obsahom
@@ -76,27 +77,18 @@ export async function POST(req: Request) {
 
   const sprava = (body.sprava ?? "").trim().slice(0, MAX);
 
-  const html = `
-    <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6;color:#111">
-      <h2 style="font-size:16px;margin:0 0 14px">Nový dopyt z webu</h2>
-      <table style="border-collapse:collapse">
-        ${riadky
-          .map(
-            ([k, v]) =>
-              `<tr><td style="padding:3px 14px 3px 0;color:#666">${k}</td><td style="padding:3px 0"><b>${esc(
-                String(v)
-              )}</b></td></tr>`
-          )
-          .join("")}
-      </table>
-      ${
-        sprava
-          ? `<p style="margin:16px 0 4px;color:#666">Správa</p><p style="white-space:pre-wrap;margin:0">${esc(
-              sprava
-            )}</p>`
-          : ""
-      }
-    </div>`;
+  const html = mailHtml({
+    nahlad: `${meno} — ${body.tema || "kontakt"}`,
+    eyebrow: "Nový dopyt z webu",
+    titul: meno,
+    perex: body.tema ? `Téma: ${body.tema}` : undefined,
+    bloky: [
+      { typ: "tabulka", riadky: riadky.map(([k, v]) => [k, String(v)] as [string, string]) },
+      ...(sprava ? ([{ typ: "citat", nadpis: "Správa od zákazníka", text: sprava }] as const) : []),
+      { typ: "tlacidlo", text: "Odpovedať", href: `mailto:${email}` },
+    ],
+    zaver: "Odpoveď na tento mail ide priamo zákazníkovi.",
+  });
 
   try {
     await posliMail({
@@ -107,15 +99,26 @@ export async function POST(req: Request) {
 
     // potvrdenie zákazníkovi; keď zlyhá, dopyt aj tak prešiel
     await posliMail({
-        komu: email,
-        predmet: "Vaša správa dorazila — AQUAPRIME",
-        html: `
-          <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
-            <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
-            <p>ďakujeme za správu — dorazila nám a ozveme sa vám v pracovný deň.</p>
-            ${sprava ? `<p style="color:#666">Čo ste nám napísali:</p><p style="white-space:pre-wrap;padding-left:14px;border-left:2px solid #ddd;margin:0 0 16px">${esc(sprava)}</p>` : ""}
-            <p style="color:#666;font-size:13px">AQUAPRIME · akváriá a skrinky na mieru<br/>aquaprime.sk</p>
-          </div>`,
+      komu: email,
+      predmet: "Vaša správa dorazila — AQUAPRIME",
+      html: mailHtml({
+        nahlad: "Máme vašu správu a ozveme sa v pracovný deň.",
+        eyebrow: "Ďakujeme za správu",
+        titul: `Dobrý deň${meno ? `, ${meno.split(" ")[0]}` : ""}.`,
+        perex:
+          "Vaša správa nám dorazila. Pozrieme si ju a ozveme sa najneskôr nasledujúci pracovný deň.",
+        bloky: [
+          ...(sprava ? ([{ typ: "citat", nadpis: "Čo ste nám napísali", text: sprava }] as const) : []),
+          {
+            typ: "obrazok",
+            src: "https://aquaprime.sk/mail/skrinka.jpg",
+            popis: "Skrinky staviame na zváranom oceľovom ráme 30 × 30 mm.",
+          },
+          { typ: "text", text: "Kým čakáte, môžete si pozrieť ponuku rozmerov a dekorov." },
+          { typ: "tlacidlo", text: "Prezrieť skrinky", href: "https://aquaprime.sk/skrinky" },
+        ],
+        zaver: "Ak chcete niečo doplniť, stačí odpovedať na tento e-mail.",
+      }),
     }).catch(() => null);
 
     return NextResponse.json({ ok: true });

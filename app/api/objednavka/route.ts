@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { mailNastaveny, posliMail } from "../_lib/mail";
+import { mailHtml, type MailBlok } from "../_lib/sablona";
 import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
@@ -101,69 +102,61 @@ export async function POST(req: Request) {
     ].join("*");
   }
 
-  const platbaBlok = `
-    <div style="margin:16px 0;padding:14px 16px;border:1px solid #cfe9f2;background:#f2fafd;border-radius:8px">
-      <p style="margin:0 0 6px"><b>Záloha 30 % — ${eur(zaloha)}</b></p>
-      ${
-        iban
-          ? `<p style="margin:0;color:#333">IBAN: <b>${esc(iban.replace(/(.{4})/g, "$1 ").trim())}</b><br/>
-             Variabilný symbol: <b>${vs}</b><br/>
-             Poznámka: Zaloha ${cislo}</p>
-             <p style="margin:8px 0 0;color:#666;font-size:13px">Platíte z Česka alebo zo zahraničia (SEPA)?
-             Variabilný symbol sa tam zadať nedá — do správy pre príjemcu napíšte
-             <b>/VS${vs}/</b> alebo číslo objednávky <b>${cislo}</b>. Platbu spárujeme.</p>`
-          : `<p style="margin:0;color:#333">Platobné údaje k zálohe pošleme v samostatnom e-maile.</p>`
-      }
-      <p style="margin:8px 0 0;color:#666">Zvyšok ${eur(doplatok)} zaplatíte pri prevzatí.</p>
-    </div>`;
+  /* Údaje do šablóny mailu — rovnaké bloky použije interné oznámenie
+     aj potvrdenie zákazníkovi, len s iným úvodom. */
+  const platbaRiadky: [string, string][] = iban
+    ? [
+        ["IBAN", iban.replace(/(.{4})/g, "$1 ").trim()],
+        ["Variabilný symbol", vs],
+        ["Poznámka", `Zaloha ${cislo}`],
+      ]
+    : [];
 
-  const riadky = polozky
-    .map(
-      (p) =>
-        `<tr>
-          <td style="padding:6px 12px 6px 0">${esc(p.nazov)}<br/><span style="color:#777;font-size:12px">${esc(
-            p.variant
-          )}</span></td>
-          <td style="padding:6px 12px;text-align:center">${p.ks}×</td>
-          <td style="padding:6px 0;text-align:right;white-space:nowrap"><b>${eur(
-            p.cena * p.ks
-          )}</b></td>
-        </tr>`
-    )
-    .join("");
+  const polozkyRiadky: [string, string][] = polozky.map((p) => [
+    `${p.nazov}${p.variant ? ` · ${p.variant}` : ""}`,
+    `${p.ks} × ${eur(p.cena)}`,
+  ]);
+
+  const suhrnRiadky: [string, string][] = [
+    ...polozkyRiadky,
+    ["Doprava", Number(b.doprava) === 0 ? "zdarma" : eur(Number(b.doprava))],
+    ["Spolu", eur(Number(b.spolu))],
+  ];
 
   const adresa = [b.ulica, `${b.psc ?? ""} ${b.mesto ?? ""}`.trim(), b.poschodie]
     .filter(Boolean)
-    .map((x) => esc(String(x)))
-    .join("<br/>");
+    .map(String)
+    .join("\n");
 
-  const suhrn = `
-    <div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6;color:#111">
-      <h2 style="font-size:16px;margin:0 0 4px">Objednávka ${cislo}</h2>
-      <table style="width:100%;max-width:520px;border-collapse:collapse;margin:14px 0">
-        ${riadky}
-        <tr><td colspan="2" style="padding:8px 12px 4px 0;border-top:1px solid #ddd">Doprava</td>
-            <td style="padding:8px 0 4px;text-align:right;border-top:1px solid #ddd">${
-              Number(b.doprava) === 0 ? "zdarma" : eur(Number(b.doprava))
-            }</td></tr>
-        <tr><td colspan="2" style="padding:4px 12px 0 0"><b>Spolu</b></td>
-            <td style="padding:4px 0 0;text-align:right"><b>${eur(Number(b.spolu))}</b></td></tr>
-      </table>
-      <p style="margin:0 0 4px;color:#666">Zákazník</p>
-      <p style="margin:0 0 14px">
-        <b>${esc(meno)}</b><br/>${esc(email)}${b.tel ? `<br/>${esc(String(b.tel))}` : ""}
-        ${b.firma ? `<br/>${esc(String(b.firma))}${b.ico ? `, IČO ${esc(String(b.ico))}` : ""}` : ""}
-      </p>
-      <p style="margin:0 0 4px;color:#666">Doručenie</p>
-      <p style="margin:0 0 14px">${adresa}</p>
-      ${
-        b.poznamka
-          ? `<p style="margin:0 0 4px;color:#666">Poznámka</p><p style="white-space:pre-wrap;margin:0">${esc(
-              String(b.poznamka)
-            )}</p>`
-          : ""
-      }
-    </div>`;
+  const zakaznikRiadky: [string, string][] = [
+    ["Meno", meno],
+    ["E-mail", email],
+    ...(b.tel ? ([["Telefón", String(b.tel)]] as [string, string][]) : []),
+    ...(b.firma
+      ? ([["Firma", `${String(b.firma)}${b.ico ? `, IČO ${String(b.ico)}` : ""}`]] as [string, string][])
+      : []),
+    ["Doručenie", adresa],
+  ];
+
+  const platbaBloky: MailBlok[] = [
+    {
+      typ: "suma",
+      popis: "Záloha 30 %",
+      hodnota: eur(zaloha),
+      poznamka: iban
+        ? `Zvyšok ${eur(doplatok)} zaplatíte pri prevzatí.`
+        : `Platobné údaje k zálohe pošleme v samostatnom e-maile. Zvyšok ${eur(doplatok)} zaplatíte pri prevzatí.`,
+    },
+    ...(platbaRiadky.length ? ([{ typ: "tabulka", riadky: platbaRiadky }] as MailBlok[]) : []),
+    ...(iban
+      ? ([
+          {
+            typ: "text",
+            text: `Platíte z Česka alebo zo zahraničia? Variabilný symbol sa tam zadať nedá — do správy pre príjemcu napíšte /VS${vs}/ alebo číslo objednávky ${cislo}. Platbu spárujeme.`,
+          },
+        ] as MailBlok[])
+      : []),
+  ];
 
   if (!mailNastaveny()) {
     // objednávka je platná, len ju zatiaľ nemáme ako odoslať — nech sa nestratí
@@ -180,20 +173,46 @@ export async function POST(req: Request) {
     await posliMail({
       odpovedatNa: email,
       predmet: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
-      html: platbaBlok + suhrn,
+      html: mailHtml({
+        nahlad: `${meno} — ${eur(Number(b.spolu))}`,
+        eyebrow: `Objednávka ${cislo}`,
+        titul: `${meno} objednal za ${eur(Number(b.spolu))}`,
+        bloky: [
+          { typ: "tabulka", riadky: suhrnRiadky },
+          { typ: "tabulka", riadky: zakaznikRiadky },
+          ...(b.poznamka
+            ? ([{ typ: "citat", nadpis: "Poznámka zákazníka", text: String(b.poznamka) }] as MailBlok[])
+            : []),
+          ...platbaBloky,
+          { typ: "tlacidlo", text: "Odpovedať zákazníkovi", href: `mailto:${email}` },
+        ],
+        zaver: "Odpoveď na tento mail ide priamo zákazníkovi.",
+      }),
     });
     await posliMail({
-        komu: email,
-        predmet: `Vaša objednávka ${cislo} — AQUAPRIME`,
-        html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.7;color:#111">
-            <p>Dobrý deň${meno ? `, ${esc(meno.split(" ")[0])}` : ""},</p>
-            <p>ďakujeme za objednávku. Máme ju u seba a ozveme sa vám v pracovný
-            deň s potvrdením termínu. Výroba sa spúšťa po uhradení
-            zálohy 30 % — zvyšok zaplatíte až pri prevzatí.</p>
-            ${platbaBlok}
-            ${suhrn}
-            <p style="color:#666;font-size:13px">AQUAPRIME · aquaprime.sk</p>
-          </div>`,
+      komu: email,
+      predmet: `Vaša objednávka ${cislo} — AQUAPRIME`,
+      html: mailHtml({
+        nahlad: `Objednávka ${cislo} je u nás. Záloha ${eur(zaloha)}.`,
+        eyebrow: `Objednávka ${cislo}`,
+        titul: `Ďakujeme${meno ? `, ${meno.split(" ")[0]}` : ""}.`,
+        perex:
+          "Objednávku máme u seba a ozveme sa vám v pracovný deň s potvrdením termínu. Výroba sa spúšťa po uhradení zálohy, zvyšok zaplatíte až pri prevzatí.",
+        bloky: [
+          ...platbaBloky,
+          {
+            typ: "obrazok",
+            src: "https://aquaprime.sk/mail/skrinka.jpg",
+            popis: "Každá skrinka stojí na zváranom oceľovom ráme 30 × 30 mm.",
+          },
+          { typ: "tabulka", riadky: suhrnRiadky },
+          { typ: "tabulka", riadky: zakaznikRiadky },
+          ...(b.poznamka
+            ? ([{ typ: "citat", nadpis: "Vaša poznámka", text: String(b.poznamka) }] as MailBlok[])
+            : []),
+        ],
+        zaver: "Ak treba čokoľvek upraviť, stačí odpovedať na tento e-mail.",
+      }),
     }).catch(() => null);
     return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: true });
   } catch (e) {

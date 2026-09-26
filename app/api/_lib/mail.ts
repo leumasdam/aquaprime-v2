@@ -41,6 +41,10 @@ export async function posliMail(s: Sprava) {
   const from = process.env.DOPYT_FROM;
   if (!to || !from) throw new Error("mail nie je nastavený");
   const komu = s.komu ? (Array.isArray(s.komu) ? s.komu : [s.komu]) : prijemcovia(to);
+  /* Z adresy web@aquaprime.sk sa len posiela, schránka na nej nie je. Keby
+     zákazník odpovedal na potvrdenie, mail by sa odrazil — preto odpovede
+     smerujeme do firemnej schránky. */
+  const odpovedatNa = s.odpovedatNa ?? prijemcovia(to)[0];
 
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
@@ -56,7 +60,7 @@ export async function posliMail(s: Sprava) {
     await prenos.sendMail({
       from,
       to: komu,
-      replyTo: s.odpovedatNa,
+      replyTo: odpovedatNa,
       subject: s.predmet,
       html: s.html,
     });
@@ -68,7 +72,7 @@ export async function posliMail(s: Sprava) {
   const { error } = await new Resend(key).emails.send({
     from,
     to: komu,
-    replyTo: s.odpovedatNa,
+    replyTo: odpovedatNa,
     subject: s.predmet,
     html: s.html,
   });
