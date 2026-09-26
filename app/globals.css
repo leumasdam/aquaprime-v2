@@ -12596,3 +12596,57 @@ a.dopyt-alt__card:hover {
     animation: none;
   }
 }
+/* Svetlá varianta na porovnanie — zapne ju ?cookies=biela v adrese.
+   Keď sa Samuel rozhodne, ostane len jedna a toto sa zmaže. */
+.ck--biela .ck__in {
+  background: #f7f6f2;
+  border-color: rgba(11, 14, 13, 0.1);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
+}
+.ck--biela .ck__text p,
+.ck--biela .ck__volba {
+  color: #3c4442;
+}
+.ck--biela .ck__odkaz {
+  color: #0b0e0d;
+  text-decoration-color: rgba(11, 14, 13, 0.3);
+}
+.ck--biela .ck__btn {
+  color: #0b0e0d;
+  border-color: rgba(11, 14, 13, 0.24);
+}
+.ck--biela .ck__btn:not(.ck__btn--hlavny):hover {
+  border-color: rgba(0, 154, 192, 0.7);
+  background: rgba(0, 154, 192, 0.08);
+}
+.ck--biela .ck__btn--hlavny {
+  color: #fff;
+  background: var(--cyan);
+  box-shadow: none;
+}
+.ck--biela .ck__tichy {
+  color: #5b6462;
+  text-decoration-color: rgba(11, 14, 13, 0.3);
+}
+.ck--biela .ck__tichy:hover {
+  color: #0b0e0d;
+}
+.ck--biela .ck__volby {
+  border-top-color: rgba(11, 14, 13, 0.12);
+}
+.ck--biela .ck__volba b {
+  color: #0b0e0d;
+}
+.ck--biela .ck__volba:has(input:checked) {
+  background: rgba(0, 154, 192, 0.08);
+  border-color: rgba(0, 154, 192, 0.35);
+}
+.ck--biela .ck__prepinac > span {
+  background: rgba(11, 14, 13, 0.2);
+}
+.ck--biela .ck__prepinac > span::after {
+  background: #fff;
+}
+.ck--biela .ck__prepinac input:checked + span::after {
+  background: #fff;
+}
