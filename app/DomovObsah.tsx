@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { odkaz, type Jazyk } from "./jazyk";
 import type { Slovnik } from "./preklady";
@@ -83,6 +84,15 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
             <source src="/video/hero-water.mp4" type="video/mp4" />
           </video>
         </div>
+        {/* pečať pôvodu — stojí v pravom hornom rohu záberu, kde je scéna
+            najpokojnejšia a neprekrýva ani akvárium, ani text */}
+        <Image
+          src="/img/pecat-slovensko.webp"
+          alt={d.pecat}
+          width={640}
+          height={640}
+          className="hero__pecat"
+        />
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">{d.scroll}</span>
           <span className="hero__scroll-line" />

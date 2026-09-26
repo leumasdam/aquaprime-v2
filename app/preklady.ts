@@ -145,6 +145,7 @@ export const SK = {
     pruhText: "Neviete si vybrať rozmer?",
     pruhOdkaz: "Napíšte nám",
     scroll: "SCROLL",
+    pecat: "Vyrobené na Slovensku",
     vlastnosti: [
       ["ROZMERY NA MIERU", "Podľa akvária a priestoru."],
       ["VÝBER DEKOROV", "Matné povrchy aj drevodekory podľa ponuky."],
@@ -1292,6 +1293,7 @@ export const EN: Slovnik = {
     pruhText: "Not sure which size?",
     pruhOdkaz: "Get in touch",
     scroll: "SCROLL",
+    pecat: "Made in Slovakia",
     vlastnosti: [
       ["MADE TO MEASURE", "Sized to your aquarium and space."],
       ["CHOICE OF DECORS", "Matt finishes and wood decors from our range."],

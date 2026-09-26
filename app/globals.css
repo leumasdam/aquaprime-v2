@@ -12777,6 +12777,36 @@ a.dopyt-alt__card:hover {
 }
 
 /* ---- zrno cez celý web: rozbije banding tmavých plôch ---- */
+/* ============================================================
+   PEČAŤ PÔVODU V HERO (26. 9. 2026)
+   Kruhová značka „Vyrobené na Slovensku" stojí v pravom hornom rohu
+   záberu, kde je scéna najpokojnejšia. Je len jemne prítomná — nemá
+   súperiť s titulkom ani s akváriom, len potvrdiť pôvod výroby.
+   Na užších oknách sa skrýva, tam na ňu v zábere nie je pokojné miesto.
+   ============================================================ */
+.hero__pecat {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .hero__pecat {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: calc(var(--nav-h) + clamp(16px, 2.6vw, 44px));
+    right: clamp(24px, 5.2vw, 86px);
+    width: clamp(86px, 8.4vw, 130px);
+    height: auto;
+    opacity: 0.42;
+    pointer-events: none;
+  }
+}
+/* nad obsahovou šírkou stránky sa drží pri jej okraji, nie pri okraji okna */
+@media (min-width: 2040px) {
+  .hero__pecat {
+    right: calc(50% - var(--maxw) / 2 + 86px);
+  }
+}
+
 body::after {
   content: "";
   position: fixed;
