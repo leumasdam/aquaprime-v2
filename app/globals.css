@@ -12357,6 +12357,20 @@ a.dopyt-alt__card:hover {
   mask-position: left top, left bottom;
   -webkit-mask-repeat: repeat-x, no-repeat;
   mask-repeat: repeat-x, no-repeat;
+  /* hladina sa ledva hýbe: jedna vlna za 40 sekúnd, tam a späť */
+  animation: ckHladina 40s ease-in-out infinite alternate;
+}
+@keyframes ckHladina {
+  from {
+    background-position-x: 0, 0;
+    -webkit-mask-position-x: 0, 0;
+    mask-position-x: 0, 0;
+  }
+  to {
+    background-position-x: 120px, 0;
+    -webkit-mask-position-x: 120px, 0;
+    mask-position-x: 120px, 0;
+  }
 }
 .ck__text {
   flex: 1 1 380px;
@@ -12578,7 +12592,8 @@ a.dopyt-alt__card:hover {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ck {
+  .ck,
+  .ck__in {
     animation: none;
   }
 }
