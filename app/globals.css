@@ -12577,20 +12577,71 @@ a.dopyt-alt__card:hover {
   color: var(--ink);
 }
 @media (max-width: 720px) {
+  /* na telefóne lišta brala takmer tretinu obrazovky — nižšia vlna,
+     tesnejšie riadky a menšie tlačidlá ju stiahnu na polovicu */
+  .ck {
+    --vlna-v: 16px;
+  }
   .ck__in {
-    gap: 14px;
+    gap: 10px;
+    padding: calc(var(--vlna-v) + 12px) var(--pad) 14px;
+    background-size: 240px 16px, auto;
+  }
+  .ck__eyebrow {
+    display: none;
+  }
+  .ck__text p {
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
   .ck__akcie {
     width: 100%;
+    gap: 8px;
   }
   .ck__btn {
     flex: 1 1 auto;
-    padding: 0 14px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+  }
+  .ck__btn--hlavny {
+    height: 40px;
+    padding: 0 12px;
   }
   .ck__tichy {
     flex: 1 1 100%;
     text-align: center;
-    padding: 6px 0;
+    padding: 4px 0 0;
+    font-size: 0.625rem;
+  }
+  .ck__volby {
+    padding-top: 10px;
+    gap: 0;
+  }
+  .ck__volba {
+    padding: 7px 10px;
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+  .ck__prepinac {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 19px;
+  }
+  .ck__prepinac > span::after {
+    width: 13px;
+    height: 13px;
+  }
+  .ck__prepinac input:checked + span::after {
+    transform: translateX(13px);
+  }
+}
+@media (max-width: 720px) {
+  /* vlna je na telefóne nižšia, tak sa musí zmenšiť aj jej maska */
+  .ck__in {
+    -webkit-mask-size: 240px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
+    mask-size: 240px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
