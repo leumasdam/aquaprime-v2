@@ -11903,19 +11903,6 @@ a.dopyt-alt__card:hover {
     max-width: min(900px, 60%);
   }
 }
-/* nadpisok s linkou ako v návrhu */
-.sety-hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-}
-.sety-hero__eyebrow::after {
-  content: "";
-  width: 44px;
-  height: 6px;
-  background: var(--vlnka) left center / 20px 6px repeat-x;
-  opacity: 0.8;
-}
 /* stĺpec náhľadov vpravo — len od notebooku, kde je naň miesto */
 .sety-hero__nahlady {
   display: none;

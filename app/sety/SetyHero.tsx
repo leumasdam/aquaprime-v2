@@ -137,7 +137,6 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
         <div className="vhero__crumb vhero__crumb--v-texte">
           <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
         </div>
-        <span className="vhero__eyebrow sety-hero__eyebrow">{set.nazov}</span>
         <h1 className="vhero__title display vhero__title--siroky" id="sety-title">
           {k.heroTitul}
           <span className="vhero__bodka" aria-hidden>
