@@ -6764,11 +6764,12 @@ button:focus-visible {
 }
 /* >1400px: kameň je výrazný v strede → mäkký závoj naprieč,
    ľavá strana o čosi tmavšia kvôli čitateľnosti textu */
-/* Do 2000 px stojí kameň bližšie k stredu — pri pravom okraji pôsobil
-   odseknuto a zakrýval pás s údajmi. Nad 2000 px má vlastné pravidlo. */
+/* Od 1401 do 2000 px stojí kameň bližšie k stredu a o kus nižšie — pri
+   pravom okraji pôsobil odseknuto a zakrýval pás s údajmi. */
 @media (min-width: 1401px) {
   .safety__bg {
-    background-position: 64% bottom;
+    /* štvorhodnotový zápis — tri hodnoty prehliadač zahodí ako neplatné */
+    background-position: left 59% bottom -26px;
     opacity: 0.78;
   }
   .safety__bg::after {
