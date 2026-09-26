@@ -35,18 +35,18 @@ export const SETY: Set[] = [
     id: "scape-60",
     nazov: "Scape 60",
     podtitul: {
-      sk: "Set pre chovateľov krevietiek",
+      sk: "Kompaktný set pre chov kreviet",
       en: "Set for shrimp keepers",
     },
     popis: {
-      sk: "Krevetárium na úzkej skrinke, ktoré sa zmestí aj tam, kde by veľké akvárium prekážalo. Skrinka 60 × 35 × 75 cm s oceľovým rámom nesie akvárium 60 × 35 × 35 cm z klasického skla a LED podsvietenie pod jeho hranou. Tri dizajnové prevedenia, jedna výška, ktorá sedí k sedačke aj k pracovnému stolu.",
+      sk: "Scape 60 prináša plnohodnotné krevetárium aj do menšieho bytu či kancelárie. Akvárium s objemom 73 litrov stojí na úzkej skrinke s oceľovým rámom, ktorá zaberie pôdorys iba 60 × 35 cm. Vybrať si môžete z troch dekorov a LED podsvietenia v teplej bielej alebo modrej farbe.",
       en: "A shrimp tank on a narrow cabinet that fits where a large aquarium would get in the way. The 60 × 35 × 75 cm cabinet with a steel frame carries a 60 × 35 × 35 cm classic-glass aquarium with LED backlighting under its edge. Three design finishes, one height that works next to a sofa or a desk.",
     },
     preKoho: {
       sk: [
-        "Krevetky Neocaridina a Caridina — pokojná hladina, malý objem, ľahká údržba.",
-        "Byt alebo kancelária, kde je miesto len na pôdorys 60 × 35 cm.",
-        "Prvé akvárium v domácnosti: set je zladený, nič netreba domeriavať.",
+        "Chov kreviet rodov Neocaridina a Caridina v samostatnej kompaktnej nádrži.",
+        "Byt, pracovňa či kancelária, kde je k dispozícii pôdorys 60 × 35 cm.",
+        "Každý, kto chce rozmerovo aj vizuálne zladený celok bez domeriavania jednotlivých častí.",
       ],
       en: [
         "Neocaridina and Caridina shrimp — calm water, small volume, easy upkeep.",
