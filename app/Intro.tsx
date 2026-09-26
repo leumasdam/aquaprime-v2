@@ -4,14 +4,13 @@ import { Logo } from "./brand";
 
 /**
  * Krátke intro pri načítaní: logo sa vynorí spod vlny a plocha sa
- * rozplynie do stránky. Trvá pod sekundu. Ide pri každom novom otvorení
- * webu (zadaná adresa, klik odinakiaľ), nie pri obnovení karty ani pri
- * návrate späť — to rozhoduje skript v hlavičke podľa typu navigácie.
+ * rozplynie do stránky. Trvá pod sekundu a zatiaľ ide pri každom
+ * načítaní vrátane obnovenia (Samuel to tak chce počas ladenia).
  *
  * Značka je v HTML od servera a všetko riadi CSS animácia, takže sa
  * nestane, že by stránka najprv preblikla a intro nabehlo až po nej.
- * Skript v hlavičke pridá <html> triedu bez-intra, keď intro už bolo,
- * a CSS ho vtedy vôbec nevykreslí.
+ * Keby sa malo znova obmedziť, stačí v hlavičke pridať <html> triedu
+ * bez-intra — CSS ho vtedy vôbec nevykreslí.
  */
 export default function Intro() {
   return (
