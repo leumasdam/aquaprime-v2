@@ -12302,3 +12302,247 @@ a.dopyt-alt__card:hover {
     align-items: flex-start;
   }
 }
+
+/* ===========================================================
+   COOKIES — lišta so súhlasom (26. 9. 2026)
+   Nabieha zdola, tmavé sklo ako mobilné menu. Prijať aj odmietnuť
+   stoja vedľa seba; zákon žiada, aby sa odmietalo rovnako ľahko.
+   =========================================================== */
+.ck {
+  position: fixed;
+  z-index: 90;
+  left: 50%;
+  bottom: clamp(14px, 2.2vw, 26px);
+  width: min(var(--maxw), calc(100vw - 2 * var(--pad)));
+  transform: translateX(-50%);
+  animation: ckHore 0.5s var(--ease) both;
+}
+@keyframes ckHore {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 18px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.ck__in {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px clamp(20px, 3vw, 44px);
+  padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2.2vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(9, 12, 12, 0.96);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+.ck__text {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+.ck__eyebrow {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 7px;
+}
+.ck__text p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--body);
+  max-width: 68ch;
+}
+.ck__odkaz {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.32);
+}
+.ck__odkaz:hover {
+  text-decoration-color: var(--cyan);
+}
+.ck__akcie {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.ck__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
+}
+.ck__btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+.ck__btn--hlavny {
+  border-color: transparent;
+  background: var(--cyan-btn);
+  color: var(--bg);
+}
+.ck__btn--hlavny:hover {
+  border-color: transparent;
+  background: var(--cyan);
+}
+.ck__tichy {
+  border: 0;
+  background: none;
+  padding: 0 6px;
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.28);
+}
+.ck__tichy:hover {
+  color: var(--ink);
+}
+/* rozbalené kategórie */
+.ck__volby {
+  flex: 1 1 100%;
+  display: grid;
+  gap: 2px;
+  margin-top: 2px;
+  border-top: 1px solid var(--line-2);
+  padding-top: 16px;
+}
+@media (min-width: 900px) {
+  .ck__volby {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px clamp(20px, 2.4vw, 36px);
+  }
+}
+.ck__volba {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.ck__volba b {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ck__volba.is-locked {
+  cursor: default;
+  opacity: 0.72;
+}
+/* prepínač */
+.ck__prepinac {
+  position: relative;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 22px;
+  margin-top: 2px;
+}
+.ck__prepinac input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: inherit;
+}
+.ck__prepinac > span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  transition: background var(--t-base) var(--ease);
+  pointer-events: none;
+}
+.ck__prepinac > span::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform var(--t-base) var(--ease);
+}
+.ck__prepinac input:checked + span {
+  background: var(--cyan-btn);
+}
+.ck__prepinac input:checked + span::after {
+  transform: translateX(16px);
+  background: var(--bg);
+}
+.ck__prepinac input:focus-visible + span {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+/* odkaz na nastavenia v pätičke vyzerá ako ostatné odkazy */
+.footer__cookies {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.footer__cookies:hover {
+  color: var(--ink);
+}
+@media (max-width: 720px) {
+  .ck__in {
+    gap: 14px;
+    border-radius: 14px;
+  }
+  .ck__akcie {
+    width: 100%;
+  }
+  .ck__btn {
+    flex: 1 1 auto;
+    padding: 0 14px;
+  }
+  .ck__tichy {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 6px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ck {
+    animation: none;
+  }
+}

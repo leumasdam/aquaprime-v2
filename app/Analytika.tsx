@@ -1,13 +1,27 @@
+"use client";
+
 // Merací kód pre GA4 / Google Tag Manager. Nasadí sa len keď je vo Verceli
-// nastavené NEXT_PUBLIC_GTM_ID alebo NEXT_PUBLIC_GA4_ID — dovtedy sa
-// nerenderuje nič a web nenačítava žiadne cudzie skripty.
+// nastavené NEXT_PUBLIC_GTM_ID alebo NEXT_PUBLIC_GA4_ID a zároveň keď
+// návštevník povolil analytické cookies — dovtedy web nenačíta žiadny
+// cudzí skript.
 
 import Script from "next/script";
+import { useEffect, useState } from "react";
+import { precitaj, UDALOST } from "./suhlas";
 
 export default function Analytika() {
   const gtm = process.env.NEXT_PUBLIC_GTM_ID;
   const ga4 = process.env.NEXT_PUBLIC_GA4_ID;
-  if (!gtm && !ga4) return null;
+  const [smie, setSmie] = useState(false);
+
+  useEffect(() => {
+    const zisti = () => setSmie(Boolean(precitaj()?.analyticke));
+    zisti();
+    window.addEventListener(UDALOST, zisti);
+    return () => window.removeEventListener(UDALOST, zisti);
+  }, []);
+
+  if ((!gtm && !ga4) || !smie) return null;
 
   return (
     <>

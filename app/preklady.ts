@@ -30,6 +30,23 @@ export const SK = {
     jazykEn: "English",
     jazykAktivny: "aktívny jazyk",
   },
+  cookies: {
+    titul: "Cookies",
+    text:
+      "Nevyhnutné cookies držia košík a jazyk. Analytické zapneme len s vaším súhlasom — pomáhajú nám vidieť, čo na webe hľadáte.",
+    viac: "Viac o spracovaní údajov",
+    prijat: "Prijať všetko",
+    odmietnut: "Odmietnuť voliteľné",
+    prisposobit: "Prispôsobiť",
+    ulozit: "Uložiť výber",
+    nastavenia: "Nastavenia cookies",
+    nutneTitul: "Nevyhnutné",
+    nutneText: "Bez nich web nefunguje. Držia obsah košíka, zvolený jazyk a bezpečnosť formulárov.",
+    analytickeTitul: "Analytické",
+    analytickeText: "Anonymné meranie návštevnosti, aby sme vedeli, ktoré stránky zlepšiť.",
+    marketingoveTitul: "Marketingové",
+    marketingoveText: "Meranie účinnosti reklamy a ponuka, ktorá sedí k tomu, čo ste si pozerali.",
+  },
   sety: {
     metaTitul: "Hotové sety akvária so skrinkou | AQUAPRIME",
     metaPopis:
@@ -1161,6 +1178,23 @@ export const EN: Slovnik = {
     jazykSk: "Slovenčina",
     jazykEn: "English",
     jazykAktivny: "active language",
+  },
+  cookies: {
+    titul: "Cookies",
+    text:
+      "Essential cookies keep your cart and language. Analytics run only with your consent — they show us what you are looking for.",
+    viac: "More on data processing",
+    prijat: "Accept all",
+    odmietnut: "Reject optional",
+    prisposobit: "Customise",
+    ulozit: "Save choice",
+    nastavenia: "Cookie settings",
+    nutneTitul: "Essential",
+    nutneText: "The site does not work without them. They keep the cart, the chosen language and form security.",
+    analytickeTitul: "Analytics",
+    analytickeText: "Anonymous traffic measurement so we know which pages to improve.",
+    marketingoveTitul: "Marketing",
+    marketingoveText: "Measuring how ads perform and matching offers to what you viewed.",
   },
   sety: {
     metaTitul: "Ready-made aquarium and cabinet sets | AQUAPRIME",

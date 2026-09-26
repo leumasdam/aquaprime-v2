@@ -17,6 +17,7 @@ export default function SiteFooter() {
   const jazyk = jazykZCesty(usePathname());
   const t = SLOVNIKY[jazyk].footer;
   const nav = SLOVNIKY[jazyk].nav;
+  const ck = SLOVNIKY[jazyk].cookies;
   const l = (href: string) => odkaz(href, jazyk);
 
   return (
@@ -58,6 +59,14 @@ export default function SiteFooter() {
             <Link href={l("/obchodne-podmienky")}>{t.podmienky}</Link>
             <Link href={l("/reklamacny-poriadok")}>{t.reklamacie}</Link>
             <Link href={l("/ochrana-osobnych-udajov")}>{t.ochrana}</Link>
+            {/* návrat k voľbe cookies — lištu otvorí udalosť, nie nová stránka */}
+            <button
+              type="button"
+              className="footer__cookies"
+              onClick={() => window.dispatchEvent(new Event("aq-cookies-otvor"))}
+            >
+              {ck.nastavenia}
+            </button>
           </div>
           <span className="footer__made">{t.vyrobene}</span>
         </div>
