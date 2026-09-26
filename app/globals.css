@@ -12807,6 +12807,88 @@ a.dopyt-alt__card:hover {
   }
 }
 
+/* panel ladenia polohy pečate — objaví sa len s parametrom ?pecat v adrese */
+.pecat-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  width: min(340px, calc(100vw - 32px));
+  padding: 14px 16px 16px;
+  background: rgba(12, 16, 15, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 12px;
+  line-height: 1.5;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.pecat-panel b {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.pecat-panel p {
+  margin: 6px 0 12px;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+.pecat-panel label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.pecat-panel label i {
+  float: right;
+  font-style: normal;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.pecat-panel input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  accent-color: var(--cyan);
+}
+.pecat-panel pre {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--r-xs);
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+}
+.pecat-panel__akcie {
+  display: flex;
+  gap: 8px;
+}
+.pecat-panel button {
+  flex: 1 1 auto;
+  height: 34px;
+  border: 0;
+  border-radius: var(--r-xs);
+  background: var(--cyan);
+  color: #032630;
+  font: inherit;
+  font-weight: 600;
+  font-size: 11px;
+  cursor: pointer;
+}
+.pecat-panel .pecat-panel__tichy {
+  flex: 0 0 auto;
+  padding: 0 12px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--ink-soft);
+}
+
 body::after {
   content: "";
   position: fixed;
