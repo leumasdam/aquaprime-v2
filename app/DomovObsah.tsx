@@ -5,7 +5,6 @@ import CollectionsCarousel from "./CollectionsCarousel";
 import ReviewsCarousel from "./ReviewsCarousel";
 import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
-import Kaustika from "./Kaustika";
 import ProductCard from "./ProductCard";
 import { PRODUCTS } from "./products";
 import PasKarusel from "./PasKarusel";
@@ -84,7 +83,6 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
             <source src="/video/hero-water.mp4" type="video/mp4" />
           </video>
         </div>
-        <Kaustika />
         <div className="hero__scroll-v" aria-hidden="true">
           <span className="hero__scroll-word">{d.scroll}</span>
           <span className="hero__scroll-line" />
@@ -151,7 +149,6 @@ export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
       {/* ===== BEZPEČNOSŤ A NOSNOSŤ (rovno pod hero) ===== */}
       <section className="safety section" id="bezpecnost">
         <div className="safety__bg" aria-hidden="true" />
-        <Kaustika className="kaustika--za-kamenom" />
         <div className="wrap safety__grid">
           <div className="safety__text" data-reveal="left">
             <span className="safety__eyebrow">

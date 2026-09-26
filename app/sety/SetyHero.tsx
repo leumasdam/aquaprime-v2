@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Drobcek from "../Drobcek";
-import Kaustika from "../Kaustika";
 import type { Jazyk } from "../jazyk";
 import { SLOVNIKY, type Slovnik } from "../preklady";
 import { SETY } from "../sety";
@@ -123,8 +122,6 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
           </div>
         </div>
       </div>
-
-      <Kaustika />
       <div className="hero__scroll-v vhero__scroll" aria-hidden>
         <span className="hero__scroll-word">{SLOVNIKY[jazyk].domov.scroll}</span>
         <span className="hero__scroll-line" />

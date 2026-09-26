@@ -98,7 +98,7 @@ export default function RootLayout({
             navigácie a stránky ostanú staticky generované. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(sessionStorage.getItem("aq-intro"))document.documentElement.classList.add("bez-intra")}catch(e){}var u=navigator.userAgent;if(!/Safari/i.test(u)||/Chrome|Chromium|Edg|OPR|Android/i.test(u))return;document.documentElement.classList.add("safari");if(!document.startViewTransition)return;window.__aqBezPrechodov=true;document.startViewTransition=function(a){var r;try{r=typeof a==="function"?a():a&&a.update&&a.update()}catch(e){r=Promise.reject(e)}var p=Promise.resolve(r);var t=p.then(function(){},function(){});return{ready:t,finished:t,updateCallbackDone:p,types:new Set(),skipTransition:function(){}}}})();`,
+            __html: `(function(){try{var i=+localStorage.getItem("aq-intro")||0;if(Date.now()-i<1200000)document.documentElement.classList.add("bez-intra")}catch(e){}var u=navigator.userAgent;if(!/Safari/i.test(u)||/Chrome|Chromium|Edg|OPR|Android/i.test(u))return;document.documentElement.classList.add("safari");if(!document.startViewTransition)return;window.__aqBezPrechodov=true;document.startViewTransition=function(a){var r;try{r=typeof a==="function"?a():a&&a.update&&a.update()}catch(e){r=Promise.reject(e)}var p=Promise.resolve(r);var t=p.then(function(){},function(){});return{ready:t,finished:t,updateCallbackDone:p,types:new Set(),skipTransition:function(){}}}})();`,
           }}
         />
       </head>

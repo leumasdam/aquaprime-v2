@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Drobcek from "../Drobcek";
-import Kaustika from "../Kaustika";
 import { odkaz, type Jazyk } from "../jazyk";
 import { SLOVNIKY, type Slovnik } from "../preklady";
 
@@ -88,8 +87,6 @@ export default function RealizacieHero({
           <source src="/video/realizacie-cover.mp4" type="video/mp4" />
         </video>
       </div>
-
-      <Kaustika />
       <div className="hero__scroll-v vhero__scroll" aria-hidden>
         <span className="hero__scroll-word">{scroll}</span>
         <span className="hero__scroll-line" />

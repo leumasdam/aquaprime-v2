@@ -1,5 +1,4 @@
 import Drobcek from "../Drobcek";
-import Kaustika from "../Kaustika";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -60,7 +59,6 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
             className="tech-hero__video-el"
           />
         </div>
-        <Kaustika />
         <div className="wrap tech-hero__crumb">
           <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
         </div>
