@@ -68,7 +68,7 @@ export const SK = {
     objem: "Objem",
     prevedenia: "Vyberte si prevedenie",
     prevedeniaText:
-      "Set Scape 60 ponúkame v troch dekoroch. Každý z nich môžete skombinovať s teplým bielym alebo modrým LED podsvietením.",
+      "Každý set ponúkame v troch dekoroch — Black Matt, Cool White a Antracit. LED podsvietenie nad hladinou je súčasťou.",
     preKoho: "Komu bude set vyhovovať",
     cenaNaDopyt: "Cena na dopyt",
     cenaPozn: "Pošlite nám krátky dopyt. Presnú cenu vám potvrdíme do jedného pracovného dňa.",
@@ -1217,7 +1217,7 @@ export const EN: Slovnik = {
     objem: "Volume",
     prevedenia: "Choose your finish",
     prevedeniaText:
-      "The Scape 60 set comes in three finishes. Each can be combined with warm white or blue LED backlighting.",
+      "Every set comes in three finishes — Black Matt, Cool White and Antracit. LED lighting above the water is included.",
     preKoho: "Who the set suits",
     cenaNaDopyt: "Price on request",
     cenaPozn: "Send us a short enquiry. We confirm the exact price within one working day.",

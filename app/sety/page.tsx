@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: SK.sety.metaPopis,
     type: "website",
     locale: "sk_SK",
-    images: [{ url: "/img/sety/scape-60.webp", width: 1122, height: 1402 }],
+    images: [{ url: "/img/sety/krevetaria-plagat.webp", width: 1122, height: 1402 }],
   },
 };
 

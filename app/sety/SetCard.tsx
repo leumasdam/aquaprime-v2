@@ -65,7 +65,7 @@ export default function SetCard({
   }, [cyklus.length, pauza]);
 
   const aktivne = hover ?? cyklus[auto % cyklus.length];
-  const nahlad = aktivne.obrazok;
+  const nahlad = aktivne.fotky[0];
   const posledna = useRef(nahlad);
   const predosla = posledna.current !== nahlad ? posledna.current : null;
   useEffect(() => {

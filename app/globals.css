@@ -11872,52 +11872,49 @@ a.dopyt-alt__card:hover {
    Hlavička je spoločná so sub-stránkami, každý set je jeden široký blok:
    vizuál vľavo, parametre, prevedenia a výzvy vpravo.
    =========================================================== */
-/* hero setov (26. 9. 2026): interiér cez celú sekciu, skrinka vo zvolenom
-   prevedení stojí na svojom mieste v zábere, vpravo náhľady, dole čipy.
-   Javisko má rozmer záberu pri object-fit: cover (počíta ho komponent),
-   výrez prevedenia sa polohuje v percentách javiska. */
-.sety-hero {
+/* hero setov: zábery prevedení sa prelínajú. Fotky sú na výšku, preto na
+   šírku celej sekcie stoja len v pravom páse a ich ľavá hrana sa rozplynie
+   do pozadia — inak by z nich ostal úzky vodorovný výrez. */
+.sety-hero__zaber {
+  object-fit: cover;
+  object-position: 50% 34%;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease);
+}
+.sety-hero__zaber.is-on {
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .sety-hero .vhero__media {
+    inset: 0 0 0 auto;
+    /* užší pás je bližšie k pomeru fotky (na výšku), takže z nej ostane
+       viac než vodorovný výrez */
+    width: min(42%, 620px);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+  }
+}
+@media (min-width: 1920px) {
+  .sety-hero .vhero__media {
+    right: calc(50% - var(--maxw) / 2);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 94%, transparent 100%);
+  }
+}
+/* karta setu: fotky sú na výšku a scéna je tmavá — karta preto nemá
+   širokouhlý biely rám ako produktová, ale zvislý tmavý záber */
+.set-karta .product__media--photo {
+  aspect-ratio: 4 / 5;
   background: #0b0e0d;
 }
-.sety-hero__javisko {
-  position: absolute;
-  left: var(--st-x, 0);
-  top: var(--st-y, 0);
-  width: var(--st-w, 100%);
-  height: var(--st-h, 100%);
-}
-.sety-hero__pozadie {
+.set-karta .product__media--photo img {
   object-fit: cover;
-  object-position: 50% 60%;
+  object-position: 50% 42%;
+  padding: 0;
 }
-.sety-hero__produkt {
-  position: absolute;
-  left: var(--sk-cx);
-  top: var(--sk-top);
-  height: var(--sk-h);
-  aspect-ratio: 0.55;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.4s var(--ease);
-}
-.sety-hero.is-zmerane .sety-hero__produkt {
-  opacity: 1;
-}
-.sety-hero__kus {
-  object-fit: contain;
-  object-position: 50% 100%;
-  opacity: 0;
-  transition: opacity 0.7s var(--ease);
-}
-.sety-hero__kus.is-on {
-  opacity: 1;
-}
-/* textový blok má v návrhu miesto po skrinku — širší než bežné hero,
-   inak sa titulok na veľkom monitore láme do troch riadkov */
-@media (min-width: 1024px) {
-  .sety-hero .vhero__in {
-    max-width: min(900px, 60%);
-  }
+.set-karta .product__media--photo::after {
+  background: linear-gradient(to top, rgba(11, 14, 13, 0.5), transparent 38%);
+  box-shadow: none;
 }
 /* stĺpec náhľadov vpravo — len od notebooku, kde je naň miesto */
 .sety-hero__nahlady {
@@ -12749,4 +12746,94 @@ body::after {
   .intro {
     display: none;
   }
+}
+
+/* ===========================================================
+   GALÉRIA SETU na detaile (26. 9. 2026)
+   Veľký záber, pod ním miniatúry a prepínač prevedení. Prepnutie farby
+   vymení celú sadu a vráti sa na prvý záber.
+   =========================================================== */
+.set__media--galeria {
+  aspect-ratio: auto;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+}
+.setg__hlavna {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0b0e0d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.setg__hlavna img {
+  object-fit: cover;
+}
+.setg__mini {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.setg__minii {
+  position: relative;
+  flex: 1 1 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: #0b0e0d;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), opacity var(--t-base) var(--ease);
+  opacity: 0.66;
+}
+.setg__minii img {
+  object-fit: cover;
+}
+.setg__minii:hover {
+  opacity: 1;
+}
+.setg__minii.is-on {
+  border-color: var(--cyan);
+  opacity: 1;
+}
+.setg__prevedenia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.setg__prev {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: none;
+  color: var(--ink-soft);
+  font-family: var(--ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease);
+}
+.setg__prev .swatch {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+.setg__prev:hover {
+  border-color: rgba(255, 255, 255, 0.38);
+  color: var(--ink);
+}
+.setg__prev.is-on {
+  border-color: var(--cyan);
+  color: var(--ink);
 }

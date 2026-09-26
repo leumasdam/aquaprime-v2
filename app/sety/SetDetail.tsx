@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import Drobcek from "../Drobcek";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import type { Set } from "../sety";
+import SetGaleria from "./SetGaleria";
 import Swatch from "../Swatch";
 
 /**
@@ -12,7 +12,18 @@ import Swatch from "../Swatch";
  * Rovnaký blok stál pôvodne priamo na stránke Sety, teraz má vlastnú adresu
  * /sety/<id>, na ktorú vedú karty z katalógu.
  */
-export default function SetDetail({ set, t, jazyk }: { set: Set; t: Slovnik; jazyk: Jazyk }) {
+export default function SetDetail({
+  set,
+  t,
+  jazyk,
+  prevedenie,
+}: {
+  set: Set;
+  t: Slovnik;
+  jazyk: Jazyk;
+  /** prevedenie z adresy — karta z katalógu ho posiela v ?prevedenie= */
+  prevedenie?: string;
+}) {
   const k = t.sety;
   const l = (h: string) => odkaz(h, jazyk);
   return (
@@ -28,14 +39,8 @@ export default function SetDetail({ set, t, jazyk }: { set: Set; t: Slovnik; jaz
           </div>
 
           <article className="set" id={set.id} data-reveal>
-            <div className="set__media">
-              <Image
-                src={set.obrazok}
-                alt={`${set.nazov} — ${set.podtitul[jazyk]}`}
-                fill
-                priority
-                sizes="(max-width: 899px) 92vw, 44vw"
-              />
+            <div className="set__media set__media--galeria">
+              <SetGaleria set={set} popisPrevedenia={k.prevedenia} vychodzie={prevedenie} />
             </div>
 
             <div className="set__body">
