@@ -70,6 +70,10 @@ export function Segmented<T extends string>({
     const uprav = () => {
       el.style.setProperty("--x", `${btn.offsetLeft - el.clientLeft}px`);
       el.style.setProperty("--w", `${btn.offsetWidth}px`);
+      /* na telefóne sa lišta zalamuje do viacerých riadkov, preto indikátor
+         sleduje aj zvislú polohu a výšku tlačidla, nielen vodorovnú */
+      el.style.setProperty("--y", `${btn.offsetTop - el.clientTop}px`);
+      el.style.setProperty("--h", `${btn.offsetHeight}px`);
       /* scrollIntoView by hýbalo aj stránkou — posúvame len samotnú lištu,
          a len keď je aktívna voľba naozaj za okrajom, nech to nebojuje
          so zákazníkom, ktorý si lištu odscrolloval sám */

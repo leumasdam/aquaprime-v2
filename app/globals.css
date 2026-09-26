@@ -9564,14 +9564,15 @@ button:focus-visible {
 }
 .fseg__ind {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
-  /* --x/--w doplní Segmented podľa skutočného tlačidla; fallback pre prvé
-     vykreslenie počíta s rovnako širokými stĺpcami */
+  /* --x/--y/--w/--h doplní Segmented podľa skutočného tlačidla; fallback pre
+     prvé vykreslenie počíta s jedným riadkom rovnako širokých stĺpcov */
+  top: 0;
   left: 0;
   width: var(--w, calc((100% - 8px) / var(--n)));
-  transform: translateX(var(--x, calc(4px + var(--i) * 100%)));
-  transition: transform var(--t-slow) var(--ease-swipe), width var(--t-slow) var(--ease-swipe);
+  height: var(--h, calc(100% - 8px));
+  transform: translate(var(--x, calc(4px + var(--i) * 100%)), var(--y, 4px));
+  transition: transform var(--t-slow) var(--ease-swipe), width var(--t-slow) var(--ease-swipe),
+    height var(--t-slow) var(--ease-swipe);
   background: var(--cyan, #009ac0);
   border-radius: var(--r-xs);
   box-shadow: 0 0 18px rgba(0, 154, 192, 0.35);
@@ -9608,6 +9609,23 @@ button:focus-visible {
   font-size: 0.59rem;
   font-weight: 600;
   opacity: 0.65;
+}
+
+/* Lišta stojí aj na stránkach s vlastným resetom tlačidiel (v module
+   realizácií je `.page button { font: inherit }`), ktorý má vyššiu
+   špecificitu než .fseg__opt a prepísal by veľkosť aj rez písma. Preto majú
+   prvky lišty vlastné pravidlá s dostatočnou váhou — inak boli pilulky
+   na jednej stránke malé a na druhej o polovicu väčšie. */
+.fbar .fseg .fseg__opt {
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.fbar .fseg .fseg__count {
+  font-size: 0.59rem;
+  font-weight: 600;
+}
+.fbar .fdd .fdd__btn {
+  font-size: 0.8125rem;
 }
 
 /* --- dropdown filter --- */
@@ -9794,22 +9812,62 @@ button:focus-visible {
 @media (max-width: 760px) {
   .fbar {
     top: 66px;
-    padding: 8px;
-    gap: 8px;
+    padding: 7px;
+    gap: 7px;
   }
+  /* na telefóne sa dlhé názvy kategórií do jedného riadku nezmestia. Namiesto
+     vodorovného scrollu, kde posledná voľba ostane useknutá za okrajom, sa
+     lišta zalomí do dvoch riadkov — indikátor sleduje aj riadok. */
   .fseg {
     width: 100%;
     order: -1;
-    overflow-x: auto;
-    scrollbar-width: none;
-    grid-template-columns: repeat(var(--n), minmax(max-content, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
   }
-  .fseg::-webkit-scrollbar {
-    display: none;
+  .fbar .fseg .fseg__opt {
+    flex: 1 1 auto;
   }
-  .fseg__opt {
-    padding: 8px 9px;
+  .fbar .fseg .fseg__opt {
+    padding: 7px 8px;
     font-size: 0.5625rem;
+  }
+  /* dropdowny stoja v dvoch rovnakých stĺpcoch. Bez toho si každý berie
+     šírku podľa dĺžky vybranej hodnoty („Všetky" vs „Odporúčané") a lišta
+     vyzerá rozhádzane. */
+  .fbar .fdd {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .fbar .fdd .fdd__btn {
+    width: 100%;
+    padding: 7px 10px;
+    gap: 6px;
+    font-size: 0.75rem;
+  }
+  .fbar .fdd .fdd__label {
+    font-size: 0.5625rem;
+  }
+  .fbar .fdd .fdd__value {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .fbar .fdd .fdd__chev {
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+  /* na najužších telefónoch sa hodnota inak skráti na „Odporúč…" */
+  @media (max-width: 430px) {
+    .fbar .fdd .fdd__btn {
+      font-size: 0.6875rem;
+      padding: 7px 8px;
+    }
+    .fbar .fdd .fdd__label {
+      font-size: 0.5rem;
+      letter-spacing: 0.04em;
+    }
   }
   /* na úzkom telefóne je dôležitejšie vidieť všetkých päť radov naraz
      než počty pri nich — inak lišta pretečie a LED zostane za okrajom */
