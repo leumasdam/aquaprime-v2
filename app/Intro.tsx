@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
 import { Logo } from "./brand";
 
 /**
  * Krátke intro pri načítaní: logo sa vynorí spod vlny a plocha sa
- * rozplynie do stránky. Trvá pod sekundu. Neukazuje sa pri každom
- * obnovení — po zobrazení má 20-minútovú pauzu, potom nabehne znova.
+ * rozplynie do stránky. Trvá pod sekundu. Ide pri každom novom otvorení
+ * webu (zadaná adresa, klik odinakiaľ), nie pri obnovení karty ani pri
+ * návrate späť — to rozhoduje skript v hlavičke podľa typu navigácie.
  *
  * Značka je v HTML od servera a všetko riadi CSS animácia, takže sa
  * nestane, že by stránka najprv preblikla a intro nabehlo až po nej.
@@ -14,17 +14,6 @@ import { Logo } from "./brand";
  * a CSS ho vtedy vôbec nevykreslí.
  */
 export default function Intro() {
-  useEffect(() => {
-    // čas zapíš len keď intro naozaj bežalo — inak by ho každé obnovenie
-    // v pauze predlžovalo donekonečna
-    if (document.documentElement.classList.contains("bez-intra")) return;
-    try {
-      window.localStorage.setItem("aq-intro", String(Date.now()));
-    } catch {
-      /* súkromné okno — intro sa ukáže znova, nič vážne */
-    }
-  }, []);
-
   return (
     <div className="intro" aria-hidden="true">
       <div className="intro__stred">
