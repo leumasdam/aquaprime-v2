@@ -80,6 +80,11 @@
   --h1: clamp(2.05rem, 1.3rem + 2.4vw, 3.25rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* drobné vlnky namiesto rovných liniek — podčiarknutie v menu, pruh pri
+     nadpisku, deliace čiary medzi údajmi; dlaždica sa opakuje */
+  --vlnka: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='6'%3E%3Cpath d='M0 3C5 0 5 0 10 3S15 6 20 3' fill='none' stroke='%23009ac0' stroke-width='1.4'/%3E%3C/svg%3E");
+  --vlnka-zvisla: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='20'%3E%3Cpath d='M3 0C0 5 0 5 3 10S6 15 3 20' fill='none' stroke='rgba(255,255,255,0.22)' stroke-width='1.2'/%3E%3C/svg%3E");
+  --vlnka-zvisla-slaba: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='20'%3E%3Cpath d='M3 0C0 5 0 5 3 10S6 15 3 20' fill='none' stroke='rgba(255,255,255,0.14)' stroke-width='1.2'/%3E%3C/svg%3E");
   /* prechody stránok a panelov — krivka prebratá zo zenko.sk, nemeniť */
   --ease-swipe: cubic-bezier(0.32, 0.72, 0.2, 1);
   color-scheme: dark;
@@ -1573,8 +1578,8 @@ button:disabled:hover {
 }
 .construct__eyebrow-rule {
   width: 40px;
-  height: 1px;
-  background: var(--cyan);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
 }
 .construct__title {
   font-family: var(--display);
@@ -2879,9 +2884,9 @@ button:disabled:hover {
   position: absolute;
   left: 0;
   right: 100%;
-  bottom: -7px;
-  height: 1px;
-  background: var(--cyan);
+  bottom: -10px;
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
   transition: right var(--t-slow) var(--ease);
 }
 .nav__link:hover::after {
@@ -4782,8 +4787,8 @@ button:focus-visible {
 }
 .cfg__eyebrow-rule {
   width: 36px;
-  height: 1px;
-  background: var(--cyan);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
 }
 .cfg__title {
   font-family: var(--display);
@@ -5330,8 +5335,8 @@ button:focus-visible {
 }
 .hero__eyebrow-rule {
   width: 34px;
-  height: 1px;
-  background: var(--cyan);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
 }
 .hero__title {
   font-family: var(--display);
@@ -5775,7 +5780,7 @@ button:focus-visible {
   gap: 14px;
   align-items: center;
   padding-left: clamp(14px, 1.5vw, 28px);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--vlnka-zvisla-slaba) left center / 6px 20px repeat-y;
 }
 /* marquee: každý item má rovnaký border/padding, žiadny first-child reset */
 .hfeat__ring {
@@ -6617,8 +6622,8 @@ button:focus-visible {
 }
 .safety__eyebrow-rule {
   width: 34px;
-  height: 1px;
-  background: var(--cyan);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
 }
 .safety__title {
   font-family: var(--display);
@@ -7131,7 +7136,7 @@ button:focus-visible {
 }
 .vhero__fakt + .vhero__fakt {
   padding-left: clamp(16px, 4vw, 40px);
-  border-left: 1px solid var(--line-2);
+  background: var(--vlnka-zvisla) left center / 6px 20px repeat-y;
 }
 .vhero__fikona {
   flex: none;
@@ -11901,8 +11906,9 @@ a.dopyt-alt__card:hover {
 .sety-hero__eyebrow::after {
   content: "";
   width: 44px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.35);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
+  opacity: 0.8;
 }
 /* stĺpec náhľadov vpravo — len od notebooku, kde je naň miesto */
 .sety-hero__nahlady {
@@ -12305,75 +12311,52 @@ a.dopyt-alt__card:hover {
 
 /* ===========================================================
    COOKIES — lišta so súhlasom (26. 9. 2026)
-   Nabieha zdola, tmavé sklo ako mobilné menu. Prijať aj odmietnuť
-   stoja vedľa seba; zákon žiada, aby sa odmietalo rovnako ľahko.
+   Tyrkysový pás od kraja po kraj pri spodnej hrane okna. Horná hrana je
+   vodná hladina: maska odkrojí vlnu, pozadie na ňu dokreslí biely lem.
+   Vlna je dlaždica 360 × 28 px s nepravidelnými hrebeňmi, takže pôsobí
+   ako voda a nie ako zúbky; amplitúda je pri každej šírke rovnaká.
    =========================================================== */
 .ck {
+  --vlna-v: 28px;
+  --vlna-tvar: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='28'%3E%3Cpath d='M0 15C14 7 28 5 46 11C64 17 78 25 100 20C122 15 130 4 152 9C174 14 186 24 210 19C234 14 246 6 268 11C290 16 304 23 326 18C342 14 348 22 360 15V28H0Z' fill='%23fff'/%3E%3C/svg%3E");
+  --vlna-lem: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='28'%3E%3Cpath d='M0 15C14 7 28 5 46 11C64 17 78 25 100 20C122 15 130 4 152 9C174 14 186 24 210 19C234 14 246 6 268 11C290 16 304 23 326 18C342 14 348 22 360 15' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E");
   position: fixed;
   z-index: 90;
-  left: 50%;
-  bottom: clamp(14px, 2.2vw, 26px);
-  width: min(var(--maxw), calc(100vw - 2 * var(--pad)));
-  transform: translateX(-50%);
-  animation: ckHore 0.5s var(--ease) both;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: drop-shadow(0 -14px 34px rgba(0, 60, 80, 0.45));
+  animation: ckHore 0.55s var(--ease) both;
 }
 @keyframes ckHore {
   from {
     opacity: 0;
-    transform: translate(-50%, 18px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: none;
   }
-}
-/* Horná hrana lišty je vodná hladina: maska odkrojí vlnu, pozadie na ňu
-   dokreslí tyrkysový lem. Vlna je dlaždica 120 × 28 px, takže amplitúda
-   ostáva rovnaká pri akejkoľvek šírke aj výške lišty. */
-.ck {
-  --vlna-v: 28px;
-  --vlna-lem: %23009ac0;
-  --vlna-tvar: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28' preserveAspectRatio='none'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12V28H0Z' fill='%23fff'/%3E%3C/svg%3E");
 }
 .ck__in {
   position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 18px clamp(20px, 3vw, 44px);
-  padding: calc(clamp(16px, 1.8vw, 22px) + 14px) clamp(18px, 2.2vw, 28px) clamp(16px, 1.8vw, 22px);
-  border-radius: 0 0 var(--r-sm) var(--r-sm);
-  /* hladina + tyrkysový nádych v rohu, odkiaľ svieti aj hero */
+  gap: 16px clamp(20px, 3vw, 44px);
+  /* obsah sedí na tom istom stĺpci ako zvyšok webu (.wrap) */
+  padding: calc(var(--vlna-v) + 14px) max(var(--pad), calc(50% - var(--maxw) / 2 + var(--pad))) 20px;
   background:
-    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12' fill='none' stroke='%23009ac0' stroke-width='2.2'/%3E%3C/svg%3E")
-      left top / 120px 28px repeat-x,
-    radial-gradient(120% 200% at 0% 0%, rgba(0, 154, 192, 0.16), transparent 58%),
-    rgba(9, 12, 12, 0.96);
+    var(--vlna-lem) left top / 360px 28px repeat-x,
+    linear-gradient(135deg, #009ac0 0%, #0089ab 55%, #00738f 100%);
   -webkit-mask-image: var(--vlna-tvar), linear-gradient(#000, #000);
   mask-image: var(--vlna-tvar), linear-gradient(#000, #000);
-  -webkit-mask-size: 120px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
-  mask-size: 120px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
+  -webkit-mask-size: 360px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
+  mask-size: 360px var(--vlna-v), 100% calc(100% - var(--vlna-v) + 2px);
   -webkit-mask-position: left top, left bottom;
   mask-position: left top, left bottom;
   -webkit-mask-repeat: repeat-x, no-repeat;
   mask-repeat: repeat-x, no-repeat;
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
-  /* hladina sa pomaly presúva, ako keď sa voda hýbe */
-  animation: ckVlna 11s linear infinite;
-}
-@keyframes ckVlna {
-  from {
-    background-position-x: 0, 0, 0;
-    -webkit-mask-position-x: 0, 0;
-    mask-position-x: 0, 0;
-  }
-  to {
-    background-position-x: -120px, 0, 0;
-    -webkit-mask-position-x: -120px, 0;
-    mask-position-x: -120px, 0;
-  }
 }
 .ck__text {
   flex: 1 1 380px;
@@ -12388,33 +12371,30 @@ a.dopyt-alt__card:hover {
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 7px;
+  color: #062028;
+  margin-bottom: 6px;
 }
-/* tyrkysový bod pred slovom COOKIES */
 .ck__eyebrow::before {
   content: "";
   width: 6px;
   height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 10px rgba(0, 154, 192, 0.9);
+  background: #062028;
 }
 .ck__text p {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--body);
-  max-width: 68ch;
+  color: #eaf8fc;
+  max-width: 70ch;
 }
 .ck__odkaz {
-  color: var(--ink);
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(255, 255, 255, 0.32);
+  text-decoration-color: rgba(255, 255, 255, 0.5);
 }
 .ck__odkaz:hover {
-  text-decoration-color: var(--cyan);
+  text-decoration-color: #fff;
 }
 .ck__akcie {
   display: flex;
@@ -12429,10 +12409,10 @@ a.dopyt-alt__card:hover {
   justify-content: center;
   height: 44px;
   padding: 0 22px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--r-sm);
   background: none;
-  color: var(--ink);
+  color: #fff;
   font-family: var(--ui);
   font-size: 0.6875rem;
   font-weight: 600;
@@ -12443,26 +12423,18 @@ a.dopyt-alt__card:hover {
   transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
 }
 .ck__btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.14);
 }
 .ck__btn--hlavny {
   height: 48px;
   padding: 0 26px;
   border-color: transparent;
-  background: var(--cyan-btn);
-  color: var(--bg);
-  box-shadow: 0 0 22px rgba(0, 154, 192, 0.38);
+  background: #0b0e0d;
 }
 .ck__btn--hlavny:hover {
   border-color: transparent;
-  background: #00b0da;
-  box-shadow: 0 0 30px rgba(0, 154, 192, 0.5);
-}
-/* vedľajšie tlačidlo sa rozsvieti až pod kurzorom */
-.ck__btn:not(.ck__btn--hlavny):hover {
-  border-color: rgba(0, 154, 192, 0.65);
-  background: rgba(0, 154, 192, 0.08);
+  background: #1a2423;
 }
 .ck__tichy {
   border: 0;
@@ -12473,14 +12445,14 @@ a.dopyt-alt__card:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.86);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-color: rgba(255, 255, 255, 0.28);
+  text-decoration-color: rgba(255, 255, 255, 0.45);
 }
 .ck__tichy:hover {
-  color: var(--ink);
+  color: #fff;
 }
 /* rozbalené kategórie */
 .ck__volby {
@@ -12488,13 +12460,13 @@ a.dopyt-alt__card:hover {
   display: grid;
   gap: 2px;
   margin-top: 2px;
-  border-top: 1px solid rgba(0, 154, 192, 0.22);
-  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  padding-top: 14px;
 }
 @media (min-width: 900px) {
   .ck__volby {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px clamp(20px, 2.4vw, 36px);
+    gap: 14px clamp(20px, 2.4vw, 36px);
   }
 }
 .ck__volba {
@@ -12506,17 +12478,16 @@ a.dopyt-alt__card:hover {
   border-radius: var(--r-sm);
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: var(--ink-soft);
+  color: #eaf8fc;
   cursor: pointer;
   transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
 }
-/* zapnutá kategória sa priznáva farbou, nie len prepínačom */
 .ck__volba:has(input:checked) {
-  border-color: rgba(0, 154, 192, 0.28);
-  background: rgba(0, 154, 192, 0.07);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
 }
 .ck__volba:hover:not(.is-locked) {
-  border-color: rgba(0, 154, 192, 0.45);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 .ck__volba b {
   display: block;
@@ -12525,11 +12496,8 @@ a.dopyt-alt__card:hover {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: #fff;
   margin-bottom: 4px;
-}
-.ck__volba:has(input:checked) b {
-  color: var(--cyan);
 }
 .ck__volba.is-locked {
   cursor: default;
@@ -12554,7 +12522,7 @@ a.dopyt-alt__card:hover {
   position: absolute;
   inset: 0;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(11, 14, 13, 0.3);
   transition: background var(--t-base) var(--ease);
   pointer-events: none;
 }
@@ -12566,18 +12534,18 @@ a.dopyt-alt__card:hover {
   width: 16px;
   height: 16px;
   border-radius: 2px;
-  background: var(--ink);
+  background: #eaf8fc;
   transition: transform var(--t-base) var(--ease);
 }
 .ck__prepinac input:checked + span {
-  background: var(--cyan-btn);
+  background: #0b0e0d;
 }
 .ck__prepinac input:checked + span::after {
   transform: translateX(16px);
-  background: var(--bg);
+  background: #fff;
 }
 .ck__prepinac input:focus-visible + span {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid #fff;
   outline-offset: 3px;
 }
 /* odkaz na nastavenia v pätičke vyzerá ako ostatné odkazy */
@@ -12610,142 +12578,7 @@ a.dopyt-alt__card:hover {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ck,
-  .ck__in {
+  .ck {
     animation: none;
   }
-}
-/* Svetlá varianta na porovnanie — zapne ju ?cookies=biela v adrese.
-   Keď sa Samuel rozhodne, ostane len jedna a toto sa zmaže. */
-.ck--biela .ck__in {
-  background:
-    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12' fill='none' stroke='%23009ac0' stroke-width='2.2'/%3E%3C/svg%3E")
-      left top / 120px 28px repeat-x,
-    #f7f6f2;
-  filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.42));
-}
-.ck--biela .ck__text p,
-.ck--biela .ck__volba {
-  color: #3c4442;
-}
-.ck--biela .ck__odkaz {
-  color: #0b0e0d;
-  text-decoration-color: rgba(11, 14, 13, 0.3);
-}
-.ck--biela .ck__btn {
-  color: #0b0e0d;
-  border-color: rgba(11, 14, 13, 0.24);
-}
-.ck--biela .ck__btn:not(.ck__btn--hlavny):hover {
-  border-color: rgba(0, 154, 192, 0.7);
-  background: rgba(0, 154, 192, 0.08);
-}
-.ck--biela .ck__btn--hlavny {
-  color: #fff;
-  background: var(--cyan);
-  box-shadow: none;
-}
-.ck--biela .ck__tichy {
-  color: #5b6462;
-  text-decoration-color: rgba(11, 14, 13, 0.3);
-}
-.ck--biela .ck__tichy:hover {
-  color: #0b0e0d;
-}
-.ck--biela .ck__volby {
-  border-top-color: rgba(11, 14, 13, 0.12);
-}
-.ck--biela .ck__volba b {
-  color: #0b0e0d;
-}
-.ck--biela .ck__volba:has(input:checked) {
-  background: rgba(0, 154, 192, 0.08);
-  border-color: rgba(0, 154, 192, 0.35);
-}
-.ck--biela .ck__prepinac > span {
-  background: rgba(11, 14, 13, 0.2);
-}
-.ck--biela .ck__prepinac > span::after {
-  background: #fff;
-}
-.ck--biela .ck__prepinac input:checked + span::after {
-  background: #fff;
-}
-/* Tyrkysová varianta — ?cookies=modra. Celá lišta v brandovej farbe,
-   text a tlačidlá v tmavej, aby bol kontrast čitateľný. */
-.ck--modra .ck__in {
-  background:
-    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28'%3E%3Cpath d='M0 15C14 3 30 3 44 13S74 27 88 17 112 5 120 12' fill='none' stroke='%23ffffff' stroke-width='2.2'/%3E%3C/svg%3E")
-      left top / 120px 28px repeat-x,
-    linear-gradient(135deg, #009ac0 0%, #0086a8 62%, #00718f 100%);
-  filter: drop-shadow(0 22px 44px rgba(0, 70, 90, 0.5));
-}
-.ck--modra .ck__eyebrow {
-  color: #0b1f26;
-}
-.ck--modra .ck__eyebrow::before {
-  background: #0b1f26;
-  box-shadow: none;
-}
-.ck--modra .ck__text p,
-.ck--modra .ck__volba {
-  color: #e6f7fc;
-}
-.ck--modra .ck__odkaz {
-  color: #fff;
-  text-decoration-color: rgba(255, 255, 255, 0.5);
-}
-.ck--modra .ck__odkaz:hover {
-  text-decoration-color: #fff;
-}
-.ck--modra .ck__btn {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.55);
-}
-.ck--modra .ck__btn:not(.ck__btn--hlavny):hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.14);
-}
-.ck--modra .ck__btn--hlavny {
-  background: #0b0e0d;
-  color: #fff;
-  box-shadow: none;
-}
-.ck--modra .ck__btn--hlavny:hover {
-  background: #14201f;
-}
-.ck--modra .ck__tichy {
-  color: rgba(255, 255, 255, 0.86);
-  text-decoration-color: rgba(255, 255, 255, 0.45);
-}
-.ck--modra .ck__tichy:hover {
-  color: #fff;
-}
-.ck--modra .ck__volby {
-  border-top-color: rgba(255, 255, 255, 0.28);
-}
-.ck--modra .ck__volba b {
-  color: #fff;
-}
-.ck--modra .ck__volba:has(input:checked) {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-.ck--modra .ck__volba:has(input:checked) b {
-  color: #fff;
-}
-.ck--modra .ck__volba:hover:not(.is-locked) {
-  border-color: rgba(255, 255, 255, 0.6);
-}
-.ck--modra .ck__prepinac > span {
-  background: rgba(11, 14, 13, 0.3);
-}
-.ck--modra .ck__prepinac > span::after {
-  background: #e6f7fc;
-}
-.ck--modra .ck__prepinac input:checked + span {
-  background: #0b0e0d;
-}
-.ck--modra .ck__prepinac input:checked + span::after {
-  background: #fff;
 }
