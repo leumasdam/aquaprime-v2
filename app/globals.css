@@ -84,6 +84,7 @@
      nadpisku, deliace čiary medzi údajmi; dlaždica sa opakuje */
   --vlnka: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='6'%3E%3Cpath d='M0 3C5 0 5 0 10 3S15 6 20 3' fill='none' stroke='%23009ac0' stroke-width='1.4'/%3E%3C/svg%3E");
   --vlnka-zvisla: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='20'%3E%3Cpath d='M3 0C0 5 0 5 3 10S6 15 3 20' fill='none' stroke='rgba(255,255,255,0.22)' stroke-width='1.2'/%3E%3C/svg%3E");
+  --vlnka-zvisla-cyan: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='20'%3E%3Cpath d='M3 0C0 5 0 5 3 10S6 15 3 20' fill='none' stroke='%23009ac0' stroke-width='1.6'/%3E%3C/svg%3E");
   --vlnka-zvisla-slaba: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='20'%3E%3Cpath d='M3 0C0 5 0 5 3 10S6 15 3 20' fill='none' stroke='rgba(255,255,255,0.14)' stroke-width='1.2'/%3E%3C/svg%3E");
   /* prechody stránok a panelov — krivka prebratá zo zenko.sk, nemeniť */
   --ease-swipe: cubic-bezier(0.32, 0.72, 0.2, 1);
@@ -190,8 +191,9 @@ video:not([controls])::-webkit-media-controls-panel {
 .eyebrow--rule::before {
   content: "";
   width: 61px;
-  height: 1px;
-  background: rgba(0, 154, 192, 0.85);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
+  opacity: 0.85;
 }
 .display {
   font-family: var(--display);
@@ -741,8 +743,9 @@ video:not([controls])::-webkit-media-controls-panel {
 .hero__eyebrow::after {
   content: "";
   width: 61px;
-  height: 1px;
-  background: rgba(0, 154, 192, 0.85);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
+  opacity: 0.85;
 }
 .hero__title {
   font-family: var(--display);
@@ -2704,7 +2707,7 @@ button:disabled:hover {
   gap: 14px;
 }
 .why-frame__points li {
-  border-left: 2px solid var(--cyan);
+  background: var(--vlnka-zvisla-cyan) left center / 6px 20px repeat-y;
   padding: 6px 0 6px 18px;
   display: flex;
   flex-direction: column;
@@ -5776,11 +5779,22 @@ button:focus-visible {
   align-items: stretch;
 }
 .hfeat {
+  position: relative;
   display: flex;
   gap: 14px;
   align-items: center;
   padding-left: clamp(14px, 1.5vw, 28px);
-  background: var(--vlnka-zvisla-slaba) left center / 6px 20px repeat-y;
+}
+/* vlnka stojí v strede medzery medzi dvoma údajmi, nie na hrane bunky */
+.hfeat::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc((clamp(14px, 1.5vw, 28px) - clamp(28px, 3vw, 56px)) / 2);
+  width: 6px;
+  height: 34px;
+  transform: translateY(-50%);
+  background: var(--vlnka-zvisla-slaba) center / 6px 20px repeat-y;
 }
 /* marquee: každý item má rovnaký border/padding, žiadny first-child reset */
 .hfeat__ring {
@@ -6674,8 +6688,9 @@ button:focus-visible {
 }
 .sstat__line {
   width: 60px;
-  height: 1px;
-  background: rgba(0, 154, 192, 0.7);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
+  opacity: 0.8;
   transform: scaleX(0);
   transform-origin: left center;
 }
@@ -7134,9 +7149,21 @@ button:focus-visible {
   align-items: flex-start;
   gap: 12px;
 }
+.vhero__fakt {
+  position: relative;
+}
 .vhero__fakt + .vhero__fakt {
   padding-left: clamp(16px, 4vw, 40px);
-  background: var(--vlnka-zvisla) left center / 6px 20px repeat-y;
+}
+.vhero__fakt + .vhero__fakt::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * clamp(16px, 4vw, 40px) / 2);
+  width: 6px;
+  height: 36px;
+  transform: translateY(-50%);
+  background: var(--vlnka-zvisla) center / 6px 20px repeat-y;
 }
 .vhero__fikona {
   flex: none;
@@ -8822,8 +8849,8 @@ button:focus-visible {
 .cat-hero__eyebrow::before {
   content: "";
   width: 44px;
-  height: 1px;
-  background: var(--cyan);
+  height: 6px;
+  background: var(--vlnka) left center / 20px 6px repeat-x;
 }
 .cat-hero__title {
   margin-top: 14px;
@@ -12357,8 +12384,8 @@ a.dopyt-alt__card:hover {
   mask-position: left top, left bottom;
   -webkit-mask-repeat: repeat-x, no-repeat;
   mask-repeat: repeat-x, no-repeat;
-  /* hladina sa ledva hýbe: jedna vlna za 40 sekúnd, tam a späť */
-  animation: ckHladina 40s ease-in-out infinite alternate;
+  /* hladina sa ledva hýbe: jedna vlna za 110 sekúnd, tam a späť */
+  animation: ckHladina 110s ease-in-out infinite alternate;
 }
 @keyframes ckHladina {
   from {
