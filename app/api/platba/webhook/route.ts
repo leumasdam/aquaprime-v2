@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { prijemcovia } from "../../dopyt/route";
 import { stripe } from "../_lib/stripe";
 
 /**
@@ -62,7 +63,7 @@ export async function POST(req: Request) {
   await resend.emails
     .send({
       from,
-      to: [to],
+      to: prijemcovia(to),
       subject: `Zaplatená záloha ${eur(zaplatene)} — objednávka ${cislo}`,
       html: `<div style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6">
           <p><b>Objednávka ${cislo}</b> — záloha <b>${eur(zaplatene)}</b> je zaplatená kartou.</p>

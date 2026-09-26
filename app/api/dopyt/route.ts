@@ -8,7 +8,7 @@ import { ipZ, prekrocenyLimit } from "../_lib/limit";
  *
  * Potrebné premenné prostredia (Vercel → Settings → Environment Variables):
  *   RESEND_API_KEY   kľúč z resend.com
- *   DOPYT_TO         kam chodia dopyty (napr. ahoj@aquaprime.sk)
+ *   DOPYT_TO         kam chodia dopyty; viac adries oddelí čiarka
  *   DOPYT_FROM       overený odosielateľ na doméne (napr. web@aquaprime.sk)
  * Kým kľúč chýba, endpoint vráti 503 a formulár sa prepne na mailto.
  */
@@ -26,6 +26,10 @@ type Payload = {
   /** honeypot — vyplní ho len robot */
   web?: string;
 };
+
+/** DOPYT_TO môže obsahovať viac adries oddelených čiarkou. */
+export const prijemcovia = (v: string) =>
+  v.split(/[,;]/).map((s) => s.trim()).filter(Boolean);
 
 const esc = (s: string) =>
   s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c]!);
@@ -104,7 +108,7 @@ export async function POST(req: Request) {
   try {
     const { error } = await resend.emails.send({
       from,
-      to: [to],
+      to: prijemcovia(to),
       replyTo: email,
       subject: `Dopyt z webu — ${body.tema || "kontakt"} · ${meno}`,
       html,

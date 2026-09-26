@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { prijemcovia } from "../dopyt/route";
 import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
@@ -184,7 +185,7 @@ export async function POST(req: Request) {
     const resend = new Resend(key);
     await resend.emails.send({
       from,
-      to: [to],
+      to: prijemcovia(to),
       replyTo: email,
       subject: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
       html: platbaBlok + suhrn,
