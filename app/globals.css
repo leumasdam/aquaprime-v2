@@ -12079,6 +12079,16 @@ a.dopyt-alt__card:hover {
   padding: 0;
   margin: 0;
 }
+.set__prevedenia-text {
+  margin: -4px 0 14px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--body);
+  max-width: 52ch;
+}
+.set__text + .set__text {
+  margin-top: 12px;
+}
 .set__prevedenia ul {
   display: flex;
   flex-wrap: wrap;

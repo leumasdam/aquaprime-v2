@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import Drobcek from "../Drobcek";
-import { odkaz, type Jazyk } from "../jazyk";
+import type { Jazyk } from "../jazyk";
 import { SLOVNIKY, type Slovnik } from "../preklady";
 import { SETY } from "../sety";
 
@@ -22,7 +21,6 @@ const INTERVAL_MS = 4200;
 export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
   const k = t.sety;
   const set = SETY[0];
-  const l = (h: string) => odkaz(h, jazyk);
   const [i, setI] = useState(0);
   const [rucne, setRucne] = useState(false);
 
@@ -35,8 +33,6 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
     );
     return () => window.clearInterval(id);
   }, [rucne, set.prevedenia.length]);
-
-  const aktivne = set.prevedenia[i];
 
   return (
     <section
@@ -64,15 +60,7 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
         <div className="vhero__crumb vhero__crumb--v-texte">
           <Drobcek cesta={[{ nazov: k.drobcek }]} jazyk={jazyk} />
         </div>
-        <span className="vhero__eyebrow sety-hero__eyebrow">
-          {set.nazov}
-          <span className="sety-hero__eyebrow-delic" aria-hidden>
-            ·
-          </span>
-          <span className="sety-hero__eyebrow-prevedenie" key={aktivne.id}>
-            {aktivne.nazov}
-          </span>
-        </span>
+        <span className="vhero__eyebrow">{k.heroEyebrow}</span>
         <h1 className="vhero__title display vhero__title--siroky" id="sety-title">
           {k.heroTitul}
           <span className="vhero__bodka" aria-hidden>
@@ -85,10 +73,6 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
             <span className="vhero__odkaz-text">{k.heroCta}</span>
             <span aria-hidden>↗</span>
           </a>
-          <Link href={l(`/dopyt?set=${set.id}`)} className="vhero__odkaz vhero__odkaz--tichy">
-            <span className="vhero__odkaz-text">{k.cta}</span>
-            <span aria-hidden>↗</span>
-          </Link>
         </div>
       </div>
 

@@ -54,7 +54,11 @@ export default function SetyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
                       .
                     </span>
                   </h2>
-                  <p className="set__text">{set.popis[jazyk]}</p>
+                  {set.popis[jazyk].map((odsek) => (
+                    <p key={odsek} className="set__text">
+                      {odsek}
+                    </p>
+                  ))}
                 </div>
 
                 <dl className="set__specs">
@@ -78,16 +82,12 @@ export default function SetyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
 
                 <div className="set__prevedenia">
                   <span className="set__label">{k.prevedenia}</span>
+                  <p className="set__prevedenia-text">{k.prevedeniaText}</p>
                   <ul>
                     {set.prevedenia.map((p) => (
                       <li key={p.id}>
                         <Swatch swatch={p.swatch} className="swatch--dot" />
-                        <span>
-                          {p.nazov}
-                          <small>
-                            {k.led} {p.led[jazyk]}
-                          </small>
-                        </span>
+                        <span>{p.nazov}</span>
                       </li>
                     ))}
                   </ul>
