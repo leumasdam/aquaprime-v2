@@ -10,9 +10,9 @@ import { precitaj, UDALOST, zapis } from "./suhlas";
  * Lišta so súhlasom s cookies.
  *
  * Nabehne až po načítaní stránky, zdola, a kým v nej návštevník nerozhodne,
- * nenačíta sa žiadny merací skript. „Prijať všetko" je hlavná akcia,
- * „Odmietnuť voliteľné" stojí vedľa nej ako rovnocenná — to zákon žiada,
- * inak súhlas neplatí. Pod nimi je rozbalenie s jednotlivými kategóriami.
+ * nenačíta sa žiadny merací skript. V prvej vrstve je „Prijať všetko"
+ * a „Prispôsobiť"; odmietnutie je v rozbalených nastaveniach vedľa
+ * uloženia výberu.
  *
  * Nastavenia sa dajú kedykoľvek otvoriť znova odkazom v pätičke, ktorý
  * pošle udalosť „aq-cookies-otvor".
@@ -123,11 +123,14 @@ export default function Cookies({ jazyk = "sk" }: { jazyk?: Jazyk }) {
         <div className="ck__akcie">
           {detail ? (
             <>
-              <button type="button" className="ck__btn ck__btn--hlavny" onClick={() => rozhodni(analyticke, marketingove)}>
+              <button type="button" className="ck__btn ck__btn--hlavny" onClick={() => rozhodni(true, true)}>
+                {t.prijat}
+              </button>
+              <button type="button" className="ck__btn" onClick={() => rozhodni(analyticke, marketingove)}>
                 {t.ulozit}
               </button>
-              <button type="button" className="ck__btn" onClick={() => rozhodni(true, true)}>
-                {t.prijat}
+              <button type="button" className="ck__tichy" onClick={() => rozhodni(false, false)}>
+                {t.odmietnut}
               </button>
             </>
           ) : (
@@ -135,10 +138,7 @@ export default function Cookies({ jazyk = "sk" }: { jazyk?: Jazyk }) {
               <button type="button" className="ck__btn ck__btn--hlavny" onClick={() => rozhodni(true, true)}>
                 {t.prijat}
               </button>
-              <button type="button" className="ck__btn" onClick={() => rozhodni(false, false)}>
-                {t.odmietnut}
-              </button>
-              <button type="button" className="ck__tichy" onClick={() => setDetail(true)}>
+              <button type="button" className="ck__btn" onClick={() => setDetail(true)}>
                 {t.prisposobit}
               </button>
             </>
