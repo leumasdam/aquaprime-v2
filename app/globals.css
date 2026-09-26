@@ -6964,12 +6964,12 @@ button:focus-visible {
 .svetlo {
   position: absolute;
   inset: 0;
-  --svetlo: 0.16;
+  --svetlo: 0.3;
   /* Rozdiel medzi zhasnutým a rozsvieteným stavom nesie okrem druhej fotky
      aj jas a sýtosť celej scény — samotné prelínanie dvoch záberov je na
      tmavom interiéri príliš nenápadné. */
-  filter: brightness(calc(0.62 + var(--svetlo) * 0.5))
-    saturate(calc(0.45 + var(--svetlo) * 0.65));
+  filter: brightness(calc(0.7 + var(--svetlo) * 0.42))
+    saturate(calc(0.5 + var(--svetlo) * 0.6));
   transition: filter 0.9s cubic-bezier(0.33, 1, 0.68, 1);
 }
 .svetlo__vrstva {

@@ -14,7 +14,7 @@ import { useEffect, useRef } from "react";
  * V pokoji nie je scéna úplne tmavá — pri nule by hero pôsobil ako čierna
  * plocha, preto sa začína na šestine svetla.
  */
-const POKOJ = 0.16;
+const POKOJ = 0.3;
 
 export default function SvetloHero({
   tma,
