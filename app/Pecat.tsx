@@ -8,13 +8,17 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
  * usadený cez CSS.
  *
  * S parametrom `?pecat` v adrese sa zapne režim ladenia: pečať sa dá ťahať
- * myšou, kolieskom meniť jej veľkosť a šípkami doladiť o jeden pixel.
+ * myšou, kolieskom meniť jej veľkosť, otáčať do strany a šípkami doladiť
+ * o jeden pixel.
  * Nastavenie si pamätá prehliadač a panel dole vľavo ukazuje hotový CSS blok
  * na skopírovanie. Režim funguje aj na ostrom webe, ale len pre toho, kto
  * ten parameter v adrese napíše — návštevník o ňom nevie.
  */
 
 const KLUC = "aq-pecat";
+
+/** otočenie držíme v rozsahu jednej otáčky, nech číslo v paneli ostane čitateľné */
+const obmedz = (u: number) => Math.max(-180, Math.min(180, Math.round(u)));
 
 type Stav = {
   /** vzdialenosť od horného okraja sekcie v px */
@@ -25,6 +29,8 @@ type Stav = {
   sirka: number;
   /** krytie v percentách */
   krytie: number;
+  /** otočenie v stupňoch, záporné doľava */
+  uhol: number;
 };
 
 export default function Pecat({ alt }: { alt: string }) {
@@ -50,21 +56,35 @@ export default function Pecat({ alt }: { alt: string }) {
     const ulozene = window.localStorage.getItem(KLUC);
     if (ulozene) {
       try {
-        setStav(JSON.parse(ulozene) as Stav);
+        const u = JSON.parse(ulozene) as Partial<Stav>;
+        setStav({ top: 0, right: 0, sirka: 120, krytie: 42, uhol: 0, ...u });
         return;
       } catch {
         /* poškodený záznam ignorujeme a odmeriame nanovo */
       }
     }
-    const s = getComputedStyle(el);
-    const r = el.getBoundingClientRect();
-    const rs = sekcia.getBoundingClientRect();
-    setStav({
-      top: Math.round(r.top - rs.top),
-      right: Math.round(rs.right - r.right),
-      sirka: Math.round(r.width),
-      krytie: Math.round(parseFloat(s.opacity) * 100),
-    });
+    /* Pod 1024 px je pečať skrytá a nemá rozmer. Meranie by vtedy vrátilo
+       nuly, tak ho odložíme, kým okno nie je dosť široké. */
+    const zmeraj = () => {
+      const r = el.getBoundingClientRect();
+      if (r.width < 1) return false;
+      const s = getComputedStyle(el);
+      const rs = sekcia.getBoundingClientRect();
+      setStav({
+        top: Math.round(r.top - rs.top),
+        right: Math.round(rs.right - r.right),
+        sirka: Math.round(r.width),
+        krytie: Math.round(parseFloat(s.opacity) * 100),
+        uhol: 0,
+      });
+      return true;
+    };
+    if (zmeraj()) return;
+    const skus = () => {
+      if (zmeraj()) window.removeEventListener("resize", skus);
+    };
+    window.addEventListener("resize", skus);
+    return () => window.removeEventListener("resize", skus);
   }, [ladenie]);
 
   useEffect(() => {
@@ -108,7 +128,12 @@ export default function Pecat({ alt }: { alt: string }) {
     const koliesko = (e: WheelEvent) => {
       if (!obr.current?.matches(":hover")) return;
       e.preventDefault();
-      setStav((s) => (s ? { ...s, sirka: Math.max(40, Math.min(360, s.sirka - Math.sign(e.deltaY) * 4)) } : s));
+      const smer = Math.sign(e.deltaY);
+      setStav((s) => {
+        if (!s) return s;
+        if (e.shiftKey) return { ...s, uhol: obmedz(s.uhol - smer * 2) };
+        return { ...s, sirka: Math.max(40, Math.min(360, s.sirka - smer * 4)) };
+      });
     };
     const klaves = (e: KeyboardEvent) => {
       const krok = e.shiftKey ? 10 : 1;
@@ -117,6 +142,8 @@ export default function Pecat({ alt }: { alt: string }) {
         ArrowRight: (s) => ({ ...s, right: s.right - krok }),
         ArrowUp: (s) => ({ ...s, top: s.top - krok }),
         ArrowDown: (s) => ({ ...s, top: s.top + krok }),
+        ",": (s) => ({ ...s, uhol: obmedz(s.uhol - krok) }),
+        ".": (s) => ({ ...s, uhol: obmedz(s.uhol + krok) }),
       };
       const z = zmeny[e.key];
       if (!z) return;
@@ -132,7 +159,7 @@ export default function Pecat({ alt }: { alt: string }) {
   }, [ladenie]);
 
   const css = stav
-    ? `.hero__pecat {\n  top: ${stav.top}px;\n  right: ${stav.right}px;\n  width: ${stav.sirka}px;\n  opacity: ${(stav.krytie / 100).toFixed(2)};\n}`
+    ? `.hero__pecat {\n  top: ${stav.top}px;\n  right: ${stav.right}px;\n  width: ${stav.sirka}px;\n  opacity: ${(stav.krytie / 100).toFixed(2)};\n  transform: rotate(${stav.uhol}deg);\n}`
     : "";
 
   const styl: CSSProperties | undefined =
@@ -142,6 +169,7 @@ export default function Pecat({ alt }: { alt: string }) {
           right: `${stav.right}px`,
           width: `${stav.sirka}px`,
           opacity: stav.krytie / 100,
+          transform: `rotate(${stav.uhol}deg)`,
           cursor: tahanie ? "grabbing" : "grab",
           pointerEvents: "auto",
           touchAction: "none",
@@ -167,7 +195,10 @@ export default function Pecat({ alt }: { alt: string }) {
       {ladenie && stav && (
         <div className="pecat-panel">
           <b>Pečať — ladenie polohy</b>
-          <p>Ťahaj myšou · koliesko mení veľkosť · šípky posúvajú po pixeli (so Shiftom po desiatich)</p>
+          <p>
+            Ťahaj myšou · koliesko mení veľkosť · Shift a koliesko otáča ·
+            šípky posúvajú po pixeli, čiarka a bodka otáčajú (so Shiftom po desiatich)
+          </p>
           <label>
             Krytie <i>{stav.krytie} %</i>
             <input
@@ -176,6 +207,16 @@ export default function Pecat({ alt }: { alt: string }) {
               max={100}
               value={stav.krytie}
               onChange={(e) => setStav({ ...stav, krytie: Number(e.target.value) })}
+            />
+          </label>
+          <label>
+            Otočenie <i>{stav.uhol > 0 ? `+${stav.uhol}` : stav.uhol}°</i>
+            <input
+              type="range"
+              min={-180}
+              max={180}
+              value={stav.uhol}
+              onChange={(e) => setStav({ ...stav, uhol: Number(e.target.value) })}
             />
           </label>
           <pre>{css}</pre>
