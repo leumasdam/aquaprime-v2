@@ -2087,11 +2087,18 @@ button:disabled:hover {
   background-size: cover;
   background-position: center;
 }
+/* Spodok záberu bol stmavený takmer do čierna, hoci pod ním aj tak stojí
+   tyrkysová linka a telo karty — stačí jemné dosadnutie, nie zakrytie. */
 .pathway__media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #161815 4%, rgba(22, 24, 21, 0.2) 60%);
+  background: linear-gradient(
+    to top,
+    rgba(22, 24, 21, 0.55) 0%,
+    rgba(22, 24, 21, 0.18) 38%,
+    transparent 70%
+  );
 }
 .pathway--aqua .pathway__media::before {
   background-image: url("/img/vetva-akvaria.webp");
