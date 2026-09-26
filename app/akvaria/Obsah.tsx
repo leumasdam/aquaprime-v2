@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AquaGrid from "../AquaGrid";
+import Kaustika from "../Kaustika";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import Drobcek from "../Drobcek";
@@ -59,6 +60,7 @@ export default function AkvariaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
             className="vhero__video"
           />
         </div>
+        <Kaustika />
         <div className="hero__scroll-v vhero__scroll" aria-hidden>
           <span className="hero__scroll-word">{t.domov.scroll}</span>
           <span className="hero__scroll-line" />

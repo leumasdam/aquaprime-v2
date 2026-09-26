@@ -12,6 +12,8 @@ import SiteFooter from "./SiteFooter";
 import SkipLink from "./SkipLink";
 import Analytika from "./Analytika";
 import Cookies from "./Cookies";
+import Intro from "./Intro";
+import Mikro from "./Mikro";
 import PauzaPriPrechode from "./PauzaPriPrechode";
 
 const tinos = Tinos({
@@ -96,7 +98,7 @@ export default function RootLayout({
             navigácie a stránky ostanú staticky generované. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var u=navigator.userAgent;if(!/Safari/i.test(u)||/Chrome|Chromium|Edg|OPR|Android/i.test(u))return;if(!document.startViewTransition)return;window.__aqBezPrechodov=true;document.startViewTransition=function(a){var r;try{r=typeof a==="function"?a():a&&a.update&&a.update()}catch(e){r=Promise.reject(e)}var p=Promise.resolve(r);var t=p.then(function(){},function(){});return{ready:t,finished:t,updateCallbackDone:p,types:new Set(),skipTransition:function(){}}}})();`,
+            __html: `(function(){try{if(sessionStorage.getItem("aq-intro"))document.documentElement.classList.add("bez-intra")}catch(e){}var u=navigator.userAgent;if(!/Safari/i.test(u)||/Chrome|Chromium|Edg|OPR|Android/i.test(u))return;document.documentElement.classList.add("safari");if(!document.startViewTransition)return;window.__aqBezPrechodov=true;document.startViewTransition=function(a){var r;try{r=typeof a==="function"?a():a&&a.update&&a.update()}catch(e){r=Promise.reject(e)}var p=Promise.resolve(r);var t=p.then(function(){},function(){});return{ready:t,finished:t,updateCallbackDone:p,types:new Set(),skipTransition:function(){}}}})();`,
           }}
         />
       </head>
@@ -137,7 +139,9 @@ document.addEventListener("click",function(e){if(window.__aqNavZije)return;var b
         <ScrollFx />
         <Analytika />
         <PauzaPriPrechode />
+        <Mikro />
         <Cookies />
+        <Intro />
         {process.env.NODE_ENV === "development" && <DevViewport />}
       </body>
     </html>

@@ -12647,3 +12647,179 @@ a.dopyt-alt__card:hover {
     animation: none;
   }
 }
+
+/* ===========================================================
+   VODA A SVETLO (26. 9. 2026)
+   Kaustika v hero sekciách, zrno cez celý web, magnetické tlačidlá,
+   plávajúce karty a krátke intro. Všetko decentné — má to dať pocit
+   hladiny, nie upútať samo na seba.
+   =========================================================== */
+
+/* ---- kaustika: dve vrstvy tej istej dlaždice, každá inou rýchlosťou ---- */
+.kaustika {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* pri hornej hrane a pri texte vľavo svetlo slabne, nech neruší čítanie */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+}
+.kaustika::before,
+.kaustika::after {
+  content: "";
+  position: absolute;
+  inset: -30% -30% -30% -30%;
+  background: url(/img/kaustika.png) 0 0 / 760px 760px repeat;
+  opacity: 0.045;
+  animation: kaustikaA 90s linear infinite;
+  will-change: transform;
+}
+.kaustika::after {
+  background-size: 1180px 1180px;
+  opacity: 0.03;
+  animation: kaustikaB 130s linear infinite;
+}
+/* posun o celú dlaždicu = slučka bez skoku */
+@keyframes kaustikaA {
+  to {
+    transform: translate3d(760px, 760px, 0);
+  }
+}
+@keyframes kaustikaB {
+  to {
+    transform: translate3d(-1180px, 1180px, 0);
+  }
+}
+/* za kameňom v sekcii konštrukcie je svetlo trochu silnejšie — plocha je
+   tmavá bez videa a kaustika tam robí hĺbku vody */
+.kaustika--za-kamenom {
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 80%, transparent 100%);
+}
+.kaustika--za-kamenom::before {
+  opacity: 0.06;
+}
+.kaustika--za-kamenom::after {
+  opacity: 0.04;
+}
+/* Safari si s dvoma veľkými animovanými vrstvami neporadí plynulo */
+.safari .kaustika,
+.bez-intra .intro {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kaustika {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  /* na telefóne stačí jedna vrstva, šetrí to batériu */
+  .kaustika::after {
+    display: none;
+  }
+  .kaustika::before {
+    background-size: 520px 520px;
+    animation-duration: 90s;
+  }
+  @keyframes kaustikaA {
+    to {
+      transform: translate3d(520px, 520px, 0);
+    }
+  }
+}
+
+/* ---- zrno cez celý web: rozbije banding tmavých plôch ---- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ---- magnetické tlačidlá a plávajúce karty: pohyb riadi Mikro.tsx,
+   tu je len to, aby mali priestor a hĺbku ---- */
+.btn-cyan,
+.hero__btn,
+.vhero__odkaz:not(.vhero__odkaz--tichy),
+.nav__cta {
+  will-change: translate;
+}
+.product {
+  transform-style: preserve-3d;
+}
+
+/* ---- intro: logo sa vynorí spod vlny, plocha sa rozplynie ---- */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: #0b0e0d;
+  pointer-events: none;
+  animation: introPlocha 1.15s ease-out both;
+}
+.intro__stred {
+  position: relative;
+  width: min(240px, 56vw);
+  color: var(--ink);
+}
+.intro__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* spod vlny: orez masky ide zdola hore, logo sa dvíha */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  animation: introLogo 0.9s var(--ease) both;
+}
+.intro__vlna {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: -14px;
+  height: 12px;
+  color: var(--cyan);
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: introVlna 0.7s 0.1s var(--ease) both;
+}
+@keyframes introLogo {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes introVlna {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes introPlocha {
+  0%,
+  62% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
