@@ -11709,6 +11709,21 @@ a.dopyt-alt__card:hover {
   .vhero--bocny .svetlo {
     transform: scale(0.84);
   }
+  /* jemné stmavenie zhora — na veľkých monitoroch sa scéna vynára z čiernej */
+  .vhero--bocny .vhero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(11, 14, 13, 0.8) 0%,
+      rgba(11, 14, 13, 0.42) 12%,
+      rgba(11, 14, 13, 0.12) 24%,
+      transparent 36%
+    );
+    pointer-events: none;
+  }
 }
 
 /* Pri 1024 až 1199 px je scéna v editore posunutá o 49 px hore, takže po
