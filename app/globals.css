@@ -3311,14 +3311,35 @@ button:disabled:hover {
   position: relative;
   z-index: 1;
 }
-/* Záber drží celú šírku pásu. Aby z kvapky nebol obrí výrez, je pás vyšší
-   a kvapka sedí v pravej tretine, kde nie je text. */
+/* Záber má pomer 3 : 1, pás vyše 7 : 1 — na celú šírku by z kvapky ostal
+   len stredný pruh. Ostrý záber preto stojí na výšku pásu celý (bez orezu)
+   a zvyšok šírky vypĺňa jeho rozmazaná kópia, takže voda ide od kraja
+   po kraj a kvapku vidno celú. */
 @media (min-width: 861px) {
-  .sub__cta-inner--video {
-    min-height: 380px;
+  .sub__cta-media {
+    display: flex;
+    justify-content: center;
+  }
+  .sub__cta-media::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: url(/technologia/cta-poster.webp) 50% 50% / cover no-repeat;
+    filter: blur(26px) brightness(0.55);
   }
   .sub__cta-video {
-    object-position: 72% 50%;
+    position: relative;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  }
+  /* náhľad pred spustením má polohu v inline štýle — musí stáť tam, kde video */
+  img.sub__cta-video {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
   }
 }
 @media (max-width: 860px) {
