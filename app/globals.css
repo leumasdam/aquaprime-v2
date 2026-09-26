@@ -3311,6 +3311,26 @@ button:disabled:hover {
   position: relative;
   z-index: 1;
 }
+/* Od tabletu záber nedrží celý pás — v širokom páse by z kvapky ostal len
+   obrí výrez. Video stojí v pravej časti na výšku pásu, jeho ľavá hrana sa
+   rozplynie do pozadia a kvapka je vidieť celá. */
+@media (min-width: 861px) {
+  .sub__cta-media {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .sub__cta-video {
+    width: 42%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+  }
+  /* náhľad pred spustením má polohu v inline štýle komponentu — musí stáť
+     tam, kde video, inak by kvapka pred spustením preskočila zľava doprava */
+  img.sub__cta-video {
+    left: auto !important;
+    right: 0 !important;
+  }
+}
 @media (max-width: 860px) {
   /* na úzkom pomere by z kvapky ostal len okraj — záber posunieme na stred
      a závoj stmavíme, nech text nesedí na svetlých vlnkách */
