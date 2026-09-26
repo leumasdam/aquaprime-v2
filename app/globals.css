@@ -3311,24 +3311,14 @@ button:disabled:hover {
   position: relative;
   z-index: 1;
 }
-/* Od tabletu záber nedrží celý pás — v širokom páse by z kvapky ostal len
-   obrí výrez. Video stojí v pravej časti na výšku pásu, jeho ľavá hrana sa
-   rozplynie do pozadia a kvapka je vidieť celá. */
+/* Záber drží celú šírku pásu. Aby z kvapky nebol obrí výrez, je pás vyšší
+   a kvapka sedí v pravej tretine, kde nie je text. */
 @media (min-width: 861px) {
-  .sub__cta-media {
-    display: flex;
-    justify-content: flex-end;
+  .sub__cta-inner--video {
+    min-height: 380px;
   }
   .sub__cta-video {
-    width: 42%;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
-  }
-  /* náhľad pred spustením má polohu v inline štýle komponentu — musí stáť
-     tam, kde video, inak by kvapka pred spustením preskočila zľava doprava */
-  img.sub__cta-video {
-    left: auto !important;
-    right: 0 !important;
+    object-position: 72% 50%;
   }
 }
 @media (max-width: 860px) {
@@ -10340,40 +10330,51 @@ button:focus-visible {
 .tech-versus__grid--single {
   grid-template-columns: minmax(0, 1fr);
 }
+/* Pás nie je karta: tyrkysový rám okolo štyroch riadkov pôsobil ako prázdna
+   škatuľa. Ostávajú len vlasové linky hore a dole, ako pri páse čísel. */
+.tech-versus__grid--single .tech-versus__col {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding-inline: 0;
+}
 /* na veľkých obrazovkách sú štyri údaje v jednom páse vedľa seba,
    rovnaký rytmus ako pás čísel v hlavičke stránky */
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   .tech-versus__grid--single .tech-versus__col ul {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    /* rám ide cez celú šírku ako časová os nad ním, ale samotné údaje sa
-       nad ~1400 px prestanú rozťahovať — inak medzi nimi zíva prázdno */
-    max-width: 1400px;
-    margin-inline: auto;
   }
   .tech-versus__grid--single .tech-versus__col {
-    padding-block: clamp(26px, 2.4vw, 38px);
+    padding-block: clamp(20px, 2vw, 30px);
   }
   .tech-versus__grid--single .tech-versus__col li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     border-top: 0;
-    padding: 2px 24px;
+    padding: 0 clamp(18px, 2.2vw, 34px);
+  }
+  .tech-versus__grid--single .tech-versus__col li:first-child {
+    padding-left: 0;
   }
   .tech-versus__grid--single .tech-versus__col li + li {
     border-left: 1px solid var(--line);
   }
-  /* fajka ide nad text — pri centrovaní by absolútna vľavo visela mimo */
+  /* fajku nesie štítok nad hodnotou, nie ikona pred riadkom */
   .tech-versus__grid--single .tech-versus__col li::before {
-    position: static;
-    margin-bottom: 8px;
-    font-size: 0.875rem;
+    display: none;
   }
-  .tech-versus__grid--single .tech-versus__col h3 {
-    text-align: center;
-    margin-bottom: 22px;
+  /* hodnota je to podstatné — nesie ju pätkové písmo ako čísla vyššie */
+  .tech-versus__grid--single .tech-versus__col li {
+    font-family: var(--display);
+    font-size: clamp(1.0625rem, 0.9rem + 0.5vw, 1.375rem);
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .tech-versus__grid--single .tech-versus__t {
+    margin-bottom: 8px;
+    color: var(--faint);
   }
 }
 

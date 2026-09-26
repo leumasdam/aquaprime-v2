@@ -215,7 +215,7 @@ export default function KonstrukciaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
               data-reveal
               style={{ "--rd": "120ms" } as CSSProperties}
             >
-              <h3>{k.zlozenieNadpis}</h3>
+              <h3 className="len-pre-citacky">{k.zlozenieNadpis}</h3>
               <ul>
                 {k.zlozenie.map(([titul, popis]) => (
                   <li key={titul}>
