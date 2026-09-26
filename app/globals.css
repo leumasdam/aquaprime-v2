@@ -5779,22 +5779,11 @@ button:focus-visible {
   align-items: stretch;
 }
 .hfeat {
-  position: relative;
   display: flex;
   gap: 14px;
   align-items: center;
   padding-left: clamp(14px, 1.5vw, 28px);
-}
-/* vlnka stojí v strede medzery medzi dvoma údajmi, nie na hrane bunky */
-.hfeat::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: calc((clamp(14px, 1.5vw, 28px) - clamp(28px, 3vw, 56px)) / 2);
-  width: 6px;
-  height: 34px;
-  transform: translateY(-50%);
-  background: var(--vlnka-zvisla-slaba) center / 6px 20px repeat-y;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 /* marquee: každý item má rovnaký border/padding, žiadny first-child reset */
 .hfeat__ring {
@@ -6757,7 +6746,7 @@ button:focus-visible {
    (mäkký, vzdialený prechod do transparent → bez viditeľného švu) + kameň o čosi menší */
 @media (min-width: 861px) and (max-width: 1400px) {
   .safety__bg {
-    background-position: 70% bottom;
+    background-position: 62% bottom;
     background-size: auto 80%;
   }
   .safety__bg::after {
@@ -6775,9 +6764,11 @@ button:focus-visible {
 }
 /* >1400px: kameň je výrazný v strede → mäkký závoj naprieč,
    ľavá strana o čosi tmavšia kvôli čitateľnosti textu */
+/* Do 2000 px stojí kameň bližšie k stredu — pri pravom okraji pôsobil
+   odseknuto a zakrýval pás s údajmi. Nad 2000 px má vlastné pravidlo. */
 @media (min-width: 1401px) {
   .safety__bg {
-    background-position: 74% bottom;
+    background-position: 64% bottom;
     opacity: 0.78;
   }
   .safety__bg::after {
@@ -7149,21 +7140,9 @@ button:focus-visible {
   align-items: flex-start;
   gap: 12px;
 }
-.vhero__fakt {
-  position: relative;
-}
 .vhero__fakt + .vhero__fakt {
   padding-left: clamp(16px, 4vw, 40px);
-}
-.vhero__fakt + .vhero__fakt::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: calc(-1 * clamp(16px, 4vw, 40px) / 2);
-  width: 6px;
-  height: 36px;
-  transform: translateY(-50%);
-  background: var(--vlnka-zvisla) center / 6px 20px repeat-y;
+  border-left: 1px solid var(--line-2);
 }
 .vhero__fikona {
   flex: none;
