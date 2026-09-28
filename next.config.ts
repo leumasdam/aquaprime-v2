@@ -42,6 +42,13 @@ const CSP = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  // Obrázky servírujeme tak, ako sú. Vercel má na optimalizáciu mesačnú kvótu
+  // a keď sa vyčerpá, /_next/image vracia 402 a na webe zostanú prázdne rámy
+  // namiesto fotiek — presne to sa stalo 28. 9. 2026. Riziko nestojí za úžitok:
+  // všetkých 633 obrázkov je už vo WebP, priemer 64 kB a najväčší 430 kB,
+  // takže optimalizátor z nich nemá čo ubrať. Ak raz pribudnú veľké fotky,
+  // zmenšíme ich pri importe, nie za behu.
+  images: { unoptimized: true },
   // View Transitions sú od Next 16.3 zapnuté bez experimentálneho flagu —
   // <ViewTransition> sa berie priamo z Reactu (app/vt.tsx)
   async headers() {
