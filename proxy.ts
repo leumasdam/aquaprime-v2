@@ -275,7 +275,9 @@ async function brana(request: NextRequest, b: Brana): Promise<NextResponse | nul
         maxAge: 60 * 60 * 24 * b.dni,
       });
       if (b.menoCookie) {
-        res.cookies.set(b.menoCookie, encodeURIComponent(vpusteny.meno), {
+        // hodnotu kóduje už samotný cookie setter — druhé kódovanie by
+        // do panela poslalo „Patrik%20Randa"
+        res.cookies.set(b.menoCookie, vpusteny.meno, {
           httpOnly: false,
           sameSite: "lax",
           secure: true,
