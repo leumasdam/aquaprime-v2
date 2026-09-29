@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { cenaEur, PRODUCTS, type Product, type Tier } from "../products";
+import { cenaEur, type Product, type Tier } from "../products";
+import { nacitajSkrinky } from "../katalog/skrinky";
 import { odkaz, podorysText, radText, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import ProductGallery from "../ProductGallery";
@@ -14,7 +15,7 @@ const ACCENT: Record<Tier, string> = {
   basic: "#8ea9b4",
 };
 
-export default function ProduktObsah({
+export default async function ProduktObsah({
   p,
   t,
   jazyk,
@@ -33,9 +34,10 @@ export default function ProduktObsah({
   const vlastnosti = jazyk === "sk" ? p.features : t.spolocne.radVlastnosti[p.tier];
   const l = (h: string) => odkaz(h, jazyk);
   // súvisiace: najprv zvyšok radu, potom ostatné
+  const katalog = await nacitajSkrinky();
   const related = [
-    ...PRODUCTS.filter((x: Product) => x.tier === p.tier && x.slug !== p.slug),
-    ...PRODUCTS.filter((x: Product) => x.tier !== p.tier),
+    ...katalog.filter((x: Product) => x.tier === p.tier && x.slug !== p.slug),
+    ...katalog.filter((x: Product) => x.tier !== p.tier),
   ].slice(0, 3);
 
   return (

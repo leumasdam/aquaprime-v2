@@ -1,0 +1,1053 @@
+/* Editor katalógu v administrácii. Stavia na tokenoch panela (--ad-*)
+   z admin.css: tmavá hĺbka, tyrkysové akcenty, pätkové nadpisy. */
+
+/* ---------------- spoločné ---------------- */
+.kt-spat {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0 0 18px;
+  color: var(--ad-dim);
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.kt-spat:hover {
+  color: var(--ad-text);
+}
+
+.kt-odkaz {
+  border: 0;
+  background: none;
+  padding: 4px 2px;
+  color: var(--ad-cyan);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast);
+}
+.kt-odkaz:hover:not(:disabled) {
+  border-bottom-color: currentColor;
+}
+.kt-odkaz:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.kt-odkaz--nebezpecne {
+  color: var(--ad-warn);
+}
+
+.kt-vstup {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--ad-text);
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 10px 12px;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.kt-vstup:focus {
+  outline: none;
+  border-color: rgba(0, 154, 192, 0.7);
+  background: rgba(0, 154, 192, 0.05);
+}
+textarea.kt-vstup {
+  resize: vertical;
+  line-height: 1.6;
+}
+select.kt-vstup {
+  appearance: auto;
+}
+.kt-vstup--nazov {
+  font-family: var(--f-display, serif);
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  background: transparent;
+  border-color: transparent;
+}
+.kt-vstup--nazov:hover {
+  border-color: var(--ad-line);
+}
+
+.kt-karta {
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.kt-pole {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+.kt-pole > span:first-child {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ad-dim);
+}
+.kt-pole em {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--ad-warn);
+}
+.kt-pole.is-chyba .kt-vstup {
+  border-color: rgba(232, 160, 71, 0.6);
+}
+.kt-pole--uzke {
+  max-width: 220px;
+}
+.kt-auto {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.6875rem;
+  color: rgba(0, 154, 192, 0.8);
+}
+.kt-varovanie {
+  font-size: 0.75rem;
+  color: var(--ad-warn);
+  line-height: 1.5;
+}
+.kt-pozn {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(0, 154, 192, 0.85);
+}
+
+.kt-riadok {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.kt-riadok--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.kt-riadok--akcia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.kt-riadok--akcia .kt-vstup {
+  flex: 1 1 220px;
+}
+
+.kt-jednotka {
+  position: relative;
+  display: block;
+}
+.kt-jednotka .kt-vstup {
+  padding-right: 42px;
+}
+.kt-jednotka i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: var(--ad-dim);
+  pointer-events: none;
+}
+
+.kt-adresa {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.035);
+  overflow: hidden;
+}
+.kt-adresa:focus-within {
+  border-color: rgba(0, 154, 192, 0.7);
+}
+.kt-adresa i {
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: var(--ad-dim);
+  padding-left: 12px;
+  white-space: nowrap;
+}
+.kt-adresa .kt-vstup {
+  border: 0;
+  background: none;
+  padding-left: 2px;
+  /* písmo panela mení „x" medzi číslicami na „×" — v adrese by to klamalo,
+     tá obsahuje obyčajné x. Strojové písmo bez týchto náhrad. */
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8125rem;
+  font-variant-ligatures: none;
+  font-feature-settings: "calt" 0;
+}
+.kt-adresa i {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+.kt-pole.is-chyba .kt-adresa {
+  border-color: rgba(232, 160, 71, 0.6);
+}
+
+.kt-podnadpis {
+  margin: 6px 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ad-dim);
+  font-weight: 600;
+}
+
+.kt-chyby {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  font-size: 0.8125rem;
+  color: var(--ad-warn);
+  line-height: 1.6;
+}
+
+.kt-prepinac {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.kt-prepinac input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ad-cyan);
+  flex: 0 0 auto;
+}
+.kt-prepinac span {
+  display: grid;
+  gap: 3px;
+  font-size: 0.8125rem;
+}
+.kt-prepinac small {
+  color: var(--ad-dim);
+  line-height: 1.5;
+}
+
+/* ---------------- zoznam skriniek ---------------- */
+.kt-suhrn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  align-items: baseline;
+  font-size: 0.8125rem;
+  color: var(--ad-dim);
+  margin-bottom: 22px;
+}
+.kt-suhrn b {
+  font-family: var(--f-display, serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ad-text);
+  margin-right: 4px;
+}
+.kt-suhrn__ulozene {
+  margin-left: auto;
+  font-size: 0.75rem;
+}
+
+.kt-nastroje {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.kt-hladaj {
+  flex: 1 1 240px;
+  max-width: 340px;
+}
+.kt-filtre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.02);
+}
+.kt-filtre button {
+  border: 0;
+  background: none;
+  color: var(--ad-dim);
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 11px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.kt-filtre button.is-on {
+  background: var(--ad-cyan);
+  color: #032630;
+}
+.kt-nastroje__vpravo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-left: auto;
+}
+.kt-nastroje__info {
+  flex: 1 1 260px;
+  font-size: 0.8125rem;
+  color: var(--ad-dim);
+}
+
+.kt-skrinky {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.kt-skrinka {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  padding-right: 16px;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.kt-skrinka:hover {
+  border-color: rgba(0, 154, 192, 0.3);
+  background: rgba(0, 154, 192, 0.03);
+}
+.kt-skrinka.is-skryta {
+  border-style: dashed;
+}
+.kt-skrinka__otvor {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto auto;
+  gap: 16px;
+  align-items: center;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 8px 0 8px 8px;
+  cursor: pointer;
+}
+.kt-skrinka__otvor:disabled {
+  cursor: default;
+}
+.kt-skrinka__foto {
+  width: 76px;
+  aspect-ratio: 5 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  place-items: center;
+}
+.kt-skrinka__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.kt-skrinka__bez {
+  font-size: 0.625rem;
+  color: #6b7572;
+}
+.kt-skrinka__text {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.kt-skrinka__text b {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kt-skrinka__text small {
+  font-size: 0.75rem;
+  color: var(--ad-dim);
+}
+.kt-skrinka__cena {
+  display: grid;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+}
+.kt-skrinka__cena small {
+  font-size: 0.6875rem;
+  color: var(--ad-dim);
+}
+.kt-skrinka__poradie {
+  display: flex;
+  gap: 4px;
+}
+.kt-skrinka__poradie button,
+.kt-dekor__ovladace button,
+.kt-zoznam button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ad-line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ad-text);
+  font: inherit;
+  cursor: pointer;
+}
+.kt-skrinka__poradie button:disabled,
+.kt-dekor__ovladace button:disabled,
+.kt-zoznam button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.kt-prazdne {
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* ---------------- formulár ---------------- */
+.kt-form {
+  padding-bottom: 110px;
+}
+.kt-rady {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.kt-rad {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ad-text);
+  font: inherit;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.kt-rad b {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+.kt-rad small {
+  font-size: 0.75rem;
+  color: var(--ad-dim);
+}
+.kt-rad.is-on {
+  border-color: var(--ad-cyan);
+  background: var(--ad-cyan-soft);
+}
+
+.kt-zoznam {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.kt-zoznam li {
+  display: flex;
+  gap: 6px;
+}
+
+/* ---------------- dekory ---------------- */
+.kt-dekory {
+  display: grid;
+  gap: 14px;
+}
+.kt-dekor {
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.kt-dekor.is-chyba {
+  border-color: rgba(232, 160, 71, 0.45);
+}
+.kt-dekor__hlava {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ad-line);
+  background: rgba(255, 255, 255, 0.015);
+}
+.kt-dekor__cislo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ad-cyan-soft);
+  color: var(--ad-cyan);
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+.kt-dekor__vzorka {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+.kt-dekor__nazov {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: 1.1rem;
+  padding: 6px 11px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kt-dekor__nahlady {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.kt-dekor__nahlady img {
+  width: 44px;
+  aspect-ratio: 5 / 4;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 4px;
+}
+.kt-dekor__nahlady i {
+  font-style: normal;
+  font-size: 0.6875rem;
+  color: var(--ad-dim);
+  padding-left: 4px;
+}
+.kt-dekor__ovladace .kt-dekor__rozbal {
+  width: auto;
+  padding: 0 14px;
+  font-size: 0.75rem;
+  border-color: rgba(0, 154, 192, 0.45);
+  color: var(--ad-cyan);
+}
+.kt-dekor__meno {
+  flex: 1 1 200px;
+  min-width: 0;
+  display: grid;
+}
+.kt-dekor__meno .ad-mono {
+  padding-left: 11px;
+}
+.kt-dekor__ovladace {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.kt-dekor__ovladace .kt-dekor__zmaz {
+  width: auto;
+  padding: 0 10px;
+  font-size: 0.75rem;
+  color: var(--ad-warn);
+}
+.kt-dekor__telo {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+.kt-dekor > .kt-pozn {
+  padding: 10px 16px 0;
+}
+
+.kt-rozsirene {
+  border-top: 1px solid var(--ad-line);
+  padding-top: 12px;
+}
+.kt-rozsirene summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: var(--ad-dim);
+}
+.kt-rozsirene[open] summary {
+  color: var(--ad-text);
+  margin-bottom: 12px;
+}
+.kt-rozsirene > * + * {
+  margin-top: 12px;
+}
+
+.kt-pridat {
+  width: 100%;
+  margin-top: 14px;
+  border: 1px dashed rgba(0, 154, 192, 0.45);
+  border-radius: var(--r-md);
+  background: rgba(0, 154, 192, 0.04);
+  color: var(--ad-cyan);
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 16px;
+  cursor: pointer;
+}
+.kt-pridat:hover {
+  background: rgba(0, 154, 192, 0.08);
+}
+.kt-pridaj {
+  margin-top: 14px;
+}
+.kt-kniznica {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.kt-kniznica button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--ad-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ad-text);
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 5px 14px 5px 5px;
+  cursor: pointer;
+}
+.kt-kniznica button:hover {
+  border-color: var(--ad-cyan);
+}
+.kt-kniznica__vzorka {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* ---------------- vzorka ---------------- */
+.kt-vzorka {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.kt-vzorka__nahlad {
+  display: block;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24), 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.kt-vzorka__casti {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+.kt-vzorka__cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+}
+.kt-vzorka__popis {
+  width: 64px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ad-dim);
+}
+.kt-vzorka__farba {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.kt-vzorka__farba input {
+  width: 34px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--ad-line);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+.kt-vzorka__textura {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+.kt-vzorka__textura img {
+  width: 34px;
+  height: 26px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.kt-vzorka__prepni {
+  display: flex;
+  gap: 6px;
+}
+.kt-vzorka__prepni button {
+  border: 1px solid var(--ad-line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ad-text);
+  font: inherit;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* ---------------- fotky ---------------- */
+.kt-foto__mriezka {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 10px;
+}
+.kt-foto__kus {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--ad-line);
+  cursor: grab;
+}
+.kt-foto__kus.is-tahana {
+  opacity: 0.35;
+}
+.kt-foto__kus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.kt-foto__cislo {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: rgba(10, 14, 13, 0.78);
+  color: #fff;
+  font-size: 0.6875rem;
+  display: grid;
+  place-items: center;
+}
+.kt-foto__titulna {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  padding: 3px 8px;
+  border-radius: 11px;
+  background: var(--ad-cyan);
+  color: #032630;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kt-foto__akcie {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  background: linear-gradient(to top, rgba(10, 14, 13, 0.85), transparent);
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+.kt-foto__kus:hover .kt-foto__akcie,
+.kt-foto__kus:focus-within .kt-foto__akcie {
+  opacity: 1;
+}
+@media (hover: none) {
+  .kt-foto__akcie {
+    opacity: 1;
+  }
+}
+.kt-foto__akcie button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0c100e;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+.kt-foto__akcie button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.kt-foto__akcie .kt-foto__zmaz {
+  background: #e8a047;
+}
+.kt-foto__kus--nahrava {
+  cursor: default;
+  background: rgba(255, 255, 255, 0.04);
+  display: grid;
+  place-items: center;
+}
+.kt-foto__kus--nahrava.is-chyba {
+  border-color: rgba(232, 160, 71, 0.6);
+}
+.kt-foto__stav {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.6875rem;
+  color: var(--ad-dim);
+}
+.kt-foto__stav b {
+  color: var(--ad-warn);
+}
+.kt-foto__stav button {
+  border: 0;
+  background: none;
+  color: var(--ad-cyan);
+  font: inherit;
+  cursor: pointer;
+}
+.kt-toc {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 154, 192, 0.25);
+  border-top-color: var(--ad-cyan);
+  animation: ktToc 0.8s linear infinite;
+}
+@keyframes ktToc {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.kt-foto__zona {
+  aspect-ratio: 5 / 4;
+  border: 1px dashed rgba(0, 154, 192, 0.45);
+  border-radius: 10px;
+  background: rgba(0, 154, 192, 0.03);
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+.kt-foto__zona.is-nad {
+  background: rgba(0, 154, 192, 0.12);
+  border-color: var(--ad-cyan);
+}
+.kt-foto__zona button {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  border: 0;
+  background: none;
+  color: var(--ad-cyan);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  text-align: center;
+}
+.kt-foto__zona button span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.kt-foto__zona small {
+  font-size: 0.6875rem;
+  color: var(--ad-dim);
+}
+
+/* ---------------- knižnica dekorov ---------------- */
+.kt-dekory-zoznam {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.kt-dekory-zoznam > li:not(.kt-karta) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  padding: 10px 16px;
+}
+.kt-dekory-zoznam .kt-kniznica__vzorka {
+  width: 36px;
+  height: 36px;
+}
+.kt-dekory-zoznam__text {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+.kt-dekory-zoznam__text small {
+  font-size: 0.75rem;
+  color: var(--ad-dim);
+}
+
+/* ---------------- história ---------------- */
+.kt-historia {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.kt-historia li {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+}
+.kt-historia__cas {
+  font-size: 0.75rem;
+  color: var(--ad-dim);
+  font-variant-numeric: tabular-nums;
+}
+.kt-historia__text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.kt-historia__text b {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+.kt-historia__text small {
+  font-size: 0.75rem;
+  color: var(--ad-dim);
+}
+
+/* ---------------- lišta a potvrdenie ---------------- */
+.kt-lista {
+  position: fixed;
+  z-index: 40;
+  left: 248px;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 20px;
+  padding: 14px clamp(22px, 4vw, 60px);
+  background: rgba(12, 16, 14, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--ad-line);
+}
+.kt-lista__stav {
+  font-size: 0.8125rem;
+}
+.kt-lista__akcie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.kt-toast {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: calc(100vw - 32px);
+  padding: 12px 14px 12px 18px;
+  border-radius: var(--r-md);
+  background: #0f2a22;
+  border: 1px solid rgba(111, 211, 154, 0.4);
+  color: #d9f5e6;
+  font-size: 0.8125rem;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  animation: adIn 0.3s var(--ease-swipe) both;
+}
+.kt-toast button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* ---------------- úzke okno ---------------- */
+@media (max-width: 880px) {
+  .kt-lista {
+    left: 0;
+  }
+  .kt-skrinka__otvor {
+    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-areas: "foto text" "foto cena";
+  }
+  .kt-skrinka__foto {
+    width: 64px;
+    grid-row: span 2;
+  }
+  .kt-skrinka__otvor .ad-tag {
+    display: none;
+  }
+  .kt-skrinka__cena {
+    text-align: left;
+  }
+  .kt-rady,
+  .kt-riadok--3 {
+    grid-template-columns: 1fr;
+  }
+  .kt-historia li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .kt-dekor__nahlady {
+    display: none;
+  }
+  .kt-suhrn__ulozene {
+    margin-left: 0;
+    width: 100%;
+  }
+  .kt-nastroje__vpravo {
+    margin-left: 0;
+  }
+}

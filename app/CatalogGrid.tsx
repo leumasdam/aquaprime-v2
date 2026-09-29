@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { PRODUCTS, TIERS, type Tier, type Product } from "./products";
+import { TIERS, type Tier, type Product } from "./products";
+import { useKatalog } from "./katalog/KatalogProvider";
 import { odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 import ProductCard from "./ProductCard";
@@ -14,11 +15,6 @@ import {
   PocetVysledkov,
 } from "./Filtre";
 
-const WIDTHS = [...new Set(PRODUCTS.map((p) => p.w))].sort((a, b) => a - b);
-
-/** koľko dlaždíc padne na danú šírku — LED verzia je vlastná dlaždica */
-const pocetPreSirku = (w: number) =>
-  PRODUCTS.filter((p) => p.w === w).length + PRODUCTS.filter((p) => p.w === w && jeLed(p)).length;
 
 /**
  * LED nie je prierezová vlastnosť, ale rad sám o sebe: kompletne opláštená
@@ -32,7 +28,6 @@ const jeLed = (p: Product) =>
   p.tier === "premium" &&
   Boolean(p.priceLed) &&
   p.decors.some((d) => d.led?.zlta?.length || d.led?.modra?.length);
-const LED_POCET = PRODUCTS.filter(jeLed).length;
 
 /**
  * Jedna dlaždica katalógu. LED verzia je samostatná položka, nie prepínač na
@@ -47,10 +42,10 @@ type Polozka = { p: Product; led?: LedFoto };
  * nafotenú čiernu aj dubovú a keby každá dlaždica vzala prvú dostupnú,
  * celý rad by ukázal päťkrát tú istú čiernu skrinku.
  */
-const LED_FOTA: Map<string, LedFoto> = (() => {
+function ledFota(katalog: Product[]): Map<string, LedFoto> {
   const out = new Map<string, LedFoto>();
   let predchadzajuci = "";
-  for (const p of PRODUCTS.filter(jeLed)) {
+  for (const p of katalog.filter(jeLed)) {
     const varianty: LedFoto[] = p.decors.flatMap((d) => {
       const farba = d.led?.zlta?.length ? "zlta" : d.led?.modra?.length ? "modra" : null;
       return farba ? [{ src: d.led![farba]![0], dekor: d.id, farba }] : [];
@@ -61,7 +56,7 @@ const LED_FOTA: Map<string, LedFoto> = (() => {
     out.set(p.slug, v);
   }
   return out;
-})();
+}
 
 type Radenie = "odporucane" | "cena-hore" | "cena-dole" | "sirka";
 
@@ -74,6 +69,20 @@ function cena(x: Polozka): number {
 export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].katalog;
   const RADENIA = t.radenia.map(([id, label]) => ({ id: id as Radenie, label }));
+  /* katalóg môže klient meniť v administrácii — všetko odvodené z neho sa
+     počíta tu, nie raz pri načítaní modulu */
+  const katalog = useKatalog();
+  const { WIDTHS, LED_POCET, LED_FOTA, pocetPreSirku } = useMemo(() => {
+    const led = katalog.filter(jeLed);
+    return {
+      WIDTHS: [...new Set(katalog.map((p) => p.w))].sort((a, b) => a - b),
+      LED_POCET: led.length,
+      LED_FOTA: ledFota(katalog),
+      /** koľko dlaždíc padne na danú šírku — LED verzia je vlastná dlaždica */
+      pocetPreSirku: (w: number) =>
+        katalog.filter((p) => p.w === w).length + led.filter((p) => p.w === w).length,
+    };
+  }, [katalog]);
   const [tier, setTier] = useState<Rad>("all");
   const [widths, setWidths] = useState<Set<number>>(new Set());
   const [radenie, setRadenie] = useState<Radenie>("odporucane");
@@ -101,10 +110,10 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     const zaklad: Polozka[] =
       tier === "led"
         ? []
-        : PRODUCTS.filter((p) => tier === "all" || p.tier === tier).map((p) => ({ p }));
+        : katalog.filter((p) => tier === "all" || p.tier === tier).map((p) => ({ p }));
     const ledove: Polozka[] =
       tier === "all" || tier === "led"
-        ? PRODUCTS.filter(jeLed).map((p) => ({ p, led: LED_FOTA.get(p.slug) }))
+        ? katalog.filter(jeLed).map((p) => ({ p, led: LED_FOTA.get(p.slug) }))
         : [];
     const f = [...zaklad, ...ledove].filter(
       (x) => widths.size === 0 || widths.has(x.p.w),
@@ -119,7 +128,7 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       default:
         return f;
     }
-  }, [tier, widths, radenie]);
+  }, [katalog, LED_FOTA, tier, widths, radenie]);
 
   const chipy = [
     ...(tier !== "all"
@@ -163,7 +172,7 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             ...TIERS.map((t) => ({
               id: t.id as Rad,
               label: radText(t.label, jazyk),
-              count: PRODUCTS.filter((p) => p.tier === t.id).length,
+              count: katalog.filter((p) => p.tier === t.id).length,
             })),
             { id: "led" as Rad, label: "LED", count: LED_POCET },
           ]}
@@ -196,7 +205,7 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
         </Filter>
         <PocetVysledkov
           pocet={items.length}
-          spolu={PRODUCTS.length + LED_POCET}
+          spolu={katalog.length + LED_POCET}
           slovo={t.modelov}
           zo={SLOVNIKY[jazyk].spolocne.zo}
         />

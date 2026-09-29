@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AQUARIUMS } from "./aquariums";
-import { cenaEur, PRODUCTS } from "./products";
+import { cenaEur } from "./products";
+import { useKatalog } from "./katalog/KatalogProvider";
 import { cabinetPrice, tankLoadKg } from "./configurator-logic";
 import { type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -70,6 +71,7 @@ function formatTel(raw: string): string {
 }
 
 export default function KontaktForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const katalog = useKatalog();
   const t = SLOVNIKY[jazyk].kontakt;
   const TEMY = TEMA_ID.map((id, i) => ({
     id,
@@ -159,14 +161,18 @@ export default function KontaktForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     const near = AQUARIUMS.reduce((a, b) =>
       Math.abs(b.liters - liters) < Math.abs(a.liters - liters) ? b : a
     );
-    const cabinet = PRODUCTS.filter((p) => p.w === dims.w && cenaEur(p) !== null).sort(
+    const cabinet = katalog.filter((p) => p.w === dims.w && cenaEur(p) !== null).sort(
       (x, y) => Number(x.price.replace(/\D/g, "")) - Number(y.price.replace(/\D/g, ""))
     )[0];
     const cab = cabinet
       ? { name: `${cabinet.w} × ${cabinet.d} × ${cabinet.h} cm`, price: cabinet.price }
       : {
           name: `${dims.w} × ${dims.d} cm ${t.naMieru}`,
-          price: `od ${cabinetPrice("standard", dims.w, dims.d, 80, false).value} €`,
+          price: (() => {
+            // rad bez ocenených rozmerov dá nulový odhad — vtedy radšej na dopyt
+            const odhad = cabinetPrice(katalog, "standard", dims.w, dims.d, 80, false).value;
+            return odhad > 0 ? `od ${odhad} €` : jazyk === "en" ? "on request" : "na dopyt";
+          })(),
         };
     return {
       dims,
@@ -177,7 +183,7 @@ export default function KontaktForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       cab,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [d.rozmer, jazyk]);
+  }, [d.rozmer, jazyk, katalog]);
 
   /* ---- doplnenie e-mailovej domény ---- */
   const emailNavrh = useMemo(() => {

@@ -7,7 +7,7 @@
 // majú fakty (rozmer, objem, sklo, cena) a spoločný popis výroby, žiadnu
 // vymyslenú marketingovú kopiju.
 
-import { PRODUCTS, type Product } from "./products";
+import type { Product } from "./products";
 import { AQUARIUM_SIZES, type AquariumSize, type GlassOption } from "./aquarium-sizes";
 
 export type { GlassOption };
@@ -226,6 +226,8 @@ export function aquariumPriceValue(a: Aquarium): number {
  * ako jeden celok, tak nech je preklik priamo na detaile. Hĺbka sa môže líšiť
  * (napr. nádrž 200 × 60 vs. skrinka 200 × 50), preto sa páruje len šírka.
  */
-export function matchingCabinets(a: Aquarium): Product[] {
-  return PRODUCTS.filter((p) => p.w === a.w);
+/** Skrinky z katalógu, ktoré šírkou sedia na dané akvárium. Katalóg dostáva
+    volajúci, lebo sa dá meniť v administrácii za behu. */
+export function matchingCabinets(katalog: Product[], a: Aquarium): Product[] {
+  return katalog.filter((p) => p.w === a.w);
 }

@@ -22,8 +22,8 @@ const vsetky = PRODUCTS.map((p) => {
   return { ...p, decors: [...bez.slice(0, posledny + 1), novy, ...bez.slice(posledny + 1)] };
 });
 const s = fs.readFileSync(SUBOR, "utf8");
-const a = s.indexOf("export const PRODUCTS: Product[] = [");
+const a = s.indexOf("export const SEED_PRODUKTY: Product[] = [");
 const b = s.indexOf("\n  ];", a);
 const telo = JSON.stringify(vsetky, null, 2).split("\n").map((r, i) => (i ? "  " + r : r)).join("\n");
-fs.writeFileSync(SUBOR, s.slice(0, a) + "export const PRODUCTS: Product[] = " + telo + ";\n" + s.slice(b + "\n  ];\n".length), "utf8");
+fs.writeFileSync(SUBOR, s.slice(0, a) + "export const SEED_PRODUKTY: Product[] = " + telo + ";\n" + s.slice(b + "\n  ];\n".length), "utf8");
 console.log(RAD, ID, "| rozmerov:", n, "| bez fotky zostáva:", vsetky.flatMap((p) => p.decors).filter((d) => d.chyba).length);

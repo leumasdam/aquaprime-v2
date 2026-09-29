@@ -4,14 +4,15 @@
 import { NextResponse } from "next/server";
 import { googleFetch, googleNakonfigurovany } from "../_lib/google";
 import { SKRYTY_PRED_VYHLADAVACMI } from "../../../site-config";
-import { PRODUCTS } from "../../../products";
+import { nacitajSkrinky } from "../../../katalog/skrinky";
+import type { Product } from "../../../products";
 import { AQUARIUMS } from "../../../aquariums";
 
 export const dynamic = "force-dynamic";
 
 type GscRow = { keys?: string[]; clicks?: number; impressions?: number; ctr?: number; position?: number };
 
-function onSiteAudit() {
+function onSiteAudit(PRODUCTS: Product[]) {
   // fakty o webe, ktoré vieme povedať bez externých služieb
   const pocetStranok =
     8 /* hlavné sekcie */ + PRODUCTS.length + AQUARIUMS.length;
@@ -30,7 +31,7 @@ function onSiteAudit() {
 }
 
 export async function GET() {
-  const audit = onSiteAudit();
+  const audit = onSiteAudit(await nacitajSkrinky());
   const site = process.env.GSC_SITE ?? "sc-domain:aquaprime.sk";
 
   if (!googleNakonfigurovany()) {

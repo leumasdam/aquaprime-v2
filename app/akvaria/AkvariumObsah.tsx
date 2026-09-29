@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { AQUARIUMS, matchingCabinets, type Aquarium } from "../aquariums";
+import { nacitajSkrinky } from "../katalog/skrinky";
 import { odkaz, type Jazyk } from "../jazyk";
 import {
   akvariumNazov,
@@ -15,7 +16,7 @@ import DoKosika from "../DoKosika";
 import Drobcek from "../Drobcek";
 import { VT } from "../vt";
 
-export default function AkvariumObsah({
+export default async function AkvariumObsah({
   a,
   t,
   jazyk,
@@ -30,7 +31,7 @@ export default function AkvariumObsah({
   const vystuhy = akvariumVystuhy(a, jazyk);
   const pouzitie = akvariumPouzitie(a, jazyk);
 
-  const cabinets = matchingCabinets(a);
+  const cabinets = matchingCabinets(await nacitajSkrinky(), a);
   // jednotný vecný popis (audit textov 11. 9. 2026) — dlhé marketingové odseky
   // od klienta sa nezobrazujú, parametre a cena ostávajú samostatne
   const popis = ta.popis.replace("{dim}", a.dim);

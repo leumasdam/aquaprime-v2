@@ -20,7 +20,7 @@ import numpy as np
 from PIL import Image
 
 KOREN = Path(__file__).resolve().parent.parent
-MARKER = "export const PRODUCTS: Product[] = "
+MARKER = "export const SEED_PRODUKTY: Product[] = "
 PRAH_SILUETA = 0.78   # prekryv siluet, nad ktorým ide o ten istý záber
 PRAH_ROZDIEL = 26.0   # a zároveň sa nesmie líšiť obsah v nej
 

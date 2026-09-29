@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Tinos, Inter } from "next/font/google";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 import { KosikProvider } from "./kosik-store";
+import { KatalogProvider } from "./katalog/KatalogProvider";
+import { nacitajSkrinky } from "./katalog/skrinky";
 import "./globals.css";
 import ScrollFx from "./ScrollFx";
 import DevViewport from "./DevViewport";
@@ -63,11 +65,13 @@ export const metadata: Metadata = {
   }),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // katalog pre komponenty v prehliadaci — to, co je ulozene v administracii
+  const katalog = await nacitajSkrinky();
   return (
     <html
       lang="sk"
@@ -129,12 +133,14 @@ document.addEventListener("click",function(e){if(window.__aqNavZije)return;var b
           }}
         />
         <SkipLink />
-        <KosikProvider>
-          <ScrollProgress />
-          <SiteNav />
-          {children}
-          <SiteFooter />
-        </KosikProvider>
+        <KatalogProvider katalog={katalog}>
+          <KosikProvider>
+            <ScrollProgress />
+            <SiteNav />
+            {children}
+            <SiteFooter />
+          </KosikProvider>
+        </KatalogProvider>
         <BackToTop />
         <ScrollFx />
         <Analytika />

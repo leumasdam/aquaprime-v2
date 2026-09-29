@@ -33,7 +33,7 @@ ROZMER = {2: "100x40x80", 3: "150x50x80", 4: "200x50x70"}
 
 def katalog():
     s = open(os.path.join(KOREN, "app", "products.ts"), encoding="utf-8").read()
-    m = "export const PRODUCTS: Product[] = "
+    m = "export const SEED_PRODUKTY: Product[] = "
     a = s.index(m) + len(m)
     b = s.index("\n];", a)
     return json.loads(s[a:b + 2])

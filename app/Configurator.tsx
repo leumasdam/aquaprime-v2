@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Swatch from "./Swatch";
 import {
-  CFG_SIZES,
   CFG_TIERS,
+  konfigurovatelne,
   ledOf,
   priceOf,
   productFor,
+  rozmeryRadu,
 } from "./configurator-logic";
+import { useKatalog } from "./katalog/KatalogProvider";
 import { nafoteneDekory, type Tier } from "./products";
 import { dekorNazov, odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -23,12 +25,24 @@ import { SLOVNIKY } from "./preklady";
 export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].domov;
   const tp = SLOVNIKY[jazyk].produkt;
-  const [tier, setTier] = useState<Tier>("premium");
-  const [sizeKey, setSizeKey] = useState(CFG_SIZES[0].key);
+  const katalog = useKatalog();
+  /* rady, ktoré majú v katalógu aspoň jednu ocenenú a nafotenú skrinku —
+     ostatné sa v konfigurátore neukážu, nech sa nedá kliknúť do prázdna */
+  const rady = useMemo(() => {
+    const k = konfigurovatelne(katalog);
+    return CFG_TIERS.filter((r) => k.some((p) => p.tier === r.id));
+  }, [katalog]);
+
+  const [tierVolba, setTier] = useState<Tier>("premium");
+  const [sizeKey, setSizeKey] = useState<string | null>(null);
   const [decorId, setDecorId] = useState<string | null>(null);
 
-  const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
-  const product = productFor(tier, size)!;
+  const tier = rady.some((r) => r.id === tierVolba) ? tierVolba : rady[0]?.id;
+  const rozmery = useMemo(() => (tier ? rozmeryRadu(katalog, tier) : []), [katalog, tier]);
+  // zvolený rozmer v inom rade nemusí existovať — vtedy prvý dostupný
+  const size = rozmery.find((s) => s.key === sizeKey) ?? rozmery[0];
+  const product = tier && size ? productFor(katalog, tier, size) : undefined;
+  if (!tier || !size || !product) return null;
   // bez vlastnej voľby ukáž najlepšie zdokumentovaný dekor
   /* konfigurátor ukazuje fotku, tak ponúka len nafotené dekory */
   const dekory = nafoteneDekory(product);
@@ -80,7 +94,7 @@ export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             <span className="cfg__n">01</span> {t.cfgKroky.rad}
           </span>
           <div className="cfg__feet-opts">
-            {CFG_TIERS.map((t) => (
+            {rady.map((t) => (
               <button
                 key={t.id}
                 type="button"
@@ -99,12 +113,12 @@ export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             <span className="cfg__n">02</span> {t.cfgKroky.rozmer}
           </span>
           <div className="cfg__sizes">
-            {CFG_SIZES.map((s) => (
+            {rozmery.map((s) => (
               <button
                 key={s.key}
                 type="button"
                 className={`cfg__opt cfg__opt--size${
-                  sizeKey === s.key ? " is-on" : ""
+                  size.key === s.key ? " is-on" : ""
                 }`}
                 onClick={() => setSizeKey(s.key)}
               >

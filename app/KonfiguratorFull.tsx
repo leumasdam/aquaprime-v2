@@ -8,9 +8,10 @@ import CabinetPreview, { type PreviewTank } from "./CabinetPreview";
 import Swatch from "./Swatch";
 import { AQUARIUMS } from "./aquariums";
 import {
-  CFG_SIZES,
   CFG_TIERS,
   deeperOption,
+  konfigurovatelne,
+  rozmeryRadu,
   ledOf,
   priceOf,
   productFor,
@@ -19,7 +20,8 @@ import {
   toCfgDecor,
 } from "./configurator-logic";
 import { posliDopyt } from "./send-dopyt";
-import { nafoteneDekory, type Tier } from "./products";
+import { nafoteneDekory, type Product, type Tier } from "./products";
+import { useKatalog } from "./katalog/KatalogProvider";
 import { dvierkaPreSirku } from "./cabinet-construction";
 import { dekorNazov, odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -30,12 +32,28 @@ const FEET = [{ id: "steel", name: "Nastaviteľné nožičky", prem: 0 }] as con
 
 const OWNER_EMAIL = "patrikranda225@gmail.com";
 
+/**
+ * Obal len overí, že v katalógu je aspoň jedna skrinka s cenou aj fotkou.
+ * Katalóg sa dá upravovať v administrácii, takže to nie je samozrejmosť —
+ * a jadro konfigurátora potom s produktom počíta bez ďalších podmienok.
+ */
 export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const katalog = useKatalog();
+  const maCo = useMemo(() => konfigurovatelne(katalog).length > 0, [katalog]);
+  if (!maCo) return null;
+  return <Jadro jazyk={jazyk} katalog={katalog} />;
+}
+
+function Jadro({ jazyk, katalog }: { jazyk: Jazyk; katalog: Product[] }) {
   const t = SLOVNIKY[jazyk].konfigurator;
   const l = (h: string) => odkaz(h, jazyk);
+  const rady = useMemo(() => {
+    const k = konfigurovatelne(katalog);
+    return CFG_TIERS.filter((r) => k.some((p) => p.tier === r.id));
+  }, [katalog]);
   // predvoľba z mini-konfigurátora na homepage (?rad=&rozmer=&dekor=)
-  const [tier, setTier] = useState<Tier>("premium");
-  const [sizeKey, setSizeKey] = useState(CFG_SIZES[0].key);
+  const [tierVolba, setTier] = useState<Tier>("premium");
+  const [sizeKey, setSizeKey] = useState<string | null>(null);
   const [decorId, setDecorId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -44,7 +62,7 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     const rozmer = q.get("rozmer");
     const dekor = q.get("dekor");
     if (rad && ["basic", "standard", "premium"].includes(rad)) setTier(rad as Tier);
-    if (rozmer && CFG_SIZES.some((s) => s.key === rozmer)) setSizeKey(rozmer);
+    if (rozmer) setSizeKey(rozmer);
     if (dekor) setDecorId(dekor);
   }, []);
   const [feet, setFeet] = useState<(typeof FEET)[number]>(FEET[0]);
@@ -61,8 +79,12 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const kontaktOk =
     kontakt.meno.trim().length > 1 && /.+@.+\..+/.test(kontakt.email);
 
-  const size = CFG_SIZES.find((s) => s.key === sizeKey)!;
-  const product = productFor(tier, size)!;
+  /* obal zaručil aspoň jeden konfigurovateľný rad; rozmer z iného radu alebo
+     z adresy nemusí v zvolenom rade existovať — vtedy prvý dostupný */
+  const tier = rady.some((r) => r.id === tierVolba) ? tierVolba : rady[0].id;
+  const rozmery = rozmeryRadu(katalog, tier);
+  const size = rozmery.find((s) => s.key === sizeKey) ?? rozmery[0];
+  const product = productFor(katalog, tier, size)!;
   const { w, d, h } = size;
   // The fixed 3D sample has two doors; never show it for a three-panel selection.
   const view = requestedView === "3d" && w >= 120 ? "skica" : requestedView;
@@ -185,7 +207,7 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             <span className="kfx__n">01</span> {t.krok1}
           </span>
           <div className="kfx__tiers">
-            {CFG_TIERS.map((t) => (
+            {rady.map((t) => (
               <button
                 key={t.id}
                 type="button"
@@ -204,11 +226,11 @@ export default function KonfiguratorFull({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             <span className="kfx__n">02</span> {t.krok2}
           </span>
           <div className="kfx__sizes">
-            {CFG_SIZES.map((s) => (
+            {rozmery.map((s) => (
               <button
                 key={s.key}
                 type="button"
-                className={`kfx__size${sizeKey === s.key ? " is-on" : ""}`}
+                className={`kfx__size${size.key === s.key ? " is-on" : ""}`}
                 onClick={() => setSizeKey(s.key)}
               >
                 {s.label}

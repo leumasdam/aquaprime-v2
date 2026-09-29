@@ -124,8 +124,8 @@ console.log('Vyradené dekory (bez fotky v správnom počte dvierok):\n  '+vyrad
 console.log(`Updated ${report.length} galleries; removed ${vyradene.length}; schematics: ${PRODUCTS.flatMap(p=>p.decors).filter(d=>d.illuFrom==='schema').length}`);
 if(write){
  const src=fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n');
- const start=src.indexOf('export const PRODUCTS: Product[] = [');
+ const start=src.indexOf('export const SEED_PRODUKTY: Product[] = [');
  const end=src.indexOf('\n  ];',start);
  if(start<0||end<0)throw new Error('PRODUCTS array not found');
- fs.writeFileSync(file,src.slice(0,start)+'export const PRODUCTS: Product[] = '+JSON.stringify(PRODUCTS,null,2).slice(0,-1)+'  ];'+src.slice(end+5));
+ fs.writeFileSync(file,src.slice(0,start)+'export const SEED_PRODUKTY: Product[] = '+JSON.stringify(PRODUCTS,null,2).slice(0,-1)+'  ];'+src.slice(end+5));
 }

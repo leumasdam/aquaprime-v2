@@ -5,6 +5,7 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { katalogStats, zdravieWebu, integracie } from "../../../admin-data";
+import { nacitajSkrinky } from "../../../katalog/skrinky";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
@@ -23,11 +24,12 @@ export async function POST(request: Request) {
     /* prázdne telo je v poriadku */
   }
 
+  const katalog = await nacitajSkrinky();
   const kontext = {
     web: "aquaprime.sk — prémiové akvarijné skrinky s oceľovým rámom a akváriá na mieru, slovenský trh",
     stavWebu: {
-      katalog: katalogStats(),
-      zdravie: zdravieWebu(),
+      katalog: katalogStats(katalog),
+      zdravie: zdravieWebu(katalog),
       integracie: integracie(),
     },
     analytika: extra,

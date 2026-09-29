@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
-import {PRODUCTS} from '../app/products.ts';
+import {SEED_PRODUKTY as PRODUCTS} from '../app/products.ts';
 import {dvierkaPreSirku,cabinetSurfaces} from '../app/cabinet-construction.ts';
 import {dvierkaFotky} from './foto-dvierka.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -12,7 +12,10 @@ for(const width of [200,220,250])assert.equal(dvierkaPreSirku(width),4);
 assert.equal(dvierkaFotky('/img/products/unclassified-01.webp'),null);
 let galleries=0,photos=0,leds=0,schematics=0,borrowed=0,missing=0;
 const unique=new Set();
+let zAdminu=0,rozpracovane=0;
 for(const p of PRODUCTS){
+ // rozpracovaná skrinka z administrácie smie byť neúplná — na webe sa neukazuje
+ if(p.skryta){rozpracovane++;continue;}
  const expected=dvierkaPreSirku(p.w);
  assert.equal(p.cover,p.decors[0].images[0],`${p.slug}: cover differs from gallery`);
  for(const d of p.decors){
@@ -37,8 +40,12 @@ for(const p of PRODUCTS){
    // basic smie požičať rám s iným počtom polí, ale stále len basic fotku — to stráži kontrola prefixu nižšie
   }
   const allowed=labelled?d.illuDvierka:expected;
-  assert.equal(dvierkaFotky(d.images[0]),allowed,`${p.slug}/${d.id}: wrong cover`);
+  // fotky nahraté v administrácii (/foto/…) ležia v úložisku, nie v public/,
+  // a ich názov je náhodný — počet dvierok sa z neho odčítať nedá
+  const zUloziska=(src)=>src.startsWith('/foto/');
+  if(!zUloziska(d.images[0]))assert.equal(dvierkaFotky(d.images[0]),allowed,`${p.slug}/${d.id}: wrong cover`);
   for(const image of [...d.images,...Object.values(d.led??{}).flat()]){
+   if(zUloziska(image)){zAdminu++;unique.add(image);continue;}
    const actual=dvierkaFotky(image);
    const want=image.includes('/led/')?expected:allowed;
    assert.ok(actual===0||actual===want,`${p.slug}/${d.id}: ${image} has ${actual}, expected ${want}`);
@@ -57,4 +64,4 @@ for(const p of PRODUCTS){
 }
 const surfaces=cabinetSurfaces({id:'dub-spanielsky-black-matt',swatch:['wood','black']});
 assert.deepEqual(surfaces,{doors:'black',body:'wood'});
-console.log(`PASS: ${PRODUCTS.length} products, ${galleries} decor galleries, ${photos} photo references, ${leds} LED references, ${schematics} labelled schematics, ${borrowed} labelled other-door-count galleries, ${missing} decors awaiting photos, ${unique.size} unique assets. No mismatched or unknown panel counts.`);
+console.log(`PASS: ${PRODUCTS.length} products (${rozpracovane} rozpracovaných), ${zAdminu} fotiek z administrácie, ${galleries} decor galleries, ${photos} photo references, ${leds} LED references, ${schematics} labelled schematics, ${borrowed} labelled other-door-count galleries, ${missing} decors awaiting photos, ${unique.size} unique assets. No mismatched or unknown panel counts.`);

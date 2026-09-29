@@ -5,7 +5,11 @@
 body:has(.admin-root) .nav,
 body:has(.admin-root) .footer,
 body:has(.admin-root) .scroll-progress,
-body:has(.admin-root) .totop {
+body:has(.admin-root) .totop,
+/* cookie lišta a úvodná animácia patria návštevníkom webu, nie panelu —
+   lišta by navyše prekrývala spodnú lištu s tlačidlom Uložiť */
+body:has(.admin-root) .ck,
+body:has(.admin-root) .intro {
   display: none;
 }
 

@@ -3,13 +3,15 @@
 
 import { NextResponse } from "next/server";
 import { katalogStats, integracie, zdravieWebu } from "../../../admin-data";
+import { nacitajSkrinky } from "../../../katalog/skrinky";
 
 export const dynamic = "force-dynamic";
 
-export function GET() {
+export async function GET() {
+  const katalog = await nacitajSkrinky();
   return NextResponse.json({
-    katalog: katalogStats(),
-    zdravie: zdravieWebu(),
+    katalog: katalogStats(katalog),
+    zdravie: zdravieWebu(katalog),
     integracie: integracie(),
     generovane: new Date().toISOString(),
   });

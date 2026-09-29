@@ -2,7 +2,7 @@
 // z katalógu a z prostredia, bez externých služieb. Počíta sa pri každom
 // requeste, takže čísla vždy sedia s tým, čo je nasadené.
 
-import { PRODUCTS } from "./products";
+import type { Product } from "./products";
 import { AQUARIUMS, aquariumPriceValue } from "./aquariums";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 
@@ -11,7 +11,7 @@ function cenaNaCislo(cena: string): number {
   return Number.isFinite(n) ? n : 0;
 }
 
-export function katalogStats() {
+export function katalogStats(PRODUCTS: Product[]) {
   const dekory = PRODUCTS.flatMap((p) => p.decors.map((d) => ({ p, d })));
   const vlastne = dekory.filter(({ d }) => !d.inherited && !d.illuFrom);
   const inyRozmer = dekory.filter(({ d }) => d.illuFrom === "rozmer");
@@ -30,8 +30,9 @@ export function katalogStats() {
         standard: PRODUCTS.filter((p) => p.tier === "standard").length,
         basic: PRODUCTS.filter((p) => p.tier === "basic").length,
       },
-      cenaOd: Math.min(...cenySkriniek),
-      cenaDo: Math.max(...cenySkriniek),
+      // katalóg môže byť bez ocenenej skrinky — Math.min z prázdneho poľa je Infinity
+      cenaOd: cenySkriniek.length ? Math.min(...cenySkriniek) : 0,
+      cenaDo: cenySkriniek.length ? Math.max(...cenySkriniek) : 0,
       sLed: PRODUCTS.filter((p) => p.priceLed).length,
     },
     akvaria: {
@@ -67,9 +68,9 @@ export function integracie() {
   };
 }
 
-export function zdravieWebu() {
+export function zdravieWebu(katalog: Product[]) {
   const i = integracie();
-  const stats = katalogStats();
+  const stats = katalogStats(katalog);
   // checklist zoradený podľa dôležitosti — čo blokuje ostrý štart
   return [
     {

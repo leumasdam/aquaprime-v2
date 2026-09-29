@@ -59,6 +59,12 @@ export type Product = {
   features: string[];
   decors: Decor[];
   cover: string;
+  /**
+   * Rozpracovaná skrinka z administrácie — na webe sa neukáže. Kým je
+   * skrytá, smie byť neúplná (napríklad ešte bez fotky). Zverejniť sa dá
+   * až vtedy, keď prejde kontrolou v app/katalog/kontrola.ts.
+   */
+  skryta?: boolean;
 };
 
 export const TIERS: { id: Tier; label: string; note: string }[] = [
@@ -67,7 +73,15 @@ export const TIERS: { id: Tier; label: string; note: string }[] = [
   { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
 ];
 
-export const PRODUCTS: Product[] = [
+/**
+ * Pôvodný katalóg v kóde. Web z neho beží, kým klient v administrácii
+ * nič neuloží — potom má prednosť uložená verzia (app/katalog/skrinky.ts).
+ *
+ * Nečítaj ho priamo v komponentoch. Server berie katalóg cez
+ * nacitajSkrinky(), prehliadač cez useKatalog(). Inak by sa zmeny
+ * z administrácie na danom mieste neprejavili.
+ */
+export const SEED_PRODUKTY: Product[] = [
   {
     "slug": "premium-80x35x80",
     "name": "PREMIUM 80 × 35 × 80",
@@ -529,9 +543,7 @@ export const PRODUCTS: Product[] = [
           3,
           4,
           5,
-          6,
-          10,
-          11
+          6
         ]
       },
       {
@@ -2815,11 +2827,7 @@ export const PRODUCTS: Product[] = [
         "illuFrom": "rozmer",
         "illuIdx": [
           4,
-          7,
-          8,
-          9,
-          10,
-          11
+          7
         ]
       },
       {
@@ -3843,8 +3851,7 @@ export const PRODUCTS: Product[] = [
           2,
           3,
           5,
-          6,
-          7
+          6
         ]
       },
       {
@@ -5819,8 +5826,8 @@ export const PRODUCTS: Product[] = [
     "cover": "/img/products/basic-150x50x80-04.webp"
   }
 ];
-export function getProduct(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+export function najdiProdukt(katalog: Product[], slug: string): Product | undefined {
+  return katalog.find((p) => p.slug === slug);
 }
 
 /**
@@ -5829,7 +5836,9 @@ export function getProduct(slug: string): Product | undefined {
  * nesmú kaziť cenové kotvy konfigurátora.
  */
 export function nafoteneDekory(p: Product): Decor[] {
-  return p.decors.filter((d) => !d.chyba);
+  // dekor bez fotky nepustíme ani keď nemá príznak chyby — v administrácii
+  // ho klient môže pridať skôr, než k nemu nahrá prvú fotku
+  return p.decors.filter((d) => !d.chyba && d.images.length > 0);
 }
 
 export function cenaEur(p: Product): number | null {

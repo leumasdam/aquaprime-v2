@@ -7,7 +7,8 @@ import Configurator from "./Configurator";
 import HeroFeatures from "./HeroFeatures";
 import Pecat from "./Pecat";
 import ProductCard from "./ProductCard";
-import { PRODUCTS } from "./products";
+import type { Product } from "./products";
+import { nacitajSkrinky } from "./katalog/skrinky";
 import PasKarusel from "./PasKarusel";
 import InstagramPas from "./InstagramPas";
 
@@ -17,9 +18,23 @@ const FEATURED_SLUGS = [
   "standard-120x40x80",
   "basic-120x40x80",
 ];
-const FEATURED = FEATURED_SLUGS
-  .map((s) => PRODUCTS.find((p) => p.slug === s))
-  .filter((p): p is (typeof PRODUCTS)[number] => Boolean(p));
+/**
+ * Vybrané kusy na úvodnú stránku. Klient ich môže v administrácii zmazať
+ * alebo skryť — vtedy prázdne miesto doplní iná skrinka z toho istého radu,
+ * aby na úvode ostali tri karty.
+ */
+function vybrane(katalog: Product[]): Product[] {
+  const out: Product[] = [];
+  for (const slug of FEATURED_SLUGS) {
+    const presne = katalog.find((p) => p.slug === slug);
+    const tier = slug.split("-")[0];
+    const nahrada = katalog.find((p) => p.tier === tier && !out.includes(p));
+    const vyber = presne ?? nahrada;
+    if (vyber && !out.includes(vyber)) out.push(vyber);
+  }
+  for (const p of katalog) if (out.length < 3 && !out.includes(p)) out.push(p);
+  return out.slice(0, 3);
+}
 
 
 
@@ -45,7 +60,8 @@ const COLLECTION_IMGS: { id: string; img: string; href?: string }[] = [
   },
 ];
 
-export default function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
+export default async function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
+  const FEATURED = vybrane(await nacitajSkrinky());
   const l = (h: string) => odkaz(h, jazyk);
   const d = t.domov;
   return (

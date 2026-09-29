@@ -1,4 +1,4 @@
-import { getProduct } from "../../../products";
+import { najdiProdukt, type Product } from "../../../products";
 import { getAquarium } from "../../../aquariums";
 
 /**
@@ -9,6 +9,10 @@ import { getAquarium } from "../../../aquariums";
  * a počet kusov; cenu si dohľadáme sami. Musí to sedieť s tým, ako ju
  * ráta košík (SkrinkaDoKosika, akvaria/[slug]/page.tsx), inak by zákazník
  * videl inú sumu, než akú by zaplatil.
+ *
+ * Katalóg skriniek dostáva volajúci. Ceny sa menia v administrácii, takže
+ * platba musí počítať s tou istou verziou, akú zákazník videl na webe —
+ * nie s cenami zapečenými do kódu pri builde.
  */
 
 export type PolozkaVstup = {
@@ -25,7 +29,11 @@ export type Prepocet =
   | { ok: true; suma: number; doprava: number; spolu: number; zaloha: number; doplatok: number }
   | { ok: false; dovod: string };
 
-export function prepocitaj(polozky: PolozkaVstup[], odber: boolean): Prepocet {
+export function prepocitaj(
+  katalog: Product[],
+  polozky: PolozkaVstup[],
+  odber: boolean,
+): Prepocet {
   if (!Array.isArray(polozky) || !polozky.length) return { ok: false, dovod: "prazdny_kosik" };
 
   let suma = 0;
@@ -38,7 +46,7 @@ export function prepocitaj(polozky: PolozkaVstup[], odber: boolean): Prepocet {
 
     let cena: number | null = null;
     if (p.druh === "skrinka") {
-      const s = getProduct(slug);
+      const s = najdiProdukt(katalog, slug);
       // rovnaký prepis ako v SkrinkaDoKosika — „335 €" → 335
       if (s) cena = Number(s.price.replace(/[^\d]/g, "")) || null;
     } else if (p.druh === "akvarium") {

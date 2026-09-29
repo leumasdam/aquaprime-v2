@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { eur, useKosik, type PolozkaKosika } from "../kosik-store";
 import { AQUARIUMS } from "../aquariums";
-import { cenaEur, PRODUCTS } from "../products";
+import { cenaEur, nafoteneDekory } from "../products";
+import { useKatalog } from "../katalog/KatalogProvider";
 import { suggestTank } from "../configurator-logic";
 import { odkaz, type Jazyk } from "../jazyk";
 import { SLOVNIKY } from "../preklady";
@@ -103,6 +104,7 @@ function Udaj({
 }
 
 export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+  const katalog = useKatalog();
   const t = SLOVNIKY[jazyk].kosik;
   const l = (h: string) => odkaz(h, jazyk);
   const { polozky, suma, pocet, zmenPocet, uber, vyprazdni, pridaj, pripravene } =
@@ -173,7 +175,7 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
 
     for (const p of polozky) {
       if (p.druh === "skrinka") {
-        const prod = PRODUCTS.find((x) => x.slug === p.slug);
+        const prod = katalog.find((x) => x.slug === p.slug);
         if (!prod) continue;
         const tank = suggestTank(prod.w, prod.d).best;
         if (tank && !vKosiku.has(`akvarium:${tank.slug}`)) {
@@ -191,19 +193,23 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       } else {
         const akv = AQUARIUMS.find((x) => x.slug === p.slug);
         if (!akv) continue;
-        const skr = PRODUCTS.filter((x) => x.w === akv.w && cenaEur(x) !== null).sort(
+        // návrh potrebuje fotku — skrinku bez nafoteného dekoru neponúkneme
+        const skr = katalog.filter(
+          (x) => x.w === akv.w && cenaEur(x) !== null && nafoteneDekory(x).length > 0
+        ).sort(
           (a, b) =>
             Number(a.price.replace(/\D/g, "")) - Number(b.price.replace(/\D/g, ""))
         )[0];
-        if (skr && !vKosiku.has(`skrinka:${skr.slug}`)) {
+        const dekor = skr ? nafoteneDekory(skr)[0] : undefined;
+        if (skr && dekor && !vKosiku.has(`skrinka:${skr.slug}`)) {
           out.push({
-            id: `skrinka-${skr.slug}-${skr.decors[0].id}`,
+            id: `skrinka-${skr.slug}-${dekor.id}`,
             druh: "skrinka",
             slug: skr.slug,
             nazov: skr.name,
             variant: `${skr.dim} · ${t.navrhUnesie} ${akv.vol} ${t.navrhVody}`,
             cena: Number(skr.price.replace(/\D/g, "")),
-            obrazok: skr.decors[0].images[0],
+            obrazok: dekor.images[0],
             ks: 1,
           });
         }
@@ -213,7 +219,7 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     const videne = new Set<string>();
     return out.filter((x) => !videne.has(x.id) && videne.add(x.id)).slice(0, 2);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [polozky, jazyk]);
+  }, [polozky, jazyk, katalog]);
 
   // je platobná brána nastavená? bez kľúčov ostáva len prevod
   useEffect(() => {

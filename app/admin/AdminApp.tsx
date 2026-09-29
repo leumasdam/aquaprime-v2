@@ -10,6 +10,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import EditorKatalogu from "./katalog/EditorKatalogu";
 import { AquaFishMark } from "../brand";
 import { PLAN_FRAZ } from "./keywords";
 
@@ -138,6 +139,14 @@ function Ikona({ id }: { id: string }) {
           <path d="M10 3.5 11.6 8l4.4 2-4.4 2L10 16.5 8.4 12 4 10l4.4-2Z" />
         </svg>
       );
+    case "skrinky":
+      return (
+        <svg {...spolocne}>
+          <rect x="3.5" y="5" width="13" height="11" rx="1" />
+          <path d="M10 5v11M3.5 9.5h13M8 12.5h.01M12 12.5h.01" />
+          <path d="M5 16v1.5M15 16v1.5" />
+        </svg>
+      );
     case "blog":
       return (
         <svg {...spolocne}>
@@ -160,6 +169,7 @@ function Ikona({ id }: { id: string }) {
 
 const TABY = {
   prehlad: "Prehľad",
+  skrinky: "Skrinky",
   navstevnost: "Návštevnosť",
   seo: "SEO",
   slova: "Kľúčové slová",
@@ -174,7 +184,7 @@ type TabId = keyof typeof TABY;
 const SKUPINY: { label: string | null; taby: TabId[] }[] = [
   { label: null, taby: ["prehlad"] },
   { label: "Marketing", taby: ["navstevnost", "seo", "slova", "agenti"] },
-  { label: "Obsah", taby: ["ai", "blog"] },
+  { label: "Obsah", taby: ["skrinky", "ai", "blog"] },
   { label: "Systém", taby: ["nastavenia"] },
 ];
 
@@ -214,7 +224,26 @@ function Nastroj({ nazov, kroky }: { nazov: string; kroky: string[] }) {
 /* ---------- hlavný komponent ---------- */
 
 export default function AdminApp() {
-  const [tab, setTab] = useState<TabId>("prehlad");
+  const [tab, setTabStav] = useState<TabId>("prehlad");
+  /* Editor katalógu sa pripojí pri prvom otvorení a potom ostáva pripojený,
+     len skrytý. Preklik na inú záložku by inak zahodil rozpísanú skrinku. */
+  const [editorOtvoreny, setEditorOtvoreny] = useState(false);
+  const setTab = useCallback((t: TabId) => {
+    setTabStav(t);
+    if (t === "skrinky") setEditorOtvoreny(true);
+    // záložka v adrese — po obnovení stránky sa klient vráti tam, kde bol
+    window.history.replaceState(null, "", t === "prehlad" ? "/admin" : `/admin#${t}`);
+  }, []);
+  useEffect(() => {
+    // záložka z adresy — pri načítaní aj pri zmene kotvy (odkaz v rámci panela)
+    const podlaAdresy = () => {
+      const h = window.location.hash.slice(1);
+      if (h in TABY) setTab(h as TabId);
+    };
+    podlaAdresy();
+    window.addEventListener("hashchange", podlaAdresy);
+    return () => window.removeEventListener("hashchange", podlaAdresy);
+  }, [setTab]);
   const [stav, setStav] = useState<Stav | null>(null);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [seo, setSeo] = useState<Seo | null>(null);
@@ -366,6 +395,13 @@ export default function AdminApp() {
           <span className="ad-topbar__crumb">Administrácia · {TABY[tab]}</span>
           <span className="ad-topbar__date">{datum}</span>
         </div>
+
+        {/* ============ SKRINKY (editor katalógu) ============ */}
+        {editorOtvoreny && (
+          <div hidden={tab !== "skrinky"}>
+            <EditorKatalogu />
+          </div>
+        )}
 
         {/* ============ PREHĽAD ============ */}
         {tab === "prehlad" && (

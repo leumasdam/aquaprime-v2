@@ -3,7 +3,7 @@ import { cabinetSurfaces } from "./cabinet-construction";
 // Cieľ: konfigurátor musí hovoriť to isté čo katalóg. Preto sa ceny počítajú
 // z reálnych cenníkových kotiev v products.ts, nie z vymysleného vzorca.
 
-import { cenaEur, PRODUCTS, type Decor, type Product, type Tier } from "./products";
+import { cenaEur, nafoteneDekory, type Decor, type Product, type Tier } from "./products";
 import { AQUARIUMS, type Aquarium } from "./aquariums";
 
 export type CfgTier = { id: Tier; label: string; note: string };
@@ -17,9 +17,15 @@ export type CfgSize = {
   label: string;
 };
 
-export const CFG_SIZES: CfgSize[] = (() => {
+/*
+ * Funkcie tu dostávajú katalóg ako parameter a nečítajú ho z modulu.
+ * Katalóg sa dá meniť v administrácii za behu, takže ho konfigurátor
+ * berie od volajúceho (useKatalog() v prehliadači, nacitajSkrinky()
+ * na serveri) — inak by počítal so starými cenami a rozmermi.
+ */
+export function cfgSizes(katalog: Product[]): CfgSize[] {
   const seen = new Map<string, CfgSize>();
-  for (const p of PRODUCTS) {
+  for (const p of katalog) {
     // Rozmery, ktoré ešte nie sú v cenníku, konfigurátor neponúka — počítal
     // by z nich cenu a tá by vyšla nula.
     if (cenaEur(p) === null) continue;
@@ -29,11 +35,25 @@ export const CFG_SIZES: CfgSize[] = (() => {
     }
   }
   return [...seen.values()].sort((a, b) => a.w - b.w || a.h - b.h);
-})();
+}
+
+/**
+ * Skrinky, ktoré vie konfigurátor ukázať: majú cenu aj aspoň jeden
+ * nafotený dekor. Katalóg sa dá upravovať v administrácii, takže
+ * konfigurátor si nesmie myslieť, že každá kombinácia existuje.
+ */
+export function konfigurovatelne(katalog: Product[]): Product[] {
+  return katalog.filter((p) => cenaEur(p) !== null && nafoteneDekory(p).length > 0);
+}
+
+/** Rozmery, ktoré má daný rad v konfigurovateľnej ponuke. */
+export function rozmeryRadu(katalog: Product[], tier: Tier): CfgSize[] {
+  return cfgSizes(konfigurovatelne(katalog).filter((p) => p.tier === tier));
+}
 
 /** Konkrétny produkt z katalógu pre kombináciu rad × rozmer. */
-export function productFor(tier: Tier, size: CfgSize): Product | undefined {
-  return PRODUCTS.find(
+export function productFor(katalog: Product[], tier: Tier, size: CfgSize): Product | undefined {
+  return katalog.find(
     (p) => p.tier === tier && p.w === size.w && p.d === size.d && p.h === size.h
   );
 }
@@ -82,8 +102,8 @@ const num = (s: string) => Number(s.replace(/[^\d]/g, ""));
 type Anchor = { w: number; d: number; h: number; price: number; led: number | null };
 
 /** Cenníkové kotvy pre rad, zoradené podľa šírky. */
-function anchors(tier: Tier): Anchor[] {
-  return PRODUCTS.filter((p) => p.tier === tier && cenaEur(p) !== null)
+function anchors(katalog: Product[], tier: Tier): Anchor[] {
+  return katalog.filter((p) => p.tier === tier && cenaEur(p) !== null)
     .map((p) => ({
       w: p.w,
       d: p.d,
@@ -95,8 +115,8 @@ function anchors(tier: Tier): Anchor[] {
 }
 
 /** Príplatok za LED podsvietenie v danom rade (Basic ho v cenníku nemá). */
-export function ledSurcharge(tier: Tier): number | null {
-  const a = anchors(tier);
+export function ledSurcharge(katalog: Product[], tier: Tier): number | null {
+  const a = anchors(katalog, tier);
   const withLed = a.find((x) => x.led !== null);
   return withLed ? withLed.led : null;
 }
@@ -115,13 +135,29 @@ export type PriceResult = {
  * mierne — je to orientačný odhad, presnú cenu dá výroba.
  */
 export function cabinetPrice(
+  katalog: Product[],
   tier: Tier,
   w: number,
   d: number,
   h: number,
   led: boolean
 ): PriceResult {
-  const a = anchors(tier);
+  const a = anchors(katalog, tier);
+
+  /* Katalóg sa dá upravovať v administrácii, takže rad môže zostať bez
+     ocenených rozmerov, alebo s jediným. Bez dvoch kotiev sa nedá počítať
+     sklon — vtedy ukážeme presnú cenu jedinej kotvy, alebo nič. */
+  if (a.length === 0) return { value: 0, exact: false, basedOn: "" };
+  if (a.length === 1) {
+    const k = a[0];
+    const priplatok = led ? (k.led ?? 0) : 0;
+    return {
+      value: Math.max(120, Math.round((k.price + priplatok) / 5) * 5),
+      exact: w === k.w && d === k.d && h === k.h,
+      basedOn: `${k.w} × ${k.d} × ${k.h} cm`,
+    };
+  }
+
   const first = a[0];
   const last = a[a.length - 1];
 
@@ -149,7 +185,7 @@ export function cabinetPrice(
   // atypická hĺbka a výška — malý príplatok za materiál navyše
   base += (d - ref.d) * 1.2 + (h - ref.h) * 0.9;
 
-  const surcharge = led ? (ledSurcharge(tier) ?? 0) : 0;
+  const surcharge = led ? (ledSurcharge(katalog, tier) ?? 0) : 0;
   const exact = w === ref.w && d === ref.d && h === ref.h;
 
   return {

@@ -301,6 +301,20 @@ async function brana(request: NextRequest, b: Brana): Promise<NextResponse | nul
   });
 }
 
+/**
+ * Pošle požiadavku ďalej a pripíše k nej, kto je prihlásený. Hlavičku
+ * vždy prepíšeme — keby ju poslal prehliadač sám, bola by podvrhnutá.
+ * Administrácia z nej berie autora zmeny do histórie katalógu.
+ */
+const HLAVICKA_AUTORA = "x-aq-admin";
+
+function dalejAko(request: NextRequest, meno: string | null): NextResponse {
+  const h = new Headers(request.headers);
+  h.delete(HLAVICKA_AUTORA);
+  if (meno) h.set(HLAVICKA_AUTORA, encodeURIComponent(meno));
+  return NextResponse.next({ request: { headers: h } });
+}
+
 /* ---------------- vstupný bod ---------------- */
 
 export async function proxy(request: NextRequest) {
@@ -313,7 +327,7 @@ export async function proxy(request: NextRequest) {
     // denný cron od Vercelu sa hlási hlavičkou, nie cookie
     const cron = process.env.CRON_SECRET;
     if (cron && request.headers.get("authorization") === `Bearer ${cron}`) {
-      return NextResponse.next();
+      return dalejAko(request, "Automat");
     }
 
     // odhlásenie zmaže obe cookies a vráti prihlasovaciu stránku
@@ -336,6 +350,10 @@ export async function proxy(request: NextRequest) {
           );
     }
 
+    // prihlásený ide rovno ďalej a nesie so sebou svoje meno
+    const ja = await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value);
+    if (ja) return dalejAko(request, ja.meno);
+
     const stop = await brana(request, {
       ucty,
       cookie: ADMIN_COOKIE,
@@ -345,7 +363,7 @@ export async function proxy(request: NextRequest) {
       jeApi,
       menoCookie: ADMIN_MENO_COOKIE,
     });
-    return stop ?? NextResponse.next();
+    return stop ?? dalejAko(request, null);
   }
 
   /* Stripe webhook chodí od Stripu, nie z prehliadača — cookie mať nemôže

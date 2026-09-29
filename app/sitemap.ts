@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { PRODUCTS } from "./products";
+import { nacitajSkrinky } from "./katalog/skrinky";
 import { AQUARIUMS } from "./aquariums";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 import { vsetkyClanky } from "./blog/clanky";
@@ -47,7 +47,8 @@ function dvojjazycne(cesta: string, priorita: number) {
   ];
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const skrinky = await nacitajSkrinky();
   // skrytý web neponúka mapu stránok — inak by ju robot našiel aj bez odkazu
   if (SKRYTY_PRED_VYHLADAVACMI) return [];
   return [
@@ -58,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       )
     ),
     ...SETY.flatMap((s) => dvojjazycne(`/sety/${s.id}`, 0.7)),
-    ...PRODUCTS.flatMap((p) => dvojjazycne(`/skrinky/${p.slug}`, 0.8)),
+    ...skrinky.flatMap((p) => dvojjazycne(`/skrinky/${p.slug}`, 0.8)),
     ...AQUARIUMS.flatMap((a) => dvojjazycne(`/akvaria/${a.slug}`, 0.8)),
     /* články sú zatiaľ len po slovensky — bez anglickej dvojičky */
     ...vsetkyClanky().map((c) => ({
