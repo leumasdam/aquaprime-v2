@@ -2,10 +2,18 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Brány webu — zámok pre verejnosť (SITE_PASSWORD) a administrácia
- * (ADMIN_PASSWORD). Session je podpísaná HMAC-SHA256 cookie s expiráciou
- * (kľúč sa odvádza z hesla — zmena hesla zneplatní všetky sessions).
+ * Brány webu — zámok pre verejnosť (SITE_PASSWORD) a administrácia.
+ * Session je podpísaná HMAC-SHA256 cookie s expiráciou (kľúč sa odvádza
+ * z hesla — zmena hesla zneplatní všetky sessions daného účtu).
  * Neúspešné pokusy o heslo sa rátajú per-IP (best-effort v pamäti inštancie).
+ *
+ * Do administrácie chodí viac ľudí a každý má vlastné heslo:
+ *   ADMIN_PASSWORD  — účet majiteľa webu (Samuel)
+ *   ADMIN_USERS     — ďalšie účty ako „Meno:heslo" oddelené čiarkou
+ * Prihlasovací formulár ostáva jednopoličkový; podľa hesla sa pozná, kto
+ * prišiel. Meno sa uloží do čitateľnej cookie, aby ho panel vedel ukázať —
+ * samotné oprávnenie drží podpísaná httpOnly cookie, nie tento štítok.
+ * Odhlásenie: /admin?odhlasit=1.
  *
  * Vpustenie: POST formulár na prihlasovacej stránke, alebo ?heslo=…
  * v odkaze (na zdieľanie klientovi). Cookie: web 30 dní, admin 14 dní.
@@ -13,6 +21,8 @@ import type { NextRequest } from "next/server";
 
 const COOKIE = "aq_vstup";
 const ADMIN_COOKIE = "aq_admin";
+/** čitateľný štítok s menom prihláseného — len na zobrazenie v paneli */
+const ADMIN_MENO_COOKIE = "aq_admin_kto";
 
 /* ---------------- podpísané sessions (Web Crypto, edge-safe) ---------------- */
 
@@ -33,8 +43,10 @@ async function hmacKluc(tajomstvo: string): Promise<CryptoKey> {
   ]);
 }
 
-async function vytvorSession(tajomstvo: string, dni: number): Promise<string> {
-  const payload = b64url(enc.encode(JSON.stringify({ exp: Date.now() + dni * 86_400_000 })).buffer as ArrayBuffer);
+async function vytvorSession(tajomstvo: string, dni: number, kto?: string): Promise<string> {
+  const payload = b64url(
+    enc.encode(JSON.stringify({ exp: Date.now() + dni * 86_400_000, kto })).buffer as ArrayBuffer,
+  );
   const kluc = await hmacKluc(tajomstvo);
   const podpis = await crypto.subtle.sign("HMAC", kluc, enc.encode(payload));
   return `${payload}.${b64url(podpis)}`;
@@ -70,6 +82,44 @@ async function rovnakeHeslo(zadane: string, spravne: string): Promise<boolean> {
   let rozdiel = 0;
   for (let i = 0; i < ua.length; i++) rozdiel |= ua[i] ^ ub[i];
   return rozdiel === 0;
+}
+
+/* ---------------- účty administrácie ---------------- */
+
+type Ucet = { meno: string; heslo: string };
+
+/**
+ * Účty čítame pri každej požiadavke, nie raz pri štarte — premenné sa dajú
+ * na Verceli zmeniť bez nasadenia a brána sa má riadiť tým, čo platí teraz.
+ * Formát ADMIN_USERS: „Patrik Randa:tajneheslo, Iny Clovek:ineheslo".
+ * Delí sa po prvej dvojbodke, takže heslo smie obsahovať ďalšie.
+ */
+function adminUcty(): Ucet[] {
+  const zoznam: Ucet[] = [];
+  const majitel = process.env.ADMIN_PASSWORD;
+  if (majitel) zoznam.push({ meno: "Samuel", heslo: majitel });
+  for (const riadok of (process.env.ADMIN_USERS ?? "").split(",")) {
+    const text = riadok.trim();
+    if (!text) continue;
+    const delenie = text.indexOf(":");
+    if (delenie < 1) continue;
+    const meno = text.slice(0, delenie).trim();
+    const heslo = text.slice(delenie + 1).trim();
+    if (meno && heslo) zoznam.push({ meno, heslo });
+  }
+  return zoznam;
+}
+
+/** tajomstvo je per účet — zmena jedného hesla neodhlási ostatných */
+const adminTajomstvo = (u: Ucet) => `admin|${u.meno}|${u.heslo}`;
+
+/** ktorý účet má platnú session; null = nikto */
+async function prihlasenyAdmin(cookie: string | undefined): Promise<Ucet | null> {
+  if (!cookie) return null;
+  for (const u of adminUcty()) {
+    if (await overSession(adminTajomstvo(u), cookie)) return u;
+  }
+  return null;
 }
 
 /* ---------------- limit pokusov (best-effort, pamäť inštancie) ---------------- */
@@ -149,7 +199,7 @@ function adminStranka(chyba: boolean, limitovany = false) {
     .replace("Web sa pripravuje", "Administrácia")
     .replace(
       "Stránka zatiaľ nie je verejná. Ak máte prístupové heslo, zadajte ho.",
-      "Prístup len pre majiteľa. Zadajte administrátorské heslo.",
+      "Riadiaci panel AQUAPRIME. Zadajte svoje prístupové heslo.",
     );
 }
 
@@ -177,16 +227,22 @@ function presmerujBezHesla(request: NextRequest): NextResponse {
 }
 
 type Brana = {
-  heslo: string;
+  /** účty, ktoré smú cez túto bránu; zámok webu má jediný, bezmenný */
+  ucty: Ucet[];
   cookie: string;
-  tajomstvo: string;
+  tajomstvo: (u: Ucet) => string;
   dni: number;
   stranka: (chyba: boolean, limitovany?: boolean) => string;
   jeApi: boolean;
+  /** brána si pamätá, kto prišiel, a zapíše meno do čitateľnej cookie */
+  menoCookie?: string;
 };
 
 async function brana(request: NextRequest, b: Brana): Promise<NextResponse | null> {
-  if (await overSession(b.tajomstvo, request.cookies.get(b.cookie)?.value)) return null;
+  const cookie = request.cookies.get(b.cookie)?.value;
+  for (const u of b.ucty) {
+    if (await overSession(b.tajomstvo(u), cookie)) return null;
+  }
 
   const adresa = ip(request);
   const limitKluc = `${b.cookie}:${adresa}`;
@@ -203,15 +259,30 @@ async function brana(request: NextRequest, b: Brana): Promise<NextResponse | nul
         },
       });
     }
-    if (await rovnakeHeslo(zadane, b.heslo)) {
+    /* Prejdeme všetky účty aj po nájdení zhody — čas odpovede tak neprezradí,
+       koľký účet sa trafil, ani či sa trafil hneď prvý. */
+    let vpusteny: Ucet | null = null;
+    for (const u of b.ucty) {
+      if (await rovnakeHeslo(zadane, u.heslo)) vpusteny = vpusteny ?? u;
+    }
+    if (vpusteny) {
       const res = presmerujBezHesla(request);
-      res.cookies.set(b.cookie, await vytvorSession(b.tajomstvo, b.dni), {
+      res.cookies.set(b.cookie, await vytvorSession(b.tajomstvo(vpusteny), b.dni, vpusteny.meno), {
         httpOnly: true,
         sameSite: "lax",
         secure: true,
         path: "/",
         maxAge: 60 * 60 * 24 * b.dni,
       });
+      if (b.menoCookie) {
+        res.cookies.set(b.menoCookie, encodeURIComponent(vpusteny.meno), {
+          httpOnly: false,
+          sameSite: "lax",
+          secure: true,
+          path: "/",
+          maxAge: 60 * 60 * 24 * b.dni,
+        });
+      }
       return res;
     }
     zapisPokus(limitKluc);
@@ -243,8 +314,18 @@ export async function proxy(request: NextRequest) {
       return NextResponse.next();
     }
 
-    const heslo = process.env.ADMIN_PASSWORD;
-    if (!heslo) {
+    // odhlásenie zmaže obe cookies a vráti prihlasovaciu stránku
+    if (request.nextUrl.searchParams.has("odhlasit")) {
+      const cielova = request.nextUrl.clone();
+      cielova.searchParams.delete("odhlasit");
+      const res = NextResponse.redirect(cielova, 303);
+      res.cookies.set(ADMIN_COOKIE, "", { path: "/", maxAge: 0 });
+      res.cookies.set(ADMIN_MENO_COOKIE, "", { path: "/", maxAge: 0 });
+      return res;
+    }
+
+    const ucty = adminUcty();
+    if (ucty.length === 0) {
       return jeApi
         ? NextResponse.json({ chyba: "ADMIN_PASSWORD nie je nastavené" }, { status: 503 })
         : new NextResponse(
@@ -254,12 +335,13 @@ export async function proxy(request: NextRequest) {
     }
 
     const stop = await brana(request, {
-      heslo,
+      ucty,
       cookie: ADMIN_COOKIE,
-      tajomstvo: `admin|${heslo}`,
+      tajomstvo: adminTajomstvo,
       dni: 14,
       stranka: adminStranka,
       jeApi,
+      menoCookie: ADMIN_MENO_COOKIE,
     });
     return stop ?? NextResponse.next();
   }
@@ -273,12 +355,9 @@ export async function proxy(request: NextRequest) {
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 
-  // platná admin session púšťa aj cez zámok webu — majiteľ sa loguje len raz
-  const adminHeslo = process.env.ADMIN_PASSWORD;
-  if (
-    adminHeslo &&
-    (await overSession(`admin|${adminHeslo}`, request.cookies.get(ADMIN_COOKIE)?.value))
-  ) {
+  // platná admin session púšťa aj cez zámok webu — kto je v paneli, ten sa
+  // na web nemá prihlasovať druhý raz
+  if (await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value)) {
     return NextResponse.next();
   }
 
@@ -286,9 +365,9 @@ export async function proxy(request: NextRequest) {
   if (pathname === "/robots.txt") return NextResponse.next();
 
   const stop = await brana(request, {
-    heslo,
+    ucty: [{ meno: "", heslo }],
     cookie: COOKIE,
-    tajomstvo: `vstup|${heslo}`,
+    tajomstvo: () => `vstup|${heslo}`,
     dni: 30,
     stranka: prihlasovaciaStranka,
     jeApi: pathname.startsWith("/api/"),

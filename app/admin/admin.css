@@ -850,3 +850,35 @@ body:has(.admin-root) .totop {
     overflow-x: auto;
   }
 }
+
+/* kto je prihlásený + odhlásenie, v päte bočného panela */
+.ad-kto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.6875rem;
+}
+.ad-kto__meno {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.ad-kto__out {
+  flex: 0 0 auto;
+  color: rgba(226, 229, 231, 0.5);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.ad-kto__out:hover {
+  color: #e8a047;
+  border-color: #e8a047;
+}

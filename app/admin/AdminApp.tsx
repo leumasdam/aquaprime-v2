@@ -299,6 +299,15 @@ export default function AdminApp() {
     ? (agenti.agenti.strateg.data as { report: string }).report
     : null;
 
+  /* Kto je prihlásený. Meno nesie čitateľná cookie, ktorú nastavuje brána
+     v proxy.ts — je to len štítok do hlavičky, oprávnenie drží podpísaná
+     httpOnly cookie, do ktorej JavaScript nevidí. */
+  const [kto, setKto] = useState("");
+  useEffect(() => {
+    const z = document.cookie.split("; ").find((c) => c.startsWith("aq_admin_kto="));
+    if (z) setKto(decodeURIComponent(z.slice("aq_admin_kto=".length)));
+  }, []);
+
   return (
     <div className="admin-root">
       <div className="ad-ambient" aria-hidden />
@@ -343,6 +352,12 @@ export default function AdminApp() {
           <a className="ad-side__out" href="/" target="_blank" rel="noreferrer">
             Zobraziť web ↗
           </a>
+          <div className="ad-kto">
+            <span className="ad-kto__meno">{kto || "Prihlásený"}</span>
+            <a className="ad-kto__out" href="/admin?odhlasit=1">
+              Odhlásiť sa
+            </a>
+          </div>
         </div>
       </aside>
 
