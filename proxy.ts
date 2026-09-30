@@ -375,11 +375,9 @@ export async function proxy(request: NextRequest) {
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 
-  // platná admin session púšťa aj cez zámok webu — kto je v paneli, ten sa
-  // na web nemá prihlasovať druhý raz
-  if (await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value)) {
-    return NextResponse.next();
-  }
+  /* Zámok webu a administrácia sú dva nezávislé zámky. Prihlásenie do panela
+     cez zámok webu nepúšťa — majiteľ tak vidí web presne ako návštevník
+     a vie si overiť, že je naozaj zamknutý (30. 9. 2026). */
 
   // robots.txt necháme prejsť, nech aj tak zakazuje indexovanie
   if (pathname === "/robots.txt") return NextResponse.next();
