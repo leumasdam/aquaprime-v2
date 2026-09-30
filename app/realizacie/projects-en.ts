@@ -14,18 +14,6 @@ const TEXTY_EN: Record<string, TextEN> = {
     alt: "A planted aquarium on a cabinet in an oak decor in a light interior",
     review: "A set in a wood decor with a planted aquarium.",
   },
-  antracit: {
-    title: "Anthracite cabinet with an open tank",
-    detail: "Anthracite / open tank",
-    alt: "An open aquarium with angelfish, roots and stones on an anthracite cabinet",
-    review: "A dark cabinet finish under an open aquarium.",
-  },
-  "biela-kocka": {
-    title: "A white set in a smaller space",
-    detail: "White set / compact format",
-    alt: "A compact aquarium with a stone composition on a tall white cabinet",
-    review: "A compact set with a white cabinet.",
-  },
   "dub-detail": {
     title: "Detail of a cabinet in an oak decor",
     detail: "Oak decor / detail of the set",
