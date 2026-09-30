@@ -27,6 +27,7 @@ export default function RealizacieShowcase({ t, jazyk }: { t: Slovnik["realizaci
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLElement | null>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const podlaId = (id: string) => projects.find((p) => p.id === id) ?? projects[0];
   const visible = projects.filter(p => category === categories[0] || p.category === category);
   const movePhoto = (direction: number) => setSelected(p => {
     const index = visible.findIndex(item => item.id === p?.id);
@@ -81,8 +82,10 @@ export default function RealizacieShowcase({ t, jazyk }: { t: Slovnik["realizaci
       <div className={s.transformCopy}><p className={s.kicker}>{t.predPoKicker}</p><h2 id="transformation-title">{t.predPoTitul1}<br />{t.predPoTitul2}</h2><p>{t.predPoText}</p><p className={s.small}>{t.predPoPozn}</p><Link href={odkaz("/dopyt", jazyk)} className={s.textLink}>{t.predPoCta} <span aria-hidden>↗</span></Link></div>
       <div className={s.compareBlock}>
         <div className={s.compare} style={{ "--split": `${split}%` } as CSSProperties}>
-          <Image src={photo(projects[4])} alt={t.altPo} fill sizes="(max-width: 760px) 90vw, 52vw" />
-          <div className={s.before}><Image src={photo(projects[6])} alt={t.altPred} fill sizes="(max-width: 760px) 90vw, 52vw" /></div>
+          {/* dvojica pred / po — podľa id, nie podľa poradia v zozname:
+              zmazanie inej realizácie by inak posunulo fotky (30. 9. 2026) */}
+          <Image src={photo(podlaId("biela-hotova"))} alt={t.altPo} fill sizes="(max-width: 760px) 90vw, 52vw" />
+          <div className={s.before}><Image src={photo(podlaId("biela-pred"))} alt={t.altPred} fill sizes="(max-width: 760px) 90vw, 52vw" /></div>
           <span className={s.beforeLabel}>{t.pred}</span><span className={s.afterLabel}>{t.po}</span><span className={s.divider} aria-hidden><span>‹ ›</span></span>
           <input type="range" min="0" max="100" value={split} onChange={e => setSplit(Number(e.target.value))} aria-label={t.porovnat} aria-valuetext={t.porovnatHodnota.replace("{n}", String(split))} />
         </div><p className={s.compareHint}>{t.potiahnite}</p>
