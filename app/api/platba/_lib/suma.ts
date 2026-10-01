@@ -1,5 +1,6 @@
 import { najdiProdukt, type Product } from "../../../products";
 import { getAquarium } from "../../../aquariums";
+import { NOZICKY_PRIPLATOK } from "../../../nozicky";
 
 /**
  * Prepočet objednávky z katalógu na serveri.
@@ -19,6 +20,8 @@ export type PolozkaVstup = {
   slug?: unknown;
   druh?: unknown;
   ks?: unknown;
+  /** skrinka s nožičkami — pripočíta sa NOZICKY_PRIPLATOK, kým je známy */
+  nozicky?: unknown;
 };
 
 export const DOPRAVA_ZDARMA_OD = 500;
@@ -49,6 +52,9 @@ export function prepocitaj(
       const s = najdiProdukt(katalog, slug);
       // rovnaký prepis ako v SkrinkaDoKosika — „335 €" → 335
       if (s) cena = Number(s.price.replace(/[^\d]/g, "")) || null;
+      // príplatok za nožičky, kým ho klient neurčí (null), sa nepočíta —
+      // dorieši sa v potvrdení objednávky, presne ako to vidí zákazník v košíku
+      if (cena !== null && p.nozicky === true) cena += NOZICKY_PRIPLATOK ?? 0;
     } else if (p.druh === "akvarium") {
       cena = getAquarium(slug)?.priceValue ?? null;
     }

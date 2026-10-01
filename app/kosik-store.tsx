@@ -27,6 +27,8 @@ export type PolozkaKosika = {
   cena: number;
   ks: number;
   obrazok: string;
+  /** skrinka s nastaviteľnými nožičkami — platba k nej pripočíta príplatok (app/nozicky.ts) */
+  nozicky?: boolean;
 };
 
 type Kontext = {

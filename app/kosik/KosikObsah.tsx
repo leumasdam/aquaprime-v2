@@ -276,7 +276,7 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
             cislo: data.cislo,
             email: f.email,
             dorucenie,
-            polozky: polozky.map((x) => ({ slug: x.slug, druh: x.druh, ks: x.ks })),
+            polozky: polozky.map((x) => ({ slug: x.slug, druh: x.druh, ks: x.ks, nozicky: x.nozicky === true })),
           }),
         }).then((r) => r.json()).catch(() => null);
 

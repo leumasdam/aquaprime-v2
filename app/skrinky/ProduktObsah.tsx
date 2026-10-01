@@ -7,6 +7,7 @@ import type { Slovnik } from "../preklady";
 import ProductGallery from "../ProductGallery";
 import ProductCard from "../ProductCard";
 import SkrinkaDoKosika from "../SkrinkaDoKosika";
+import VolbaNoziciek from "./VolbaNoziciek";
 import Drobcek from "../Drobcek";
 
 const ACCENT: Record<Tier, string> = {
@@ -120,6 +121,9 @@ export default async function ProduktObsah({
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+              {/* nožičky sú voliteľné — prepínač len pri skrinke, ktorá sa dá
+                  kúpiť; pri skrinke na dopyt sa všetko dohodne v dopyte */}
+              {maCenu && <VolbaNoziciek key={p.slug} jazyk={jazyk} />}
               {/* Rozmery, ktoré klient zatiaľ neocenil, sa nedajú kúpiť —
                   vedú rovno na dopyt, inak by v košíku skončila nula. */}
               <div className="pdetail__actions">
