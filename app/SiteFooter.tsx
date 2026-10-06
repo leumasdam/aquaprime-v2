@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav";
-import { Logo, LogoPlny } from "./brand";
+import { LogoV1 } from "./brand";
 import { odkaz, jazykZCesty } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 
@@ -36,8 +36,8 @@ export default function SiteFooter() {
           <Link href={l("/")} className="footer__logo" aria-label={t.domov}>
             {/* plný podpis má minimum 400 px — pod ním manuál káže
                 jednoduchší variant, preto sú v DOM obidva a CSS prepína */}
-            <LogoPlny className="logo--siroke" />
-            <Logo className="logo--uzke" />
+            <LogoV1 className="logo--plny logo--siroke" />
+            <LogoV1 className="logo--uzke" tag={false} />
           </Link>
           <nav className="footer__nav" aria-label={t.patickaAria}>
             {/* Domov je v pätičke prvý odkaz — logo vedľa vedie tam isto, ale

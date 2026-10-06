@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Logo } from "./brand";
+import { LogoV1 } from "./brand";
 import { NAV } from "./nav";
 import { jazykZCesty, odkaz } from "./jazyk";
 import JazykPrepinac from "./JazykPrepinac";
@@ -102,7 +102,7 @@ export default function SiteNav() {
               e.currentTarget.blur();
             }}
           >
-            <Logo />
+            <LogoV1 tag={false} />
           </Link>
           {/* doma bublina nemá čo hovoriť — „naspäť domov" už si */}
           {!jeDomov && (
