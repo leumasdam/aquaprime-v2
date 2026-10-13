@@ -6,11 +6,14 @@ import { ROZMER_EVENT } from "./LoadCalc";
 import { odkaz, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 import { posliDopyt } from "./send-dopyt";
+import { useKatalog } from "./katalog/KatalogProvider";
 
 const OWNER_EMAIL = "patrikranda225@gmail.com";
 
 export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].dopyt;
+  // katalóg pre predvyplnenie dopytu z detailu skrinky (?skrinka=…)
+  const katalog = useKatalog();
   const TYPY = t.formTypy;
   const STYLY = t.formStyly;
   const [typ, setTyp] = useState("");
@@ -26,17 +29,33 @@ export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   /* odkaz zo stránky Sety (?set=scape-60) predvyplní rozmer akvária a poznámku,
      aby zákazník nemusel set opisovať; čo už napísal, sa neprepíše */
   useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("set");
+    const q = new URLSearchParams(window.location.search);
+    const id = q.get("set");
     const set = id ? najdiSet(id) : undefined;
-    if (!set) return;
-    setRozmer((r) => r || set.akvarium);
+    if (set) {
+      setRozmer((r) => r || set.akvarium);
+      setPoznamka((p) =>
+        p ||
+        (jazyk === "en"
+          ? `I am interested in the ${set.nazov} set (${set.podtitul.en}).`
+          : `Mám záujem o set ${set.nazov} (${set.podtitul.sk}).`)
+      );
+      return;
+    }
+    /* odkaz z detailu skrinky (?skrinka=slug&nozicky=1) — pri skrinke bez
+       ceny je to jediná cesta, ako sa voľba nožičiek dostane do dopytu */
+    const slug = q.get("skrinka");
+    const skrinka = slug ? katalog.find((p) => p.slug === slug) : undefined;
+    if (!skrinka) return;
+    const tp = SLOVNIKY[jazyk].produkt;
+    setRozmer((r) => r || skrinka.aquarium);
     setPoznamka((p) =>
       p ||
-      (jazyk === "en"
-        ? `I am interested in the ${set.nazov} set (${set.podtitul.en}).`
-        : `Mám záujem o set ${set.nazov} (${set.podtitul.sk}).`)
+      tp.dopytSkrinka
+        .replace("{skrinka}", skrinka.name)
+        .replace("{nozicky}", q.get("nozicky") === "1" ? tp.dopytNozicky : "")
     );
-  }, [jazyk]);
+  }, [jazyk, katalog]);
   const rozmerRef = useRef<HTMLInputElement>(null);
 
   // kalkulačka záťaže nižšie na stránke pošle rozmery sem — vyplní pole a

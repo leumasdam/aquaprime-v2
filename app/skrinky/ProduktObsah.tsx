@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
 import { cenaEur, type Product, type Tier } from "../products";
 import { nacitajSkrinky } from "../katalog/skrinky";
@@ -8,6 +7,7 @@ import ProductGallery from "../ProductGallery";
 import ProductCard from "../ProductCard";
 import SkrinkaDoKosika from "../SkrinkaDoKosika";
 import VolbaNoziciek from "./VolbaNoziciek";
+import OdkazNaDopyt from "./OdkazNaDopyt";
 import Drobcek from "../Drobcek";
 
 const ACCENT: Record<Tier, string> = {
@@ -123,16 +123,18 @@ export default async function ProduktObsah({
               </ul>
               {/* nožičky sú voliteľné — prepínač len pri skrinke, ktorá sa dá
                   kúpiť; pri skrinke na dopyt sa všetko dohodne v dopyte */}
-              {maCenu && <VolbaNoziciek key={p.slug} jazyk={jazyk} />}
+              {/* voľba nožičiek je pri každej skrinke — pri skrinke s cenou ide
+                  do košíka, pri skrinke na dopyt do predvyplneného dopytu */}
+              <VolbaNoziciek key={p.slug} jazyk={jazyk} maCenu={maCenu} />
               {/* Rozmery, ktoré klient zatiaľ neocenil, sa nedajú kúpiť —
                   vedú rovno na dopyt, inak by v košíku skončila nula. */}
               <div className="pdetail__actions">
                 {maCenu && (
                   <SkrinkaDoKosika key={p.slug} p={p} popis={tp.doKosika} jazyk={jazyk} />
                 )}
-                <Link href={l("/dopyt")} className={maCenu ? "btn-outline" : "btn-cyan"}>
+                <OdkazNaDopyt slug={p.slug} jazyk={jazyk} className={maCenu ? "btn-outline" : "btn-cyan"}>
                   {tp.opytatSa} <span aria-hidden>→</span>
-                </Link>
+                </OdkazNaDopyt>
               </div>
             </div>
           </div>

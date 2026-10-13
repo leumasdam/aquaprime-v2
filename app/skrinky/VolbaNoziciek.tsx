@@ -10,7 +10,14 @@ import type { Jazyk } from "../jazyk";
  * prepínač ako podsvietenie v galérii. Zmenu oznamuje udalosťou, ktorú
  * počúva tlačidlo do košíka (SkrinkaDoKosika) — rovnako ako výber dekoru.
  */
-export default function VolbaNoziciek({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+export default function VolbaNoziciek({
+  jazyk = "sk",
+  maCenu = true,
+}: {
+  jazyk?: Jazyk;
+  /** skrinka bez ceny ide na dopyt — príplatok sa doladí v ponuke, nie v objednávke */
+  maCenu?: boolean;
+}) {
   const t = SLOVNIKY[jazyk].produkt;
   const [s, setS] = useState(false);
 
@@ -42,7 +49,9 @@ export default function VolbaNoziciek({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       {s && (
         <p className="pdetail__nozicky-pozn">
           {NOZICKY_PRIPLATOK === null
-            ? t.nozickyNaDopyt
+            ? maCenu
+              ? t.nozickyNaDopyt
+              : t.nozickyVPonuke
             : `${t.nozickyPriplatok}: +${NOZICKY_PRIPLATOK.toLocaleString(jazyk === "en" ? "en-GB" : "sk-SK")} €`}
         </p>
       )}
