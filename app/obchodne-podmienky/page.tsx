@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ObchodnePodmienky() {
   return (
-    <PravnaStranka titul="Obchodné podmienky" aktualizovane="11. septembra 2026">
+    <PravnaStranka titul="Obchodné podmienky" aktualizovane="13. októbra 2026">
       <h2>1. Úvodné ustanovenia</h2>
       <p>
         Tieto obchodné podmienky upravujú práva a povinnosti zmluvných strán pri predaji
@@ -31,19 +31,19 @@ export default function ObchodnePodmienky() {
       <h2>2. Predávajúci</h2>
       <p>
         Prevádzkovateľom internetového obchodu a predávajúcim je{" "}
-        <Doplnit co="obchodné meno" />, so sídlom <Doplnit co="sídlo" />, IČO{" "}
-        <Doplnit co="IČO" />, DIČ <Doplnit co="DIČ" />,{" "}
-        <Doplnit co="IČ DPH alebo poznámka, že predávajúci nie je platcom DPH" />,
-        zapísaný v <Doplnit co="register a číslo zápisu" /> (ďalej len „predávajúci“).
+        Patrik Randa, s miestom podnikania Hliník nad Váhom 243, 014 01 Bytča, IČO 52 060 624, DIČ 
+        <Doplnit co="DIČ" />, predávajúci nie je platiteľom DPH, zapísaný v živnostenskom
+        registri <Doplnit co="okresný úrad a číslo živnostenského registra (z osvedčenia)" /> 
+        (ďalej len „predávajúci“).
       </p>
       <p>
         Kontaktné údaje: e-mail <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,
-        telefón <Doplnit co="telefón" />, adresa na doručovanie{" "}
-        <Doplnit co="adresa na doručovanie a vrátenie tovaru" />.
+        telefón <a href="tel:+421944681583">+421 944 681 583</a>, adresa na doručovanie
+        a vrátenie tovaru Hliník nad Váhom 243, 014 01 Bytča.
       </p>
       <p>
         Orgán dozoru: Slovenská obchodná inšpekcia, Inšpektorát SOI pre{" "}
-        <Doplnit co="kraj podľa sídla predávajúceho" />,{" "}
+        Žilinský kraj,{" "}
         <a href="https://www.soi.sk" rel="noreferrer" target="_blank">
           soi.sk
         </a>
@@ -70,8 +70,8 @@ export default function ObchodnePodmienky() {
 
       <h2>4. Ceny</h2>
       <p>
-        Ceny uvedené pri tovare sú v eurách a sú konečné,{" "}
-        <Doplnit co="vrátane DPH / predávajúci nie je platcom DPH" />. Cena nezahŕňa
+        Ceny uvedené pri tovare sú v eurách a sú konečné — predávajúci nie je platiteľom
+        DPH, preto sa k nim DPH nepripočítava. Cena nezahŕňa
         náklady na dopravu, ktoré sa zobrazia v košíku pred odoslaním objednávky.
       </p>
       <p>
@@ -88,8 +88,8 @@ export default function ObchodnePodmienky() {
       <p>
         Kupujúci môže cenu uhradiť spôsobmi ponúknutými v objednávkovom formulári. Pri
         tovare vyrábanom na objednávku uhrádza kupujúci po potvrdení objednávky zálohu vo
-        výške <Doplnit co="výška zálohy v %" /> z ceny; výroba sa začína po jej pripísaní.
-        Zvyšnú časť ceny uhrádza kupujúci <Doplnit co="spôsob a termín doplatku" />.
+        výške 30 % z ceny; výroba sa začína po jej pripísaní.
+        Zvyšnú časť ceny uhrádza kupujúci pri prevzatí tovaru.
       </p>
       <p>
         Platby kartou spracúva poskytovateľ platobnej brány; predávajúci neuchováva údaje
@@ -109,7 +109,7 @@ export default function ObchodnePodmienky() {
       </p>
       <p>
         Spôsob dodania a jeho cena sú uvedené v košíku pred odoslaním objednávky. Osobný
-        odber je možný na adrese <Doplnit co="adresa osobného odberu" /> po dohode
+        odber je možný na adrese Hliník nad Váhom 243, 014 01 Bytča po dohode
         termínu. Vynesenie na poschodie a osadenie skrinky sú samostatné služby; ich
         dostupnosť a cenu treba dohodnúť vopred.
       </p>
@@ -160,7 +160,7 @@ export default function ObchodnePodmienky() {
 
       <h3>Vzorový formulár na odstúpenie od zmluvy</h3>
       <p className="pravne__formular">
-        Adresát: <Doplnit co="obchodné meno, sídlo, e-mail" />
+        Adresát: Patrik Randa, Hliník nad Váhom 243, 014 01 Bytča, patrikranda225@gmail.com
         <br />
         Týmto oznamujem, že odstupujem od zmluvy na tento tovar: …
         <br />

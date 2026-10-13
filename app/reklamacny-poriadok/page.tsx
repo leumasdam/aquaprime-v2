@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 
 export default function ReklamacnyPoriadok() {
   return (
-    <PravnaStranka titul="Reklamačný poriadok" aktualizovane="11. septembra 2026">
+    <PravnaStranka titul="Reklamačný poriadok" aktualizovane="13. októbra 2026">
       <h2>1. Úvodné ustanovenia</h2>
       <p>
         Tento reklamačný poriadok upravuje postup pri uplatňovaní práv z chybného plnenia
-        pri tovare zakúpenom od <Doplnit co="obchodné meno" /> prostredníctvom obchodu
+        pri tovare zakúpenom od Patrika Randu prostredníctvom obchodu
         aquaprime.sk. Je neoddeliteľnou súčasťou{" "}
         <a href="/obchodne-podmienky">obchodných podmienok</a>.
       </p>
@@ -57,7 +57,7 @@ export default function ReklamacnyPoriadok() {
       <p>
         Reklamáciu môže kupujúci uplatniť e-mailom na{" "}
         <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> alebo písomne na adrese{" "}
-        <Doplnit co="adresa na uplatnenie reklamácie" />. V oznámení je vhodné uviesť číslo
+        Hliník nad Váhom 243, 014 01 Bytča. V oznámení je vhodné uviesť číslo
         objednávky, popis vady, kedy sa vada prejavila, a priložiť fotografie. Tieto údaje
         slúžia na rýchlejšie vybavenie; ich neuvedenie nie je dôvodom na zamietnutie
         reklamácie.

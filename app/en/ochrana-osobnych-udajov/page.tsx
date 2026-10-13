@@ -15,24 +15,20 @@ export default function PrivacyPolicy() {
   return (
     <PravnaStranka
       titul="Personal data protection"
-      aktualizovane="11 September 2026"
+      aktualizovane="13 October 2026"
       jazyk="en"
     >
       <h2>1. The controller</h2>
       <p>
         The controller determining the purposes and means of processing personal data is{" "}
-        <Doplnit en co="business name" />, with its registered office at{" "}
-        <Doplnit en co="registered office" />, company ID{" "}
-        <Doplnit en co="company ID (IČO)" /> (the &bdquo;controller&ldquo;).
+        Patrik Randa, a sole trader with the place of business at Hliník nad Váhom 243, 014 01 Bytča, Slovakia, company ID
+        (IČO) 52 060 624 (the &bdquo;controller&ldquo;).
       </p>
       <p>
         Contact for exercising your rights:{" "}
         <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,{" "}
-        <Doplnit en co="postal address for exercising rights" />.{" "}
-        <Doplnit
-          en
-          co="data protection officer, if one is appointed — otherwise delete this item"
-        />
+        Hliník nad Váhom 243, 014 01 Bytča, Slovakia. No data protection officer (DPO) is appointed — the controller is not
+        required to appoint one under the GDPR.
       </p>
       <p>
         We process data in accordance with Regulation (EU) 2016/679 (GDPR) and Act
@@ -126,10 +122,11 @@ export default function PrivacyPolicy() {
           measurement code is deployed and you have given consent.
         </li>
         <li>
-          <Doplnit en co="domain and mailbox provider" /> — running the domain and e-mail.
+          <strong>WebSupport s.r.o.</strong> — running the aquaprime.sk domain;{" "}
+          <strong>Google Ireland Ltd.</strong> — the e-mail mailbox.
         </li>
         <li>
-          <Doplnit en co="carrier / courier company" /> — delivering the order.
+          <strong>Geis SK s.r.o.</strong> — pallet transport and delivery of the order.
         </li>
         <li>
           <Doplnit en co="accountant or accounting firm, if they process the documents" />.

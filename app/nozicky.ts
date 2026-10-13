@@ -5,7 +5,7 @@
  * Cenu klient zatiaľ neurčil. Kým je tu null, web pri nožičkách píše
  * „príplatok na dopyt" a do košíka ani do platby nepripočíta nič; príplatok
  * sa dorieši v potvrdení objednávky. Keď cenu dodá, stačí ju zapísať sem
- * (v eurách s DPH) — detail, košík aj platba ju začnú počítať naraz.
+ * (konečná cena v eurách — predávajúci nie je platiteľ DPH) — detail, košík aj platba ju začnú počítať naraz.
  */
 export const NOZICKY_PRIPLATOK: number | null = null;
 

@@ -352,7 +352,7 @@ export default function FormularSkrinky({
       <div className="kt-karta">
         <div className="kt-riadok">
           <label className="kt-pole">
-            <span>Cena s DPH</span>
+            <span>Konečná cena</span>
             <span className="kt-jednotka">
               <input
                 className="kt-vstup"

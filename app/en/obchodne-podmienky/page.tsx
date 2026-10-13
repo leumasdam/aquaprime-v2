@@ -15,7 +15,7 @@ export default function TermsAndConditions() {
   return (
     <PravnaStranka
       titul="Terms and conditions"
-      aktualizovane="11 September 2026"
+      aktualizovane="13 October 2026"
       jazyk="en"
     >
       <h2>1. Introductory provisions</h2>
@@ -36,22 +36,20 @@ export default function TermsAndConditions() {
       <h2>2. The seller</h2>
       <p>
         The operator of the online shop and the seller is{" "}
-        <Doplnit en co="business name" />, with its registered office at{" "}
-        <Doplnit en co="registered office" />, company ID{" "}
-        <Doplnit en co="company ID (IČO)" />, tax ID{" "}
-        <Doplnit en co="tax ID (DIČ)" />,{" "}
-        <Doplnit en co="VAT ID, or a note that the seller is not a VAT payer" />,
-        registered in <Doplnit en co="register and registration number" /> (the
+        Patrik Randa, a sole trader with the place of business at Hliník nad Váhom 243, 014 01 Bytča, Slovakia, company
+        ID (IČO) 52 060 624, tax ID <Doplnit en co="tax ID (DIČ)" />, not a VAT payer,
+        registered in the Trade Register under 
+        <Doplnit en co="district office and Trade Register number (from the certificate)" /> (the
         &bdquo;seller&ldquo;).
       </p>
       <p>
         Contact details: e-mail <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,
-        phone <Doplnit en co="phone" />, delivery address{" "}
-        <Doplnit en co="address for correspondence and returns" />.
+        phone <a href="tel:+421944681583">+421 944 681 583</a>, address for
+        correspondence and returns Hliník nad Váhom 243, 014 01 Bytča, Slovakia.
       </p>
       <p>
         Supervisory authority: the Slovak Trade Inspection, the inspectorate for{" "}
-        <Doplnit en co="region according to the seller's registered office" />,{" "}
+        the Žilina Region,{" "}
         <a href="https://www.soi.sk" rel="noreferrer" target="_blank">
           soi.sk
         </a>
@@ -79,8 +77,7 @@ export default function TermsAndConditions() {
 
       <h2>4. Prices</h2>
       <p>
-        The prices shown with the goods are in euros and are final,{" "}
-        <Doplnit en co="including VAT / the seller is not a VAT payer" />. The price does
+        The prices shown with the goods are in euros and are final — the seller is not a VAT payer, so no VAT is added to them. The price does
         not include delivery costs, which are shown in the cart before the order is
         submitted.
       </p>
@@ -101,9 +98,8 @@ export default function TermsAndConditions() {
       <p>
         The buyer may pay the price by the methods offered in the order form. For goods
         made to order, after the order is confirmed the buyer pays a deposit of{" "}
-        <Doplnit en co="deposit amount in %" /> of the price; production starts once it is
-        credited. The buyer pays the remainder{" "}
-        <Doplnit en co="method and timing of the balance payment" />.
+        30 % of the price; production starts once it is
+        credited. The buyer pays the remainder on receipt of the goods.
       </p>
       <p>
         Card payments are processed by the payment gateway provider; the seller does not
@@ -128,7 +124,7 @@ export default function TermsAndConditions() {
       <p>
         The delivery method and its price are shown in the cart before the order is
         submitted. Personal pickup is possible at{" "}
-        <Doplnit en co="pickup address" /> once a time is agreed. Carrying the goods to an
+        Hliník nad Váhom 243, 014 01 Bytča, Slovakia once a time is agreed. Carrying the goods to an
         upper floor and installing the cabinet are separate services; their availability and
         price must be agreed in advance.
       </p>
@@ -182,7 +178,7 @@ export default function TermsAndConditions() {
 
       <h3>Model withdrawal form</h3>
       <p className="pravne__formular">
-        To: <Doplnit en co="business name, registered office, e-mail" />
+        To: Patrik Randa, Hliník nad Váhom 243, 014 01 Bytča, Slovakia, patrikranda225@gmail.com
         <br />
         I hereby give notice that I withdraw from the contract for the following goods: …
         <br />

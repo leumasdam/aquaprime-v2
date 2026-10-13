@@ -15,13 +15,13 @@ export default function ComplaintsProcedure() {
   return (
     <PravnaStranka
       titul="Complaints procedure"
-      aktualizovane="11 September 2026"
+      aktualizovane="13 October 2026"
       jazyk="en"
     >
       <h2>1. Introductory provisions</h2>
       <p>
         This complaints procedure governs how rights arising from defective performance are
-        exercised for goods bought from <Doplnit en co="business name" /> through the
+        exercised for goods bought from Patrik Randa through the
         aquaprime.sk shop. It forms an inseparable part of the{" "}
         <a href="/en/obchodne-podmienky">terms and conditions</a>.
       </p>
@@ -64,7 +64,7 @@ export default function ComplaintsProcedure() {
       <p>
         A complaint can be made by e-mail to{" "}
         <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a> or in writing to{" "}
-        <Doplnit en co="address for making complaints" />. It helps to state the order
+        Hliník nad Váhom 243, 014 01 Bytča, Slovakia. It helps to state the order
         number, a description of the defect and when it appeared, and to attach
         photographs. These details speed up the process; not providing them is not a reason
         to reject a complaint.

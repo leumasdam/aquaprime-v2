@@ -1,6 +1,6 @@
 // Rozmery a ceny akvárií — generované z klientovho cenníka „CENNÍK EUR 2026.doc"
 // (tabuľka 1, riadky s predajnou cenou; rozmery bez ceny sa na web nedávajú).
-// Objem každého riadku overený výpočtom d × š × v. Ceny sú predajné, vrátane DPH.
+// Objem každého riadku overený výpočtom d × š × v. Ceny sú predajné a konečné (predávajúci nie je platiteľ DPH).
 // Fotky máme len k siedmim rozmerom — ostatné majú najbližšiu ako ilustračnú.
 
 export type GlassOption = { mm: number; price: string };

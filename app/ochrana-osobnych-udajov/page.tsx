@@ -13,17 +13,17 @@ export const metadata: Metadata = {
 
 export default function OchranaOsobnychUdajov() {
   return (
-    <PravnaStranka titul="Ochrana osobných údajov" aktualizovane="11. septembra 2026">
+    <PravnaStranka titul="Ochrana osobných údajov" aktualizovane="13. októbra 2026">
       <h2>1. Prevádzkovateľ</h2>
       <p>
         Prevádzkovateľom, ktorý určuje účely a prostriedky spracúvania osobných údajov, je{" "}
-        <Doplnit co="obchodné meno" />, so sídlom <Doplnit co="sídlo" />, IČO{" "}
-        <Doplnit co="IČO" /> (ďalej len „prevádzkovateľ“).
+        Patrik Randa, s miestom podnikania Hliník nad Váhom 243, 014 01 Bytča, IČO 52 060 624 (ďalej len
+        „prevádzkovateľ“).
       </p>
       <p>
         Kontakt na uplatnenie práv: <a href="mailto:patrikranda225@gmail.com">patrikranda225@gmail.com</a>,{" "}
-        <Doplnit co="poštová adresa na uplatnenie práv" />.{" "}
-        <Doplnit co="zodpovedná osoba (DPO), ak je určená — inak tento údaj vypustiť" />
+        Hliník nad Váhom 243, 014 01 Bytča. Zodpovedná osoba (DPO) nie je určená — prevádzkovateľ ju podľa
+        nariadenia GDPR určiť nemusí.
       </p>
       <p>
         Údaje spracúvame v súlade s nariadením (EÚ) 2016/679 (GDPR) a zákonom č. 18/2018
@@ -114,11 +114,11 @@ export default function OchranaOsobnychUdajov() {
           kód nasadený a udelili ste súhlas.
         </li>
         <li>
-          <Doplnit co="poskytovateľ domény a e-mailových schránok" /> — prevádzka domény
-          a e-mailu.
+          <strong>WebSupport s.r.o.</strong> — prevádzka domény aquaprime.sk;{" "}
+          <strong>Google Ireland Ltd.</strong> — e-mailová schránka.
         </li>
         <li>
-          <Doplnit co="prepravca / kuriérska spoločnosť" /> — doručenie objednávky.
+          <strong>Geis SK s.r.o.</strong> — paletová preprava a doručenie objednávky.
         </li>
         <li>
           <Doplnit co="účtovník alebo účtovná kancelária, ak spracúva doklady" />.
