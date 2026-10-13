@@ -26,25 +26,11 @@ type Payload = {
   web?: string;
 };
 
-/** DOPYT_TO môže obsahovať viac adries oddelených čiarkou. */
-export const prijemcovia = (v: string) =>
-  v.split(/[,;]/).map((s) => s.trim()).filter(Boolean);
-
-const esc = (s: string) =>
-  s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c]!);
-
 export async function POST(req: Request) {
   if (prekrocenyLimit(`dopyt:${ipZ(req)}`)) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },
       { status: 429, headers: { "retry-after": "600" } }
-    );
-  }
-
-  if (!mailNastaveny()) {
-    return NextResponse.json(
-      { ok: false, error: "not_configured" },
-      { status: 503 }
     );
   }
 
@@ -55,9 +41,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "bad_json" }, { status: 400 });
   }
 
-  // pasca na roboty — pole je v DOM skryté, človek ho nevyplní
+  // pasca na roboty — pole je v DOM skryté, človek ho nevyplní. Odpoveď je
+  // rovnaká ako pri úspechu, nech sa robot nedozvie, že ho pasca chytila;
+  // ide ešte pred kontrolou pošty, nech sa ani nedozvie, či je zapojená.
   if (body.web) {
-    return NextResponse.json({ ok: true, skipped: true });
+    return NextResponse.json({ ok: true });
+  }
+
+  if (!mailNastaveny()) {
+    return NextResponse.json(
+      { ok: false, error: "not_configured" },
+      { status: 503 }
+    );
   }
 
   const meno = (body.meno ?? "").trim().slice(0, 200);

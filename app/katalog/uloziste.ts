@@ -241,22 +241,29 @@ export async function ulozFotku(
   const bajty = await subor.arrayBuffer();
   const hash = Buffer.from(await crypto.subtle.digest("SHA-256", bajty)).toString("hex").slice(0, 24);
   const cesta = `${FOTO_PREFIX}${k}/${hash}.${pripona}`;
+  const volby = {
+    access: "private" as const,
+    contentType: pripona === "jpg" ? "image/jpeg" : `image/${pripona}`,
+  };
 
+  /* Zápis bez prepisu: existujúcu fotku úložisko odmietne a to je pre nás
+     potvrdenie, že ju netreba ukladať. Pôvodná kontrola cez head() bola
+     zradná — po zmazaní súboru (testy) vedelo head() chvíľu tvrdiť, že
+     ešte existuje, nahratie sa preskočilo a fotka na webe chýbala. */
+  try {
+    const vysledok = await put(cesta, new Blob([bajty]), { ...volby, allowOverwrite: false });
+    return adresaFotky(vysledok.pathname);
+  } catch (e) {
+    if (!(e instanceof Error && /already exists/i.test(e.message))) throw e;
+  }
+
+  // „už existuje" môže byť zastarané — overíme a prípadne zapíšeme znova
   try {
     await head(cesta);
-    return adresaFotky(cesta); // rovnaká fotka už v úložisku je
+    return adresaFotky(cesta);
   } catch (e) {
     if (!(e instanceof BlobNotFoundError)) throw e;
   }
-  try {
-    const vysledok = await put(cesta, new Blob([bajty]), {
-      access: "private",
-      contentType: pripona === "jpg" ? "image/jpeg" : `image/${pripona}`,
-    });
-    return adresaFotky(vysledok.pathname);
-  } catch (e) {
-    // dve nahratia tej istej fotky v tej istej chvíli — druhé už našlo súbor
-    if (e instanceof Error && /already exists/i.test(e.message)) return adresaFotky(cesta);
-    throw e;
-  }
+  const vysledok = await put(cesta, new Blob([bajty]), { ...volby, allowOverwrite: true });
+  return adresaFotky(vysledok.pathname);
 }

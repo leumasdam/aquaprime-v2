@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { mailNastaveny, posliMail } from "../../_lib/mail";
 import { mailHtml } from "../../_lib/sablona";
 import { stripe } from "../_lib/stripe";
+import { uzSpracovana } from "../_lib/spracovane";
 
 /**
  * Potvrdenie platby od Stripu. Chodí zo servera Stripu, nie z prehliadača,
@@ -45,6 +46,19 @@ export async function POST(req: Request) {
 
   const session = udalost.data.object;
   const cislo = session.client_reference_id ?? session.metadata?.cislo ?? "?";
+
+  // „completed" ešte neznamená zaplatené — pri odložených platbách príde
+  // peniaze až neskôr; výrobu spúšťame len pri skutočne pripísanej zálohe
+  if (session.payment_status !== "paid") {
+    console.info(`PLATBA ${cislo} — checkout dokončený, ale stav ${session.payment_status}; čakáme`);
+    return NextResponse.json({ ok: true, cakame: session.payment_status });
+  }
+
+  // Stripe udalosť opakuje, kým nedostane 200 — každé opakovanie by poslalo
+  // oba maily znova
+  if (await uzSpracovana(udalost.id)) {
+    return NextResponse.json({ ok: true, duplicita: true });
+  }
   const zaplatene = (session.amount_total ?? 0) / 100;
   const doplatok = Number(session.metadata?.doplatok ?? 0);
   const email = session.customer_details?.email ?? session.customer_email ?? null;

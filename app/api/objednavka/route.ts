@@ -3,24 +3,32 @@ import { mailNastaveny, posliMail } from "../_lib/mail";
 import { mailHtml, type MailBlok } from "../_lib/sablona";
 import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
+import { prepocitaj } from "../platba/_lib/suma";
+import { nacitajSkrinky } from "../../katalog/skrinky";
 
 /**
  * Príjem objednávky. Objednávka sa musí prijať aj vtedy, keď e-mail zlyhá —
  * preto sa číslo objednávky vytvorí vždy a stav odoslania sa vráti zvlášť.
  * Do databázy to pôjde, keď ju nasadíme; dovtedy je nosičom e-mail.
+ *
+ * Ceny, doprava, celková suma aj záloha sa počítajú tu z katalógu —
+ * rovnako ako pri platbe kartou (platba/_lib/suma.ts). Z prehliadača
+ * berieme len to, čo sa z katalógu odvodiť nedá: kto objednáva, kam
+ * a názvy položiek do e-mailu. Do 13. 10. 2026 sa suma brala od klienta,
+ * takže upravená požiadavka mohla dostať QR kód na nižšiu zálohu.
  */
 
 type Polozka = {
-  nazov: string;
-  variant: string;
-  cena: number;
-  ks: number;
-  druh: string;
-  slug: string;
+  nazov?: unknown;
+  variant?: unknown;
+  ks?: unknown;
+  druh?: unknown;
+  slug?: unknown;
+  nozicky?: unknown;
 };
 
-const esc = (s: string) =>
-  String(s).replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c]!);
+/** text od klienta do e-mailu — orezaný, nech nikto nepošle román ani nič nenafúkne */
+const text = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
 
 const eur = (n: number) =>
   n.toLocaleString("sk-SK", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) +
@@ -41,29 +49,29 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "bad_json" }, { status: 400 });
   }
 
-  const polozky = (b.polozky as Polozka[]) ?? [];
-  const meno = String(b.meno ?? "").trim();
-  const email = String(b.email ?? "").trim();
+  const vstup = Array.isArray(b.polozky) ? (b.polozky as Polozka[]) : [];
+  const meno = text(b.meno, 120);
+  const email = text(b.email, 200);
 
-  if (!polozky.length || !meno || !/.+@.+\..+/.test(email)) {
+  if (!vstup.length || !meno || !/.+@.+\..+/.test(email)) {
     return NextResponse.json({ ok: false, error: "missing_fields" }, { status: 400 });
   }
 
-  // číslo objednávky: rok + poradie podľa času, čitateľné pri telefonáte
-  const d = new Date();
-  const cislo = `AQ${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(
-    d.getDate()
-  ).padStart(2, "0")}-${String(d.getHours()).padStart(2, "0")}${String(
-    d.getMinutes()
-  ).padStart(2, "0")}`;
+  // suma z katalógu — klientovi neveríme ani cenu, ani počet položiek
+  const prepocet = prepocitaj(await nacitajSkrinky(), vstup, b.odber === true);
+  if (!prepocet.ok) {
+    return NextResponse.json({ ok: false, error: prepocet.dovod }, { status: 400 });
+  }
+  const { spolu, doprava, zaloha, doplatok } = prepocet;
 
-  // záloha 30 % vopred, zvyšok pri prevzatí; VS = numerická podoba času (10 číslic)
-  const spolu = Number(b.spolu) || 0;
-  const zaloha = Math.round(spolu * 0.3 * 100) / 100;
-  const doplatok = Math.round((spolu - zaloha) * 100) / 100;
-  const vs = `${String(d.getDate()).padStart(2, "0")}${String(d.getMonth() + 1).padStart(2, "0")}${String(
-    d.getFullYear()
-  ).slice(-2)}${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}`;
+  /* Číslo objednávky: deň + čas na sekundy, čitateľné pri telefonáte.
+     Do 13. 10. 2026 bolo len na minúty — dve objednávky v tej istej minúte
+     dostali rovnaké číslo aj variabilný symbol a platby sa nedali rozlíšiť. */
+  const d = new Date();
+  const dd = (n: number) => String(n).padStart(2, "0");
+  const cislo = `AQ${d.getFullYear()}${dd(d.getMonth() + 1)}${dd(d.getDate())}-${dd(d.getHours())}${dd(d.getMinutes())}${dd(d.getSeconds())}`;
+  // variabilný symbol: najviac 10 číslic → DDMM + HHMMSS
+  const vs = `${dd(d.getDate())}${dd(d.getMonth() + 1)}${dd(d.getHours())}${dd(d.getMinutes())}${dd(d.getSeconds())}`;
 
   // QR platby — len keď je nastavený firemný IBAN. Dva formáty:
   //  pbs = Pay by Square (slovenské banky)
@@ -112,31 +120,38 @@ export async function POST(req: Request) {
       ]
     : [];
 
-  const polozkyRiadky: [string, string][] = polozky.map((p) => [
-    `${p.nazov}${p.variant ? ` · ${p.variant}` : ""}`,
-    `${p.ks} × ${eur(p.cena)}`,
-  ]);
+  // názov a variant sú text z karty v košíku (dekor, nožičky…); cena je z katalógu
+  const polozkyRiadky: [string, string][] = prepocet.polozky.map((p, i) => {
+    const nazov = text(vstup[i]?.nazov, 120) || p.slug;
+    const variant = text(vstup[i]?.variant, 160);
+    return [`${nazov}${variant ? ` · ${variant}` : ""}`, `${p.ks} × ${eur(p.cena)}`];
+  });
 
   const suhrnRiadky: [string, string][] = [
     ...polozkyRiadky,
-    ["Doprava", Number(b.doprava) === 0 ? "zdarma" : eur(Number(b.doprava))],
-    ["Spolu", eur(Number(b.spolu))],
+    ["Doprava", doprava === 0 ? "zdarma" : eur(doprava)],
+    ["Spolu", eur(spolu)],
   ];
 
-  const adresa = [b.ulica, `${b.psc ?? ""} ${b.mesto ?? ""}`.trim(), b.poschodie]
+  const adresa = [text(b.ulica, 160), `${text(b.psc, 12)} ${text(b.mesto, 80)}`.trim(), text(b.poschodie, 80)]
     .filter(Boolean)
-    .map(String)
     .join("\n");
+  const tel = text(b.tel, 40);
+  const firmaZakaznika = text(b.firma, 120);
+  const ico = text(b.ico, 20);
+  const dodanie = text(b.dorucenie, 60);
+  const platba = text(b.platba, 60);
 
   const zakaznikRiadky: [string, string][] = [
     ["Meno", meno],
     ["E-mail", email],
-    ...(b.tel ? ([["Telefón", String(b.tel)]] as [string, string][]) : []),
-    ...(b.firma
-      ? ([["Firma", `${String(b.firma)}${b.ico ? `, IČO ${String(b.ico)}` : ""}`]] as [string, string][])
-      : []),
-    ["Doručenie", adresa],
+    ...(tel ? ([["Telefón", tel]] as [string, string][]) : []),
+    ...(firmaZakaznika ? ([["Firma", `${firmaZakaznika}${ico ? `, IČO ${ico}` : ""}`]] as [string, string][]) : []),
+    ...(dodanie ? ([["Spôsob dodania", dodanie]] as [string, string][]) : []),
+    ...(platba ? ([["Platba", platba]] as [string, string][]) : []),
+    ["Doručenie", adresa || "—"],
   ];
+  const poznamka = text(b.poznamka, 2000);
 
   const platbaBloky: MailBlok[] = [
     {
@@ -160,29 +175,23 @@ export async function POST(req: Request) {
 
   if (!mailNastaveny()) {
     // objednávka je platná, len ju zatiaľ nemáme ako odoslať — nech sa nestratí
-    console.warn(`OBJEDNÁVKA ${cislo} bez odoslania (mail nie je nastavený):`, {
-      meno,
-      email,
-      polozky,
-      spolu: b.spolu,
-    });
+    // do logov nejdú mená ani e-maily — Vercel ich drží a nie sú na to určené
+    console.warn(`OBJEDNÁVKA ${cislo} bez odoslania (mail nie je nastavený): ${prepocet.polozky.length} položiek, ${eur(spolu)}`);
     return NextResponse.json({ ok: true, cislo, vs, zaloha, doplatok, iban, pbs, spd, mailom: false });
   }
 
   try {
     await posliMail({
       odpovedatNa: email,
-      predmet: `Objednávka ${cislo} — ${meno} — ${eur(Number(b.spolu))}`,
+      predmet: `Objednávka ${cislo} — ${meno} — ${eur(spolu)}`,
       html: mailHtml({
-        nahlad: `${meno} — ${eur(Number(b.spolu))}`,
+        nahlad: `${meno} — ${eur(spolu)}`,
         eyebrow: `Objednávka ${cislo}`,
-        titul: `${meno} objednal za ${eur(Number(b.spolu))}`,
+        titul: `${meno} objednal za ${eur(spolu)}`,
         bloky: [
           { typ: "tabulka", riadky: suhrnRiadky },
           { typ: "tabulka", riadky: zakaznikRiadky },
-          ...(b.poznamka
-            ? ([{ typ: "citat", nadpis: "Poznámka zákazníka", text: String(b.poznamka) }] as MailBlok[])
-            : []),
+          ...(poznamka ? ([{ typ: "citat", nadpis: "Poznámka zákazníka", text: poznamka }] as MailBlok[]) : []),
           ...platbaBloky,
           { typ: "tlacidlo", text: "Odpovedať zákazníkovi", href: `mailto:${email}` },
         ],
@@ -207,9 +216,7 @@ export async function POST(req: Request) {
           },
           { typ: "tabulka", riadky: suhrnRiadky },
           { typ: "tabulka", riadky: zakaznikRiadky },
-          ...(b.poznamka
-            ? ([{ typ: "citat", nadpis: "Vaša poznámka", text: String(b.poznamka) }] as MailBlok[])
-            : []),
+          ...(poznamka ? ([{ typ: "citat", nadpis: "Vaša poznámka", text: poznamka }] as MailBlok[]) : []),
         ],
         zaver: "Ak treba čokoľvek upraviť, stačí odpovedať na tento e-mail.",
       }),

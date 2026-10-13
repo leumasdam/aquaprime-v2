@@ -70,6 +70,17 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ ok: false, chyba: "Neplatná požiadavka." }, { status: 400 });
   }
+  // tvar tela overíme skôr, než sa dotkneme úložiska — inak by chýbajúci
+  // produkt skončil ako „úložisko neodpovedá", čo nie je pravda
+  const jeObjekt = (x: unknown): x is Record<string, unknown> => typeof x === "object" && x !== null;
+  const platne =
+    jeObjekt(telo) &&
+    ((telo.akcia === "uloz" && jeObjekt(telo.produkt)) ||
+      (telo.akcia === "zmaz" && typeof telo.slug === "string") ||
+      (telo.akcia === "poradie" && Array.isArray(telo.slugy)) ||
+      (telo.akcia === "dekor" && typeof telo.id === "string") ||
+      (telo.akcia === "obnov" && typeof telo.verziaId === "string"));
+  if (!platne) return NextResponse.json({ ok: false, chyba: "Neplatná požiadavka." }, { status: 400 });
   const kto = autor(request);
 
   try {

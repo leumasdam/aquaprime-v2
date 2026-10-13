@@ -259,6 +259,9 @@ export default function KosikObsah({ jazyk = "sk" }: { jazyk?: Jazyk }) {
           doprava,
           spolu,
           dorucenie: t.dorucenie[dorucenie === "kurier" ? 0 : 1][0],
+          // server si sumu prepočíta z katalógu sám; potrebuje vedieť len to,
+          // či je osobný odber (bez dopravy) — popis vyššie je iba text do mailu
+          odber: dorucenie === "odber",
           platba: sposob === "karta" ? t.platbaKarta : t.platbaPrevod,
           ...f,
         }),

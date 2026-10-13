@@ -22,8 +22,13 @@ export async function GET(
   }
 
   try {
+    /* useCache: false — knižnica úložiska si inak odpovede pamätá v cache
+       Nextu, vrátane 404. Jedna taká odpoveď potom ostala nalepená na adrese
+       fotky aj po jej nahratí (zistené 13. 10. 2026). Cachovanie tu robí
+       CDN cez s-maxage nižšie, nič ďalšie netreba. */
     const res = await get(pathname, {
       access: "private",
+      useCache: false,
       ifNoneMatch: request.headers.get("if-none-match") ?? undefined,
     });
     if (!res) return new Response("Not found", { status: 404 });

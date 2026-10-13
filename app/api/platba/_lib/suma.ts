@@ -28,9 +28,30 @@ export const DOPRAVA_ZDARMA_OD = 500;
 export const KURIER = 39;
 export const ZALOHA_PODIEL = 0.3;
 
+/** položka s cenou z katalógu — ide do e-mailu, nikdy nie cena od klienta */
+export type PolozkaPrepoctu = {
+  slug: string;
+  druh: "skrinka" | "akvarium";
+  ks: number;
+  /** cena za kus vrátane prípadných nožičiek */
+  cena: number;
+  nozicky: boolean;
+};
+
 export type Prepocet =
-  | { ok: true; suma: number; doprava: number; spolu: number; zaloha: number; doplatok: number }
+  | {
+      ok: true;
+      suma: number;
+      doprava: number;
+      spolu: number;
+      zaloha: number;
+      doplatok: number;
+      polozky: PolozkaPrepoctu[];
+    }
   | { ok: false; dovod: string };
+
+/** viac položiek než toto v jednej objednávke nedáva zmysel — bráni to aj nafúknutým telám */
+export const MAX_POLOZIEK = 30;
 
 export function prepocitaj(
   katalog: Product[],
@@ -38,8 +59,10 @@ export function prepocitaj(
   odber: boolean,
 ): Prepocet {
   if (!Array.isArray(polozky) || !polozky.length) return { ok: false, dovod: "prazdny_kosik" };
+  if (polozky.length > MAX_POLOZIEK) return { ok: false, dovod: "prilis_vela_poloziek" };
 
   let suma = 0;
+  const overene: PolozkaPrepoctu[] = [];
   for (const p of polozky) {
     const slug = String(p.slug ?? "");
     const ks = Math.floor(Number(p.ks));
@@ -61,6 +84,7 @@ export function prepocitaj(
     if (cena === null) return { ok: false, dovod: `neznamy_tovar:${slug}` };
 
     suma += cena * ks;
+    overene.push({ slug, druh: p.druh as "skrinka" | "akvarium", ks, cena, nozicky: p.nozicky === true });
   }
 
   suma = Math.round(suma * 100) / 100;
@@ -70,5 +94,5 @@ export function prepocitaj(
   const doplatok = Math.round((spolu - zaloha) * 100) / 100;
 
   if (zaloha < 1) return { ok: false, dovod: "prilis_nizka_zaloha" };
-  return { ok: true, suma, doprava, spolu, zaloha, doplatok };
+  return { ok: true, suma, doprava, spolu, zaloha, doplatok, polozky: overene };
 }

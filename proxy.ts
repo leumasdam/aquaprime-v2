@@ -324,9 +324,14 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
     const jeApi = pathname.startsWith("/api/admin");
 
-    // denný cron od Vercelu sa hlási hlavičkou, nie cookie
+    // denný cron od Vercelu sa hlási hlavičkou, nie cookie — a smie len na
+    // svoju cestu; tajomstvo cronu nemá byť kľúčom k celej administrácii
     const cron = process.env.CRON_SECRET;
-    if (cron && request.headers.get("authorization") === `Bearer ${cron}`) {
+    if (
+      cron &&
+      pathname === "/api/admin/agents/cron" &&
+      request.headers.get("authorization") === `Bearer ${cron}`
+    ) {
       return dalejAko(request, "Automat");
     }
 

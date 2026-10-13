@@ -46,7 +46,8 @@ export async function POST(req: Request) {
 
   const cislo = String(b.cislo ?? "").trim();
   const email = String(b.email ?? "").trim();
-  if (!/^AQ\d{8}-\d{4}$/.test(cislo)) {
+  // tvar čísla objednávky z /api/objednavka: AQ20261013-194512
+  if (!/^AQ\d{8}-\d{6}$/.test(cislo)) {
     return NextResponse.json({ ok: false, error: "zle_cislo" }, { status: 400 });
   }
 
