@@ -18,7 +18,7 @@
  * Tento modul patrí len na server — potrebuje BLOB_READ_WRITE_TOKEN.
  */
 
-import { BlobNotFoundError, BlobPreconditionFailedError, del, get, list, put } from "@vercel/blob";
+import { BlobNotFoundError, BlobPreconditionFailedError, del, get, head, list, put } from "@vercel/blob";
 
 export type Kolekcia = "skrinky";
 
@@ -222,16 +222,41 @@ export function adresaFotky(pathname: string): string {
   return `/foto/${pathname}`;
 }
 
+/**
+ * Fotka dostane meno podľa svojho obsahu (odtlačok SHA-256), nie náhodné.
+ * Tá istá fotka nahratá znova — k ďalšej skrinke alebo omylom druhýkrát —
+ * tak skončí v tom istom súbore a do úložiska sa nezapisuje nič nové.
+ * Do 13. 10. 2026 dostávala každá nahratá fotka nové náhodné meno; z 1 333
+ * súborov bolo vtedy len asi 324 rôznych a opakované zápisy vyčerpali
+ * mesačný limit úložiska.
+ *
+ * Meno podľa obsahu je zároveň nemenné, takže nekonečná cache na /foto/…
+ * ostáva správna.
+ */
 export async function ulozFotku(
   k: Kolekcia,
   subor: Blob,
   pripona: "webp" | "jpg" | "png",
 ): Promise<string> {
-  const nahodne = crypto.randomUUID().replace(/-/g, "").slice(0, 16);
-  const cesta = `${FOTO_PREFIX}${k}/${nahodne}.${pripona}`;
-  const vysledok = await put(cesta, subor, {
-    access: "private",
-    contentType: pripona === "jpg" ? "image/jpeg" : `image/${pripona}`,
-  });
-  return adresaFotky(vysledok.pathname);
+  const bajty = await subor.arrayBuffer();
+  const hash = Buffer.from(await crypto.subtle.digest("SHA-256", bajty)).toString("hex").slice(0, 24);
+  const cesta = `${FOTO_PREFIX}${k}/${hash}.${pripona}`;
+
+  try {
+    await head(cesta);
+    return adresaFotky(cesta); // rovnaká fotka už v úložisku je
+  } catch (e) {
+    if (!(e instanceof BlobNotFoundError)) throw e;
+  }
+  try {
+    const vysledok = await put(cesta, new Blob([bajty]), {
+      access: "private",
+      contentType: pripona === "jpg" ? "image/jpeg" : `image/${pripona}`,
+    });
+    return adresaFotky(vysledok.pathname);
+  } catch (e) {
+    // dve nahratia tej istej fotky v tej istej chvíli — druhé už našlo súbor
+    if (e instanceof Error && /already exists/i.test(e.message)) return adresaFotky(cesta);
+    throw e;
+  }
 }
