@@ -1051,3 +1051,66 @@ select.kt-vstup {
     margin-left: 0;
   }
 }
+
+/* ---------------- úvodné fotky radov ---------------- */
+.kt-rady-fotky {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  padding-bottom: 90px;
+}
+.kt-rad-foto {
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.kt-rad-foto.is-zmenena {
+  border-color: rgba(0, 154, 192, 0.5);
+}
+.kt-rad-foto__nahlad {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #0b0e0d;
+}
+.kt-rad-foto__nahlad img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.kt-rad-foto__nahrava {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  justify-items: center;
+  background: rgba(12, 16, 14, 0.7);
+  font-size: 0.75rem;
+}
+.kt-rad-foto__telo {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px 16px;
+}
+.kt-rad-foto__telo b {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+.kt-rad-foto__telo small {
+  color: var(--ad-dim);
+  font-size: 0.75rem;
+}
+.kt-rad-foto__telo .ad-tag {
+  justify-self: start;
+  margin-top: 2px;
+}
+.kt-rad-foto__akcie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}

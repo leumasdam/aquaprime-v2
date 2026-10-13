@@ -9,6 +9,7 @@ import Pecat from "./Pecat";
 import ProductCard from "./ProductCard";
 import type { Product } from "./products";
 import { nacitajSkrinky } from "./katalog/skrinky";
+import { fotkaRadu, nacitajVzhlad, type RadVzhladu } from "./katalog/vzhlad";
 import PasKarusel from "./PasKarusel";
 import InstagramPas from "./InstagramPas";
 
@@ -61,7 +62,10 @@ const COLLECTION_IMGS: { id: string; img: string; href?: string }[] = [
 ];
 
 export default async function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
-  const FEATURED = vybrane(await nacitajSkrinky());
+  const [katalog, vzhlad] = await Promise.all([nacitajSkrinky(), nacitajVzhlad()]);
+  const FEATURED = vybrane(katalog);
+  // úvodné fotky radov si klient mení v administrácii (záložka Skrinky → Úvodné fotky)
+  const kolekcie = COLLECTION_IMGS.map((c) => ({ ...c, img: fotkaRadu(vzhlad, c.id as RadVzhladu) }));
   const l = (h: string) => odkaz(h, jazyk);
   const d = t.domov;
   return (
@@ -198,7 +202,7 @@ export default async function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
             <h2 className="collections__title">{d.kolekcieTitul}</h2>
           </div>
           <CollectionsCarousel
-            items={COLLECTION_IMGS.map((c, i) => ({
+            items={kolekcie.map((c, i) => ({
               ...c,
               name: d.kolekcie[i][0],
               sub: d.kolekcie[i][1],
