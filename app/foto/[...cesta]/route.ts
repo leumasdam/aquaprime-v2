@@ -28,8 +28,13 @@ export async function GET(
     });
     if (!res) return new Response("Not found", { status: 404 });
 
+    /* s-maxage je pre CDN Vercelu — samotné max-age platí len pre prehliadač
+       a CDN by odpoveď neuložila. Bez neho každé zobrazenie fotky spustilo
+       funkciu aj čítanie z úložiska a minulo jeho mesačný limit; 12. 10. 2026
+       tak Vercel úložisko pozastavil. S ním sa fotka z úložiska prečíta raz
+       na oblasť CDN a ďalej ide z cache. */
     const hlavicky = {
-      "cache-control": "public, max-age=31536000, immutable",
+      "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
       etag: res.blob.etag,
     };
     if (res.statusCode === 304) return new Response(null, { status: 304, headers: hlavicky });
