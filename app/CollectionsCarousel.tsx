@@ -14,12 +14,12 @@ type Item = {
 };
 
 /**
- * Krokový nekonečný carousel — posun o jednu kartu (smooth, pauza, znova).
- * Tri kópie kariet + stredný offset (--i = i + N) umožňujú plynulý loop
- * v oboch smeroch. Loop je odolný voči preskočeniu indexu:
- *  - animRef zabráni auto-inkrementu počas reset fázy,
- *  - pauza pri skrytej karte prehliadača (setInterval by inak bežal ďalej),
- *  - záchranná normalizácia, ak by index predsa unikol z bezpečného rozsahu.
+ * Nekonečný carousel bez resetov. Index `i` rastie/klesá bez obmedzenia;
+ * zobrazuje sa okno kariet okolo neho (abs. index i-N … i+2N), každá
+ * karta má kľúč podľa absolútneho indexu a posúva sa vlastným transformom.
+ * Nová karta sa primontuje rovno na svojom mieste mimo obrazu (bez animácie),
+ * existujúce sa plynulo presunú — preto nikdy nepreskočí „na začiatok",
+ * ani pri rýchlom klikaní na šípky (15. 10. 2026).
  */
 export default function CollectionsCarousel({
   items,
@@ -30,11 +30,8 @@ export default function CollectionsCarousel({
 }) {
   const t = SLOVNIKY[jazyk].domov;
   const N = items.length;
-  const slides = [...items, ...items, ...items];
   const [i, setI] = useState(0);
-  const [anim, setAnim] = useState(true);
   const paused = useRef(false);
-  const animRef = useRef(true);
 
   // auto-posun každých 2,4 s; pauza pri hover a keď je záložka v pozadí
   useEffect(() => {
@@ -45,7 +42,7 @@ export default function CollectionsCarousel({
     };
     document.addEventListener("visibilitychange", onVis);
     const t = setInterval(() => {
-      if (!paused.current && animRef.current) setI((x) => x + 1);
+      if (!paused.current) setI((x) => x + 1);
     }, 2400);
     return () => {
       clearInterval(t);
@@ -53,47 +50,12 @@ export default function CollectionsCarousel({
     };
   }, []);
 
-  // po dojazde na klon ticho preskoč späť do stredného setu (bez animácie)
-  const onEnd = (e: React.TransitionEvent) => {
-    if (e.target !== e.currentTarget || e.propertyName !== "transform") return;
-    setI((prev) => {
-      if (prev >= N) {
-        animRef.current = false;
-        setAnim(false);
-        return prev - N;
-      }
-      if (prev < 0) {
-        animRef.current = false;
-        setAnim(false);
-        return prev + N;
-      }
-      return prev;
-    });
-  };
-
-  // záchranná sieť: ak index unikne z bezpečného rozsahu (napr. onEnd nezbehol),
-  // normalizuj ho bez animácie — track sa nikdy nedostane do prázdna
-  useEffect(() => {
-    if (i > N || i < -1) {
-      animRef.current = false;
-      setAnim(false);
-      setI(((i % N) + N) % N);
-    }
-  }, [i, N]);
-
-  // po resete (anim=false) znovu zapni prechody
-  useEffect(() => {
-    if (anim) return;
-    const r = requestAnimationFrame(() =>
-      requestAnimationFrame(() => {
-        setAnim(true);
-        animRef.current = true;
-      })
-    );
-    return () => cancelAnimationFrame(r);
-  }, [anim]);
-
   const go = (dir: number) => setI((x) => x + dir);
+
+  // okno absolútnych indexov: N kariet vľavo mimo obrazu, N viditeľných/napravo, N rezerva
+  const okno: number[] = [];
+  for (let a = i - N; a < i + 2 * N; a++) okno.push(a);
+  const polozka = (a: number) => items[((a % N) + N) % N];
 
   // swipe prstom na mobile: vodorovný ťah nad 40 px posunie o jednu kartu;
   // počas dotyku stojí auto-posun, zvislý scroll stránky ostáva prehliadaču
@@ -134,30 +96,21 @@ export default function CollectionsCarousel({
       </button>
 
       <div className="collections__cards">
-        <div
-          className="collections__track"
-          style={
-            { "--i": i + N, transition: anim ? undefined : "none" } as CSSProperties
-          }
-          onTransitionEnd={onEnd}
-        >
-          {slides.map((c, idx) => {
-            const real = idx >= N && idx < N * 2;
+        <div className="collections__track">
+          {okno.map((a) => {
+            const c = polozka(a);
+            const real = a >= i && a < i + 3;
             return (
-              <Link
-                key={idx}
-                href={c.href}
-                className="ccard"
-                aria-hidden={real ? undefined : true}
-                tabIndex={real ? undefined : -1}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.img} alt={c.name} className="ccard__img" />
-                <span className="ccard__overlay">
-                  <span className="ccard__name">{c.name}</span>
-                  <span className="ccard__sub">{c.sub}</span>
-                </span>
-              </Link>
+              <div key={a} className="ccard-slot" style={{ "--p": a - i } as CSSProperties}>
+                <Link href={c.href} className="ccard" aria-hidden={real ? undefined : true} tabIndex={real ? undefined : -1}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.img} alt={c.name} className="ccard__img" />
+                  <span className="ccard__overlay">
+                    <span className="ccard__name">{c.name}</span>
+                    <span className="ccard__sub">{c.sub}</span>
+                  </span>
+                </Link>
+              </div>
             );
           })}
         </div>

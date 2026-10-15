@@ -6098,17 +6098,22 @@ button:focus-visible {
   mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
 }
 .collections__track {
-  display: flex;
-  width: max-content;
-  /* posun o --i kariet (šírka karty + medzera) */
-  transform: translateX(calc(-1 * var(--i, 0) * (var(--card-w) + var(--card-gap))));
+  position: relative;
+  /* výška jednej karty (4:3), karty sú absolútne — každá so svojím posunom */
+  height: calc(var(--card-w) * 3 / 4);
+}
+/* slot karty: --p je pozícia voči prvej viditeľnej (0, 1, 2 …, záporné vľavo) */
+.ccard-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--card-w);
+  transform: translateX(calc(var(--p, 0) * (var(--card-w) + var(--card-gap))));
   transition: transform 0.65s var(--ease);
 }
 .ccard {
   position: relative;
-  /* šírka ≈ pôvodná (3 karty vo viewporte), výška sekcie tak ostáva rovnaká */
-  flex: 0 0 var(--card-w);
-  margin-right: var(--card-gap);
+  display: block;
   /* 4:3 — celá zostava akvárium + skrinka sa zmestí (fotky sú 4:3) */
   aspect-ratio: 4 / 3;
   border-radius: var(--r-sm);
@@ -6128,28 +6133,12 @@ button:focus-visible {
   object-fit: cover;
   /* color grading: klientove fotky bývajú svetlé a teplé (béžové izby),
      stlmíme jas a sýtosť, aby na tmavom webe nesvietili (15. 10. 2026) */
-  filter: brightness(0.8) contrast(1.06) saturate(0.82);
+  filter: brightness(0.82) contrast(1.05) saturate(0.85);
   transition: transform 0.55s var(--ease), filter 0.55s var(--ease);
 }
 .ccard:hover .ccard__img {
   transform: scale(1.05);
-  filter: brightness(0.88) contrast(1.06) saturate(0.9);
-}
-/* studený tint (multiply) + vineta — zladí fotku s pozadím webu */
-.ccard::before,
-.ccard::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.ccard::before {
-  background: rgb(16 26 30);
-  mix-blend-mode: multiply;
-  opacity: 0.45;
-}
-.ccard::after {
-  background: radial-gradient(120% 90% at 50% 40%, transparent 50%, rgba(6, 9, 10, 0.55) 100%);
+  filter: brightness(0.9) contrast(1.05) saturate(0.92);
 }
 .ccard__overlay {
   position: absolute;
