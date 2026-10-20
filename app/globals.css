@@ -13227,7 +13227,14 @@ a.mat-interiors__item {
    tesnejšie medzery v textovom stĺpci, menší titulok, nižšia sekcia. */
 @media (min-width: 1201px) {
   .mat-hero {
+    /* presne rovnaká výška ako Skrinky, Akváriá, Konštrukcia a Realizácie;
+       obrázok panelov siaha od vrchu sekcie po kúsok pod jej spodok */
+    --heroH: calc(var(--hero-d) - var(--hero-pas));
+    --imgH: calc(var(--heroH) + 24px);
     padding-block: 8px 20px;
+  }
+  .mat-hero__bg {
+    bottom: -24px;
   }
   .mat-hero .pg-drobcek {
     padding-top: 0;
