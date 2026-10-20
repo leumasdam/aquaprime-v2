@@ -20,8 +20,8 @@ const COMBOS = [
   { img: "/img/products/premium-120x40x80-black-matt-orech-04.webp", a: "Black Matt", b: "Orech" },
   { img: "/img/products/standard-120x40x80-artisan-antracit-01.webp", a: "Artisan", b: "Antracit" },
   { img: "/img/products/premium-200x50x70-artisan-cierna-01.webp", a: "Artisan", b: "Čierna matná" },
-  { img: "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp", a: "Dub Hunton", b: "Black Matt" },
-  { img: "/img/products/dub-spanielsky-black-matt-01.webp", a: "Dub španielsky", b: "Čierna matná" },
+  { img: "/img/products/premium-100x40x90-dub-hunton-black-matt-03.webp", a: "Dub Hunton", b: "Black Matt" },
+  { img: "/img/products/dub-spanielsky-black-matt-02.webp", a: "Dub španielsky", b: "Čierna matná" },
 ];
 
 const INTERIORS = [
