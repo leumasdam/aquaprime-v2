@@ -7533,10 +7533,11 @@ button:focus-visible {
 
 /* ---- hero ---- */
 .mat-hero {
-  --heroH: clamp(340px, 26vw, 460px);
+  /* rovnaká výška ako ostatné podstránkové hero (20. 10. 2026) */
+  --heroH: clamp(300px, 21vw, 380px);
   /* výška hero obrázka = mierka; šírka drží natívny pomer 1672 × 941.
      Fixná: obrázok sa nemení so šírkou okna — pri zúžení sa len viac oreže vpravo */
-  --imgH: 880px;
+  --imgH: 640px;
   --imgW: calc(var(--imgH) * 1.7768);
   /* pravý koniec textového stĺpca (centrovanie wrapu + pad + odskok + šírka copy) */
   --textEnd: calc(max(0px, (100vw - var(--maxw)) / 2) + var(--pad) + clamp(16px, 6vw, 104px) + 460px);
@@ -7554,7 +7555,7 @@ button:focus-visible {
   /* spodok pretiahnutý pod nasledujúci glass panel — img vychádza spoza neho */
   left: var(--imgLeft);
   /* fixná vertikálna pozícia (hodnota z 1550px okna) — obrázok sa so šírkou okna nehýbe */
-  bottom: -155px;
+  bottom: -40px;
   width: var(--imgW);
   height: var(--imgH);
   z-index: 0;
@@ -7648,7 +7649,7 @@ button:focus-visible {
 .mat-hero__philosophy {
   display: flex;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 10px 14px;
   max-width: 380px;
   border: 1px solid var(--line);
@@ -7681,7 +7682,7 @@ button:focus-visible {
   position: relative;
   z-index: 1;
   /* po odstránení popiskov dekorov už netreba vysoký odstup od hero */
-  margin-block: clamp(36px, 3vw, 52px) clamp(48px, 6vw, 96px);
+  margin-block: clamp(20px, 2vw, 32px) clamp(48px, 6vw, 96px);
   border: 1px solid var(--line);
   background: var(--card-glass);
 }

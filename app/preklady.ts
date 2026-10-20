@@ -547,8 +547,8 @@ export const SK = {
     ctaSkrinka: "Vybrať skrinku",
     ctaDopyt: "Nezáväzný dopyt",
     cisla: [
-      ["30", "×30 mm", "uzavretý oceľový profil"],
-      ["2", "mm", "hrúbka steny profilu"],
+      ["100", "% oceľ", "zváraný uzavretý profil"],
+      ["4", "nožičky", "nastaviteľné pri osadení"],
       ["18", "mm", "opláštenie LDTD"],
     ] as [string, string, string][],
     modelEyebrow: "MODEL · 360°",
@@ -1710,8 +1710,8 @@ export const EN: Slovnik = {
     ctaSkrinka: "Choose a cabinet",
     ctaDopyt: "Send an enquiry",
     cisla: [
-      ["30", "×30 mm", "closed steel profile"],
-      ["2", "mm", "profile wall thickness"],
+      ["100", "% steel", "welded closed profile"],
+      ["4", "feet", "adjustable on installation"],
       ["18", "mm", "LDTD cladding"],
     ],
     modelEyebrow: "MODEL · 360°",
