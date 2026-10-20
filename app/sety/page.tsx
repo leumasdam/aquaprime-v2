@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SetyObsah from "./Obsah";
 import { SK } from "../preklady";
+import { nacitajSety } from "../katalog/galerie-server";
 
 export const metadata: Metadata = {
   title: SK.sety.metaTitul,
@@ -15,6 +16,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SetyPage() {
-  return <SetyObsah t={SK} jazyk="sk" />;
+export default async function SetyPage() {
+  return <SetyObsah t={SK} jazyk="sk" sety={await nacitajSety()} />;
 }

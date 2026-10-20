@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { AQUARIUMS, matchingCabinets, type Aquarium } from "../aquariums";
+import { matchingCabinets, type Aquarium } from "../aquariums";
+import { nacitajAkvaria } from "../katalog/galerie-server";
+import AkvariumGaleria from "./AkvariumGaleria";
 import { nacitajSkrinky } from "../katalog/skrinky";
 import { odkaz, type Jazyk } from "../jazyk";
 import {
@@ -31,7 +33,10 @@ export default async function AkvariumObsah({
   const vystuhy = akvariumVystuhy(a, jazyk);
   const pouzitie = akvariumPouzitie(a, jazyk);
 
-  const cabinets = matchingCabinets(await nacitajSkrinky(), a);
+  const [katalog, AQUARIUMS] = await Promise.all([nacitajSkrinky(), nacitajAkvaria()]);
+  const cabinets = matchingCabinets(katalog, a);
+  // fotky od klienta z administrácie — skutočné zábery, nie vizualizácia
+  const vlastneFotky = a.fotky && a.fotky.length > 0 ? a.fotky : null;
   // jednotný vecný popis (audit textov 11. 9. 2026) — dlhé marketingové odseky
   // od klienta sa nezobrazujú, parametre a cena ostávajú samostatne
   const popis = ta.popis.replace("{dim}", a.dim);
@@ -62,7 +67,7 @@ export default async function AkvariumObsah({
             category: ta.schemaKategoria,
             brand: { "@type": "Brand", name: "AQUAPRIME" },
             material: ta.schemaMaterial,
-            image: [`https://aquaprime.sk${a.cover}`],
+            image: (vlastneFotky ?? [a.cover]).map((f) => `https://aquaprime.sk${f}`),
           }),
         }}
       />
@@ -76,6 +81,9 @@ export default async function AkvariumObsah({
             />
           </div>
           <div className="pdetail__grid">
+            {vlastneFotky ? (
+              <AkvariumGaleria slug={a.slug} fotky={vlastneFotky} alt={`${nazov} cm — ${ta.alt}`} objem={a.vol} jazyk={jazyk} />
+            ) : (
             <div className="pgal pgal--scene" data-reveal="scale">
               {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
               <VT name={`a-${a.slug}`} share="vt-morph">
@@ -99,6 +107,7 @@ export default async function AkvariumObsah({
                 {a.coverIllustrative ? ta.ilustracnaPozn : ta.vizualizaciaPozn}
               </p>
             </div>
+            )}
 
             <div
               className="pdetail__info"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SetyObsah from "../../sety/Obsah";
 import { EN } from "../../preklady";
+import { nacitajSety } from "../../katalog/galerie-server";
 
 export const metadata: Metadata = {
   title: EN.sety.metaTitul,
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/en/sety", languages: { sk: "/sety", en: "/en/sety" } },
 };
 
-export default function SetyPage() {
-  return <SetyObsah t={EN} jazyk="en" />;
+export default async function SetyPage() {
+  return <SetyObsah t={EN} jazyk="en" sety={await nacitajSety()} />;
 }

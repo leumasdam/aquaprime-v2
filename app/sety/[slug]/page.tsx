@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SetDetail from "../SetDetail";
-import { SETY, najdiSet, titulnaFotka } from "../../sety";
+import { SETY, titulnaFotka } from "../../sety";
+import { nacitajSet } from "../../katalog/galerie-server";
 import { SK } from "../../preklady";
 
 export function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const s = najdiSet(slug);
+  const s = await nacitajSet(slug);
   if (!s) return { title: "Set sa nenašiel" };
   return {
     title: `${s.nazov} — ${s.podtitul.sk} | AQUAPRIME`,
@@ -43,7 +44,7 @@ export default async function Page({
   const { slug } = await params;
   const q = await searchParams;
   const prevedenie = typeof q.prevedenie === "string" ? q.prevedenie : undefined;
-  const s = najdiSet(slug);
+  const s = await nacitajSet(slug);
   if (!s) notFound();
   return <SetDetail set={s} t={SK} jazyk="sk" prevedenie={prevedenie} />;
 }

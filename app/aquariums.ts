@@ -28,6 +28,8 @@ export type Aquarium = AquariumSize & {
   braces?: string;
   /** sladkovodné / aj morské */
   use?: string;
+  /** fotky od klienta z administrácie — prvá je titulná (cover), ostatné v galérii detailu */
+  fotky?: string[];
 };
 
 type ClientText = {

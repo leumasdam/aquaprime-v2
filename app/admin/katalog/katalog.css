@@ -1114,3 +1114,113 @@ select.kt-vstup {
   gap: 12px;
   margin-top: 8px;
 }
+
+/* ---------------- fotky setov a akvárií ---------------- */
+.kt-gal {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 90px;
+}
+.kt-gal__set {
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.kt-gal__hlava {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--ad-line);
+}
+.kt-gal__hlava b {
+  font-family: var(--f-display, serif);
+  font-weight: 400;
+  font-size: 1.15rem;
+}
+.kt-gal__hlava small,
+.kt-gal__akv-text small {
+  color: var(--ad-dim);
+  font-size: 0.75rem;
+}
+.kt-gal__prev {
+  padding: 14px 18px 18px;
+  border-bottom: 1px solid var(--ad-line);
+}
+.kt-gal__prev:last-child {
+  border-bottom: 0;
+}
+.kt-gal__prev.is-zmenena,
+.kt-gal__akv.is-zmenena {
+  box-shadow: inset 3px 0 0 var(--ad-cyan);
+}
+.kt-gal__prev-hlava {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.kt-gal__prev-hlava b {
+  font-size: 0.9rem;
+}
+.kt-gal__akv {
+  background: var(--ad-panel);
+  border: 1px solid var(--ad-line);
+  border-radius: var(--r-md);
+}
+.kt-gal__akv summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.kt-gal__akv summary::-webkit-details-marker {
+  display: none;
+}
+.kt-gal__akv summary::after {
+  content: "\25BE";
+  margin-left: auto;
+  color: var(--ad-dim);
+  transition: transform 0.2s;
+}
+.kt-gal__akv[open] summary::after {
+  transform: rotate(180deg);
+}
+.kt-gal__akv summary .ad-tag {
+  margin-left: 6px;
+}
+.kt-gal__akv-foto {
+  flex: 0 0 auto;
+  width: 64px;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0b0e0d;
+}
+.kt-gal__akv-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.kt-gal__akv-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.kt-gal__akv-text b {
+  font-size: 0.95rem;
+}
+.kt-gal__akv-telo {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  padding: 4px 14px 16px;
+  border-top: 1px solid var(--ad-line);
+}
+.kt-gal__akv-telo .kt-foto {
+  width: 100%;
+}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AkvariumObsah from "../../../akvaria/AkvariumObsah";
-import { AQUARIUMS, getAquarium } from "../../../aquariums";
+import { AQUARIUMS } from "../../../aquariums";
+import { nacitajAkvarium } from "../../../katalog/galerie-server";
 import { EN } from "../../../preklady";
 
 export function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const a = getAquarium(slug);
+  const a = await nacitajAkvarium(slug);
   if (!a) return { title: "Aquarium not found" };
   return {
     title: `Aquarium ${a.dim} | AQUAPRIME`,
@@ -32,7 +33,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const a = getAquarium(slug);
+  const a = await nacitajAkvarium(slug);
   if (!a) notFound();
   return <AkvariumObsah a={a} t={EN} jazyk="en" />;
 }

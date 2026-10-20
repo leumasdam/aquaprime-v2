@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
+import type { Set } from "../sety";
 import SetyHero from "./SetyHero";
 import SetyKatalog from "./Katalog";
 
@@ -9,7 +10,7 @@ import SetyKatalog from "./Katalog";
  * prevedení (SetyHero), pod ním úvod a katalóg: prepínač kategórií a karty
  * setov v rovnakej mriežke ako skrinky. Detail setu má vlastnú stránku.
  */
-export default function SetyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
+export default function SetyObsah({ t, jazyk, sety }: { t: Slovnik; jazyk: Jazyk; sety: Set[] }) {
   const k = t.sety;
   return (
     <main className="catalog sety" style={{ "--accent": "var(--cyan)" } as CSSProperties}>
@@ -22,7 +23,7 @@ export default function SetyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
           <p className="sety__lead">{k.lead}</p>
         </div>
         <div className="wrap">
-          <SetyKatalog t={k} jazyk={jazyk} />
+          <SetyKatalog t={k} jazyk={jazyk} sety={sety} />
         </div>
       </section>
     </main>

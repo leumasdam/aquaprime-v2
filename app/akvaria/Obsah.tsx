@@ -5,7 +5,7 @@ import type { Slovnik } from "../preklady";
 import Drobcek from "../Drobcek";
 import PozadieVideo from "../PozadieVideo";
 import PasKarusel from "../PasKarusel";
-import { AQUARIUMS } from "../aquariums";
+import type { Aquarium } from "../aquariums";
 
 const HERO_FEATURES = [
   {
@@ -44,7 +44,7 @@ const HERO_FEATURES = [
 ];
 
 
-export default function AkvariaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
+export default function AkvariaObsah({ t, jazyk, akvaria }: { t: Slovnik; jazyk: Jazyk; akvaria: Aquarium[] }) {
   const k = t.akvaria;
   const l = (h: string) => odkaz(h, jazyk);
   return (
@@ -115,7 +115,7 @@ export default function AkvariaObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
               {k.katalogLead}
             </p>
           </div>
-          <AquaGrid jazyk={jazyk} />
+          <AquaGrid jazyk={jazyk} akvaria={akvaria} />
         </div>
       </section>
 

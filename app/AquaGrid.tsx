@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AQUARIUMS, aquariumPriceValue } from "./aquariums";
+import { aquariumPriceValue, type Aquarium } from "./aquariums";
 import AquariumCard from "./AquariumCard";
 import { odkaz, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
@@ -14,7 +14,6 @@ import {
   PocetVysledkov,
 } from "./Filtre";
 
-const LENGTHS = [...new Set(AQUARIUMS.map((a) => a.w))].sort((x, y) => x - y);
 
 type Band = Pasmo | "all";
 
@@ -28,7 +27,8 @@ const HRANICE: Record<Pasmo, [number, number]> = {
   l: [501, Infinity],
 };
 
-export default function AquaGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
+export default function AquaGrid({ jazyk = "sk", akvaria: AQUARIUMS }: { jazyk?: Jazyk; akvaria: Aquarium[] }) {
+  const LENGTHS = useMemo(() => [...new Set(AQUARIUMS.map((a) => a.w))].sort((x, y) => x - y), [AQUARIUMS]);
   const t = SLOVNIKY[jazyk].akvaria;
   const BANDS = t.pasma.map(([id, label]) => ({
     id: id as Pasmo,

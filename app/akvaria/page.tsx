@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AkvariaObsah from "./Obsah";
 import { SK } from "../preklady";
+import { nacitajAkvaria } from "../katalog/galerie-server";
 
 export const metadata: Metadata = {
   title: SK.akvaria.metaTitul,
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/akvaria", languages: { sk: "/akvaria", en: "/en/akvaria" } },
 };
 
-export default function AkvariaPage() {
-  return <AkvariaObsah t={SK} jazyk="sk" />;
+export default async function AkvariaPage() {
+  return <AkvariaObsah t={SK} jazyk="sk" akvaria={await nacitajAkvaria()} />;
 }
