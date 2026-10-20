@@ -107,7 +107,7 @@ export async function POST(req: Request) {
           {
             typ: "obrazok",
             src: "https://aquaprime.sk/mail/skrinka.jpg",
-            popis: "Skrinky staviame na zváranom oceľovom ráme 30 × 30 mm.",
+            popis: "Skrinky staviame na zváranom oceľovom ráme.",
           },
           { typ: "text", text: "Kým čakáte, môžete si pozrieť ponuku rozmerov a dekorov." },
           { typ: "tlacidlo", text: "Prezrieť skrinky", href: "https://aquaprime.sk/skrinky" },

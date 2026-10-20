@@ -215,7 +215,7 @@ export async function POST(req: Request) {
           {
             typ: "obrazok",
             src: "https://aquaprime.sk/mail/skrinka.jpg",
-            popis: "Každá skrinka stojí na zváranom oceľovom ráme 30 × 30 mm.",
+            popis: "Každá skrinka stojí na zváranom oceľovom ráme.",
           },
           { typ: "tabulka", riadky: suhrnRiadky },
           { typ: "tabulka", riadky: zakaznikRiadky },

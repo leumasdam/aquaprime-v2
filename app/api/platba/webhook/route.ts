@@ -114,7 +114,7 @@ export async function POST(req: Request) {
           {
             typ: "obrazok",
             src: "https://aquaprime.sk/mail/skrinka.jpg",
-            popis: "Zváraný oceľový rám 30 × 30 mm a opláštenie vo zvolenom dekore.",
+            popis: "Zváraný oceľový rám a opláštenie vo zvolenom dekore.",
           },
         ],
         zaver: "Na tento e-mail môžete kedykoľvek odpovedať.",
