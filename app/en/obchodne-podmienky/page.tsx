@@ -38,8 +38,8 @@ export default function TermsAndConditions() {
         The operator of the online shop and the seller is{" "}
         Patrik Randa, a sole trader with the place of business at Hliník nad Váhom 243, 014 01 Bytča, Slovakia, company
         ID (IČO) 52 060 624, tax ID <Doplnit en co="tax ID (DIČ)" />, not a VAT payer,
-        registered in the Trade Register under 
-        <Doplnit en co="district office and Trade Register number (from the certificate)" /> (the
+        registered in the Trade Register kept by the District Office Žilina under
+        No. 580-64151 (the
         &bdquo;seller&ldquo;).
       </p>
       <p>

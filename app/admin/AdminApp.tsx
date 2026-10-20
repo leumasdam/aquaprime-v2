@@ -912,7 +912,7 @@ export default function AdminApp() {
 
                 <h2 className="ad-h2">Ako odomknúť web pre verejnosť</h2>
                 <ol className="ad-steps">
-                  <li>Doplniť DIČ a číslo živnostenského registra do bodu 2 obchodných podmienok (SK aj EN).</li>
+                  <li>Doplniť DIČ do bodu 2 obchodných podmienok (SK aj EN).</li>
                   <li>Hotové: FIRMA_IBAN (QR platby) aj Stripe kľúče (platba kartou) sú nastavené.</li>
                   <li>Určiť príplatok za nožičky (zatiaľ „na dopyt") a skontrolovať ceny v katalógu.</li>
                   <li>Vo Verceli zmazať premennú SITE_PASSWORD → zámok zmizne.</li>

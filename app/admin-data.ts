@@ -138,9 +138,9 @@ export function zdravieWebu(katalog: Product[]) {
     {
       id: "podmienky",
       ok: false,
-      titul: "Právne texty čakajú na DIČ a zápis v registri",
+      titul: "Právne texty čakajú na DIČ",
       detail:
-        "Obchodné podmienky sú vyplnené (IČO, sídlo, kontakty, lehoty, účinnosť 20. 10. 2026). Chýba DIČ a číslo živnostenského registra v bode 2; znenie odporúčame dať prejsť právnikovi.",
+        "Obchodné podmienky sú vyplnené (IČO, sídlo, kontakty, lehoty, účinnosť 20. 10. 2026). Chýba už len DIČ v bode 2; znenie odporúčame dať prejsť právnikovi.",
     },
   ];
 }

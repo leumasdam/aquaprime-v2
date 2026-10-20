@@ -33,7 +33,7 @@ export default function ObchodnePodmienky() {
         Prevádzkovateľom internetového obchodu a predávajúcim je{" "}
         Patrik Randa, s miestom podnikania Hliník nad Váhom 243, 014 01 Bytča, IČO 52 060 624, DIČ 
         <Doplnit co="DIČ" />, predávajúci nie je platiteľom DPH, zapísaný v živnostenskom
-        registri <Doplnit co="okresný úrad a číslo živnostenského registra (z osvedčenia)" /> 
+        registri Okresného úradu Žilina, číslo živnostenského registra 580-64151
         (ďalej len „predávajúci“).
       </p>
       <p>
