@@ -10,17 +10,8 @@ import type { Slovnik } from "./preklady";
  * spomaľuje stránku a sleduje návštevníkov. Dlaždice sú preto statické,
  * rovnaké ako v profile, a každá vedie na Instagram.
  */
-const DLAZDICE = [
-  "/instagram/01-priestor.webp",
-  "/instagram/02-obyvacka.webp",
-  "/instagram/03-znacka.webp",
-  "/instagram/04-tricko.webp",
-  "/instagram/05-dekor.webp",
-  "/instagram/06-detail.webp",
-  "/instagram/07-na-mieru.webp",
-  "/instagram/08-taska.webp",
-  "/instagram/09-podpis.webp",
-];
+// posledných 9 príspevkov z profilu @aquaprime.sk (stiahnuté 20. 10. 2026)
+const DLAZDICE = Array.from({ length: 9 }, (_, i) => `/instagram/ig-0${i + 1}.webp`);
 
 function IkonaIg({ className }: { className?: string }) {
   return (
