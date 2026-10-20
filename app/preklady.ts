@@ -163,7 +163,7 @@ export const SK = {
       ["na mieru", "ROZMERY"],
     ] as [string, string][],
     kolekcieEyebrow: "SKRINKY",
-    kolekcieTitul: "Vyberte si vyhotovenie.",
+    kolekcieTitul: "Vyberte si vyhotovenie",
     kolekcie: [
       ["Basic", "Otvorený oceľový rám s vrchnou doskou"],
       ["Štandard", "Oceľový rám s bočnicami a dvierkami"],
@@ -1323,7 +1323,7 @@ export const EN: Slovnik = {
       ["custom", "DIMENSIONS"],
     ],
     kolekcieEyebrow: "CABINETS",
-    kolekcieTitul: "Choose your finish.",
+    kolekcieTitul: "Choose your finish",
     kolekcie: [
       ["Basic", "Open steel frame with a top panel"],
       ["Standard", "Steel frame with side panels and doors"],

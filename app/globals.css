@@ -2501,10 +2501,10 @@ button:disabled:hover {
   }
 }
 
-@media (max-width: 1024px) {
-  :root {
-    --nav-h: 76px;
-  }
+/* Navigácia sa do hamburgeru zbaľuje už pod 1380 px — šesť položiek
+   plus jazyk, Konfigurátor a košík sa na užších notebookoch tlačili
+   (20. 10. 2026). Výška lišty ostáva desktopová až do 1024 px. */
+@media (max-width: 1379px) {
   .nav__links,
   .nav__cta,
   .jazyk:not(.jazyk--mobil) {
@@ -2515,9 +2515,15 @@ button:disabled:hover {
     /* auto margin preberá košík — burger je hneď vedľa neho */
     margin-left: 18px;
   }
-  /* košík na mobile patrí doprava k burgeru, nie k logu */
+  /* košík patrí doprava k burgeru, nie k logu */
   .nav__kosik {
     margin-left: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --nav-h: 76px;
   }
   .modules {
     grid-template-columns: 1fr;
