@@ -79,6 +79,8 @@ export async function POST(req: Request) {
   //        takže variabilný symbol prejde aj pri SEPA platbe z ČR)
   const iban = process.env.FIRMA_IBAN?.replace(/\s+/g, "").toUpperCase() || null;
   const firma = process.env.FIRMA_NAZOV || "AQUAPRIME";
+  // BIC je pri zahraničnom IBAN-e (napr. Revolut, LT) istota pre staršie bankové appky
+  const bic = process.env.FIRMA_BIC?.replace(/\s+/g, "").toUpperCase() || undefined;
   let pbs: string | null = null;
   let spd: string | null = null;
   if (iban && zaloha > 0) {
@@ -90,7 +92,7 @@ export async function POST(req: Request) {
             amount: zaloha,
             currencyCode: CurrencyCode.EUR,
             variableSymbol: vs,
-            bankAccounts: [{ iban }],
+            bankAccounts: [{ iban, bic }],
             paymentNote: `Zaloha ${cislo}`,
             beneficiary: { name: firma },
           },
@@ -101,7 +103,7 @@ export async function POST(req: Request) {
     }
     spd = [
       "SPD*1.0",
-      `ACC:${iban}`,
+      `ACC:${iban}${bic ? `+${bic}` : ""}`,
       `AM:${zaloha.toFixed(2)}`,
       "CC:EUR",
       `X-VS:${vs}`,
@@ -115,6 +117,7 @@ export async function POST(req: Request) {
   const platbaRiadky: [string, string][] = iban
     ? [
         ["IBAN", iban.replace(/(.{4})/g, "$1 ").trim()],
+        ...(bic ? ([["BIC / SWIFT", bic]] as [string, string][]) : []),
         ["Variabilný symbol", vs],
         ["Poznámka", `Zaloha ${cislo}`],
       ]

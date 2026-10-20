@@ -896,7 +896,7 @@ export default function AdminApp() {
                         ["Čítanie štatistík GA4", stav.integracie.ga4, "GA4_PROPERTY_ID, GOOGLE_SA_EMAIL, GOOGLE_SA_KEY"],
                         ["Search Console", stav.integracie.gsc, "GOOGLE_SA_EMAIL, GOOGLE_SA_KEY (+ overená doména)"],
                         ["AI analytik (Claude)", stav.integracie.ai, "ANTHROPIC_API_KEY"],
-                        ["QR platba zálohy (IBAN)", stav.integracie.iban, "FIRMA_IBAN (+ voliteľne FIRMA_NAZOV)"],
+                        ["QR platba zálohy (IBAN)", stav.integracie.iban, "FIRMA_IBAN (+ voliteľne FIRMA_NAZOV, FIRMA_BIC)"],
                         ["Zámok webu", stav.integracie.zamokWebu, "SITE_PASSWORD (zmazať = web verejný)"],
                         ["Admin heslo", stav.integracie.adminHeslo, "ADMIN_PASSWORD"],
                       ] as [string, boolean, string][]
