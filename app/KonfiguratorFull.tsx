@@ -26,8 +26,9 @@ import { dvierkaPreSirku } from "./cabinet-construction";
 import { dekorNazov, odkaz, radText, type Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 
-/* Kolieska nikdy neboli súčasťou výrobku (audit 11. 9. 2026) — skrinka má
-   nastaviteľné nožičky, bez výberu a bez príplatku. */
+/* Kolieska nikdy neboli súčasťou výrobku (audit 11. 9. 2026). Nožičky sú
+   voliteľné s príplatkom „na dopyt" (volia sa na detaile produktu / v košíku),
+   tu ich len uvádzame v súhrne. */
 const FEET = [{ id: "steel", name: "Nastaviteľné nožičky", prem: 0 }] as const;
 
 const OWNER_EMAIL = "patrikranda225@gmail.com";
@@ -165,7 +166,7 @@ function Jadro({ jazyk, katalog }: { jazyk: Jazyk; katalog: Product[] }) {
       `Rad: ${product.tierLabel} — ${product.tierNote}`,
       `Rozmer: ${product.dim}`,
       `Dekor: ${decor.name}`,
-      `Nožičky: nastaviteľné (vyrovnanie pri osadení)`,
+      `Nožičky: voliteľné, príplatok na dopyt`,
       `LED podsvietenie: ${ledOn ? "áno" : "nie"}`,
       `Cena skrinky: ${total} €`,
     ];
