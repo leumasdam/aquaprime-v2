@@ -92,7 +92,7 @@ const novySet = {
   popis: { sk: ["Prvý odsek.", "Druhý odsek."], en: [] },
   preKoho: { sk: ["Pre testy."], en: [] },
   skrinka: "90 × 40 × 75 cm", akvarium: "90 × 40 × 45 cm", sklo: { sk: "Klasické sklo", en: "" }, objem: 162,
-  prevedenia: [{ id: "black-matt", nazov: "Black Matt", swatch: ["#17181a"], fotky: [up.src] }],
+  prevedenia: [{ id: "black-matt", name: "Black Matt", swatch: ["#17181a"], images: [up.src] }],
   cena: 1290, novinka: true,
 };
 r = await S.post({ akcia: "uloz", povodneId: null, polozka: novySet, odtlacok: null }); j = await r.json();
@@ -105,7 +105,7 @@ ok("katalóg setov pozná nový set (kategória akváriové)", h.includes("test-
 ok("EN detail setu = 200", (await status("/en/sety/test-90")) === 200);
 
 // nezverejniteľný: bez fotky v prevedení
-r = await S.post({ akcia: "uloz", povodneId: null, polozka: { ...novySet, id: "test-bez", prevedenia: [{ id: "x", nazov: "X", swatch: ["#000"], fotky: [] }] }, odtlacok: null }); j = await r.json();
+r = await S.post({ akcia: "uloz", povodneId: null, polozka: { ...novySet, id: "test-bez", prevedenia: [{ id: "x", name: "X", swatch: ["#000"], images: [] }] }, odtlacok: null }); j = await r.json();
 ok("set bez fotky sa nedá zverejniť = 422", r.status === 422, String(r.status));
 r = await S.post({ akcia: "uloz", povodneId: null, polozka: { ...novySet, id: "test-bez", skryta: true, prevedenia: [] }, odtlacok: null }); j = await r.json();
 ok("rozpracovaný set prejde aj bez prevedení", r.status === 200 && j.ok, `${r.status} ${JSON.stringify(j.chyby ?? "")}`);

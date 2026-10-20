@@ -1,15 +1,15 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { KATEGORIE, type KategoriaSetu, type Prevedenie, type Set } from "../../sety";
+import type { Decor } from "../../products";
 import type { Chyba } from "../../katalog/kontrola";
 import { chybySetu, normalizujSet } from "../../katalog/polozky";
 import Swatch from "../../Swatch";
-import Fotky from "./Fotky";
-import Vzorka from "./Vzorka";
+import DekorKarta from "./DekorKarta";
 import { naSlug } from "./FormularSkrinky";
 import { ChybaServera, ListaUlozenia, Pole, usePolozka } from "./FormularSpolocne";
-import type { StavPoloziek } from "./api";
+import { nacitaj, type StavPoloziek } from "./api";
 
 const KATEGORIA_NAZOV: Record<KategoriaSetu, string> = {
   akvariove: "Akváriové",
@@ -17,12 +17,7 @@ const KATEGORIA_NAZOV: Record<KategoriaSetu, string> = {
   terariove: "Terárijové",
 };
 
-/** Najčastejšie prevedenia — klient si ich pridá jedným klikom. */
-const PREVEDENIA_VZOR: Pick<Prevedenie, "id" | "nazov" | "swatch">[] = [
-  { id: "black-matt", nazov: "Black Matt", swatch: ["#17181a"] },
-  { id: "cool-white", nazov: "Cool White", swatch: ["#eef0f0"] },
-  { id: "antracit", nazov: "Antracit", swatch: ["#40454a"] },
-];
+type DekorVzor = Pick<Decor, "id" | "name" | "swatch">;
 
 export function novySet(): Set {
   return normalizujSet({
@@ -64,7 +59,20 @@ export default function FormularSetu({
 }) {
   const [slugAuto, setSlugAuto] = useState(() => !povodna);
   const [jazyk, setJazyk] = useState<"sk" | "en">("sk");
-  const [otvorene, setOtvorene] = useState<string | null>(null);
+  const [pridavanie, setPridavanie] = useState(false);
+  const [noveDekory, setNoveDekory] = useState<globalThis.Set<string>>(() => new globalThis.Set());
+  const [noveMeno, setNoveMeno] = useState("");
+  /* knižnica dekorov = všetky dekory z katalógu skriniek — set používa tie isté */
+  const [kniznica, setKniznica] = useState<DekorVzor[] | null>(null);
+  useEffect(() => {
+    nacitaj()
+      .then((st) => {
+        const m = new Map<string, DekorVzor>();
+        for (const p of st.katalog) for (const d of p.decors) if (!m.has(d.id)) m.set(d.id, { id: d.id, name: d.name, swatch: d.swatch });
+        setKniznica([...m.values()].sort((a, b) => a.name.localeCompare(b.name, "sk")));
+      })
+      .catch(() => setKniznica([]));
+  }, []);
   const chyby = useCallback(
     (s: Set): Chyba[] => {
       const obsadena = zoznam.some((x) => x.id === s.id && x.id !== povodna?.id);
@@ -88,6 +96,7 @@ export default function FormularSetu({
   const zmenText = (pole: "podtitul" | "sklo", hodnota: string) => zmen((d) => ({ ...d, [pole]: { ...d[pole], [jazyk]: hodnota } }));
   const zmenZoznam = (pole: "popis" | "preKoho", hodnota: string[]) => zmen((d) => ({ ...d, [pole]: { ...d[pole], [jazyk]: hodnota } }));
   const zmenPrevedenie = (i: number, p: Prevedenie) => zmen((d) => ({ ...d, prevedenia: d.prevedenia.map((x, k) => (k === i ? p : x)) }));
+  const volneDekory = useMemo(() => (kniznica ?? []).filter((d) => !draft.prevedenia.some((x) => x.id === d.id)), [kniznica, draft.prevedenia]);
   const presun = (i: number, smer: -1 | 1) =>
     zmen((d) => {
       const j = i + smer;
@@ -96,13 +105,20 @@ export default function FormularSetu({
       [n[i], n[j]] = [n[j], n[i]];
       return { ...d, prevedenia: n };
     });
-  const pridajPrevedenie = (vzor: Pick<Prevedenie, "id" | "nazov" | "swatch">) => {
-    let id = vzor.id;
-    for (let k = 2; draft.prevedenia.some((p) => p.id === id); k++) id = `${vzor.id}-${k}`;
-    zmen((d) => ({ ...d, prevedenia: [...d.prevedenia, { id, nazov: vzor.nazov, swatch: [...vzor.swatch], fotky: [] }] }));
-    setOtvorene(id);
+  const pridajDekor = (vzor: DekorVzor) => {
+    setNoveDekory((n) => new globalThis.Set(n).add(vzor.id));
+    zmen((d) => ({ ...d, prevedenia: [...d.prevedenia, { id: vzor.id, name: vzor.name, swatch: [...vzor.swatch], images: [] }] }));
+    setPridavanie(false);
   };
-  const [noveMeno, setNoveMeno] = useState("");
+  const vytvorDekor = () => {
+    const meno = noveMeno.trim();
+    if (!meno) return;
+    let id = naSlug(meno) || "dekor";
+    const obsadene = new globalThis.Set([...(kniznica ?? []).map((d) => d.id), ...draft.prevedenia.map((d) => d.id)]);
+    for (let k = 2; obsadene.has(id); k++) id = `${naSlug(meno)}-${k}`;
+    pridajDekor({ id, name: meno, swatch: ["#17181a"] });
+    setNoveMeno("");
+  };
   const chybyPrevedenia = (i: number) => f.chyby.filter((c) => c.pole === `prevedenia.${i}`);
 
   const spat = () => {
@@ -201,6 +217,21 @@ export default function FormularSetu({
               <i>€</i>
             </span>
           </Pole>
+          <Pole nazov="Cena s LED podsvietením" pozn="Platí pre LED verziu setu — tá vznikne, keď dekor dostane LED fotky. Nechajte prázdne, ak set LED nemá.">
+            <span className="kt-jednotka">
+              <input
+                className="kt-vstup"
+                type="number"
+                inputMode="decimal"
+                min={0}
+                step="1"
+                placeholder="bez LED"
+                value={draft.cenaLed ?? ""}
+                onChange={(e) => zmen({ cenaLed: e.target.value ? Number(e.target.value) : null })}
+              />
+              <i>€</i>
+            </span>
+          </Pole>
         </div>
       </div>
 
@@ -231,111 +262,83 @@ export default function FormularSetu({
         </Pole>
       </div>
 
-      <h2 className="ad-h2">Prevedenia a fotky</h2>
-      <p className="kt-podnadpis">Každé prevedenie (farba skrinky) má vlastnú sadu fotiek. Prvé prevedenie dáva setu titulnú fotku v katalógu. Karta aj detail ukazujú celú fotku na bielom paneli ako pri skrinkách — najlepšie vyzerá záber na šírku alebo packshot na svetlom pozadí.</p>
+      <h2 className="ad-h2">Dekory a fotky</h2>
+      <p className="kt-podnadpis">
+        Rovnaké dekory ako pri skrinkách. Prvý dekor dáva setu titulnú fotku v katalógu; LED fotky k dekoru pridajú LED
+        dlaždicu do katalógu a prepínač podsvietenia na detaile — presne ako pri skrinke.
+      </p>
+      {f.chybyPola("prevedenia").map((c, k) => (
+        <p key={k} className="ad-err">
+          {c.sprava}
+        </p>
+      ))}
       <div className="kt-dekory">
-        {draft.prevedenia.map((p, i) => {
-          const otv = otvorene === p.id || chybyPrevedenia(i).length > 0;
-          return (
-            <article key={p.id} className={`kt-dekor${chybyPrevedenia(i).length ? " is-chyba" : ""}`}>
-              <header className="kt-dekor__hlava">
-                <span className="kt-dekor__cislo">{i + 1}</span>
-                <span className="kt-dekor__vzorka">
-                  <Swatch swatch={p.swatch} />
-                </span>
-                <div className="kt-dekor__meno">
-                  {otv ? (
-                    <input className="kt-vstup kt-vstup--nazov" value={p.nazov} placeholder="Názov prevedenia" aria-label="Názov prevedenia" onChange={(e) => zmenPrevedenie(i, { ...p, nazov: e.target.value })} />
-                  ) : (
-                    <b className="kt-dekor__nazov">{p.nazov || "Bez názvu"}</b>
-                  )}
-                  <span className="ad-mono ad-muted">ID: {p.id}</span>
-                </div>
-                {!otv && p.fotky.length > 0 && (
-                  <span className="kt-dekor__nahlady" aria-hidden>
-                    {p.fotky.slice(0, 5).map((src, k) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img key={`${src}-${k}`} src={src} alt="" loading="lazy" />
-                    ))}
-                    {p.fotky.length > 5 && <i>+{p.fotky.length - 5}</i>}
-                  </span>
-                )}
-                <span className={`ad-tag ${p.fotky.length ? "is-a" : "is-off"}`}>{p.fotky.length ? `${p.fotky.length} fotiek` : "Bez fotky"}</span>
-                <div className="kt-dekor__ovladace">
-                  <button type="button" onClick={() => presun(i, -1)} disabled={i === 0} aria-label="Posunúť vyššie">
-                    ↑
-                  </button>
-                  <button type="button" onClick={() => presun(i, 1)} disabled={i === draft.prevedenia.length - 1} aria-label="Posunúť nižšie">
-                    ↓
-                  </button>
-                  <button
-                    type="button"
-                    className="kt-dekor__zmaz"
-                    onClick={() => {
-                      if (p.fotky.length && !window.confirm(`Odobrať prevedenie „${p.nazov}" aj s ${p.fotky.length} fotkami?`)) return;
-                      zmen((d) => ({ ...d, prevedenia: d.prevedenia.filter((_, k) => k !== i) }));
-                    }}
-                  >
-                    Odobrať
-                  </button>
-                  <button type="button" className="kt-dekor__rozbal" aria-expanded={otv} onClick={() => setOtvorene(otv ? null : p.id)}>
-                    {otv ? "Zbaliť" : "Upraviť"}
-                  </button>
-                </div>
-              </header>
-              {otv && (
-                <div className="kt-dekor__telo">
-                  <Vzorka id={p.id} hodnota={p.swatch} onZmena={(swatch) => zmenPrevedenie(i, { ...p, swatch })} />
-                  <Fotky fotky={p.fotky} onZmena={(fotky) => zmenPrevedenie(i, { ...p, fotky })} titulna={i === 0} popis={`${draft.nazov} ${p.nazov}, fotka`} />
-                  {chybyPrevedenia(i).map((c, k) => (
-                    <em key={k} className="ad-err">
-                      {c.sprava}
-                    </em>
-                  ))}
-                </div>
-              )}
-            </article>
-          );
-        })}
-        {f.chybyPola("prevedenia").map((c, k) => (
-          <em key={k} className="ad-err">
-            {c.sprava}
-          </em>
+        {draft.prevedenia.map((d, i) => (
+          <DekorKarta
+            key={d.id}
+            dekor={d}
+            poradie={i}
+            pocet={draft.prevedenia.length}
+            chyby={chybyPrevedenia(i)}
+            otvorena={noveDekory.has(d.id) || (!povodna && !predloha)}
+            onZmena={(nd) => zmenPrevedenie(i, nd)}
+            onPresun={(smer) => presun(i, smer)}
+            onOdstran={() => {
+              if (d.images.length && !window.confirm(`Odobrať dekor „${d.name}" aj s ${d.images.length} fotkami?`)) return;
+              zmen((x) => ({ ...x, prevedenia: x.prevedenia.filter((_, k) => k !== i) }));
+            }}
+          />
         ))}
-        <div className="kt-prev-pridat">
-          {PREVEDENIA_VZOR.filter((v) => !draft.prevedenia.some((p) => p.id === v.id)).map((v) => (
-            <button key={v.id} type="button" className="kt-prev-pridat__vzor" onClick={() => pridajPrevedenie(v)}>
-              <Swatch swatch={v.swatch} />
-              {v.nazov}
-            </button>
-          ))}
-          <div className="kt-prev-pridat__vlastne">
+      </div>
+
+      {pridavanie ? (
+        <div className="kt-karta kt-pridaj">
+          <h3 className="kt-podnadpis">Dekor z ponuky skriniek</h3>
+          {kniznica === null ? (
+            <p className="ad-muted">Načítavam dekory…</p>
+          ) : volneDekory.length ? (
+            <ul className="kt-kniznica">
+              {volneDekory.map((d) => (
+                <li key={d.id}>
+                  <button type="button" onClick={() => pridajDekor(d)}>
+                    <span className="kt-kniznica__vzorka">
+                      <Swatch swatch={d.swatch} />
+                    </span>
+                    {d.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="ad-muted">Všetky dekory z ponuky už set má.</p>
+          )}
+          <h3 className="kt-podnadpis">Úplne nový dekor</h3>
+          <div className="kt-riadok kt-riadok--akcia">
             <input
               className="kt-vstup"
               value={noveMeno}
-              placeholder="Vlastné prevedenie, napr. Dub"
+              placeholder="Názov, napríklad Dub Lancelot"
               onChange={(e) => setNoveMeno(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key !== "Enter") return;
-                e.preventDefault();
-                if (noveMeno.trim()) pridajPrevedenie({ id: naSlug(noveMeno) || "prevedenie", nazov: noveMeno.trim(), swatch: ["#17181a"] });
-                setNoveMeno("");
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  vytvorDekor();
+                }
               }}
             />
-            <button
-              type="button"
-              className="kt-pridat"
-              disabled={!noveMeno.trim()}
-              onClick={() => {
-                pridajPrevedenie({ id: naSlug(noveMeno) || "prevedenie", nazov: noveMeno.trim(), swatch: ["#17181a"] });
-                setNoveMeno("");
-              }}
-            >
-              + Pridať prevedenie
+            <button type="button" className="ad-btn" onClick={vytvorDekor} disabled={!noveMeno.trim()}>
+              Vytvoriť
             </button>
           </div>
+          <button type="button" className="kt-odkaz" onClick={() => setPridavanie(false)}>
+            Zavrieť
+          </button>
         </div>
-      </div>
+      ) : (
+        <button type="button" className="kt-pridat" onClick={() => setPridavanie(true)}>
+          + Pridať dekor
+        </button>
+      )}
 
       <ListaUlozenia
         skryta={Boolean(draft.skryta)}

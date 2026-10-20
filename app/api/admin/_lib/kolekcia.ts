@@ -54,7 +54,7 @@ export function vytvorHandlery<T>(popis: Popis<T>) {
   async function stav() {
     const ulozene = await nacitajSMetou<T[]>(kolekcia);
     return {
-      polozky: ulozene?.data ?? seed,
+      polozky: (ulozene?.data ?? seed).map(normalizuj),
       ulozene: ulozene ? { kedy: ulozene.kedy, kto: ulozene.kto } : null,
       uloziskoPripravene: uloziskoPripravene(),
     };
@@ -92,7 +92,8 @@ export function vytvorHandlery<T>(popis: Popis<T>) {
       const { data, zaznam } = await upravKolekciu<T[]>(
         kolekcia,
         (aktualne) => {
-          const zoznam: T[] = structuredClone(aktualne ?? seed);
+          // uložené položky prejdú normalizáciou — staršie tvary sa tak premigrujú pri prvej zmene
+          const zoznam: T[] = structuredClone(aktualne ?? seed).map(normalizuj);
           switch (telo.akcia) {
             case "uloz": {
               const nova = normalizuj(telo.polozka);

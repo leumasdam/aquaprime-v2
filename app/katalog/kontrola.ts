@@ -71,13 +71,8 @@ export function navrhSlug(tier: Tier, w: number, d: number, h: number): string {
  * Klient tak nemôže napísať do nadpisu iný rozmer, než aký je v číslach,
  * a titulná fotka je vždy prvá fotka prvého dekoru.
  */
-export function normalizuj(vstup: Product): Product {
-  const rad = TIERS.find((t) => t.id === vstup.tier) ?? TIERS[0];
-  const w = Math.round(Number(vstup.w)) || 0;
-  const d = Math.round(Number(vstup.d)) || 0;
-  const h = Math.round(Number(vstup.h)) || 0;
-
-  const decors: Decor[] = (vstup.decors ?? []).map((dek) => {
+/** Jeden dekor (skrinky aj setu) v jednotnom tvare — bez neplatných fotiek a prázdnych polí. */
+export function normalizujDekor(dek: Decor): Decor {
     const chyba = Boolean(dek.chyba);
     const out: Decor = {
       id: String(dek.id ?? "").trim(),
@@ -106,7 +101,14 @@ export function normalizuj(vstup: Product): Product {
       }
     }
     return out;
-  });
+}
+
+export function normalizuj(vstup: Product): Product {
+  const rad = TIERS.find((t) => t.id === vstup.tier) ?? TIERS[0];
+  const w = Math.round(Number(vstup.w)) || 0;
+  const d = Math.round(Number(vstup.d)) || 0;
+  const h = Math.round(Number(vstup.h)) || 0;
+  const decors: Decor[] = (vstup.decors ?? []).map(normalizujDekor);
 
   const cena = cenaZTextu(vstup.price);
   const cenaLed = cenaZTextu(vstup.priceLed);
@@ -162,34 +164,51 @@ export function chybySkrinky(p: Product): Chyba[] {
   if (p.priceLed && cenaZTextu(p.price) === null)
     ch("priceLed", "Cena s LED má zmysel len vtedy, keď má skrinka aj základnú cenu.");
 
-  // dekory — identifikátory musia byť jedinečné, inak by sa na webe prepínali dva naraz
-  const idcka = new Set<string>();
-  p.decors.forEach((dek, i) => {
-    const kde = `decors.${i}`;
-    if (!dek.id || !SLUG_VZOR.test(dek.id)) ch(kde, `Dekor č. ${i + 1} nemá platný identifikátor.`);
-    else if (idcka.has(dek.id)) ch(kde, `Dekor „${dek.name || dek.id}" je v skrinke dvakrát.`);
-    idcka.add(dek.id);
-    if (!dek.name) ch(kde, `Dekor č. ${i + 1} nemá názov.`);
-    if (!dek.swatch.length) ch(kde, `Dekor „${dek.name || dek.id}" nemá vzorku farby.`);
-    for (const v of dek.swatch)
-      if (!povolenaVzorka(v)) ch(kde, `Dekor „${dek.name || dek.id}" má neplatnú vzorku farby.`);
-    for (const src of [...dek.images, ...(dek.led?.zlta ?? []), ...(dek.led?.modra ?? [])])
-      if (!povolenaFotka(src)) ch(kde, `Dekor „${dek.name || dek.id}" má fotku z nepovolenej adresy.`);
-  });
-
+  chybyDekorov(p.decors, "decors", ch, false);
   if (p.skryta) return out;
 
   /* ---- len pre zverejnenú skrinku ---- */
   if (!p.decors.length) ch("decors", "Zverejnená skrinka potrebuje aspoň jeden dekor.");
-  const prvy = p.decors[0];
-  if (prvy && (prvy.chyba || !prvy.images.length))
-    ch("decors.0", "Prvý dekor dáva skrinke titulnú fotku, preto musí mať aspoň jednu fotku.");
-  p.decors.forEach((dek, i) => {
-    if (!dek.chyba && !dek.images.length)
-      ch(`decors.${i}`, `Dekor „${dek.name || dek.id}" nemá fotku. Nahrajte ju, alebo ho označte ako „čaká na fotky".`);
-  });
+  chybyDekorov(p.decors, "decors", ch, true);
   if (!p.desc) ch("desc", "Zverejnená skrinka potrebuje popis.");
   return out;
+}
+
+/**
+ * Chyby zoznamu dekorov — spoločné pre skrinky aj sety. Bez `zverejnene` len
+ * to, čo dekor identifikuje; so `zverejnene` aj fotky, s ktorými web počíta.
+ */
+export function chybyDekorov(
+  decors: Decor[],
+  pole: string,
+  ch: (pole: string, sprava: string) => void,
+  zverejnene: boolean,
+  co = "skrinke",
+) {
+  if (!zverejnene) {
+    // identifikátory musia byť jedinečné, inak by sa na webe prepínali dva naraz
+    const idcka = new Set<string>();
+    decors.forEach((dek, i) => {
+      const kde = `${pole}.${i}`;
+      if (!dek.id || !SLUG_VZOR.test(dek.id)) ch(kde, `Dekor č. ${i + 1} nemá platný identifikátor.`);
+      else if (idcka.has(dek.id)) ch(kde, `Dekor „${dek.name || dek.id}" je v ${co} dvakrát.`);
+      idcka.add(dek.id);
+      if (!dek.name) ch(kde, `Dekor č. ${i + 1} nemá názov.`);
+      if (!dek.swatch.length) ch(kde, `Dekor „${dek.name || dek.id}" nemá vzorku farby.`);
+      for (const v of dek.swatch)
+        if (!povolenaVzorka(v)) ch(kde, `Dekor „${dek.name || dek.id}" má neplatnú vzorku farby.`);
+      for (const src of [...dek.images, ...(dek.led?.zlta ?? []), ...(dek.led?.modra ?? [])])
+        if (!povolenaFotka(src)) ch(kde, `Dekor „${dek.name || dek.id}" má fotku z nepovolenej adresy.`);
+    });
+    return;
+  }
+  const prvy = decors[0];
+  if (prvy && (prvy.chyba || !prvy.images.length))
+    ch(`${pole}.0`, "Prvý dekor dáva titulnú fotku, preto musí mať aspoň jednu fotku.");
+  decors.forEach((dek, i) => {
+    if (!dek.chyba && !dek.images.length)
+      ch(`${pole}.${i}`, `Dekor „${dek.name || dek.id}" nemá fotku. Nahrajte ju, alebo ho označte ako „čaká na fotky".`);
+  });
 }
 
 /**

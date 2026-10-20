@@ -20,8 +20,13 @@ const OHNISKO = { d: [0.35, 0], m: [0.585, 0.6] } as const;
 const PRIBLIZENIE = { d: 1, m: 1 } as const;
 const POSUN_Y = { d: 48, m: 0 } as const;
 const INTERVAL_MS = 4200;
-/** poradie prevedení v hero (podľa návrhu) */
+/** poradie prevedení v hero (podľa návrhu) a výrezy skrinky s akváriom (priehľadné pozadie) */
 const PORADIE = ["cool-white", "black-matt", "antracit"];
+const VYREZY: Record<string, string> = {
+  "black-matt": "/img/sety/scape-60-black-matt.webp",
+  "cool-white": "/img/sety/scape-60-cool-white.webp",
+  antracit: "/img/sety/scape-60-antracit.webp",
+};
 
 type Javisko = { x: number; y: number; w: number; h: number };
 
@@ -40,9 +45,10 @@ export default function SetyHero({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
   const set = SETY[0];
   /* v hero stoja len prevedenia, ku ktorým máme výrez skrinky; poradie
      čipov drží návrh: Cool White, Black Matt, Antracit */
-  const kusy = PORADIE.map((id) => set.prevedenia.find((p) => p.id === id)).filter(
-    (p): p is (typeof set.prevedenia)[number] & { obrazok: string } => !!p?.obrazok
-  );
+  const kusy = PORADIE.flatMap((id) => {
+    const p = set.prevedenia.find((x) => x.id === id);
+    return p && VYREZY[id] ? [{ id: p.id, nazov: p.name, swatch: p.swatch, obrazok: VYREZY[id] }] : [];
+  });
   const sekcia = useRef<HTMLElement>(null);
   const [i, setI] = useState(1);
   const [rucne, setRucne] = useState(false);

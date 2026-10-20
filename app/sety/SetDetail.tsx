@@ -4,7 +4,8 @@ import Drobcek from "../Drobcek";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import type { Set } from "../sety";
-import SetGaleria from "./SetGaleria";
+import ProductGallery from "../ProductGallery";
+import { setAkoProdukt } from "./setAkoProdukt";
 import Swatch from "../Swatch";
 
 /**
@@ -16,13 +17,11 @@ export default function SetDetail({
   set,
   t,
   jazyk,
-  prevedenie,
 }: {
   set: Set;
   t: Slovnik;
   jazyk: Jazyk;
   /** prevedenie z adresy — karta z katalógu ho posiela v ?prevedenie= */
-  prevedenie?: string;
 }) {
   const k = t.sety;
   const l = (h: string) => odkaz(h, jazyk);
@@ -40,7 +39,7 @@ export default function SetDetail({
 
           <article className="set" id={set.id} data-reveal>
             <div className="set__media set__media--galeria">
-              <SetGaleria set={set} popisPrevedenia={k.prevedenia} vychodzie={prevedenie} />
+              <ProductGallery p={setAkoProdukt(set, k)} jazyk={jazyk} />
             </div>
 
             <div className="set__body">
@@ -86,7 +85,7 @@ export default function SetDetail({
                   {set.prevedenia.map((p) => (
                     <li key={p.id}>
                       <Swatch swatch={p.swatch} className="swatch--dot" />
-                      <span>{p.nazov}</span>
+                      <span>{p.name}</span>
                     </li>
                   ))}
                 </ul>

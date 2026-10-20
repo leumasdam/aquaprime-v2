@@ -9,8 +9,9 @@
  */
 
 import type { Aquarium, GlassOption } from "../aquariums";
-import { KATEGORIE, type Prevedenie, type Set } from "../sety";
-import { cenaZTextu, povolenaFotka, povolenaVzorka, SLUG_VZOR, type Chyba } from "./kontrola";
+import type { Decor } from "../products";
+import { KATEGORIE, type Set } from "../sety";
+import { cenaZTextu, chybyDekorov, normalizujDekor, povolenaFotka, SLUG_VZOR, type Chyba } from "./kontrola";
 
 /* ============================ AKVÁRIÁ ============================ */
 
@@ -126,18 +127,20 @@ const dvojjazycneZoznamy = (v: unknown): Record<"sk" | "en", string[]> => {
 };
 
 export function normalizujSet(vstup: Set): Set {
-  const prevedenia: Prevedenie[] = (vstup.prevedenia ?? []).map((p) => {
-    const out: Prevedenie = {
-      id: String(p.id ?? "").trim(),
-      nazov: String(p.nazov ?? "").trim(),
-      swatch: (p.swatch ?? []).map(String).filter(Boolean).slice(0, 2),
-      fotky: [...new Set((p.fotky ?? []).map(String).filter(Boolean))].slice(0, 12),
-    };
-    if (p.obrazok) out.obrazok = String(p.obrazok);
-    return out;
+  /* staršie uloženie (do 20. 10. 2026) malo prevedenia s poľami nazov/fotky —
+     premapujeme ich na tvar dekoru skrinky, aby sa nič nestratilo */
+  type Stare = { nazov?: unknown; fotky?: unknown };
+  const prevedenia = (vstup.prevedenia ?? []).map((p) => {
+    const st = p as Decor & Stare;
+    return normalizujDekor({
+      ...st,
+      name: st.name ?? (typeof st.nazov === "string" ? st.nazov : ""),
+      images: st.images ?? (Array.isArray(st.fotky) ? (st.fotky as string[]) : []),
+    });
   });
-  const cenaRaw = vstup.cena as unknown;
-  const cena = cenaRaw === null || cenaRaw === undefined || cenaRaw === "" ? null : Number(cenaRaw);
+  const cislo = (raw: unknown) => (raw === null || raw === undefined || raw === "" ? null : Number(raw));
+  const cena = cislo(vstup.cena);
+  const cenaLed = cislo(vstup.cenaLed);
 
   const s: Set = {
     id: String(vstup.id ?? "").trim().toLowerCase(),
@@ -153,6 +156,9 @@ export function normalizujSet(vstup: Set): Set {
     prevedenia,
     cena: cena !== null && Number.isFinite(cena) && cena > 0 ? Math.round(cena * 100) / 100 : null,
   };
+  // LED cena má zmysel len s LED fotkami aspoň v jednom prevedení
+  const maLed = prevedenia.some((p) => p.led?.zlta?.length || p.led?.modra?.length);
+  if (maLed && cenaLed !== null && Number.isFinite(cenaLed) && cenaLed > 0) s.cenaLed = Math.round(cenaLed * 100) / 100;
   if (vstup.novinka) s.novinka = true;
   if (vstup.skryta) s.skryta = true;
   return s;
@@ -166,18 +172,7 @@ export function chybySetu(s: Set): Chyba[] {
   else if (!SLUG_VZOR.test(s.id))
     ch("id", "Adresa smie mať len malé písmená bez diakritiky, číslice a pomlčky, napríklad scape-60.");
   if (!s.nazov) ch("nazov", "Názov je povinný.");
-  const idcka = new Set<string>();
-  s.prevedenia.forEach((p, i) => {
-    const kde = `prevedenia.${i}`;
-    if (!p.id || !SLUG_VZOR.test(p.id)) ch(kde, `Prevedenie č. ${i + 1} nemá platný identifikátor.`);
-    else if (idcka.has(p.id)) ch(kde, `Prevedenie „${p.nazov || p.id}" je v sete dvakrát.`);
-    idcka.add(p.id);
-    if (!p.nazov) ch(kde, `Prevedenie č. ${i + 1} nemá názov.`);
-    if (!p.swatch.length) ch(kde, `Prevedenie „${p.nazov || p.id}" nemá vzorku farby.`);
-    for (const v of p.swatch) if (!povolenaVzorka(v)) ch(kde, `Prevedenie „${p.nazov || p.id}" má neplatnú vzorku farby.`);
-    for (const f of [...p.fotky, ...(p.obrazok ? [p.obrazok] : [])])
-      if (!povolenaFotka(f)) ch(kde, `Prevedenie „${p.nazov || p.id}" má fotku z nepovolenej adresy.`);
-  });
+  chybyDekorov(s.prevedenia, "prevedenia", ch, false, "sete");
 
   if (s.skryta) return out;
   if (!s.podtitul.sk) ch("podtitul", "Zverejnený set potrebuje podtitul.");
@@ -185,10 +180,8 @@ export function chybySetu(s: Set): Chyba[] {
   if (!s.akvarium) ch("akvarium", "Doplňte rozmer akvária.");
   if (!s.objem) ch("objem", "Doplňte objem v litroch.");
   if (!s.popis.sk.length) ch("popis", "Zverejnený set potrebuje popis.");
-  if (!s.prevedenia.length) ch("prevedenia", "Zverejnený set potrebuje aspoň jedno prevedenie.");
-  s.prevedenia.forEach((p, i) => {
-    if (!p.fotky.length) ch(`prevedenia.${i}`, `Prevedenie „${p.nazov || p.id}" nemá fotku — prvé prevedenie dáva setu titulnú fotku.`);
-  });
+  if (!s.prevedenia.length) ch("prevedenia", "Zverejnený set potrebuje aspoň jeden dekor.");
+  chybyDekorov(s.prevedenia, "prevedenia", ch, true, "sete");
   return out;
 }
 

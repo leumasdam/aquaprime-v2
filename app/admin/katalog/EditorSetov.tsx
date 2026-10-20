@@ -26,7 +26,7 @@ export default function EditorSetov() {
         return { ...structuredClone(s), id, nazov: `${s.nazov} (kópia)`, skryta: true };
       }}
       riadok={(s) => ({
-        foto: s.prevedenia[0]?.fotky[0] ?? "",
+        foto: s.prevedenia.find((p) => !p.chyba && p.images.length)?.images[0] ?? "",
         titul: s.nazov,
         podtitul: `${KATEGORIA[s.kategoria]} · ${s.objem} l · ${s.prevedenia.length} ${s.prevedenia.length === 1 ? "prevedenie" : s.prevedenia.length < 5 ? "prevedenia" : "prevedení"}`,
         vpravo: s.cena === null ? <span className="ad-muted">na dopyt</span> : `${s.cena.toLocaleString("sk-SK")} €`,

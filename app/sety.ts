@@ -1,4 +1,5 @@
 import type { Jazyk } from "./jazyk";
+import type { Decor } from "./products";
 
 /**
  * Hotové sety skrinka + akvárium. Prvé v ponuke sú krevetáriá na úzkych
@@ -15,15 +16,12 @@ import type { Jazyk } from "./jazyk";
 export const KATEGORIE = ["akvariove", "krevetariove", "terariove"] as const;
 export type KategoriaSetu = (typeof KATEGORIE)[number];
 
-export type Prevedenie = {
-  id: string;
-  nazov: string;
-  swatch: string[];
-  /** fotky setu v tomto prevedení; prvá je titulná */
-  fotky: string[];
-  /** výrez skrinky s akváriom (priehľadné pozadie) do hero */
-  obrazok?: string;
-};
+/**
+ * Prevedenie setu = dekor skrinky: rovnaká knižnica dekorov, rovnaké fotky
+ * (vrátane LED variantov) a rovnaká karta v katalógu. Výrezy do hero setov
+ * sú v SetyHero.tsx, viazané na id dekoru.
+ */
+export type Prevedenie = Decor;
 
 export type Set = {
   id: string;
@@ -39,6 +37,8 @@ export type Set = {
   objem: number;
   prevedenia: Prevedenie[];
   cena: number | null;
+  /** cena s LED podsvietením — len keď má set LED fotky */
+  cenaLed?: number | null;
   novinka?: boolean;
   /** rozpracovaný v administrácii — na webe sa neukazuje */
   skryta?: boolean;
@@ -82,10 +82,9 @@ export const SETY: Set[] = [
     prevedenia: [
       {
         id: "black-matt",
-        nazov: "Black Matt",
+        name: "Black Matt",
         swatch: ["#17181a"],
-        obrazok: "/img/sety/scape-60-black-matt.webp",
-        fotky: [
+        images: [
           "/img/sety/scape-60-black-matt-01.webp",
           "/img/sety/scape-60-black-matt-02.webp",
           "/img/sety/scape-60-black-matt-03.webp",
@@ -94,10 +93,9 @@ export const SETY: Set[] = [
       },
       {
         id: "cool-white",
-        nazov: "Cool White",
+        name: "Cool White",
         swatch: ["#eef0f0"],
-        obrazok: "/img/sety/scape-60-cool-white.webp",
-        fotky: [
+        images: [
           "/img/sety/scape-60-cool-white-01.webp",
           "/img/sety/scape-60-cool-white-02.webp",
           "/img/sety/scape-60-cool-white-03.webp",
@@ -106,10 +104,9 @@ export const SETY: Set[] = [
       },
       {
         id: "antracit",
-        nazov: "Antracit",
+        name: "Antracit",
         swatch: ["#40454a"],
-        obrazok: "/img/sety/scape-60-antracit.webp",
-        fotky: [
+        images: [
           "/img/sety/scape-60-antracit-01.webp",
           "/img/sety/scape-60-antracit-02.webp",
           "/img/sety/scape-60-antracit-03.webp",
@@ -157,9 +154,9 @@ export const SETY: Set[] = [
     prevedenia: [
       {
         id: "black-matt",
-        nazov: "Black Matt",
+        name: "Black Matt",
         swatch: ["#17181a"],
-        fotky: [
+        images: [
           "/img/sety/midi-40-black-matt-01.webp",
           "/img/sety/midi-40-black-matt-02.webp",
           "/img/sety/midi-40-black-matt-03.webp",
@@ -168,9 +165,9 @@ export const SETY: Set[] = [
       },
       {
         id: "cool-white",
-        nazov: "Cool White",
+        name: "Cool White",
         swatch: ["#eef0f0"],
-        fotky: [
+        images: [
           "/img/sety/midi-40-cool-white-01.webp",
           "/img/sety/midi-40-cool-white-02.webp",
           "/img/sety/midi-40-cool-white-03.webp",
@@ -179,9 +176,9 @@ export const SETY: Set[] = [
       },
       {
         id: "antracit",
-        nazov: "Antracit",
+        name: "Antracit",
         swatch: ["#40454a"],
-        fotky: [
+        images: [
           "/img/sety/midi-40-antracit-01.webp",
           "/img/sety/midi-40-antracit-02.webp",
           "/img/sety/midi-40-antracit-03.webp",
@@ -229,9 +226,9 @@ export const SETY: Set[] = [
     prevedenia: [
       {
         id: "black-matt",
-        nazov: "Black Matt",
+        name: "Black Matt",
         swatch: ["#17181a"],
-        fotky: [
+        images: [
           "/img/sety/nano-30-black-matt-01.webp",
           "/img/sety/nano-30-black-matt-02.webp",
           "/img/sety/nano-30-black-matt-03.webp",
@@ -240,9 +237,9 @@ export const SETY: Set[] = [
       },
       {
         id: "cool-white",
-        nazov: "Cool White",
+        name: "Cool White",
         swatch: ["#eef0f0"],
-        fotky: [
+        images: [
           "/img/sety/nano-30-cool-white-01.webp",
           "/img/sety/nano-30-cool-white-02.webp",
           "/img/sety/nano-30-cool-white-03.webp",
@@ -251,9 +248,9 @@ export const SETY: Set[] = [
       },
       {
         id: "antracit",
-        nazov: "Antracit",
+        name: "Antracit",
         swatch: ["#40454a"],
-        fotky: [
+        images: [
           "/img/sety/nano-30-antracit-01.webp",
           "/img/sety/nano-30-antracit-02.webp",
           "/img/sety/nano-30-antracit-03.webp",
@@ -272,5 +269,5 @@ export function najdiSet(id: string): Set | undefined {
 
 /** titulná fotka setu — prvý záber prvého prevedenia */
 export function titulnaFotka(s: Set): string {
-  return s.prevedenia[0].fotky[0];
+  return s.prevedenia.find((p) => !p.chyba && p.images.length)?.images[0] ?? "";
 }

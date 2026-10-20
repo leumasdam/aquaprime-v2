@@ -5,6 +5,7 @@
 
 import { unstable_cache } from "next/cache";
 import { SETY, type Set } from "../sety";
+import { normalizujSet } from "./polozky";
 import { TAG_KATALOG } from "./skrinky";
 import { nacitajUlozene } from "./uloziste";
 
@@ -12,7 +13,7 @@ const NASADENIE = process.env.VERCEL_DEPLOYMENT_ID ?? process.env.VERCEL_GIT_COM
 
 /** Všetky vrátane rozpracovaných — pre administráciu. */
 export const nacitajSetyVsetky = unstable_cache(
-  async (): Promise<Set[]> => (await nacitajUlozene<Set[]>("sety")) ?? SETY,
+  async (): Promise<Set[]> => ((await nacitajUlozene<Set[]>("sety")) ?? SETY).map(normalizujSet),
   ["katalog-sety", NASADENIE],
   { tags: [TAG_KATALOG] },
 );

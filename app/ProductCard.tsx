@@ -25,6 +25,8 @@ export default function ProductCard({
   stitok,
   odkazParam,
   jazyk = "sk",
+  cesta = "/skrinky",
+  odznakTrieda,
 }: {
   p: Product;
   delay?: number;
@@ -42,6 +44,10 @@ export default function ProductCard({
   odkazParam?: string;
   /** jazyk odkazu na detail */
   jazyk?: Jazyk;
+  /** základ adresy detailu — sety majú rovnakú kartu, inú cestu */
+  cesta?: string;
+  /** farba štítku vľavo hore namiesto radu (napr. "set") */
+  odznakTrieda?: string;
 }) {
   const s = SLOVNIKY[jazyk].spolocne;
 
@@ -111,7 +117,7 @@ export default function ProductCard({
   return (
     <Link
       ref={karta}
-      href={odkazJazyk(`/skrinky/${p.slug}${odkazParametre}`, jazyk)}
+      href={odkazJazyk(`${cesta}/${p.slug}${odkazParametre}`, jazyk)}
       className={`product${entered ? " product--in" : ""}`}
       {...(reveal ? { "data-reveal": "" } : {})}
       style={{ "--rd": `${delay}ms` } as CSSProperties}
@@ -146,7 +152,7 @@ export default function ProductCard({
             sizes={velkosti}
           />
           <span
-            className={`product__badge product__badge--${znacka ? "led" : p.tier}`}
+            className={`product__badge product__badge--${znacka ? "led" : (odznakTrieda ?? p.tier)}`}
           >
             {znacka ?? radText(p.tierLabel, jazyk)}
           </span>

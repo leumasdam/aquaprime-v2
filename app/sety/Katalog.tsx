@@ -6,7 +6,9 @@ import { FilterLista, Segmented } from "../Filtre";
 import { odkaz, type Jazyk } from "../jazyk";
 import type { Slovnik } from "../preklady";
 import { KATEGORIE, type KategoriaSetu, type Set } from "../sety";
-import SetCard from "./SetCard";
+import ProductCard from "../ProductCard";
+import { SLOVNIKY } from "../preklady";
+import { setAkoProdukt, setLed } from "./setAkoProdukt";
 
 /**
  * Katalóg setov: prepínač kategórií v rovnakej lište ako katalóg skriniek
@@ -38,9 +40,29 @@ export default function SetyKatalog({ t, jazyk, sety: SETY }: { t: Slovnik["sety
 
       {sety.length > 0 ? (
         <div className="product-grid" key={kategoria}>
-          {sety.map((s, i) => (
-            <SetCard key={s.id} set={s} t={t} jazyk={jazyk} delay={(i % 3) * 70} />
-          ))}
+          {sety.flatMap((s, i) => {
+            const p = setAkoProdukt(s, t);
+            const led = setLed(s);
+            const spolocne = { cesta: "/sety", odznakTrieda: "set", stitok: s.novinka ? t.novinka : undefined, jazyk, entered: true } as const;
+            return [
+              <ProductCard key={s.id} p={p} delay={(i % 3) * 70} {...spolocne} />,
+              /* LED verzia je vlastná dlaždica — presne ako v katalógu skriniek */
+              ...(led
+                ? [
+                    <ProductCard
+                      key={`${s.id}-led`}
+                      p={p}
+                      delay={(i % 3) * 70 + 35}
+                      {...spolocne}
+                      foto={led.src}
+                      znacka="LED"
+                      stitok={SLOVNIKY[jazyk].katalog.vizualizaciaLed}
+                      odkazParam={`?dekor=${led.dekor}&led=${led.farba}`}
+                    />,
+                  ]
+                : []),
+            ];
+          })}
         </div>
       ) : (
         <div className="sety-chystame" key={kategoria}>

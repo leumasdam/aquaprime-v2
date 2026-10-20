@@ -29,15 +29,11 @@ export async function generateMetadata({
 
 export default async function Page({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { slug } = await params;
-  const q = await searchParams;
-  const prevedenie = typeof q.prevedenie === "string" ? q.prevedenie : undefined;
   const s = await nacitajSet(slug);
   if (!s) notFound();
-  return <SetDetail set={s} t={EN} jazyk="en" prevedenie={prevedenie} />;
+  return <SetDetail set={s} t={EN} jazyk="en" />;
 }

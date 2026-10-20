@@ -6,6 +6,7 @@
 
 import { unstable_cache } from "next/cache";
 import { AQUARIUMS, type Aquarium } from "../aquariums";
+import { normalizujAkvarium } from "./polozky";
 import { TAG_KATALOG } from "./skrinky";
 import { nacitajUlozene } from "./uloziste";
 
@@ -13,7 +14,7 @@ const NASADENIE = process.env.VERCEL_DEPLOYMENT_ID ?? process.env.VERCEL_GIT_COM
 
 /** Všetky vrátane rozpracovaných — pre administráciu. */
 export const nacitajAkvariaVsetky = unstable_cache(
-  async (): Promise<Aquarium[]> => (await nacitajUlozene<Aquarium[]>("akvaria")) ?? AQUARIUMS,
+  async (): Promise<Aquarium[]> => ((await nacitajUlozene<Aquarium[]>("akvaria")) ?? AQUARIUMS).map(normalizujAkvarium),
   ["katalog-akvaria", NASADENIE],
   { tags: [TAG_KATALOG] },
 );
