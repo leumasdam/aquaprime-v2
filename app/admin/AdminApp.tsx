@@ -11,6 +11,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import EditorKatalogu from "./katalog/EditorKatalogu";
+import Galerie from "./katalog/Galerie";
 import { AquaFishMark } from "../brand";
 import { PLAN_FRAZ } from "./keywords";
 
@@ -147,6 +148,22 @@ function Ikona({ id }: { id: string }) {
           <path d="M5 16v1.5M15 16v1.5" />
         </svg>
       );
+    case "akvaria":
+      return (
+        <svg {...spolocne}>
+          <rect x="3" y="5.5" width="14" height="10" rx="0.8" />
+          <path d="M3 8.5h14" opacity="0.5" />
+          <path d="M6.5 13c1-1 2-1 3 0s2 1 3 0" />
+        </svg>
+      );
+    case "sety":
+      return (
+        <svg {...spolocne}>
+          <rect x="5" y="3" width="10" height="6" rx="0.8" />
+          <rect x="5" y="10" width="10" height="7" rx="0.8" />
+          <path d="M6.5 17v1.5M13.5 17v1.5" />
+        </svg>
+      );
     case "blog":
       return (
         <svg {...spolocne}>
@@ -170,6 +187,8 @@ function Ikona({ id }: { id: string }) {
 const TABY = {
   prehlad: "Prehľad",
   skrinky: "Skrinky",
+  akvaria: "Akváriá",
+  sety: "Sety",
   navstevnost: "Návštevnosť",
   seo: "SEO",
   slova: "Kľúčové slová",
@@ -184,7 +203,7 @@ type TabId = keyof typeof TABY;
 const SKUPINY: { label: string | null; taby: TabId[] }[] = [
   { label: null, taby: ["prehlad"] },
   { label: "Marketing", taby: ["navstevnost", "seo", "slova", "agenti"] },
-  { label: "Obsah", taby: ["skrinky", "ai", "blog"] },
+  { label: "Obsah", taby: ["skrinky", "akvaria", "sety", "ai", "blog"] },
   { label: "Systém", taby: ["nastavenia"] },
 ];
 
@@ -228,9 +247,11 @@ export default function AdminApp() {
   /* Editor katalógu sa pripojí pri prvom otvorení a potom ostáva pripojený,
      len skrytý. Preklik na inú záložku by inak zahodil rozpísanú skrinku. */
   const [editorOtvoreny, setEditorOtvoreny] = useState(false);
+  const [galerieOtvorene, setGalerieOtvorene] = useState(false);
   const setTab = useCallback((t: TabId) => {
     setTabStav(t);
     if (t === "skrinky") setEditorOtvoreny(true);
+    if (t === "akvaria" || t === "sety") setGalerieOtvorene(true);
     // záložka v adrese — po obnovení stránky sa klient vráti tam, kde bol
     window.history.replaceState(null, "", t === "prehlad" ? "/admin" : `/admin#${t}`);
   }, []);
@@ -400,6 +421,13 @@ export default function AdminApp() {
         {editorOtvoreny && (
           <div hidden={tab !== "skrinky"}>
             <EditorKatalogu />
+          </div>
+        )}
+
+        {/* ============ AKVÁRIÁ / SETY (fotky) — jeden editor, dve záložky ============ */}
+        {galerieOtvorene && (
+          <div hidden={tab !== "akvaria" && tab !== "sety"}>
+            <Galerie zalozka={tab === "sety" ? "sety" : "akvaria"} />
           </div>
         )}
 

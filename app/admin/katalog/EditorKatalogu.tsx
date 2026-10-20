@@ -7,7 +7,6 @@ import HistoriaVerzii from "./HistoriaVerzii";
 import KniznicaDekorov from "./KniznicaDekorov";
 import ZoznamSkriniek from "./ZoznamSkriniek";
 import UvodneFotky from "./UvodneFotky";
-import Galerie from "./Galerie";
 import { nacitaj, posli, type StavKatalogu } from "./api";
 import "./katalog.css";
 
@@ -16,8 +15,7 @@ type Pohlad =
   | { typ: "skrinka"; slug: string | null; predloha?: Product }
   | { typ: "dekory" }
   | { typ: "historia" }
-  | { typ: "vzhlad" }
-  | { typ: "galerie" };
+  | { typ: "vzhlad" };
 
 /**
  * Editor katalógu skriniek v administrácii. Drží načítaný katalóg
@@ -114,12 +112,10 @@ export default function EditorKatalogu() {
           onDekory={() => chod({ typ: "dekory" })}
           onHistoria={() => chod({ typ: "historia" })}
           onVzhlad={() => chod({ typ: "vzhlad" })}
-          onGalerie={() => chod({ typ: "galerie" })}
         />
       )}
 
       {pohlad.typ === "vzhlad" && <UvodneFotky onSpat={() => chod({ typ: "zoznam" })} />}
-      {pohlad.typ === "galerie" && <Galerie onSpat={() => chod({ typ: "zoznam" })} />}
 
       {pohlad.typ === "skrinka" && (
         <FormularSkrinky

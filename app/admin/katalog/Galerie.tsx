@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Galerie } from "../../katalog/galerie";
 import type { PovodneGalerie } from "../../api/admin/galerie/route";
 import Fotky from "./Fotky";
+import "./katalog.css";
 
 type Stav = {
   galerie: Galerie;
@@ -26,10 +27,9 @@ type Zalozka = "sety" | "akvaria";
  * vlastnú sadu fotiek; akvárium má jednu sadu — prvá fotka je titulná na karte,
  * ďalšie sa ukážu v galérii na detaile. Texty, rozmery a ceny ostávajú v kóde.
  */
-export default function Galerie({ onSpat }: { onSpat: () => void }) {
+export default function Galerie({ zalozka }: { zalozka: Zalozka }) {
   const [stav, setStav] = useState<Stav | null>(null);
   const [draft, setDraft] = useState<Draft>(PRAZDNY);
-  const [zalozka, setZalozka] = useState<Zalozka>("sety");
   const [hladaj, setHladaj] = useState("");
   const [uklada, setUklada] = useState(false);
   const [sprava, setSprava] = useState("");
@@ -105,31 +105,20 @@ export default function Galerie({ onSpat }: { onSpat: () => void }) {
 
   return (
     <section className="ad-section">
-      <button type="button" className="kt-spat" onClick={onSpat} disabled={uklada}>
-        ← Všetky skrinky
-      </button>
       <header className="ad-head">
-        <h1>Fotky setov a akvárií</h1>
+        <h1>{zalozka === "sety" ? "Sety" : "Akváriá"}</h1>
         <p>
-          Prvá fotka je titulná — ukazuje sa na karte v katalógu. Ostatné sa otvoria v galérii na detaile. Fotky sa
-          na webe neorezávajú, zmestí sa celá zostava; najlepšie vyzerajú na výšku alebo 4 : 3 pri setoch a na šírku
-          pri akváriách.
+          {zalozka === "sety"
+            ? "Fotky setov podľa prevedenia. Prvá fotka je titulná na karte v katalógu, ostatné sa otvoria v galérii na detaile. Fotky sa neorezávajú, celá zostava skrinka + akvárium sa zmestí; najlepšie vyzerajú na výšku alebo 4 : 3."
+            : "Fotky akvárií podľa rozmeru. Prvá fotka je titulná na karte aj v detaile a nahradí ilustračnú fotku iného rozmeru; ďalšie sa otvoria v galérii na detaile. Najlepšie vyzerajú na šírku. Rozmery a ceny sú z cenníka a menia sa u nás."}
         </p>
       </header>
 
       {sprava && <div className="ad-banner">{sprava}</div>}
       {chyba && <div className="ad-banner is-warn">{chyba}</div>}
 
-      <div className="kt-nastroje">
-        <div className="kt-filtre" role="tablist" aria-label="Čo upravujete">
-          <button type="button" className={zalozka === "sety" ? "is-on" : ""} aria-pressed={zalozka === "sety"} onClick={() => setZalozka("sety")}>
-            Sety
-          </button>
-          <button type="button" className={zalozka === "akvaria" ? "is-on" : ""} aria-pressed={zalozka === "akvaria"} onClick={() => setZalozka("akvaria")}>
-            Akváriá
-          </button>
-        </div>
-        {zalozka === "akvaria" && (
+      {zalozka === "akvaria" && (
+        <div className="kt-nastroje">
           <input
             className="kt-vstup kt-hladaj"
             type="search"
@@ -138,8 +127,8 @@ export default function Galerie({ onSpat }: { onSpat: () => void }) {
             onChange={(e) => setHladaj(e.target.value)}
             aria-label="Hľadať akvárium"
           />
-        )}
-      </div>
+        </div>
+      )}
 
       {zalozka === "sety" && (
         <div className="kt-gal">

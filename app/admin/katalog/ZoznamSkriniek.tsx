@@ -19,7 +19,6 @@ export default function ZoznamSkriniek({
   onDekory,
   onHistoria,
   onVzhlad,
-  onGalerie,
 }: {
   katalog: Product[];
   ulozene: { kedy: string; kto: string } | null;
@@ -30,7 +29,6 @@ export default function ZoznamSkriniek({
   onDekory: () => void;
   onHistoria: () => void;
   onVzhlad: () => void;
-  onGalerie: () => void;
 }) {
   const [filter, setFilter] = useState<Filter>("vsetky");
   const [hladaj, setHladaj] = useState("");
@@ -160,9 +158,6 @@ export default function ZoznamSkriniek({
               </button>
               <button type="button" className="kt-odkaz" onClick={onVzhlad}>
                 Úvodné fotky
-              </button>
-              <button type="button" className="kt-odkaz" onClick={onGalerie}>
-                Sety a akváriá
               </button>
               <button type="button" className="kt-odkaz" onClick={onHistoria}>
                 História
