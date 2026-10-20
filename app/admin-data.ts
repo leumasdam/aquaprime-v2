@@ -138,9 +138,9 @@ export function zdravieWebu(katalog: Product[]) {
     {
       id: "podmienky",
       ok: false,
-      titul: "Právne texty sú návrh",
+      titul: "Právne texty čakajú na DIČ a zápis v registri",
       detail:
-        "Obchodné podmienky, reklamačný poriadok aj GDPR sú na webe ako draft — doplniť firemné údaje (IČO, sídlo, e-mail) a dať skontrolovať právnikovi.",
+        "Obchodné podmienky sú vyplnené (IČO, sídlo, kontakty, lehoty, účinnosť 20. 10. 2026). Chýba DIČ a číslo živnostenského registra v bode 2; znenie odporúčame dať prejsť právnikovi.",
     },
   ];
 }

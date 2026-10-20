@@ -866,6 +866,8 @@ export const SK = {
       "Či riešite prvé akvárium do obývačky alebo náročný projekt na mieru — napíšte nám rozmer a zvyšok si formulár dopočíta sám.",
     emailTag: "E-MAIL",
     emailPozn: "Ozveme sa vám v pracovný deň.",
+    telTag: "TELEFÓN",
+    telPozn: "Volajte v pracovných dňoch. Ak to nezdvihneme, zavoláme späť.",
     railTitul: "Čo sa stane po odoslaní",
     kroky: [
       ["Prejdeme si vašu správu", "A doplníme potrebné informácie."],
@@ -2023,6 +2025,8 @@ export const EN: Slovnik = {
       "Whether it is a first aquarium for the living room or a demanding bespoke project — send us the size and the form works out the rest.",
     emailTag: "E-MAIL",
     emailPozn: "We reply on the next working day.",
+    telTag: "PHONE",
+    telPozn: "Call on working days. If we miss you, we call back.",
     railTitul: "What happens after you send it",
     kroky: [
       ["We go through your message", "And ask for anything that is missing."],

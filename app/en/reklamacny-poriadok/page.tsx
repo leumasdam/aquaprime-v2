@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../../pravne";
+import { PravnaStranka } from "../../pravne";
 
 export const metadata: Metadata = {
   title: "Complaints procedure | AQUAPRIME",
@@ -15,7 +15,7 @@ export default function ComplaintsProcedure() {
   return (
     <PravnaStranka
       titul="Complaints procedure"
-      aktualizovane="13 October 2026"
+      aktualizovane="20 October 2026"
       jazyk="en"
     >
       <h2>1. Introductory provisions</h2>
@@ -32,12 +32,6 @@ export default function ComplaintsProcedure() {
       </p>
 
       <h2>2. Liability for defects</h2>
-      <p>
-        <Overit
-          en
-          co="sections 2 to 5 — have the exact deadlines, the wording of the rights from defective performance and the statutory references reviewed by a lawyer"
-        />
-      </p>
       <p>
         The seller is liable for defects the goods have when the buyer takes delivery and
         for defects that appear within 24 months of receipt. If a defect appears within the
@@ -119,7 +113,7 @@ export default function ComplaintsProcedure() {
         the Slovak Republic. The European ODR platform was discontinued on 20 July 2025.
       </p>
       <p>
-        This complaints procedure takes effect on <Doplnit en co="effective date" />.
+        This complaints procedure takes effect on 20 October 2026.
       </p>
     </PravnaStranka>
   );

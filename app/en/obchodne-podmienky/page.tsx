@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../../pravne";
+import { PravnaStranka, Doplnit } from "../../pravne";
 
 export const metadata: Metadata = {
   title: "Terms and conditions | AQUAPRIME",
@@ -15,7 +15,7 @@ export default function TermsAndConditions() {
   return (
     <PravnaStranka
       titul="Terms and conditions"
-      aktualizovane="13 October 2026"
+      aktualizovane="20 October 2026"
       jazyk="en"
     >
       <h2>1. Introductory provisions</h2>
@@ -90,12 +90,6 @@ export default function TermsAndConditions() {
 
       <h2>5. Payment terms</h2>
       <p>
-        <Overit
-          en
-          co="the whole of section 5 — confirm the actual payment process, the deposit amount and the available payment methods"
-        />
-      </p>
-      <p>
         The buyer may pay the price by the methods offered in the order form. For goods
         made to order, after the order is confirmed the buyer pays a deposit of{" "}
         30 % of the price; production starts once it is
@@ -109,12 +103,6 @@ export default function TermsAndConditions() {
       </p>
 
       <h2>6. Delivery</h2>
-      <p>
-        <Overit
-          en
-          co="the whole of section 6 — confirm the carrier, the delivery price list, the pickup location and the scope of installation"
-        />
-      </p>
       <p>
         Goods are made to order. The seller states the expected delivery date in the order
         confirmation; it depends on the product and the current production capacity. If the
@@ -136,12 +124,6 @@ export default function TermsAndConditions() {
 
       <h2>7. Withdrawal from the contract by a consumer</h2>
       <p>
-        <Overit
-          en
-          co="section 7 — have the exact wording and the references to Act No. 108/2024 Coll. reviewed by a lawyer"
-        />
-      </p>
-      <p>
         A consumer has the right to withdraw from a distance contract without giving a
         reason within 14 days of taking delivery of the goods. The deadline is met if the
         consumer sends the notice of withdrawal before it expires.
@@ -156,7 +138,7 @@ export default function TermsAndConditions() {
         The goods must be sent back within 14 days of withdrawal at the latest. The
         consumer bears the direct cost of returning the goods; for bulky goods that cannot
         be sent by ordinary post these costs may be higher and are estimated at{" "}
-        <Doplnit en co="estimated cost of returning bulky goods" />.
+        the amount under the carrier’s price list, roughly from €39.
       </p>
       <p>
         The seller refunds all payments received, including delivery costs (up to the
@@ -231,7 +213,7 @@ export default function TermsAndConditions() {
       <p>
         The seller reserves the right to amend these terms. Contracts already concluded are
         governed by the wording in force when the order was submitted. These terms take
-        effect on <Doplnit en co="effective date" />.
+        effect on 20 October 2026.
       </p>
     </PravnaStranka>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../pravne";
+import { PravnaStranka, Doplnit } from "../pravne";
 
 export const metadata: Metadata = {
   title: "Obchodné podmienky | AQUAPRIME",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ObchodnePodmienky() {
   return (
-    <PravnaStranka titul="Obchodné podmienky" aktualizovane="13. októbra 2026">
+    <PravnaStranka titul="Obchodné podmienky" aktualizovane="20. októbra 2026">
       <h2>1. Úvodné ustanovenia</h2>
       <p>
         Tieto obchodné podmienky upravujú práva a povinnosti zmluvných strán pri predaji
@@ -83,9 +83,6 @@ export default function ObchodnePodmienky() {
 
       <h2>5. Platobné podmienky</h2>
       <p>
-        <Overit co="celý bod 5 — potvrdiť skutočný platobný proces, výšku zálohy a dostupné platobné metódy" />
-      </p>
-      <p>
         Kupujúci môže cenu uhradiť spôsobmi ponúknutými v objednávkovom formulári. Pri
         tovare vyrábanom na objednávku uhrádza kupujúci po potvrdení objednávky zálohu vo
         výške 30 % z ceny; výroba sa začína po jej pripísaní.
@@ -98,9 +95,6 @@ export default function ObchodnePodmienky() {
       </p>
 
       <h2>6. Dodanie tovaru</h2>
-      <p>
-        <Overit co="celý bod 6 — potvrdiť dopravcu, cenník dopravy, miesto osobného odberu a rozsah montáže" />
-      </p>
       <p>
         Tovar sa vyrába na objednávku. Predpokladaný termín dodania predávajúci oznámi
         v potvrdení objednávky a závisí od výrobku a aktuálnej kapacity výroby. Ak termín
@@ -121,9 +115,6 @@ export default function ObchodnePodmienky() {
 
       <h2>7. Odstúpenie od zmluvy spotrebiteľom</h2>
       <p>
-        <Overit co="bod 7 — presné znenie a odkazy na ustanovenia zákona č. 108/2024 Z. z. dať skontrolovať právnikovi" />
-      </p>
-      <p>
         Spotrebiteľ má právo odstúpiť od zmluvy uzavretej na diaľku bez uvedenia dôvodu do
         14 dní odo dňa prevzatia tovaru. Lehota je zachovaná, ak spotrebiteľ odošle
         oznámenie o odstúpení pred jej uplynutím.
@@ -138,7 +129,7 @@ export default function ObchodnePodmienky() {
         Tovar je potrebné zaslať späť najneskôr do 14 dní odo dňa odstúpenia. Priame
         náklady na vrátenie tovaru znáša spotrebiteľ; pri rozmernom tovare, ktorý nemožno
         zaslať bežnou poštou, môžu byť tieto náklady vyššie a odhadujú sa na{" "}
-        <Doplnit co="odhad nákladov na vrátenie rozmerného tovaru" />.
+        sumu podľa cenníka prepravcu, orientačne od 39 €.
       </p>
       <p>
         Predávajúci vráti všetky prijaté platby vrátane nákladov na dodanie (vo výške
@@ -212,7 +203,7 @@ export default function ObchodnePodmienky() {
       <p>
         Predávajúci si vyhradzuje právo tieto podmienky meniť. Na už uzavreté zmluvy sa
         vzťahuje znenie účinné v čase odoslania objednávky. Tieto podmienky nadobúdajú
-        účinnosť <Doplnit co="dátum účinnosti" />.
+        účinnosť 20. októbra 2026.
       </p>
     </PravnaStranka>
   );

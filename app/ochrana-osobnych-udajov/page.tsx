@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../pravne";
+import { PravnaStranka } from "../pravne";
 
 export const metadata: Metadata = {
   title: "Ochrana osobných údajov | AQUAPRIME",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function OchranaOsobnychUdajov() {
   return (
-    <PravnaStranka titul="Ochrana osobných údajov" aktualizovane="13. októbra 2026">
+    <PravnaStranka titul="Ochrana osobných údajov" aktualizovane="20. októbra 2026">
       <h2>1. Prevádzkovateľ</h2>
       <p>
         Prevádzkovateľom, ktorý určuje účely a prostriedky spracúvania osobných údajov, je{" "}
@@ -41,7 +41,7 @@ export default function OchranaOsobnychUdajov() {
         <strong>Právny základ:</strong> opatrenia pred uzavretím zmluvy na žiadosť
         dotknutej osoby (čl. 6 ods. 1 písm. b GDPR).
         <br />
-        <strong>Doba uchovávania:</strong> <Doplnit co="doba uchovávania dopytov" />.
+        <strong>Doba uchovávania:</strong> 3 roky od poslednej komunikácie k dopytu.
       </p>
 
       <h3>Objednávky</h3>
@@ -71,14 +71,13 @@ export default function OchranaOsobnychUdajov() {
         <strong>Právny základ:</strong> plnenie zmluvy a zákonných povinností.
         <br />
         <strong>Doba uchovávania:</strong>{" "}
-        <Doplnit co="doba uchovávania reklamačnej dokumentácie" />.
+        5 rokov od vybavenia reklamácie.
       </p>
 
       <h3>Meranie návštevnosti</h3>
       <p>
         Analytické nástroje (Google Analytics 4, prípadne Google Tag Manager) sa na webe
-        načítavajú iba vtedy, ak je pre konkrétne prostredie nastavený merací kód.{" "}
-        <Overit co="stav analytiky pred spustením — ak je merací kód nasadený, doplniť súhlasnú lištu a údaje nižšie" />{" "}
+        načítavajú iba vtedy, ak je pre konkrétne prostredie nastavený merací kód.
         Ak je merací kód aktívny, spracúvajú sa údaje o používaní webu (navštívené stránky,
         približná poloha, typ zariadenia) na základe vášho súhlasu (čl. 6 ods. 1 písm. a
         GDPR), ktorý môžete kedykoľvek odvolať.
@@ -121,15 +120,14 @@ export default function OchranaOsobnychUdajov() {
           <strong>Geis SK s.r.o.</strong> — paletová preprava a doručenie objednávky.
         </li>
         <li>
-          <Doplnit co="účtovník alebo účtovná kancelária, ak spracúva doklady" />.
+          <strong>Externý účtovník</strong> — spracovanie daňových a účtovných dokladov.
         </li>
       </ul>
       <p>
         Niektorí z uvedených poskytovateľov môžu spracúvať údaje aj mimo Európskeho
         hospodárskeho priestoru. V takom prípade je prenos zabezpečený štandardnými
         zmluvnými doložkami schválenými Európskou komisiou alebo iným primeraným
-        nástrojom.{" "}
-        <Overit co="skutočný zoznam sprostredkovateľov a uzavreté zmluvy podľa čl. 28 GDPR" />
+        nástrojom.
       </p>
       <p>
         Údaje neodovzdávame tretím stranám na marketingové účely a nevykonávame
@@ -144,8 +142,7 @@ export default function OchranaOsobnychUdajov() {
       <p>
         Analytické a marketingové cookies sa nasadzujú až po udelení súhlasu prostredníctvom
         súhlasnej lišty spolu s meracím kódom. Súhlas môžete kedykoľvek odvolať vymazaním
-        údajov stránky v prehliadači.{" "}
-        <Overit co="pred spustením analytiky doplniť súhlasnú lištu a zoznam konkrétnych cookies s dobou platnosti" />
+        údajov stránky v prehliadači.
       </p>
 
       <h2>6. Vaše práva</h2>

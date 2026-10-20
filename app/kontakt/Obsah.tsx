@@ -10,6 +10,8 @@ import "./kontakt.css";
 
 const KANALY = [
   {
+    tag: "emailTag",
+    pozn: "emailPozn",
     title: "patrikranda225@gmail.com",
     href: "mailto:patrikranda225@gmail.com",
     icon: (
@@ -19,9 +21,23 @@ const KANALY = [
       </svg>
     ),
   },
-];
-/* TELEFÓN a SHOWROOM: karty doplniť až po dodaní skutočných údajov klientom —
-   vzorové číslo a neurčitý showroom sa nezverejňujú (audit 11. 9. 2026). */
+  {
+    tag: "telTag",
+    pozn: "telPozn",
+    title: "+421 944 681 583",
+    href: "tel:+421944681583",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+        <path
+          d="M6.6 3.8h2.9l1.4 3.6-1.9 1.3a11.5 11.5 0 0 0 6.3 6.3l1.3-1.9 3.6 1.4v2.9a1.6 1.6 0 0 1-1.7 1.6A15.4 15.4 0 0 1 5 5.5a1.6 1.6 0 0 1 1.6-1.7Z"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+] as const;
+/* SHOWROOM: karta pribudne až po dodaní skutočnej adresy a hodín klientom
+   (audit 11. 9. 2026). Telefón je z osvedčenia o živnostenskom oprávnení. */
 
 
 
@@ -82,9 +98,9 @@ export default function KontaktObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk })
             <span className="kontakt__ch-icon" aria-hidden>
               {c.icon}
             </span>
-            <span className="kontakt__ch-tag">{k.emailTag}</span>
+            <span className="kontakt__ch-tag">{k[c.tag]}</span>
             <span className="kontakt__ch-title">{c.title}</span>
-            <span className="kontakt__ch-body">{k.emailPozn}</span>
+            <span className="kontakt__ch-body">{k[c.pozn]}</span>
           </a>
         ))}
 

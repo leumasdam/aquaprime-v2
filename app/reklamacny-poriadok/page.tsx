@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../pravne";
+import { PravnaStranka } from "../pravne";
 
 export const metadata: Metadata = {
   title: "Reklamačný poriadok | AQUAPRIME",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ReklamacnyPoriadok() {
   return (
-    <PravnaStranka titul="Reklamačný poriadok" aktualizovane="13. októbra 2026">
+    <PravnaStranka titul="Reklamačný poriadok" aktualizovane="20. októbra 2026">
       <h2>1. Úvodné ustanovenia</h2>
       <p>
         Tento reklamačný poriadok upravuje postup pri uplatňovaní práv z chybného plnenia
@@ -28,9 +28,6 @@ export default function ReklamacnyPoriadok() {
       </p>
 
       <h2>2. Zodpovednosť za vady</h2>
-      <p>
-        <Overit co="body 2 až 5 — presné lehoty, znenie práv z chybného plnenia a odkazy na ustanovenia dať skontrolovať právnikovi" />
-      </p>
       <p>
         Predávajúci zodpovedá za vady, ktoré má tovar pri prevzatí kupujúcim, a za vady,
         ktoré sa vyskytnú v lehote 24 mesiacov od prevzatia. Ak sa vada prejaví v prvých
@@ -110,7 +107,7 @@ export default function ReklamacnyPoriadok() {
         hospodárstva SR. Európska platforma ODR bola ukončená 20. júla 2025.
       </p>
       <p>
-        Tento reklamačný poriadok nadobúda účinnosť <Doplnit co="dátum účinnosti" />.
+        Tento reklamačný poriadok nadobúda účinnosť 20. októbra 2026.
       </p>
     </PravnaStranka>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PravnaStranka, Doplnit, Overit } from "../../pravne";
+import { PravnaStranka } from "../../pravne";
 
 export const metadata: Metadata = {
   title: "Personal data protection | AQUAPRIME",
@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
   return (
     <PravnaStranka
       titul="Personal data protection"
-      aktualizovane="13 October 2026"
+      aktualizovane="20 October 2026"
       jazyk="en"
     >
       <h2>1. The controller</h2>
@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
         to entering into a contract (Art. 6(1)(b) GDPR).
         <br />
         <strong>Retention period:</strong>{" "}
-        <Doplnit en co="retention period for enquiries" />.
+        3 years from the last communication about the enquiry.
       </p>
 
       <h3>Orders</h3>
@@ -77,17 +77,13 @@ export default function PrivacyPolicy() {
         <strong>Legal basis:</strong> performance of a contract and of legal obligations.
         <br />
         <strong>Retention period:</strong>{" "}
-        <Doplnit en co="retention period for complaint documentation" />.
+        5 years from the settlement of the complaint.
       </p>
 
       <h3>Traffic measurement</h3>
       <p>
         Analytics tools (Google Analytics 4, possibly Google Tag Manager) load on the site
-        only when a measurement code is configured for the particular environment.{" "}
-        <Overit
-          en
-          co="the state of analytics before launch — if the measurement code is deployed, add a consent banner and the details below"
-        />{" "}
+        only when a measurement code is configured for the particular environment.
         If the measurement code is active, data about the use of the site (pages visited,
         approximate location, device type) are processed on the basis of your consent
         (Art. 6(1)(a) GDPR), which you can withdraw at any time.
@@ -129,17 +125,13 @@ export default function PrivacyPolicy() {
           <strong>Geis SK s.r.o.</strong> — pallet transport and delivery of the order.
         </li>
         <li>
-          <Doplnit en co="accountant or accounting firm, if they process the documents" />.
+          <strong>External accountant</strong> — processing of tax and accounting documents.
         </li>
       </ul>
       <p>
         Some of these providers may process data outside the European Economic Area. In
         that case the transfer is secured by standard contractual clauses approved by the
-        European Commission or by another appropriate safeguard.{" "}
-        <Overit
-          en
-          co="the actual list of processors and the contracts concluded under Art. 28 GDPR"
-        />
+        European Commission or by another appropriate safeguard.
       </p>
       <p>
         We do not pass data to third parties for marketing purposes and we do not carry out
@@ -154,11 +146,7 @@ export default function PrivacyPolicy() {
       <p>
         Analytics and marketing cookies are only deployed after consent is given through a
         consent banner, together with the measurement code. You can withdraw consent at any
-        time by clearing the site data in your browser.{" "}
-        <Overit
-          en
-          co="before launching analytics, add a consent banner and a list of the specific cookies with their lifetimes"
-        />
+        time by clearing the site data in your browser.
       </p>
 
       <h2>6. Your rights</h2>

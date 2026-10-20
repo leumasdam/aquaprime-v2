@@ -912,8 +912,8 @@ export default function AdminApp() {
 
                 <h2 className="ad-h2">Ako odomknúť web pre verejnosť</h2>
                 <ol className="ad-steps">
-                  <li>Doplniť chýbajúce údaje v právnych stránkach (DIČ, zápis v živnostenskom registri, lehoty uchovávania, dátum účinnosti).</li>
-                  <li>Nastaviť FIRMA_IBAN (QR platby v potvrdení objednávky) a prípadne Stripe kľúče pre platbu kartou.</li>
+                  <li>Doplniť DIČ a číslo živnostenského registra do bodu 2 obchodných podmienok (SK aj EN).</li>
+                  <li>Hotové: FIRMA_IBAN (QR platby) aj Stripe kľúče (platba kartou) sú nastavené.</li>
                   <li>Určiť príplatok za nožičky (zatiaľ „na dopyt") a skontrolovať ceny v katalógu.</li>
                   <li>Vo Verceli zmazať premennú SITE_PASSWORD → zámok zmizne.</li>
                   <li>V kóde prepnúť SKRYTY_PRED_VYHLADAVACMI na false → zapne sa indexovanie a sitemap.</li>
