@@ -13214,3 +13214,10 @@ body::after {
   color: var(--cyan);
   text-decoration: none;
 }
+
+/* dlaždice interiérov na Materiáloch sú odkazy na Realizácie */
+a.mat-interiors__item {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}

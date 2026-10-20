@@ -24,12 +24,13 @@ const COMBOS = [
   { img: "/img/products/dub-spanielsky-black-matt-02.webp", a: "Dub španielsky", b: "Čierna matná" },
 ];
 
+// reálne realizácie u zákazníkov (galéria /realizacie), dlaždice vedú na Realizácie
 const INTERIORS = [
-  "/materialy/interier-1.webp",
-  "/materialy/interier-2.webp",
-  "/materialy/interier-3.webp",
-  "/materialy/interier-4.webp",
-  "/materialy/interier-5.webp",
+  "/realizacie/galeria/dubovy-interier.webp",
+  "/realizacie/galeria/antracit.webp",
+  "/realizacie/galeria/biela-kocka.webp",
+  "/realizacie/galeria/dub-detail.webp",
+  "/realizacie/galeria/biela-hotova.webp",
 ];
 
 export default function MaterialyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk }) {
@@ -208,14 +209,14 @@ export default function MaterialyObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazyk 
             </div>
             <div className="mat-interiors__strip" data-reveal>
               {INTERIORS.map((src, i) => (
-                <div key={src} className="mat-interiors__item">
+                <Link key={src} href={l("/realizacie")} className="mat-interiors__item" aria-label={`${m.interierAlt} ${i + 1}`}>
                   <Image
                     src={src}
                     alt={`${m.interierAlt} ${i + 1}`}
                     fill
                     sizes="(max-width: 768px) 72vw, 15vw"
                   />
-                </div>
+                </Link>
               ))}
             </div>
           </section>
