@@ -101,9 +101,7 @@
    "ty": 1
   },
   "#hero > div.hero__bg2 > video.hero__video-d": {
-   "tx": 149,
-   "ty": 21,
-   "h": 457
+   "tx": 149
   },
   "#hero > div.vhero__media > div.svetlo": {
    "w": 892,
