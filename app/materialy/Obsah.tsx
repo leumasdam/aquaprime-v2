@@ -16,31 +16,12 @@ const DETAIL_IMGS = [
 
 
 const COMBOS = [
-  {
-    img: "/materialy/kombo-black-walnut.webp",
-    a: "Black Matt",
-    b: "Orech",
-  },
-  {
-    img: "/materialy/kombo-grey-steel.webp",
-    a: "Artisan",
-    b: "Antracit",
-  },
-  {
-    img: "/materialy/kombo-stone-black.webp",
-    a: "Cool White",
-    b: "Black Matt",
-  },
-  {
-    img: "/materialy/kombo-walnut-grey.webp",
-    a: "Dub Hunton",
-    b: "Black Matt",
-  },
-  {
-    img: "/materialy/kombo-steel-glass.webp",
-    a: "Antracit",
-    b: "číre sklo",
-  },
+  // reálne kombinácie z katalógu — fotky skriniek, nie ilustrácie (20. 10. 2026)
+  { img: "/img/products/premium-120x40x80-black-matt-orech-04.webp", a: "Black Matt", b: "Orech" },
+  { img: "/img/products/standard-120x40x80-artisan-antracit-01.webp", a: "Artisan", b: "Antracit" },
+  { img: "/img/products/premium-200x50x70-artisan-cierna-01.webp", a: "Artisan", b: "Čierna matná" },
+  { img: "/img/products/premium-100x40x90-dub-hunton-black-matt-02.webp", a: "Dub Hunton", b: "Black Matt" },
+  { img: "/img/products/dub-spanielsky-black-matt-01.webp", a: "Dub španielsky", b: "Čierna matná" },
 ];
 
 const INTERIORS = [
