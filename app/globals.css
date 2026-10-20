@@ -6956,6 +6956,9 @@ button:focus-visible {
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero__video-d {
     object-position: 18% 24%;
+    /* editor posúva video o 60 px nadol a zamyká výšku; min-height ju
+       pri vyšších oknách natiahne, aby pod videom nepresvitala fotka */
+    min-height: calc(100% - 60px);
   }
 }
 /* ≥2100: zafixovaná šírka 2100px, vycentrovaná (ako background-size: 2100px) */

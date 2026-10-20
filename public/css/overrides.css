@@ -49,7 +49,7 @@
 @media (min-width:1024px) and (max-width:1199px){
   .bp-only-tablet-landscape{ display:revert !important; }
   #hero > div.wrap.hero__inner{ translate:0px 1px !important; }
-  #hero > div.hero__bg2 > video.hero__video-d{ translate:149px 0px !important; }
+  #hero > div.hero__bg2 > video.hero__video-d{ translate:70px 0px !important; }
   #hero > div.vhero__media > div.svetlo{ translate:50px -49px !important; width:892px !important; height:592px !important; }
   #hero > div.tech-hero__video > video.tech-hero__video-el{ translate:220px -100px !important; height:846px !important; }
   #hero > div.wrap.tech-hero__crumb > nav.drobcek{ translate:0px 60px !important; }
