@@ -43,7 +43,7 @@ function vybrane(katalog: Product[]): Product[] {
 const MODULE_MEDIA = [
   { href: "/materialy", img: "/img/mat-dekory.webp", pos: "center" },
   { href: "/technologia", img: "/img/mod-konstrukcia.webp", pos: "center" },
-  { href: "/realizacie", img: "/realizacie/galeria/konstrukcia.webp", pos: "center 60%" },
+  { href: "/realizacie", img: "/realizacie/galeria/konstrukcia.webp", pos: "center 44%" },
 ] as const;
 
 
