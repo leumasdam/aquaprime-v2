@@ -1191,11 +1191,6 @@ video:not([controls])::-webkit-media-controls-panel {
     line-height: 1.15;
   }
 }
-@media (min-width: 1200px) and (max-width: 1499px) {
-  .collections__title {
-    font-size: clamp(1.25rem, 0.5rem + 0.95vw, 1.6rem);
-  }
-}
 
 /* ===========================================================
    CONFIGURATOR
@@ -13124,4 +13119,11 @@ body::after {
 .setg__prev.is-on {
   border-color: var(--cyan);
   color: var(--ink);
+}
+
+/* Titul kolekcií v úzkom ľavom stĺpci medzi 1200 a 1499 px (20. 10. 2026) */
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .collections__title {
+    font-size: clamp(1.25rem, 0.5rem + 0.95vw, 1.6rem);
+  }
 }
