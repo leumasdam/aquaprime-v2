@@ -130,8 +130,7 @@
    "h": 690
   },
   "#hero > div.hero__bg2 > video.hero__video-d": {
-   "tx": 80,
-   "h": 525
+   "tx": 80
   },
   "#hero > div.wrap.vhero__in": {
    "tx": 0,
@@ -153,8 +152,7 @@
    "h": 690
   },
   "#hero > div.hero__bg2 > video.hero__video-d": {
-   "tx": 80,
-   "h": 525
+   "tx": 80
   },
   "#hero > div.wrap.vhero__in > h1.vhero__title.display": {
    "tx": 0,
@@ -177,9 +175,7 @@
  },
  "desktop": {
   "#hero > div.hero__bg2 > video.hero__video-d": {
-   "tx": 43,
-   "ty": -4,
-   "h": 574
+   "tx": 43
   },
   "#hero > div.vhero__media > div.svetlo": {
    "w": 1315,
@@ -194,9 +190,7 @@
  },
  "desktop-l": {
   "#hero > div.hero__bg2 > video.hero__video-d": {
-   "tx": 43,
-   "ty": -4,
-   "h": 574
+   "tx": 43
   },
   "#hero > div.vhero__media > div.svetlo": {
    "w": 1636,
