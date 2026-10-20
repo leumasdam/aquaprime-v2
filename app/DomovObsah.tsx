@@ -41,7 +41,7 @@ function vybrane(katalog: Product[]): Product[] {
 
 /* Obrázky a odkazy kariet; texty prichádzajú zo slovníka. */
 const MODULE_MEDIA = [
-  { href: "/materialy", img: "/img/mat-dekory.webp", pos: "center" },
+  { href: "/materialy", img: "/materialy/hero-bg2.webp", pos: "50% 62%" },
   { href: "/technologia", img: "/img/mod-konstrukcia.webp", pos: "center" },
   { href: "/realizacie", img: "/img/mod-realizations.webp", pos: "center" },
 ] as const;
