@@ -1181,9 +1181,19 @@ video:not([controls])::-webkit-media-controls-panel {
     text-align: center;
     gap: 12px;
   }
+}
+/* Pod 1200 px je karta na výšku a titul má celú šírku — môže byť väčší.
+   Medzi 1200 a 1499 px stojí titul v úzkom stĺpci vedľa obrázka, drží
+   preto rovnakú veľkosť ako na širokých monitoroch (20. 10. 2026). */
+@media (max-width: 1199px) {
   .module__title {
     font-size: clamp(1.15rem, 0.75rem + 1vw, 1.7rem);
     line-height: 1.15;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .collections__title {
+    font-size: clamp(1.25rem, 0.5rem + 0.95vw, 1.6rem);
   }
 }
 
