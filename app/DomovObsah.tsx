@@ -12,6 +12,8 @@ import { nacitajSkrinky } from "./katalog/skrinky";
 import { fotkaRadu, nacitajVzhlad, type RadVzhladu } from "./katalog/vzhlad";
 import PasKarusel from "./PasKarusel";
 import InstagramPas from "./InstagramPas";
+import KonfiguratorZamok from "./KonfiguratorZamok";
+import { KONFIGURATOR_ZAMKNUTY } from "./site-config";
 
 // najpredávanejší rozmer podľa klienta: 120 × 40 × 80 (covery v bielej)
 const FEATURED_SLUGS = [
@@ -257,7 +259,13 @@ export default async function DomovObsah({ t, jazyk }: { t: Slovnik; jazyk: Jazy
             <p className="cfg__lead">{d.cfgLead}</p>
           </div>
 
-          <Configurator jazyk={jazyk} />
+          {KONFIGURATOR_ZAMKNUTY ? (
+            <KonfiguratorZamok jazyk={jazyk}>
+              <Configurator jazyk={jazyk} />
+            </KonfiguratorZamok>
+          ) : (
+            <Configurator jazyk={jazyk} />
+          )}
         </div>
 
         {/* LED zapaľovanie: po linke prebehne impulz a postupne zapína body.

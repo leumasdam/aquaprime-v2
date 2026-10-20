@@ -713,6 +713,10 @@ export const SK = {
     metaPopis:
       "Vyberte vyhotovenie, rozmery a dekor skrinky. Hotovú konfiguráciu odošlite ako nezáväzný dopyt.",
     drobcek: "Konfigurátor",
+    zamokTitul: "Konfigurátor skriniek pripravujeme",
+    zamokText: "Zatiaľ nám pošlite rozmer a predstavu cez dopyt — ozveme sa s návrhom a cenou.",
+    zamokCta: "Poslať dopyt",
+    zamokAlt: "Prezrieť skrinky",
     titul1: "Zostavte si",
     titulEm: "skrinku",
     lead:
@@ -1872,6 +1876,10 @@ export const EN: Slovnik = {
     metaPopis:
       "Choose the finish, dimensions and decor of your cabinet. Send the finished configuration as a free enquiry.",
     drobcek: "Configurator",
+    zamokTitul: "Cabinet configurator coming soon",
+    zamokText: "In the meantime send us the size and your idea as an enquiry — we reply with a design and a price.",
+    zamokCta: "Send an enquiry",
+    zamokAlt: "Browse cabinets",
     titul1: "Build your",
     titulEm: "cabinet",
     lead:

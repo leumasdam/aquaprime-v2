@@ -13127,3 +13127,77 @@ body::after {
     font-size: clamp(1.25rem, 0.5rem + 0.95vw, 1.6rem);
   }
 }
+
+/* ===========================================================
+   ZAMKNUTÝ KONFIGURÁTOR (20. 10. 2026) — obsah zašedený, navrchu oznam
+   =========================================================== */
+.kzamok {
+  position: relative;
+  isolation: isolate;
+}
+.kzamok__obsah {
+  filter: grayscale(1) brightness(0.55) contrast(0.9);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+  max-height: 560px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+.kzamok__panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 32px clamp(16px, 4vw, 48px);
+}
+.kzamok__ikona {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 154, 192, 0.45);
+  background: rgba(12, 15, 14, 0.9);
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+.kzamok__ikona svg {
+  width: 24px;
+  height: 24px;
+}
+.kzamok__titul {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 1rem + 1.2vw, 2rem);
+  color: var(--ink);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+}
+.kzamok__text {
+  max-width: 460px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+.kzamok__akcie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+.kzamok__alt {
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-decoration: none;
+}

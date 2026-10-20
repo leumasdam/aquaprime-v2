@@ -17,3 +17,9 @@ export const SKRYTY_PRED_VYHLADAVACMI = true;
  */
 export const INSTAGRAM_PROFIL = "https://www.instagram.com/aquaprime.sk/";
 export const INSTAGRAM_MENO = "@aquaprime.sk";
+
+/**
+ * Konfigurátor skriniek je zamknutý — na webe sa ukazuje zašedený
+ * s oznamom „pripravujeme“. Po odomknutí prepnúť na false (20. 10. 2026).
+ */
+export const KONFIGURATOR_ZAMKNUTY = true;
