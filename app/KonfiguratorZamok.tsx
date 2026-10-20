@@ -15,6 +15,7 @@ export default function KonfiguratorZamok({ jazyk, children }: { jazyk: Jazyk; c
         {children}
       </div>
       <div className="kzamok__panel" role="status">
+        <div className="kzamok__karta">
         <span className="kzamok__ikona" aria-hidden>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
@@ -31,6 +32,7 @@ export default function KonfiguratorZamok({ jazyk, children }: { jazyk: Jazyk; c
           <Link href={odkaz("/skrinky", jazyk)} className="kzamok__alt">
             {k.zamokAlt} <span aria-hidden>→</span>
           </Link>
+        </div>
         </div>
       </div>
     </div>

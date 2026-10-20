@@ -13154,8 +13154,21 @@ body::after {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 10px;
   padding: 32px clamp(16px, 4vw, 48px);
+}
+.kzamok__karta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 560px;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 4vw, 48px);
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(0, 154, 192, 0.28);
+  background: rgba(12, 15, 14, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
 }
 .kzamok__ikona {
   width: 54px;
