@@ -13259,3 +13259,44 @@ a.mat-interiors__item {
     font-size: 0.75rem;
   }
 }
+
+/* ===========================================================
+   SETY = rovnaký vzhľad ako skrinky (20. 10. 2026, požiadavka klienta)
+   Karta: širokouhlý biely packshot panel 16:10, celá fotka bez orezu.
+   Detail: hlavný záber 4:3 na bielom paneli ako galéria skrinky.
+   Prebíja staršie pravidlá .set-karta a .setg__hlavna (4:5, cover, tmavé).
+   =========================================================== */
+.set-karta .product__media--photo {
+  aspect-ratio: 16 / 10;
+  background: #fff;
+}
+.set-karta .product__media--photo img {
+  object-fit: contain;
+  object-position: 50% 50%;
+  padding: 6%;
+}
+.set-karta .product__media--photo::after {
+  background: linear-gradient(to top, rgba(12, 15, 13, 0.07), transparent 34%);
+  box-shadow: inset 0 0 0 1px rgba(12, 15, 13, 0.07);
+}
+.set-karta .product__badge {
+  color: #fff;
+}
+.setg__hlavna {
+  aspect-ratio: 4 / 3;
+  background: #fff;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.setg__hlavna img {
+  object-fit: contain;
+  padding: 5%;
+}
+.setg__minii {
+  background: #fff;
+}
+.setg__minii img {
+  object-fit: contain;
+  padding: 6%;
+}

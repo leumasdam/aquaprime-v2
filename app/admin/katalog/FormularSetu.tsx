@@ -232,7 +232,7 @@ export default function FormularSetu({
       </div>
 
       <h2 className="ad-h2">Prevedenia a fotky</h2>
-      <p className="kt-podnadpis">Každé prevedenie (farba skrinky) má vlastnú sadu fotiek. Prvé prevedenie dáva setu titulnú fotku v katalógu.</p>
+      <p className="kt-podnadpis">Každé prevedenie (farba skrinky) má vlastnú sadu fotiek. Prvé prevedenie dáva setu titulnú fotku v katalógu. Karta aj detail ukazujú celú fotku na bielom paneli ako pri skrinkách — najlepšie vyzerá záber na šírku alebo packshot na svetlom pozadí.</p>
       <div className="kt-dekory">
         {draft.prevedenia.map((p, i) => {
           const otv = otvorene === p.id || chybyPrevedenia(i).length > 0;
