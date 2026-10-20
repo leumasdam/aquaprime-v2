@@ -1,5 +1,5 @@
 import { najdiProdukt, type Product } from "../../../products";
-import { getAquarium } from "../../../aquariums";
+import type { Aquarium } from "../../../aquariums";
 import { NOZICKY_PRIPLATOK } from "../../../nozicky";
 
 /**
@@ -55,6 +55,7 @@ export const MAX_POLOZIEK = 30;
 
 export function prepocitaj(
   katalog: Product[],
+  akvaria: Aquarium[],
   polozky: PolozkaVstup[],
   odber: boolean,
 ): Prepocet {
@@ -79,7 +80,7 @@ export function prepocitaj(
       // dorieši sa v potvrdení objednávky, presne ako to vidí zákazník v košíku
       if (cena !== null && p.nozicky === true) cena += NOZICKY_PRIPLATOK ?? 0;
     } else if (p.druh === "akvarium") {
-      cena = getAquarium(slug)?.priceValue ?? null;
+      cena = akvaria.find((a) => a.slug === slug)?.priceValue ?? null;
     }
     if (cena === null) return { ok: false, dovod: `neznamy_tovar:${slug}` };
 

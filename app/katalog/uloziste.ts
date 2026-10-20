@@ -20,8 +20,8 @@
 
 import { BlobNotFoundError, BlobPreconditionFailedError, del, get, head, list, put } from "@vercel/blob";
 
-/** skrinky = katalóg skriniek, vzhlad = úvodné fotky radov, galerie = fotky setov a akvárií */
-export type Kolekcia = "skrinky" | "vzhlad" | "galerie";
+/** skrinky = katalóg skriniek, vzhlad = úvodné fotky radov, akvaria a sety = ich katalógy */
+export type Kolekcia = "skrinky" | "vzhlad" | "akvaria" | "sety";
 
 /** koľko verzií histórie držíme — staršie sa pri ukladaní mažú */
 const HISTORIA_LIMIT = 40;

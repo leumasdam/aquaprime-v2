@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { centy, stripe, zaklad } from "./_lib/stripe";
 import { prepocitaj } from "./_lib/suma";
 import { nacitajSkrinky } from "../../katalog/skrinky";
+import { nacitajAkvaria } from "../../katalog/akvaria";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 
 /**
@@ -54,6 +55,7 @@ export async function POST(req: Request) {
   // sumu si rátame sami z katalógu, klientovi neveríme
   const p = prepocitaj(
     await nacitajSkrinky(),
+    await nacitajAkvaria(),
     (b.polozky as { slug?: unknown; druh?: unknown; ks?: unknown }[]) ?? [],
     b.dorucenie === "odber",
   );

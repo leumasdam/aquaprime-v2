@@ -5,6 +5,7 @@ import { encode, PaymentOptions, CurrencyCode } from "bysquare/pay";
 import { ipZ, prekrocenyLimit } from "../_lib/limit";
 import { prepocitaj } from "../platba/_lib/suma";
 import { nacitajSkrinky } from "../../katalog/skrinky";
+import { nacitajAkvaria } from "../../katalog/akvaria";
 
 /**
  * Príjem objednávky. Objednávka sa musí prijať aj vtedy, keď e-mail zlyhá —
@@ -58,7 +59,7 @@ export async function POST(req: Request) {
   }
 
   // suma z katalógu — klientovi neveríme ani cenu, ani počet položiek
-  const prepocet = prepocitaj(await nacitajSkrinky(), vstup, b.odber === true);
+  const prepocet = prepocitaj(await nacitajSkrinky(), await nacitajAkvaria(), vstup, b.odber === true);
   if (!prepocet.ok) {
     return NextResponse.json({ ok: false, error: prepocet.dovod }, { status: 400 });
   }

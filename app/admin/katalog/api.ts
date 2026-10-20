@@ -101,3 +101,50 @@ export async function nahrajFotku(subor: File): Promise<string> {
   if (!r.ok || !r.src) throw new Error(r.chyba ?? "Fotku sa nepodarilo nahrať.");
   return r.src;
 }
+
+/* ---------------- ďalšie kolekcie (akváriá, sety) ---------------- */
+
+/** Rovnaký protokol ako katalóg skriniek — spoločný editor v /api/admin/_lib/kolekcia.ts. */
+export type StavPoloziek<T> = {
+  polozky: T[];
+  ulozene: { kedy: string; kto: string } | null;
+  uloziskoPripravene: boolean;
+};
+
+export type VysledokPoloziek<T> =
+  | ({ ok: true; poznamka: string } & StavPoloziek<T>)
+  | { ok: false; chyba: string; chyby: Chyba[]; konflikt: boolean };
+
+export type AkciaPoloziek<T> =
+  | { akcia: "uloz"; povodneId: string | null; polozka: T; odtlacok: string | null }
+  | { akcia: "zmaz"; id: string; odtlacok: string | null }
+  | { akcia: "poradie"; idcka: string[] }
+  | { akcia: "obnov"; verziaId: string };
+
+export type KolekciaPoloziek = "akvaria" | "sety";
+
+export async function nacitajPolozky<T>(kolekcia: KolekciaPoloziek): Promise<StavPoloziek<T>> {
+  return json<StavPoloziek<T>>(await fetch(`/api/admin/${kolekcia}`, { cache: "no-store" }));
+}
+
+export async function posliPolozky<T>(kolekcia: KolekciaPoloziek, akcia: AkciaPoloziek<T>): Promise<VysledokPoloziek<T>> {
+  try {
+    const res = await fetch(`/api/admin/${kolekcia}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(akcia),
+    });
+    return await json<VysledokPoloziek<T>>(res);
+  } catch (e) {
+    if (e instanceof Error && e.message === "odhlaseny")
+      return { ok: false, chyba: "Prihlásenie vypršalo. Obnovte stránku a prihláste sa znova.", chyby: [], konflikt: false };
+    return { ok: false, chyba: "Server neodpovedá. Skontrolujte pripojenie a skúste to znova.", chyby: [], konflikt: false };
+  }
+}
+
+export async function historiaKolekcie(kolekcia: "skrinky" | KolekciaPoloziek): Promise<Verzia[]> {
+  const r = await json<{ ok: boolean; verzie: Verzia[] }>(
+    await fetch(`/api/admin/katalog/historia?kolekcia=${kolekcia}`, { cache: "no-store" }),
+  );
+  return r.verzie ?? [];
+}

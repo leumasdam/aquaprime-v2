@@ -1224,3 +1224,63 @@ select.kt-vstup {
 .kt-gal__akv-telo .kt-foto {
   width: 100%;
 }
+
+/* prepínač jazyka v nadpise sekcie (texty setu) */
+.ad-h2 .kt-filtre--vpravo {
+  display: inline-flex;
+  margin-left: 14px;
+  vertical-align: middle;
+}
+.kt-dekor__telo > .ad-err,
+.kt-dekory > .ad-err,
+.kt-karta > .ad-err {
+  display: block;
+  font-size: 0.8rem;
+}
+
+/* pridanie prevedenia setu: hotové vzory + vlastné */
+.kt-prev-pridat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.kt-prev-pridat__vzor {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 8px;
+  border: 1px dashed var(--ad-line);
+  border-radius: 999px;
+  background: none;
+  color: var(--ad-ink, inherit);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.kt-prev-pridat__vzor:hover {
+  border-color: var(--ad-cyan);
+  color: var(--ad-cyan);
+}
+.kt-prev-pridat__vlastne {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1 1 320px;
+}
+.kt-prev-pridat__vlastne .kt-vstup {
+  flex: 1 1 auto;
+}
+.kt-prev-pridat__vlastne .kt-pridat {
+  width: auto;
+  white-space: nowrap;
+}
+.kt-prev-pridat__vzor {
+  white-space: nowrap;
+}
+.kt-prev-pridat__vzor .swatch {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}

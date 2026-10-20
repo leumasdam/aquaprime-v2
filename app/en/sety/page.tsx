@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SetyObsah from "../../sety/Obsah";
 import { EN } from "../../preklady";
-import { nacitajSety } from "../../katalog/galerie-server";
+import { nacitajSety } from "../../katalog/sety";
 
 export const metadata: Metadata = {
   title: EN.sety.metaTitul,

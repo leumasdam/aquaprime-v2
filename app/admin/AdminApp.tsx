@@ -11,7 +11,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import EditorKatalogu from "./katalog/EditorKatalogu";
-import Galerie from "./katalog/Galerie";
+import EditorAkvarii from "./katalog/EditorAkvarii";
+import EditorSetov from "./katalog/EditorSetov";
 import { AquaFishMark } from "../brand";
 import { PLAN_FRAZ } from "./keywords";
 
@@ -247,11 +248,13 @@ export default function AdminApp() {
   /* Editor katalógu sa pripojí pri prvom otvorení a potom ostáva pripojený,
      len skrytý. Preklik na inú záložku by inak zahodil rozpísanú skrinku. */
   const [editorOtvoreny, setEditorOtvoreny] = useState(false);
-  const [galerieOtvorene, setGalerieOtvorene] = useState(false);
+  const [akvariaOtvorene, setAkvariaOtvorene] = useState(false);
+  const [setyOtvorene, setSetyOtvorene] = useState(false);
   const setTab = useCallback((t: TabId) => {
     setTabStav(t);
     if (t === "skrinky") setEditorOtvoreny(true);
-    if (t === "akvaria" || t === "sety") setGalerieOtvorene(true);
+    if (t === "akvaria") setAkvariaOtvorene(true);
+    if (t === "sety") setSetyOtvorene(true);
     // záložka v adrese — po obnovení stránky sa klient vráti tam, kde bol
     window.history.replaceState(null, "", t === "prehlad" ? "/admin" : `/admin#${t}`);
   }, []);
@@ -424,10 +427,15 @@ export default function AdminApp() {
           </div>
         )}
 
-        {/* ============ AKVÁRIÁ / SETY (fotky) — jeden editor, dve záložky ============ */}
-        {galerieOtvorene && (
-          <div hidden={tab !== "akvaria" && tab !== "sety"}>
-            <Galerie zalozka={tab === "sety" ? "sety" : "akvaria"} />
+        {/* ============ AKVÁRIÁ a SETY — editory ako pri skrinkách, ostávajú pripojené ============ */}
+        {akvariaOtvorene && (
+          <div hidden={tab !== "akvaria"}>
+            <EditorAkvarii />
+          </div>
+        )}
+        {setyOtvorene && (
+          <div hidden={tab !== "sety"}>
+            <EditorSetov />
           </div>
         )}
 

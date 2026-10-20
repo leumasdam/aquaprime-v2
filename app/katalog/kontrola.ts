@@ -217,7 +217,7 @@ export function chybyKatalogu(katalog: Product[]): Chyba[] {
  * zmena potichu prepísala druhú. FNV-1a stačí — nejde o bezpečnosť, len
  * o rozpoznanie zmeny.
  */
-export function odtlacok(p: Product): string {
+export function odtlacok(p: unknown): string {
   const text = JSON.stringify(p);
   let h = 0x811c9dc5;
   for (let i = 0; i < text.length; i++) {

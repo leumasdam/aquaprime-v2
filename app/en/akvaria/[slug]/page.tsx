@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AkvariumObsah from "../../../akvaria/AkvariumObsah";
 import { AQUARIUMS } from "../../../aquariums";
-import { nacitajAkvarium } from "../../../katalog/galerie-server";
+import { nacitajAkvarium } from "../../../katalog/akvaria";
 import { EN } from "../../../preklady";
 
 export function generateStaticParams() {

@@ -30,6 +30,8 @@ export type Aquarium = AquariumSize & {
   use?: string;
   /** fotky od klienta z administrácie — prvá je titulná (cover), ostatné v galérii detailu */
   fotky?: string[];
+  /** rozpracované v administrácii — na webe sa neukazuje */
+  skryta?: boolean;
 };
 
 type ClientText = {

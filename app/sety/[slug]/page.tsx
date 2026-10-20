@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SetDetail from "../SetDetail";
 import { SETY, titulnaFotka } from "../../sety";
-import { nacitajSet } from "../../katalog/galerie-server";
+import { nacitajSet } from "../../katalog/sety";
 import { SK } from "../../preklady";
 
 export function generateStaticParams() {

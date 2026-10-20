@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { historia, posli, type StavKatalogu, type Verzia } from "./api";
+import { historiaKolekcie, posli, type StavKatalogu, type Verzia } from "./api";
 
 const cas = (iso: string) =>
   new Date(iso).toLocaleString("sk-SK", {
@@ -20,25 +20,39 @@ const cas = (iso: string) =>
 export default function HistoriaVerzii({
   onUlozene,
   onSpat,
+  kolekcia = "skrinky",
+  spat = "← Všetky skrinky",
+  obnov: obnovVerziu,
 }: {
   onUlozene: (stav: StavKatalogu, sprava: string) => void;
   onSpat: () => void;
+  /** ktorej kolekcie história; skrinky majú vlastné API, ostatné dostanú `obnov` */
+  kolekcia?: "skrinky" | "akvaria" | "sety";
+  spat?: string;
+  /** návrat verzie pre inú kolekciu než skrinky — vráti chybu alebo null */
+  obnov?: (verziaId: string) => Promise<string | null>;
 }) {
   const [verzie, setVerzie] = useState<Verzia[] | null>(null);
   const [chyba, setChyba] = useState("");
   const [obnovuje, setObnovuje] = useState<string | null>(null);
 
   useEffect(() => {
-    historia()
+    historiaKolekcie(kolekcia)
       .then(setVerzie)
       .catch(() => setChyba("Históriu sa nepodarilo načítať."));
-  }, []);
+  }, [kolekcia]);
 
   const obnov = async (v: Verzia) => {
     if (!window.confirm(`Vrátiť celý katalóg do stavu z ${cas(v.kedy)}? Všetky neskoršie zmeny sa tým vrátia späť (dajú sa obnoviť znova odtiaľto).`))
       return;
     setObnovuje(v.id);
     setChyba("");
+    if (obnovVerziu) {
+      const chybaObnovy = await obnovVerziu(v.id);
+      setObnovuje(null);
+      if (chybaObnovy) setChyba(chybaObnovy);
+      return;
+    }
     const r = await posli({ akcia: "obnov", verziaId: v.id });
     setObnovuje(null);
     if (!r.ok) {
@@ -51,7 +65,7 @@ export default function HistoriaVerzii({
   return (
     <section className="ad-section">
       <button type="button" className="kt-spat" onClick={onSpat}>
-        ← Všetky skrinky
+        {spat}
       </button>
       <header className="ad-head">
         <h1>História zmien</h1>

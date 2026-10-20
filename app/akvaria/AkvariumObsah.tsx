@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { matchingCabinets, type Aquarium } from "../aquariums";
-import { nacitajAkvaria } from "../katalog/galerie-server";
+import { nacitajAkvaria } from "../katalog/akvaria";
 import AkvariumGaleria from "./AkvariumGaleria";
 import { nacitajSkrinky } from "../katalog/skrinky";
 import { odkaz, type Jazyk } from "../jazyk";

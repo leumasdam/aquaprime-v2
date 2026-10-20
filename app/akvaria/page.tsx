@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AkvariaObsah from "./Obsah";
 import { SK } from "../preklady";
-import { nacitajAkvaria } from "../katalog/galerie-server";
+import { nacitajAkvaria } from "../katalog/akvaria";
 
 export const metadata: Metadata = {
   title: SK.akvaria.metaTitul,

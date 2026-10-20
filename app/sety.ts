@@ -40,6 +40,8 @@ export type Set = {
   prevedenia: Prevedenie[];
   cena: number | null;
   novinka?: boolean;
+  /** rozpracovaný v administrácii — na webe sa neukazuje */
+  skryta?: boolean;
 };
 
 export const SETY: Set[] = [

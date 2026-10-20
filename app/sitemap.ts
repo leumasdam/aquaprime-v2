@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { nacitajSkrinky } from "./katalog/skrinky";
-import { AQUARIUMS } from "./aquariums";
+import { nacitajAkvaria } from "./katalog/akvaria";
+import { nacitajSety } from "./katalog/sety";
 import { SKRYTY_PRED_VYHLADAVACMI } from "./site-config";
 import { vsetkyClanky } from "./blog/clanky";
-import { SETY } from "./sety";
 
 const BASE = "https://aquaprime.sk";
 const ROUTES = [
@@ -48,7 +48,7 @@ function dvojjazycne(cesta: string, priorita: number) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const skrinky = await nacitajSkrinky();
+  const [skrinky, SETY, AQUARIUMS] = await Promise.all([nacitajSkrinky(), nacitajSety(), nacitajAkvaria()]);
   // skrytý web neponúka mapu stránok — inak by ju robot našiel aj bez odkazu
   if (SKRYTY_PRED_VYHLADAVACMI) return [];
   return [
