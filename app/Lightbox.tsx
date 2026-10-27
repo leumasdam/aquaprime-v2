@@ -11,6 +11,24 @@ import { SLOVNIKY } from "./preklady";
  * klávesnicou, potiahnutím na mobile a radom náhľadov dole.
  * Používa ju galéria skriniek, setov aj akvárií.
  */
+/**
+ * Fotka má object-fit: contain v prvku cez celú plochu — prvok <img> teda
+ * zaberá aj prázdne okolie. Či bod leží na samotnej fotke, prepočítame
+ * z jej skutočných rozmerov.
+ */
+function mimoFotky(img: HTMLImageElement, x: number, y: number): boolean {
+  const r = img.getBoundingClientRect();
+  const nw = img.naturalWidth;
+  const nh = img.naturalHeight;
+  if (!nw || !nh || !r.width || !r.height) return false;
+  const k = Math.min(r.width / nw, r.height / nh);
+  const w = nw * k;
+  const h = nh * k;
+  const x0 = r.left + (r.width - w) / 2;
+  const y0 = r.top + (r.height - h) / 2;
+  return x < x0 || x > x0 + w || y < y0 || y > y0 + h;
+}
+
 export default function Lightbox({
   fotky,
   index,
@@ -75,8 +93,10 @@ export default function Lightbox({
         onZavri();
       }}
       onClick={(e) => {
-        /* klik kamkoľvek mimo fotky a tlačidiel zatvára */
-        if ((e.target as HTMLElement).closest("img, button")) return;
+        /* klik kamkoľvek mimo fotky a tlačidiel zatvára — ako krížik */
+        const t = e.target as HTMLElement;
+        if (t.closest("button")) return;
+        if (t.tagName === "IMG" && mimoFotky(t as HTMLImageElement, e.clientX, e.clientY) === false) return;
         onZavri();
       }}
       onKeyDown={(e) => {
