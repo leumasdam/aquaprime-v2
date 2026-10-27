@@ -6063,7 +6063,8 @@ button:focus-visible {
   position: relative;
   min-width: 0; /* rešpektovať šírku grid stĺpca (inak blowout od širokého tracku) */
 }
-/* jemné chevron šípky po stranách (mimo maskovanej oblasti) */
+/* veľké okrúhle šípky po stranách — na každej šírke dobre viditeľné
+   a ľahko trafiteľné prstom (zväčšené 27. 10. 2026) */
 .coll-arrow {
   position: absolute;
   top: 50%;
@@ -6071,23 +6072,50 @@ button:focus-visible {
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 44px;
-  color: rgba(247, 246, 242, 0.45);
-  transition: color var(--t-base) var(--ease);
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 246, 242, 0.22);
+  background: rgba(8, 10, 10, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f7f6f2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: color var(--t-base) var(--ease), background var(--t-base) var(--ease), transform var(--t-base) var(--ease);
 }
 .coll-arrow:hover {
   color: var(--cyan);
+  background: rgba(8, 10, 10, 0.8);
+  transform: translateY(-50%) scale(1.06);
 }
 .coll-arrow svg {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
+}
+.coll-arrow svg path {
+  stroke-width: 2;
 }
 .coll-arrow--prev {
-  left: -6px;
+  left: 8px;
 }
 .coll-arrow--next {
-  right: -6px;
+  right: 8px;
+}
+@media (max-width: 760px) {
+  .coll-arrow {
+    width: 52px;
+    height: 52px;
+  }
+  .coll-arrow svg {
+    width: 28px;
+    height: 28px;
+  }
+  .coll-arrow--prev {
+    left: 4px;
+  }
+  .coll-arrow--next {
+    right: 4px;
+  }
 }
 /* veľmi široké monitory: šípky až po krajoch obrazovky (mimo carouselu) */
 @media (min-width: 2301px) {
@@ -6100,13 +6128,12 @@ button:focus-visible {
   .coll-arrow {
     position: absolute;
     top: 50%;
-    width: 48px;
-    height: 60px;
-    color: rgba(247, 246, 242, 0.55);
+    width: 76px;
+    height: 76px;
   }
   .coll-arrow svg {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
   .coll-arrow--prev {
     left: 2vw;
