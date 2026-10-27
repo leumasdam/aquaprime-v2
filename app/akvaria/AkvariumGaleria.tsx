@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "../Lightbox";
+import { useOkrajFotky } from "../okrajFotky";
 import type { Jazyk } from "../jazyk";
 import { SLOVNIKY } from "../preklady";
 import { VT } from "../vt";
@@ -12,6 +13,11 @@ import { VT } from "../vt";
  * a rad náhľadov pod ním; každá fotka sa dá rozkliknúť na celú obrazovku.
  * Akvárium bez vlastných fotiek dostane jedinú pôvodnú vizualizáciu.
  */
+function Nahlad({ src }: { src: string }) {
+  const okraj = useOkrajFotky(src);
+  return <Image src={src} alt="" fill sizes="64px" style={{ objectPosition: okraj }} />;
+}
+
 export default function AkvariumGaleria({
   slug,
   fotky,
@@ -35,6 +41,7 @@ export default function AkvariumGaleria({
   const [i, setI] = useState(0);
   const [velke, setVelke] = useState(false);
   const img = fotky[Math.min(i, fotky.length - 1)];
+  const okraj = useOkrajFotky(img);
 
   return (
     <div className="pgal pgal--scene" data-reveal="scale">
@@ -42,7 +49,7 @@ export default function AkvariumGaleria({
       <VT name={`a-${slug}`} share="vt-morph">
         <div className="pgal__main">
           <button type="button" className="pgal__zoom" onClick={() => setVelke(true)} aria-label={tp.zvacsit}>
-            <Image key={img} src={img} alt={alt} fill priority sizes="(max-width: 820px) 92vw, 48vw" />
+            <Image key={img} src={img} alt={alt} fill priority sizes="(max-width: 820px) 92vw, 48vw" style={{ objectPosition: okraj }} />
             <span className="pgal__lupa" aria-hidden>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" /></svg>
             </span>
@@ -62,7 +69,7 @@ export default function AkvariumGaleria({
               onClick={() => setI(j)}
               aria-label={`${tp.fotografia} ${j + 1}`}
             >
-              <Image src={src} alt="" fill sizes="64px" />
+              <Nahlad src={src} />
             </button>
           ))}
         </div>

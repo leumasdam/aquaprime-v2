@@ -4,6 +4,7 @@ import { jeNahrataFotka } from "./products";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Lightbox from "./Lightbox";
+import { useOkrajFotky } from "./okrajFotky";
 import type { Product } from "./products";
 import { dvierkaPreSirku } from "./cabinet-construction";
 import Swatch from "./Swatch";
@@ -18,6 +19,12 @@ const SVETLA: { id: Svetlo; label: string; bodka?: string }[] = [
   { id: "zlta", label: "teplaBiela", bodka: "#ffd9a0" },
   { id: "modra", label: "modra", bodka: "#5fb8ff" },
 ];
+
+/** náhľad v rade pod fotkou — rovnaké usadenie k hrane ako hlavná fotka */
+function Nahlad({ src }: { src: string }) {
+  const okraj = useOkrajFotky(src);
+  return <Image src={src} alt="" fill sizes="64px" style={{ objectPosition: okraj }} />;
+}
 
 /** Galéria detailu produktu — hlavná fotka, thumbnaily a prepínač dekorov. */
 export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?: Jazyk }) {
@@ -50,6 +57,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   const vizualizacia = aktivne !== "bez";
   /* dekor z ponuky, ktorý ešte nie je nafotený — namiesto fotky placeholder */
   const chyba = Boolean(decor.chyba) || !img;
+  const okraj = useOkrajFotky(chyba ? undefined : img);
 
   /* Keď je vyplnené illuIdx, časť galérie je prevzatá a časť vlastná —
      štítok potom patrí len konkrétnym fotkám, nie celému dekoru. */
@@ -88,6 +96,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
               fill
               priority
               sizes="(max-width: 820px) 92vw, 48vw"
+              style={{ objectPosition: okraj }}
             />
             <span className="pgal__lupa" aria-hidden>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" /></svg>
@@ -173,7 +182,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
               onClick={() => setImgIdx(i)}
               aria-label={`${tp.fotografia} ${i + 1}`}
             >
-              <Image src={src} alt="" fill sizes="64px" />
+              <Nahlad src={src} />
             </button>
           ))}
         </div>

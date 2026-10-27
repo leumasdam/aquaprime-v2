@@ -1,6 +1,7 @@
 "use client";
 
 import { jeNahrataFotka } from "./products";
+import { useOkrajFotky } from "./okrajFotky";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
@@ -99,6 +100,7 @@ export default function ProductCard({
 
   const aktivny: Decor | null = hover ?? (cyklus.length ? cyklus[auto % cyklus.length] : null);
   const nahlad = foto ?? aktivny?.images[0] ?? p.cover;
+  const okraj = useOkrajFotky(nahlad);
 
   /* výmena: predošlá fotka odchádza doľava, nová priletí sprava (CSS) */
   const posledna = useRef(nahlad);
@@ -151,6 +153,7 @@ export default function ProductCard({
             className={predosla ? "product__foto--nova" : undefined}
             fill
             sizes={velkosti}
+            style={{ objectPosition: okraj }}
           />
           <span
             className={`product__badge product__badge--${znacka ? "led" : (odznakTrieda ?? p.tier)}`}
