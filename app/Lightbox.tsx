@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type TouchEvent } from "react";
+import { createPortal } from "react-dom";
 import type { Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
 
@@ -36,7 +37,13 @@ export default function Lightbox({
   useEffect(() => {
     const d = dialog.current;
     if (!d || d.open) return;
-    d.showModal();
+    /* modálny dialóg ide do „top layer" — mimo galérie, ktorá má pri
+       odhalení transformáciu (position: fixed by sa inak počítalo od nej) */
+    try {
+      d.showModal();
+    } catch {
+      d.setAttribute("open", "");
+    }
     document.body.style.overflow = "hidden";
     const t = setTimeout(() => setVstup(false), 20);
     return () => {
@@ -57,7 +64,8 @@ export default function Lightbox({
     if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) posun(dx < 0 ? 1 : -1);
   };
 
-  return (
+  if (typeof document === "undefined") return null;
+  return createPortal(
     <dialog
       ref={dialog}
       className={`lb${vstup ? " lb--vstup" : ""}`}
@@ -125,6 +133,7 @@ export default function Lightbox({
           </div>
         </>
       )}
-    </dialog>
+    </dialog>,
+    document.body,
   );
 }

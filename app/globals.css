@@ -13385,22 +13385,23 @@ a.mat-interiors__item {
   position: fixed;
   inset: 0;
   z-index: 10001;
-  width: 100vw;
-  /* staršie prehliadače bez dvh: bez tejto zálohy by dialóg narástol podľa
-     fotky a náhľady dole by vypadli z obrazovky (hlásené 27. 10. 2026) */
-  height: 100vh;
-  height: 100dvh;
+  /* rozmer z inset, nie z vw/vh — sedí aj so zvislým posuvníkom
+     a v prehliadačoch bez dvh (hlásené 27. 10. 2026) */
+  width: auto;
+  height: auto;
   max-width: none;
-  max-height: 100vh;
-  max-height: 100dvh;
+  max-height: none;
   margin: 0;
   padding: 0;
   border: 0;
   overflow: hidden;
   background: rgba(8, 10, 10, 0.96);
   color: #fff;
-  display: grid;
+  display: none;
   grid-template-rows: minmax(0, 1fr) auto;
+}
+.lb[open] {
+  display: grid;
   opacity: 1;
   transition: opacity 0.25s var(--ease);
 }
