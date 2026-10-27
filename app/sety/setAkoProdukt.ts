@@ -1,3 +1,4 @@
+import { textySetu } from "../sety";
 import type { Product } from "../products";
 import type { Set } from "../sety";
 import type { Slovnik } from "../preklady";
@@ -22,7 +23,7 @@ export function setAkoProdukt(s: Set, t: Slovnik["sety"]): Product {
     aquarium: s.akvarium,
     vol: `${s.objem} l`,
     price: textZCeny(s.cena),
-    desc: s.popis.sk[0] ?? "",
+    desc: textySetu(s, "sk").popis[0] ?? "",
     features: [],
     decors: s.prevedenia,
     cover: s.prevedenia.find((x) => !x.chyba && x.images.length)?.images[0] ?? "",
