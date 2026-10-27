@@ -37,7 +37,8 @@ async function zisti(src: string): Promise<string> {
     if (!jeSvetly(d, (y * VELKOST) * 4) || !jeSvetly(d, (y * VELKOST + 1) * 4)) lavy++;
     if (!jeSvetly(d, (y * VELKOST + VELKOST - 1) * 4) || !jeSvetly(d, (y * VELKOST + VELKOST - 2) * 4)) pravy++;
   }
-  const prah = VELKOST * 0.12;
+  /* stačí úzky pás obsahu pri hrane (vrchná doska vybiehajúca z fotky) */
+  const prah = VELKOST * 0.05;
   if (pravy > prah && lavy <= prah) return "right center";
   if (lavy > prah && pravy <= prah) return "left center";
   return "center";

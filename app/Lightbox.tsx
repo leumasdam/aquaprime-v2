@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type TouchEvent } from "react";
 import type { Jazyk } from "./jazyk";
 import { SLOVNIKY } from "./preklady";
-import { useOkrajFotky } from "./okrajFotky";
 
 /**
  * Veľké zobrazenie fotiek — na celú obrazovku, s prepínaním šípkami,
@@ -30,7 +29,6 @@ export default function Lightbox({
   const dialog = useRef<HTMLDialogElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const [vstup, setVstup] = useState(true);
-  const okraj = useOkrajFotky(fotky[Math.max(0, Math.min(index, fotky.length - 1))]);
   const n = fotky.length;
   const i = Math.max(0, Math.min(index, n - 1));
   const posun = (d: number) => n > 1 && onZmena((i + d + n) % n);
@@ -90,7 +88,7 @@ export default function Lightbox({
 
       <div className="lb__plocha" onTouchStart={touchStart} onTouchEnd={touchEnd} onClick={(e) => { if (e.target === e.currentTarget) onZavri(); }}>
         <div className="lb__foto" key={fotky[i]}>
-          <Image src={fotky[i]} alt={alt} fill priority sizes="100vw" style={{ objectPosition: okraj }} />
+          <Image src={fotky[i]} alt={alt} fill priority sizes="100vw" />
         </div>
       </div>
 
