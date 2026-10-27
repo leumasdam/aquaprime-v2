@@ -3907,13 +3907,13 @@ button:focus-visible {
   box-shadow: inset 0 0 0 1px rgba(12, 15, 13, 0.07);
   pointer-events: none;
 }
-/* fotka nahratá v administrácii — reálna fotografia na celú plochu,
-   biely panel s odsadením by okolo nej nechal rám (zistené 27. 10. 2026) */
+/* fotka nahratá v administrácii — nikdy sa neoreže: celá sa zmestí do
+   plochy, zvyšok je biely (bez odsadenia, ktoré robilo rám; 27. 10. 2026) */
 .product__media--foto {
-  background: #111514;
+  background: #fff;
 }
 .product__media--foto img {
-  object-fit: cover;
+  object-fit: contain;
   padding: 0;
 }
 /* LED vizualizácia — interiérová scéna, nie packshot: vyplní celú kartu,
@@ -4143,15 +4143,15 @@ button:focus-visible {
 .pgal--scene .pgal__main {
   background: #111514;
 }
-.pgal--scene .pgal__main img,
+/* nahraté fotky: celé, bez orezu, zvyšok plochy biely */
 .pgal--foto .pgal__main img,
 .pgal__thumb--foto img {
-  object-fit: cover;
+  object-fit: contain;
   padding: 0;
 }
 .pgal--foto .pgal__main,
 .pgal__thumb--foto {
-  background: #111514;
+  background: #fff;
 }
 .pgal--scene .pgal__thumb {
   background: #111514;
