@@ -75,7 +75,9 @@ export default function Lightbox({
         onZavri();
       }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onZavri();
+        /* klik kamkoľvek mimo fotky a tlačidiel zatvára */
+        if ((e.target as HTMLElement).closest("img, button")) return;
+        onZavri();
       }}
       onKeyDown={(e) => {
         if (e.key === "ArrowRight") {
@@ -94,7 +96,7 @@ export default function Lightbox({
         </svg>
       </button>
 
-      <div className="lb__plocha" onTouchStart={touchStart} onTouchEnd={touchEnd} onClick={(e) => { if (e.target === e.currentTarget) onZavri(); }}>
+      <div className="lb__plocha" onTouchStart={touchStart} onTouchEnd={touchEnd}>
         <div className="lb__foto" key={fotky[i]}>
           <Image src={fotky[i]} alt={alt} fill priority sizes="100vw" />
         </div>
