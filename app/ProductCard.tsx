@@ -1,5 +1,6 @@
 "use client";
 
+import { jeNahrataFotka } from "./products";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
@@ -130,7 +131,7 @@ export default function ProductCard({
       {/* rovnaké meno má galéria na detaile — karta sa doň premorfuje */}
       <VT name={`p-${p.slug}${znacka ? "-led" : ""}`} share="vt-morph">
         <div
-          className={`product__media product__media--photo${foto ? " product__media--led" : ""}`}
+          className={`product__media product__media--photo${foto ? " product__media--led" : ""}${jeNahrataFotka(nahlad) ? " product__media--foto" : ""}`}
         >
           {predosla && (
             <Image

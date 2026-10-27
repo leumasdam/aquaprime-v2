@@ -2,6 +2,10 @@
 // („Skrinky pod akvária": 3 rady × rozmery × dekory; fotky public/img/products)
 // Objem = orientačný pri výške hladiny ~50 cm. Ceny zatiaľ na dopyt.
 
+/** Fotka nahratá v administrácii (z úložiska) — reálna fotografia, ktorá má
+ *  vyplniť celú plochu; rendery z kódu sú packshoty na bielom. */
+export const jeNahrataFotka = (src: string | undefined) => Boolean(src && src.startsWith("/foto/"));
+
 export type Decor = {
   id: string;
   name: string;

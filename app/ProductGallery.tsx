@@ -1,5 +1,6 @@
 "use client";
 
+import { jeNahrataFotka } from "./products";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Product } from "./products";
@@ -67,7 +68,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   }, [decor, p.cover]);
 
   return (
-    <div className={`pgal${vizualizacia ? " pgal--scene" : ""}`} data-reveal="scale">
+    <div className={`pgal${vizualizacia ? " pgal--scene" : ""}${jeNahrataFotka(img) ? " pgal--foto" : ""}`} data-reveal="scale">
       {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
       <VT name={`p-${p.slug}`} share="vt-morph">
       <div className={`pgal__main${chyba ? " pgal__main--chyba" : ""}`}>
@@ -151,7 +152,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
             <button
               key={src}
               type="button"
-              className={`pgal__thumb${i === imgIdx ? " is-on" : ""}`}
+              className={`pgal__thumb${i === imgIdx ? " is-on" : ""}${jeNahrataFotka(src) ? " pgal__thumb--foto" : ""}`}
               onClick={() => setImgIdx(i)}
               aria-label={`${tp.fotografia} ${i + 1}`}
             >
