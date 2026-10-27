@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { matchingCabinets, type Aquarium } from "../aquariums";
@@ -16,7 +15,6 @@ import AquariumCard from "../AquariumCard";
 import ProductCard from "../ProductCard";
 import DoKosika from "../DoKosika";
 import Drobcek from "../Drobcek";
-import { VT } from "../vt";
 
 export default async function AkvariumObsah({
   a,
@@ -81,33 +79,15 @@ export default async function AkvariumObsah({
             />
           </div>
           <div className="pdetail__grid">
-            {vlastneFotky ? (
-              <AkvariumGaleria slug={a.slug} fotky={vlastneFotky} alt={`${nazov} cm — ${ta.alt}`} objem={a.vol} jazyk={jazyk} />
-            ) : (
-            <div className="pgal pgal--scene" data-reveal="scale">
-              {/* rovnaké meno má karta v katalógu — z nej sa sem premorfuje */}
-              <VT name={`a-${a.slug}`} share="vt-morph">
-              <div className="pgal__main">
-                <Image
-                  src={a.cover}
-                  alt={`${nazov} cm — ${ta.alt}`}
-                  fill
-                  priority
-                  sizes="(max-width: 820px) 92vw, 48vw"
-                />
-                <span className="product__badge product__badge--aqua">
-                  {a.vol}
-                </span>
-                {a.coverIllustrative && (
-                  <span className="pgal__illu">{ta.ilustracna}</span>
-                )}
-              </div>
-              </VT>
-              <p className="pgal__note">
-                {a.coverIllustrative ? ta.ilustracnaPozn : ta.vizualizaciaPozn}
-              </p>
-            </div>
-            )}
+            <AkvariumGaleria
+              slug={a.slug}
+              fotky={vlastneFotky ?? [a.cover]}
+              alt={`${nazov} cm — ${ta.alt}`}
+              objem={a.vol}
+              jazyk={jazyk}
+              ilustracna={!vlastneFotky && a.coverIllustrative ? ta.ilustracna : undefined}
+              poznamka={vlastneFotky ? undefined : a.coverIllustrative ? ta.ilustracnaPozn : ta.vizualizaciaPozn}
+            />
 
             <div
               className="pdetail__info"

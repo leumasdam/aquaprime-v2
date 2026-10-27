@@ -68,7 +68,7 @@ export const SK = {
     objem: "Objem",
     prevedenia: "Vyberte si prevedenie",
     prevedeniaText:
-      "Každý set ponúkame v troch dekoroch — Black Matt, Cool White a Antracit. LED podsvietenie nad hladinou je súčasťou.",
+      "Skrinku setu vyrábame v rovnakých dekoroch ako celý rad. Vyberte si prevedenie a pozrite si ho na fotkách vyššie.",
     preKoho: "Komu bude set vyhovovať",
     cenaNaDopyt: "Cena na dopyt",
     cenaPozn: "Pošlite nám krátky dopyt. Presnú cenu vám potvrdíme do jedného pracovného dňa.",
@@ -338,6 +338,7 @@ export const SK = {
     fotoRozmeru: "Foto rozmeru",
     fotoDvierok: "Foto {n}-dverového vyhotovenia",
     fotografia: "Fotografia",
+    zvacsit: "Zobraziť fotografiu na celú obrazovku",
     titulkaLed: "Vizualizácia podsvietenia",
     titulkaRad: "Tento dekor máme nafotený len na inom rade",
     titulkaDvierka: "Tento dekor máme nafotený len v inom počte dvierok",
@@ -1234,7 +1235,7 @@ export const EN: Slovnik = {
     objem: "Volume",
     prevedenia: "Choose your finish",
     prevedeniaText:
-      "Every set comes in three finishes — Black Matt, Cool White and Antracit. LED lighting above the water is included.",
+      "The set cabinet comes in the same decors as the whole range. Pick a finish and see it in the photos above.",
     preKoho: "Who the set suits",
     cenaNaDopyt: "Price on request",
     cenaPozn: "Send us a short enquiry. We confirm the exact price within one working day.",
@@ -1502,6 +1503,7 @@ export const EN: Slovnik = {
     fotoRozmeru: "Photo of size",
     fotoDvierok: "Photo of the {n}-door version",
     fotografia: "Photograph",
+    zvacsit: "View photo full screen",
     titulkaLed: "Lighting visualisation",
     titulkaRad: "We have only photographed this decor on another range",
     titulkaDvierka: "We have only photographed this decor with a different number of doors",

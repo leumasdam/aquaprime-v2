@@ -3,6 +3,7 @@
 import { jeNahrataFotka } from "./products";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Lightbox from "./Lightbox";
 import type { Product } from "./products";
 import { dvierkaPreSirku } from "./cabinet-construction";
 import Swatch from "./Swatch";
@@ -24,6 +25,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
   const [decorIdx, setDecorIdx] = useState(0);
   const [imgIdx, setImgIdx] = useState(0);
   const [svetlo, setSvetlo] = useState<Svetlo>("bez");
+  const [velke, setVelke] = useState(false);
   // Index prežíva klientský preklik na iný produkt (rovnaká route) — produkt
   // s menším počtom dekorov by inak dostal undefined a galéria by spadla.
   const decor = p.decors[decorIdx] ?? p.decors[0];
@@ -78,14 +80,19 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
             <span className="pgal__prazdno-text">{tp.chybaStitok}</span>
           </span>
         ) : (
-          <Image
-            key={img}
-            src={img}
-            alt={`${radText(p.name, jazyk)} — ${SLOVNIKY[jazyk].spolocne.altDekor} ${dekorNazov(decor.name, jazyk)}`}
-            fill
-            priority
-            sizes="(max-width: 820px) 92vw, 48vw"
-          />
+          <button type="button" className="pgal__zoom" onClick={() => setVelke(true)} aria-label={tp.zvacsit}>
+            <Image
+              key={img}
+              src={img}
+              alt={`${radText(p.name, jazyk)} — ${SLOVNIKY[jazyk].spolocne.altDekor} ${dekorNazov(decor.name, jazyk)}`}
+              fill
+              priority
+              sizes="(max-width: 820px) 92vw, 48vw"
+            />
+            <span className="pgal__lupa" aria-hidden>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" /></svg>
+            </span>
+          </button>
         )}
         <span className={`product__badge product__badge--${p.tier}`}>
           {radText(p.tierLabel, jazyk)}
@@ -122,6 +129,16 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
         )}
       </div>
       </VT>
+      {velke && !chyba && (
+        <Lightbox
+          fotky={zoznam}
+          index={i}
+          alt={`${radText(p.name, jazyk)} — ${dekorNazov(decor.name, jazyk)}`}
+          jazyk={jazyk}
+          onZmena={setImgIdx}
+          onZavri={() => setVelke(false)}
+        />
+      )}
 
       {svetla.length > 1 && (
         <div className="pgal__led" role="group" aria-label={tp.podsvietenie}>
