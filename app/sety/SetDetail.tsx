@@ -1,3 +1,4 @@
+import { textySetu } from "../sety";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import Drobcek from "../Drobcek";
@@ -24,6 +25,7 @@ export default function SetDetail({
   /** prevedenie z adresy — karta z katalógu ho posiela v ?prevedenie= */
 }) {
   const k = t.sety;
+  const texty = textySetu(set, jazyk);
   const l = (h: string) => odkaz(h, jazyk);
   return (
     <main className="sub sety" style={{ "--accent": "var(--cyan)" } as CSSProperties}>
@@ -45,14 +47,14 @@ export default function SetDetail({
             <div className="set__body">
               <div className="set__hlava">
                 {set.novinka && <span className="set__stitok">{k.novinka}</span>}
-                <span className="set__eyebrow">{set.podtitul[jazyk]}</span>
+                <span className="set__eyebrow">{texty.podtitul}</span>
                 <h1 className="set__title">
                   {set.nazov}
                   <span className="set__bodka" aria-hidden>
                     .
                   </span>
                 </h1>
-                {set.popis[jazyk].map((odsek) => (
+                {texty.popis.map((odsek) => (
                   <p key={odsek} className="set__text">
                     {odsek}
                   </p>
@@ -94,7 +96,7 @@ export default function SetDetail({
               <div className="set__prekoho">
                 <span className="set__label">{k.preKoho}</span>
                 <ul>
-                  {set.preKoho[jazyk].map((b) => (
+                  {texty.preKoho.map((b) => (
                     <li key={b}>{b}</li>
                   ))}
                 </ul>

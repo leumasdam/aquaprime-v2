@@ -1,5 +1,6 @@
 "use client";
 
+import { textySetu } from "./sety";
 import { useEffect, useRef, useState } from "react";
 import { najdiSet } from "./sety";
 import { ROZMER_EVENT } from "./LoadCalc";
@@ -37,8 +38,8 @@ export default function DopytForm({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       setPoznamka((p) =>
         p ||
         (jazyk === "en"
-          ? `I am interested in the ${set.nazov} set (${set.podtitul.en}).`
-          : `Mám záujem o set ${set.nazov} (${set.podtitul.sk}).`)
+          ? `I am interested in the ${set.nazov} set (${textySetu(set, "en").podtitul}).`
+          : `Mám záujem o set ${set.nazov} (${textySetu(set, "sk").podtitul}).`)
       );
       return;
     }

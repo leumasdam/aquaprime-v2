@@ -175,11 +175,9 @@ export function chybySetu(s: Set): Chyba[] {
   chybyDekorov(s.prevedenia, "prevedenia", ch, false, "sete");
 
   if (s.skryta) return out;
-  if (!s.podtitul.sk) ch("podtitul", "Zverejnený set potrebuje podtitul.");
   if (!s.skrinka) ch("skrinka", "Doplňte rozmer skrinky.");
   if (!s.akvarium) ch("akvarium", "Doplňte rozmer akvária.");
   if (!s.objem) ch("objem", "Doplňte objem v litroch.");
-  if (!s.popis.sk.length) ch("popis", "Zverejnený set potrebuje popis.");
   if (!s.prevedenia.length) ch("prevedenia", "Zverejnený set potrebuje aspoň jeden dekor.");
   chybyDekorov(s.prevedenia, "prevedenia", ch, true, "sete");
   return out;

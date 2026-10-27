@@ -268,6 +268,55 @@ export function najdiSet(id: string): Set | undefined {
 }
 
 /** titulná fotka setu — prvý záber prvého prevedenia */
+/**
+ * Texty setu pre web. Keď klient v administrácii podtitul, popis alebo
+ * „komu bude vyhovovať" nevyplní, web ich odvodí z parametrov setu
+ * (rozmery, sklo, objem) — set tak nikdy nevyzerá nedorobene.
+ */
+export function textySetu(s: Set, jazyk: Jazyk): { podtitul: string; popis: string[]; preKoho: string[] } {
+  const cm = (r: string) => r.replace(/\s*[x×]\s*/g, "×");
+  const skr = cm(s.skrinka);
+  const akv = cm(s.akvarium);
+  const sklo = (s.sklo[jazyk] || s.sklo.sk || "").toLowerCase();
+  const l = s.objem;
+  const nahrada =
+    jazyk === "en"
+      ? {
+          podtitul: `Cabinet and ${l}-litre aquarium in one`,
+          popis: [
+            `A ${akv} cm aquarium${sklo ? ` (${sklo})` : ""} on a ${skr} cm AQUAPRIME cabinet. Tank and cabinet are matched in size, so the set only needs to be placed, filled and decorated.`,
+            "The cabinet comes in the decors listed below — pick a finish and see it in the photos.",
+          ],
+          preKoho: [
+            "Anyone who wants a complete solution without matching parts",
+            "Living rooms and offices where the aquarium should look like furniture",
+            `A community tank with fish and plants up to ${l} litres`,
+          ],
+        }
+      : {
+          podtitul: `Skrinka a akvárium ${l} l v jednom`,
+          popis: [
+            `Akvárium ${akv} cm${sklo ? ` (${sklo})` : ""} na skrinke AQUAPRIME ${skr} cm. Nádrž a skrinka sú rozmerovo zladené, takže set stačí postaviť, napustiť a zariadiť.`,
+            "Skrinku vyrábame v dekoroch uvedených nižšie — vyberte si prevedenie a pozrite si ho na fotkách.",
+          ],
+          preKoho: [
+            "Tým, ktorí chcú kompletné riešenie bez skladania dielov",
+            "Do obývačky alebo kancelárie, kde má akvárium pôsobiť ako nábytok",
+            `Pre spoločenské akvárium s rybami aj rastlinami do ${l} litrov`,
+          ],
+        };
+  /* výplňové hodnoty z rozpracovaného setu („dddd", „D") — kratšie než
+     6 znakov nie je žiadny skutočný text, web ich berie ako nevyplnené */
+  const skutocny = (t: string) => t.trim().length >= 6;
+  const popis = s.popis[jazyk].filter(skutocny);
+  const preKoho = s.preKoho[jazyk].filter(skutocny);
+  return {
+    podtitul: skutocny(s.podtitul[jazyk]) ? s.podtitul[jazyk].trim() : nahrada.podtitul,
+    popis: popis.length ? popis : nahrada.popis,
+    preKoho: preKoho.length ? preKoho : nahrada.preKoho,
+  };
+}
+
 export function titulnaFotka(s: Set): string {
   return s.prevedenia.find((p) => !p.chyba && p.images.length)?.images[0] ?? "";
 }

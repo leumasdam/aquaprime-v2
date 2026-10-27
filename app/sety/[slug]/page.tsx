@@ -1,3 +1,4 @@
+import { textySetu } from "../../sety";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SetDetail from "../SetDetail";
@@ -18,15 +19,15 @@ export async function generateMetadata({
   const s = await nacitajSet(slug);
   if (!s) return { title: "Set sa nenašiel" };
   return {
-    title: `${s.nazov} — ${s.podtitul.sk} | AQUAPRIME`,
-    description: s.popis.sk[0],
+    title: `${s.nazov} — ${textySetu(s, "sk").podtitul} | AQUAPRIME`,
+    description: textySetu(s, "sk").popis[0],
     alternates: {
       canonical: `/sety/${s.id}`,
       languages: { sk: `/sety/${s.id}`, en: `/en/sety/${s.id}` },
     },
     openGraph: {
-      title: `${s.nazov} — ${s.podtitul.sk} | AQUAPRIME`,
-      description: s.popis.sk[0],
+      title: `${s.nazov} — ${textySetu(s, "sk").podtitul} | AQUAPRIME`,
+      description: textySetu(s, "sk").popis[0],
       type: "website",
       locale: "sk_SK",
       images: [{ url: titulnaFotka(s), width: 1122, height: 1402 }],

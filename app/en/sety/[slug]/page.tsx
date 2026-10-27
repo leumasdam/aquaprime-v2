@@ -1,3 +1,4 @@
+import { textySetu } from "../../../sety";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SetDetail from "../../../sety/SetDetail";
@@ -18,8 +19,8 @@ export async function generateMetadata({
   const s = await nacitajSet(slug);
   if (!s) return { title: "Set not found" };
   return {
-    title: `${s.nazov} — ${s.podtitul.en} | AQUAPRIME`,
-    description: s.popis.en[0],
+    title: `${s.nazov} — ${textySetu(s, "en").podtitul} | AQUAPRIME`,
+    description: textySetu(s, "en").popis[0],
     alternates: {
       canonical: `/en/sety/${s.id}`,
       languages: { sk: `/sety/${s.id}`, en: `/en/sety/${s.id}` },
