@@ -31,11 +31,13 @@ async function zisti(src: string): Promise<string> {
   const d = ctx.getImageData(0, 0, VELKOST, VELKOST).data;
   let lavy = 0;
   let pravy = 0;
+  /* krajné dva stĺpce — stačí, keď obsah siaha k okraju aspoň na časti výšky
+     (detail pántu má pri hrane len nohu rámu) */
   for (let y = 0; y < VELKOST; y++) {
-    if (!jeSvetly(d, (y * VELKOST) * 4)) lavy++;
-    if (!jeSvetly(d, (y * VELKOST + VELKOST - 1) * 4)) pravy++;
+    if (!jeSvetly(d, (y * VELKOST) * 4) || !jeSvetly(d, (y * VELKOST + 1) * 4)) lavy++;
+    if (!jeSvetly(d, (y * VELKOST + VELKOST - 1) * 4) || !jeSvetly(d, (y * VELKOST + VELKOST - 2) * 4)) pravy++;
   }
-  const prah = VELKOST * 0.35;
+  const prah = VELKOST * 0.12;
   if (pravy > prah && lavy <= prah) return "right center";
   if (lavy > prah && pravy <= prah) return "left center";
   return "center";
