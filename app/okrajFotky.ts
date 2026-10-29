@@ -13,8 +13,13 @@ import { jeNahrataFotka } from "./products";
 const pamat = new Map<string, string>();
 const VELKOST = 48;
 
+/* „Obsah" je len výrazne tmavší pixel (rám, drevo, sklo). Jemný tieň či
+   vineta pri okraji renderu má jas 200–232 a fotku posúvať nesmie — inak
+   by sa celé rady skriniek lepili na ľavú hranu. */
+const JAS_OBSAHU = 200;
+
 function jeSvetly(d: Uint8ClampedArray, i: number): boolean {
-  return d[i] > 232 && d[i + 1] > 232 && d[i + 2] > 232;
+  return d[i] >= JAS_OBSAHU && d[i + 1] >= JAS_OBSAHU && d[i + 2] >= JAS_OBSAHU;
 }
 
 async function zisti(src: string): Promise<string> {
