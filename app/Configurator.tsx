@@ -33,7 +33,7 @@ export default function Configurator({ jazyk = "sk" }: { jazyk?: Jazyk }) {
     return CFG_TIERS.filter((r) => k.some((p) => p.tier === r.id));
   }, [katalog]);
 
-  const [tierVolba, setTier] = useState<Tier>("premium");
+  const [tierVolba, setTier] = useState<Tier>("standard");
   const [sizeKey, setSizeKey] = useState<string | null>(null);
   const [decorId, setDecorId] = useState<string | null>(null);
 

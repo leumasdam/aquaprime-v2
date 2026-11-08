@@ -68,7 +68,7 @@ export const SK = {
     objem: "Objem",
     prevedenia: "Vyberte si prevedenie",
     prevedeniaText:
-      "Skrinku setu vyrábame v rovnakých dekoroch ako celý rad. Vyberte si prevedenie a pozrite si ho na fotkách vyššie.",
+      "Vyberte si dekor skrinky a pozrite si ho na fotkách vyššie.",
     preKoho: "Komu bude set vyhovovať",
     cenaNaDopyt: "Cena na dopyt",
     cenaPozn: "Pošlite nám krátky dopyt. Presnú cenu vám potvrdíme do jedného pracovného dňa.",
@@ -165,9 +165,9 @@ export const SK = {
     kolekcieEyebrow: "SKRINKY",
     kolekcieTitul: "Vyberte si vyhotovenie",
     kolekcie: [
-      ["Basic", "Otvorený oceľový rám s vrchnou doskou"],
       ["Štandard", "Oceľový rám s bočnicami a dvierkami"],
       ["Premium", "Kompletne opláštená skrinka s oceľovým rámom"],
+      ["Basic", "Otvorený oceľový rám s vrchnou doskou"],
       ["LED", "Doplnok k vybraným skrinkám"],
     ] as [string, string][],
     moduly: [
@@ -1235,7 +1235,7 @@ export const EN: Slovnik = {
     objem: "Volume",
     prevedenia: "Choose your finish",
     prevedeniaText:
-      "The set cabinet comes in the same decors as the whole range. Pick a finish and see it in the photos above.",
+      "Pick a cabinet decor and see it in the photos above.",
     preKoho: "Who the set suits",
     cenaNaDopyt: "Price on request",
     cenaPozn: "Send us a short enquiry. We confirm the exact price within one working day.",
@@ -1330,9 +1330,9 @@ export const EN: Slovnik = {
     kolekcieEyebrow: "CABINETS",
     kolekcieTitul: "Choose your finish",
     kolekcie: [
-      ["Basic", "Open steel frame with a top panel"],
       ["Standard", "Steel frame with side panels and doors"],
       ["Premium", "Fully clad cabinet on a steel frame"],
+      ["Basic", "Open steel frame with a top panel"],
       ["LED", "An option on selected cabinets"],
     ],
     moduly: [

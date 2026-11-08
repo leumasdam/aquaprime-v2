@@ -53,7 +53,7 @@ function Jadro({ jazyk, katalog }: { jazyk: Jazyk; katalog: Product[] }) {
     return CFG_TIERS.filter((r) => k.some((p) => p.tier === r.id));
   }, [katalog]);
   // predvoľba z mini-konfigurátora na homepage (?rad=&rozmer=&dekor=)
-  const [tierVolba, setTier] = useState<Tier>("premium");
+  const [tierVolba, setTier] = useState<Tier>("standard");
   const [sizeKey, setSizeKey] = useState<string | null>(null);
   const [decorId, setDecorId] = useState<string | null>(null);
 

@@ -66,6 +66,10 @@ function cena(x: Polozka): number {
   return Number.isFinite(n) && n > 0 ? n : Infinity; // „na dopyt" radíme na koniec
 }
 
+function poradieRadu(x: Polozka): number {
+  return "led" in x ? TIERS.length : TIERS.findIndex((t) => t.id === x.p.tier);
+}
+
 export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
   const t = SLOVNIKY[jazyk].katalog;
   const RADENIA = t.radenia.map(([id, label]) => ({ id: id as Radenie, label }));
@@ -106,7 +110,7 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
 
   const items = useMemo(() => {
     // vo „Všetkých" ide LED za ostatné rady — rovnaké poradie ako dlaždice
-    // kolekcií na úvodnej stránke (Basic, Štandard, Premium, LED)
+    // kolekcií na úvodnej stránke (Štandard, Premium, Basic, LED)
     const zaklad: Polozka[] =
       tier === "led"
         ? []
@@ -126,7 +130,8 @@ export default function CatalogGrid({ jazyk = "sk" }: { jazyk?: Jazyk }) {
       case "sirka":
         return [...f].sort((a, b) => a.p.w - b.p.w || cena(a) - cena(b));
       default:
-        return f;
+        /* rady podľa TIERS, vnútri radu ostáva poradie z administrácie */
+        return [...f].sort((a, b) => poradieRadu(a) - poradieRadu(b));
     }
   }, [katalog, LED_FOTA, tier, widths, radenie]);
 

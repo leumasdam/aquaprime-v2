@@ -53,9 +53,9 @@ const MODULE_MEDIA = [
 // reálne interiérové fotky skriniek s akváriom (4:3, tmavá atmosféra)
 /* Obrázky kolekcií; názvy a popisy prichádzajú zo slovníka. */
 const COLLECTION_IMGS: { id: string; img: string; href?: string }[] = [
-  { id: "basic", img: "/img/products/kat-basic-v3.webp" },
   { id: "standard", img: "/img/products/kat-standard-v3.webp" },
   { id: "premium", img: "/img/products/kat-premium-v3.webp" },
+  { id: "basic", img: "/img/products/kat-basic-v3.webp" },
   {
     id: "led",
     img: "/img/products/led/led-black-matt-zlta-3d-01.webp",

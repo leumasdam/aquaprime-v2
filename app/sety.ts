@@ -285,7 +285,6 @@ export function textySetu(s: Set, jazyk: Jazyk): { podtitul: string; popis: stri
           podtitul: `Cabinet and ${l}-litre aquarium in one`,
           popis: [
             `A ${akv} cm aquarium${sklo ? ` (${sklo})` : ""} on a ${skr} cm AQUAPRIME cabinet. Tank and cabinet are matched in size, so the set only needs to be placed, filled and decorated.`,
-            "The cabinet comes in the decors listed below — pick a finish and see it in the photos.",
           ],
           preKoho: [
             "Anyone who wants a complete solution without matching parts",
@@ -297,7 +296,6 @@ export function textySetu(s: Set, jazyk: Jazyk): { podtitul: string; popis: stri
           podtitul: `Skrinka a akvárium ${l} l v jednom`,
           popis: [
             `Akvárium ${akv} cm${sklo ? ` (${sklo})` : ""} na skrinke AQUAPRIME ${skr} cm. Nádrž a skrinka sú rozmerovo zladené, takže set stačí postaviť, napustiť a zariadiť.`,
-            "Skrinku vyrábame v dekoroch uvedených nižšie — vyberte si prevedenie a pozrite si ho na fotkách.",
           ],
           preKoho: [
             "Tým, ktorí chcú kompletné riešenie bez skladania dielov",

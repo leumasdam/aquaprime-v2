@@ -71,9 +71,10 @@ export type Product = {
   skryta?: boolean;
 };
 
+/* poradie radov na celom webe: klient nechce začínať najdrahším radom */
 export const TIERS: { id: Tier; label: string; note: string }[] = [
-  { id: "premium", label: "PREMIUM", note: "Kompletne opláštená" },
   { id: "standard", label: "ŠTANDARD", note: "Bočnice a dvierka" },
+  { id: "premium", label: "PREMIUM", note: "Kompletne opláštená" },
   { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
 ];
 

@@ -81,9 +81,9 @@ export function toCfgDecor(d: Decor): CfgDecor {
 }
 
 export const CFG_TIERS: CfgTier[] = [
-  { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
   { id: "standard", label: "ŠTANDARD", note: "Bočnice a dvierka" },
   { id: "premium", label: "PREMIUM", note: "Kompletne opláštená" },
+  { id: "basic", label: "BASIC", note: "Oceľový rám + vrchná doska" },
 ];
 
 /** Dekor pre náhľad: dvierka a korpus môžu byť iné (napr. „Black Matt / Orech"). */

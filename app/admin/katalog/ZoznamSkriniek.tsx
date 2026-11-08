@@ -112,7 +112,7 @@ export default function ZoznamSkriniek({
       <div className="kt-nastroje">
         {zoradovanie ? (
           <>
-            <span className="kt-nastroje__info">Zmeňte poradie šípkami. Takto budú skrinky zoradené aj na webe pri „Odporúčané".</span>
+            <span className="kt-nastroje__info">Zmeňte poradie šípkami. V rámci každého radu budú skrinky takto zoradené aj na webe pri „Odporúčané".</span>
             <button type="button" className="ad-btn ad-btn--ghost" onClick={() => setPoradie(null)} disabled={uklada}>
               Zrušiť
             </button>
