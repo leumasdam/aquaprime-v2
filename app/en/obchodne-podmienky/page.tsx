@@ -91,9 +91,11 @@ export default function TermsAndConditions() {
       <h2>5. Payment terms</h2>
       <p>
         The buyer may pay the price by the methods offered in the order form. For goods
-        made to order, after the order is confirmed the buyer pays a deposit of{" "}
-        30 % of the price; production starts once it is
-        credited. The buyer pays the remainder on receipt of the goods.
+        made to order, the buyer pays a deposit of 30 % of the price immediately after
+        submitting the order; production starts once it is credited. The buyer pays the
+        remainder on receipt of the goods. If the seller does not confirm the order, no
+        contract is formed and the seller refunds the deposit without undue delay, within
+        14 days at the latest, by the same means of payment.
       </p>
       <p>
         Card payments are processed by the payment gateway provider; the seller does not

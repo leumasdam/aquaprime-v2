@@ -1062,7 +1062,7 @@ export const SK = {
     suhlasOdkazOp: "obchodnými podmienkami",
     suhlasB: "a beriem na vedomie",
     suhlasOdkazGdpr: "spracúvanie osobných údajov",
-    objednat: "ZÁVÄZNE OBJEDNAŤ",
+    objednat: "OBJEDNAŤ S POVINNOSŤOU PLATBY",
     odosielam: "ODOSIELAM…",
     hint: "Vyplňte označené polia nižšie a môžeme to poslať.",
     istoty: [
@@ -2226,7 +2226,7 @@ export const EN: Slovnik = {
     suhlasOdkazOp: "terms and conditions",
     suhlasB: "and acknowledge the",
     suhlasOdkazGdpr: "processing of personal data",
-    objednat: "PLACE A BINDING ORDER",
+    objednat: "ORDER WITH OBLIGATION TO PAY",
     odosielam: "SENDING…",
     hint: "Fill in the marked fields below and we can send it.",
     istoty: [

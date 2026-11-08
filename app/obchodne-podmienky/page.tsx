@@ -84,9 +84,11 @@ export default function ObchodnePodmienky() {
       <h2>5. Platobné podmienky</h2>
       <p>
         Kupujúci môže cenu uhradiť spôsobmi ponúknutými v objednávkovom formulári. Pri
-        tovare vyrábanom na objednávku uhrádza kupujúci po potvrdení objednávky zálohu vo
+        tovare vyrábanom na objednávku uhrádza kupujúci hneď po odoslaní objednávky zálohu vo
         výške 30 % z ceny; výroba sa začína po jej pripísaní.
-        Zvyšnú časť ceny uhrádza kupujúci pri prevzatí tovaru.
+        Zvyšnú časť ceny uhrádza kupujúci pri prevzatí tovaru. Ak predávajúci objednávku
+        nepotvrdí, zmluva nevznikne a predávajúci vráti uhradenú zálohu bez zbytočného
+        odkladu, najneskôr do 14 dní, rovnakým platobným prostriedkom.
       </p>
       <p>
         Platby kartou spracúva poskytovateľ platobnej brány; predávajúci neuchováva údaje
