@@ -31,6 +31,8 @@ type Polozka = {
 /** text od klienta do e-mailu — orezaný, nech nikto nepošle román ani nič nenafúkne */
 const text = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
 
+const MIESTO_ODBERU = "Hliník nad Váhom 243\n014 01 Bytča";
+
 const eur = (n: number) =>
   n.toLocaleString("sk-SK", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) +
   " €";
@@ -153,7 +155,7 @@ export async function POST(req: Request) {
     ...(firmaZakaznika ? ([["Firma", `${firmaZakaznika}${ico ? `, IČO ${ico}` : ""}`]] as [string, string][]) : []),
     ...(dodanie ? ([["Spôsob dodania", dodanie]] as [string, string][]) : []),
     ...(platba ? ([["Platba", platba]] as [string, string][]) : []),
-    ["Doručenie", adresa || "—"],
+    b.odber === true ? ["Miesto odberu", MIESTO_ODBERU] : ["Doručenie", adresa || "—"],
   ];
   const poznamka = text(b.poznamka, 2000);
 

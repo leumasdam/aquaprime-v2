@@ -377,6 +377,10 @@ export async function proxy(request: NextRequest) {
      takže zámok tu nič nechráni. */
   if (pathname === "/api/platba/webhook") return NextResponse.next();
 
+  /* Obrázky v mailoch si sťahuje poštový server príjemcu, ktorý heslo webu
+     nepozná. Za zámkom dostával 401 a v maile ostali prázdne rámčeky. */
+  if (pathname.startsWith("/mail/")) return NextResponse.next();
+
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 

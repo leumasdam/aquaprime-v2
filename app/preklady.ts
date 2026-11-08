@@ -977,7 +977,7 @@ export const SK = {
     titul: "Košík",
     dorucenie: [
       ["Kuriér po celom Slovensku", "Doručenie až k dverám, termín dohodneme vopred telefonicky."],
-      ["Osobný odber v Bratislave", "Po dohode termínu v našej dielni. Skrinku si pozriete pred prevzatím."],
+      ["Osobný odber v Bytči", "Hliník nad Váhom 243, 014 01 Bytča, po dohode termínu. Skrinku si pozriete pred prevzatím."],
     ],
     sposoby: [
       ["Kartou online", "Visa, Mastercard, Apple Pay a Google Pay. Potvrdenie okamžite."],
@@ -2141,7 +2141,7 @@ export const EN: Slovnik = {
     titul: "Cart",
     dorucenie: [
       ["Courier anywhere in Slovakia", "Delivered to your door, we agree the date by phone in advance."],
-      ["Personal pickup in Bratislava", "At our workshop once we agree a time. You can inspect the cabinet before taking it."],
+      ["Personal pickup in Bytča", "Hliník nad Váhom 243, 014 01 Bytča, Slovakia, once we agree a time. You can inspect the cabinet before taking it."],
     ],
     sposoby: [
       ["Card online", "Visa, Mastercard, Apple Pay and Google Pay. Confirmation is immediate."],
