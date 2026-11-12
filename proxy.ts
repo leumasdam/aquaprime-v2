@@ -384,6 +384,17 @@ export async function proxy(request: NextRequest) {
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 
+  /* Fotky skriniek pre prihláseného do administrácie. Panel ich ukazuje
+     ako náhľady, no zámok webu má vlastnú cookie na 30 dní. Keď vypršala,
+     editor ukazoval namiesto fotiek prázdne rámčeky, hoci boli v poriadku
+     nahraté (12. 11. 2026). Zvyšok webu ostáva zamknutý aj pre admina. */
+  if (
+    (pathname.startsWith("/foto/") || pathname.startsWith("/img/")) &&
+    (await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value))
+  ) {
+    return NextResponse.next();
+  }
+
   /* Zámok webu a administrácia sú dva nezávislé zámky. Prihlásenie do panela
      cez zámok webu nepúšťa — majiteľ tak vidí web presne ako návštevník
      a vie si overiť, že je naozaj zamknutý (30. 9. 2026). */

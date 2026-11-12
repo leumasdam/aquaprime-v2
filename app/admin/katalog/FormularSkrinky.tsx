@@ -388,6 +388,9 @@ export default function FormularSkrinky({
               <i>€</i>
             </span>
             <small className="ad-muted">Celková cena vrátane LED. Nechajte prázdne, ak skrinka LED verziu nemá.</small>
+            {cenaLed === null && draft.decors.some((d) => d.led?.zlta?.length || d.led?.modra?.length) && (
+              <em>Skrinka má LED fotky, ale bez tejto ceny sa v rade LED na webe neukáže.</em>
+            )}
             {chybyPola("priceLed").map((c, i) => (
               <em key={i}>{c.sprava}</em>
             ))}

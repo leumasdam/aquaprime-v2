@@ -22,10 +22,9 @@ import {
  * prepínači ako Premium/Štandard/Basic, nie ako samostatný filter.
  */
 type Rad = Tier | "all" | "led";
-/* LED dlaždica potrebuje vizualizácie — 200 cm má štyri dvierka a LED
-   zábery zatiaľ len trojdverové, tak zostáva bez dlaždice */
+/* LED dlaždica potrebuje cenu s LED aj aspoň jednu LED fotku. Platí pre
+   každý rad, LED sa dá objednať aj k Štandardu. */
 const jeLed = (p: Product) =>
-  p.tier === "premium" &&
   Boolean(p.priceLed) &&
   p.decors.some((d) => d.led?.zlta?.length || d.led?.modra?.length);
 
