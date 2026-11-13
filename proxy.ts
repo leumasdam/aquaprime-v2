@@ -52,10 +52,11 @@ async function vytvorSession(tajomstvo: string, dni: number, kto?: string): Prom
   return `${payload}.${b64url(podpis)}`;
 }
 
-async function overSession(tajomstvo: string, cookie: string | undefined): Promise<boolean> {
-  if (!cookie) return false;
+/** expirácia platnej session v ms, alebo null, keď cookie neplatí */
+async function platnostSession(tajomstvo: string, cookie: string | undefined): Promise<number | null> {
+  if (!cookie) return null;
   const [payload, podpis] = cookie.split(".");
-  if (!payload || !podpis) return false;
+  if (!payload || !podpis) return null;
   try {
     const kluc = await hmacKluc(tajomstvo);
     const raw = Uint8Array.from(
@@ -63,13 +64,57 @@ async function overSession(tajomstvo: string, cookie: string | undefined): Promi
       (c) => c.charCodeAt(0),
     );
     const plati = await crypto.subtle.verify("HMAC", kluc, raw, enc.encode(payload));
-    if (!plati) return false;
+    if (!plati) return null;
     const data = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/"))) as { exp?: number };
-    return typeof data.exp === "number" && data.exp > Date.now();
+    return typeof data.exp === "number" && data.exp > Date.now() ? data.exp : null;
   } catch {
-    return false;
+    return null;
   }
 }
+
+async function overSession(tajomstvo: string, cookie: string | undefined): Promise<boolean> {
+  return (await platnostSession(tajomstvo, cookie)) !== null;
+}
+
+const DEN = 86_400_000;
+
+function nastavCookie(res: NextResponse, meno: string, hodnota: string, dni: number, httpOnly = true) {
+  res.cookies.set(meno, hodnota, {
+    httpOnly,
+    sameSite: "lax",
+    secure: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * dni,
+  });
+}
+
+/**
+ * Kto web používa, tomu prihlásenie nevyprší. Pri otvorení stránky, ak je
+ * session staršia ako deň, dostane novú na celú dobu odznova. Predtým
+ * platila pevne 30 (admin 14) dní od zadania hesla a potom zrazu prestala:
+ * Patrik bol v paneli prihlásený, ale fotky za zámkom webu sa mu nenačítali
+ * (12. 11. 2026). Obnovuje sa len pri načítaní stránky, nie pri fotkách,
+ * aby odpovede s fotkami ostali v CDN cache bez Set-Cookie.
+ */
+async function obnovPrihlasenie(
+  request: NextRequest,
+  res: NextResponse,
+  cookie: string,
+  tajomstvo: string,
+  dni: number,
+  kto?: string,
+  menoCookie?: string,
+): Promise<NextResponse> {
+  if (request.headers.get("sec-fetch-dest") !== "document") return res;
+  const exp = await platnostSession(tajomstvo, request.cookies.get(cookie)?.value);
+  if (exp === null || exp - Date.now() > (dni - 1) * DEN) return res;
+  nastavCookie(res, cookie, await vytvorSession(tajomstvo, dni, kto), dni);
+  if (menoCookie && kto) nastavCookie(res, menoCookie, kto, dni, false);
+  return res;
+}
+
+/** obrázky a videá — admin ich potrebuje vidieť aj za zámkom webu */
+const MEDIA = /\.(webp|avif|jpe?g|png|gif|svg|mp4|webm|mov)$/i;
 
 /** porovnanie hesiel cez digesty — bez skratovania po prvom rozdielnom znaku */
 async function rovnakeHeslo(zadane: string, spravne: string): Promise<boolean> {
@@ -267,24 +312,10 @@ async function brana(request: NextRequest, b: Brana): Promise<NextResponse | nul
     }
     if (vpusteny) {
       const res = presmerujBezHesla(request);
-      res.cookies.set(b.cookie, await vytvorSession(b.tajomstvo(vpusteny), b.dni, vpusteny.meno), {
-        httpOnly: true,
-        sameSite: "lax",
-        secure: true,
-        path: "/",
-        maxAge: 60 * 60 * 24 * b.dni,
-      });
-      if (b.menoCookie) {
-        // hodnotu kóduje už samotný cookie setter — druhé kódovanie by
-        // do panela poslalo „Patrik%20Randa"
-        res.cookies.set(b.menoCookie, vpusteny.meno, {
-          httpOnly: false,
-          sameSite: "lax",
-          secure: true,
-          path: "/",
-          maxAge: 60 * 60 * 24 * b.dni,
-        });
-      }
+      nastavCookie(res, b.cookie, await vytvorSession(b.tajomstvo(vpusteny), b.dni, vpusteny.meno), b.dni);
+      // hodnotu kóduje už samotný cookie setter — druhé kódovanie by
+      // do panela poslalo „Patrik%20Randa"
+      if (b.menoCookie) nastavCookie(res, b.menoCookie, vpusteny.meno, b.dni, false);
       return res;
     }
     zapisPokus(limitKluc);
@@ -357,7 +388,16 @@ export async function proxy(request: NextRequest) {
 
     // prihlásený ide rovno ďalej a nesie so sebou svoje meno
     const ja = await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value);
-    if (ja) return dalejAko(request, ja.meno);
+    if (ja)
+      return obnovPrihlasenie(
+        request,
+        dalejAko(request, ja.meno),
+        ADMIN_COOKIE,
+        adminTajomstvo(ja),
+        14,
+        ja.meno,
+        ADMIN_MENO_COOKIE,
+      );
 
     const stop = await brana(request, {
       ucty,
@@ -384,12 +424,12 @@ export async function proxy(request: NextRequest) {
   const heslo = process.env.SITE_PASSWORD;
   if (!heslo) return NextResponse.next();
 
-  /* Fotky skriniek pre prihláseného do administrácie. Panel ich ukazuje
-     ako náhľady, no zámok webu má vlastnú cookie na 30 dní. Keď vypršala,
-     editor ukazoval namiesto fotiek prázdne rámčeky, hoci boli v poriadku
-     nahraté (12. 11. 2026). Zvyšok webu ostáva zamknutý aj pre admina. */
+  /* Fotky a videá pre prihláseného do administrácie. Panel ich ukazuje
+     ako náhľady, no zámok webu má vlastnú cookie. Keď vypršala, editor
+     ukazoval namiesto fotiek prázdne rámčeky, hoci boli v poriadku nahraté
+     (12. 11. 2026). Stránky webu ostávajú zamknuté aj pre admina. */
   if (
-    (pathname.startsWith("/foto/") || pathname.startsWith("/img/")) &&
+    (pathname.startsWith("/foto/") || MEDIA.test(pathname)) &&
     (await prihlasenyAdmin(request.cookies.get(ADMIN_COOKIE)?.value))
   ) {
     return NextResponse.next();
@@ -410,7 +450,8 @@ export async function proxy(request: NextRequest) {
     stranka: prihlasovaciaStranka,
     jeApi: pathname.startsWith("/api/"),
   });
-  return stop ?? NextResponse.next();
+  if (stop) return stop;
+  return obnovPrihlasenie(request, NextResponse.next(), COOKIE, `vstup|${heslo}`, 30);
 }
 
 export const config = {
