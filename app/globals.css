@@ -3930,6 +3930,20 @@ button:focus-visible {
   background: linear-gradient(to top, rgba(12, 15, 13, 0.5), transparent 46%);
   box-shadow: none;
 }
+/* LED fotka nahratá v administrácii je packshot na bielom, nie scéna.
+   Cover z nej odrezal až polovicu, hlavne vrch akvária (15. 11. 2026).
+   Ukáže sa celá, presne ako fotka na bežnej karte. */
+.product__media--led.product__media--foto {
+  background: #fff;
+}
+.product__media--led.product__media--foto img {
+  object-fit: contain;
+  padding: 0;
+}
+.product__media--led.product__media--foto::after {
+  background: linear-gradient(to top, rgba(12, 15, 13, 0.07), transparent 34%);
+  box-shadow: inset 0 0 0 1px rgba(12, 15, 13, 0.07);
+}
 .product__stitok {
   position: absolute;
   right: 10px;
@@ -4158,6 +4172,15 @@ button:focus-visible {
 }
 .pgal--scene .pgal__thumb img {
   object-fit: cover;
+  padding: 0;
+}
+/* Nahratá fotka sa v náhľade neoreže nikde. Prebíja LED režim galérie aj
+   pravidlo pre fotky na detaile setu, ktoré ju orezávali o 40 %. */
+.pgal .pgal__thumb.pgal__thumb--foto {
+  background: #fff;
+}
+.pgal .pgal__thumb.pgal__thumb--foto img {
+  object-fit: contain;
   padding: 0;
 }
 @keyframes galIn {
@@ -12332,7 +12355,7 @@ a.dopyt-alt__card:hover {
   background: #0b0e0d;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
-.set__media img {
+.set__media:not(.set__media--galeria) img {
   object-fit: cover;
 }
 .set__stitok {
