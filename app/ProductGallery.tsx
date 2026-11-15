@@ -23,7 +23,7 @@ const SVETLA: { id: Svetlo; label: string; bodka?: string }[] = [
 /** náhľad v rade pod fotkou — rovnaké usadenie k hrane ako hlavná fotka */
 function Nahlad({ src }: { src: string }) {
   const okraj = useOkrajFotky(src);
-  return <Image src={src} alt="" fill sizes="64px" style={{ objectPosition: okraj }} />;
+  return <Image src={src} alt="" fill sizes="64px" style={okraj} />;
 }
 
 /** Galéria detailu produktu — hlavná fotka, thumbnaily a prepínač dekorov. */
@@ -96,7 +96,7 @@ export default function ProductGallery({ p, jazyk = "sk" }: { p: Product; jazyk?
               fill
               priority
               sizes="(max-width: 820px) 92vw, 48vw"
-              style={{ objectPosition: okraj }}
+              style={okraj}
             />
             <span className="pgal__lupa" aria-hidden>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" /></svg>

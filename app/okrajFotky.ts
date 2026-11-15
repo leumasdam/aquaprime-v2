@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { jeNahrataFotka } from "./products";
 
 /**
@@ -9,8 +9,14 @@ import { jeNahrataFotka } from "./products";
  * panelu, rez trčí uprostred. Prečítame krajné stĺpce obrázka: ak je obsah
  * až po pravý okraj a ľavý je biely, fotka sadne k pravej hrane (a naopak).
  * Výsledok sa pre každú adresu počíta raz.
+ *
+ * Z tých istých pixelov sa zistí aj farba okraja fotky. Nahratá fotka sa
+ * nikdy neoreže (contain), takže okolo nej ostane voľná plocha. Tá dostane
+ * farbu okraja fotky: biely packshot ostane na bielom, tmavý LED záber na
+ * tmavom, bez pruhov inej farby po stranách (15. 11. 2026).
  */
-const pamat = new Map<string, string>();
+type Okraj = { poloha: string; farba?: string };
+const pamat = new Map<string, Okraj>();
 const VELKOST = 48;
 
 /* „Obsah" je len výrazne tmavší pixel (rám, drevo, sklo). Jemný tieň či
@@ -22,7 +28,7 @@ function jeSvetly(d: Uint8ClampedArray, i: number): boolean {
   return d[i] >= JAS_OBSAHU && d[i + 1] >= JAS_OBSAHU && d[i + 2] >= JAS_OBSAHU;
 }
 
-async function zisti(src: string): Promise<string> {
+async function zisti(src: string): Promise<Okraj> {
   const img = new Image();
   img.decoding = "async";
   img.src = src;
@@ -31,7 +37,7 @@ async function zisti(src: string): Promise<string> {
   platno.width = VELKOST;
   platno.height = VELKOST;
   const ctx = platno.getContext("2d", { willReadFrequently: true });
-  if (!ctx) return "center";
+  if (!ctx) return { poloha: "center" };
   ctx.drawImage(img, 0, 0, VELKOST, VELKOST);
   const d = ctx.getImageData(0, 0, VELKOST, VELKOST).data;
   let lavy = 0;
@@ -44,34 +50,52 @@ async function zisti(src: string): Promise<string> {
   }
   /* stačí úzky pás obsahu pri hrane (vrchná doska vybiehajúca z fotky) */
   const prah = VELKOST * 0.05;
-  if (pravy > prah && lavy <= prah) return "right center";
-  if (lavy > prah && pravy <= prah) return "left center";
-  return "center";
+  const poloha =
+    pravy > prah && lavy <= prah ? "right center" : lavy > prah && pravy <= prah ? "left center" : "center";
+  return { poloha, farba: farbaOkraja(d) };
 }
 
-/** object-position pre fotku; „center", kým sa nezistí alebo pri renderoch z kódu */
-export function useOkrajFotky(src: string | undefined): string {
-  const [poloha, setPoloha] = useState<string>(() => (src && pamat.get(src)) || "center");
+/** priemerná farba krajného pásu fotky (všetky štyri strany) */
+function farbaOkraja(d: Uint8ClampedArray): string {
+  let r = 0, g = 0, b = 0, n = 0;
+  for (let y = 0; y < VELKOST; y++) {
+    for (let x = 0; x < VELKOST; x++) {
+      if (x > 1 && x < VELKOST - 2 && y > 1 && y < VELKOST - 2) continue;
+      const i = (y * VELKOST + x) * 4;
+      r += d[i]; g += d[i + 1]; b += d[i + 2]; n++;
+    }
+  }
+  return `rgb(${Math.round(r / n)}, ${Math.round(g / n)}, ${Math.round(b / n)})`;
+}
+
+const STRED: Okraj = { poloha: "center" };
+
+/**
+ * Štýl pre fotku: object-position a farba voľnej plochy okolo nej.
+ * Kým sa nezistí, alebo pri renderoch z kódu, je fotka v strede bez farby.
+ */
+export function useOkrajFotky(src: string | undefined): CSSProperties {
+  const [okraj, setOkraj] = useState<Okraj>(() => (src && pamat.get(src)) || STRED);
   useEffect(() => {
     if (!src || !jeNahrataFotka(src)) {
-      setPoloha("center");
+      setOkraj(STRED);
       return;
     }
     const z = pamat.get(src);
     if (z) {
-      setPoloha(z);
+      setOkraj(z);
       return;
     }
     let zije = true;
     zisti(src)
-      .catch(() => "center")
-      .then((p) => {
-        pamat.set(src, p);
-        if (zije) setPoloha(p);
+      .catch(() => STRED)
+      .then((o) => {
+        pamat.set(src, o);
+        if (zije) setOkraj(o);
       });
     return () => {
       zije = false;
     };
   }, [src]);
-  return poloha;
+  return { objectPosition: okraj.poloha, backgroundColor: okraj.farba };
 }

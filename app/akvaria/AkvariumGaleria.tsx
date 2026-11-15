@@ -15,7 +15,7 @@ import { VT } from "../vt";
  */
 function Nahlad({ src }: { src: string }) {
   const okraj = useOkrajFotky(src);
-  return <Image src={src} alt="" fill sizes="64px" style={{ objectPosition: okraj }} />;
+  return <Image src={src} alt="" fill sizes="64px" style={okraj} />;
 }
 
 export default function AkvariumGaleria({
@@ -49,7 +49,7 @@ export default function AkvariumGaleria({
       <VT name={`a-${slug}`} share="vt-morph">
         <div className="pgal__main">
           <button type="button" className="pgal__zoom" onClick={() => setVelke(true)} aria-label={tp.zvacsit}>
-            <Image key={img} src={img} alt={alt} fill priority sizes="(max-width: 820px) 92vw, 48vw" style={{ objectPosition: okraj }} />
+            <Image key={img} src={img} alt={alt} fill priority sizes="(max-width: 820px) 92vw, 48vw" style={okraj} />
             <span className="pgal__lupa" aria-hidden>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" /></svg>
             </span>

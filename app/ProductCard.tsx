@@ -153,7 +153,7 @@ export default function ProductCard({
             className={predosla ? "product__foto--nova" : undefined}
             fill
             sizes={velkosti}
-            style={{ objectPosition: okraj }}
+            style={okraj}
           />
           <span
             className={`product__badge product__badge--${znacka ? "led" : (odznakTrieda ?? p.tier)}`}
