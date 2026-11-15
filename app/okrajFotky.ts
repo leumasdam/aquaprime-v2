@@ -12,10 +12,11 @@ import { jeNahrataFotka } from "./products";
  *
  * Z tých istých pixelov sa zistí aj farba okraja fotky. Nahratá fotka sa
  * nikdy neoreže (contain), takže okolo nej ostane voľná plocha. Tá dostane
- * farbu okraja fotky: biely packshot ostane na bielom, tmavý LED záber na
- * tmavom, bez pruhov inej farby po stranách (15. 11. 2026).
+ * farby krajných stĺpcov fotky po celej výške: biely packshot ostane na
+ * bielom, tmavý LED záber plynulo pokračuje do strán aj s podlahou a stenou,
+ * bez pruhov inej farby (15. 11. 2026).
  */
-type Okraj = { poloha: string; farba?: string };
+type Okraj = { poloha: string; farba?: string; pozadie?: string };
 const pamat = new Map<string, Okraj>();
 const VELKOST = 48;
 
@@ -52,20 +53,39 @@ async function zisti(src: string): Promise<Okraj> {
   const prah = VELKOST * 0.05;
   const poloha =
     pravy > prah && lavy <= prah ? "right center" : lavy > prah && pravy <= prah ? "left center" : "center";
-  return { poloha, farba: farbaOkraja(d) };
+  return { poloha, ...pozadieOkraja(d) };
 }
 
-/** priemerná farba krajného pásu fotky (všetky štyri strany) */
-function farbaOkraja(d: Uint8ClampedArray): string {
+const PASY = 8;
+
+/** priemerná farba obdĺžnika vo vzorke */
+function priemer(d: Uint8ClampedArray, x0: number, x1: number, y0: number, y1: number): string {
   let r = 0, g = 0, b = 0, n = 0;
-  for (let y = 0; y < VELKOST; y++) {
-    for (let x = 0; x < VELKOST; x++) {
-      if (x > 1 && x < VELKOST - 2 && y > 1 && y < VELKOST - 2) continue;
+  for (let y = y0; y < y1; y++) {
+    for (let x = x0; x < x1; x++) {
       const i = (y * VELKOST + x) * 4;
       r += d[i]; g += d[i + 1]; b += d[i + 2]; n++;
     }
   }
   return `rgb(${Math.round(r / n)}, ${Math.round(g / n)}, ${Math.round(b / n)})`;
+}
+
+/**
+ * Voľná plocha býva vľavo a vpravo od fotky. Každá polovica dostane
+ * zvislý prechod farieb krajného stĺpca fotky v ôsmich pásoch, takže
+ * fotka do strán plynulo pokračuje. Pri ploche nad a pod fotkou ostanú
+ * aspoň farby jej rohov. „farba" je jednofarebná záloha.
+ */
+function pozadieOkraja(d: Uint8ClampedArray): { farba: string; pozadie: string } {
+  const vyska = VELKOST / PASY;
+  const stlpec = (x0: number, x1: number) =>
+    Array.from({ length: PASY }, (_, k) => {
+      const kde = (((k + 0.5) / PASY) * 100).toFixed(1);
+      return `${priemer(d, x0, x1, Math.round(k * vyska), Math.round((k + 1) * vyska))} ${kde}%`;
+    }).join(", ");
+  const lavy = `linear-gradient(${stlpec(0, 2)})`;
+  const pravy = `linear-gradient(${stlpec(VELKOST - 2, VELKOST)})`;
+  return { farba: priemer(d, 0, VELKOST, 0, 2), pozadie: `${lavy}, ${pravy}` };
 }
 
 const STRED: Okraj = { poloha: "center" };
@@ -97,5 +117,14 @@ export function useOkrajFotky(src: string | undefined): CSSProperties {
       zije = false;
     };
   }, [src]);
-  return { objectPosition: okraj.poloha, backgroundColor: okraj.farba };
+  return {
+    objectPosition: okraj.poloha,
+    backgroundColor: okraj.farba,
+    backgroundImage: okraj.pozadie,
+    ...(okraj.pozadie && {
+      backgroundPosition: "left, right",
+      backgroundSize: "50% 100%",
+      backgroundRepeat: "no-repeat",
+    }),
+  };
 }
